@@ -1,0 +1,147 @@
+body {
+    font-size: 12px;
+}
+
+#content {
+    width: 100%;
+    padding: 10px 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+.form-control {
+    font-size: 12px;
+}
+
+button {
+    font-size: 12px !important;
+}
+
+.add {
+    float: right;
+    margin-top: -3px;
+}
+
+ul ul a {
+    background: #ee852a;
+    border-top: 1px solid #7386d5;
+    color: #ebe4e4;
+}
+
+.bg-warning {
+    background-color: #ff8507 !important;
+}
+
+.bg-primary {
+    background-color: #1f7ee4 !important;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    text-align: right;
+}
+
+.dataTables_info {
+    padding-top: 0.85em;
+    white-space: nowrap;
+    text-align: center;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    margin: 10px 0;
+    white-space: nowrap;
+    justify-content: center;
+}
+
+.see-detail {
+    background: #113c73;
+    margin: -20px -5px;
+    padding: 34px 0px;
+    transition: 1s;
+}
+
+.see-detail:hover {
+    background: #f37441;
+    transition: 1s;
+}
+
+.dt-buttons {
+    float: left;
+}
+
+.btn-group .btn+.btn,
+.btn-group .btn+.btn-group,
+.btn-group .btn-group+.btn,
+.btn-group .btn-group+.btn-group,
+.btn-group-vertical .btn+.btn,
+.btn-group-vertical .btn+.btn-group,
+.btn-group-vertical .btn-group+.btn,
+.btn-group-vertical .btn-group+.btn-group {
+    margin-left: 2px;
+}
+
+.allin-head {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 150%;
+    height: 94px;
+    margin:-20px;
+    background: rgb(110,131,231);
+    background: linear-gradient(90deg, rgb(143, 160, 243) 0%, rgb(93, 133, 236) 100%);
+    border-radius :0;
+    z-index: -999;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    opacity: 0.8;
+}
+
+.navbar {
+    padding: 10px;
+}
+
+.sticky-top {
+    top:10px;
+}
+
+.card-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 15%;
+}
+
+@media screen and (max-width: 767px) {
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+        margin: 10px 0;
+        white-space: nowrap;
+        justify-content: center;
+    }
+
+    .dt-buttons {
+        justify-content: center;
+    }
+
+    .add {
+        margin-right: 0px;
+        margin-left: 0px;
+        display: flex;
+        float: none;
+        justify-content: center;
+        margin-bottom: 5px;
+    }
+
+    .allin-head {
+        top:0;
+        height: 93px;
+        background: rgb(110,131,231);
+        background: linear-gradient(90deg, rgba(110,131,231,1) 0%, rgba(27,84,223,1) 100%);
+        border-radius :0;
+    }
+
+    .margin-card {
+        margin:-9px -5px -4px -5px;
+    }
+    
+}
