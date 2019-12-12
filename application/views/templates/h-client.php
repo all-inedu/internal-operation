@@ -20,7 +20,7 @@
 
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-colvis-1.6.1/b-flash-1.6.1/b-html5-1.6.1/fc-3.3.0/fh-3.1.6/datatables.min.css" />
-    <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
+    <link rel="stylesheet" href="<?=base_url();?>assets/css/style.css">
     <style>
     .dtr-title:after {
         content: " :";
@@ -70,6 +70,62 @@
 
     .ss-main .ss-multi-selected .ss-values .ss-value {
         background-color: #e6893a;
+    }
+
+    .file-drop-area {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin: 0px 0px;
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #dedede;
+        ;
+        border-radius: 3px;
+        transition: 0.2s;
+
+        &.is-active {
+            background-color: red;
+        }
+    }
+
+    .fake-btn {
+        flex-shrink: 0;
+        background-color: #3b6ddb;
+        border: 1px solid #dedede;
+        color: white;
+        border-radius: 3px;
+        padding: 5px 15px;
+        margin-right: 0px;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+
+    .file-msg {
+        width: 100%;
+        padding: 5px 15px;
+        font-size: small;
+        font-weight: 300;
+        line-height: 1.4;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border: 1px dashed #dedede;
+        border-radius: 3px;
+    }
+
+    .file-input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+        opacity: 0;
+
+        &:focus {
+            outline: none;
+        }
     }
     </style>
 </head>

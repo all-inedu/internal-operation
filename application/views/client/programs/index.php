@@ -124,7 +124,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
@@ -152,8 +152,7 @@
                         <div class="form-group">
                             <label>Main Program
                             </label>
-                            <select id="editMainProgram" name="editMainProgram" onchange="editMainProgram()">
-                                <option data-placeholder="true"></option>
+                            <select id="editMainPrograms" name="editMainProgram" onchange="editMainProgram()">
                                 <?php foreach($mainProgram as $mp): ?>
                                 <option value="<?=$mp;?>"><?=$mp;?></option>
                                 <?php endforeach; ?>
@@ -167,8 +166,9 @@
                             <label>Sub Program
                             </label>
                             <select id="editSubProgram" name="editSubProgram">
-                                <option data-placeholder="true"></option>
-
+                                <?php foreach($subProgram as $SP): ?>
+                                <option value="<?=$SP;?>"><?=$SP;?></option>
+                                <?php endforeach; ?>
                             </select>
                             <?=form_error('editSubProgram', '<small class="text-danger">', '</small>');?>
                         </div>
@@ -177,18 +177,16 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Program Name</label>
-                            <input name="programName" type="text" class="form-control form-control-sm"
-                                placeholder="Program Name">
-                            <?=form_error('programName', '<small class="text-danger">', '</small>');?>
+                            <input id="editProgramName" name="editProgramName" type="text"
+                                class="form-control form-control-sm" placeholder="Program Name">
+                            <?=form_error('editProgramName', '<small class="text-danger">', '</small>');?>
                         </div>
                     </div>
-
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Type Program
                             </label>
                             <select id="editTypeProgram" name="editTypeProgram">
-                                <option data-placeholder="true"></option>
                                 <?php foreach($typeProg as $tp): ?>
                                 <option value="<?=$tp;?>"><?=$tp;?></option>
                                 <?php endforeach; ?>
@@ -230,23 +228,23 @@ new SlimSelect({
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 
-new SlimSelect({
-    select: '#editMainProgram',
-    placeholder: 'Select main program ',
+var EMP = new SlimSelect({
+    select: '#editMainPrograms',
+    // placeholder: 'Select main program ',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 
-new SlimSelect({
+var ESP = new SlimSelect({
     select: '#editSubProgram',
-    placeholder: 'Select sub program ',
+    // placeholder: 'Select sub program ',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 
-new SlimSelect({
+var ETP = new SlimSelect({
     select: '#editTypeProgram',
-    placeholder: 'Select type program ',
+    // placeholder: 'Select type program ',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
@@ -285,7 +283,7 @@ function mainProgram() {
 }
 
 function editMainProgram() {
-    var p = $('#editMainProgram').val();
+    var p = $('#editMainPrograms').val();
     if (p == 'Encrihment Program') {
         $('#editSubProgram').html('');
         $('#editSubProgram').html(
@@ -318,7 +316,10 @@ function editMainProgram() {
 }
 
 function editPrograms(x) {
-    $('#idProgram').val(x);
-    $("#editMainProgram").value = '1';
+    $('#idProgram').val('AW');
+    EMP.set('University & Schoolarship');
+    ESP.set('Essay Guidance');
+    $('#editProgramName').val('Essay Guidance Tutor');
+    ETP.set('B2B');
 }
 </script>

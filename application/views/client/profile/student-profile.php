@@ -25,7 +25,7 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="70%">
+                    <img src="<?=base_url('assets/img/college.png');?>" alt="client management" width="70%">
                     <h6 class="mt-3">Students Name</h6>
                     <hr style="width:20%; margin-bottom:5px; margin-top:5px;">
                     <div class="text-info">
@@ -36,7 +36,8 @@
                 </div>
                 <div class="row text-center">
                     <div class="col">
-                        <a href="#" class="btn btn-sm btn-info m-1"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
+                        <a href="<?=base_url('client/profile/edit/student');?>" class="btn btn-sm btn-info m-1"><i
+                                class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
                     </div>
                 </div>
             </div>
@@ -206,58 +207,62 @@
                     <div class="col-md-12">
                         <i class="fas fa-file-word"></i>&nbsp; &nbsp;Attachment :
                         <div class="mb-3"></div>
-                        <table class="table table-bordered table-hover">
-                            <thead class="text-center bg-warning text-white">
-                                <th>Photo</th>
-                                <th>Curriculum Vitae</th>
-                                <th>Transcript</th>
-                                <th>Activities Resume</th>
-                                <th>Questionnaire</th>
-                                <th>Others</th>
-                            </thead>
-                            <tbody class="text-center">
-                                <tr>
-                                    <td>
-                                        <div class="badge badge-success"><i class="fas fa-check"></i></div>
-                                    </td>
-                                    <td>
-                                        <div class="badge badge-success"><i class="fas fa-check"></i></div>
-                                    </td>
-                                    <td>
-                                        <div class="badge badge-danger"><i class="fas fa-times"></i></div>
-                                    </td>
-                                    <td>
-                                        <div class="badge badge-success"><i class="fas fa-check"></i></div>
-                                    </td>
-                                    <td>
-                                        <div class="badge badge-danger"><i class="fas fa-times"></i></div>
-                                    </td>
-                                    <td>
-                                        <div class="badge badge-danger"><i class="fas fa-times"></i></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-info">Download</a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-info">Download</a>
-                                    </td>
-                                    <td>
-                                        <div class="text-muted">Not Available</div>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-info">Download</a>
-                                    </td>
-                                    <td>
-                                        <div class="text-muted">Not Available</div>
-                                    </td>
-                                    <td>
-                                        <div class="text-muted">Not Available</div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="text-center bg-warning text-white">
+                                    <tr>
+                                        <th>Photo</th>
+                                        <th>Curriculum Vitae</th>
+                                        <th>Transcript</th>
+                                        <th>Activities Resume</th>
+                                        <th>Questionnaire</th>
+                                        <th>Others</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr>
+                                        <td>
+                                            <div class="badge badge-success"><i class="fas fa-check"></i></div>
+                                        </td>
+                                        <td>
+                                            <div class="badge badge-success"><i class="fas fa-check"></i></div>
+                                        </td>
+                                        <td>
+                                            <div class="badge badge-danger"><i class="fas fa-times"></i></div>
+                                        </td>
+                                        <td>
+                                            <div class="badge badge-success"><i class="fas fa-check"></i></div>
+                                        </td>
+                                        <td>
+                                            <div class="badge badge-danger"><i class="fas fa-times"></i></div>
+                                        </td>
+                                        <td>
+                                            <div class="badge badge-danger"><i class="fas fa-times"></i></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-info">Download</a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-info">Download</a>
+                                        </td>
+                                        <td>
+                                            <div class="text-muted">Not Available</div>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-info">Download</a>
+                                        </td>
+                                        <td>
+                                            <div class="text-muted">Not Available</div>
+                                        </td>
+                                        <td>
+                                            <div class="text-muted">Not Available</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

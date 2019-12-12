@@ -17,7 +17,7 @@
             <li>
                 <a href="#settings" data-toggle="collapse" aria-expanded="false"><i class="fas fa-users-cog"></i>&nbsp;
                     Setting</a>
-                <ul class="list-unstyled" id="settings">
+                <ul class="list-unstyled collapse" id="settings">
                     <li>
                         <a href="<?=base_url('client/programs/');?>"><i class="fas fa-arrow-circle-right"></i>&nbsp;
                             Programs</a>
@@ -31,7 +31,7 @@
             <li>
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><i
                         class="fas fa-users-cog"></i>&nbsp; Client</a>
-                <ul class="list-unstyled" id="homeSubmenu">
+                <ul class="list-unstyled collapse" id="homeSubmenu">
                     <li>
                         <a href="<?=base_url('client/prospective/');?>"><i class="fas fa-arrow-circle-right"></i>&nbsp;
                             Prospective</a>
@@ -52,7 +52,7 @@
             <li>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fas fa-tags"></i>&nbsp;
                     Program</a>
-                <ul class="list-unstyled" id="pageSubmenu">
+                <ul class="list-unstyled collapse" id="pageSubmenu">
                     <li>
                         <a href="<?=base_url('client/client-program/');?>"><i
                                 class="fas fa-arrow-circle-right"></i>&nbsp; Student's Program</a>

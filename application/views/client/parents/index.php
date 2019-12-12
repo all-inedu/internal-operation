@@ -23,24 +23,21 @@
         <thead>
             <tr>
                 <th width="1%">No</th>
-                <th width="10%" class="text-center">First Name</th>
-                <th width="10%" class="text-center">Last Name</th>
-                <th width="10%" class="text-center">Parent's Mail</th>
-                <th width="5%" class="text-center">Parent's Instagram</th>
-                <th width="5%" class="text-center">Lead</th>
-                <th width="10%" class="text-center">Insterested Program</th>
+                <th width="10%" class="text-center">Full Name</th>
+                <th width="10%" class="text-center">E-mail</th>
+                <th width="10%" class="text-center">Instagram</th>
+                <th width="15%" class="text-center">Address</th>
             </tr>
         </thead>
         <tbody>
             <?php for($i=1;$i<=50;$i++) { ?>
             <tr>
                 <td class="text-center"><?=$i;?></td>
-                <td>Emilia</td>
-                <td>Wati</td>
+                <td style="cursor:pointer" onclick="window.location='<?=base_url('client/parents/view');?>'">Emilia Wati
+                </td>
                 <td>Emilia<?=$i;?>@all-inedu.com</td>
                 <td class="text-center">@Irawan</td>
-                <td class="text-center">SMA 75 JKT</td>
-                <td class="text-center">Adimission Consulting, SAT Private</td>
+                <td>Jl Panjang Jkt Barat</td>
             </tr>
             <?php } ?>
         </tbody>
