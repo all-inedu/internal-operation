@@ -6,9 +6,9 @@ Internal operation system adalah sistem inforamasi yang dibuat untuk membantu me
 Terdiri dari beberapa bagian divisi diantaranya Client Management, Business Development, Human Resource dan FInance.
 
 *******************
-Release Information
+Steps 
 *******************
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+1. Analisis Database
+2. Desain Table
+3. Template / Front End
