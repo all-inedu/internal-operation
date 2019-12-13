@@ -33,8 +33,9 @@
                             <b>Admission Consulting</b>
                     </div>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                    <a href="" class="btn btn-sm btn-primary">Add Initial Assessment</a>
-                    <a href="" class="btn btn-sm btn-warning">Edit Initial Assessment</a>
+                    <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addInitial">Add Initial
+                        Assessment</a>
+                    <!-- <a href="" class="btn btn-sm btn-warning">Edit Initial Assessment</a> -->
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <span class="text-muted"><i class="text-danger font font-weight-bold">*</i> Initial Assessment for
                         Admission
@@ -79,8 +80,7 @@
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <textarea name="prEmail" placeholder="Notes" class="form-control form-control-sm"
-                                    rows="5">
-                                </textarea>
+                                    rows="5"></textarea>
                             </div>
                         </div>
                     </div>
@@ -104,23 +104,42 @@
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <textarea name="prEmail" placeholder="Notes" class="form-control form-control-sm"
-                                    rows="5">
-                                </textarea>
+                                    rows="5"></textarea>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-4 mb-1">
-                        <i class="fab fa-instagram"></i>&nbsp; &nbsp; Potential Status :
+                        <i class="fab fa-instagram"></i>&nbsp; &nbsp; Potential :
                     </div>
                     <div class="col-md-8 text-muted">
                         <div class="row">
-                            <div class="col-md-12 mb-3">
-                                <select id="stPotential" name="stPotential">
+                            <div class="col-md-6 mb-3">
+                                <small>Status</small>
+                                <select id="stPotential" name="stPotential" onchange="addProgramStatus()">
                                     <option data-placeholder="true"></option>
                                     <option value="Pending">Pending</option>
                                     <option value="Failed">Failed</option>
                                     <option value="Success">Success</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <small>Date</small>
+                                <input type="date" name="stPotentialDate" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-1">
+                        <i class="fab fa-instagram"></i>&nbsp; &nbsp; Program Status :
+                    </div>
+                    <div class="col-md-8 text-muted">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <select id="stProgram" name="stProgram">
+                                    <option value="Not Yet">Not Yet</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Done">Done</option>
                                 </select>
                             </div>
                         </div>
@@ -130,11 +149,165 @@
                 <div class="text-center">
                     <button type="submit" class="btn btn-sm btn-info">Save changes</button>
                 </div>
+                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                <div class="text-primary">Initial Assessment :</div>
+                <br>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <th width="5%" class="text-center">Initial Consultation Date</th>
+                            <th width="5%" class="text-center">Initial Assessment Date</th>
+                            <th width="5%" class="text-center">Final Date</th>
+                            <th width="5%" class="text-center">Type</th>
+                            <th width="5%" class="text-center">Action</th>
+                        </thead>
+                        <tbody>
+                            <td class="text-center align-middle">05 Des 2019</td>
+                            <td class="text-center align-middle">12 Des 2019</td>
+                            <td class="text-center align-middle">-</td>
+                            <td class="text-center align-middle">Short</td>
+                            <td class="text-center"><a href="#" data-toggle="modal" data-target="#editInitial"
+                                    class="btn btn-sm btn-warning">Edit</a></td>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Add Modal -->
+<div class="modal fade" id="addInitial" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Add Initial Assessment</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Program Name</label>
+                            <input name="programName" type="text" class="form-control form-control-sm"
+                                placeholder="Program Name">
+                            <?=form_error('programName', '<small class="text-danger">', '</small>');?>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Initial Consultation Date</label>
+                            <input name="programName" type="date" class="form-control form-control-sm"
+                                placeholder="Program Name">
+                            <?=form_error('programName', '<small class="text-danger">', '</small>');?>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Initial Assessment Date</label>
+                            <input name="programName" type="date" class="form-control form-control-sm"
+                                placeholder="Program Name">
+                            <?=form_error('programName', '<small class="text-danger">', '</small>');?>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Final Initial Assessment Date</label>
+                            <input name="programName" type="date" class="form-control form-control-sm"
+                                placeholder="Program Name">
+                            <?=form_error('programName', '<small class="text-danger">', '</small>');?>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Initial Assessment Type</label>
+                            <select name="initType" id="initType">
+                                <option data-placeholder="true"></option>
+                                <option value="1">Short</option>
+                                <option value="2">Long</option>
+                            </select>
+                            <?=form_error('initType', '<small class="text-danger">', '</small>');?>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Add Modal -->
+<div class="modal fade" id="editInitial" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Initial Assessment</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Program Name</label>
+                            <input name="programName" type="text" class="form-control form-control-sm"
+                                placeholder="Program Name">
+                            <?=form_error('programName', '<small class="text-danger">', '</small>');?>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Initial Consultation Date</label>
+                            <input name="programName" type="date" class="form-control form-control-sm"
+                                placeholder="Program Name">
+                            <?=form_error('programName', '<small class="text-danger">', '</small>');?>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Initial Assessment Date</label>
+                            <input name="programName" type="date" class="form-control form-control-sm"
+                                placeholder="Program Name">
+                            <?=form_error('programName', '<small class="text-danger">', '</small>');?>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Final Initial Assessment Date</label>
+                            <input name="programName" type="date" class="form-control form-control-sm"
+                                placeholder="Program Name">
+                            <?=form_error('programName', '<small class="text-danger">', '</small>');?>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Initial Assessment Type</label>
+                            <select name="editInitType" id="editInitType">
+                                <option data-placeholder="true"></option>
+                                <option value="1">Short</option>
+                                <option value="2">Long</option>
+                            </select>
+                            <?=form_error('initType', '<small class="text-danger">', '</small>');?>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
@@ -144,4 +317,35 @@ new SlimSelect({
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
+
+var stProgram = new SlimSelect({
+    select: '#stProgram',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+stProgram.disable();
+
+new SlimSelect({
+    select: '#initType',
+    placeholder: 'Select initial assessment type',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
+new SlimSelect({
+    select: '#editInitType',
+    placeholder: 'Select initial assessment type',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
+function addProgramStatus() {
+    var st = $("#stPotential").val();
+    if (st == "Success") {
+        stProgram.enable();
+    } else {
+        stProgram.disable();
+        stProgram.set("Not Yet");
+    }
+}
 </script>

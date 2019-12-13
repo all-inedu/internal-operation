@@ -12,7 +12,7 @@
         <ul class="list-unstyled components">
             <p>Client Management</p>
             <li>
-                <a href="#"><i class="fas fa-home"></i>&nbsp; Home</a>
+                <a href="<?=base_url('client/home/');?>"><i class="fas fa-home"></i>&nbsp; Home</a>
             </li>
             <li>
                 <a href="#settings" data-toggle="collapse" aria-expanded="false"><i class="fas fa-users-cog"></i>&nbsp;
@@ -57,11 +57,10 @@
                         <a href="<?=base_url('client/client-program/');?>"><i
                                 class="fas fa-arrow-circle-right"></i>&nbsp; Student's Program</a>
                     </li>
-                    <li>
-                        <a href="<?=base_url('client/initial-assessment/');?>"><i
-                                class="fas fa-arrow-circle-right"></i>&nbsp; Initial Assessment</a>
-                    </li>
                 </ul>
+            </li>
+            <li>
+                <a href="<?=base_url('client/alumni/');?>"><i class="fas fa-home"></i>&nbsp; Alumni</a>
             </li>
         </ul>
 
