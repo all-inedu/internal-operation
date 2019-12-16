@@ -17,4 +17,16 @@ class Client_program extends CI_Controller
         $this->load->view('client/client-program/view-cp');
         $this->load->view('templates/f-client');
     }
+
+    public function editStudentsProgram(){
+        echo 'Edit Students Program';
+    }
+
+    public function addInitialAssessment(){
+        echo 'Edit Students Program';
+    }
+
+    public function editInitialAssessment(){
+        echo 'Edit Students Program';
+    }
 }

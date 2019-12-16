@@ -126,7 +126,8 @@
                 </div>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-sm btn-info">Save changes</button>
+                    <button type="submit" class="btn btn-sm btn-info"><i class="fas fa-save"></i>&nbsp; Save
+                        changes</button>
                 </div>
             </div>
         </div>

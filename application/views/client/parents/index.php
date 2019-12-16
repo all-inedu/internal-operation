@@ -23,7 +23,7 @@
         <thead>
             <tr>
                 <th width="1%">No</th>
-                <th width="10%" class="text-center">Full Name</th>
+                <th width="10%" class="text-center bg-primary text-white">Full Name</th>
                 <th width="10%" class="text-center">E-mail</th>
                 <th width="10%" class="text-center">Instagram</th>
                 <th width="15%" class="text-center">Address</th>

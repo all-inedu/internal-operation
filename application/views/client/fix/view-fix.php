@@ -3,7 +3,7 @@
         <div class="col-md-5">
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <div class="breadcrumb text-dark bg-white font-weight-bold  shadow border">
-                    <i class="fas fa-users mt-1"></i>&nbsp;&nbsp; Prospective Client
+                    <i class="fas fa-users mt-1"></i>&nbsp;&nbsp; Fix Client
                 </div>
             </nav>
         </div>
@@ -187,8 +187,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                        class="fas fa-times-circle"></i>&nbsp; Close</button>
+                <button type="button" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save changes</button>
             </div>
         </div>
     </div>

@@ -15,7 +15,7 @@
                 <a href="<?=base_url('client/home/');?>"><i class="fas fa-home"></i>&nbsp; Home</a>
             </li>
             <li>
-                <a href="#settings" data-toggle="collapse" aria-expanded="false"><i class="fas fa-users-cog"></i>&nbsp;
+                <a href="#settings" data-toggle="collapse" aria-expanded="false"><i class="fas fa-cog"></i>&nbsp;
                     Setting</a>
                 <ul class="list-unstyled collapse" id="settings">
                     <li>
@@ -60,7 +60,7 @@
                 </ul>
             </li>
             <li>
-                <a href="<?=base_url('client/alumni/');?>"><i class="fas fa-home"></i>&nbsp; Alumni</a>
+                <a href="<?=base_url('client/alumni/');?>"><i class="fas fa-user-shield"></i>&nbsp; Alumni</a>
             </li>
         </ul>
 

@@ -123,8 +123,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                        class="fas fa-times-circle"></i>&nbsp; Close</button>
+                <button type="button" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
             </div>
         </div>
     </div>
@@ -197,8 +198,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                        class="fas fa-times-circle"></i>&nbsp; Close</button>
+                <button type="button" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save changes</button>
             </div>
         </div>
     </div>
