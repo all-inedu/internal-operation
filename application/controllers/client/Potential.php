@@ -5,10 +5,10 @@ class Potential extends CI_Controller
 {
 
     public function index(){
-        $this->load->view('templates/h-client');
+        $this->load->view('templates/h-io');
         $this->load->view('templates/s-client');
         $this->load->view('client/potential/index');
-        $this->load->view('templates/f-client');
+        $this->load->view('templates/f-io');
     }
 
     public function view(){
@@ -18,9 +18,9 @@ class Potential extends CI_Controller
         $data['univ'] = ["Harvard","NTU","NUS","University of California"];
         $data['major'] = ["Computer Science","Business Management","Communication","Health Professions","Engineering","Human Service"];
         
-        $this->load->view('templates/h-client');
+        $this->load->view('templates/h-io');
         $this->load->view('templates/s-client');
         $this->load->view('client/potential/view-potential', $data);
-        $this->load->view('templates/f-client');
+        $this->load->view('templates/f-io');
     }
 }

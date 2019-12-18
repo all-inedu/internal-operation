@@ -5,10 +5,10 @@ class Prospective extends CI_Controller
 {
 
     public function index(){
-        $this->load->view('templates/h-client');
+        $this->load->view('templates/h-io');
         $this->load->view('templates/s-client');
         $this->load->view('client/prospective/index');
-        $this->load->view('templates/f-client');
+        $this->load->view('templates/f-io');
     }
 
     public function add($role=''){
@@ -28,10 +28,10 @@ class Prospective extends CI_Controller
             // $this->form_validation->set_rules('univDestination', 'univ destination', 'required');
 
             if ($this->form_validation->run() == false) {
-                $this->load->view('templates/h-client');
+                $this->load->view('templates/h-io');
                 $this->load->view('templates/s-client');
                 $this->load->view('client/prospective/add-prospective');
-                $this->load->view('templates/f-client');
+                $this->load->view('templates/f-io');
 
             } else {
                 
@@ -39,10 +39,10 @@ class Prospective extends CI_Controller
             }
 
         } else if ($role=='parent'){
-            $this->load->view('templates/h-client');
+            $this->load->view('templates/h-io');
             $this->load->view('templates/s-client');
             $this->load->view('client/prospective/add-parent');
-            $this->load->view('templates/f-client');
+            $this->load->view('templates/f-io');
 
         } else {
             redirect('/client/prospective');
@@ -98,10 +98,10 @@ class Prospective extends CI_Controller
         $data['univ'] = ["Harvard","NTU","NUS","University of California"];
         $data['major'] = ["Computer Science","Business Management","Communication","Health Professions","Engineering","Human Service"];
 
-        $this->load->view('templates/h-client');
+        $this->load->view('templates/h-io');
         $this->load->view('templates/s-client');
         $this->load->view('client/prospective/view-prospective', $data);
-        $this->load->view('templates/f-client');
+        $this->load->view('templates/f-io');
     }
 
     

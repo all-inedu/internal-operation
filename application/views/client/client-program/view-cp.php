@@ -57,6 +57,22 @@
                 <form action="./editStudentsProgram" method="post" id="editSP">
                     <div class="row">
                         <div class="col-md-4 mb-1">
+                            <i class="fas fa-calendar-alt"></i>&nbsp; &nbsp; Lead Source :
+                        </div>
+                        <div class="col-md-8 text-muted">
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <select id="leadSource" name="leadSource">
+                                        <option data-placeholder="true"></option>
+                                        <option value="1">Instagram</option>
+                                        <option value="2">WA Blast</option>
+                                        <option value="3">Referral</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-1">
                             <i class="fas fa-calendar-alt"></i>&nbsp; &nbsp; Date :
                         </div>
                         <div class="col-md-8 text-muted">
@@ -347,6 +363,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
+new SlimSelect({
+    select: '#leadSource',
+    placeholder: 'Select lead source ',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
 new SlimSelect({
     select: '#stPotential',
     placeholder: 'Select potential status',

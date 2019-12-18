@@ -15,9 +15,9 @@ class Programs extends CI_Controller
 
         $data['subProgram'] = array_merge($data['subEP'], $data['subEL'],  $data['subST'],  $data['subUS']);
 
-        $this->load->view('templates/h-client');
+        $this->load->view('templates/h-io');
         $this->load->view('templates/s-client');
         $this->load->view('client/programs/index', $data);
-        $this->load->view('templates/f-client');
+        $this->load->view('templates/f-io');
     }
 }

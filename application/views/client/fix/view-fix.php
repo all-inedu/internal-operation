@@ -150,6 +150,20 @@
                         </div>
                     </div>
 
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Lead Source
+                            </label>
+                            <select id="leadSource" name="leadSource">
+                                <option data-placeholder="true"></option>
+                                <option value="1">Instagram</option>
+                                <option value="2">WA Blast</option>
+                                <option value="3">Referral</option>
+                            </select>
+                            <?=form_error('leadSource', '<small class="text-danger">', '</small>');?>
+                        </div>
+                    </div>
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>First Discuss</label>
@@ -201,6 +215,13 @@
 new SlimSelect({
     select: '#programName',
     placeholder: 'Select program name ',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
+new SlimSelect({
+    select: '#leadSource',
+    placeholder: 'Select lead source ',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });

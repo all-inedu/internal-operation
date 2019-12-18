@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Alumni extends CI_Controller
+class Program extends CI_Controller
 {
 
     public function index(){
@@ -15,9 +15,11 @@ class Alumni extends CI_Controller
 
         $data['subProgram'] = array_merge($data['subEP'], $data['subEL'],  $data['subST'],  $data['subUS']);
 
+
         $this->load->view('templates/h-io');
-        $this->load->view('templates/s-client');
-        $this->load->view('client/alumni/index', $data);
+        $this->load->view('templates/s-bizdev');
+        $this->load->view('bizdev/program/index', $data);
         $this->load->view('templates/f-io');
     }
+    
 }

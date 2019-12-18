@@ -11,10 +11,10 @@ class Profile extends CI_Controller
         $data['univ'] = ["Harvard","NTU","NUS","University of California"];
         $data['major'] = ["Computer Science","Business Management","Communication","Health Professions","Engineering","Human Service"];
        
-        $this->load->view('templates/h-client');
+        $this->load->view('templates/h-io');
         $this->load->view('templates/s-client');
         $this->load->view('client/profile/student-profile', $data);
-        $this->load->view('templates/f-client');
+        $this->load->view('templates/f-io');
     }
 
     public function edit($u='student'){
@@ -27,10 +27,10 @@ class Profile extends CI_Controller
             $data['univ'] = ["Harvard","NTU","NUS","University of California"];
             $data['major'] = ["Computer Science","Business Management","Communication","Health Professions","Engineering","Human Service"];
            
-            $this->load->view('templates/h-client');
+            $this->load->view('templates/h-io');
             $this->load->view('templates/s-client');
             $this->load->view('client/profile/student-edit', $data);
-            $this->load->view('templates/f-client'); 
+            $this->load->view('templates/f-io'); 
         } else {
             $photo = $_FILES['photo']['name'];
             $cv = $_FILES['cv']['name'];
