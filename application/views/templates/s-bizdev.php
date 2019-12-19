@@ -37,7 +37,7 @@
                             School</a>
                     </li>
                     <li>
-                        <a href="<?=base_url('bizdev/potential/');?>"><i class="fas fa-arrow-circle-right"></i>&nbsp;
+                        <a href="<?=base_url('bizdev/corporate/');?>"><i class="fas fa-arrow-circle-right"></i>&nbsp;
                             Coorporate</a>
                     </li>
                 </ul>
@@ -47,11 +47,11 @@
                     Program</a>
                 <ul class="list-unstyled collapse" id="pageSubmenu">
                     <li>
-                        <a href="<?=base_url('bizdev/client-program/');?>"><i
+                        <a href="<?=base_url('bizdev/school-program/');?>"><i
                                 class="fas fa-arrow-circle-right"></i>&nbsp; School Program</a>
                     </li>
                     <li>
-                        <a href="<?=base_url('bizdev/client-program/');?>"><i
+                        <a href="<?=base_url('bizdev/corporate-program/');?>"><i
                                 class="fas fa-arrow-circle-right"></i>&nbsp; Coorporate Program</a>
                     </li>
                 </ul>

@@ -39,7 +39,7 @@
                         <a href="<?=base_url('client/profile/student/');?>" class="btn btn-sm btn-info m-1"><i
                                 class="fas fa-pencil-alt"></i>&nbsp; Profile</a>
                         <a href="#" class="btn btn-sm btn-success m-1" data-toggle="modal"
-                            data-target="#convertPotencial"><i class="fas fa-retweet"></i>&nbsp;
+                            data-target="#convertPotential"><i class="fas fa-retweet"></i>&nbsp;
                             Convert</a>
                     </div>
                 </div>
@@ -186,7 +186,7 @@
 
 <!-- Modal -->
 <!-- Modal -->
-<div class="modal fade" id="convertPotencial" tabindex="-1" role="dialog">
+<div class="modal fade" id="convertPotential" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">

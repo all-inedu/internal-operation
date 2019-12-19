@@ -39,6 +39,10 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
+$(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
 const flashSuccess = $('.flash-data').data('success');
 const flashError = $('.flash-data').data('error');
 const flashWarning = $('.flash-data').data('warning');
