@@ -35,6 +35,10 @@
                     </div>
                     <a href="<?=base_url('bizdev/corporate/edit/');?>" class="btn btn-sm btn-info"><i
                             class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
+
+                    <a href="#" class="btn btn-sm btn-success m-1" data-toggle="modal"
+                        data-target="#convertPotential"><i class="fas fa-retweet"></i>&nbsp;
+                        Convert</a>
                 </div>
             </div>
         </div>
@@ -177,8 +181,83 @@
             </div>
         </div>
     </div>
-
 </div>
+
+<div class="modal fade" id="convertPotential" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered  modal-dialog-scrollable" role="document">
+        <form action="convertPotential" method="post" id="convert">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Convert to Potential</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Program Name
+                                </label>
+                                <select id="programName" name="programName">
+                                    <option data-placeholder="true"></option>
+                                    <option value="1">Admission Advisory</option>
+                                    <option value="2">SAT Prep</option>
+                                    <option value="3">ACT Prep</option>
+                                    <option value="4">Experiential Learning</option>
+                                </select>
+                                <?=form_error('programName', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Is Corporate Scheme ?</label>
+                                <select id="corporateType" name="corporateType">
+                                    <option data-placeholder="true"></option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">No</option>
+                                </select>
+                                <?=form_error('corporateType', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Discuss</label>
+                                <input name="firstDiscuss" type="date" class="form-control form-control-sm"
+                                    placeholder="First Discuss">
+                                <?=form_error('firstDiscuss', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Last Discuss</label>
+                                <input name="lastDiscuss" type="date" class="form-control form-control-sm"
+                                    placeholder="Last Discuss" disabled>
+                                <?=form_error('lastDiscuss', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Notes</label>
+                                <textarea name="notes" class="form-control form-control-sm" rows="5"></textarea>
+                                <?=form_error('notes', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                            class="fas fa-times-circle"></i>&nbsp; Close</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save
+                        changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
@@ -189,4 +268,18 @@ var AS = new SlimSelect({
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 AS.disable();
+
+var PN = new SlimSelect({
+    select: '#programName',
+    placeholder: 'Select program name',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
+var CT = new SlimSelect({
+    select: '#corporateType',
+    placeholder: 'Select corporate type',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
 </script>

@@ -47,7 +47,7 @@
                     </span>
 
 
-                    <h5 class="align-middle mt-2">
+                    <h5 class="align-middle mt-1 mb-1">
                         School Name</h5>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="text-info">
@@ -77,13 +77,15 @@
                         </div>
                         <div class="col-md-9 mb-2">
                             <label>Admission Consultant</label>
+                            <hr class="mt-1 mb-1">
                         </div>
 
                         <div class="col-md-3">
                             <label><i class="fas fa-calendar-alt text-muted"></i>&nbsp; First Discuss :</label>
                         </div>
                         <div class="col-md-9 mb-2">
-                            <label>Admission Consultant</label>
+                            <label>23 January 2019</label>
+                            <hr class="mt-1 mb-1">
                         </div>
 
                         <div class="col-md-3">
@@ -117,7 +119,10 @@
                             <?=form_error('notes', '<small class="text-danger">', '</small>');?>
                         </div>
 
-                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+
+
+                        </div>
                         <div class="col-md-8">
                             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save
                                 changes</button>
@@ -132,39 +137,81 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label class="font-weight-bold">Program Execution</label>
-                        <a href="" class="btn btn-sm btn-warning float-right mb-2"><i
-                                class="fas fa-pencil-alt"></i>&nbsp;
+                        <a href="#" class="btn btn-sm btn-warning float-right mb-2" data-toggle="modal"
+                            data-target="#editProg"><i class="fas fa-pencil-alt"></i>&nbsp;
                             Edit</a>
                     </div>
                     <div class="container" id="teacher">
                         <div class="row p-0">
-                            <div class="col-md-12">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">Start Date</th>
-                                                <th class="text-center">End Date</th>
-                                                <th class="text-center">Place</th>
-                                                <th class="text-center">Participans</th>
-                                                <th class="text-center">Total Hours</th>
-                                                <th class="text-center">Status</th>
-                                                <th class="text-center">Notes</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="text-center">Full Name</td>
-                                                <td class="text-center">E-mail</td>
-                                                <td class="text-center">Linkedin</td>
-                                                <td class="text-center">Phone Number</td>
-                                                <td class="text-center">Principal</td>
-                                                <td class="text-center">Principal</td>
-                                                <td class="text-center">Principal</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div class="col-md-3 mb-2">
+                                <label><i class="fas fa-calendar-alt text-muted"></i>&nbsp; Date :</label>
+                            </div>
+                            <div class="col-md-9 mb-2">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <small class="font-weight-bold">Start Date : </small> <br>
+                                        <label>Admission Consultant</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <small class="font-weight-bold">End Date : </small> <br>
+                                        <label>Admission Consultant</label>
+                                    </div>
                                 </div>
+                                <hr class="mt-1 mb-1">
+                            </div>
+
+                            <div class="col-md-3 mb-2">
+                                <label><i class="fas fa-search-location text-muted"></i>&nbsp; Place :</label>
+                            </div>
+                            <div class="col-md-9 mb-2">
+                                <label>All-In Eduspace - Jl. Panjang No. 36 Kebon Jeruk, Jakarta Barat</label>
+                                <hr class="mt-1 mb-1">
+                            </div>
+
+                            <div class="col-md-3 mb-2">
+                                <label><i class="fas fa-user-friends text-muted"></i>&nbsp; Participans :</label>
+                            </div>
+                            <div class="col-md-9 mb-2">
+                                <label>12 Persons</label>
+                                <hr class="mt-1 mb-1">
+                            </div>
+
+                            <div class="col-md-3 mb-2">
+                                <label><i class="fas fa-clock text-muted"></i>&nbsp; Total Hours :</label>
+                            </div>
+                            <div class="col-md-9 mb-2">
+                                <label>24 Hours</label>
+                                <hr class="mt-1 mb-1">
+                            </div>
+
+                            <div class="col-md-3 mb-2">
+                                <label><i class="fas fa-question-circle text-muted"></i>&nbsp; Status :</label>
+                            </div>
+                            <div class="col-md-9 mb-2">
+                                <label class="badge badge-danger p-1">Not Running</label>
+                                <label class="badge badge-info p-1">Running</label>
+                                <label class="badge badge-success p-1">Done</label>
+                                <hr class="mt-1 mb-1">
+                            </div>
+
+                            <div class="col-md-3 mb-2">
+                                <label><i class="far fa-sticky-note text-muted"></i>&nbsp; Notes :</label>
+                            </div>
+                            <div class="col-md-9 mb-2">
+                                <label>What is Lorem Ipsum?
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum has
+                                    been the industry's standard dummy text ever since the 1500s, when an unknown
+                                    printer took a
+                                    galley of type and scrambled it to make a type specimen book. It has survived not
+                                    only five
+                                    centuries, but also the leap into electronic typesetting, remaining essentially
+                                    unchanged.
+                                    It was popularised in the 1960s with the release of Letraset sheets containing Lorem
+                                    Ipsum
+                                    passages, and more recently with desktop publishing software like Aldus PageMaker
+                                    including
+                                    versions of Lorem Ipsum.</label>
                             </div>
                         </div>
                     </div>
@@ -177,10 +224,93 @@
 <!-- Add Modal -->
 <div class="modal fade" id="addProg" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <form action="addTeacher" method="post" id="addTeacher">
+        <form action="programExecution" method="post" id="programExecution">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Add Program Execution</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                <input name="startDate" type="date" class="form-control form-control-sm">
+                                <?=form_error('startDate', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <input name="endDate" type="date" class="form-control form-control-sm">
+                                <?=form_error('endDate', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Place</label>
+                                <input name="place" type="text" class="form-control form-control-sm"
+                                    placeholder="Place">
+                                <?=form_error('place', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Participans</label>
+                                <input name="participans" type="number" class="form-control form-control-sm">
+                                <?=form_error('participans', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Total Hours</label>
+                                <input name="totalHours" type="number" class="form-control form-control-sm">
+                                <?=form_error('totalHours', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Status Potential</label>
+                                <select type="text" name="statusPotential" class="form-control form-control-sm">
+                                    <option value="Running">Running</option>
+                                    <option value="Not Running">Not Running</option>
+                                </select>
+                                <?=form_error('statusPotential', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Notes</label>
+                                <textarea type="text" name="notes" class="form-control form-control-sm"
+                                    rows="5"></textarea>
+                                <?=form_error('notes', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                            class="fas fa-times-circle"></i>&nbsp; Close</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editProg" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <form action="editProgramExecution" method="post" id="editProgramExecution">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Program Execution</h5>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -267,9 +397,14 @@ var PS = new SlimSelect({
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
-// PS.set('Success')
+PS.set('Pending');
 
-$("#programExec").show();
+var PE = $("#programStatus").val();
+if (PE == "Success") {
+    $("#programExec").show();
+} else {
+    $("#programExec").hide();
+}
 
 function programSuccess() {
     var PE = $("#programStatus").val();

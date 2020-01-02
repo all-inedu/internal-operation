@@ -35,14 +35,32 @@
         <tbody>
             <?php for($i=1;$i<=25;$i++) { ?>
             <tr>
-                <td class="text-center"><?=$i;?></td>
-                <td class="text-center" style="cursor:pointer"
+                <td class="text-center align-middle"><?=$i;?></td>
+                <td class="text-center align-middle" style="cursor:pointer"
                     onclick="window.location='<?=base_url('bizdev/school-program/view');?>'">Lorem Ipsum</td>
-                <td class="text-center">Lorem Ipsum</td>
-                <td class="text-center">Lorem Ipsum</td>
-                <td class="text-center">Lorem Ipsum</td>
-                <td class="text-center">Lorem Ipsum</td>
-                <td class="text-center">Lorem Ipsum</td>
+                <td class="text-center align-middle">Lorem Ipsum</td>
+                <td class="text-center align-middle">Lorem Ipsum</td>
+                <td class="text-center align-middle">Lorem Ipsum</td>
+                <td class="text-center align-middle">
+                    <!-- Status Success -->
+                    <span class="badge badge-pill badge-success p-1" data-toggle="tooltip" data-placement="top"
+                        title="Success">
+                        <i class="fas fa-check fa-2x"></i>
+                    </span>
+
+                    <!-- Status Pending -->
+                    <span class="badge badge-pill badge-primary p-1 text-white" data-toggle="tooltip"
+                        data-placement="top" title="Pending">
+                        <i class="fas fa-clock fa-2x"></i>
+                    </span>
+
+                    <!-- Status Denied -->
+                    <span class="badge badge-pill badge-danger p-1 text-white" data-toggle="tooltip"
+                        data-placement="top" title="Denied">
+                        <i class="fas fa-frown-open fa-2x"></i>
+                    </span>
+                </td>
+                <td class="text-center align-middle">Lorem Ipsum</td>
             </tr>
             <?php } ?>
         </tbody>

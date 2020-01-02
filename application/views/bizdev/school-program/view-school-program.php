@@ -80,6 +80,7 @@
                     </div>
                     <div class="col-md-9 mb-2">
                         <label>Admission Consultant</label>
+                        <hr class="mt-1 mb-1">
                     </div>
 
                     <div class="col-md-3">
@@ -87,6 +88,7 @@
                     </div>
                     <div class="col-md-9 mb-2">
                         <label>Admission Consultant</label>
+                        <hr class="mt-1 mb-1">
                     </div>
 
                     <div class="col-md-3">
@@ -94,6 +96,7 @@
                     </div>
                     <div class="col-md-9 mb-2">
                         <label>Admission Consultant</label>
+                        <hr class="mt-1 mb-1">
                     </div>
 
                     <div class="col-md-3">
@@ -114,38 +117,80 @@
 
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 mb-2">
                         <label class="font-weight-bold">Program Execution</label>
                     </div>
-                    <div class="container" id="teacher">
+                    <div class="container">
                         <div class="row p-0">
-                            <div class="col-md-12">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">Start Date</th>
-                                                <th class="text-center">End Date</th>
-                                                <th class="text-center">Place</th>
-                                                <th class="text-center">Participans</th>
-                                                <th class="text-center">Total Hours</th>
-                                                <th class="text-center">Status</th>
-                                                <th class="text-center">Notes</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="text-center">Full Name</td>
-                                                <td class="text-center">E-mail</td>
-                                                <td class="text-center">Linkedin</td>
-                                                <td class="text-center">Phone Number</td>
-                                                <td class="text-center">Principal</td>
-                                                <td class="text-center">Principal</td>
-                                                <td class="text-center">Principal</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div class="col-md-3 mb-2">
+                                <label><i class="fas fa-calendar-alt text-muted"></i>&nbsp; Date :</label>
+                            </div>
+                            <div class="col-md-9 mb-2">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <small class="font-weight-bold">Start Date : </small> <br>
+                                        <label>Admission Consultant</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <small class="font-weight-bold">End Date : </small> <br>
+                                        <label>Admission Consultant</label>
+                                    </div>
                                 </div>
+                                <hr class="mt-1 mb-1">
+                            </div>
+
+                            <div class="col-md-3 mb-2">
+                                <label><i class="fas fa-search-location text-muted"></i>&nbsp; Place :</label>
+                            </div>
+                            <div class="col-md-9 mb-2">
+                                <label>All-In Eduspace - Jl. Panjang No. 36 Kebon Jeruk, Jakarta Barat</label>
+                                <hr class="mt-1 mb-1">
+                            </div>
+
+                            <div class="col-md-3 mb-2">
+                                <label><i class="fas fa-user-friends text-muted"></i>&nbsp; Participans :</label>
+                            </div>
+                            <div class="col-md-9 mb-2">
+                                <label>12 Persons</label>
+                                <hr class="mt-1 mb-1">
+                            </div>
+
+                            <div class="col-md-3 mb-2">
+                                <label><i class="fas fa-clock text-muted"></i>&nbsp; Total Hours :</label>
+                            </div>
+                            <div class="col-md-9 mb-2">
+                                <label>24 Hours</label>
+                                <hr class="mt-1 mb-1">
+                            </div>
+
+                            <div class="col-md-3 mb-2">
+                                <label><i class="fas fa-question-circle text-muted"></i>&nbsp; Status :</label>
+                            </div>
+                            <div class="col-md-9 mb-2">
+                                <label class="badge badge-danger p-1">Not Running</label>
+                                <label class="badge badge-info p-1">Running</label>
+                                <label class="badge badge-success p-1">Done</label>
+                                <hr class="mt-1 mb-1">
+                            </div>
+
+                            <div class="col-md-3 mb-2">
+                                <label><i class="far fa-sticky-note text-muted"></i>&nbsp; Notes :</label>
+                            </div>
+                            <div class="col-md-9 mb-2">
+                                <label>What is Lorem Ipsum?
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum has
+                                    been the industry's standard dummy text ever since the 1500s, when an unknown
+                                    printer took a
+                                    galley of type and scrambled it to make a type specimen book. It has survived not
+                                    only five
+                                    centuries, but also the leap into electronic typesetting, remaining essentially
+                                    unchanged.
+                                    It was popularised in the 1960s with the release of Letraset sheets containing Lorem
+                                    Ipsum
+                                    passages, and more recently with desktop publishing software like Aldus PageMaker
+                                    including
+                                    versions of Lorem Ipsum.</label>
                             </div>
                         </div>
                     </div>

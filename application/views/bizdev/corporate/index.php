@@ -49,7 +49,10 @@
                 <td class="text-center">Lorem Ipsum</td>
                 <td class="text-center">Lorem Ipsum</td>
                 <td class="text-center">Lorem Ipsum</td>
-                <td class="text-center">Lorem Ipsum</td>
+                <td class="text-center">
+                    <div class="badge bg-white shadow text-success p-2">Approach</div>
+                    <div class="badge bg-white shadow text-danger p-2">Not Yet</div>
+                </td>
             </tr>
             <?php } ?>
         </tbody>

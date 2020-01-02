@@ -44,7 +44,7 @@
                 <form action="" method="post">
                     <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Corporate
                         <div class="float-right">
-                            <a href="<?=base_url('bizdev/corporate/');?>" class="btn btn-sm btn-info"><i
+                            <a href="<?=base_url('bizdev/corporate/view/');?>" class="btn btn-sm btn-info"><i
                                     class="fas fa-arrow-circle-left"></i></a>
                         </div>
                     </h6>
@@ -176,8 +176,9 @@
                                             <button class="btn btn-sm btn-info" title="Edit" data-toggle="modal"
                                                 data-target="#editPIC" onclick="editPIC('1')"><i
                                                     class="fas fa-edit"></i></button>
-                                            <a href="#" class="btn btn-sm btn-danger delete-button" data-message="PIC"
-                                                title="Delete"><i class="fas fa-trash"></i></a>
+                                            <a href="#" class="btn btn-sm btn-danger delete-button"
+                                                data-message="Corporate PIC" title="Delete"><i
+                                                    class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>

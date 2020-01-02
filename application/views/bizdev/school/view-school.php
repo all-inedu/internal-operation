@@ -200,7 +200,7 @@
 
 
 <div class="modal fade" id="convertPotential" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-dialog modal-dialog-centered  modal-dialog-scrollable" role="document">
         <form action="convertPotential" method="post" id="convert">
             <div class="modal-content">
                 <div class="modal-header">
