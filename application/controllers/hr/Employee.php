@@ -31,5 +31,12 @@ class Employee extends CI_Controller
         $this->load->view('hr/employee/view-employee.php');
         $this->load->view('templates/f-io');
     }
+
+    public function edit(){
+        $this->load->view('templates/h-io');
+        $this->load->view('templates/s-hr');
+        $this->load->view('hr/employee/edit-employee.php');
+        $this->load->view('templates/f-io');
+    }
     
 }

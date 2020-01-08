@@ -35,8 +35,8 @@
                             <i class="fas fa-phone text-danger"></i>&nbsp; 081231232xxx &nbsp; | &nbsp;
                             <i class="fas fa-envelope text-danger"></i>&nbsp; mail@gmail.com</p>
                     </div>
-                    <a href="<?=base_url('bizdev/corporate-program/edit');?>"
-                        class="btn btn-sm btn-primary m-1 pl-3 pr-3"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
+                    <a href="<?=base_url('hr/employee/edit');?>" class="btn btn-sm btn-primary m-1 pl-3 pr-3"><i
+                            class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
                 </div>
             </div>
         </div>
