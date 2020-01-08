@@ -318,6 +318,7 @@ function editMainProgram() {
 }
 
 function editPrograms(x) {
+    console.log(x);
     $('#idProgram').val('AW');
     EMP.set('University & Schoolarship');
     ESP.set('Essay Guidance');

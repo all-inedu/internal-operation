@@ -57,7 +57,7 @@
                 </ul>
             </li>
             <li>
-                <a href="<?=base_url('bizdev/alumni/');?>"><i class="fas fa-user-shield"></i>&nbsp; Edufair</a>
+                <a href="<?=base_url('bizdev/edufair/');?>"><i class="fas fa-user-shield"></i>&nbsp; Edufair</a>
             </li>
         </ul>
 

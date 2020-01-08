@@ -12,7 +12,7 @@
                 <ol class="breadcrumb bg-white shadow border">
                     <li class="breadcrumb-item"><a href="<?=base_url('bizdev/home');?>">Home</a></li>
                     <li class="breadcrumb-item"><a href="<?=base_url('bizdev/corporate/');?>">Corporate</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Add</li>
+                    <li class="breadcrumb-item active" aria-current="page">View</li>
                 </ol>
             </nav>
         </div>

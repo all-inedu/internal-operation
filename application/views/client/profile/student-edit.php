@@ -43,7 +43,7 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     <h6 class="align-middle"><i class="fas fa-user"></i>&nbsp; &nbsp; Student's Profile
                         <div class="float-right">
-                            <a href="<?=base_url('profile/student/');?>" class="btn btn-sm btn-info"><i
+                            <a href="<?=base_url('client/profile/student/');?>" class="btn btn-sm btn-info"><i
                                     class="fas fa-arrow-circle-left"></i></a>
                         </div>
                     </h6>
