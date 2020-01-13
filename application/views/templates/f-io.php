@@ -124,7 +124,7 @@ $('.convert-button').on('click', function(e) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
 $(document).ready(function() {
-    $('table.display').DataTable({
+    var tables = $('table.display').DataTable({
         "bLengthChange": true,
         "pageLength": 25,
         "bPaginate": true,
@@ -139,6 +139,18 @@ $(document).ready(function() {
             extend: 'pdf',
             text: '<i class="fas fa-file-pdf"></i> &nbsp; Export to PDF'
         }]
+    });
+
+    $('#searchData1').on('keyup', function() {
+        tables.column(1).search($(this).val()).draw();
+    });
+
+    $('#searchData2').on('keyup', function() {
+        tables.column(2).search($(this).val()).draw();
+    });
+
+    $('#searchData3').on('keyup', function() {
+        tables.column(3).search($(this).val()).draw();
     });
 });
 </script>

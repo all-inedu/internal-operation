@@ -3,7 +3,7 @@
         <div class="col-md-5 ">
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <div class="breadcrumb text-dark bg-white font-weight-bold  shadow border">
-                    <i class="fas fa-tags mt-1"></i>&nbsp;&nbsp; Employee
+                    <i class="fas fa-tags mt-1"></i>&nbsp;&nbsp; Mentor
                 </div>
             </nav>
         </div>
@@ -11,7 +11,8 @@
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
                     <li class="breadcrumb-item"><a href="<?=base_url('hr/home');?>">Home</a></li>
-                    <li class="breadcrumb-item"><a href="<?=base_url('hr/employee');?>">Employee</a></li>
+                    <li class="breadcrumb-item"><a href="<?=base_url('hr/mentor/potential');?>">Mentor</a>
+                    </li>
                     <li class="breadcrumb-item active" aria-current="page">Edit</li>
                 </ol>
             </nav>
@@ -28,7 +29,7 @@
                 <div class="text-center">
                     <img src="<?=base_url('assets/img/employee.png');?>" alt="employee" width="60%"><br><br>
                     <h5 class="align-middle mt-2">
-                        Employee Name</h5>
+                        Mentor Name</h5>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="text-info">
                         <p>Position <br>
@@ -43,9 +44,9 @@
     <div class="col-md-8">
         <div class="card shadow">
             <div class="card-body">
-                <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Employee Profile
+                <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Mentor Profile
                     <div class="float-right">
-                        <a href="<?=base_url('hr/employee/view/');?>" class="btn btn-sm btn-info"><i
+                        <a href="<?=base_url('hr/mentor/potential/');?>" class="btn btn-sm btn-info"><i
                                 class="fas fa-arrow-circle-left"></i></a>
                     </div>
                 </h6>
@@ -116,8 +117,12 @@
                     <div class="col-md-7 mb-3">
                         <div class="row">
                             <div class="col-md-8">
-                                <input name="graduatedFrom" type="text" class="form-control form-control-sm"
-                                    placeholder="Graduated From">
+                                <select id="graduatedFrom" name="graduatedFrom">
+                                    <option data-placeholder="true"></option>
+                                    <option value="1">UC Davis</option>
+                                    <option value="2">NTU</option>
+                                    <option value="3">Harvard University</option>
+                                </select>
                                 <?=form_error('graduatedFrom', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
@@ -158,90 +163,37 @@
                     </div>
                     <div class="col-md-7 mb-3">
                         <div class="row">
-                            <div class="col-md-8">
-                                <input name="position" type="text" class="form-control form-control-sm"
-                                    placeholder="Position">
+                            <div class="col-md-5">
+                                <small>Status</small>
+                                <select name="position" type="text" class="form-control form-control-sm" id="position"
+                                    onchange="changePosition()">
+                                    <option value="1">Just Mentor</option>
+                                    <option value="2">Mentor & Tutor</option>
+                                    <option value="3">Just Tutor</option>
+                                </select>
                                 <?=form_error('position', '<small class="text-danger">', '</small>');?>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-calendar-alt fa-fw text-muted"></i>&nbsp; Hire Date :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <input name="hireDate" type="date" class="form-control form-control-sm" placeholder="">
-                                <?=form_error('hireDate', '<small class="text-danger">', '</small>');?>
+                            <div class="col-md-7 mb-3">
+                                <small>Tutoring Subject</small>
+                                <input name="tutoringSubject" type="text" class="form-control form-control-sm"
+                                    placeholder="Tutoring Subject" id="subject" disabled>
+                                <?=form_error('tutoringSubject', '<small class="text-danger">', '</small>');?>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="far fa-calendar-times fa-fw text-muted"></i>&nbsp; End of Internship /
-                            Probation
-                            :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <input name="internEndDate" type="date" class="form-control form-control-sm"
-                                    placeholder="">
-                                <?=form_error('internEndDate', '<small class="text-danger">', '</small>');?>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-calendar-times fa-fw text-muted"></i>&nbsp; End of Employment Contract /
-                            Probation
-                            :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <input name="contractEndDate" type="date" class="form-control form-control-sm"
-                                    placeholder="">
-                                <?=form_error('contractEndDate', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-calendar-times fa-fw text-muted"></i>&nbsp; Employee Status
-                            :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
                             <div class="col-md-6">
-                                <select name="status" id="status" class="form-control form-control-sm"
-                                    onchange="changeStatus()">
-                                    <option value="Active">Active</option>
-                                    <option value="Inactive">Inactive</option>
-                                </select>
-                                <?=form_error('status', '<small class="text-danger">', '</small>');?>
+                                <small>Fee per Hours</small>
+                                <input name="fpHours" type="number" class="form-control form-control-sm" id="fpHours"
+                                    disabled>
+                                <?=form_error('fpHours', '<small class="text-danger">', '</small>');?>
+                            </div>
+                            <div class="col-md-6">
+                                <small>Fee per Session</small>
+                                <input name="fpSession" type="number" class="form-control form-control-sm"
+                                    id="fpSession" disabled>
+                                <?=form_error('fpSession', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-5">
-                        <label><i class="far fa-times-circle text-muted"></i>&nbsp; Resign / Out of Company
-                            :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <input name="resignDate" type="date" class="form-control form-control-sm" placeholder=""
-                                    id="resign" disabled>
-                                <?=form_error('resignDate', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="row">
                     <div class="col-md-12">
@@ -305,29 +257,6 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; BPJS
-                                        Kesehatan :
-                                    </td>
-                                    <td>
-                                        <div class="text-center file-drop-area">
-                                            <span class="fake-btn">Choose files</span>
-                                            <span class="file-msg">or drag and drop files here (docx, doc, pdf)</span>
-                                            <input name="bpjsKS" class="file-input" type="file">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; BPJS TK :
-                                    </td>
-                                    <td>
-                                        <div class="text-center file-drop-area">
-                                            <span class="fake-btn">Choose files</span>
-                                            <span class="file-msg">or drag and drop files here (docx, doc, pdf)</span>
-                                            <input name="bpjsKT" class="file-input" type="file">
-                                        </div>
-                                    </td>
-                                </tr>
                             </table>
                         </div>
                     </div>
@@ -344,13 +273,27 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
-function changeStatus() {
-    var x = $('#status').val();
-    if (x == "Inactive") {
-        document.getElementById("resign").disabled = false;
+new SlimSelect({
+    select: '#graduatedFrom',
+    placeholder: 'Select graduated from',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
+function changePosition() {
+    var x = $('#position').val();
+    if ((x == "2") || (x == "3")) {
+        document.getElementById("subject").disabled = false;
+        document.getElementById("fpHours").disabled = false;
+        document.getElementById("fpSession").disabled = false;
+        document.getElementById("subject").focus();
     } else {
-        document.getElementById("resign").disabled = true;
+        document.getElementById("subject").disabled = true;
+        document.getElementById("fpHours").disabled = true;
+        document.getElementById("fpSession").disabled = true;
+        document.getElementById("lastContact").focus();
     }
 }
 
