@@ -12,10 +12,11 @@
         <ul class="list-unstyled components">
             <p>Human Resource</p>
             <li>
-                <a href="<?=base_url('hr/home/');?>"><i class="fas fa-home"></i>&nbsp; Home</a>
+                <a href="<?=base_url('hr/home/');?>"><i class="fas fa-home fa-fw"></i>&nbsp; Home</a>
             </li>
             <li>
-                <a href="#employee" data-toggle="collapse" aria-expanded="false"><i class="fas fa-users"></i>&nbsp;
+                <a href="#employee" data-toggle="collapse" aria-expanded="false"><i
+                        class="fas fa-users fa-fw"></i>&nbsp;
                     Employee</a>
                 <ul class="list-unstyled collapse" id="employee">
                     <li>
@@ -30,7 +31,8 @@
                 </ul>
             </li>
             <li>
-                <a href="#mentor" data-toggle="collapse" aria-expanded="false"><i class="fas fa-users-cog"></i>&nbsp;
+                <a href="#mentor" data-toggle="collapse" aria-expanded="false"><i
+                        class="fas fa-users-cog fa-fw"></i>&nbsp;
                     Mentor</a>
                 <ul class="list-unstyled collapse" id="mentor">
                     <li>
@@ -44,13 +46,13 @@
                 </ul>
             </li>
             <li>
-                <a href="<?=base_url('hr/editor/');?>"><i class="fas fa-user-edit"></i>&nbsp; Editor</a>
+                <a href="<?=base_url('hr/editor/');?>"><i class="fas fa-user-edit fa-fw"></i>&nbsp; Editor</a>
             </li>
             <li>
-                <a href="<?=base_url('hr/volunteer/');?>"><i class="fas fa-user-shield"></i>&nbsp; Volunteer</a>
+                <a href="<?=base_url('hr/volunteer/');?>"><i class="fas fa-user-shield fa-fw"></i>&nbsp; Volunteer</a>
             </li>
             <li>
-                <a href="<?=base_url('hr/influencer/');?>"><i class="fas fa-user-tag"></i>&nbsp; Influencer</a>
+                <a href="<?=base_url('hr/influencer/');?>"><i class="fas fa-user-tag fa-fw"></i>&nbsp; Influencer</a>
             </li>
         </ul>
 

@@ -12,10 +12,10 @@
         <ul class="list-unstyled components">
             <p>Client Management</p>
             <li>
-                <a href="<?=base_url('client/home/');?>"><i class="fas fa-home"></i>&nbsp; Home</a>
+                <a href="<?=base_url('client/home/');?>"><i class="fas fa-home fa-fw"></i>&nbsp; Home</a>
             </li>
             <li>
-                <a href="#settings" data-toggle="collapse" aria-expanded="false"><i class="fas fa-cog"></i>&nbsp;
+                <a href="#settings" data-toggle="collapse" aria-expanded="false"><i class="fas fa-cog fa-fw"></i>&nbsp;
                     Setting</a>
                 <ul class="list-unstyled collapse" id="settings">
                     <li>
@@ -30,7 +30,7 @@
             </li>
             <li>
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><i
-                        class="fas fa-users-cog"></i>&nbsp; Client</a>
+                        class="fas fa-users-cog fa-fw"></i>&nbsp; Client</a>
                 <ul class="list-unstyled collapse" id="homeSubmenu">
                     <li>
                         <a href="<?=base_url('client/prospective/');?>"><i class="fas fa-arrow-circle-right"></i>&nbsp;
@@ -50,7 +50,8 @@
                 </ul>
             </li>
             <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fas fa-tags"></i>&nbsp;
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"><i
+                        class="fas fa-tags fa-fw"></i>&nbsp;
                     Program</a>
                 <ul class="list-unstyled collapse" id="pageSubmenu">
                     <li>
@@ -60,7 +61,7 @@
                 </ul>
             </li>
             <li>
-                <a href="<?=base_url('client/alumni/');?>"><i class="fas fa-user-shield"></i>&nbsp; Alumni</a>
+                <a href="<?=base_url('client/alumni/');?>"><i class="fas fa-user-shield fa-fw"></i>&nbsp; Alumni</a>
             </li>
         </ul>
 

@@ -126,7 +126,7 @@ $('.convert-button').on('click', function(e) {
 $(document).ready(function() {
     var tables = $('table.display').DataTable({
         "bLengthChange": true,
-        "pageLength": 25,
+        "pageLength": 15,
         "bPaginate": true,
         "bFilter": true,
         "bInfo": false,

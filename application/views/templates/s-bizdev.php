@@ -12,10 +12,10 @@
         <ul class="list-unstyled components">
             <p>Business Development</p>
             <li>
-                <a href="<?=base_url('bizdev/home/');?>"><i class="fas fa-home"></i>&nbsp; Home</a>
+                <a href="<?=base_url('bizdev/home/');?>"><i class="fas fa-home fa-fw"></i>&nbsp; Home</a>
             </li>
             <li>
-                <a href="#settings" data-toggle="collapse" aria-expanded="false"><i class="fas fa-cog"></i>&nbsp;
+                <a href="#settings" data-toggle="collapse" aria-expanded="false"><i class="fas fa-cog fa-fw"></i>&nbsp;
                     Setting</a>
                 <ul class="list-unstyled collapse" id="settings">
                     <li>
@@ -30,7 +30,7 @@
             </li>
             <li>
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><i
-                        class="fas fa-users-cog"></i>&nbsp; Instance</a>
+                        class="fas fa-users-cog fa-fw"></i>&nbsp; Instance</a>
                 <ul class="list-unstyled collapse" id="homeSubmenu">
                     <li>
                         <a href="<?=base_url('bizdev/school/');?>"><i class="fas fa-arrow-circle-right"></i>&nbsp;
@@ -43,7 +43,8 @@
                 </ul>
             </li>
             <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fas fa-tags"></i>&nbsp;
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"><i
+                        class="fas fa-tags fa-fw"></i>&nbsp;
                     Program</a>
                 <ul class="list-unstyled collapse" id="pageSubmenu">
                     <li>
@@ -52,12 +53,12 @@
                     </li>
                     <li>
                         <a href="<?=base_url('bizdev/corporate-program/');?>"><i
-                                class="fas fa-arrow-circle-right"></i>&nbsp; Coorporate Program</a>
+                                class="fas fa-arrow-circle-right"></i>&nbsp; Corporate Program</a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="<?=base_url('bizdev/edufair/');?>"><i class="fas fa-user-shield"></i>&nbsp; Edufair</a>
+                <a href="<?=base_url('bizdev/edufair/');?>"><i class="fas fa-user-shield fa-fw"></i>&nbsp; Edufair</a>
             </li>
         </ul>
 
