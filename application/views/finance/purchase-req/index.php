@@ -37,7 +37,9 @@
             <?php for($i=1;$i<=25;$i++) { ?>
             <tr>
                 <td class="text-center"><?=$i;?></td>
-                <td class="text-center">Encrihment Program</td>
+                <td class="text-center" style="cursor:pointer"
+                    onclick="window.location='<?=base_url('finance/purchase-request/view/'.$i);?>'">Encrihment Program
+                </td>
                 <td class="text-center">Academic Writing</td>
                 <td class="text-center">Academic Writing</td>
                 <td class="text-center">B2B/B2C</td>

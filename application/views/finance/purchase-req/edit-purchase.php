@@ -13,7 +13,7 @@
                     <li class="breadcrumb-item"><a href="<?=base_url('finance');?>">Home</a></li>
                     <li class="breadcrumb-item"><a href="<?=base_url('finance/purchase-request');?>">Purchase
                             Request</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Add</li>
+                    <li class="breadcrumb-item active" aria-current="page">View</li>
                 </ol>
             </nav>
         </div>
@@ -120,47 +120,31 @@
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label class="font-weight-bold">Item List</label>
-                            <button class="float-right btn btn-warning add_more_button"><i
-                                    class="fas fa-plus-square"></i>&nbsp; Add Item</button>
-                        </div>
-                        <div class="container mt-3" id="item">
-                            <div class="row p-0">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <small>Item Name</small>
-                                        <input type="text" name="itemName[]" class="form-control form-control-sm"
-                                            placeholder="Name" rows="4">
-                                        <?=form_error('itemName[]', '<small class="text-danger">', '</small>');?>
-                                    </div>
-                                </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tr class="text-center">
+                                        <th>No</th>
+                                        <th>Item Name</th>
+                                        <th>Amount</th>
+                                        <th>Price/Unit</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
+                                    </tr>
 
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <small>Amount</small>
-                                        <input type="number" name="amount[]" class="form-control form-control-sm"
-                                            placeholder="0" rows="4" id="amount">
-                                        <?=form_error('amount[]', '<small class="text-danger">', '</small>');?>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <small>Price/Unit</small>
-                                        <input type="text" name="price[]" class="form-control form-control-sm"
-                                            placeholder="Price/Unit" rows="4" id="price">
-                                        <?=form_error('price[]', '<small class="text-danger">', '</small>');?>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <small>Total</small>
-                                        <input readonly type="text" name="total[]" class="form-control form-control-sm"
-                                            placeholder="Total" rows="4" id="total">
-                                        <?=form_error('total[]', '<small class="text-danger">', '</small>');?>
-                                    </div>
-                                </div>
+                                    <?php for($i=1;$i<=4;$i++){ ?>
+                                    <tr class="text-center">
+                                        <td width="5%" class="align-middle"><?=$i;?></td>
+                                        <td class="align-middle">Kertas A4</td>
+                                        <td class="align-middle">2</td>
+                                        <td class="align-middle">45000</td>
+                                        <td class="align-middle">90000</td>
+                                        <td width="15%" class="align-middle">
+                                            <a href="#" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -177,92 +161,3 @@
     </div>
 
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
-<script>
-new SlimSelect({
-    select: '#division',
-    placeholder: 'Select division',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-
-new SlimSelect({
-    select: '#reqStatus',
-    placeholder: 'Select request status',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-
-$('#price').keyup(function() {
-    var val1 = $('#amount').val();
-    var val2 = $('#price').val();
-    var val3 = val1 * val2;
-
-    $('#total').val(val3);
-})
-
-$(document).ready(function() {
-    var max_fields_limit = 5; //set limit for maximum input fields
-    var x = 1; //initialize counter for text box
-    $('.add_more_button').click(function(
-        e) { //click event on add more fields button having class add_more_button
-        e.preventDefault();
-        if (x < max_fields_limit) { //check conditions
-            x++; //counter increment
-            $('#item').append(
-                '<div class="row">' +
-                '<div class="line" style="margin-top:15px; margin-bottom:35px; width:"50%; "></div>' +
-                '<div class="col-md-3">' +
-                '<div class="form-group">' +
-                '<small>Item Name</small>' +
-                ' <input type="text" name="itemName[]" class="form-control form-control-sm" placeholder="Name" rows="4">' +
-                '</div>' +
-                '</div>' +
-
-                '<div class="col-md-3">' +
-                '<div class="form-group">' +
-                '<small>Amount</small>' +
-                '<input type="number" name="amount[]" class="form-control form-control-sm" placeholder="0" rows="4" id="amount' +
-                x + '">' +
-                '</div>' +
-                '</div>' +
-
-                '<div class="col-md-3">' +
-                '<div class="form-group">' +
-                '<small>Price/Unit</small>' +
-                '<input type="text" name="price[]" class="form-control form-control-sm" placeholder="Price/Unit" rows="4" id="price' +
-                x + '">' +
-                '</div>' +
-                '</div>' +
-
-                ' <div class="col-md-3">' +
-                '<div class="form-group">' +
-                '<small>Total</small>' +
-                '<input readonly type="text" name="total[]" class="form-control form-control-sm" placeholder="Total" rows="4" id="total' +
-                x + '">' +
-                '</div>' +
-                '</div>' +
-
-                '<button style="position:absolute; right:20px; margin-top:23px;" class="btn btn-sm btn-danger remove_field float-right"><i class="fas fa-times-circle"></i>&nbsp; Remove</button>' +
-
-                '</div>'
-            ); //add input field
-
-            $('#price' + x).keyup(function() {
-                var val1 = $('#amount' + x).val();
-                var val2 = $('#price' + x).val();
-                var val3 = val1 * val2;
-
-                $('#total' + x).val(val3);
-            })
-        }
-    });
-    $('#item').on("click", ".remove_field", function(
-        e) { //user click on remove text links
-        e.preventDefault();
-        $(this).parent('div').remove();
-        x--;
-    })
-});
-</script>
