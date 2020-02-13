@@ -30,6 +30,8 @@
                     <h5>Purchase Request</h5>
                     <a href="<?=base_url('finance/purchase-request/edit');?>" class="btn btn-sm btn-info m-1"><i
                             class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
+                    <a href="#" class="btn btn-danger btn-sm delete-button" data-message="purchase request"><i
+                            class="fas fa-trash"></i>&nbsp; Delete</a>
                 </div>
             </div>
         </div>
@@ -104,6 +106,12 @@
                                         <td class="align-middle">90000</td>
                                     </tr>
                                     <?php } ?>
+                                    <tfoot>
+                                        <tr class="text-center">
+                                            <td colspan=4 class="align-middle">Total</td>
+                                            <td class="align-middle"> 360000</td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>

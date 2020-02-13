@@ -3,15 +3,15 @@
         <div class="col-md-5 ">
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <div class="breadcrumb text-dark bg-white font-weight-bold  shadow border">
-                    <i class="fas fa-tags mt-1"></i>&nbsp;&nbsp; Vendor
+                    <i class="fas fa-tags mt-1"></i>&nbsp;&nbsp; Purchase Request
                 </div>
             </nav>
         </div>
         <div class="col-md-7 ">
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
-                    <li class="breadcrumb-item"><a href="<?=base_url('vendor/home');?>">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Vendor</li>
+                    <li class="breadcrumb-item"><a href="<?=base_url('finance/home');?>">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Purchase Request</li>
                 </ol>
             </nav>
         </div>

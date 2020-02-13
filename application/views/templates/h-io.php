@@ -127,6 +127,15 @@
             outline: none;
         }
     }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #2e7ee8;
+        border-radius: 10px;
+    }
     </style>
 </head>
 
