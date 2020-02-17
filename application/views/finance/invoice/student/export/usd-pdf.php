@@ -39,7 +39,7 @@ th {
                     </tr>
                     <tr>
                         <td valign="top">To : </td>
-                        <td><b>Hafidz Annur Fanany</b><br>JL. Panjang No 36<br>Jakarta Barat 11530 <br>
+                        <td><b><?=$nama;?></b><br><?=$alamat;?><br>
                         </td>
                     </tr>
                 </table>
@@ -80,7 +80,7 @@ th {
         <tr>
             <td valign="top" align="center">1</td>
             <td valign="top" style="padding-bottom:50px;">
-                <b>Program Name ($ 2.200)</b> <br>
+                <b><?=$program;?> ($ 2.200)</b> <br>
                 <i>Early Bird ($ 100)</i> <br>
                 <i>Discount ($ 100)</i><br>
                 <i>Notes</i>

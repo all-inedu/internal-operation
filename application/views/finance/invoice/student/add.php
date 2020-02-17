@@ -36,9 +36,9 @@
                     <label>Current USD
                     </label>
                     <?php
-                        $data = file_get_contents("http://apilayer.net/api/live?access_key=97d88bad7d93209b6d51ff7057327965&currencies=IDR&source=USD&format=1");
+                        $data = file_get_contents("https://kurs.web.id/api/v1/bi");
                         $json = json_decode($data, TRUE);
-                        $rupiah = $json['quotes']['USDIDR'] + (0.0025*$json['quotes']['USDIDR']);
+                        $rupiah = $json['jual'];
                     ?>
                     <div class="input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
@@ -539,71 +539,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
-
-<script>
-const arr = x => Array.from(x);
-const num = x => Number(x) || 0;
-const str = x => String(x);
-const isEmpty = xs => xs.length === 0;
-const take = n => xs => xs.slice(0, n);
-const drop = n => xs => xs.slice(n);
-const reverse = xs => xs.slice(0).reverse();
-const comp = f => g => x => f(g(x));
-const not = x => !x;
-const chunk = n => xs =>
-    isEmpty(xs) ? [] : [take(n)(xs), ...chunk(n)(drop(n)(xs))];
-
-// numToWords :: (Number a, String a) => a -> String
-let numToWords = n => {
-
-    let a = [
-        '', 'one', 'two', 'three', 'four',
-        'five', 'six', 'seven', 'eight', 'nine',
-        'ten', 'eleven', 'twelve', 'thirteen', 'fourteen',
-        'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'
-    ];
-
-    let b = [
-        '', '', 'twenty', 'thirty', 'forty',
-        'fifty', 'sixty', 'seventy', 'eighty', 'ninety'
-    ];
-
-    let g = [
-        '', 'thousand', 'million', 'billion', 'trillion', 'quadrillion',
-        'quintillion', 'sextillion', 'septillion', 'octillion', 'nonillion'
-    ];
-
-    // this part is really nasty still
-    // it might edit this again later to show how Monoids could fix this up
-    let makeGroup = ([ones, tens, huns]) => {
-        return [
-            num(huns) === 0 ? '' : a[huns] + ' hundred ',
-            num(ones) === 0 ? b[tens] : b[tens] && b[tens] + ' ' || '',
-            a[tens + ones] || a[ones]
-        ].join('');
-    };
-
-    let thousand = (group, i) => group === '' ? group : `${group} ${g[i]}`;
-
-    if (typeof n === 'number')
-        return numToWords(String(n));
-    else if (n === '0')
-        return 'zero';
-    else
-        return comp(chunk(3))(reverse)(arr(n))
-            .map(makeGroup)
-            .map(thousand)
-            .filter(comp(not)(isEmpty))
-            .reverse()
-            .join(' ');
-};
-
-function capitalize(number) {
-    let strn = numToWords(number);
-    let words = strn.charAt(0).toUpperCase() + strn.substr(1).toLowerCase() + ' rupiah only';
-    return words;
-}
-</script>
+<script src="<?=base_url('assets/js/generate-number.js');?>"></script>
 <script>
 $('#usd').show();
 $('#steps').hide();

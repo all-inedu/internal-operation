@@ -100,6 +100,26 @@ $('.delete-button').on('click', function(e) {
     })
 });
 
+// delete-button
+$('.cancel-button').on('click', function(e) {
+    e.preventDefault();
+    const href = $(this).attr('href');
+    const message = $(this).data('message');
+    Swal.fire({
+        icon: 'question',
+        title: 'Are you sure,',
+        text: 'Cancel this ' + message + ' ?',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, cancel',
+        showCancelButton: true
+    }).then((result) => {
+        if (result.value) {
+            document.location.href = href;
+        }
+    })
+});
+
 // convert-button
 $('.convert-button').on('click', function(e) {
     e.preventDefault();

@@ -128,6 +128,15 @@
         }
     }
 
+    .form-control-sm,
+    .input-group-sm>.form-control,
+    .input-group-sm>.input-group-append>.btn,
+    .input-group-sm>.input-group-append>.input-group-text,
+    .input-group-sm>.input-group-prepend>.btn,
+    .input-group-sm>.input-group-prepend>.input-group-text {
+        font-size: 12px !important;
+    }
+
     ::-webkit-scrollbar {
         width: 5px;
     }
