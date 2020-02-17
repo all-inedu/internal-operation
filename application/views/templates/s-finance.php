@@ -10,7 +10,9 @@
         </div>
 
         <ul class="list-unstyled components">
-            <p>Finance</p>
+            <ul class="list-unstyled bg-primary">
+                <p class="pt-2 pb-2 font-weight-bold">Finance</p>
+            </ul>
             <li>
                 <a href="<?=base_url('finance/home/');?>"><i class="fas fa-home fa-fw"></i>&nbsp; Home</a>
             </li>
@@ -43,10 +45,10 @@
                         <a href="<?=base_url('finance/invoice/school/');?>"><i
                                 class="fas fa-arrow-circle-right"></i>&nbsp; School Program</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="<?=base_url('finance/invoice/corporate/');?>"><i
                                 class="fas fa-arrow-circle-right"></i>&nbsp; Corporate Program</a>
-                    </li>
+                    </li> -->
                 </ul>
             </li>
             <li>
@@ -62,10 +64,10 @@
                         <a href="<?=base_url('finance/receipt/school/');?>"><i
                                 class="fas fa-arrow-circle-right"></i>&nbsp; School Program</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="<?=base_url('finance/receipt/corporate/');?>"><i
                                 class="fas fa-arrow-circle-right"></i>&nbsp; Corporate Program</a>
-                    </li>
+                    </li> -->
                 </ul>
             </li>
             <li>

@@ -10,7 +10,9 @@
         </div>
 
         <ul class="list-unstyled components">
-            <p>Business Development</p>
+            <ul class="list-unstyled bg-primary">
+                <p class="pt-2 pb-2 font-weight-bold">Business Development</p>
+            </ul>
             <li>
                 <a href="<?=base_url('bizdev/home/');?>"><i class="fas fa-home fa-fw"></i>&nbsp; Home</a>
             </li>

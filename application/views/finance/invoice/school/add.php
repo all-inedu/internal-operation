@@ -116,6 +116,24 @@
                             </div>
                         </div>
 
+                        <div class="col-md-2">
+                            Date :
+                        </div>
+                        <div class="col-md-10 mb-3">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <small>Invoice Date </small><br>
+                                    <input name="date" type="date" class="form-control form-control-sm">
+                                    <?=form_error('date', '<small class="text-danger">', '</small>');?>
+                                </div>
+                                <div class="col-md-3">
+                                    <small>Due Date</small><br>
+                                    <input id="dueDate" name="dueDate" type="date" class="form-control form-control-sm">
+                                    <?=form_error('dueDate', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-md-2 mb-3">
                             Notes :
                         </div>

@@ -42,13 +42,16 @@ class School extends CI_Controller
     public function edit() {
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-finance');
-        $this->load->view('finance/invoice/school/edit',$data);
+        $this->load->view('finance/invoice/school/edit');
         $this->load->view('templates/f-io'); 
     }
 
     public function dompdf()
     {
-        $html = $this->load->view('finance/invoice/school/export/pdf', [], true);
+        $data['nama'] = 'School Name';
+        $data['alamat'] ='Jl A No.25 Kebon Jeruk <br>Jakarta Barat 11530';
+        $data['program'] = 'SAT Private';
+        $html = $this->load->view('finance/invoice/school/export/pdf', $data, true);
         $this->pdf->createPDF($html, 'mypdf', false);
     }
     
