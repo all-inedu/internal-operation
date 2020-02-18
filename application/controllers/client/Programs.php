@@ -37,6 +37,7 @@ class Programs extends CI_Controller
             'prog_sub' => $this->input->post('prog_sub'),
             'prog_program' => $this->input->post('prog_program'),
             'prog_type' => $this->input->post('prog_type'),
+            'prog_mentor' => $this->input->post('prog_mentor'),
         ];
 
         $this->program->save($data);
@@ -56,7 +57,9 @@ class Programs extends CI_Controller
             'prog_sub' => $this->input->post('prog_sub'),
             'prog_program' => $this->input->post('prog_program'),
             'prog_type' => $this->input->post('prog_type'),
+            'prog_mentor' => $this->input->post('prog_mentor'),
         ];
+        // var_dump($data);
         $this->program->update($data, $id);
         $this->session->set_flashdata('success', 'Program has been changed');
         redirect('/client/programs/');

@@ -66,7 +66,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>ID Program</label>
                                 <input name="prog_id" type="text" class="form-control form-control-sm"
@@ -122,6 +122,18 @@
                                 <?=form_error('prog_type', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Need Mentor ?
+                                </label>
+                                <select name="prog_mentor" class="form-control form-control-sm">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                                <?=form_error('prog_mentor', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -145,7 +157,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>ID Program</label>
                                 <input id="prog_id" name="prog_id" type="text" class="form-control form-control-sm"
@@ -197,6 +209,17 @@
                                     <?php endforeach; ?>
                                 </select>
                                 <?=form_error('prog_type', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Need Mentor ?
+                                </label>
+                                <select id="prog_mentor" name="prog_mentor" class="form-control form-control-sm">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                                <?=form_error('prog_mentor', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                     </div>
@@ -334,7 +357,7 @@ function editPrograms(x) {
             ESP.set(data.prog_sub);
             $('#prog_program').val(data.prog_program);
             ETP.set(data.prog_type);
-            // console.log(data)
+            $('#prog_mentor').val(data.prog_mentor);
         }
     });
 }
