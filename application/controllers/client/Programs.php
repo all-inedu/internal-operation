@@ -12,7 +12,6 @@ class Programs extends CI_Controller
         $data['subST'] = ['ACT','SAT'];
         $data['subUS'] = ['Admission Consulting','Essay Guidance','Interview Preparation'];
         $data['typeProg'] = ['B2B','B2B/B2C','B2C'];
-
         $data['subProgram'] = array_merge($data['subEP'], $data['subEL'],  $data['subST'],  $data['subUS']);
 
         $this->load->view('templates/h-io');

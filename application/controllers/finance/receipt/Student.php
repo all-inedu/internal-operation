@@ -25,4 +25,13 @@ class Student extends CI_Controller
         $this->load->view('templates/f-io');
     }
 
+    public function print_receipt()
+    {
+        $data['nama'] = 'Hafidz Annur';
+        $data['alamat'] ='Jl A No.25 Kebon Jeruk <br>Jakarta Barat 11530';
+        $data['program'] = 'SAT Private';
+        $html = $this->load->view('finance/receipt/student/export/pdf', $data, true);
+        $this->pdf->createPDF($html, 'mypdf', false);
+    }
+
 }

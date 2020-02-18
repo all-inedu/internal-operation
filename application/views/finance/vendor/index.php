@@ -24,39 +24,42 @@
 <div class="content">
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
-            <tr>
-                <th width="5%" class="text-center">ID Vendor</th>
-                <th width="10%" class="text-center">Vendor Name</th>
-                <th width="10%" class="text-center">Address</th>
-                <th width="5%" class="text-center">Phone</th>
-                <th width="5%" class="text-center">Type</th>
-                <th width="5%" class="text-center">Material</th>
-                <th width="5%" class="text-center">Size</th>
-                <th width="5%" class="text-center">Processing Time</th>
-                <th width="5%" class="text-center">Unit Price</th>
-                <th width="5%" class="text-center">Action</th>
+            <tr class="text-center">
+                <th width="3%">#</th>
+                <th width="5%">ID Vendor</th>
+                <th width="10%">Vendor Name</th>
+                <th width="10%">Address</th>
+                <th width="5%">Phone</th>
+                <th width="5%">Type</th>
+                <th width="5%">Material</th>
+                <th width="5%">Size</th>
+                <th width="5%">Processing Time</th>
+                <th width="5%">Unit Price</th>
+                <th width="5%">Action</th>
             </tr>
         </thead>
         <tbody>
-            <?php for($i=1;$i<=25;$i++) { ?>
-            <tr>
-                <td class="text-center">AW</td>
-                <td>Encrihment Program</td>
-                <td>Academic Writing</td>
-                <td>Academic Writing</td>
-                <td class="text-center">Academic Writing</td>
-                <td class="text-center">B2B/B2C</td>
-                <td>Encrihment Program</td>
-                <td>Academic Writing</td>
-                <td class="text-center">Academic Writing</td>
-                <td class="text-center">
+            <?php $i=1; foreach($vendor as $v): ?>
+            <tr class="text-center">
+                <td><?=$i;?></td>
+                <td><?=$v['vendor_id'];?></td>
+                <td><?=$v['vendor_name'];?></td>
+                <td><?=$v['vendor_address'];?></td>
+                <td><?=$v['vendor_phone'];?></td>
+                <td><?=$v['vendor_type'];?></td>
+                <td><?=$v['vendor_material'];?></td>
+                <td><?=$v['vendor_size'];?></td>
+                <td><?=$v['vendor_processingtime'];?></td>
+                <td>Rp. <?= number_format($v['vendor_unitprice']);?></td>
+                <td>
                     <button class="btn btn-sm btn-info" title="Edit" data-toggle="modal" data-target="#editVendors"
-                        onclick="editVendor('<?=$i;?>')"><i class="fas fa-edit"></i></button>
-                    <a href="#" class="btn btn-sm btn-danger delete-button" data-message="vendor" title="Delete"><i
+                        onclick="editVendor('<?=$v['vendor_id'];?>')"><i class="fas fa-edit"></i></button>
+                    <a href="<?=base_url('finance/vendor/delete/'.$v['vendor_id']);?>"
+                        class="btn btn-sm btn-danger delete-button" data-message="vendor" title="Delete"><i
                             class="fas fa-trash"></i></a>
                 </td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>
@@ -64,180 +67,209 @@
 <!-- Add Modal -->
 <div class="modal fade" id="addVendor" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Add Vendor</h5>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Vendor Name</label>
-                            <input name="vendorName" type="text" class="form-control form-control-sm"
-                                placeholder="Vendor Name">
-                            <?=form_error('vendorName', '<small class="text-danger">', '</small>');?>
+        <form action="save" method="post" name="save">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Add Vendor</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Vendor Name</label>
+                                <input name="vendor_name" type="text" class="form-control form-control-sm"
+                                    placeholder="Vendor Name">
+                                <?=form_error('vendor_name', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Address</label>
-                            <textarea name="address" class="form-control form-control-sm" rows="4"></textarea>
-                            <?=form_error('address', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea name="vendor_address" class="form-control form-control-sm"
+                                    rows="2"></textarea>
+                                <?=form_error('vendor_address', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Phone Number</label>
-                            <input name="phoneNumber" type="text" class="form-control form-control-sm"
-                                placeholder="Phone Number">
-                            <?=form_error('phoneNumber', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input name="vendor_phone" type="text" class="form-control form-control-sm"
+                                    placeholder="Phone Number">
+                                <?=form_error('vendor_phone', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Type
-                            </label>
-                            <select id="type" name="type">
-                                <option data-placeholder="true"></option>
-                                <?php foreach($t as $ty): ?>
-                                <option value="<?=$ty;?>"><?=$ty;?></option>
-                                <?php endforeach;?>
-                            </select>
-                            <?=form_error('type', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Type
+                                </label>
+                                <select id="type" name="vendor_type">
+                                    <option data-placeholder="true"></option>
+                                    <?php foreach($t as $ty): ?>
+                                    <option value="<?=$ty;?>"><?=$ty;?></option>
+                                    <?php endforeach;?>
+                                </select>
+                                <?=form_error('vendor_type', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Material</label>
-                            <input name="material" type="text" class="form-control form-control-sm">
-                            <?=form_error('material', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Material</label>
+                                <input name="vendor_material" type="text" class="form-control form-control-sm">
+                                <?=form_error('vendor_material', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Size</label>
-                            <input name="size" type="text" class="form-control form-control-sm">
-                            <?=form_error('size', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Size</label>
+                                <input name="vendor_size" type="text" class="form-control form-control-sm">
+                                <?=form_error('vendor_size', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Processing Time</label>
-                            <input name="processTime" type="text" class="form-control form-control-sm">
-                            <?=form_error('processTime', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Processing Time</label>
+                                <input name="vendor_processingtime" type="text" class="form-control form-control-sm">
+                                <?=form_error('vendor_processingtime', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Unit Price</label>
-                            <input name="unitPrice" type="text" class="form-control form-control-sm">
-                            <?=form_error('unitPrice', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Unit Price</label>
+                                <input name="vendor_unitprice" type="text" class="form-control form-control-sm">
+                                <?=form_error('vendor_unitprice', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Notes</label>
+                                <textarea name="vendor_notes" class="form-control form-control-sm" rows="2"></textarea>
+                                <?=form_error('vendor_notes', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                            class="fas fa-times-circle"></i>&nbsp; Close</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                        class="fas fa-times-circle"></i>&nbsp; Close</button>
-                <button type="button" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 
 <!-- Edit Modal -->
 <div class="modal fade" id="editVendors" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Vendor</h5>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Vendor Name</label>
-                            <input name="vendorName" type="text" class="form-control form-control-sm"
-                                placeholder="Vendor Name" id="vendorName">
-                            <?=form_error('vendorName', '<small class="text-danger">', '</small>');?>
+        <form action="update" method="post" name="update">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Vendor ( <span id="vendor"></span> )
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Vendor Name</label>
+                                <input name="vendor_id" type="hidden" id="vendor_id">
+                                <input name="vendor_name" type="text" class="form-control form-control-sm"
+                                    placeholder="Vendor Name" id="vendor_name">
+                                <?=form_error('vendor_name', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Address</label>
-                            <textarea name="address" class="form-control form-control-sm" rows="4"></textarea>
-                            <?=form_error('address', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea name="vendor_address" id="vendor_address" class="form-control form-control-sm"
+                                    rows="2"></textarea>
+                                <?=form_error('vendor_address', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Phone Number</label>
-                            <input name="phoneNumber" type="text" class="form-control form-control-sm"
-                                placeholder="Phone Number">
-                            <?=form_error('phoneNumber', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input name="vendor_phone" id="vendor_phone" type="text"
+                                    class="form-control form-control-sm" placeholder="Phone Number">
+                                <?=form_error('vendor_phone', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Type
-                            </label>
-                            <select id="typeEdit" name="type">
-                                <option data-placeholder="true"></option>
-                                <?php foreach($t as $ty): ?>
-                                <option value="<?=$ty;?>"><?=$ty;?></option>
-                                <?php endforeach;?>
-                            </select>
-                            <?=form_error('type', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Type
+                                </label>
+                                <select id="typeEdit" name="vendor_type">
+                                    <option data-placeholder="true"></option>
+                                    <?php foreach($t as $ty): ?>
+                                    <option value="<?=$ty;?>"><?=$ty;?></option>
+                                    <?php endforeach;?>
+                                </select>
+                                <?=form_error('vendor_type', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Material</label>
-                            <input name="material" type="text" class="form-control form-control-sm">
-                            <?=form_error('material', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Material</label>
+                                <input name="vendor_material" id="vendor_material" type="text"
+                                    class="form-control form-control-sm">
+                                <?=form_error('vendor_material', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Size</label>
-                            <input name="size" type="text" class="form-control form-control-sm">
-                            <?=form_error('size', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Size</label>
+                                <input name="vendor_size" id="vendor_size" type="text"
+                                    class="form-control form-control-sm">
+                                <?=form_error('vendor_size', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Processing Time</label>
-                            <input name="processTime" type="text" class="form-control form-control-sm">
-                            <?=form_error('processTime', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Processing Time</label>
+                                <input name="vendor_processingtime" id="vendor_processingtime" type="text"
+                                    class="form-control form-control-sm">
+                                <?=form_error('vendor_processingtime', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Unit Price</label>
-                            <input name="unitPrice" type="text" class="form-control form-control-sm">
-                            <?=form_error('unitPrice', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Unit Price</label>
+                                <input name="vendor_unitprice" id="vendor_unitprice" type="text"
+                                    class="form-control form-control-sm">
+                                <?=form_error('vendor_unitprice', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Notes</label>
+                                <textarea name="vendor_notes" id="vendor_notes" class="form-control form-control-sm"
+                                    rows="2"></textarea>
+                                <?=form_error('vendor_notes', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                            class="fas fa-times-circle"></i>&nbsp; Close</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                        class="fas fa-times-circle"></i>&nbsp; Close</button>
-                <button type="button" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -263,7 +295,24 @@ var TE = new SlimSelect({
 
 function editVendor(x) {
     console.log(x);
-    $('#vendorName').val('AW');
-    TE.set('Poster');
+    $.ajax({
+        type: 'post',
+        url: '<?=base_url("finance/vendor/view/");?>' + x,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data)
+            $('#vendor').html(data.vendor_id);
+            $('#vendor_id').val(data.vendor_id);
+            $('#vendor_name').val(data.vendor_name);
+            $('textarea#vendor_address').val(data.vendor_address);
+            $('#vendor_phone').val(data.vendor_phone);
+            TE.set(data.vendor_type);
+            $('#vendor_material').val(data.vendor_material);
+            $('#vendor_size').val(data.vendor_size);
+            $('#vendor_processingtime').val(data.vendor_processingtime);
+            $('#vendor_unitprice').val(data.vendor_unitprice);
+            $('textarea#vendor_notes').val(data.vendor_notes);
+        }
+    });
 }
 </script>

@@ -6,6 +6,7 @@ h4 {
 .pdf {
     font-size: 12px !important;
     font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    margin: 0 20px;
 }
 
 table tr td,
@@ -20,11 +21,11 @@ th {
 }
 </style>
 <br><br><br>
-<h4
-    style="line-height:1.6; letter-spacing:3px; font-weight:bold; text-align:center; color:#247df2; font-size:18px; margin-bottom:10px; ">
-    <u><b>INVOICE</b></u>
-</h4>
 <div class="pdf">
+    <h4
+        style="line-height:1.6; letter-spacing:3px; font-weight:bold; text-align:center; color:#247df2; font-size:18px; margin-bottom:10px; ">
+        <u><b>INVOICE</b></u>
+    </h4>
     <table border="0" width="100%">
         <tr>
             <td width="60%">

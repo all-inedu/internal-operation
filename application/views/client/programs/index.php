@@ -58,76 +58,78 @@
 <!-- Add Modal -->
 <div class="modal fade" id="addProgram" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Add Program</h5>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>ID Program</label>
-                            <input name="ID Program" type="text" class="form-control form-control-sm"
-                                placeholder="ID Program">
-                            <?=form_error('ID Program', '<small class="text-danger">', '</small>');?>
+        <form action="save" method="post" name="save">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Add Program</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>ID Program</label>
+                                <input name="ID Program" type="text" class="form-control form-control-sm"
+                                    placeholder="ID Program">
+                                <?=form_error('ID Program', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Main Program
-                            </label>
-                            <select id="mainProgram" name="mainProgram" onchange="mainProgram()">
-                                <option data-placeholder="true"></option>
-                                <?php foreach($mainProgram as $mp): ?>
-                                <option value="<?=$mp;?>"><?=$mp;?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <?=form_error('mainProgram', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Main Program
+                                </label>
+                                <select id="mainProgram" name="mainProgram" onchange="mainProgram()">
+                                    <option data-placeholder="true"></option>
+                                    <?php foreach($mainProgram as $mp): ?>
+                                    <option value="<?=$mp;?>"><?=$mp;?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?=form_error('mainProgram', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Sub Program
-                            </label>
-                            <select id="subProgram" name="subProgram">
-                                <option data-placeholder="true"></option>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Sub Program
+                                </label>
+                                <select id="subProgram" name="subProgram">
+                                    <option data-placeholder="true"></option>
 
-                            </select>
-                            <?=form_error('subProgram', '<small class="text-danger">', '</small>');?>
+                                </select>
+                                <?=form_error('subProgram', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Program Name</label>
-                            <input name="programName" type="text" class="form-control form-control-sm"
-                                placeholder="Program Name">
-                            <?=form_error('programName', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Program Name</label>
+                                <input name="programName" type="text" class="form-control form-control-sm"
+                                    placeholder="Program Name">
+                                <?=form_error('programName', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Type Program
-                            </label>
-                            <select id="typeProgram" name="typeProgram">
-                                <option data-placeholder="true"></option>
-                                <?php foreach($typeProg as $tp): ?>
-                                <option value="<?=$tp;?>"><?=$tp;?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <?=form_error('typeProgram', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Type Program
+                                </label>
+                                <select id="typeProgram" name="typeProgram">
+                                    <option data-placeholder="true"></option>
+                                    <?php foreach($typeProg as $tp): ?>
+                                    <option value="<?=$tp;?>"><?=$tp;?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?=form_error('typeProgram', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                            class="fas fa-times-circle"></i>&nbsp; Close</button>
+                    <button type="button" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                        class="fas fa-times-circle"></i>&nbsp; Close</button>
-                <button type="button" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 

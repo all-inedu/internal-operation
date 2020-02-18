@@ -43,7 +43,7 @@
                             Transfer
                         </td>
                         <td>
-                            <a href="<?=base_url('finance/receipt/student/dompdf');?>">
+                            <a target="_blank" href="<?=base_url('finance/receipt/student/print-receipt');?>">
                                 <div class="badge badge-primary p-1"><i class="fas fa-print"></i>&nbsp; Print</div>
                             </a>
                         </td>
