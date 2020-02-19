@@ -25,8 +25,8 @@
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
             <tr>
-                <th width="1%">No</th>
-                <th width="5%" class="text-center">ID Pogram</th>
+                <th width="1%">#</th>
+                <th width="5%" class="text-center">Program ID</th>
                 <th width="10%" class="text-center">Main Program</th>
                 <th width="10%" class="text-center">Sub Program</th>
                 <th width="5%" class="text-center">Program</th>

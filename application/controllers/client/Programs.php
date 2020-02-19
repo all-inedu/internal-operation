@@ -31,18 +31,27 @@ class Programs extends CI_Controller
     }
 
     public function save(){
-        $data = [
-            'prog_id' => $this->input->post('prog_id'),
-            'prog_main' => $this->input->post('prog_main'),
-            'prog_sub' => $this->input->post('prog_sub'),
-            'prog_program' => $this->input->post('prog_program'),
-            'prog_type' => $this->input->post('prog_type'),
-            'prog_mentor' => $this->input->post('prog_mentor'),
-        ];
+        $this->form_validation->set_rules('prog_id','Program ID', 'required|is_unique[tbl_prog.prog_id]',
+        array('is_unique' => 'Program ID already created'));
 
-        $this->program->save($data);
-        $this->session->set_flashdata('success', 'Program has been created');
-        redirect('/client/programs/');
+        if($this->form_validation->run()==FALSE){
+            $this->index();
+        } else {
+
+            $data = [
+                'prog_id' => $this->input->post('prog_id'),
+                'prog_main' => $this->input->post('prog_main'),
+                'prog_sub' => $this->input->post('prog_sub'),
+                'prog_program' => $this->input->post('prog_program'),
+                'prog_type' => $this->input->post('prog_type'),
+                'prog_mentor' => $this->input->post('prog_mentor'),
+            ];
+
+            $this->program->save($data);
+            $this->session->set_flashdata('success', 'Program has been created');
+            redirect('/client/programs/');
+
+        }
     }
 
     public function view($id) {
