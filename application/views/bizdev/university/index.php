@@ -26,7 +26,7 @@
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
             <tr>
-                <th width="1%">No</th>
+                <th width="1%">#</th>
                 <th width="5%" class="text-center">ID University</th>
                 <th width="10%" class="text-center">University Name</th>
                 <th width="15%" class="text-center">Address</th>
@@ -35,21 +35,22 @@
             </tr>
         </thead>
         <tbody>
-            <?php for($i=1;$i<=25;$i++) { ?>
-            <tr>
-                <td class="text-center"><?=$i;?></td>
-                <td class="text-center">UNIV3</td>
-                <td class="text-center">University Name</td>
-                <td>Address</td>
-                <td class="text-center">Country</td>
-                <td class="text-center">
+            <?php $i=1; foreach($univ as $u): ?>
+            <tr class="text-center">
+                <td><?=$i;?></td>
+                <td><?=$u['univ_id'];?></td>
+                <td><?=$u['univ_name'];?></td>
+                <td><?=$u['univ_address'];?></td>
+                <td><?=$u['univ_country'];?></td>
+                <td>
                     <button class="btn btn-sm btn-info" title="Edit" data-toggle="modal" data-target="#editUniversity"
-                        onclick="editUniversity('<?=$i;?>')"><i class="fas fa-edit"></i></button>
-                    <a href="#" class="btn btn-sm btn-danger delete-button" data-message="university" title="Delete"><i
+                        onclick="editUniversity('<?=$u['univ_id'];?>')"><i class="fas fa-edit"></i></button>
+                    <a href="<?=base_url('bizdev/university/delete/'.$u['univ_id']);?>"
+                        class="btn btn-sm btn-danger delete-button" data-message="university" title="Delete"><i
                             class="fas fa-trash"></i></a>
                 </td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>
@@ -57,116 +58,113 @@
 <!-- Add Modal -->
 <div class="modal fade" id="addUniversity" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Add Program</h5>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>ID University</label>
-                            <input name="idUniversity" type="text" class="form-control form-control-sm"
-                                placeholder="ID University">
-                            <?=form_error('idUniversity', '<small class="text-danger">', '</small>');?>
+        <form action="save" method="post" name="save">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Add Program</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>University Name</label>
+                                <input name="univ_name" type="text" class="form-control form-control-sm"
+                                    placeholder="University Name">
+                                <?=form_error('univ_name', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>University Name</label>
-                            <input name="universityName" type="text" class="form-control form-control-sm"
-                                placeholder="University Name">
-                            <?=form_error('universityName', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Country
+                                </label>
+                                <select id="univ_country" name="univ_country">
+                                    <option data-placeholder="true"></option>
+                                    <?php foreach($country as $c): ?>
+                                    <option value="<?=$c;?>"><?=$c;?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?=form_error('univ_country', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Country
-                            </label>
-                            <select id="country" name="country">
-                                <option data-placeholder="true"></option>
-                                <option value="US">US</option>
-                                <option value="UK">UK</option>
-                                <option value="Singapore">Singapore</option>
-                            </select>
-                            <?=form_error('country', '<small class="text-danger">', '</small>');?>
-                        </div>
-                    </div>
 
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Address
-                            </label>
-                            <textarea name="address" class="form-control form-group-sm" rows="3"></textarea>
-                            <?=form_error('subProgram', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Address
+                                </label>
+                                <textarea name="univ_address" class="form-control form-group-sm" rows="3"></textarea>
+                                <?=form_error('univ_address', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                            class="fas fa-times-circle"></i>&nbsp; Close</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                        class="fas fa-times-circle"></i>&nbsp; Close</button>
-                <button type="button" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 
 <!-- Edit Modal -->
 <div class="modal fade" id="editUniversity" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Add Program</h5>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>ID University</label>
-                            <input name="idUniversity" type="text" class="form-control form-control-sm"
-                                placeholder="ID University">
-                            <?=form_error('idUniversity', '<small class="text-danger">', '</small>');?>
+        <form action="update" method="post" name="update">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Add Program</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>ID University</label>
+                                <input id="univ_id" name="univ_id" type="text" class="form-control form-control-sm"
+                                    placeholder="ID University" readonly>
+                                <?=form_error('univ_id', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>University Name</label>
-                            <input name="universityName" type="text" class="form-control form-control-sm"
-                                placeholder="University Name">
-                            <?=form_error('universityName', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>University Name</label>
+                                <input id="univ_name" name="univ_name" type="text" class="form-control form-control-sm"
+                                    placeholder="University Name">
+                                <?=form_error('univ_name', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Country
-                            </label>
-                            <select id="editCountry" name="country">
-                                <option data-placeholder="true"></option>
-                                <option value="US">US</option>
-                                <option value="UK">UK</option>
-                                <option value="Singapore">Singapore</option>
-                            </select>
-                            <?=form_error('country', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Country
+                                </label>
+                                <select id="editCountry" name="univ_country">
+                                    <option data-placeholder="true"></option>
+                                    <?php foreach($country as $c): ?>
+                                    <option value="<?=$c;?>"><?=$c;?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?=form_error('univ_country', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Address
-                            </label>
-                            <textarea name="address" class="form-control form-group-sm" rows="3"></textarea>
-                            <?=form_error('subProgram', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Address
+                                </label>
+                                <textarea id="univ_address" name="univ_address" class="form-control form-group-sm"
+                                    rows="3"></textarea>
+                                <?=form_error('subProgram', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                            class="fas fa-times-circle"></i>&nbsp; Close</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                        class="fas fa-times-circle"></i>&nbsp; Close</button>
-                <button type="button" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -175,7 +173,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
 new SlimSelect({
-    select: '#country',
+    select: '#univ_country',
     placeholder: 'Select country ',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
@@ -189,6 +187,16 @@ var EC = new SlimSelect({
 });
 
 function editUniversity(x) {
-    EC.set('US');
+    $.ajax({
+        type: 'post',
+        url: '<?=base_url("bizdev/university/view/");?>' + x,
+        dataType: 'json',
+        success: function(data) {
+            $('#univ_id').val(data.univ_id);
+            $('#univ_name').val(data.univ_name);
+            EC.set(data.univ_country);
+            $('textarea#univ_address').val(data.univ_address);
+        }
+    });
 }
 </script>

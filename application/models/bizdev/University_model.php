@@ -1,6 +1,13 @@
 <?php
 class University_model extends CI_model
 {
+    public function getId(){
+        $this->db->select('RIGHT(tbl_univ.univ_id,3) as kode', FALSE);
+		$this->db->order_by('univ_id','DESC');    
+		$this->db->limit(1);    
+        return $query = $this->db->get('tbl_univ');
+    }
+    
     public function showAll(){
         $this->db->select('*');
         return $this->db->get('tbl_univ')->result_array();

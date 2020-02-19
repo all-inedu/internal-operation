@@ -347,6 +347,12 @@ function editMP() {
 }
 
 function editPrograms(x) {
+    $('#editSubProgram').html(
+        '<?php foreach($subProgram as $sp): ?>' +
+        '<option value="<?=$sp;?>"><?=$sp;?></option>' +
+        '<?php endforeach; ?>'
+    );
+
     $.ajax({
         type: 'post',
         url: '<?=base_url("client/programs/view/");?>' + x,
