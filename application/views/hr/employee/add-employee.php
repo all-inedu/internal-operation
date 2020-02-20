@@ -28,13 +28,7 @@
                 <div class="text-center">
                     <img src="<?=base_url('assets/img/employee.png');?>" alt="employee" width="60%"><br><br>
                     <h5 class="align-middle mt-2">
-                        Employee Name</h5>
-                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                    <div class="text-info">
-                        <p>Position <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; 081231232xxx &nbsp; | &nbsp;
-                            <i class="fas fa-envelope text-danger"></i>&nbsp; mail@gmail.com</p>
-                    </div>
+                        Add Employee</h5>
                 </div>
             </div>
         </div>
@@ -49,13 +43,13 @@
                                 class="fas fa-arrow-circle-left"></i></a>
                     </div>
                 </h6>
-                <form action="save" method="post" enctype="multipart/form-data">
+                <form action="" method="post" enctype="multipart/form-data">
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="row">
                         <div class="col-md-12">
                             <label class="font-weight-bold mb-3">Personal Information</label>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label><i class="fas fa-id-card fa-fw text-muted"></i>&nbsp; Full Name :</label>
                         </div>
                         <div class="col-md-7 mb-3">
@@ -75,7 +69,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label><i class="fas fa-envelope fa-fw text-muted"></i>&nbsp; Email :</label>
                         </div>
                         <div class="col-md-7 mb-3">
@@ -88,7 +82,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label><i class="fas fa-thumbtack fa-fw text-muted"></i>&nbsp; Address :</label>
                         </div>
                         <div class="col-md-7 mb-3">
@@ -97,12 +91,12 @@
                             <?=form_error('empl_address', '<small class="text-danger">', '</small>');?>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Phone Number :</label>
                         </div>
                         <div class="col-md-7 mb-3">
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <input name="empl_phone" type="text" class="form-control form-control-sm"
                                         placeholder="Phone Number">
                                     <?=form_error('empl_phone', '<small class="text-danger">', '</small>');?>
@@ -110,7 +104,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label><i class="fas fa-university fa-fw text-muted"></i>&nbsp; Graduated From
                                 :</label>
                         </div>
@@ -124,7 +118,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label><i class="fas fa-tag fa-fw text-muted"></i>&nbsp; Major
                                 :</label>
                         </div>
@@ -138,7 +132,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label><i class="fas fa-birthday-cake fa-fw  text-muted"></i>&nbsp; Date of Birth
                                 :</label>
                         </div>
@@ -155,7 +149,7 @@
                     </div>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label><i class="fas fa-crosshairs fa-fw text-muted"></i>&nbsp; Position :</label>
                         </div>
                         <div class="col-md-7 mb-3">
@@ -168,7 +162,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label><i class="fas fa-calendar-alt fa-fw text-muted"></i>&nbsp; Hire Date :</label>
                         </div>
                         <div class="col-md-7 mb-3">
@@ -181,7 +175,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label><i class="fas fa-calendar-times fa-fw text-muted"></i>&nbsp; Employee Status
                                 :</label>
                         </div>
@@ -200,7 +194,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label><i class="far fa-calendar-times fa-fw text-muted"></i>&nbsp; End Date
                                 :</label>
                         </div>
@@ -215,7 +209,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label><i class="fas fa-question fa-fw text-muted"></i>&nbsp; Is Resign ?
                                 :</label>
                         </div>
@@ -254,24 +248,12 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; Bank
+                                        <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; BCA
                                             Account
                                             :
                                         </td>
                                         <td>
                                             <div class="row no-gutters">
-                                                <div class="col-md-4 mb-2">
-                                                    <small>Bank Name :</small>
-                                                    <select name="bankName" id="bankName"
-                                                        class="form-control form-control-sm">
-                                                        <option value="BCA">BCA</option>
-                                                        <option value="BNI">BNI</option>
-                                                        <option value="BTN">BTN</option>
-                                                        <option value="DBS">DBS</option>
-                                                        <option value="Mandiri">Mandiri</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-1"></div>
                                                 <div class="col-md-7">
                                                     <small>Number :</small>
                                                     <input name="empl_bankaccount" type="number" class="form-control">

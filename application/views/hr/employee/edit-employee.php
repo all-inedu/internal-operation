@@ -28,12 +28,12 @@
                 <div class="text-center">
                     <img src="<?=base_url('assets/img/employee.png');?>" alt="employee" width="60%"><br><br>
                     <h5 class="align-middle mt-2">
-                        Employee Name</h5>
+                        <?=$empl['empl_firstname']." ".$empl['empl_lastname'];?></h5>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="text-info">
-                        <p>Position <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; 081231232xxx &nbsp; | &nbsp;
-                            <i class="fas fa-envelope text-danger"></i>&nbsp; mail@gmail.com</p>
+                        <p><?=$empl['empl_department'];?> <br>
+                            <i class="fas fa-phone text-danger"></i>&nbsp; <?=$empl['empl_phone'];?> &nbsp; | &nbsp;
+                            <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$empl['empl_email'];?></p>
                     </div>
                 </div>
             </div>
@@ -45,299 +45,334 @@
             <div class="card-body">
                 <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Employee Profile
                     <div class="float-right">
-                        <a href="<?=base_url('hr/employee/view/');?>" class="btn btn-sm btn-info"><i
-                                class="fas fa-arrow-circle-left"></i></a>
+                        <a href="<?=base_url('hr/employee/view/'.strtolower($empl['empl_id']));?>"
+                            class="btn btn-sm btn-info"><i class="fas fa-arrow-circle-left"></i></a>
                     </div>
                 </h6>
-                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label class="font-weight-bold mb-3">Personal Information</label>
-                    </div>
-                    <div class="col-md-5">
-                        <label><i class="fas fa-id-card fa-fw text-muted"></i>&nbsp; Full Name :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <small>First Name</small>
-                                <input name="firstName" type="text" class="form-control form-control-sm"
-                                    placeholder="First Name">
-                                <?=form_error('firstName', '<small class="text-danger">', '</small>');?>
+                <form action="" method="post" name="update" enctype="multipart/form-data">
+                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="font-weight-bold mb-3">Personal Information</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label><i class="fas fa-id-card fa-fw text-muted"></i>&nbsp; Full Name :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <small>First Name</small>
+                                    <input name="empl_id" type="hidden" class="form-control form-control-sm"
+                                        value="<?=$empl['empl_id'];?>">
+                                    <input name="empl_firstname" type="text" class="form-control form-control-sm"
+                                        value="<?=$empl['empl_firstname'];?>">
+                                    <?=form_error('empl_firstname', '<small class="text-danger">', '</small>');?>
+                                </div>
+                                <div class="col-md-6">
+                                    <small>Last Name</small>
+                                    <input name="empl_lastname" type="text" class="form-control form-control-sm"
+                                        value="<?=$empl['empl_lastname'];?>">
+                                    <?=form_error('empl_lastname', '<small class="text-danger">', '</small>');?>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <small>Last Name</small>
-                                <input name="lastName" type="text" class="form-control form-control-sm"
-                                    placeholder="Last Name">
-                                <?=form_error('lastName', '<small class="text-danger">', '</small>');?>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="fas fa-envelope fa-fw text-muted"></i>&nbsp; Email :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input name="empl_email" type="text" class="form-control form-control-sm"
+                                        value="<?=$empl['empl_email'];?>">
+                                    <?=form_error('empl_email', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="fas fa-thumbtack fa-fw text-muted"></i>&nbsp; Address :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <textarea name="empl_address" rows=5
+                                class="form-control form-control-sm"><?=$empl['empl_address'];?></textarea>
+                            <?=form_error('empl_address', '<small class="text-danger">', '</small>');?>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Phone Number :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input name="empl_phone" type="text" class="form-control form-control-sm"
+                                        value="<?=$empl['empl_phone'];?>">
+                                    <?=form_error('empl_phone', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="fas fa-university fa-fw text-muted"></i>&nbsp; Graduated From
+                                :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input name="empl_graduatefr" type="text" class="form-control form-control-sm"
+                                        value="<?=$empl['empl_graduatefr'];?>">
+                                    <?=form_error('empl_graduatefr', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="fas fa-tag fa-fw text-muted"></i>&nbsp; Major
+                                :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input name="empl_major" type="text" class="form-control form-control-sm"
+                                        value="<?=$empl['empl_major'];?>">
+                                    <?=form_error('empl_major', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="fas fa-birthday-cake fa-fw  text-muted"></i>&nbsp; Date of Birth
+                                :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input name="empl_datebirth" type="date" class="form-control form-control-sm"
+                                        value="<?=$empl['empl_datebirth'];?>">
+                                    <?=form_error('empl_datebirth', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label><i class="fas fa-crosshairs fa-fw text-muted"></i>&nbsp; Position :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input name="empl_department" type="text" class="form-control form-control-sm"
+                                        value="<?=$empl['empl_department'];?>">
+                                    <?=form_error('empl_department', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="fas fa-calendar-alt fa-fw text-muted"></i>&nbsp; Hire Date :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input name="empl_hiredate" type="date" class="form-control form-control-sm"
+                                        value="<?=$empl['empl_hiredate'];?>">
+                                    <?=form_error('empl_hiredate', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="far fa-calendar-times fa-fw text-muted"></i>&nbsp; Employee Status
+                                :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select name="empl_status" id="empl_status" class="form-control form-control-sm"
+                                        onchange="changeStatus()">
+                                        <option value="<?=$empl['empl_status'];?>"><?=$empl['empl_status'];?></option>
+                                        <option value="Full Time">Full Time</option>
+                                        <option value="Contract">Contract</option>
+                                        <option value="Internship">Internship</option>
+                                        <option value="Probation">Probation</option>
+                                    </select>
+                                    <?=form_error('empl_status', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="fas fa-calendar-times fa-fw text-muted"></i>&nbsp; End Date
+                                :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input name="empl_statusenddate" type="date" class="form-control form-control-sm"
+                                        value="<?=$empl['empl_statusenddate'];?>">
+                                    <?=form_error('empl_statusenddate', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="far fa-times-circle text-muted"></i>&nbsp; Is Resign ?
+                                :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <select name="empl_isresign" id="empl_isresign"
+                                        class="form-control form-control-sm">
+                                        <option value="<?=$empl['empl_isresign'];?>"><?=$empl['empl_isresign'];?>
+                                        </option>
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>
+                                    </select>
+                                    <?=form_error('empl_isresign', '<small class="text-danger">', '</small>');?>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-5">
-                        <label><i class="fas fa-envelope fa-fw text-muted"></i>&nbsp; Email :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input name="email" type="text" class="form-control form-control-sm"
-                                    placeholder="Email">
-                                <?=form_error('email', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-thumbtack fa-fw text-muted"></i>&nbsp; Address :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <textarea name="email" rows=5 class="form-control form-control-sm"
-                            placeholder="Address"></textarea>
-                        <?=form_error('email', '<small class="text-danger">', '</small>');?>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Phone Number :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <input name="phone" type="text" class="form-control form-control-sm"
-                                    placeholder="Phone Number">
-                                <?=form_error('phone', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-university fa-fw text-muted"></i>&nbsp; Graduated From
-                            :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <input name="graduatedFrom" type="text" class="form-control form-control-sm"
-                                    placeholder="Graduated From">
-                                <?=form_error('graduatedFrom', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-tag fa-fw text-muted"></i>&nbsp; Major
-                            :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input name="major" type="text" class="form-control form-control-sm"
-                                    placeholder="Major">
-                                <?=form_error('major', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-birthday-cake fa-fw  text-muted"></i>&nbsp; Date of Birth
-                            :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <input name="birthDate" type="date" class="form-control form-control-sm" placeholder="">
-                                <?=form_error('birthDate', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                <div class="row">
-                    <div class="col-md-5">
-                        <label><i class="fas fa-crosshairs fa-fw text-muted"></i>&nbsp; Position :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <input name="position" type="text" class="form-control form-control-sm"
-                                    placeholder="Position">
-                                <?=form_error('position', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-calendar-alt fa-fw text-muted"></i>&nbsp; Hire Date :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <input name="hireDate" type="date" class="form-control form-control-sm" placeholder="">
-                                <?=form_error('hireDate', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="far fa-calendar-times fa-fw text-muted"></i>&nbsp; End of Internship /
-                            Probation
-                            :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <input name="internEndDate" type="date" class="form-control form-control-sm"
-                                    placeholder="">
-                                <?=form_error('internEndDate', '<small class="text-danger">', '</small>');?>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-calendar-times fa-fw text-muted"></i>&nbsp; End of Employment Contract /
-                            Probation
-                            :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <input name="contractEndDate" type="date" class="form-control form-control-sm"
-                                    placeholder="">
-                                <?=form_error('contractEndDate', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-calendar-times fa-fw text-muted"></i>&nbsp; Employee Status
-                            :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <select name="status" id="status" class="form-control form-control-sm"
-                                    onchange="changeStatus()">
-                                    <option value="Active">Active</option>
-                                    <option value="Inactive">Inactive</option>
-                                </select>
-                                <?=form_error('status', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="far fa-times-circle text-muted"></i>&nbsp; Resign / Out of Company
-                            :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <input name="resignDate" type="date" class="form-control form-control-sm" placeholder=""
-                                    id="resign" disabled>
-                                <?=form_error('resignDate', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label class="font-weight-bold mb-3">Attachment</label>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped">
-                                <tr>
-                                    <td class="align-middle" width="30%"><i class="fas fa-paperclip fa-fw"></i> &nbsp;
-                                        Curriculum Vitae : </td>
-                                    <td>
-                                        <div class="text-center file-drop-area">
-                                            <span class="fake-btn">Choose files</span>
-                                            <span class="file-msg">or drag and drop files here (docx, doc, pdf)</span>
-                                            <input name="cv" class="file-input" type="file">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; Bank Account
-                                        :
-                                    </td>
-                                    <td>
-                                        <div class="row no-gutters">
-                                            <div class="col-md-4 mb-2">
-                                                <small>Bank Name :</small>
-                                                <select name="bankName" id="bankName"
-                                                    class="form-control form-control-sm">
-                                                    <option value="BCA">BCA</option>
-                                                    <option value="BNI">BNI</option>
-                                                    <option value="BTN">BTN</option>
-                                                    <option value="DBS">DBS</option>
-                                                    <option value="Mandiri">Mandiri</option>
-                                                </select>
+                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="font-weight-bold mb-3">Attachment</label>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <tr>
+                                        <td class="align-middle" width="30%"><i class="fas fa-paperclip fa-fw"></i>
+                                            &nbsp;
+                                            Curriculum Vitae : <br>
+                                            <?php if(empty($empl['empl_cv'])) {
+                                                    echo '<small class="text-danger ml-4">Not Available</small>'; 
+                                                } else {
+                                                    echo '<small class="text-primary ml-4">Available</small>'; 
+                                                }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <div class="text-center file-drop-area">
+                                                <span class="fake-btn">Choose files</span>
+                                                <span class="file-msg">or drag and drop files here (docx, doc,
+                                                    pdf)</span>
+                                                <input name="empl_cv" class="file-input" type="file">
                                             </div>
-                                            <div class="col-1"></div>
-                                            <div class="col-md-7">
-                                                <small>Number :</small>
-                                                <input name="bankAccount" type="number" class="form-control">
-                                                <?=form_error('bankAccount', '<small class="text-danger">', '</small>');?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; Bank
+                                            Account
+                                            : <br>
+                                            <?php if(empty($empl['empl_bankaccount'])) {
+                                                    echo '<small class="text-danger ml-4">Not Available</small>'; 
+                                                } else {
+                                                    echo '<small class="text-primary ml-4">Available</small>'; 
+                                                }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <div class="row no-gutters">
+                                                <div class="col-md-7">
+                                                    <small>Number :</small>
+                                                    <input name="empl_bankaccount" type="number" class="form-control"
+                                                        value="<?=$empl['empl_bankaccount'];?>">
+                                                    <?=form_error('empl_bankaccount', '<small class="text-danger">', '</small>');?>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; KTP : </td>
-                                    <td>
-                                        <div class="text-center file-drop-area">
-                                            <span class="fake-btn">Choose files</span>
-                                            <span class="file-msg">or drag and drop files here (docx, doc, pdf)</span>
-                                            <input name="ktp" class="file-input" type="file">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-middle"><i class="fas fa-paperclip fa-fw"></i> &nbsp; NPWP : </td>
-                                    <td>
-                                        <div class="text-center file-drop-area">
-                                            <span class="fake-btn">Choose files</span>
-                                            <span class="file-msg">or drag and drop files here (docx, doc, pdf)</span>
-                                            <input name="npwp" class="file-input" type="file">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; BPJS
-                                        Kesehatan :
-                                    </td>
-                                    <td>
-                                        <div class="text-center file-drop-area">
-                                            <span class="fake-btn">Choose files</span>
-                                            <span class="file-msg">or drag and drop files here (docx, doc, pdf)</span>
-                                            <input name="bpjsKS" class="file-input" type="file">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; BPJS TK :
-                                    </td>
-                                    <td>
-                                        <div class="text-center file-drop-area">
-                                            <span class="fake-btn">Choose files</span>
-                                            <span class="file-msg">or drag and drop files here (docx, doc, pdf)</span>
-                                            <input name="bpjsKT" class="file-input" type="file">
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; KTP :
+                                            <br>
+                                            <?php if(empty($empl['empl_idcard'])) {
+                                                    echo '<small class="text-danger ml-4">Not Available</small>'; 
+                                                } else {
+                                                    echo '<small class="text-primary ml-4">Available</small>'; 
+                                                }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <div class="text-center file-drop-area">
+                                                <span class="fake-btn">Choose files</span>
+                                                <span class="file-msg">or drag and drop files here (docx, doc,
+                                                    pdf)</span>
+                                                <input name="empl_idcard" class="file-input" type="file">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-middle"><i class="fas fa-paperclip fa-fw"></i> &nbsp; NPWP :
+                                            <br>
+                                            <?php if(empty($empl['empl_tax'])) {
+                                                    echo '<small class="text-danger ml-4">Not Available</small>'; 
+                                                } else {
+                                                    echo '<small class="text-primary ml-4">Available</small>'; 
+                                                }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <div class="text-center file-drop-area">
+                                                <span class="fake-btn">Choose files</span>
+                                                <span class="file-msg">or drag and drop files here (docx, doc,
+                                                    pdf)</span>
+                                                <input name="empl_tax" class="file-input" type="file">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; BPJS
+                                            Kesehatan : <br>
+                                            <?php if(empty($empl['empl_healthinsurance'])) {
+                                                    echo '<small class="text-danger ml-4">Not Available</small>'; 
+                                                } else {
+                                                    echo '<small class="text-primary ml-4">Available</small>'; 
+                                                }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <div class="text-center file-drop-area">
+                                                <span class="fake-btn">Choose files</span>
+                                                <span class="file-msg">or drag and drop files here (docx, doc,
+                                                    pdf)</span>
+                                                <input name="empl_healthinsurance" class="file-input" type="file">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; BPJS TK
+                                            :
+                                            <br>
+                                            <?php if(empty($empl['empl_emplinsurance'])) {
+                                                    echo '<small class="text-danger ml-4">Not Available</small>'; 
+                                                } else {
+                                                    echo '<small class="text-primary ml-4">Available</small>'; 
+                                                }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <div class="text-center file-drop-area">
+                                                <span class="fake-btn">Choose files</span>
+                                                <span class="file-msg">or drag and drop files here (docx, doc,
+                                                    pdf)</span>
+                                                <input name="empl_emplinsurance" class="file-input" type="file">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-info btn-sm">Save changes</button>
+                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-info btn-sm">Save changes</button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

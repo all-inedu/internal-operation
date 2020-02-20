@@ -155,9 +155,6 @@ $(document).ready(function() {
         buttons: [{
             extend: 'excel',
             text: '<i class="fas fa-file-excel"></i> &nbsp; Export to Excell'
-        }, {
-            extend: 'pdf',
-            text: '<i class="fas fa-file-pdf"></i> &nbsp; Export to PDF'
         }]
     });
 

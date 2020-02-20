@@ -18,42 +18,49 @@
     </div>
 </div>
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+<a href="<?=base_url('hr/employee/add');?>" class="btn btn-sm btn-success ml-2 add">
+    <i class="fas fa-plus-circle mt-1"></i>&nbsp; Add Employee
+</a>
 <div class="content">
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
-            <tr>
-                <th width="1%">No</th>
-                <th width="5%" class="text-center">Full Name</th>
-                <th width="10%" class="text-center">Position</th>
-                <th width="5%" class="text-center">Hire Date</th>
-                <th width="5%" class="text-center">Length of Work</th>
-                <th width="5%" class="text-center">Employee Status</th>
-                <th width="5%" class="text-center">Email</th>
-                <th width="5%" class="text-center">Graduated From</th>
-                <th width="5%" class="text-center">Major</th>
-                <th width="5%" class="text-center">Date of Birth</th>
-                <th width="10%" class="text-center">Phone Number</th>
-                <th width="10%" class="text-center">Is Active</th>
+            <tr class="text-center">
+                <th width="1%">#</th>
+                <th width="5%">ID</th>
+                <th width="5%" class="bg-primary text-white">Full Name</th>
+                <th width="10%">Position</th>
+                <th width="5%">Hire Date</th>
+                <th width="5%">Length of Work</th>
+                <th width="5%">Employee Status</th>
+                <th width="5%">Email</th>
+                <th width="5%">Graduated From</th>
+                <th width="5%">Major</th>
+                <th width="5%">Date of Birth</th>
+                <th width="10%">Phone Number</th>
+                <th>Address</th>
             </tr>
         </thead>
         <tbody>
-            <?php for($i=1;$i<=8;$i++) { ?>
-            <tr>
-                <td class="text-center"><?=$i;?></td>
-                <td class="text-center" style="cursor:pointer"
-                    onclick="window.location='<?=base_url('hr/employee/view');?>'">Budi Setiawan</td>
-                <td class="text-center">Business & Development</td>
-                <td class="text-center">2018</td>
-                <td class="text-center"><?= date('Y')-2018 . " Years" ;?></td>
-                <td class="text-center">Contract</td>
-                <td class="text-center">mail@gmail.com</td>
-                <td class="text-center">STIE Kasih Bangsa</td>
-                <td class="text-center">Akuntansi</td>
-                <td class="text-center">01 Jan 1998</td>
-                <td class="text-center">0812312312321</td>
-                <td class="text-center">Inacive</td>
+            <?php $i=1; foreach($empl as $e): ?>
+            <tr class="text-center">
+                <td><?=$i;?></td>
+                <td><?=$e['empl_id'];?></td>
+                <td style="cursor:pointer"
+                    onclick="window.location='<?=base_url('hr/employee/view/'.strtolower($e['empl_id']));?>'">
+                    <?=$e['empl_firstname']." ".$e['empl_lastname'];?>
+                </td>
+                <td><?=$e['empl_department'];?></td>
+                <td><?=date('d M Y' , strtotime($e['empl_hiredate']));?></td>
+                <td><?=date('Y')-date('Y', strtotime($e['empl_hiredate'])) ;?> Years</td>
+                <td><?=$e['empl_status'];?></td>
+                <td><?=$e['empl_email'];?></td>
+                <td><?=$e['empl_graduatefr'];?></td>
+                <td><?=$e['empl_major'];?></td>
+                <td><?=date('d M Y' , strtotime($e['empl_datebirth']));?></td>
+                <td><?=$e['empl_phone'];?></td>
+                <td><?=$e['empl_address'];?></td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>
