@@ -69,30 +69,33 @@
             </tr>
         </thead>
         <tbody>
-            <?php for($i=1;$i<=8;$i++) { ?>
+            <?php $i=1; foreach($mentor as $m): ?>
             <tr>
                 <td class="text-center"><?=$i;?></td>
                 <td class="text-center" style="cursor:pointer"
-                    onclick="window.location='<?=base_url('hr/mentor/potential/view');?>'">Budi Setiawan</td>
-                <td class="text-center">STIE Kasih Bangsa</td>
-                <td class="text-center">Business</td>
-                <td class="text-center">mail@gmail.com</td>
-                <td class="text-center">081212412xx</td>
-                <td class="text-center">Potential</td>
-                <td class="text-center">Just Mentor</td>
+                    onclick="window.location='<?=base_url('hr/mentor/potential/view/'.$m['id']);?>'">
+                    <?=$m['mt_firstn'].' '.$m['mt_lastn'];?>
+                </td>
+                <td class="text-center"><?=$m['univ_name'];?></td>
+                <td class="text-center"><?=$m['mt_major'];?></td>
+                <td class="text-center"><?=$m['mt_email'];?></td>
+                <td class="text-center"><?=$m['mt_phone'];?></td>
+                <td class="text-center">
+                    <?php
+                        if($m['mt_status']==0){echo 'Potential';} else 
+                        if($m['mt_status']==1){echo 'Active';} else
+                        if($m['mt_status']==2){echo 'Inactive';}
+                    ?>
+                </td>
+                <td class="text-center">
+                    <?php
+                        if($m['mt_istutor']==1){echo 'Mentor';} else 
+                        if($m['mt_istutor']==2){echo 'Mentor & Tutor';} else
+                        if($m['mt_istutor']==3){echo 'Tutor';}
+                    ?>
+                </td>
             </tr>
-            <tr>
-                <td class="text-center"><?=$i;?></td>
-                <td class="text-center" style="cursor:pointer"
-                    onclick="window.location='<?=base_url('hr/mentor/potential/view');?>'">Rizka Prakarsa</td>
-                <td class="text-center">UI</td>
-                <td class="text-center">Computer Science</td>
-                <td class="text-center">mail@gmail.com</td>
-                <td class="text-center">081212412xx</td>
-                <td class="text-center">Potential</td>
-                <td class="text-center">Just Mentor</td>
-            </tr>
-            <?php } ?>
+            <?php $i++; endforeach;?>
         </tbody>
     </table>
 </div>
