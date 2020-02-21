@@ -10,7 +10,7 @@ class Mentor_model extends CI_model
 
     public function showAll(){
         $this->db->select('*');
-        $this->db->where('mt_status',1);
+        $this->db->where('mt_status >=',1);
         $this->db->join('tbl_univ', 'tbl_univ.univ_id = tbl_mt.univ_id');
         return $this->db->get('tbl_mt')->result_array();
     }
@@ -20,6 +20,13 @@ class Mentor_model extends CI_model
         $this->db->where('mt_id', $id); 
         $this->db->join('tbl_univ', 'tbl_univ.univ_id = tbl_mt.univ_id');
         return $this->db->get('tbl_mt')->row_array();
+    }
+
+    public function update($data, $id)
+    {
+        $this->db->set($data);
+        $this->db->where('mt_id', $id);
+        $this->db->update('tbl_mt');
     }
     
     public function showPotentialAll(){

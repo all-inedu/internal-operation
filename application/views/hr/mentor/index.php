@@ -3,7 +3,7 @@
         <div class="col-md-5 ">
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <div class="breadcrumb text-dark bg-white font-weight-bold  shadow border">
-                    <i class="fas fa-tags mt-1"></i>&nbsp;&nbsp; Potential Mentor
+                    <i class="fas fa-tags mt-1"></i>&nbsp;&nbsp; Mentor
                 </div>
             </nav>
         </div>
@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
                     <li class="breadcrumb-item"><a href="<?=base_url('hr/home');?>">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Potential Mentor</li>
+                    <li class="breadcrumb-item active" aria-current="page">Mentor</li>
                 </ol>
             </nav>
         </div>
@@ -26,9 +26,6 @@
     </div>
 </div>
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-<a href="<?=base_url('hr/mentor/potential/add');?>" class="btn btn-sm btn-success ml-2 add">
-    <i class="fas fa-plus-circle mt-1"></i>&nbsp; Add Potential Mentor
-</a>
 <div class="content">
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>

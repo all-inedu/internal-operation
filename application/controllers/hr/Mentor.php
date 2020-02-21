@@ -38,11 +38,103 @@ class Mentor extends CI_Controller
         }
     }
 
-    public function edit(){
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-hr');
-        $this->load->view('hr/mentor/edit-mentor.php');
-        $this->load->view('templates/f-io');
+    public function edit($id){
+        $this->form_validation->set_rules('mt_firstn','first name','required');
+        $this->form_validation->set_rules('mt_email','email','required');
+        $this->form_validation->set_rules('mt_phone','phone number','required');
+
+        if ($this->form_validation->run()==false){
+            $data['mentor'] = $this->mt->showId($id);
+            $data['univ'] = $this->univ->showAll();
+            $data['bank'] = ['BCA','BNI', 'BTN', 'DBS', 'Mandiri'];
+            $this->load->view('templates/h-io');
+            $this->load->view('templates/s-hr');
+            $this->load->view('hr/mentor/edit-mentor.php', $data);
+            $this->load->view('templates/f-io');
+        } else {
+            $this->update();  
+        }
+    }
+
+    public function uploaded($file, $path, $id){
+        $config['upload_path']          = './upload/mentor/'.$path;
+        $config['allowed_types']        = 'gif|jpg|png|pdf|docx|doc';
+        $config['max_size']             = 150048;
+        $config['file_name']            = strtolower($path."-".$id);
+
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+
+        if ($this->upload->do_upload($file))
+        {
+            return htmlspecialchars($this->upload->data('file_name'));
+        } else {
+            $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('error', $error['error']);
+            redirect('/hr/mentor/view/'.$id);
+        }
+    }
+
+    public function update() {
+        $id = $this->input->post('mt_id');
+        $mentor = $this->mt->showId($id);
+
+        $files1 = $_FILES['mt_cv']['name'];
+        $files2 = $_FILES['mt_ktp']['name'];
+        $files3 = $_FILES['mt_npwp']['name'];
+
+        if(empty($files1)){
+            $cv = $mentor['mt_cv'];
+        } else {
+            if(! $mentor['mt_cv']==""){
+                unlink("./upload/mentor/CV/".$mentor['mt_cv']);
+            }
+            $cv = $this->uploaded('mt_cv', 'CV', $id);
+        }
+
+        if(empty($files2)){
+            $ktp = $mentor['mt_ktp'];
+        } else {
+            if(! $mentor['mt_ktp']==""){
+                unlink("./upload/mentor/KTP/".$mentor['mt_ktp']);
+            }
+            $ktp = $this->uploaded('mt_ktp', 'KTP', $id);
+        }
+
+        if(empty($files3)){
+            $npwp = $mentor['mt_npwp'];
+        } else {
+            if(! $mentor['mt_npwp']==""){
+                unlink("./upload/mentor/NPWP/".$mentor['mt_npwp']);
+            }
+            $npwp = $this->uploaded('mt_npwp', 'NPWP', $id);
+        }
+
+        $data = [
+            'mt_firstn' => $this->input->post('mt_firstn'),
+            'mt_lastn' => $this->input->post('mt_lastn'),
+            'mt_email' => $this->input->post('mt_email'),
+            'mt_address' => $this->input->post('mt_address'),
+            'mt_phone' => $this->input->post('mt_phone'),
+            'univ_id' => $this->input->post('univ_id'),
+            'mt_major' => $this->input->post('mt_major'),
+            'mt_istutor' => $this->input->post('mt_istutor'),
+            'mt_tsubject' => $this->input->post('mt_tsubject'),
+            'mt_feehours' => $this->input->post('mt_feehours'),
+            'mt_feesession' => $this->input->post('mt_feesession'),
+            'mt_cv' => $cv,
+            'mt_ktp' => $ktp,
+            'mt_banknm' => $this->input->post('mt_banknm'),
+            'mt_bankacc' => $this->input->post('mt_bankacc'),
+            'mt_npwp' => $npwp,
+            'mt_lastupdate' => date('Y-m-d H:i:s'),
+        ];
+
+        // echo json_encode($data);
+        $this->mt->update($data, $id);
+        $this->session->set_flashdata('success', 'Potential mentor have been changed');
+        redirect('/hr/mentor/view/'.$id);
+
     }
 
     public function potential($v='', $id=''){

@@ -26,7 +26,7 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/employee.png');?>" alt="employee" width="60%"><br><br>
+                    <img src="<?=base_url('assets/img/employee.png');?>" alt="mentor" width="60%"><br><br>
                     <h5 class="align-middle mt-2">
                         <?=$mentor['mt_firstn']." ".$mentor['mt_lastn'];?></h5>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
@@ -44,9 +44,9 @@
                     </div>
                     <div class="row text-center">
                         <div class="col">
-                            <a href="<?=base_url('hr/mentor/edit');?>" class="btn btn-sm btn-info m-1"><i
-                                    class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
-                            <a href="<?=base_url('hr/mentor/conver');?>"
+                            <a href="<?=base_url('hr/mentor/edit/'.$mentor['mt_id']);?>"
+                                class="btn btn-sm btn-info m-1"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
+                            <a href="<?=base_url('hr/mentor/inactive');?>"
                                 class="btn btn-sm btn-danger m-1 convert-button"
                                 data-message="Incative this mentor ?"><i class="fas fa-user-times"></i>&nbsp;
                                 Inactive</a>
@@ -156,12 +156,12 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <small>Fee per Hours</small><br>
-                                Rp. 200.00
+                                Rp. <?=number_format($mentor['mt_feehours']);?>
                                 <hr class="mt-1 m-0">
                             </div>
                             <div class="col-md-7">
                                 <small>Fee per Session</small><br>
-                                Rp. 150.00
+                                Rp. <?=number_format($mentor['mt_feesession']);?>
                                 <hr class="mt-1 m-0">
                             </div>
                             <?php 
@@ -175,30 +175,79 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label class="font-weight-bold mb-3">Attachment</label>
-                        <table class="table table-bordered table-striped">
-                            <tr>
-                                <td width="30%"><i class="fas fa-paperclip fa-fw"></i> &nbsp; Curriculum Vitae : </td>
-                                <td>Available</td>
-                            </tr>
-                            <tr>
-                                <td> <i class="fas fa-paperclip fa-fw"></i> &nbsp; Bank Account : </td>
-                                <td>Available</td>
-                            </tr>
-                            <tr>
-                                <td> <i class="fas fa-paperclip fa-fw"></i> &nbsp; KTP : </td>
-                                <td>Available</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-paperclip fa-fw"></i> &nbsp; NPWP : </td>
-                                <td>Available</td>
-                            </tr>
-                        </table>
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <div class="card  text-center">
+                                    <div class="card-body">
+                                        <b>Curriculum Vitae</b>
+                                    </div>
+                                    <div class="card-footer p-1">
+                                        <?php 
+                                    if(empty($mentor['mt_cv'])) { 
+                                        echo '<div class="p-1">Not Available</div>';
+                                    } else { 
+                                        echo "<a target='_blank' href='".base_url('upload/mentor/CV/'.$mentor['mt_cv'])."' class='btn btn-sm'><i class='fas fa-search-plus'></i>&nbsp; View / Download</a>";   
+                                    }
+                                    ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="card  text-center">
+                                    <div class="card-body">
+                                        <b>Bank Account</b>
+                                    </div>
+                                    <div class="card-footer p-1">
+                                        <?php 
+                                    if(empty($mentor['mt_bankacc'])) { 
+                                        echo '<div class="p-1">Not Available</div>'; 
+                                    } else { 
+                                        echo '<div class="p-1">'.$mentor['mt_banknm']." - ". $mentor['mt_bankacc'].'</div>' ;
+                                    }
+                                    ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="card  text-center">
+                                    <div class="card-body">
+                                        <b>KTP</b>
+                                    </div>
+                                    <div class="card-footer p-1">
+                                        <?php 
+                                    if(empty($mentor['mt_ktp'])) { 
+                                        echo '<div class="p-1">Not Available</div>'; 
+                                    } else { 
+                                        echo "<a target='_blank' href='".base_url('upload/mentor/KTP/'.$mentor['mt_ktp'])."' class='btn btn-sm'><i class='fas fa-search-plus'></i>&nbsp; View / Download</a>";
+                                    }
+                                    ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="card  text-center">
+                                    <div class="card-body">
+                                        <b>NPWP</b>
+                                    </div>
+                                    <div class="card-footer p-1">
+                                        <?php 
+                                    if(empty($mentor['mt_npwp'])) { 
+                                        echo '<div class="p-1">Not Available</div>'; 
+                                    } else { 
+                                        echo "<a target='_blank' href='".base_url('upload/mentor/NPWP/'.$mentor['mt_npwp'])."' class='btn btn-sm'><i class='fas fa-search-plus'></i>&nbsp; View / Download</a>";
+                                    }
+                                    ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="row">
                     <div class="col-md-12">
+                        <h5 class="text-danger">Not Available</h5>
                         <label class="font-weight-bold mb-3">Student List</label>
                         <table class="table table-bordered table-striped">
                             <thead>

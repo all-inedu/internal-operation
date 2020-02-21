@@ -224,6 +224,7 @@ function changePosition() {
     var x = $('#position').val();
     if ((x == "2") || (x == "3")) {
         $("#subject").attr("readonly", false);
+        $("#subject").val("<?=$mentor['mt_tsubject'];?>");
         document.getElementById("subject").focus();
     } else {
         $("#subject").attr("readonly", true);
