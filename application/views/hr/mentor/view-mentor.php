@@ -1,6 +1,6 @@
 <div class="container-fluid p-1">
     <div class="row">
-        <div class="col-md-5 ">
+        <div class="col-md-5">
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <div class="breadcrumb text-dark bg-white font-weight-bold  shadow border">
                     <i class="fas fa-tags mt-1"></i>&nbsp;&nbsp; Mentor
@@ -28,12 +28,19 @@
                 <div class="text-center">
                     <img src="<?=base_url('assets/img/employee.png');?>" alt="employee" width="60%"><br><br>
                     <h5 class="align-middle mt-2">
-                        Mentor Name</h5>
+                        <?=$mentor['mt_firstn']." ".$mentor['mt_lastn'];?></h5>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="text-info">
-                        <p>Position <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; 081231232xxx &nbsp; | &nbsp;
-                            <i class="fas fa-envelope text-danger"></i>&nbsp; mail@gmail.com</p>
+                        <p>
+                            <h6><?php
+                                if($mentor['mt_istutor']==1){echo 'Mentor';} else 
+                                if($mentor['mt_istutor']==2){echo 'Mentor & Tutor';} else
+                                if($mentor['mt_istutor']==3){echo 'Tutor';}
+                            ?>
+                            </h6>
+                            <i class="fas fa-phone text-danger"></i>&nbsp; <?=$mentor['mt_phone'];?> &nbsp; | &nbsp;
+                            <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$mentor['mt_email'];?>
+                        </p>
                     </div>
                     <div class="row text-center">
                         <div class="col">
@@ -64,91 +71,102 @@
                     <div class="col-md-12">
                         <label class="font-weight-bold mb-3">Personal Information</label>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-id-card fa-fw text-muted"></i>&nbsp; Full Name :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        Full Name
+                        <?=$mentor['mt_firstn']." ".$mentor['mt_lastn'];?>
+                        <hr class="mt-1 m-0">
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-envelope fa-fw text-muted"></i>&nbsp; Email :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        Email@mail.com
+                        <?=$mentor['mt_email'];?>
+                        <hr class="mt-1 m-0">
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-thumbtack fa-fw text-muted"></i>&nbsp; Address :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        Lorem Ipsum
+                        <?=$mentor['mt_address'];?>
+                        <hr class="mt-1 m-0">
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Phone Number :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        0824xxxxxx
+                        <?=$mentor['mt_phone'];?>
+                        <hr class="mt-1 m-0">
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-university fa-fw text-muted"></i>&nbsp; Graduated From
                             :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        Graduated from
+                        <?=$mentor['univ_name'];?>
+                        <hr class="mt-1 m-0">
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-tag fa-fw text-muted"></i>&nbsp; Major
                             :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        Major
+                        <?=$mentor['mt_major'];?>
+                        <hr class="mt-1 m-0">
                     </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-birthday-cake fa-fw  text-muted"></i>&nbsp; Date of Birth
-                            :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        Date of Birth
-                    </div>
-
                 </div>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-crosshairs fa-fw text-muted"></i>&nbsp; Position :</label>
                     </div>
                     <div class="col-md-7 mb-3">
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-4">
                                 <small>Status</small><br>
-                                Just Mentor
+                                <?php
+                                    if($mentor['mt_istutor']==1){echo 'Mentor';} else 
+                                    if($mentor['mt_istutor']==2){echo 'Mentor & Tutor';} else
+                                    if($mentor['mt_istutor']==3){echo 'Tutor';}
+                                ?>
+                                <hr class="mt-1 m-0">
                             </div>
+                            <?php 
+                                if($mentor['mt_istutor']>1) { 
+                            ?>
                             <div class="col-md-7">
                                 <small>Tutoring Subject</small><br>
                                 IB
+                                <hr class="mt-1 m-0">
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-dollar-sign fa-fw  text-muted"></i>&nbsp; Fee
                             :</label>
                     </div>
                     <div class="col-md-7 mb-3">
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-4">
                                 <small>Fee per Hours</small><br>
                                 Rp. 200.00
+                                <hr class="mt-1 m-0">
                             </div>
                             <div class="col-md-7">
                                 <small>Fee per Session</small><br>
                                 Rp. 150.00
+                                <hr class="mt-1 m-0">
                             </div>
+                            <?php 
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>

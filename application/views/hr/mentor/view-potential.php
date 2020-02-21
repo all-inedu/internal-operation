@@ -33,14 +33,15 @@
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="text-info">
                         <p>
-                            <?php
+                            <h6><?php
                                 if($mentor['mt_istutor']==1){echo 'Mentor';} else 
                                 if($mentor['mt_istutor']==2){echo 'Mentor & Tutor';} else
                                 if($mentor['mt_istutor']==3){echo 'Tutor';}
                             ?>
-                            <br>
+                            </h6>
                             <i class="fas fa-phone text-danger"></i>&nbsp; <?=$mentor['mt_phone'];?> &nbsp; | &nbsp;
-                            <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$mentor['mt_email'];?></p>
+                            <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$mentor['mt_email'];?>
+                        </p>
                     </div>
                     <div class="row text-center">
                         <div class="col">

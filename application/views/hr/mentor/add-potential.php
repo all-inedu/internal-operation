@@ -86,7 +86,7 @@
                         <div class="col-md-4">
                             <label><i class="fas fa-thumbtack fa-fw text-muted"></i>&nbsp; Address :</label>
                         </div>
-                        <div class="col-md-7 mb-3">
+                        <div class="col-md-8 mb-3">
                             <textarea name="mt_address" rows=5 class="form-control form-control-sm"
                                 placeholder="Address"></textarea>
                             <?=form_error('mt_address', '<small class="text-danger">', '</small>');?>
@@ -112,13 +112,13 @@
                         <div class="col-md-7 mb-3">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <select id="graduatedFrom" name="mt_graduatedfrom">
+                                    <select id="graduatedFrom" name="univ_id">
                                         <option data-placeholder="true"></option>
                                         <?php foreach($univ as $u): ?>
                                         <option value="<?=$u['univ_id'];?>"><?=$u['univ_name'];?></option>
                                         <?php endforeach; ?>
                                     </select>
-                                    <?=form_error('mt_graduatedfrom', '<small class="text-danger">', '</small>');?>
+                                    <?=form_error('univ_id', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +157,7 @@
                                 <div class="col-md-7">
                                     <small>Tutoring Subject</small>
                                     <input name="mt_tsubject" type="text" class="form-control form-control-sm"
-                                        placeholder="Tutoring Subject" id="subject" disabled>
+                                        placeholder="Tutoring Subject" id="subject" readonly>
                                     <?=form_error('mt_tsubject', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
@@ -201,10 +201,11 @@ new SlimSelect({
 function changePosition() {
     var x = $('#position').val();
     if ((x == "2") || (x == "3")) {
-        document.getElementById("subject").disabled = false;
+        $("#subject").attr("readonly", false);
         document.getElementById("subject").focus();
     } else {
-        document.getElementById("subject").disabled = true;
+        $("#subject").attr("readonly", true);
+        $("#subject").val("");
         document.getElementById("lastContact").focus();
     }
 }
