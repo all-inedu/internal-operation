@@ -26,7 +26,7 @@
         <thead>
             <tr>
                 <th width="1%">No</th>
-                <th width="5%" class="text-center">Full Name</th>
+                <th width="5%" class="text-center bg-primary text-white">Full Name</th>
                 <th width="5%" class="text-center">Graduated From</th>
                 <th width="5%" class="text-center">Major</th>
                 <th width="5%" class="text-center">Email</th>
@@ -36,19 +36,25 @@
             </tr>
         </thead>
         <tbody>
-            <?php for($i=1;$i<=8;$i++) { ?>
+            <?php $i=1;foreach($volunt as $v): ?>
             <tr>
                 <td class="text-center"><?=$i;?></td>
                 <td class="text-center" style="cursor:pointer"
-                    onclick="window.location='<?=base_url('hr/volunteer/view');?>'">Budi Setiawan</td>
-                <td class="text-center">Business & Development</td>
-                <td class="text-center">2018</td>
-                <td class="text-center">mail@gmail.com</td>
-                <td class="text-center">081212412xx</td>
-                <td class="text-center">Active</td>
-                <td class="text-center">Managing Volunteer</td>
+                    onclick="window.location='<?=base_url('hr/volunteer/view/'.$v['volunt_id']);?>'">
+                    <?=$v['volunt_firstname']." ".$v['volunt_lastname'];?></td>
+                <td class="text-center"><?=$v['volunt_graduatedfr']; ?></td>
+                <td class="text-center"><?=$v['volunt_major']; ?></td>
+                <td class="text-center"><?=$v['volunt_mail']; ?></td>
+                <td class="text-center"><?=$v['volunt_phone']; ?></td>
+                <td class="text-center">
+                    <?php
+                        if($v['volunt_status']==1){echo '<div class="badge badge-success">Active</div>';} else
+                        if($v['volunt_status']==2){echo '<div class="badge badge-danger">Not Active</div>';}
+                    ?>
+                </td>
+                <td class="text-center"><?=$v['volunt_position']; ?></td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>

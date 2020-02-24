@@ -29,12 +29,21 @@
                 <div class="text-center">
                     <img src="<?=base_url('assets/img/employee.png');?>" alt="employee" width="60%"><br><br>
                     <h5 class="align-middle mt-2">
-                        Volunteer Name</h5>
+                        <?=$volunt['volunt_firstname']." ".$volunt['volunt_lastname'];?></h5>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="text-info">
-                        <p>Position <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; 081231232xxx &nbsp; | &nbsp;
-                            <i class="fas fa-envelope text-danger"></i>&nbsp; mail@gmail.com</p>
+                        <p>
+                            <?php
+                                if($volunt['volunt_status']==1){echo '<div class="badge badge-success">Active</div>';} else
+                                if($volunt['volunt_status']==2){echo '<div class="badge badge-danger">Not Active</div>';}
+                            ?>
+                            <hr width="15%" class="mt-1 mb-1">
+                            <i class="fas fa-phone text-danger"></i>&nbsp;
+                            <?=$volunt['volunt_phone'];?>
+                            &nbsp; | &nbsp;
+                            <i class="fas fa-envelope text-danger"></i>&nbsp;
+                            <?=$volunt['volunt_mail'];?>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -46,139 +55,170 @@
             <div class="card-body">
                 <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Volunteer Profile
                     <div class="float-right">
-                        <a href="<?=base_url('hr/volunteer/view/');?>" class="btn btn-sm btn-info"><i
-                                class="fas fa-arrow-circle-left"></i></a>
+                        <a href="<?=base_url('hr/volunteer/view/'.$volunt['volunt_id']);?>"
+                            class="btn btn-sm btn-info"><i class="fas fa-arrow-circle-left"></i></a>
                     </div>
                 </h6>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label class="font-weight-bold mb-3">Personal Information</label>
-                    </div>
-                    <div class="col-md-5">
-                        <label><i class="fas fa-id-card fa-fw text-muted"></i>&nbsp; Full Name :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <small>First Name</small>
-                                <input name="firstName" type="text" class="form-control form-control-sm"
-                                    placeholder="First Name">
-                                <?=form_error('firstName', '<small class="text-danger">', '</small>');?>
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="font-weight-bold mb-3">Personal Information</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label><i class="fas fa-id-card fa-fw text-muted"></i>&nbsp; Full Name :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <small>First Name</small>
+                                    <input name="volunt_firstname" type="text" class="form-control form-control-sm"
+                                        value="<?=$volunt['volunt_firstname'];?>">
+                                    <?=form_error('volunt_firstname', '<small class="text-danger">', '</small>');?>
+                                </div>
+                                <div class="col-md-6">
+                                    <small>Last Name</small>
+                                    <input name="volunt_lastname" type="text" class="form-control form-control-sm"
+                                        value="<?=$volunt['volunt_lastname'];?>">
+                                    <?=form_error('volunt_lastname', '<small class="text-danger">', '</small>');?>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <small>Last Name</small>
-                                <input name="lastName" type="text" class="form-control form-control-sm"
-                                    placeholder="Last Name">
-                                <?=form_error('lastName', '<small class="text-danger">', '</small>');?>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="fas fa-envelope fa-fw text-muted"></i>&nbsp; Email :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input name="volunt_mail" type="text" class="form-control form-control-sm"
+                                        value="<?=$volunt['volunt_mail'];?>">
+                                    <?=form_error('volunt_mail', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="fas fa-thumbtack fa-fw text-muted"></i>&nbsp; Address :</label>
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <textarea name="volunt_address" rows=5
+                                class="form-control form-control-sm"><?=$volunt['volunt_address'];?></textarea>
+                            <?=form_error('volunt_address', '<small class="text-danger">', '</small>');?>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Phone Number :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input name="volunt_phone" type="text" class="form-control form-control-sm"
+                                        value="<?=$volunt['volunt_phone'];?>">
+                                    <?=form_error('volunt_phone', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="fas fa-university fa-fw text-muted"></i>&nbsp; Graduated From
+                                :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input name="volunt_graduatedfr" type="text" class="form-control form-control-sm"
+                                        value="<?=$volunt['volunt_graduatedfr'];?>">
+                                    <?=form_error('volunt_graduatedfr', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="fas fa-tag fa-fw text-muted"></i>&nbsp; Major
+                                :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input name="volunt_major" type="text" class="form-control form-control-sm"
+                                        value="<?=$volunt['volunt_major'];?>">
+                                    <?=form_error('volunt_major', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label><i class="fas fa-crosshairs fa-fw text-muted"></i>&nbsp; Position
+                                :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input name="volunt_position" type="text" class="form-control form-control-sm"
+                                        value="<?=$volunt['volunt_position'];?>">
+                                    <?=form_error('volunt_position', '<small class="text-danger">', '</small>');?>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-envelope fa-fw text-muted"></i>&nbsp; Email :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input name="email" type="text" class="form-control form-control-sm"
-                                    placeholder="Email">
-                                <?=form_error('email', '<small class="text-danger">', '</small>');?>
+                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="font-weight-bold mb-3">Attachment</label>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <tr>
+                                        <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; KTP :
+                                            <br>
+                                            <?php 
+                                                if(empty($volunt['volunt_idcard'])) {
+                                                    echo '<small class="text-danger ml-4">Not Available</small>'; 
+                                                } else {
+                                                    echo '<small class="text-primary ml-4">Available</small>' ;
+                                                }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <div class="text-center file-drop-area">
+                                                <span class="fake-btn">Choose files</span>
+                                                <span class="file-msg">or drag and drop files here (docx, doc,
+                                                    pdf)</span>
+                                                <input name="volunt_idcard" class="file-input" type="file">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-middle"><i class="fas fa-paperclip fa-fw"></i> &nbsp; NPWP :
+                                            <br>
+                                            <?php 
+                                                if(empty($volunt['volunt_npwp'])) {
+                                                    echo '<small class="text-danger ml-4">Not Available</small>'; 
+                                                } else {
+                                                    echo '<small class="text-primary ml-4">Available</small>' ;
+                                                }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <div class="text-center file-drop-area">
+                                                <span class="fake-btn">Choose files</span>
+                                                <span class="file-msg">or drag and drop files here (docx, doc,
+                                                    pdf)</span>
+                                                <input name="volunt_npwp" class="file-input" type="file">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-thumbtack fa-fw text-muted"></i>&nbsp; Address :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <textarea name="email" rows=5 class="form-control form-control-sm"
-                            placeholder="Address"></textarea>
-                        <?=form_error('email', '<small class="text-danger">', '</small>');?>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Phone Number :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <input name="phone" type="text" class="form-control form-control-sm"
-                                    placeholder="Phone Number">
-                                <?=form_error('phone', '<small class="text-danger">', '</small>');?>
-                            </div>
+                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-info btn-sm">Save changes</button>
                         </div>
                     </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-university fa-fw text-muted"></i>&nbsp; Graduated From
-                            :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <select id="graduatedFrom" name="graduatedFrom">
-                                    <option data-placeholder="true"></option>
-                                    <option value="1">UC Davis</option>
-                                    <option value="2">NTU</option>
-                                    <option value="3">Harvard University</option>
-                                </select>
-                                <?=form_error('graduatedFrom', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label><i class="fas fa-tag fa-fw text-muted"></i>&nbsp; Major
-                            :</label>
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input name="major" type="text" class="form-control form-control-sm"
-                                    placeholder="Major">
-                                <?=form_error('major', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label class="font-weight-bold mb-3">Attachment</label>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped">
-                                <tr>
-                                    <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; KTP : </td>
-                                    <td>
-                                        <div class="text-center file-drop-area">
-                                            <span class="fake-btn">Choose files</span>
-                                            <span class="file-msg">or drag and drop files here (docx, doc, pdf)</span>
-                                            <input name="ktp" class="file-input" type="file">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-middle"><i class="fas fa-paperclip fa-fw"></i> &nbsp; NPWP : </td>
-                                    <td>
-                                        <div class="text-center file-drop-area">
-                                            <span class="fake-btn">Choose files</span>
-                                            <span class="file-msg">or drag and drop files here (docx, doc, pdf)</span>
-                                            <input name="npwp" class="file-input" type="file">
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-info btn-sm">Save changes</button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -187,13 +227,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
-new SlimSelect({
-    select: '#graduatedFrom',
-    placeholder: 'Select graduated from',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-
 var $fileInput = $('.file-input');
 var $droparea = $('.file-drop-area');
 

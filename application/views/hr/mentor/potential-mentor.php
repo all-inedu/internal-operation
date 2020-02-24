@@ -34,7 +34,7 @@
         <thead>
             <tr>
                 <th width="1%">No</th>
-                <th width="5%" class="text-center">Full Name</th>
+                <th width="5%" class="text-center bg-primary text-white">Full Name</th>
                 <th width="5%" class="text-center">Graduated From</th>
                 <th width="5%" class="text-center">Major</th>
                 <th width="5%" class="text-center">Email</th>

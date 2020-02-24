@@ -61,9 +61,16 @@ class Mentor_model extends CI_model
         $this->db->update('tbl_mt'); 
     }
 
-    public function delete($id){
+    public function deactivate($id){
+        $this->db->set('mt_status',2);
         $this->db->where('mt_id', $id);
-        $this->db->delete('tbl_mt');
+        $this->db->update('tbl_mt'); 
+    }
+
+    public function activate($id){
+        $this->db->set('mt_status',1);
+        $this->db->where('mt_id', $id);
+        $this->db->update('tbl_mt'); 
     }
 
 }

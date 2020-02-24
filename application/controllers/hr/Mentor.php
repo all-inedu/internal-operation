@@ -58,7 +58,7 @@ class Mentor extends CI_Controller
 
     public function uploaded($file, $path, $id){
         $config['upload_path']          = './upload/mentor/'.$path;
-        $config['allowed_types']        = 'gif|jpg|png|pdf|docx|doc';
+        $config['allowed_types']        = 'gif|jpg|jpeg|png|pdf|docx|doc';
         $config['max_size']             = 150048;
         $config['file_name']            = strtolower($path."-".$id);
 
@@ -132,9 +132,23 @@ class Mentor extends CI_Controller
 
         // echo json_encode($data);
         $this->mt->update($data, $id);
-        $this->session->set_flashdata('success', 'Potential mentor have been changed');
+        $this->session->set_flashdata('success', 'Mentor have been changed');
         redirect('/hr/mentor/view/'.$id);
 
+    }
+
+    public function deactivate($id){
+        echo $id;
+        $this->mt->deactivate($id);
+        $this->session->set_flashdata('success', 'Mentor has been deactivated');
+        redirect('/hr/mentor/view/'.$id);
+    }
+
+    public function activate($id){
+        echo $id;
+        $this->mt->activate($id);
+        $this->session->set_flashdata('success', 'Mentor has been Activated');
+        redirect('/hr/mentor/view/'.$id);
     }
 
     public function potential($v='', $id=''){

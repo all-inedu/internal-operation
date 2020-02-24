@@ -31,7 +31,7 @@
         <thead>
             <tr>
                 <th width="1%">No</th>
-                <th width="5%" class="text-center">Full Name</th>
+                <th width="5%" class="text-center bg-primary text-white">Full Name</th>
                 <th width="5%" class="text-center">Graduated From</th>
                 <th width="5%" class="text-center">Major</th>
                 <th width="5%" class="text-center">Email</th>
@@ -54,9 +54,9 @@
                 <td class="text-center"><?=$m['mt_phone'];?></td>
                 <td class="text-center">
                     <?php
-                        if($m['mt_status']==0){echo 'Potential';} else 
-                        if($m['mt_status']==1){echo 'Active';} else
-                        if($m['mt_status']==2){echo 'Inactive';}
+                        if($m['mt_status']==0){echo '<div class="badge badge-danger">Potential</div>';} else 
+                        if($m['mt_status']==1){echo '<div class="badge badge-success">Active</div>';} else
+                        if($m['mt_status']==2){echo '<div class="badge badge-danger">Not Active</div>';}
                     ?>
                 </td>
                 <td class="text-center">

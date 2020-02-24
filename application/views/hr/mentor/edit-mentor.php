@@ -53,7 +53,7 @@
             <div class="card-body">
                 <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Mentor Profile
                     <div class="float-right">
-                        <a href="<?=base_url('hr/mentor/potential/');?>" class="btn btn-sm btn-info"><i
+                        <a href="<?=base_url('hr/mentor/view/'.$mentor['mt_id']);?>" class="btn btn-sm btn-info"><i
                                 class="fas fa-arrow-circle-left"></i></a>
                     </div>
                 </h6>

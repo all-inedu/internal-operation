@@ -37,6 +37,14 @@
                                 if($mentor['mt_istutor']==2){echo 'Mentor & Tutor';} else
                                 if($mentor['mt_istutor']==3){echo 'Tutor';}
                             ?>
+
+                                <small style="margin-top:-10px !important;">
+                                    <?php
+                                        if($mentor['mt_status']==0){echo '<div class="badge badge-danger">Potential</div>';} else 
+                                        if($mentor['mt_status']==1){echo '<div class="badge badge-success">Active</div>';} else
+                                        if($mentor['mt_status']==2){echo '<div class="badge badge-danger">Not Active</div>';}
+                                    ?>
+                                </small>
                             </h6>
                             <i class="fas fa-phone text-danger"></i>&nbsp; <?=$mentor['mt_phone'];?> &nbsp; | &nbsp;
                             <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$mentor['mt_email'];?>
@@ -46,10 +54,18 @@
                         <div class="col">
                             <a href="<?=base_url('hr/mentor/edit/'.$mentor['mt_id']);?>"
                                 class="btn btn-sm btn-info m-1"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
-                            <a href="<?=base_url('hr/mentor/inactive');?>"
+                            <?php if($mentor['mt_status']==1){ ?>
+                            <a href="<?=base_url('hr/mentor/deactivate/'.$mentor['mt_id']);?>"
                                 class="btn btn-sm btn-danger m-1 convert-button"
-                                data-message="Incative this mentor ?"><i class="fas fa-user-times"></i>&nbsp;
-                                Inactive</a>
+                                data-message="Deactivate this mentor ?"><i class="fas fa-user-times"></i>&nbsp;
+                                Deactivate</a>
+                            <?php } else ?>
+                            <?php if($mentor['mt_status']==2){ ?>
+                            <a href="<?=base_url('hr/mentor/activate/'.$mentor['mt_id']);?>"
+                                class="btn btn-sm btn-success m-1 convert-button"
+                                data-message="Activate this mentor ?"><i class="fas fa-user-check"></i>&nbsp;
+                                Activate</a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

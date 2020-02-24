@@ -28,21 +28,38 @@
                 <div class="text-center">
                     <img src="<?=base_url('assets/img/employee.png');?>" alt="employee" width="60%"><br><br>
                     <h5 class="align-middle mt-2">
-                        Volunteer Name</h5>
+                        <?=$volunt['volunt_firstname']." ".$volunt['volunt_lastname'];?></h5>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="text-info">
-                        <p>Position <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; 081231232xxx &nbsp; | &nbsp;
-                            <i class="fas fa-envelope text-danger"></i>&nbsp; mail@gmail.com</p>
+                        <p>
+                            <?php
+                                if($volunt['volunt_status']==1){echo '<div class="badge badge-success">Active</div>';} else
+                                if($volunt['volunt_status']==2){echo '<div class="badge badge-danger">Not Active</div>';}
+                            ?>
+                            <hr width="15%" class="mt-1 mb-1">
+                            <i class="fas fa-phone text-danger"></i>&nbsp;
+                            <?=$volunt['volunt_phone'];?>
+                            &nbsp; | &nbsp;
+                            <i class="fas fa-envelope text-danger"></i>&nbsp;
+                            <?=$volunt['volunt_mail'];?>
+                        </p>
                     </div>
                     <div class="row text-center">
                         <div class="col">
-                            <a href="<?=base_url('hr/volunteer/edit');?>" class="btn btn-sm btn-info m-1"><i
-                                    class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
-                            <a href="<?=base_url('hr/volunteer/inactive');?>"
+                            <a href="<?=base_url('hr/volunteer/edit/'.$volunt['volunt_id']);?>"
+                                class="btn btn-sm btn-info m-1"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
+                            <?php if($volunt['volunt_status']==1){ ?>
+                            <a href="<?=base_url('hr/volunteer/deactivate/'.$volunt['volunt_id']);?>"
                                 class="btn btn-sm btn-danger m-1 convert-button"
-                                data-message="Incative this volunteer ?"><i class="fas fa-user-times"></i>&nbsp;
-                                Inactive</a>
+                                data-message="Deactivate this volunteer ?"><i class="fas fa-user-times"></i>&nbsp;
+                                Deactivate</a>
+                            <?php } else ?>
+                            <?php if($volunt['volunt_status']==2){ ?>
+                            <a href="<?=base_url('hr/volunteer/activate/'.$volunt['volunt_id']);?>"
+                                class="btn btn-sm btn-success m-1 convert-button"
+                                data-message="Activate this volunteer ?"><i class="fas fa-user-times"></i>&nbsp;
+                                Activate</a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -64,48 +81,63 @@
                     <div class="col-md-12">
                         <label class="font-weight-bold mb-3">Personal Information</label>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-id-card fa-fw text-muted"></i>&nbsp; Full Name :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        Full Name
+                        <?=$volunt['volunt_firstname']." ".$volunt['volunt_lastname'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-envelope fa-fw text-muted"></i>&nbsp; Email :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        Email@mail.com
+                        <?=$volunt['volunt_mail'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-thumbtack fa-fw text-muted"></i>&nbsp; Address :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        Lorem Ipsum
+                        <?=$volunt['volunt_address'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Phone Number :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        0824xxxxxx
+                        <?=$volunt['volunt_phone'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-university fa-fw text-muted"></i>&nbsp; Graduated From
                             :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        Graduated from
+                        <?=$volunt['volunt_graduatedfr'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-tag fa-fw text-muted"></i>&nbsp; Major
                             :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        Major
+                        <?=$volunt['volunt_major'];?>
+                        <hr class="mt-1 mb-1">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label><i class="fas fa-tag fa-fw text-muted"></i>&nbsp; Position
+                            :</label>
+                    </div>
+                    <div class="col-md-7 mb-3">
+                        <?=$volunt['volunt_position'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
                 </div>
 
@@ -113,16 +145,40 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label class="font-weight-bold mb-3">Attachment</label>
-                        <table class="table table-bordered table-striped">
-                            <tr>
-                                <td> <i class="fas fa-paperclip fa-fw"></i> &nbsp; KTP : </td>
-                                <td>Available</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-paperclip fa-fw"></i> &nbsp; NPWP : </td>
-                                <td>Available</td>
-                            </tr>
-                        </table>
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <div class="card  text-center">
+                                    <div class="card-body">
+                                        <b>KTP</b>
+                                    </div>
+                                    <div class="card-footer p-1">
+                                        <?php 
+                                    if(empty($volunt['volunt_idcard'])) { 
+                                        echo '<div class="p-1">Not Available</div>'; 
+                                    } else { 
+                                        echo "<a target='_blank' href='".base_url('upload/volunteer/KTP/'.$volunt['volunt_idcard'])."' class='btn btn-sm'><i class='fas fa-search-plus'></i>&nbsp; View / Download</a>";
+                                    }
+                                    ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="card  text-center">
+                                    <div class="card-body">
+                                        <b>NPWP</b>
+                                    </div>
+                                    <div class="card-footer p-1">
+                                        <?php 
+                                    if(empty($volunt['volunt_npwp'])) { 
+                                        echo '<div class="p-1">Not Available</div>'; 
+                                    } else { 
+                                        echo "<a target='_blank' href='".base_url('upload/volunteer/NPWP/'.$volunt['volunt_npwp'])."' class='btn btn-sm'><i class='fas fa-search-plus'></i>&nbsp; View / Download</a>";
+                                    }
+                                    ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
