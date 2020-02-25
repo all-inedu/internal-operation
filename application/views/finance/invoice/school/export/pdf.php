@@ -9,6 +9,10 @@ h4 {
     margin: 0 20px;
 }
 
+table {
+    border-collapse: collapse;
+}
+
 table tr td,
 th {
     padding: 8px 7px;

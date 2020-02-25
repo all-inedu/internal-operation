@@ -40,8 +40,8 @@
                 <form action="" method="post">
                     <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Purchase Request
                         <div class="float-right">
-                            <a href="<?=base_url('finance/purchase-request');?>" class="btn btn-sm btn-info"><i
-                                    class="fas fa-arrow-circle-left"></i></a>
+                            <a href="<?=base_url('finance/purchase-request/view/'.$purchase['purchase_id']);?>"
+                                class="btn btn-sm btn-info"><i class="fas fa-arrow-circle-left"></i></a>
                         </div>
                     </h6>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
@@ -53,9 +53,9 @@
                         <div class="col-md-8 mb-3">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <input name="idPurchase" type="text" class="form-control form-control-sm"
-                                        placeholder="PCS001">
-                                    <?=form_error('idPurchase', '<small class="text-danger">', '</small>');?>
+                                    <input name="purchase_id" type="text" class="form-control form-control-sm"
+                                        value="<?=$purchase['purchase_id'];?>" readonly>
+                                    <?=form_error('purchase_id', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -66,13 +66,13 @@
                         <div class="col-md-8 mb-3">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <select name="division" id="division">
+                                    <select name="purchase_department" id="division">
                                         <option data-placeholder="true"></option>
                                         <?php foreach($div as $d):?>
                                         <option value="<?=$d;?>"><?=$d;?></option>
                                         <?php endforeach;?>
                                     </select>
-                                    <?=form_error('division', '<small class="text-danger">', '</small>');?>
+                                    <?=form_error('purchase_department', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -83,13 +83,13 @@
                         <div class="col-md-8 mb-3">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <select name="reqStatus" id="reqStatus">
+                                    <select name="purchase_statusrequest" id="reqStatus">
                                         <option data-placeholder="true"></option>
                                         <?php foreach($status as $st):?>
                                         <option value="<?=$st;?>"><?=$st;?></option>
                                         <?php endforeach;?>
                                     </select>
-                                    <?=form_error('reqStatus', '<small class="text-danger">', '</small>');?>
+                                    <?=form_error('purchase_statusrequest', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -99,8 +99,9 @@
                         <div class="col-md-8 mb-3">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <input name="reqDate" type="date" class="form-control form-control-sm">
-                                    <?=form_error('reqDate', '<small class="text-danger">', '</small>');?>
+                                    <input name="purchase_date" type="date" class="form-control form-control-sm"
+                                        value="<?=$purchase['purchase_date'];?>">
+                                    <?=form_error('purchase_date', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -111,8 +112,9 @@
                         <div class="col-md-8 mb-3">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <textarea name="notes" class="form-control form-control-sm" rows="4"></textarea>
-                                    <?=form_error('notes', '<small class="text-danger">', '</small>');?>
+                                    <textarea name="purchase_notes" class="form-control form-control-sm"
+                                        rows="4"><?=$purchase['purchase_notes'];?></textarea>
+                                    <?=form_error('purchase_notes', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -120,6 +122,12 @@
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="row">
                         <div class="col-md-12">
+                            <div class="float-right mb-2">
+                                <a href="#" data-toggle="modal" data-target="#addPurchase"
+                                    class="btn btn-info btn-sm"><i class="fas fa-plus-square"></i>
+                                    &nbsp; Add Item
+                                </a>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <tr class="text-center">
@@ -131,22 +139,24 @@
                                         <th>Action</th>
                                     </tr>
 
-                                    <?php for($i=1;$i<=4;$i++){ ?>
+                                    <?php $i=1; foreach($detail as $d): ?>
                                     <tr class="text-center">
                                         <td width="5%" class="align-middle"><?=$i;?></td>
-                                        <td class="align-middle">Kertas A4</td>
-                                        <td class="align-middle">2</td>
-                                        <td class="align-middle">45000</td>
-                                        <td class="align-middle">90000</td>
+                                        <td class="align-middle"><?=$d['purchasedtl_good'];?></td>
+                                        <td class="align-middle"><?=$d['purchasedtl_amount'];?></td>
+                                        <td class="align-middle">Rp. <?=number_format($d['purchasedtl_priceperunit']);?>
+                                        </td>
+                                        <td class="align-middle">Rp. <?=number_format($d['purchasedtl_total']);?></td>
                                         <td width="15%" class="align-middle">
                                             <a href="#" data-toggle="modal" data-target="#editPurchase"
-                                                onclick="editPurchases('<?=$i;?>')" class="btn btn-warning btn-sm"><i
-                                                    class="fas fa-edit"></i></a>
-                                            <a href="#" class="btn btn-danger btn-sm delete-button"
-                                                data-message="item"><i class="fas fa-trash"></i></a>
+                                                onclick="editPurchases('<?=$d['purchasedtl_id'];?>')"
+                                                class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                            <a href="<?=base_url('finance/purchase-request/deleteDetail/'.$d['purchasedtl_id'].'/'.$purchase['purchase_id']);?>"
+                                                class="btn btn-danger btn-sm delete-button" data-message="item"><i
+                                                    class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
-                                    <?php } ?>
+                                    <?php $i++; endforeach; ?>
                                 </table>
                             </div>
                         </div>
@@ -163,11 +173,71 @@
     </div>
 </div>
 
+<!-- Add Modal -->
+<div class="modal fade" id="addPurchase" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <form action="../addDetail" method="post" name="addPurchase">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Add Item</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Item Name</label>
+                                <input name="purchase_id" type="hidden" value="<?=$purchase['purchase_id'];?>">
+                                <input name="purchasedtl_good" type="text" class="form-control form-control-sm"
+                                    placeholder="Item Name">
+                                <?=form_error('purchasedtl_good', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Amount
+                                </label>
+                                <input id="amountAdd" name="purchasedtl_amount" type="number"
+                                    class="form-control form-control-sm" placeholder="0">
+                                <?=form_error('purchasedtl_amount', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Price/Unit
+                                </label>
+                                <input id="priceAdd" name="purchasedtl_priceperunit" type="number"
+                                    class="form-control form-control-sm" placeholder="0">
+                                <?=form_error('purchasedtl_priceperunit', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Total</label>
+                                <input id="totalAdd" name="purchasedtl_total" type="number"
+                                    class="form-control form-control-sm" placeholder="0" readonly>
+                                <?=form_error('purchasedtl_total', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                            class="fas fa-times-circle"></i>&nbsp; Close</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save
+                        changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Edit Modal -->
 <div class="modal fade" id="editPurchase" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <form action="test.php" method="post" name="editPurchase">
+            <form action="../updateDetail" method="post" name="editPurchase">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Item</h5>
                 </div>
@@ -176,18 +246,20 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Item Name</label>
-                                <input id="itemName" name="itemName" type="text" class="form-control form-control-sm"
-                                    placeholder="Item Name">
-                                <?=form_error('itemName', '<small class="text-danger">', '</small>');?>
+                                <input id="purchasedtl_id" name="purchasedtl_id" type="hidden">
+                                <input id="purchase_id" name="purchase_id" type="hidden">
+                                <input id="purchasedtl_good" name="purchasedtl_good" type="text"
+                                    class="form-control form-control-sm" placeholder="Item Name">
+                                <?=form_error('purchasedtl_good', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Amount
                                 </label>
-                                <input id="amount" name="amount" type="number" class="form-control form-control-sm"
-                                    placeholder="0">
-                                <?=form_error('amount', '<small class="text-danger">', '</small>');?>
+                                <input id="amount" name="purchasedtl_amount" type="number"
+                                    class="form-control form-control-sm" placeholder="0">
+                                <?=form_error('purchasedtl_amount', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -195,18 +267,18 @@
                             <div class="form-group">
                                 <label>Price/Unit
                                 </label>
-                                <input id="price" name="price" type="number" class="form-control form-control-sm"
-                                    placeholder="0">
-                                <?=form_error('price', '<small class="text-danger">', '</small>');?>
+                                <input id="price" name="purchasedtl_priceperunit" type="number"
+                                    class="form-control form-control-sm" placeholder="0">
+                                <?=form_error('purchasedtl_priceperunit', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Program Name</label>
-                                <input id="total" name="total" type="number" class="form-control form-control-sm"
-                                    placeholder="0">
-                                <?=form_error('total', '<small class="text-danger">', '</small>');?>
+                                <label>Total</label>
+                                <input id="total" name="purchasedtl_total" type="number"
+                                    class="form-control form-control-sm" placeholder="0" readonly>
+                                <?=form_error('purchasedtl_total', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                     </div>
@@ -214,7 +286,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
                             class="fas fa-times-circle"></i>&nbsp; Close</button>
-                    <button type="button" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save
                         changes</button>
                 </div>
             </form>
@@ -225,21 +297,47 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
-new SlimSelect({
+let div = new SlimSelect({
     select: '#division',
     placeholder: 'Select division',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
+div.set("<?=$purchase['purchase_department'];?>");
 
-new SlimSelect({
+let st = new SlimSelect({
     select: '#reqStatus',
     placeholder: 'Select request status',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
+st.set("<?=$purchase['purchase_statusrequest'];?>");
+
+$('#amountAdd').keyup(function() {
+    var val1 = $('#amountAdd').val();
+    var val2 = $('#priceAdd').val();
+    var val3 = val1 * val2;
+
+    $('#totalAdd').val(val3);
+})
+
+$('#priceAdd').keyup(function() {
+    var val1 = $('#amountAdd').val();
+    var val2 = $('#priceAdd').val();
+    var val3 = val1 * val2;
+
+    $('#totalAdd').val(val3);
+})
 
 function editPurchases(x) {
+    $('#amount').keyup(function() {
+        var val1 = $('#amount').val();
+        var val2 = $('#price').val();
+        var val3 = val1 * val2;
+
+        $('#total').val(val3);
+    })
+
     $('#price').keyup(function() {
         var val1 = $('#amount').val();
         var val2 = $('#price').val();
@@ -248,16 +346,19 @@ function editPurchases(x) {
         $('#total').val(val3);
     })
 
+    console.log(x);
     $.ajax({
         type: "POST",
-        url: "<?= base_url('finance/purchase-request/edit_json/'); ?>" + x,
+        url: "<?= base_url('finance/purchase-request/show/'); ?>" + x,
         dataType: 'json',
-        success: function(response) {
-            console.log(response);
-            $('#itemName').val(response.item);
-            $('#amount').val(response.amount);
-            $('#price').val(response.price);
-            $('#total').val(response.total);
+        success: function(data) {
+            console.log(data);
+            $('#purchasedtl_id').val(data.purchasedtl_id);
+            $('#purchase_id').val(data.purchase_id);
+            $('#purchasedtl_good').val(data.purchasedtl_good);
+            $('#amount').val(data.purchasedtl_amount);
+            $('#price').val(data.purchasedtl_priceperunit);
+            $('#total').val(data.purchasedtl_total);
         }
     });
 }

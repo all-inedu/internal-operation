@@ -24,28 +24,29 @@
 <div class="content">
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
-            <tr>
-                <th width="1%" class="text-center">No</th>
-                <th width="10%" class="text-center">ID Purchase</th>
-                <th width="10%" class="text-center">Division</th>
-                <th width="5%" class="text-center">Request Status</th>
-                <th width="5%" class="text-center">Request Date</th>
-                <th width="5%" class="text-center">Last Updated Date</th>
+            <tr class="text-center">
+                <th width="1%">No</th>
+                <th width="10%" class="bg-primary text-white">ID Purchase</th>
+                <th width="10%">Division</th>
+                <th width="5%">Request Status</th>
+                <th width="5%">Request Date</th>
+                <th width="5%">Last Updated Date</th>
             </tr>
         </thead>
         <tbody>
-            <?php for($i=1;$i<=25;$i++) { ?>
-            <tr>
-                <td class="text-center"><?=$i;?></td>
-                <td class="text-center" style="cursor:pointer"
-                    onclick="window.location='<?=base_url('finance/purchase-request/view/'.$i);?>'">Encrihment Program
+            <?php $i=1; foreach($purchase as $p) : ?>
+            <tr class="text-center">
+                <td><?=$i;?></td>
+                <td style="cursor:pointer"
+                    onclick="window.location='<?=base_url('finance/purchase-request/view/'.$p['purchase_id']);?>'">
+                    <?=$p['purchase_id'];?>
                 </td>
-                <td class="text-center">Academic Writing</td>
-                <td class="text-center">Academic Writing</td>
-                <td class="text-center">B2B/B2C</td>
-                <td class="text-center">B2B/B2C</td>
+                <td><?=$p['purchase_department'];?></td>
+                <td><?=$p['purchase_statusrequest'];?></td>
+                <td><?=date('d M Y', strtotime($p['purchase_date']));?></td>
+                <td><?=date('d M Y', strtotime($p['purchase_lastupdate']));?></td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>

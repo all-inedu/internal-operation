@@ -3,10 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once APPPATH . '/third_party/dompdf/autoload.inc.php';
 use Dompdf\Dompdf as Dompdf;
-
 class Pdf
 {
-    function createPDF($html, $filename='', $download=TRUE, $paper='A4', $orientation='portrait'){
+    function createPDF($html, $filename='', $download=TRUE, $paper='A4', $orientation='potrait'){
         $dompdf = new Dompdf();
         $dompdf->load_html($html);
         $dompdf->set_paper($paper, $orientation);

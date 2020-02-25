@@ -46,33 +46,19 @@
                     </h6>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="row">
-
-                        <div class="col-md-4 mb-2">
-                            ID Purchase :
-                        </div>
-                        <div class="col-md-8 mb-3">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <input name="idPurchase" type="text" class="form-control form-control-sm"
-                                        placeholder="PCS001">
-                                    <?=form_error('idPurchase', '<small class="text-danger">', '</small>');?>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="col-md-4 mb-2">
                             Division :
                         </div>
                         <div class="col-md-8 mb-3">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <select name="division" id="division">
+                                    <select name="purchase_department" id="division">
                                         <option data-placeholder="true"></option>
                                         <?php foreach($div as $d):?>
                                         <option value="<?=$d;?>"><?=$d;?></option>
                                         <?php endforeach;?>
                                     </select>
-                                    <?=form_error('division', '<small class="text-danger">', '</small>');?>
+                                    <?=form_error('purchase_department', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -83,13 +69,13 @@
                         <div class="col-md-8 mb-3">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <select name="reqStatus" id="reqStatus">
+                                    <select name="purchase_statusrequest" id="reqStatus">
                                         <option data-placeholder="true"></option>
                                         <?php foreach($status as $st):?>
                                         <option value="<?=$st;?>"><?=$st;?></option>
                                         <?php endforeach;?>
                                     </select>
-                                    <?=form_error('reqStatus', '<small class="text-danger">', '</small>');?>
+                                    <?=form_error('purchase_statusrequest', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -99,8 +85,8 @@
                         <div class="col-md-8 mb-3">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <input name="reqDate" type="date" class="form-control form-control-sm">
-                                    <?=form_error('reqDate', '<small class="text-danger">', '</small>');?>
+                                    <input name="purchase_date" type="date" class="form-control form-control-sm">
+                                    <?=form_error('purchase_date', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -111,8 +97,9 @@
                         <div class="col-md-8 mb-3">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <textarea name="notes" class="form-control form-control-sm" rows="4"></textarea>
-                                    <?=form_error('notes', '<small class="text-danger">', '</small>');?>
+                                    <textarea name="purchase_notes" class="form-control form-control-sm"
+                                        rows="4"></textarea>
+                                    <?=form_error('purchase_notes', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -129,36 +116,36 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <small>Item Name</small>
-                                        <input type="text" name="itemName[]" class="form-control form-control-sm"
-                                            placeholder="Name" rows="4">
-                                        <?=form_error('itemName[]', '<small class="text-danger">', '</small>');?>
+                                        <input type="text" name="purchasedtl_good[]"
+                                            class="form-control form-control-sm" placeholder="Name" rows="4">
+                                        <?=form_error('purchasedtl_good[]', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <small>Amount</small>
-                                        <input type="number" name="amount[]" class="form-control form-control-sm"
+                                        <input type="number" name="purchasedtl_amount[]" class="form-control form-control-sm"
                                             placeholder="0" rows="4" id="amount">
-                                        <?=form_error('amount[]', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('purchasedtl_amount[]', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <small>Price/Unit</small>
-                                        <input type="text" name="price[]" class="form-control form-control-sm"
+                                        <input type="text" name="purchasedtl_priceperunit[]" class="form-control form-control-sm"
                                             placeholder="Price/Unit" rows="4" id="price">
-                                        <?=form_error('price[]', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('purchasedtl_priceperunit[]', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <small>Total</small>
-                                        <input readonly type="text" name="total[]" class="form-control form-control-sm"
+                                        <input readonly type="text" name="purchasedtl_total[]" class="form-control form-control-sm"
                                             placeholder="Total" rows="4" id="total">
-                                        <?=form_error('total[]', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('purchasedtl_total[]', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
@@ -216,14 +203,14 @@ $(document).ready(function() {
                 '<div class="col-md-3">' +
                 '<div class="form-group">' +
                 '<small>Item Name</small>' +
-                ' <input type="text" name="itemName[]" class="form-control form-control-sm" placeholder="Name" rows="4">' +
+                ' <input type="text" name="purchasedtl_good[]" class="form-control form-control-sm" placeholder="Name" rows="4">' +
                 '</div>' +
                 '</div>' +
 
                 '<div class="col-md-3">' +
                 '<div class="form-group">' +
                 '<small>Amount</small>' +
-                '<input type="number" name="amount[]" class="form-control form-control-sm" placeholder="0" rows="4" id="amount' +
+                '<input type="number" name="purchasedtl_amount[]" class="form-control form-control-sm" placeholder="0" rows="4" id="amount' +
                 x + '">' +
                 '</div>' +
                 '</div>' +
@@ -231,7 +218,7 @@ $(document).ready(function() {
                 '<div class="col-md-3">' +
                 '<div class="form-group">' +
                 '<small>Price/Unit</small>' +
-                '<input type="text" name="price[]" class="form-control form-control-sm" placeholder="Price/Unit" rows="4" id="price' +
+                '<input type="text" name="purchasedtl_priceperunit[]" class="form-control form-control-sm" placeholder="Price/Unit" rows="4" id="price' +
                 x + '">' +
                 '</div>' +
                 '</div>' +
@@ -239,7 +226,7 @@ $(document).ready(function() {
                 ' <div class="col-md-3">' +
                 '<div class="form-group">' +
                 '<small>Total</small>' +
-                '<input readonly type="text" name="total[]" class="form-control form-control-sm" placeholder="Total" rows="4" id="total' +
+                '<input readonly type="text" name="purchasedtl_total[]" class="form-control form-control-sm" placeholder="Total" rows="4" id="total' +
                 x + '">' +
                 '</div>' +
                 '</div>' +
