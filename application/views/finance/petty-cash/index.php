@@ -74,19 +74,19 @@
                             <th class="text-center" width="2%">No</th>
                             <th class="text-center bg-primary text-white">Date
                             </th>
-                            <th class="text-center">Amount</th>
+                            <th class="text-center">Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php for($i=1;$i<=10;$i++){ ?>
+                        <?php $i=1; foreach($income as $in): ?>
                         <tr>
                             <td class="text-center"><?=$i;?></td>
                             <td class="text-center" style="cursor:pointer" data-toggle="modal"
-                                data-target="#viewIncomes" onclick="viewIncome('<?=$i;?>')">01
-                                January 2020</td>
-                            <td class="text-center">Rp. 1.500.000,-</td>
+                                data-target="#viewIncomes" onclick="viewIncome('<?=$in['pettyinflow_id'];?>')">
+                                <?=date('d M Y',strtotime($in['pettyinflow_date']));?></td>
+                            <td class="text-center">Rp. <?=number_format($in['pettyinflow_total']);?></td>
                         </tr>
-                        <?php }?>
+                        <?php $i++; endforeach;?>
                     </tbody>
                 </table>
             </div>
@@ -115,18 +115,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php for($i=1;$i<=10;$i++){ ?>
+                        <?php $i=1; foreach($expense as $ex): ?>
                         <tr>
                             <td class="text-center"><?=$i;?></td>
                             <td class="text-center" style="cursor:pointer" data-toggle="modal"
-                                data-target="#viewExpenses" onclick="viewExpense('<?=$i;?>')">01 January 2020</td>
-                            <td class="text-left">REC-012912</td>
-                            <td class="text-left">TIKI</td>
-                            <td class="text-left">There</td>
-                            <td class="text-left">Kas</td>
-                            <td class="text-center">Rp. 1.500.000,-</td>
+                                data-target="#viewExpenses" onclick="viewExpense('<?=$ex['pettyexpenses_id'];?>')">
+                                <?=date('d M Y', strtotime($ex['pettyexpenses_date']));?>
+                            </td>
+                            <td class="text-left"><?=$ex['pettyexpenses_inv'];?></td>
+                            <td class="text-left"><?=$ex['pettyexpenses_supplier'];?></td>
+                            <td class="text-left"><?=$ex['pettyexpenses_type'];?></td>
+                            <td class="text-left"><?=$ex['pettyexpenses_paymentfrom'];?></td>
+                            <td class="text-center">Rp. <?=number_format($ex['pettyexpenses_total']);?></td>
                         </tr>
-                        <?php }?>
+                        <?php $i++; endforeach;?>
                     </tbody>
                 </table>
             </div>
@@ -138,7 +140,7 @@
 <div class="modal fade" id="addIncome" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <form action="#" name="income">
+            <form action="addIncome" name="income" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Add Income</h5>
                 </div>
@@ -147,15 +149,16 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Date</label>
-                                <input name="date" type="date" class="form-control form-control-sm">
-                                <?=form_error('date', '<small class="text-danger">', '</small>');?>
+                                <input name="pettyinflow_date" type="date" class="form-control form-control-sm">
+                                <?=form_error('pettyinflow_date', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Amount</label>
-                                <input name="amount" type="number" class="form-control form-control-sm" placeholder="0">
-                                <?=form_error('amount', '<small class="text-danger">', '</small>');?>
+                                <input name="pettyinflow_total" type="number" class="form-control form-control-sm"
+                                    placeholder="0">
+                                <?=form_error('pettyinflow_total', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -176,7 +179,7 @@
 <div class="modal fade" id="viewIncomes" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <form action="#" name="income">
+            <form action="updateIncome" name="updateIncome" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Income</h5>
                 </div>
@@ -185,16 +188,19 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Date</label>
-                                <input id="dateIncome" name="date" type="date" class="form-control form-control-sm">
-                                <?=form_error('date', '<small class="text-danger">', '</small>');?>
+                                <input id="pettyinflow_id" name="pettyinflow_id" type="hidden"
+                                    class="form-control form-control-sm">
+                                <input id="pettyinflow_date" name="pettyinflow_date" type="date"
+                                    class="form-control form-control-sm">
+                                <?=form_error('pettyinflow_date', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Amount</label>
-                                <input id="amount" name="amount" type="number" class="form-control form-control-sm"
-                                    placeholder="0">
-                                <?=form_error('amount', '<small class="text-danger">', '</small>');?>
+                                <input id="pettyinflow_total" name="pettyinflow_total" type="number"
+                                    class="form-control form-control-sm" placeholder="0">
+                                <?=form_error('pettyinflow_total', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -204,8 +210,8 @@
                         <div class="col-md-12 mt-1">
                             <hr>
                             <div class="float-left">
-                                <a href="#" class="btn btn-danger float-left btn-sm delete-button"
-                                    data-message="income"><i class="fas fa-trash"></i>&nbsp;
+                                <a href="" class="btn btn-danger float-left btn-sm delete-button" data-message="income"
+                                    id="deleteIncome"><i class="fas fa-trash"></i>&nbsp;
                                     Delete</a>
                             </div>
                             <div class="float-right">
@@ -224,7 +230,7 @@
 <div class="modal fade" id="addExpense" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <form action="#" name="income">
+            <form action="addExpense" name="addExpense" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Add Expense</h5>
                 </div>
@@ -233,37 +239,48 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Date</label>
-                                <input name="date" type="date" class="form-control form-control-sm">
-                                <?=form_error('date', '<small class="text-danger">', '</small>');?>
+                                <input name="pettyexpenses_date" type="date" class="form-control form-control-sm">
+                                <?=form_error('pettyexpenses_date', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Invoice</label>
-                                <input name="invoice" type="text" class="form-control form-control-sm">
-                                <?=form_error('invoice', '<small class="text-danger">', '</small>');?>
+                                <input name="pettyexpenses_inv" type="text" class="form-control form-control-sm">
+                                <?=form_error('pettyexpenses_inv', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Supplier</label>
-                                <input name="supplier" type="text" class="form-control form-control-sm">
-                                <?=form_error('supplier', '<small class="text-danger">', '</small>');?>
+                                <input name="pettyexpenses_supplier" type="text" class="form-control form-control-sm">
+                                <?=form_error('pettyexpenses_supplier', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Goods/Service</label>
-                                <input name="goods" type="text" class="form-control form-control-sm">
-                                <?=form_error('goods', '<small class="text-danger">', '</small>');?>
+                                <input name="pettyexpenses_type" type="text" class="form-control form-control-sm">
+                                <?=form_error('pettyexpenses_type', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>From</label>
+                                <input name="pettyexpenses_paymentfrom" type="text"
+                                    class="form-control form-control-sm">
+                                <?=form_error('pettyexpenses_paymentfrom', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Total</label>
+                                <input name="pettyexpenses_total" type="number" class="form-control form-control-sm"
+                                    placeholder="0">
+                                <?=form_error('pettyexpenses_total', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Total</label>
-                                <input name="total" type="number" class="form-control form-control-sm" placeholder="0">
-                                <?=form_error('total', '<small class="text-danger">', '</small>');?>
-                            </div>
                             <small class="text-info">* Please double check, if you want to save this expense.</small>
                         </div>
                     </div>
@@ -281,7 +298,7 @@
 <div class="modal fade" id="viewExpenses" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <form action="#" name="income">
+            <form action="updateExpense" name="updateExpense" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Add Expense</h5>
                 </div>
@@ -290,45 +307,60 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Date</label>
-                                <input id="dateExpense" name="date" type="date" class="form-control form-control-sm">
-                                <?=form_error('date', '<small class="text-danger">', '</small>');?>
+                                <input id="pettyexpenses_id" name="pettyexpenses_id" type="hidden">
+                                <input id="pettyexpenses_date" name="pettyexpenses_date" type="date"
+                                    class="form-control form-control-sm">
+                                <?=form_error('pettyexpenses_date', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Invoice</label>
-                                <input id="invoices" name="invoice" type="text" class="form-control form-control-sm">
-                                <?=form_error('invoice', '<small class="text-danger">', '</small>');?>
+                                <input id="pettyexpenses_inv" name="pettyexpenses_inv" type="text"
+                                    class="form-control form-control-sm">
+                                <?=form_error('pettyexpenses_inv', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Supplier</label>
-                                <input id="supplier" name="supplier" type="text" class="form-control form-control-sm">
-                                <?=form_error('supplier', '<small class="text-danger">', '</small>');?>
+                                <input id="pettyexpenses_supplier" name="pettyexpenses_supplier" type="text"
+                                    class="form-control form-control-sm">
+                                <?=form_error('pettyexpenses_supplier', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Goods/Service</label>
-                                <input id="goods" name="goods" type="text" class="form-control form-control-sm">
-                                <?=form_error('goods', '<small class="text-danger">', '</small>');?>
+                                <input id="pettyexpenses_type" name="pettyexpenses_type" type="text"
+                                    class="form-control form-control-sm">
+                                <?=form_error('pettyexpenses_type', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>From</label>
+                                <input id="pettyexpenses_paymentfrom" name="pettyexpenses_paymentfrom" type="text"
+                                    class="form-control form-control-sm">
+                                <?=form_error('pettyexpenses_paymentfrom', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Total</label>
+                                <input id="pettyexpenses_total" name="pettyexpenses_total" type="number"
+                                    class="form-control form-control-sm" placeholder="0">
+                                <?=form_error('pettyexpenses_total', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Total</label>
-                                <input id="total" name="total" type="number" class="form-control form-control-sm"
-                                    placeholder="0">
-                                <?=form_error('total', '<small class="text-danger">', '</small>');?>
-                            </div>
                             <small class="text-info">* Please double check, if you want to save this expense.</small>
                         </div>
                         <div class="col-md-12 mt-1">
                             <hr>
                             <div class="float-left">
                                 <a href="#" class="btn btn-danger float-left btn-sm delete-button"
-                                    data-message="expense"><i class="fas fa-trash"></i>&nbsp;
+                                    data-message="expense" id="deleteExpense"><i class="fas fa-trash"></i>&nbsp;
                                     Delete</a>
                             </div>
                             <div class="float-right">
@@ -351,17 +383,34 @@ $(document).ready(function() {
 });
 
 function viewIncome(x) {
-    console.log(x);
-    $('#dateIncome').val('2014-09-02');
-    $('#amount').val(x);
+    $.ajax({
+        type: 'post',
+        url: '<?=base_url("finance/petty-cash/view-income/");?>' + x,
+        dataType: 'json',
+        success: function(data) {
+            $('#pettyinflow_id').val(data.pettyinflow_id);
+            $('#pettyinflow_date').val(data.pettyinflow_date);
+            $('#pettyinflow_total').val(data.pettyinflow_total);
+            $('#deleteIncome').attr('href', 'deleteIncome/' + data.pettyinflow_id)
+        }
+    });
 }
 
 function viewExpense(x) {
-    console.log(x);
-    $('#dateExpense').val('2014-09-02');
-    $('#invoices').val(x);
-    $('#supplier').val(x);
-    $('#goods').val(x);
-    $('#total').val(x);
+    $.ajax({
+        type: 'post',
+        url: '<?=base_url("finance/petty-cash/view-expense/");?>' + x,
+        dataType: 'json',
+        success: function(data) {
+            $('#pettyexpenses_id').val(data.pettyexpenses_id);
+            $('#pettyexpenses_date').val(data.pettyexpenses_date);
+            $('#pettyexpenses_inv').val(data.pettyexpenses_inv);
+            $('#pettyexpenses_supplier').val(data.pettyexpenses_supplier);
+            $('#pettyexpenses_type').val(data.pettyexpenses_type);
+            $('#pettyexpenses_paymentfrom').val(data.pettyexpenses_paymentfrom);
+            $('#pettyexpenses_total').val(data.pettyexpenses_total);
+            $('#deleteExpense').attr('href', 'deleteExpense/' + data.pettyexpenses_id)
+        }
+    });
 }
 </script>
