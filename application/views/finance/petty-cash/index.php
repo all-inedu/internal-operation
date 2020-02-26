@@ -43,8 +43,9 @@
                 </div>
                 <div class="col-md-8 bg-info text-white shadow align-middle">
                     <div class="card-body">
-                        <div class="float-left mt-2">
-                            <?= date('d/m/Y');?>
+                        <div class="float-left mt-0">
+                            Date : <?= date('d/m/Y');?><br>
+                            <?= date('H:i:s');?>
                         </div>
                         <h3 class="text-right mb-0">Saldo</h3>
                         <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
@@ -53,7 +54,8 @@
                                     class="fas fa-file-excel"></i>&nbsp;
                                 Export/Month</a>
                         </div>
-                        <h5 class="card-title text-right mb-0">Rp. 800.000,-</h5>
+                        <h5 class="card-title text-right mb-0">Rp. <?=number_format($saldo['pettysaldo_balance']);?>
+                        </h5>
                     </div>
                 </div>
             </div>

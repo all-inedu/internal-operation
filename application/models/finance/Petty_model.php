@@ -1,6 +1,40 @@
 <?php
 class Petty_model extends CI_model
 {
+    public function saldo()
+    {
+        $this->db->select_sum('pettysaldo_balance');
+        return $this->db->get('tbl_pettysaldo')->row_array();
+    }
+
+    public function showLastSaldo($m, $y){
+        $this->db->select_sum('pettysaldo_balance');
+        $this->db->where('pettysaldo_month <', $m); 
+        $this->db->where('pettysaldo_year =', $y); 
+        return $this->db->get('tbl_pettysaldo')->row_array();
+    }
+
+    public function showLastSaldoYear($m, $y){
+        $this->db->select_sum('pettysaldo_balance');
+        $this->db->where('pettysaldo_year <', $y); 
+        return $this->db->get('tbl_pettysaldo')->row_array();
+    }
+
+
+    public function showLastIncome($m, $y){
+        $this->db->select_sum('pettyinflow_total');
+        $this->db->where('month(pettyinflow_date) <', $m); 
+        $this->db->where('year(pettyinflow_date) <=', $y); 
+        return $this->db->get('tbl_pettyinflow')->row_array();
+    }
+
+    public function showLastExpense($m, $y){
+        $this->db->select_sum('pettyexpenses_total');
+        $this->db->where('month(pettyexpenses_date) <', $m); 
+        $this->db->where('year(pettyexpenses_date) <=', $y); 
+        return $this->db->get('tbl_pettyexpenses')->row_array();
+    }
+    
     public function showSaldo($m, $y){
         $this->db->select('*');
         $this->db->where('pettysaldo_month', $m); 
@@ -77,6 +111,14 @@ class Petty_model extends CI_model
         $this->db->select('*');
         $this->db->where('pettyexpenses_id', $id); 
         return $this->db->get('tbl_pettyexpenses')->row_array();
+    }
+
+    public function showExpenseDate($m, $y)
+    {
+        $this->db->select('*');
+        $this->db->where('month(pettyexpenses_date)', $m); 
+        $this->db->where('year(pettyexpenses_date)', $y); 
+        return $this->db->get('tbl_pettyexpenses')->result_array();
     }
 
     public function updateExpense($data, $id)

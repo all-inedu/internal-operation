@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
                     <li class="breadcrumb-item"><a href="<?=base_url('finance/home');?>">Home</a></li>
-                    <li class="breadcrumb-item"><a href="<?=base_url('finance/petty-cash');?>">Petty Cash</a></li>
+                    <li class="breadcrumb-item"><a href="<?=base_url('finance/petty-cash/');?>">Petty Cash</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Export</li>
                 </ol>
             </nav>
@@ -20,7 +20,7 @@
 </div>
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4 mb-2">
         <div class="card shadow">
             <div class="card-body">
                 <form action="" method="post">
@@ -73,14 +73,22 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-8">
         <div class="card shadow">
             <div class="card-body">
+                <?php if(empty($saldo)){ ?>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <img src="<?=base_url('assets/img/search.png');?>" width="10%" class="mt-2 mb-2">
+                        <h4>List of Petty Cash Not Found</h4>
+                    </div>
+                </div>
+                <?php } else {?>
                 <div class="row">
                     <div class="col-md-12 text-center mt-3">
                         <h5>PT JAWARA EDUKASIH INDONESIA (ALL-IN EDUSPACE)</h5>
                         <h6>Laporan Tagihan Dibayar</h6>
-                        <p>Bulan April 2018</p>
+                        <p>Bulan <?=$month." ".$y;?></p>
                         <hr>
                         <div class="table-responsive">
                             <table class="table table-bordered">
@@ -95,52 +103,70 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php for($i=1;$i<=6;$i++){ ?>
+                                    <?php 
+                                        $totalExpense = 0; 
+                                        foreach($expense as $ex): 
+                                    ?>
                                     <tr>
-                                        <td>11 February 2020</td>
-                                        <td>REC-08JEI</td>
-                                        <td>Indomaret</td>
-                                        <td>Tissu Nice</td>
-                                        <td>Kas</td>
-                                        <td>Rp. 35.000</td>
+                                        <td class="p-1"><?=date('d F Y', strtotime($ex['pettyexpenses_date']));?></td>
+                                        <td class="p-1"><?=$ex['pettyexpenses_inv'];?></td>
+                                        <td class="p-1"><?=$ex['pettyexpenses_supplier'];?></td>
+                                        <td class="p-1"><?=$ex['pettyexpenses_type'];?></td>
+                                        <td class="p-1"><?=$ex['pettyexpenses_paymentfrom'];?></td>
+                                        <td class="p-1">Rp. <?=number_format($ex['pettyexpenses_total']);?></td>
                                     </tr>
-                                    <?php } ?>
+                                    <?php 
+                                        $totalExpense += $ex['pettyexpenses_total'];
+                                        endforeach; 
+                                    ?>
                                     <tr>
-                                        <th colspan="5" class="text-right">Total Petty Cash Expenditure</th>
-                                        <td class="bg-danger text-white">Rp. 210.000</td>
+                                        <th colspan="5" class="text-right">Total Expense</th>
+                                        <td class="bg-danger text-white">Rp.
+                                            <?=number_format($totalExpense);?></td>
                                     </tr>
                                     <tr>
-                                        <th colspan="5" class="text-right">Petty Cash April</th>
-                                        <td class="bg-primary text-white">Rp. 500.000</td>
+                                        <th colspan="5" class="text-right">Petty Cash <?=$month;?></th>
+                                        <td class="bg-warning text-white">Rp.
+                                            <?=number_format($saldo['pettysaldo_inflow']);?></td>
                                     </tr>
                                     <tr>
+                                        <th colspan="5" class="text-right">Saldo Petty Cash <?=$lmonth;?></th>
+                                        <td class="bg-primary text-white">Rp.
+                                            <?=number_format($lastsaldo);?></td>
+                                    </tr>
+                                    <tr>
+                                        <?php 
+                                            $totalSaldo = $saldo['pettysaldo_inflow'] + $lastsaldo - $totalExpense;
+                                        ?>
                                         <th colspan="5" class="text-right">Saldo</th>
-                                        <td class="bg-secondary text-white">Rp. 290.000</td>
+                                        <td class="bg-secondary text-white">Rp. <?=number_format($totalSaldo);?></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+                <?php } ?>
             </div>
         </div>
     </div>
 </div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
-new SlimSelect({
+var mt = new SlimSelect({
     select: '#month',
     placeholder: 'Select month ',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
+mt.set("<?=$m;?>");
 
-new SlimSelect({
+var yr = new SlimSelect({
     select: '#year',
     placeholder: 'Select ',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
+yr.set("<?=$y;?>");
 </script>

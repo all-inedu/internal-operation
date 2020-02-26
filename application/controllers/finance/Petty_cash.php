@@ -6,6 +6,7 @@ class Petty_cash extends CI_Controller
 
     function __construct(){
         parent::__construct();
+        date_default_timezone_set('Asia/Jakarta');
         $this->load->model('finance/Petty_model','petty');
     }
     
@@ -18,6 +19,7 @@ class Petty_cash extends CI_Controller
     public function index(){
         $data['income'] = $this->petty->showIncomeAll();
         $data['expense'] = $this->petty->showExpenseAll();
+        $data['saldo'] = $this->petty->saldo();
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-finance');
         $this->load->view('finance/petty-cash/index',$data);
@@ -74,25 +76,91 @@ class Petty_cash extends CI_Controller
         $id = $this->input->post('pettyinflow_id');
         $m = date('m', strtotime($this->input->post('pettyinflow_date')));
         $y = date('Y', strtotime($this->input->post('pettyinflow_date')));
-        
-        $saldo = $this->petty->showSaldo($m, $y);
+
+        // PERHITUNGAN SALDO    
         $income = $this->petty->showIncomeId($id);
+        $saldo = $this->petty->showSaldo($m, $y);
 
-        $newtotal = $this->input->post('pettyinflow_total');
-        $oldTotal = $income['pettyinflow_total'];
-        $oldIncome = $saldo['pettysaldo_inflow'];
-        $oldExpense = $saldo['pettysaldo_expenses']; 
-        $oldBalance = $saldo['pettysaldo_balance']; 
+        if(empty($saldo)){
+            
+            $oldMonth = date('m', strtotime($income['pettyinflow_date']));
+            $oldYear = date('Y', strtotime($income['pettyinflow_date']));
+            $oldSaldo = $this->petty->showSaldo($oldMonth, $oldYear);
+            $oldTotal = $income['pettyinflow_total'];
+            $oldIncome = $oldSaldo['pettysaldo_inflow'];
+            $oldExpense = $oldSaldo['pettysaldo_expenses'];
+            $oldBalance = $oldSaldo['pettysaldo_balance']; 
 
-        $newIncome = $oldIncome - $oldTotal + $newtotal;
-        $newBalance = $newIncome - $oldExpense;
-        $idSaldo = $saldo['pettysaldo_id'];
-        $datas = [
-            'pettysaldo_inflow	' => $newIncome,
-            'pettysaldo_balance	' => $newBalance
-        ];
+            $newIncome = $oldIncome - $oldTotal;
+            $newBalance = $newIncome - $oldExpense ;
 
-        $this->petty->updateSaldo($datas, $idSaldo);
+            $idSaldo = $oldSaldo['pettysaldo_id'];
+
+            // Update saldo lama 
+            $datas = [
+                'pettysaldo_inflow	' => $newIncome,
+                'pettysaldo_balance	' => $newBalance
+            ];
+            // echo json_encode($datas);
+            $this->petty->updateSaldo($datas, $idSaldo);
+
+            // Simpan saldo bulan baru
+            $data = [
+                'pettysaldo_month' => $m,
+                'pettysaldo_year' => $y,
+                'pettysaldo_inflow	' => $this->input->post('pettyinflow_total'),
+                'pettysaldo_balance	' => $this->input->post('pettyinflow_total'),
+            ];
+            // echo json_encode($data);
+            $this->petty->saveSaldo($data);
+
+        } else {
+            $m0 = date('m', strtotime($income['pettyinflow_date']));
+            $y0 = date('Y', strtotime($income['pettyinflow_date']));
+            $saldo0 = $this->petty->showSaldo($m0, $y0);
+            
+            $total0 = $income['pettyinflow_total'];
+            $income0 = $saldo0['pettysaldo_inflow'];
+            $expense0 = $saldo0['pettysaldo_expenses'];
+            $balance0 = $saldo0['pettysaldo_balance']; 
+
+            $income1 = $income0 - $total0;
+            $balance1 = $income1 - $expense0 ;
+
+            $id0 = $saldo0['pettysaldo_id'];
+
+            // Update saldo lama 
+            $data0 = [
+                'pettysaldo_inflow	' => $income1,
+                'pettysaldo_balance	' => $balance1
+            ];
+            // echo $id0;
+            // echo json_encode($data0);
+            $this->petty->updateSaldo($data0, $id0);
+
+
+            $newtotal = $this->input->post('pettyinflow_total');
+            $oldTotal = $income['pettyinflow_total'];
+            $oldIncome = $saldo['pettysaldo_inflow'];
+            $oldExpense = $saldo['pettysaldo_expenses']; 
+            $oldBalance = $saldo['pettysaldo_balance']; 
+            $id1 = $saldo['pettysaldo_id'];
+            
+            if($id0!=$id1){
+                $newIncome = $oldIncome + $newtotal;
+            } else {
+                $newIncome = ($oldIncome - $oldTotal) + $newtotal;
+            }
+
+            $newBalance = $newIncome - $oldExpense;
+            $data1 = [
+                'pettysaldo_inflow	' => $newIncome,
+                'pettysaldo_balance	' => $newBalance
+            ];
+            // echo $id1;
+            // echo json_encode($data1);
+            $this->petty->updateSaldo($data1, $id1);
+        }
 
         $data = [
             'pettyinflow_date' => $this->input->post('pettyinflow_date'),
@@ -100,11 +168,31 @@ class Petty_cash extends CI_Controller
         ];
         
         $this->petty->updateIncome($data, $id);
+    
         $this->session->set_flashdata('success', 'Income have been changed');
         redirect('/finance/petty-cash/');
     }
 
     public function deleteIncome($id){
+        $income = $this->petty->showIncomeId($id);
+        $m = date('m', strtotime($income['pettyinflow_date']));
+        $y = date('Y', strtotime($income['pettyinflow_date']));
+        $saldo = $this->petty->showSaldo($m, $y);
+
+        $total = $income['pettyinflow_total'];
+        $oldIncome = $saldo['pettysaldo_inflow'];
+        $oldBalance = $saldo['pettysaldo_balance'];
+
+        $newIncome = $oldIncome - $total;
+        $newBalance = $oldBalance - $total;
+
+        $idSaldo = $saldo['pettysaldo_id'];
+        $datas = [
+            'pettysaldo_inflow	' => $newIncome,
+            'pettysaldo_balance	' => $newBalance
+        ];
+
+        $this->petty->updateSaldo($datas, $idSaldo);
         $this->petty->deleteIncome($id);
         $this->session->set_flashdata('success', 'Income have been deleted');
         redirect('/finance/petty-cash/');
@@ -164,6 +252,96 @@ class Petty_cash extends CI_Controller
     public function updateExpense()
     {
         $id = $this->input->post('pettyexpenses_id');
+
+        $m = date('m', strtotime($this->input->post('pettyexpenses_date')));
+        $y = date('Y', strtotime($this->input->post('pettyexpenses_date')));
+
+        // PERHITUNGAN SALDO    
+        $expense = $this->petty->showExpenseId($id);
+        $saldo = $this->petty->showSaldo($m, $y);
+        
+
+        if(empty($saldo)){ 
+           
+            $oldMonth = date('m', strtotime($expense['pettyexpenses_date']));
+            $oldYear = date('Y', strtotime($expense['pettyexpenses_date']));
+            $oldSaldo = $this->petty->showSaldo($oldMonth, $oldYear);
+            $oldTotal = $expense['pettyexpenses_total'];
+            $oldIncome = $oldSaldo['pettysaldo_inflow'];
+            $oldExpense = $oldSaldo['pettysaldo_expenses'];
+            $oldBalance = $oldSaldo['pettysaldo_balance']; 
+
+            $newExpense = $oldExpense - $oldTotal;
+            $newBalance = $oldIncome - $newExpense ;
+
+            $idSaldo = $oldSaldo['pettysaldo_id'];
+
+            // Update saldo lama 
+            $datas = [
+                'pettysaldo_expenses' => $newExpense,
+                'pettysaldo_balance	' => $newBalance
+            ];
+            // echo $idSaldo;
+            // echo json_encode($datas);
+            $this->petty->updateSaldo($datas, $idSaldo);
+
+            // Simpan saldo bulan baru
+            $data = [
+                'pettysaldo_month' => $m,
+                'pettysaldo_year' => $y,
+                'pettysaldo_expenses' => $this->input->post('pettyexpenses_total'),
+                'pettysaldo_balance	' => -($this->input->post('pettyexpenses_total')),
+            ];
+            // echo json_encode($data);
+            $this->petty->saveSaldo($data);
+
+        } else {
+            $m0 = date('m', strtotime($expense['pettyexpenses_date']));
+            $y0 = date('Y', strtotime($expense['pettyexpenses_date']));
+            $saldo0 = $this->petty->showSaldo($m0, $y0);
+
+            $total0 = $expense['pettyexpenses_total'];
+            $income0 = $saldo0['pettysaldo_inflow'];
+            $expense0 = $saldo0['pettysaldo_expenses'];
+            $balance0 = $saldo0['pettysaldo_balance']; 
+
+            $expense1 = $expense0 - $total0;
+            $balance1 = $income0 - $expense1;
+
+            $id0 = $saldo0['pettysaldo_id'];
+
+            // Update saldo lama 
+            $data0 = [
+                'pettysaldo_expenses' => $expense1,
+                'pettysaldo_balance' => $balance1
+            ];
+            // echo $id0;
+            // echo json_encode($data0);
+            $this->petty->updateSaldo($data0, $id0);
+
+            $newtotal = $this->input->post('pettyexpenses_total');
+            $oldTotal = $expense['pettyexpenses_total'];
+            $oldIncome = $saldo['pettysaldo_inflow'];
+            $oldExpense = $saldo['pettysaldo_expenses']; 
+            $oldBalance = $saldo['pettysaldo_balance']; 
+            $id1 = $saldo['pettysaldo_id'];
+            
+            if($id0!=$id1){
+                $newExpense = $oldExpense + $newtotal;
+            } else {
+                $newExpense = ($oldExpense - $oldTotal) + $newtotal;
+            }
+
+            $newBalance = $oldIncome - $newExpense;
+            $data1 = [
+                'pettysaldo_expenses	' => $newExpense,
+                'pettysaldo_balance	' => $newBalance
+            ];
+            // echo $id1;
+            // echo json_encode($data1);
+            $this->petty->updateSaldo($data1, $id1);
+        }
+
         $data = [
             'pettyexpenses_date' => $this->input->post('pettyexpenses_date'),
             'pettyexpenses_inv' => $this->input->post('pettyexpenses_inv'),
@@ -179,16 +357,78 @@ class Petty_cash extends CI_Controller
     }
 
     public function deleteExpense($id){
+        $expense = $this->petty->showExpenseId($id);
+        $m = date('m', strtotime($expense['pettyexpenses_date']));
+        $y = date('Y', strtotime($expense['pettyexpenses_date']));
+        $saldo = $this->petty->showSaldo($m, $y);
+
+        $total = $expense['pettyexpenses_total'];
+        $oldIncome = $saldo['pettysaldo_inflow'];
+        $oldExpense = $saldo['pettysaldo_expenses'];
+        $oldBalance = $saldo['pettysaldo_balance'];
+
+        $newExpense = $oldExpense - $total;
+        $newBalance = $oldBalance + $total;
+
+        $idSaldo = $saldo['pettysaldo_id'];
+        $datas = [
+            'pettysaldo_expenses' => $newExpense,
+            'pettysaldo_balance	' => $newBalance
+        ];
+
+        // echo json_encode($datas);
+        $this->petty->updateSaldo($datas, $idSaldo);
         $this->petty->deleteExpense($id);
         $this->session->set_flashdata('success', 'Income have been deleted');
         redirect('/finance/petty-cash/');
     }
 
-
     public function export(){
+        $this->form_validation->set_rules('month','month','required');
+        $this->form_validation->set_rules('year','year','required');
+        if($this->form_validation->run()==false){
+            $data['m']='';
+            $data['y']='';
+            $this->load->view('templates/h-io');
+            $this->load->view('templates/s-finance');
+            $this->load->view('finance/petty-cash/export-petty-cash',$data);
+            $this->load->view('templates/f-io');
+        } else {
+            $this->view_export();
+        }
+    }
+
+    public function view_export(){
+        $m = $this->input->post('month');
+        $y = $this->input->post('year');
+        if($m==1){
+            $lm = $m+11;
+            $ly = $y-1;
+        } else {
+            $lm = $m-1;
+            $ly = $y;
+        }
+
+        $lastSaldo = $this->petty->showLastSaldo($m, $y);
+        $lastSaldoY = $this->petty->showLastSaldoYear($m, $y);
+        $lastIncome = $this->petty->showLastIncome($m, $y);
+        $lastExpense = $this->petty->showLastExpense($m, $y);
+
+        // echo json_encode($lastSaldoY);
+        // echo json_encode($lastSaldo);
+        // echo json_encode($lastExpense);
+
+        $data['m'] = $m;
+        $data['month'] = date('F', mktime(0, 0, 0, $m, 10));
+        $data['lmonth'] = date('F', mktime(0, 0, 0, $lm, 10));
+        $data['y'] = $y;
+        $data['lastsaldo'] = $lastSaldo['pettysaldo_balance'] + $lastSaldoY['pettysaldo_balance'];
+        $data['saldo'] = $this->petty->showSaldo($m, $y);
+        $data['expense'] = $this->petty->showExpenseDate($m, $y);
+
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-finance');
-        $this->load->view('finance/petty-cash/export-petty-cash');
+        $this->load->view('finance/petty-cash/export-petty-cash',$data);
         $this->load->view('templates/f-io');
     }
 }
