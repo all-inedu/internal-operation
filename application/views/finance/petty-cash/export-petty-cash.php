@@ -86,6 +86,12 @@
                 <?php } else {?>
                 <div class="row">
                     <div class="col-md-12 text-center mt-3">
+                        <div class="position-absolute">
+                            <a href="<?=base_url('finance/petty-cash/print/'.$m.'/'.$y);?>"
+                                class="btn btn-sm btn-primary" target="_blank">
+                                <i class="fas fa-print"></i>&nbsp; Print
+                            </a>
+                        </div>
                         <h5>PT JAWARA EDUKASIH INDONESIA (ALL-IN EDUSPACE)</h5>
                         <h6>Laporan Tagihan Dibayar</h6>
                         <p>Bulan <?=$month." ".$y;?></p>

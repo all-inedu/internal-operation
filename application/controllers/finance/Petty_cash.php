@@ -7,6 +7,7 @@ class Petty_cash extends CI_Controller
     function __construct(){
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
+        $this->load->library('pdf');
         $this->load->model('finance/Petty_model','petty');
     }
     
@@ -430,5 +431,36 @@ class Petty_cash extends CI_Controller
         $this->load->view('templates/s-finance');
         $this->load->view('finance/petty-cash/export-petty-cash',$data);
         $this->load->view('templates/f-io');
+    }
+
+    public function print($m, $y){
+        if($m==1){
+            $lm = $m+11;
+            $ly = $y-1;
+        } else {
+            $lm = $m-1;
+            $ly = $y;
+        }
+
+        $lastSaldo = $this->petty->showLastSaldo($m, $y);
+        $lastSaldoY = $this->petty->showLastSaldoYear($m, $y);
+        $lastIncome = $this->petty->showLastIncome($m, $y);
+        $lastExpense = $this->petty->showLastExpense($m, $y);
+
+        // echo json_encode($lastSaldoY);
+        // echo json_encode($lastSaldo);
+        // echo json_encode($lastExpense);
+
+        $data['m'] = $m;
+        $data['month'] = date('F', mktime(0, 0, 0, $m, 10));
+        $data['lmonth'] = date('F', mktime(0, 0, 0, $lm, 10));
+        $data['y'] = $y;
+        $data['lastsaldo'] = $lastSaldo['pettysaldo_balance'] + $lastSaldoY['pettysaldo_balance'];
+        $data['saldo'] = $this->petty->showSaldo($m, $y);
+        $data['expense'] = $this->petty->showExpenseDate($m, $y);
+
+        $html = $this->load->view('finance/petty-cash/print',$data, true);
+
+        $this->pdf->createPDF($html, 'Petty Cash- '.$m.'-'.$y, false, 'a4', 'landscape');
     }
 }
