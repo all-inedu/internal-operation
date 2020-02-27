@@ -51,7 +51,7 @@ class Employee extends CI_Controller
 
     public function uploaded($file, $path, $id){
         $config['upload_path']          = './upload/employee/'.$path;
-        $config['allowed_types']        = 'gif|jpg|png|pdf|docx|doc';
+        $config['allowed_types']        = 'gif|jpg|jpeg|png|pdf|docx|doc';
         $config['max_size']             = 150048;
         $config['file_name']            = strtolower($path."-".$id);
 

@@ -178,8 +178,7 @@
         <form action="update" method="post" name="update">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Asset ( <span id="asset"></span>
-                        )
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Asset
                     </h5>
                 </div>
                 <div class="modal-body">
@@ -349,6 +348,7 @@ function editAssets(x) {
             CD.set(data.asset_condition);
             ST.set(data.asset_status);
             $('textarea#asset_notes').val(data.asset_notes);
+            CKEDITOR.instances.asset_notes.setData(data.asset_notes);
             // console.log(data.asset_notes)
         }
     });

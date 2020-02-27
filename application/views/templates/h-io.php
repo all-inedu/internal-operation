@@ -56,8 +56,10 @@
     }
 
     p {
-        line-height: 2;
-        color: #494a4c;
+        line-height: 1.5;
+        color: #000;
+        font-size: 12px;
+        margin: 0 0;
     }
 
     .btn-sm {

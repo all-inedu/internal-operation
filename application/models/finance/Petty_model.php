@@ -57,6 +57,7 @@ class Petty_model extends CI_model
     public function showIncomeAll()
     {
         $this->db->select('*');
+        $this->db->order_by('pettyinflow_date', 'DESC');
         return $this->db->get('tbl_pettyinflow')->result_array();
     }
 
@@ -98,6 +99,7 @@ class Petty_model extends CI_model
     public function showExpenseAll()
     {
         $this->db->select('*');
+        $this->db->order_by('pettyexpenses_date', 'DESC');
         return $this->db->get('tbl_pettyexpenses')->result_array();
     }
 
@@ -118,6 +120,7 @@ class Petty_model extends CI_model
         $this->db->select('*');
         $this->db->where('month(pettyexpenses_date)', $m); 
         $this->db->where('year(pettyexpenses_date)', $y); 
+        $this->db->order_by('pettyexpenses_date', 'ASC');
         return $this->db->get('tbl_pettyexpenses')->result_array();
     }
 

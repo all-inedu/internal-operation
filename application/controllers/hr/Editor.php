@@ -3,24 +3,108 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Editor extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        date_default_timezone_set('Asia/Jakarta');
+        $this->load->model('hr/Editor_model','editor');
+        $this->load->model('bizdev/University_model','univ');
+    }
+    
     public function index(){
+        $data['editor'] = $this->editor->showAll();
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-hr');
-        $this->load->view('hr/editor/index.php');
+        $this->load->view('hr/editor/index.php',$data);
         $this->load->view('templates/f-io');
     }
 
+    public function uploaded($file, $path, $id){
+        $config['upload_path']          = './upload/editor/'.$path;
+        $config['allowed_types']        = 'gif|jpg|jpeg|png|pdf|docx|doc';
+        $config['max_size']             = 150048;
+        $config['file_name']            = strtolower($path."-".$id);
+
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+
+        if ($this->upload->do_upload($file))
+        {
+            return htmlspecialchars($this->upload->data('file_name'));
+        } else {
+            $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('error', $error['error']);
+            redirect('/hr/editor/add');
+        }
+    }
+    
     public function add(){
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-hr');
-        $this->load->view('hr/editor/add-editor.php');
-        $this->load->view('templates/f-io');
+        $this->form_validation->set_rules('editor_fn', 'first name','required');
+        $this->form_validation->set_rules('editor_mail', 'email','required|is_unique[tbl_empl.empl_email]',
+        array('is_unique' => 'The email already used'));
+        $this->form_validation->set_rules('editor_phone', 'phone number','required');
+
+        if($this->form_validation->run()==FALSE) {
+            $data['univ'] = $this->univ->showAll();
+            $data['bank'] = ['BCA','BNI', 'BTN', 'DBS', 'Mandiri'];
+            $this->load->view('templates/h-io');
+            $this->load->view('templates/s-hr');
+            $this->load->view('hr/editor/add-editor.php', $data);
+            $this->load->view('templates/f-io');
+        } else {
+            $this->save();
+        }
     }
 
-    public function view(){
+    public function save(){
+        $query = $this->editor->getId();  
+		if($query->num_rows() <> 0){   
+            $data = $query->row();      
+            $id = intval($data->kode) + 1;    
+		} else {   
+		    $id = 1;    
+		}
+        $idmax = str_pad($id, 4, "0", STR_PAD_LEFT); 
+        $newid = "ED-".$idmax;
+
+        $files1 = $_FILES['editor_cv']['name'];
+        $files2 = $_FILES['editor_ktp']['name'];
+        $files3 = $_FILES['editor_npwp']['name'];
+
+        if(empty($files1)){$cv = "";} else {$cv = $this->uploaded('editor_cv', 'CV', $newid);}
+        if(empty($files2)){$ktp = "";} else {$ktp = $this->uploaded('editor_ktp', 'KTP', $newid);}
+        if(empty($files3)){$npwp = "";} else {$npwp = $this->uploaded('editor_npwp', 'NPWP', $newid);}
+
+        $data = [
+            'editor_id' => $newid,
+            'editor_fn' => $this->input->post('editor_fn'),
+            'editor_ln' => $this->input->post('editor_ln'),
+            'editor_address' => $this->input->post('editor_address'),
+            'editor_major' => $this->input->post('editor_major'),
+            'univ_id' => $this->input->post('editor_gradfrom'),
+            'editor_mail' => $this->input->post('editor_mail'),
+            'editor_phone' => $this->input->post('editor_phone'),
+            'editor_position' => $this->input->post('editor_position'),
+            'editor_feephours' => $this->input->post('editor_feephours'),
+            'editor_status' => 1,
+            'editor_bankname' => $this->input->post('editor_bankname'),
+            'editor_bankacc' => $this->input->post('editor_bankacc'),
+            'editor_cv' => $cv,
+            'editor_ktp' => $ktp,
+            'editor_npwp' => $npwp,
+            'editor_lastupdate' => date('Y-m-d H:i:s'),
+        ];
+
+        $this->editor->save($data);
+        $this->session->set_flashdata('success', 'The editor have been created');
+        redirect('/hr/editor/');
+    }
+
+    public function view($id){
+        $data['editor'] = $this->editor->showId($id);
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-hr');
-        $this->load->view('hr/editor/view-editor.php');
+        $this->load->view('hr/editor/view-editor.php', $data);
         $this->load->view('templates/f-io');
     }
 

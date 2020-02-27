@@ -38,7 +38,27 @@
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 <script>
+$("textarea").each(function() {
+    CKEDITOR.replace(this, {
+        toolbar: [{
+                name: 'document',
+            }, // Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo',
+                'Redo'
+            ], // Line break - next group will be placed in new line.
+            {
+                name: 'basicstyles',
+                items: ['Bold', 'Italic', 'Underline']
+            }
+        ],
+        height: 100
+    });
+});
+
+
+
 $(function() {
     $('[data-toggle="tooltip"]').tooltip()
 })

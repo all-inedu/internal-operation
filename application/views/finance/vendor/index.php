@@ -171,7 +171,7 @@
         <form action="update" method="post" name="update">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Vendor ( <span id="vendor"></span> )
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Vendor
                     </h5>
                 </div>
                 <div class="modal-body">
@@ -300,18 +300,20 @@ function editVendor(x) {
         url: '<?=base_url("finance/vendor/view/");?>' + x,
         dataType: 'json',
         success: function(data) {
-            console.log(data)
+            // console.log(data)
             $('#vendor').html(data.vendor_id);
             $('#vendor_id').val(data.vendor_id);
             $('#vendor_name').val(data.vendor_name);
-            $('textarea#vendor_address').val(data.vendor_address);
+            // $('textarea#vendor_address').val(data.vendor_address);
+            CKEDITOR.instances.vendor_address.setData(data.vendor_address);
             $('#vendor_phone').val(data.vendor_phone);
             TE.set(data.vendor_type);
             $('#vendor_material').val(data.vendor_material);
             $('#vendor_size').val(data.vendor_size);
             $('#vendor_processingtime').val(data.vendor_processingtime);
             $('#vendor_unitprice').val(data.vendor_unitprice);
-            $('textarea#vendor_notes').val(data.vendor_notes);
+            // $('#vendor_notes').val(data.vendor_notes);
+            CKEDITOR.instances.vendor_notes.setData(data.vendor_notes);
         }
     });
 }

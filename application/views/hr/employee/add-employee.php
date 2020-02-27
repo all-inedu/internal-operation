@@ -85,7 +85,7 @@
                         <div class="col-md-4">
                             <label><i class="fas fa-thumbtack fa-fw text-muted"></i>&nbsp; Address :</label>
                         </div>
-                        <div class="col-md-7 mb-3">
+                        <div class="col-md-8 mb-3">
                             <textarea name="empl_address" rows=5 class="form-control form-control-sm"
                                 placeholder="Address"></textarea>
                             <?=form_error('empl_address', '<small class="text-danger">', '</small>');?>

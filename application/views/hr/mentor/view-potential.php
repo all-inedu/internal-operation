@@ -44,7 +44,7 @@
                         </p>
                     </div>
                     <div class="row text-center">
-                        <div class="col">
+                        <div class="col mt-2">
                             <a href="<?=base_url('hr/mentor/potential/edit/'.$mentor['id']);?>"
                                 class="btn btn-sm btn-info m-1"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
                             <a href="<?=base_url('hr/mentor/convert/'.$mentor['id']);?>"
