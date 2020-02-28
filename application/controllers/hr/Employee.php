@@ -110,7 +110,7 @@ class Employee extends CI_Controller
             'empl_hiredate'	=> $this->input->post('empl_hiredate'),
             'empl_status' => $this->input->post('empl_status'),	
             'empl_statusenddate' => $this->input->post('empl_statusenddate'),	
-            'empl_isresign' => $this->input->post('empl_isresign'),	
+            'empl_isactive' => 1,	
             'empl_cv' => $cv,	 
             'empl_bankaccount' => $this->input->post('empl_bankaccount'),	
             'empl_idcard' => $idcard,	
@@ -226,7 +226,6 @@ class Employee extends CI_Controller
             'empl_hiredate'	=> $this->input->post('empl_hiredate'),
             'empl_status' => $this->input->post('empl_status'),	
             'empl_statusenddate' => $this->input->post('empl_statusenddate'),	
-            'empl_isresign' => $this->input->post('empl_isresign'),	
             'empl_cv' => $cv,	 
             'empl_bankaccount' => $this->input->post('empl_bankaccount'),	
             'empl_idcard' => $idcard,	
@@ -242,4 +241,16 @@ class Employee extends CI_Controller
         redirect('/hr/employee/view/'.$id);
     }
     
+    public function deactivate($id){
+        $this->empl->deactivate($id);
+        $this->session->set_flashdata('success', 'Employee has been deactivated');
+        redirect('/hr/employee/view/'.$id);
+    }
+
+    public function activate($id){
+        $this->empl->activate($id);
+        $this->session->set_flashdata('success', 'Employee has been activated');
+        redirect('/hr/employee/view/'.$id);
+    }
+
 }

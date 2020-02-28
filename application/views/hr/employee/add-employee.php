@@ -26,7 +26,8 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/employee.png');?>" alt="employee" width="60%"><br><br>
+                    <img src="<?=base_url('assets/img/user/employee.svg');?>" alt="employee" width="30%"><br><br>
+                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <h5 class="align-middle mt-2">
                         Add Employee</h5>
                 </div>
@@ -39,7 +40,7 @@
             <div class="card-body">
                 <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Employee Profile
                     <div class="float-right">
-                        <a href="<?=base_url('hr/employee/view/');?>" class="btn btn-sm btn-info"><i
+                        <a href="<?=base_url('hr/employee/');?>" class="btn btn-sm btn-info"><i
                                 class="fas fa-arrow-circle-left"></i></a>
                     </div>
                 </h6>
@@ -208,24 +209,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-4">
-                            <label><i class="fas fa-question fa-fw text-muted"></i>&nbsp; Is Resign ?
-                                :</label>
-                        </div>
-                        <div class="col-md-7 mb-3">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <select name="empl_isresign" id="empl_isresign"
-                                        class="form-control form-control-sm">
-                                        <option value="No">No</option>
-                                        <option value="Yes">Yes</option>
-                                    </select>
-                                    <?=form_error('empl_isresign', '<small class="text-danger">', '</small>');?>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
 
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>

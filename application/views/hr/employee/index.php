@@ -37,6 +37,7 @@
                 <th width="5%">Major</th>
                 <th width="5%">Date of Birth</th>
                 <th width="10%">Phone Number</th>
+                <th width="10%">Status</th>
                 <th>Address</th>
             </tr>
         </thead>
@@ -58,6 +59,12 @@
                 <td><?=$e['empl_major'];?></td>
                 <td><?=date('d M Y' , strtotime($e['empl_datebirth']));?></td>
                 <td><?=$e['empl_phone'];?></td>
+                <td>
+                    <?php
+                    if($e['empl_isactive']==1){echo '<div class="badge badge-success">Active</div>';} else
+                    if($e['empl_isactive']==2){echo '<div class="badge badge-danger">Not Active</div>';}
+                    ?>
+                </td>
                 <td><?=$e['empl_address'];?></td>
             </tr>
             <?php $i++; endforeach; ?>

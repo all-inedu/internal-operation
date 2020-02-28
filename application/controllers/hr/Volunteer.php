@@ -9,7 +9,7 @@ class Volunteer extends CI_Controller
         parent::__construct();
 
         date_default_timezone_set('Asia/Jakarta');
-
+        $this->load->library('bank');
         $this->load->model('hr/Volunteer_model','volunt');
     }
 

@@ -7,6 +7,18 @@ class Volunteer_model extends CI_model
 		$this->db->limit(1);    
         return $query = $this->db->get('tbl_volunt');
     }
+
+    public function showActive(){
+        $this->db->select('*');
+        $this->db->where('volunt_status', 1); 
+        return $this->db->get('tbl_volunt')->result_array();
+    }
+
+    public function showNotActive(){
+        $this->db->select('*');
+        $this->db->where('volunt_status', 2); 
+        return $this->db->get('tbl_volunt')->result_array();
+    }
     
     public function showAll(){
         $this->db->select('*');

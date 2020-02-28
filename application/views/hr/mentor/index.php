@@ -54,9 +54,9 @@
                 <td class="text-center"><?=$m['mt_phone'];?></td>
                 <td class="text-center">
                     <?php
-                        if($m['mt_status']==0){echo '<div class="badge badge-danger">Potential</div>';} else 
-                        if($m['mt_status']==1){echo '<div class="badge badge-success">Active</div>';} else
-                        if($m['mt_status']==2){echo '<div class="badge badge-danger">Not Active</div>';}
+                        if($m['mt_status']==0){echo '<div class="pt-1 badge badge-danger">Potential</div>';} else 
+                        if($m['mt_status']==1){echo '<div class="pt-1 badge badge-success">Active</div>';} else
+                        if($m['mt_status']==2){echo '<div class="pt-1 badge badge-danger">Not Active</div>';}
                     ?>
                 </td>
                 <td class="text-center">

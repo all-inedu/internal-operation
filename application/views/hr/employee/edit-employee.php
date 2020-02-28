@@ -26,14 +26,14 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/employee.png');?>" alt="employee" width="60%"><br><br>
+                    <img src="<?=base_url('assets/img/user/employee.svg');?>" alt="employee" width="30%"><br><br>
                     <h5 class="align-middle mt-2">
                         <?=$empl['empl_firstname']." ".$empl['empl_lastname'];?></h5>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="text-info">
-                        <p><?=$empl['empl_department'];?> <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; <?=$empl['empl_phone'];?> &nbsp; | &nbsp;
-                            <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$empl['empl_email'];?></p>
+                        <h6 class="mb-0"><?=$empl['empl_department'];?> </h6>
+                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$empl['empl_phone'];?> &nbsp; | &nbsp;
+                        <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$empl['empl_email'];?>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                         <div class="col-md-4">
                             <label><i class="fas fa-thumbtack fa-fw text-muted"></i>&nbsp; Address :</label>
                         </div>
-                        <div class="col-md-7 mb-3">
+                        <div class="col-md-8 mb-3">
                             <textarea name="empl_address" rows=5
                                 class="form-control form-control-sm"><?=$empl['empl_address'];?></textarea>
                             <?=form_error('empl_address', '<small class="text-danger">', '</small>');?>
@@ -213,25 +213,6 @@
                                     <input name="empl_statusenddate" type="date" class="form-control form-control-sm"
                                         value="<?=$empl['empl_statusenddate'];?>">
                                     <?=form_error('empl_statusenddate', '<small class="text-danger">', '</small>');?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label><i class="far fa-times-circle text-muted"></i>&nbsp; Is Resign ?
-                                :</label>
-                        </div>
-                        <div class="col-md-7 mb-3">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <select name="empl_isresign" id="empl_isresign"
-                                        class="form-control form-control-sm">
-                                        <option value="<?=$empl['empl_isresign'];?>"><?=$empl['empl_isresign'];?>
-                                        </option>
-                                        <option value="No">No</option>
-                                        <option value="Yes">Yes</option>
-                                    </select>
-                                    <?=form_error('empl_isresign', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>

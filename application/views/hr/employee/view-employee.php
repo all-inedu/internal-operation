@@ -26,17 +26,38 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/employee.png');?>" alt="employee" width="60%"><br><br>
+                    <img src="<?=base_url('assets/img/user/employee.svg');?>" alt="employee" width="30%"><br><br>
                     <h5 class="align-middle mt-2">
                         <?=$empl['empl_firstname']." ".$empl['empl_lastname'];?></h5>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="text-info">
-                        <p><?=$empl['empl_department'];?> <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; <?=$empl['empl_phone'];?> &nbsp; | &nbsp;
-                            <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$empl['empl_email'];?></p>
+                        <h6 class="mb-2">
+                            <?=$empl['empl_department'];?>
+                            <small style="margin-top:-10px !important;">
+                                <?php
+                                        if($empl['empl_isactive']==1){echo '<div class="badge badge-success">Active</div>';} else
+                                        if($empl['empl_isactive']==2){echo '<div class="badge badge-danger">Not Active</div>';}
+                                    ?>
+                            </small>
+                        </h6>
+                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$empl['empl_phone'];?> &nbsp; | &nbsp;
+                        <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$empl['empl_email'];?>
                     </div>
                     <a href="<?=base_url('hr/employee/edit/'.strtolower($empl['empl_id']));?>"
-                        class="btn btn-sm btn-primary m-1 pl-3 pr-3"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
+                        class="btn btn-sm btn-primary m-1 mt-2 pl-3 pr-3"><i class="fas fa-pencil-alt"></i>&nbsp;
+                        Edit</a>
+                    <?php if($empl['empl_isactive']==1){ ?>
+                    <a href="<?=base_url('hr/employee/deactivate/'.$empl['empl_id']);?>"
+                        class="btn btn-sm btn-danger m-1 convert-button" data-message="Deactivate this employee ?"><i
+                            class="fas fa-user-times"></i>&nbsp;
+                        Deactivate</a>
+                    <?php } else ?>
+                    <?php if($empl['empl_isactive']==2){ ?>
+                    <a href="<?=base_url('hr/employee/activate/'.$empl['empl_id']);?>"
+                        class="btn btn-sm btn-success m-1 convert-button" data-message="Activate this employee ?"><i
+                            class="fas fa-user-times"></i>&nbsp;
+                        Activate</a>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -159,17 +180,6 @@
                         <label><?=date('d M Y', strtotime($empl['empl_statusenddate']));?></label>
                         <hr class="mt-1 mb-1">
                     </div>
-
-
-                    <div class="col-md-4">
-                        <label><i class="far fa-times-circle text-muted"></i>&nbsp; Is Resign / Out of Company
-                            ? :</label>
-                    </div>
-                    <div class="col-md-7 mb-2">
-                        <label><?=$empl['empl_isresign'];?></label>
-                        <hr class="mt-1 mb-1">
-                    </div>
-
                 </div>
 
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>

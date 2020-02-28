@@ -27,7 +27,7 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/employee.png');?>" alt="employee" width="60%"><br><br>
+                    <img src="<?=base_url('assets/img/user/mentor.svg');?>" alt="employee" width="30%"><br><br>
                     <h5 class="align-middle mt-2">
                         <?=$mentor['mt_firstn']." ".$mentor['mt_lastn'];?></h5>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>

@@ -8,6 +8,18 @@ class Mentor_model extends CI_model
         return $query = $this->db->get('tbl_mt');
     }
 
+    public function showActive(){
+        $this->db->select('*');
+        $this->db->where('mt_status',1);
+        return $this->db->get('tbl_mt')->result_array();
+    }
+
+    public function showNotActive(){
+        $this->db->select('*');
+        $this->db->where('mt_status',2);
+        return $this->db->get('tbl_mt')->result_array();
+    }
+
     public function showAll(){
         $this->db->select('*');
         $this->db->where('mt_status >=',1);

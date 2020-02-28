@@ -24,17 +24,23 @@
                         <div class="col-md-8 bg-secondary shadow my-auto">
                             <div class="card-body text-white">
                                 <h5 class="card-title"><i class="fas fa-users"></i>&nbsp; Employee :</h5>
-                                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <h6>- Candidate <div class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
+                                <!-- <div class="line" style="margin-top:15px; margin-bottom:15px;"></div> -->
+                                <!-- <h6>- Candidate <div class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
                                         8</div>
-                                </h6>
+                                </h6> -->
                                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <h6>- Inactive <div class="float-right font-weight-bold badge badge-danger pl-3 pr-3"> 4
+                                <h6>- Active <div class="float-right font-weight-bold badge badge-success pl-3 pr-3">
+                                        <?=$empl_active;?>
                                     </div>
                                 </h6>
                                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <h6>- Active <div class="float-right font-weight-bold badge badge-success pl-3 pr-3">15
+                                <h6>- Not Active <div class="float-right font-weight-bold badge badge-danger pl-3 pr-3">
+                                        <?=$empl_notactive;?>
                                     </div>
+                                </h6>
+                                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                                <h6>
+                                    &nbsp;
                                 </h6>
                             </div>
                         </div>
@@ -59,14 +65,16 @@
                                 <h5 class="card-title"><i class="fas fa-users-cog"></i>&nbsp; Mentor / Tutor :</h5>
                                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                                 <h6>- Potential <div class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
-                                        8</div>
+                                        <?=$mt_potential;?></div>
                                 </h6>
                                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <h6>- Inactive <div class="float-right font-weight-bold badge badge-danger pl-3 pr-3"> 4
+                                <h6>- Active <div class="float-right font-weight-bold badge badge-success pl-3 pr-3">
+                                        <?=$mt_active;?>
                                     </div>
                                 </h6>
                                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <h6>- Active <div class="float-right font-weight-bold badge badge-success pl-3 pr-3">15
+                                <h6>- Not Active <div class="float-right font-weight-bold badge badge-danger pl-3 pr-3">
+                                        <?=$mt_notactive;?>
                                     </div>
                                 </h6>
                             </div>
@@ -92,15 +100,16 @@
                                 <h5 class="card-title"><i class="fas fa-user-edit"></i>&nbsp; Editor :</h5>
                                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                                 <h6>- Managing <div class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
-                                        8</div>
+                                        <?=$editor_managing;?></div>
                                 </h6>
                                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <h6>- Senior <div class="float-right font-weight-bold badge badge-danger pl-3 pr-3"> 4
+                                <h6>- Senior <div class="float-right font-weight-bold badge badge-danger pl-3 pr-3">
+                                        <?=$editor_senior;?>
                                     </div>
                                 </h6>
                                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                                 <h6>- Associate <div class="float-right font-weight-bold badge badge-success pl-3 pr-3">
-                                        15
+                                        <?=$editor_associate;?>
                                     </div>
                                 </h6>
                             </div>
@@ -127,16 +136,16 @@
                                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h6>Active <div
+                                        <h6>Active :<div
                                                 class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
-                                                8</div>
+                                                <?=$volunt_active;?></div>
 
                                         </h6>
                                     </div>
                                     <div class="col-md-6">
-                                        <h6>Inactive <div
+                                        <h6>Not Active :<div
                                                 class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
-                                                8</div>
+                                                <?=$volunt_notactive;?></div>
 
                                         </h6>
                                     </div>
@@ -146,16 +155,16 @@
                                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h6>Active <div
+                                        <h6>Active :<div
                                                 class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
-                                                8</div>
+                                                <?=$infl_active;?></div>
 
                                         </h6>
                                     </div>
                                     <div class="col-md-6">
-                                        <h6>Inactive <div
+                                        <h6>Not Active :<div
                                                 class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
-                                                8</div>
+                                                <?=$infl_notactive;?></div>
 
                                         </h6>
                                     </div>
@@ -176,12 +185,11 @@
 var myChart = new Chart(document.getElementById('employeeChart'), {
     type: 'doughnut',
     data: {
-        labels: ['Pending', 'Denied', 'Success'],
+        labels: ['Not Active', 'Active'],
         datasets: [{
             label: '# of Votes',
-            data: [8, 4, 15],
+            data: ['<?=$empl_notactive;?>', '<?=$empl_active;?>'],
             backgroundColor: [
-                'rgba(255, 193, 7, 0.7)',
                 'rgba(255, 71, 71, 1)',
                 'rgba(60, 201, 69, 0.7)'
             ],
@@ -198,10 +206,10 @@ var myChart = new Chart(document.getElementById('employeeChart'), {
 var myChart = new Chart(document.getElementById('mentorChart'), {
     type: 'doughnut',
     data: {
-        labels: ['Pending', 'Denied', 'Success'],
+        labels: ['Potential', 'Not Active', 'Active'],
         datasets: [{
             label: '# of Votes',
-            data: [8, 4, 15],
+            data: ['<?=$mt_potential;?>', '<?=$mt_notactive;?>', '<?=$mt_active;?>'],
             backgroundColor: [
                 'rgba(255, 193, 7, 0.7)',
                 'rgba(255, 71, 71, 1)',
@@ -220,10 +228,10 @@ var myChart = new Chart(document.getElementById('mentorChart'), {
 var myChart = new Chart(document.getElementById('editorChart'), {
     type: 'doughnut',
     data: {
-        labels: ['Pending', 'Denied', 'Success'],
+        labels: ['Managing', 'Senior', 'Associate'],
         datasets: [{
             label: '# of Votes',
-            data: [8, 4, 15],
+            data: ['<?=$editor_managing;?>', '<?=$editor_senior;?>', '<?=$editor_associate;?>'],
             backgroundColor: [
                 'rgba(255, 193, 7, 0.7)',
                 'rgba(255, 71, 71, 1)',

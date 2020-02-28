@@ -7,6 +7,7 @@ class Editor extends CI_Controller
     {
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
+        $this->load->library('bank');
         $this->load->model('hr/Editor_model','editor');
         $this->load->model('bizdev/University_model','univ');
     }
@@ -41,12 +42,12 @@ class Editor extends CI_Controller
     public function add(){
         $this->form_validation->set_rules('editor_fn', 'first name','required');
         $this->form_validation->set_rules('editor_mail', 'email','required|is_unique[tbl_empl.empl_email]',
-        array('is_unique' => 'The email already used'));
+        array('is_unique' => 'Email already used'));
         $this->form_validation->set_rules('editor_phone', 'phone number','required');
 
         if($this->form_validation->run()==FALSE) {
             $data['univ'] = $this->univ->showAll();
-            $data['bank'] = ['BCA','BNI', 'BTN', 'DBS', 'Mandiri'];
+            $data['bank'] = $this->bank->showBank();
             $this->load->view('templates/h-io');
             $this->load->view('templates/s-hr');
             $this->load->view('hr/editor/add-editor.php', $data);
@@ -96,23 +97,113 @@ class Editor extends CI_Controller
         ];
 
         $this->editor->save($data);
-        $this->session->set_flashdata('success', 'The editor have been created');
-        redirect('/hr/editor/');
+        $this->session->set_flashdata('success', 'Editor have been created');
+        redirect('/hr/editor/view/'.$newid);
     }
 
     public function view($id){
         $data['editor'] = $this->editor->showId($id);
+        if($data['editor']){
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-hr');
         $this->load->view('hr/editor/view-editor.php', $data);
         $this->load->view('templates/f-io');
+        } else {
+            $this->session->set_flashdata('error', 'Editor id is not found');
+            redirect('/hr/editor/');
+        }
     }
 
-    public function edit(){
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-hr');
-        $this->load->view('hr/editor/edit-editor.php');
-        $this->load->view('templates/f-io');
+    public function edit($id){
+        $this->form_validation->set_rules('editor_fn', 'first name', 'required');
+        $this->form_validation->set_rules('editor_mail', 'email', 'required');
+        $this->form_validation->set_rules('editor_phone', 'phone number', 'required');
+
+        if($this->form_validation->run()==FALSE) {
+            $data['editor'] = $this->editor->showId($id);
+            $data['univ'] = $this->univ->showAll();
+            $data['bank'] = $this->bank->showBank();
+            $this->load->view('templates/h-io');
+            $this->load->view('templates/s-hr');
+            $this->load->view('hr/editor/edit-editor.php', $data);
+            $this->load->view('templates/f-io');
+        } else {
+            $this->update();
+        }
+    }
+
+    public function update() {
+        
+        $id = $this->input->post('editor_id');
+        $editor = $this->editor->showId($id);
+        // echo json_encode($editor);
+        
+        $files1 = $_FILES['editor_cv']['name'];
+        $files2 = $_FILES['editor_ktp']['name'];
+        $files3 = $_FILES['editor_npwp']['name'];
+
+        if(empty($files1)){
+            $cv = $editor['editor_cv'];
+        } else {
+            if(! $editor['editor_cv']==""){
+                unlink("./upload/editor/CV/".$editor['editor_cv']);
+            }
+            $cv = $this->uploaded('editor_cv', 'CV', $id);
+        }
+
+        if(empty($files2)){
+            $ktp = $editor['editor_ktp'];
+        } else {
+            if(! $editor['editor_ktp']==""){
+                unlink("./upload/editor/KTP/".$editor['editor_ktp']);
+            }
+            $ktp = $this->uploaded('editor_ktp', 'KTP', $id);
+        }
+
+        if(empty($files3)){
+            $npwp = $editor['editor_npwp'];
+        } else {
+            if(! $editor['editor_npwp']==""){
+                unlink("./upload/editor/NPWP/".$editor['editor_npwp']);
+            }
+            $npwp = $this->uploaded('editor_npwp', 'NPWP', $id);
+        }
+
+        $data = [
+            'editor_fn' => $this->input->post('editor_fn'),
+            'editor_ln' => $this->input->post('editor_ln'),
+            'editor_address' => $this->input->post('editor_address'),
+            'editor_major' => $this->input->post('editor_major'),
+            'univ_id' => $this->input->post('editor_gradfrom'),
+            'editor_mail' => $this->input->post('editor_mail'),
+            'editor_phone' => $this->input->post('editor_phone'),
+            'editor_position' => $this->input->post('editor_position'),
+            'editor_feephours' => $this->input->post('editor_feephours'),
+            'editor_status' => 1,
+            'editor_bankname' => $this->input->post('editor_bankname'),
+            'editor_bankacc' => $this->input->post('editor_bankacc'),
+            'editor_cv' => $cv,
+            'editor_ktp' => $ktp,
+            'editor_npwp' => $npwp,
+            'editor_lastupdate' => date('Y-m-d H:i:s'),
+        ];
+
+        // echo json_encode($data);
+        $this->editor->update($data, $id);
+        $this->session->set_flashdata('success', 'Editor have been changed');
+        redirect('/hr/editor/view/'.$id);
+    }
+
+    public function deactivate($id){
+        $this->editor->deactivate($id);
+        $this->session->set_flashdata('success', 'Editor has been deactivated');
+        redirect('/hr/editor/view/'.$id);
+    }
+
+    public function activate($id){
+        $this->editor->activate($id);
+        $this->session->set_flashdata('success', 'Editor has been activated');
+        redirect('/hr/editor/view/'.$id);
     }
 }
 ?>

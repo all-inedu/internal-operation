@@ -26,23 +26,37 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/employee.png');?>" alt="employee" width="60%"><br><br>
+                    <img src="<?=base_url('assets/img/user/infl.svg');?>" alt="employee" width="30%"><br><br>
                     <h5 class="align-middle mt-2">
-                        Influencer Name</h5>
-                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                        <?=$infl['infl_fn'];?>
+                    </h5>
+                    <div class="line" style="margin-top:15px; margin-bottom:10px;"></div>
+                    <div class="mb-2">
+                        <?php
+                            if($infl['infl_status']==1){echo '<div class="p-1 badge badge-success">Active</div>';} else
+                            if($infl['infl_status']==2){echo '<div class="p-1 badge badge-danger">Not Active</div>';}
+                        ?>
+                    </div>
                     <div class="text-info">
-                        <p>Position <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; 081231232xxx &nbsp; | &nbsp;
-                            <i class="fas fa-envelope text-danger"></i>&nbsp; mail@gmail.com</p>
+                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$infl['infl_phone'];?> &nbsp; | &nbsp;
+                        <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$infl['infl_mail'];?>
                     </div>
                     <div class="row text-center">
-                        <div class="col">
-                            <a href="<?=base_url('hr/influencer/edit');?>" class="btn btn-sm btn-info m-1"><i
-                                    class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
-                            <a href="<?=base_url('hr/influencer/inactive');?>"
+                        <div class="col mt-2">
+                            <a href="<?=base_url('hr/influencer/edit/'.$infl['infl_id']);?>"
+                                class="btn btn-sm btn-info m-1"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
+                            <?php if($infl['infl_status']==1){ ?>
+                            <a href="<?=base_url('hr/influencer/deactivate/'.$infl['infl_id']);?>"
                                 class="btn btn-sm btn-danger m-1 convert-button"
-                                data-message="Incative this influencer ?"><i class="fas fa-user-times"></i>&nbsp;
-                                Inactive</a>
+                                data-message="Deactivate this influencer ?"><i class="fas fa-user-times"></i>&nbsp;
+                                Deactivate</a>
+                            <?php } else ?>
+                            <?php if($infl['infl_status']==2){ ?>
+                            <a href="<?=base_url('hr/influencer/activate/'.$infl['infl_id']);?>"
+                                class="btn btn-sm btn-success m-1 convert-button"
+                                data-message="Activate this influencer ?"><i class="fas fa-user-check"></i>&nbsp;
+                                Activate</a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -64,41 +78,45 @@
                     <div class="col-md-12">
                         <label class="font-weight-bold mb-3">Personal Information</label>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-id-card fa-fw text-muted"></i>&nbsp; Full Name :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        Full Name
+                        <?=$infl['infl_fn'];?>
+                        <hr class="m-0">
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-envelope fa-fw text-muted"></i>&nbsp; Email :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        Email@mail.com
+                        <?=$infl['infl_mail'];?>
+                        <hr class="m-0">
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-thumbtack fa-fw text-muted"></i>&nbsp; Address :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        Lorem Ipsum
+                        <?=$infl['infl_address'];?>
+                        <hr class="m-0">
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Phone Number :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        0824xxxxxx
+                        <?=$infl['infl_phone'];?>
+                        <hr class="m-0">
                     </div>
                 </div>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label><i class="fas fa-dollar-sign fa-fw text-muted"></i>&nbsp; Position :</label>
                     </div>
                     <div class="col-md-7 mb-3">
-                        Rp. 200.00
+                        Rp. <?=number_format($infl['infl_feeperpost']);?>
                     </div>
                 </div>
 
@@ -106,20 +124,56 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label class="font-weight-bold mb-3">Attachment</label>
-                        <table class="table table-bordered table-striped">
-                            <tr>
-                                <td> <i class="fas fa-paperclip fa-fw"></i> &nbsp; Bank Account : </td>
-                                <td>Available</td>
-                            </tr>
-                            <tr>
-                                <td> <i class="fas fa-paperclip fa-fw"></i> &nbsp; KTP : </td>
-                                <td>Available</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-paperclip fa-fw"></i> &nbsp; NPWP : </td>
-                                <td>Available</td>
-                            </tr>
-                        </table>
+                        <div class="row">
+                            <div class="col-md-4 mb-2">
+                                <div class="card  text-center">
+                                    <div class="card-body">
+                                        <b>Bank Account</b>
+                                    </div>
+                                    <div class="card-footer p-1">
+                                        <?php 
+                                    if(empty($infl['infl_bankacc'])) { 
+                                        echo '<div class="p-1">Not Available</div>'; 
+                                    } else { 
+                                        echo '<div class="p-1">'.$infl['infl_banknm']." - ". $infl['infl_bankacc'].'</div>' ;
+                                    }
+                                    ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <div class="card  text-center">
+                                    <div class="card-body">
+                                        <b>KTP</b>
+                                    </div>
+                                    <div class="card-footer p-1">
+                                        <?php 
+                                    if(empty($infl['infl_ktp'])) { 
+                                        echo '<div class="p-1">Not Available</div>'; 
+                                    } else { 
+                                        echo "<a target='_blank' href='".base_url('upload/influencer/KTP/'.$infl['infl_ktp'])."' class='btn btn-sm'><i class='fas fa-search-plus'></i>&nbsp; View / Download</a>";
+                                    }
+                                    ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <div class="card  text-center">
+                                    <div class="card-body">
+                                        <b>NPWP</b>
+                                    </div>
+                                    <div class="card-footer p-1">
+                                        <?php 
+                                    if(empty($infl['infl_npwp'])) { 
+                                        echo '<div class="p-1">Not Available</div>'; 
+                                    } else { 
+                                        echo "<a target='_blank' href='".base_url('upload/influencer/NPWP/'.$infl['infl_npwp'])."' class='btn btn-sm'><i class='fas fa-search-plus'></i>&nbsp; View / Download</a>";
+                                    }
+                                    ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

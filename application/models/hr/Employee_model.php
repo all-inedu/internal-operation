@@ -7,6 +7,18 @@ class Employee_model extends CI_model
 		$this->db->limit(1);    
         return $query = $this->db->get('tbl_empl');
     }
+
+    public function showActive() {
+        $this->db->select('empl_id');
+        $this->db->where('empl_isactive', 1); 
+        return $this->db->get('tbl_empl')->result_array();
+    }
+
+    public function showNotActive() {
+        $this->db->select('empl_id');
+        $this->db->where('empl_isactive', 2); 
+        return $this->db->get('tbl_empl')->result_array();
+    }
     
     public function showAll(){
         $this->db->select('*');
@@ -34,6 +46,18 @@ class Employee_model extends CI_model
     public function delete($id){
         $this->db->where('empl_id', $id);
         $this->db->delete('tbl_empl');
+    }
+
+    public function deactivate($id){
+        $this->db->set('empl_isactive',2);
+        $this->db->where('empl_id', $id);
+        $this->db->update('tbl_empl'); 
+    }
+
+    public function activate($id){
+        $this->db->set('empl_isactive',1);
+        $this->db->where('empl_id', $id);
+        $this->db->update('tbl_empl'); 
     }
 
 }

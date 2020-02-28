@@ -27,23 +27,20 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/employee.png');?>" alt="employee" width="60%"><br><br>
+                    <img src="<?=base_url('assets/img/user/volunt.svg');?>" alt="employee" width="30%"><br><br>
                     <h5 class="align-middle mt-2">
                         <?=$volunt['volunt_firstname']." ".$volunt['volunt_lastname'];?></h5>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                    <div class="text-info">
-                        <p>
-                            <?php
-                                if($volunt['volunt_status']==1){echo '<div class="badge badge-success">Active</div>';} else
-                                if($volunt['volunt_status']==2){echo '<div class="badge badge-danger">Not Active</div>';}
-                            ?>
-                            <hr width="15%" class="mt-1 mb-1">
-                            <i class="fas fa-phone text-danger"></i>&nbsp;
-                            <?=$volunt['volunt_phone'];?>
-                            &nbsp; | &nbsp;
-                            <i class="fas fa-envelope text-danger"></i>&nbsp;
-                            <?=$volunt['volunt_mail'];?>
-                        </p>
+                    <?php
+                        if($volunt['volunt_status']==1){echo '<div class="p-1 badge badge-success">Active</div>';} else
+                        if($volunt['volunt_status']==2){echo '<div class="p-1 badge badge-danger">Not Active</div>';}
+                    ?>
+                    <div class="text-info mt-2">
+                        <i class="fas fa-phone text-danger"></i>&nbsp;
+                        <?=$volunt['volunt_phone'];?>
+                        &nbsp; | &nbsp;
+                        <i class="fas fa-envelope text-danger"></i>&nbsp;
+                        <?=$volunt['volunt_mail'];?>
                     </div>
                 </div>
             </div>

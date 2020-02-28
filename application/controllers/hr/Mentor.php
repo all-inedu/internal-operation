@@ -8,9 +8,10 @@ class Mentor extends CI_Controller
         parent::__construct();
 
         date_default_timezone_set('Asia/Jakarta');
-
+        $this->load->library('bank');
         $this->load->model('bizdev/University_model','univ');
         $this->load->model('hr/Mentor_model','mt');
+
     }
 
     public function index(){
@@ -46,7 +47,7 @@ class Mentor extends CI_Controller
         if ($this->form_validation->run()==false){
             $data['mentor'] = $this->mt->showId($id);
             $data['univ'] = $this->univ->showAll();
-            $data['bank'] = ['BCA','BNI', 'BTN', 'DBS', 'Mandiri'];
+            $data['bank'] = $this->bank->showBank();
             $this->load->view('templates/h-io');
             $this->load->view('templates/s-hr');
             $this->load->view('hr/mentor/edit-mentor.php', $data);
