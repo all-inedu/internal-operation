@@ -48,8 +48,8 @@
                 <td class="text-center"><?=$v['volunt_phone']; ?></td>
                 <td class="text-center">
                     <?php
-                        if($v['volunt_status']==1){echo '<div class="badge badge-success">Active</div>';} else
-                        if($v['volunt_status']==2){echo '<div class="badge badge-danger">Not Active</div>';}
+                        if($v['volunt_status']==1){echo '<div class="p-2 badge badge-white shadow text-success">Active</div>';} else
+                        if($v['volunt_status']==2){echo '<div class="p-2 badge badge-white shadow text-danger">Not Active</div>';}
                     ?>
                 </td>
                 <td class="text-center"><?=$v['volunt_position']; ?></td>

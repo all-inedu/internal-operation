@@ -46,8 +46,8 @@
                 <td><?=$in['infl_phone'];?></td>
                 <td>
                     <?php 
-                        if($in['infl_status']==1){echo '<div class="badge badge-success">Active</div>';} else
-                        if($in['infl_status']==2){echo '<div class="badge badge-danger">Not Active</div>';}
+                        if($in['infl_status']==1){echo '<div class="p-2 badge badge-white shadow text-success">Active</div>';} else
+                        if($in['infl_status']==2){echo '<div class="p-2 badge badge-white shadow text-danger">Not Active</div>';}
                     ?>
                 </td>
                 <td><?=$in['infl_address'];?></td>

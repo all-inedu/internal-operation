@@ -57,8 +57,8 @@
                 <td class="text-center"><?=$e['editor_phone'];?></td>
                 <td class="text-center">
                     <?php 
-                    if($e['editor_status']==1){echo '<div class="badge badge-success p-2">Active</div>';} else
-                    if($e['editor_status']==2){echo '<div class="badge badge-danger p-2">Not Active</div>';} else {echo '<div class="badge badge-warning p-2">Potential</div>';}
+                    if($e['editor_status']==1){echo '<div class="p-2 badge badge-white shadow text-success">Active</div>';} else
+                    if($e['editor_status']==2){echo '<div class="p-2 badge badge-white shadow text-danger">Not Active</div>';} else {echo '<div class="badge badge-warning p-2">Potential</div>';}
                 ?>
                 </td>
                 <td class="text-center">

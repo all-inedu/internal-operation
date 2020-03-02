@@ -61,8 +61,8 @@
                 <td><?=$e['empl_phone'];?></td>
                 <td>
                     <?php
-                    if($e['empl_isactive']==1){echo '<div class="badge badge-success">Active</div>';} else
-                    if($e['empl_isactive']==2){echo '<div class="badge badge-danger">Not Active</div>';}
+                    if($e['empl_isactive']==1){echo '<div class="badge bg-white text-success shadow p-2">Active</div>';} else
+                    if($e['empl_isactive']==2){echo '<div class="badge bg-white text-danger shadow p-2">Not Active</div>';}
                     ?>
                 </td>
                 <td><?=$e['empl_address'];?></td>
