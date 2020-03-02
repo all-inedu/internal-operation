@@ -25,8 +25,8 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/school.png');?>" alt="client management" width="100%">
-                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                    <img src="<?=base_url('assets/img/sch.png');?>" alt="client management" width="60%">
+                    <div class="line" style="margin-top:-5px; margin-bottom:15px;"></div>
                     <h5>School Profile</h5>
                 </div>
             </div>
@@ -49,9 +49,9 @@
                             <div class="form-group">
                                 <label>School Name
                                 </label>
-                                <input name="schoolName" type="text" class="form-control form-control-sm"
+                                <input name="sch_name" type="text" class="form-control form-control-sm"
                                     placeholder="School Name">
-                                <?=form_error('schoolName', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('sch_name', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -59,12 +59,13 @@
                             <div class="form-group">
                                 <label>Type
                                 </label>
-                                <select name="schoolType" id="schoolType">
+                                <select name="sch_type" id="schoolType">
                                     <option data-placeholder="true"></option>
-                                    <option value="International">International</option>
-                                    <option value="National">National</option>
+                                    <?php foreach($type as $t): ?>
+                                    <option value="<?=$t;?>"><?=$t;?></option>
+                                    <?php endforeach;?>
                                 </select>
-                                <?=form_error('schoolType', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('sch_type', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -72,13 +73,13 @@
                             <div class="form-group">
                                 <label>Level
                                 </label>
-                                <select name="schoolLevel" id="schoolLevel">
+                                <select name="sch_level" id="schoolLevel">
                                     <option data-placeholder="true"></option>
-                                    <option value="Junior">Junior</option>
-                                    <option value="Elementary">Elementary</option>
-                                    <option value="Senior">Senior</option>
+                                    <?php foreach($level as $l): ?>
+                                    <option value="<?=$l;?>"><?=$l;?></option>
+                                    <?php endforeach;?>
                                 </select>
-                                <?=form_error('schoolLevel', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('sch_level', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -86,13 +87,13 @@
                             <div class="form-group">
                                 <label>Curriculum
                                 </label>
-                                <select name="schoolCurriculum" id="schoolCurriculum">
+                                <select name="sch_curriculum" id="schoolCurriculum">
                                     <option data-placeholder="true"></option>
-                                    <option value="National">National</option>
-                                    <option value="IB">IB</option>
-                                    <option value="A-Level">A-Level</option>
+                                    <?php foreach($curriculum as $c): ?>
+                                    <option value="<?=$c;?>"><?=$c;?></option>
+                                    <?php endforeach;?>
                                 </select>
-                                <?=form_error('schoolCurriculum', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('sch_curriculum', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -100,12 +101,12 @@
                             <div class="form-group">
                                 <label>Is Friendly?
                                 </label>
-                                <select name="isFriendly" id="isFriendly">
+                                <select name="sch_isfriendly" id="isFriendly">
                                     <option data-placeholder="true"></option>
                                     <option value="Yes">Yes</option>
                                     <option value="No">No</option>
                                 </select>
-                                <?=form_error('isFriendly', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('sch_isfriendly', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -113,9 +114,9 @@
                             <div class="form-group">
                                 <label>School Mail
                                 </label>
-                                <input name="schoolMail" type="text" class="form-control form-control-sm"
+                                <input name="sch_mail" type="text" class="form-control form-control-sm"
                                     placeholder="School Mail">
-                                <?=form_error('schoolMail', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('sch_mail', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -123,9 +124,9 @@
                             <div class="form-group">
                                 <label>Telephone
                                 </label>
-                                <input name="telephone" type="text" class="form-control form-control-sm"
+                                <input name="sch_phone" type="text" class="form-control form-control-sm"
                                     placeholder="Telephone">
-                                <?=form_error('telephone', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('sch_phone', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -133,8 +134,9 @@
                             <div class="form-group">
                                 <label>City
                                 </label>
-                                <input name="city" type="text" class="form-control form-control-sm" placeholder="City">
-                                <?=form_error('city', '<small class="text-danger">', '</small>');?>
+                                <input name="sch_city" type="text" class="form-control form-control-sm"
+                                    placeholder="City">
+                                <?=form_error('sch_city', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -142,13 +144,11 @@
                             <div class="form-group">
                                 <label>Location
                                 </label>
-                                <textarea name="location" class="form-control form-control-sm" placeholder="Location"
-                                    rows="4"></textarea>
-                                <?=form_error('location', '<small class="text-danger">', '</small>');?>
+                                <textarea name="sch_location" class="form-control form-control-sm"
+                                    placeholder="Location" rows="4"></textarea>
+                                <?=form_error('sch_location', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-
-
                     </div>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="row">
@@ -162,48 +162,49 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <small>Full Name</small>
-                                        <input type="text" name="teacherName[]" class="form-control form-control-sm"
-                                            placeholder="Name" rows="4">
-                                        <?=form_error('teacherName[]', '<small class="text-danger">', '</small>');?>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <small>E-mail</small>
-                                        <input type="text" name="teacherEmail[]" class="form-control form-control-sm"
-                                            placeholder="E-mail" rows="4">
-                                        <?=form_error('teacherEmail[]', '<small class="text-danger">', '</small>');?>
+                                        <input type="text" name="schdetail_fullname[]"
+                                            class="form-control form-control-sm" placeholder="Name" rows="4">
+                                        <?=form_error('schdetail_fullname[]', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="form-group">
+                                        <small>E-mail</small>
+                                        <input type="text" name="schdetail_email[]" class="form-control form-control-sm"
+                                            placeholder="E-mail" rows="4">
+                                        <?=form_error('schdetail_email[]', '<small class="text-danger">', '</small>');?>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
                                         <small>Linkedin</small>
-                                        <input type="text" name="teacherLinkedin[]" class="form-control form-control-sm"
-                                            placeholder="Linkedin" rows="4">
-                                        <?=form_error('teacherLinkedin[]', '<small class="text-danger">', '</small>');?>
+                                        <input type="text" name="schdetail_linkedin[]"
+                                            class="form-control form-control-sm" placeholder="Linkedin" rows="4">
+                                        <?=form_error('schdetail_linkedin[]', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <small>Phone Number</small>
-                                        <input type="text" name="teacherPhone[]" class="form-control form-control-sm"
+                                        <input type="text" name="schdetail_phone[]" class="form-control form-control-sm"
                                             placeholder="Phone Number" rows="4">
-                                        <?=form_error('teacherPhone[]', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('schdetail_phone[]', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <small>Status</small>
-                                        <select type="text" name="teacherStatus[]" class="form-control form-control-sm">
+                                        <select type="text" name="schdetail_position[]"
+                                            class="form-control form-control-sm">
                                             <option value="Principal">Principal</option>
                                             <option value="Counselor">Counselor</option>
-                                            <option value="Counselor">Teacher</option>
+                                            <option value="Teacher">Teacher</option>
                                         </select>
-                                        <?=form_error('teacherStatus[]', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('schdetail_position[]', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +216,6 @@
                         <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-save"></i>&nbsp;
                             Save changes</button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -267,37 +267,37 @@ $(document).ready(function() {
                 '<div class="col-md-3">' +
                 '<div class="form-group">' +
                 '<small>Full Name</small>' +
-                ' <input type="text" name="teacherName[]" class="form-control form-control-sm" placeholder="Name" rows="4">' +
+                ' <input type="text" name="schdetail_fullname[]" class="form-control form-control-sm" placeholder="Name" rows="4">' +
                 '</div>' +
                 '</div>' +
 
                 '<div class="col-md-2">' +
                 '<div class="form-group">' +
                 '<small>E-mail</small>' +
-                '<input type="text" name="teacherEmail[]" class="form-control form-control-sm" placeholder="E-mail" rows="4">' +
+                '<input type="text" name="schdetail_email[]" class="form-control form-control-sm" placeholder="E-mail" rows="4">' +
                 '</div>' +
                 '</div>' +
 
                 '<div class="col-md-3">' +
                 '<div class="form-group">' +
                 '<small>Linkedin</small>' +
-                '<input type="text" name="teacherLinkedin[]" class="form-control form-control-sm" placeholder="Linkedin" rows="4">' +
+                '<input type="text" name="schdetail_linkedin[]" class="form-control form-control-sm" placeholder="Linkedin" rows="4">' +
                 '</div>' +
                 '</div>' +
 
                 ' <div class="col-md-2">' +
                 '<div class="form-group">' +
                 '<small>Phone Number</small>' +
-                '<input type="text" name="teacherPhone[]" class="form-control form-control-sm" placeholder="Phone Number" rows="4">' +
+                '<input type="text" name="schdetail_phone[]" class="form-control form-control-sm" placeholder="Phone Number" rows="4">' +
                 '</div>' +
                 '</div>' +
 
                 '<div class="col-md-2">' +
                 '<div class="form-group">' +
                 '<small>Status</small>' +
-                '<select type="text" name="teacherStatus[]" class="form-control form-control-sm" placeholder="E-mail" rows="4">' +
+                '<select type="text" name="schdetail_position[]" class="form-control form-control-sm" placeholder="E-mail" rows="4">' +
                 '<option value="Counselor">Counselor</option>' +
-                '<option value="Counselor">Teacher</option>' +
+                '<option value="Teacher">Teacher</option>' +
                 '</select>' +
                 '</div>' +
                 '</div>' +

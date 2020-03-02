@@ -7,23 +7,14 @@ class Program extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
         date_default_timezone_set('Asia/Jakarta');
-
+        $this->load->library('programdata');
         $this->load->model('client/Program_model','program');
     }
 
     public function index(){
-        $data['mainProgram'] = ['Encrihment Program','Experiential Learning', 'Standardized Test',  'University & Schoolarship'];
-        $data['subEP'] = ['Academic Writing','Business and Management Tutoring','English IB',
-        'University Application Boot Camp','Workshop'];
-        $data['subEL'] = ['Fieldtrip','Internships & Volunteering','Left Brain Meets Right Brain','Science','Social Science'];
-        $data['subST'] = ['ACT','SAT'];
-        $data['subUS'] = ['Admission Consulting','Essay Guidance','Interview Preparation'];
-        $data['typeProg'] = ['B2B','B2B/B2C','B2C'];
-        $data['subProgram'] = array_merge($data['subEP'], $data['subEL'],  $data['subST'],  $data['subUS']);
+        $data = $this->programdata->show();
         $data['program'] = $this->program->showAll();
-
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-bizdev');
         $this->load->view('bizdev/program/index', $data);

@@ -25,19 +25,18 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/school.png');?>" alt="client management" width="100%">
-                    <h5 class="mt-3">School Name</h5>
+                    <img src="<?=base_url('assets/img/sch.png');?>" alt="client management" width="60%">
+                    <h5 class="mt-0"><?=$sch['sch_name'];?></h5>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                    <div class="text-info">
-                        <p><i class="fas fa-envelope text-danger"></i>&nbsp; student@gmail.com <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; 081231232xxx &nbsp; | &nbsp;
-                            <i class="fab fa-instagram text-danger"></i>&nbsp; @student</p>
+                    <div class="text-info mb-2">
+                        <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$sch['sch_mail'];?><br>
+                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$sch['sch_phone'];?> &nbsp;
                     </div>
-                    <a href="<?=base_url('bizdev/school/edit');?>" class="btn btn-sm btn-info m-1"><i
+                    <a href="<?=base_url('bizdev/school/edit/'.$sch['sch_id']);?>" class="btn btn-sm btn-info m-1"><i
                             class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
                     <a href="#" class="btn btn-sm btn-success m-1" data-toggle="modal"
                         data-target="#convertPotential"><i class="fas fa-retweet"></i>&nbsp;
-                        Convert</a>
+                        Add Program</a>
                 </div>
             </div>
         </div>
@@ -58,8 +57,8 @@
                         <div class="form-group">
                             <label>School Name
                             </label>
-                            <input name="schoolName" type="text" class="form-control form-control-sm"
-                                placeholder="School Name" disabled>
+                            <input name="sch_name" type="text" class="form-control form-control-sm"
+                                value="<?=$sch['sch_name'];?>" disabled>
                         </div>
                     </div>
 
@@ -67,10 +66,8 @@
                         <div class="form-group">
                             <label>Type
                             </label>
-                            <select name="schoolType" id="schoolType">
-                                <option data-placeholder="true"></option>
-                                <option value="International">International</option>
-                                <option value="National">National</option>
+                            <select name="sch_type" id="schoolType">
+                                <option><?=$sch['sch_type'];?></option>
                             </select>
 
                         </div>
@@ -80,11 +77,8 @@
                         <div class="form-group">
                             <label>Level
                             </label>
-                            <select name="schoolLevel" id="schoolLevel">
-                                <option data-placeholder="true"></option>
-                                <option value="Junior">Junior</option>
-                                <option value="Elementary">Elementary</option>
-                                <option value="Senior">Senior</option>
+                            <select name="sch_level" id="schoolLevel">
+                                <option><?=$sch['sch_level'];?></option>
                             </select>
 
                         </div>
@@ -94,11 +88,8 @@
                         <div class="form-group">
                             <label>Curriculum
                             </label>
-                            <select name="schoolCurriculum" id="schoolCurriculum">
-                                <option data-placeholder="true"></option>
-                                <option value="National">National</option>
-                                <option value="IB">IB</option>
-                                <option value="A-Level">A-Level</option>
+                            <select name="sch_curriculum" id="schoolCurriculum">
+                                <option><?=$sch['sch_curriculum'];?></option>
                             </select>
 
                         </div>
@@ -108,10 +99,8 @@
                         <div class="form-group">
                             <label>Is Friendly?
                             </label>
-                            <select name="isFriendly" id="isFriendly">
-                                <option data-placeholder="true"></option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
+                            <select name="sch_isfriendly" id="isFriendly">
+                                <option><?=$sch['sch_isfriendly'];?></option>
                             </select>
 
                         </div>
@@ -122,7 +111,7 @@
                             <label>School Mail
                             </label>
                             <input name="schoolMail" type="text" class="form-control form-control-sm"
-                                placeholder="School Mail" disabled>
+                                value="<?=$sch['sch_mail'];?>" disabled>
 
                         </div>
                     </div>
@@ -132,7 +121,7 @@
                             <label>Telephone
                             </label>
                             <input name="telephone" type="text" class="form-control form-control-sm"
-                                placeholder="Telephone" disabled>
+                                value="<?=$sch['sch_phone'];?>" disabled>
 
                         </div>
                     </div>
@@ -141,8 +130,8 @@
                         <div class="form-group">
                             <label>City
                             </label>
-                            <input name="city" type="text" class="form-control form-control-sm" placeholder="City"
-                                disabled>
+                            <input name="city" type="text" class="form-control form-control-sm"
+                                value="<?=$sch['sch_city'];?>" disabled>
 
                         </div>
                     </div>
@@ -151,8 +140,8 @@
                         <div class="form-group">
                             <label>Location
                             </label>
-                            <textarea name="location" class="form-control form-control-sm" placeholder="Location"
-                                rows="4" disabled></textarea>
+                            <textarea name="sch_location" class="form-control form-control-sm" placeholder="Location"
+                                rows="4" disabled><?=$sch['sch_location'];?></textarea>
 
                         </div>
                     </div>
@@ -162,30 +151,32 @@
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="row">
                     <div class="col-md-12">
-                        <label class="font-weight-bold">Teacher Contact Person</label>
+                        <label class="font-weight-bold">Teachers Contact :</label>
                     </div>
                     <div class="container" id="teacher">
                         <div class="row p-0">
                             <div class="col-md-12">
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">Full Name</th>
-                                                <th class="text-center">E-mail</th>
-                                                <th class="text-center">Linkedin</th>
-                                                <th class="text-center">Phone Number</th>
-                                                <th class="text-center">Status</th>
+                                        <thead class="bg-dark text-white">
+                                            <tr class="text-center">
+                                                <th>Full Name</th>
+                                                <th>E-mail</th>
+                                                <th>Linkedin</th>
+                                                <th>Phone Number</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="text-center">Full Name</td>
-                                                <td class="text-center">E-mail</td>
-                                                <td class="text-center">Linkedin</td>
-                                                <td class="text-center">Phone Number</td>
-                                                <td class="text-center">Principal</td>
+                                            <?php foreach($sch_detail as $s): ?>
+                                            <tr class="text-center">
+                                                <td><?=$s['schdetail_fullname'];?></td>
+                                                <td><?=$s['schdetail_email'];?></td>
+                                                <td><?=$s['schdetail_linkedin'];?></td>
+                                                <td><?=$s['schdetail_phone'];?></td>
+                                                <td><?=$s['schdetail_position'];?></td>
                                             </tr>
+                                            <?php endforeach;?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -204,7 +195,7 @@
         <form action="convertPotential" method="post" id="convert">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle">Convert to Potential</h5>
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Add Program</h5>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -214,10 +205,10 @@
                                 </label>
                                 <select id="programName" name="programName">
                                     <option data-placeholder="true"></option>
-                                    <option value="1">Admission Advisory</option>
-                                    <option value="2">SAT Prep</option>
-                                    <option value="3">ACT Prep</option>
-                                    <option value="4">Experiential Learning</option>
+                                    <?php foreach($program as $p): ?>
+                                    <option value="<?=$p['prog_id'];?>"><?=$p['prog_sub'].' - '.$p['prog_program'];?>
+                                    </option>
+                                    <?php endforeach;?>
                                 </select>
                                 <?=form_error('programName', '<small class="text-danger">', '</small>');?>
                             </div>

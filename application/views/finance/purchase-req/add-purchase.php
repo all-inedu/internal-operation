@@ -26,7 +26,7 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/school.png');?>" alt="client management" width="100%">
+                    <img src="<?=base_url('assets/img/purchase.png');?>" alt="client management" width="50%">
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <h5>Purchase Request</h5>
                 </div>
@@ -125,8 +125,8 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <small>Amount</small>
-                                        <input type="number" name="purchasedtl_amount[]" class="form-control form-control-sm"
-                                            placeholder="0" rows="4" id="amount">
+                                        <input type="number" name="purchasedtl_amount[]"
+                                            class="form-control form-control-sm" placeholder="0" rows="4" id="amount">
                                         <?=form_error('purchasedtl_amount[]', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
@@ -134,8 +134,9 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <small>Price/Unit</small>
-                                        <input type="text" name="purchasedtl_priceperunit[]" class="form-control form-control-sm"
-                                            placeholder="Price/Unit" rows="4" id="price">
+                                        <input type="text" name="purchasedtl_priceperunit[]"
+                                            class="form-control form-control-sm" placeholder="Price/Unit" rows="4"
+                                            id="price">
                                         <?=form_error('purchasedtl_priceperunit[]', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
@@ -143,8 +144,9 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <small>Total</small>
-                                        <input readonly type="text" name="purchasedtl_total[]" class="form-control form-control-sm"
-                                            placeholder="Total" rows="4" id="total">
+                                        <input readonly type="text" name="purchasedtl_total[]"
+                                            class="form-control form-control-sm" placeholder="Total" rows="4"
+                                            id="total">
                                         <?=form_error('purchasedtl_total[]', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>

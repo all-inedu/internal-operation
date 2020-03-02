@@ -37,32 +37,36 @@
             </tr>
         </thead>
         <tbody>
-            <?php for($i=1;$i<=25;$i++) { ?>
-            <tr>
-                <td class="text-center align-middle"><?=$i;?></td>
-                <td class="text-center align-middle" style="cursor:pointer"
-                    onclick="window.location='<?=base_url('bizdev/school/view');?>'">Lorem Ipsum</td>
-                <td class="text-center align-middle">Lorem Ipsum</td>
-                <td class="text-center align-middle">Lorem Ipsum</td>
-                <td class="text-center align-middle">Lorem Ipsum</td>
-                <td class="text-center align-middle">
+            <?php $i=1; foreach($sch as $s): ?>
+            <tr class="text-center align-middle">
+                <td class="align-middle"><?=$i;?></td>
+                <td class="align-middle" style="cursor:pointer"
+                    onclick="window.location='<?=base_url('bizdev/school/view/'.$s['sch_id']);?>'">
+                    <?=$s['sch_name'];?>
+                </td>
+                <td class="align-middle"><?=$s['sch_type'];?></td>
+                <td class="align-middle"><?=$s['sch_level'];?></td>
+                <td class="align-middle"><?=$s['sch_curriculum'];?></td>
+                <td class="align-middle">
                     <!-- Friendly -->
+                    <?php if($s['sch_isfriendly']=="Yes") {?>
                     <span class="badge badge-pill badge-success p-1" data-toggle="tooltip" data-placement="top"
                         title="Friendly">
                         <i class="fas fa-smile-beam fa-2x"></i>
                     </span>
-
+                    <?php } else { ?>
                     <!-- Not Friendly -->
                     <span class="badge badge-pill badge-danger p-1" data-toggle="tooltip" data-placement="top"
                         title="Not">
                         <i class="fas fa-meh fa-2x"></i>
                     </span>
+                    <?php } ?>
 
                 </td>
-                <td class="text-center align-middle">Lorem Ipsum</td>
-                <td class="text-center align-middle">Lorem Ipsum</td>
+                <td class="align-middle"><?=$s['sch_city'];?></td>
+                <td class="align-middle"><?=$s['sch_location'];?></td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>

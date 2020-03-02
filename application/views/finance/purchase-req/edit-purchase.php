@@ -13,7 +13,7 @@
                     <li class="breadcrumb-item"><a href="<?=base_url('finance');?>">Home</a></li>
                     <li class="breadcrumb-item"><a href="<?=base_url('finance/purchase-request');?>">Purchase
                             Request</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">View</li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit</li>
                 </ol>
             </nav>
         </div>
@@ -26,7 +26,7 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/school.png');?>" alt="client management" width="100%">
+                    <img src="<?=base_url('assets/img/purchase.png');?>" alt="client management" width="50%">
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <h5>Purchase Request</h5>
                 </div>

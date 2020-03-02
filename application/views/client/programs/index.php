@@ -282,7 +282,7 @@ var ETP = new SlimSelect({
 
 function mainPrograms() {
     var p = $('#mainProgram').val();
-    if (p == 'Encrihment Program') {
+    if (p == 'Enrichment Program') {
         $('#subProgram').html('');
         $('#subProgram').html(
             '<?php foreach($subEP as $EP): ?>' +
@@ -303,7 +303,7 @@ function mainPrograms() {
             '<option value="<?=$ST;?>"><?=$ST;?></option>' +
             '<?php endforeach; ?>'
         );
-    } else if (p == 'University & Schoolarship') {
+    } else if (p == 'University & Scholarship') {
         $('#subProgram').html('');
         $('#subProgram').html(
             '<?php foreach($subUS as $US): ?>' +
@@ -315,7 +315,7 @@ function mainPrograms() {
 
 function editMP() {
     var p = $('#editMainPrograms').val();
-    if (p == 'Encrihment Program') {
+    if (p == 'Enrichment Program') {
         $('#editSubProgram').html('');
         $('#editSubProgram').html(
             '<?php foreach($subEP as $EP): ?>' +
@@ -336,7 +336,7 @@ function editMP() {
             '<option value="<?=$ST;?>"><?=$ST;?></option>' +
             '<?php endforeach; ?>'
         );
-    } else if (p == 'University & Schoolarship') {
+    } else if (p == 'University & Scholarship') {
         $('#editSubProgram').html('');
         $('#editSubProgram').html(
             '<?php foreach($subUS as $US): ?>' +

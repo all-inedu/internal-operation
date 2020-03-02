@@ -25,13 +25,12 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/school.png');?>" alt="client management" width="100%">
+                    <img src="<?=base_url('assets/img/sch.png');?>" alt="client management" width="60%">
+                    <h5 class="mt-0"><?=$sch['sch_name'];?></h5>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                    <h5>School Name</h5>
-                    <div class="text-info">
-                        <p><i class="fas fa-envelope text-danger"></i>&nbsp; student@gmail.com <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; 081231232xxx &nbsp; | &nbsp;
-                            <i class="fab fa-instagram text-danger"></i>&nbsp; @student</p>
+                    <div class="text-info mb-2">
+                        <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$sch['sch_mail'];?><br>
+                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$sch['sch_phone'];?> &nbsp;
                     </div>
                 </div>
             </div>
@@ -44,8 +43,8 @@
                 <form action="test.php" method="post" id="editSchool">
                     <h6><i class="fas fa-user"></i>&nbsp; &nbsp; School
                         <div class="float-right">
-                            <a href="<?=base_url('bizdev/school/view');?>" class="btn btn-sm btn-info"><i
-                                    class="fas fa-arrow-circle-left"></i></a>
+                            <a href="<?=base_url('bizdev/school/view/'.$sch['sch_id']);?>"
+                                class="btn btn-sm btn-info"><i class="fas fa-arrow-circle-left"></i></a>
                         </div>
                     </h6>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
@@ -54,9 +53,10 @@
                             <div class="form-group">
                                 <label>School Name
                                 </label>
-                                <input name="schoolName" type="text" class="form-control form-control-sm"
-                                    placeholder="School Name">
-                                <?=form_error('schoolName', '<small class="text-danger">', '</small>');?>
+                                <input name="sch_id" type="hidden" value="<?=$sch['sch_id'];?>">
+                                <input name="sch_name" type="text" class="form-control form-control-sm"
+                                    value="<?=$sch['sch_name'];?>">
+                                <?=form_error('sch_name', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -64,12 +64,12 @@
                             <div class="form-group">
                                 <label>Type
                                 </label>
-                                <select name="schoolType" id="schoolType">
-                                    <option data-placeholder="true"></option>
-                                    <option value="International">International</option>
-                                    <option value="National">National</option>
+                                <select name="sch_type" id="schoolType">
+                                    <?php foreach($type as $t): ?>
+                                    <option value="<?=$t;?>"><?=$t;?></option>
+                                    <?php endforeach;?>
                                 </select>
-                                <?=form_error('schoolType', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('sch_type', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -77,13 +77,12 @@
                             <div class="form-group">
                                 <label>Level
                                 </label>
-                                <select name="schoolLevel" id="schoolLevel">
-                                    <option data-placeholder="true"></option>
-                                    <option value="Junior">Junior</option>
-                                    <option value="Elementary">Elementary</option>
-                                    <option value="Senior">Senior</option>
+                                <select name="sch_level" id="schoolLevel">
+                                    <?php foreach($level as $l): ?>
+                                    <option value="<?=$l;?>"><?=$l;?></option>
+                                    <?php endforeach;?>
                                 </select>
-                                <?=form_error('schoolLevel', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('sch_level', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -91,13 +90,12 @@
                             <div class="form-group">
                                 <label>Curriculum
                                 </label>
-                                <select name="schoolCurriculum" id="schoolCurriculum">
-                                    <option data-placeholder="true"></option>
-                                    <option value="National">National</option>
-                                    <option value="IB">IB</option>
-                                    <option value="A-Level">A-Level</option>
+                                <select name="sch_curriculum" id="schoolCurriculum">
+                                    <?php foreach($curriculum as $c): ?>
+                                    <option value="<?=$c;?>"><?=$c;?></option>
+                                    <?php endforeach;?>
                                 </select>
-                                <?=form_error('schoolCurriculum', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('sch_curriculum', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -105,12 +103,12 @@
                             <div class="form-group">
                                 <label>Is Friendly?
                                 </label>
-                                <select name="isFriendly" id="isFriendly">
+                                <select name="sch_isfriendly" id="isFriendly">
                                     <option data-placeholder="true"></option>
                                     <option value="Yes">Yes</option>
                                     <option value="No">No</option>
                                 </select>
-                                <?=form_error('isFriendly', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('sch_isfriendly', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -118,9 +116,9 @@
                             <div class="form-group">
                                 <label>School Mail
                                 </label>
-                                <input name="schoolMail" type="text" class="form-control form-control-sm"
-                                    placeholder="School Mail">
-                                <?=form_error('schoolMail', '<small class="text-danger">', '</small>');?>
+                                <input name="sch_mail" type="text" class="form-control form-control-sm"
+                                    value="<?=$sch['sch_mail'];?>">
+                                <?=form_error('sch_mail', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -128,9 +126,9 @@
                             <div class="form-group">
                                 <label>Telephone
                                 </label>
-                                <input name="telephone" type="text" class="form-control form-control-sm"
-                                    placeholder="Telephone">
-                                <?=form_error('telephone', '<small class="text-danger">', '</small>');?>
+                                <input name="sch_phone" type="text" class="form-control form-control-sm"
+                                    value="<?=$sch['sch_phone'];?>">
+                                <?=form_error('sch_phone', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -138,8 +136,9 @@
                             <div class="form-group">
                                 <label>City
                                 </label>
-                                <input name="city" type="text" class="form-control form-control-sm" placeholder="City">
-                                <?=form_error('city', '<small class="text-danger">', '</small>');?>
+                                <input name="sch_city" type="text" class="form-control form-control-sm"
+                                    value="<?=$sch['sch_city'];?>">
+                                <?=form_error('sch_city', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -147,9 +146,9 @@
                             <div class="form-group">
                                 <label>Location
                                 </label>
-                                <textarea name="location" class="form-control form-control-sm" placeholder="Location"
-                                    rows="4"></textarea>
-                                <?=form_error('location', '<small class="text-danger">', '</small>');?>
+                                <textarea name="sch_location" class="form-control form-control-sm"
+                                    rows="4"><?=$sch['sch_location'];?></textarea>
+                                <?=form_error('sch_location', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                     </div>
@@ -172,31 +171,35 @@
                             <div class="col-md-12">
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">Full Name</th>
-                                                <th class="text-center">E-mail</th>
-                                                <th class="text-center">Linkedin</th>
-                                                <th class="text-center">Phone Number</th>
-                                                <th class="text-center">Status</th>
-                                                <th class="text-center">Action</th>
+                                        <thead class="bg-dark text-white">
+                                            <tr class="text-center">
+                                                <th>Full Name</th>
+                                                <th>E-mail</th>
+                                                <th>Linkedin</th>
+                                                <th>Phone Number</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="text-center">Full Name</td>
-                                                <td class="text-center">E-mail</td>
-                                                <td class="text-center">Linkedin</td>
-                                                <td class="text-center">Phone Number</td>
-                                                <td class="text-center">Principal</td>
+                                            <?php foreach($sch_detail as $s): ?>
+                                            <tr class="text-center">
+                                                <td><?=$s['schdetail_fullname'];?></td>
+                                                <td><?=$s['schdetail_email'];?></td>
+                                                <td><?=$s['schdetail_linkedin'];?></td>
+                                                <td><?=$s['schdetail_phone'];?></td>
+                                                <td><?=$s['schdetail_position'];?></td>
                                                 <td class="text-center">
                                                     <button class="btn btn-sm btn-info" title="Edit" data-toggle="modal"
-                                                        data-target="#editTeacher" onclick="editTeacher('1')"><i
+                                                        data-target="#editTeacher"
+                                                        onclick="editTeacherId('<?=$s['schdetail_id'];?>')"><i
                                                             class="fas fa-edit"></i></button>
-                                                    <a href="#" class="btn btn-sm btn-danger delete-button"
+                                                    <a href="<?=base_url('bizdev/school/deleteDetail/'.$s['schdetail_id'].'/'.$s['sch_id']);?>"
+                                                        class="btn btn-sm btn-danger delete-button"
                                                         data-message="teacher" title="Delete"><i
                                                             class="fas fa-trash"></i></a></td>
                                             </tr>
+                                            <?php endforeach;?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -212,7 +215,7 @@
 <!-- Add Modal -->
 <div class="modal fade" id="addTeacher" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <form action="addTeacher" method="post" id="addTeacher">
+        <form action="<?=base_url('bizdev/school/saveDetail');?>" method="post" name="addTeacher">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Add Teacher</h5>
@@ -222,48 +225,49 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Teacher Name</label>
-                                <input name="teacherName" type="text" class="form-control form-control-sm"
+                                <input name="sch_id" type="hidden" value="<?=$sch['sch_id'];?>">
+                                <input name="schdetail_fullname" type="text" class="form-control form-control-sm"
                                     placeholder="Teacher Name">
-                                <?=form_error('teacherName', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('schdetail_fullname', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>E-mail</label>
-                                <input name="teacherEmail" type="text" class="form-control form-control-sm"
+                                <input name="schdetail_email" type="text" class="form-control form-control-sm"
                                     placeholder="Teacher Mail">
-                                <?=form_error('teacherEmail', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('schdetail_email', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Linkedin</label>
-                                <input name="teacherLinkedin" type="text" class="form-control form-control-sm"
+                                <input name="schdetail_linkedin" type="text" class="form-control form-control-sm"
                                     placeholder="Teacher Linkedin">
-                                <?=form_error('teacherLinkedin', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('schdetail_linkedin', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input name="teacherPhone" type="text" class="form-control form-control-sm"
+                                <input name="schdetail_phone" type="text" class="form-control form-control-sm"
                                     placeholder="Phone Number">
-                                <?=form_error('teacherPhone', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('schdetail_phone', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Status</label>
-                                <select type="text" name="teacherStatus" class="form-control form-control-sm">
-                                    <option value="Counselor">Counselor</option>
-                                    <option value="Counselor">Teacher</option>
+                                <select type="text" name="schdetail_position" class="form-control form-control-sm">
                                     <option value="Principal">Principal</option>
+                                    <option value="Counselor">Counselor</option>
+                                    <option value="Teacher">Teacher</option>
                                 </select>
-                                <?=form_error('teacherStatus', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('schdetail_position', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                     </div>
@@ -281,7 +285,7 @@
 <!-- Edut Modal -->
 <div class="modal fade" id="editTeacher" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <form action="editTeacher.php" method="post" id="editTeacher">
+        <form action="<?=base_url('bizdev/school/updateDetail');?>" method="post" name="editTeacher">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Teacher</h5>
@@ -291,48 +295,51 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Teacher Name</label>
-                                <input name="teacherName" type="text" class="form-control form-control-sm"
-                                    placeholder="Teacher Name">
-                                <?=form_error('teacherName', '<small class="text-danger">', '</small>');?>
+                                <input name="schdetail_id" type="hidden" id="schdetail_id">
+                                <input name="sch_id" type="hidden" id="sch_id">
+                                <input name="schdetail_fullname" type="text" class="form-control form-control-sm"
+                                    id="schdetail_fullname">
+                                <?=form_error('schdetail_fullname', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>E-mail</label>
-                                <input name="teacherEmail" type="text" class="form-control form-control-sm"
-                                    placeholder="Teacher Mail">
-                                <?=form_error('teacherEmail', '<small class="text-danger">', '</small>');?>
+                                <input name="schdetail_email" type="text" class="form-control form-control-sm"
+                                    id="schdetail_email">
+                                <?=form_error('schdetail_email', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Linkedin</label>
-                                <input name="teacherLinkedin" type="text" class="form-control form-control-sm"
-                                    placeholder="Teacher Linkedin">
-                                <?=form_error('teacherLinkedin', '<small class="text-danger">', '</small>');?>
+                                <input name="schdetail_linkedin" type="text" class="form-control form-control-sm"
+                                    id="schdetail_linkedin">
+                                <?=form_error('schdetail_linkedin', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input name="teacherPhone" type="text" class="form-control form-control-sm"
-                                    placeholder="Phone Number">
-                                <?=form_error('teacherPhone', '<small class="text-danger">', '</small>');?>
+                                <input name="schdetail_phone" type="text" class="form-control form-control-sm"
+                                    id="schdetail_phone">
+                                <?=form_error('schdetail_phone', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Status</label>
-                                <select type="text" name="teacherStatus" class="form-control form-control-sm">
-                                    <option value="Counselor">Counselor</option>
-                                    <option value="Counselor">Teacher</option>
+                                <select type="text" name="schdetail_position" class="form-control form-control-sm"
+                                    id="schdetail_position">
                                     <option value="Principal">Principal</option>
+                                    <option value="Counselor">Counselor</option>
+                                    <option value="Teacher">Teacher</option>
                                 </select>
-                                <?=form_error('teacherStatus', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('schdetail_position', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                     </div>
@@ -346,39 +353,53 @@
         </form>
     </div>
 </div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
-new SlimSelect({
+let st = new SlimSelect({
     select: '#schoolType',
-    placeholder: 'Select school type',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
+st.set('<?=$sch["sch_type"];?>');
 
-new SlimSelect({
+let slevel = new SlimSelect({
     select: '#schoolLevel',
-    placeholder: 'Select school level',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
+slevel.set('<?=$sch["sch_level"];?>');
 
-new SlimSelect({
+let sc = new SlimSelect({
     select: '#schoolCurriculum',
-    placeholder: 'Select school curriculum',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
+sc.set('<?=$sch["sch_curriculum"];?>');
 
-new SlimSelect({
+let ifriendly = new SlimSelect({
     select: '#isFriendly',
-    placeholder: 'Select school curriculum',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
+ifriendly.set('<?=$sch["sch_isfriendly"];?>')
 
-function editTeacher(x) {
-    console.log(x);
+
+function editTeacherId(x) {
+    $.ajax({
+        type: 'post',
+        url: '<?=base_url("bizdev/school/showDetailId/");?>' + x,
+        dataType: 'json',
+        success: function(data) {
+            // console.log(data);
+            $('#schdetail_id').val(data.schdetail_id);
+            $('#sch_id').val(data.sch_id);
+            $('#schdetail_fullname').val(data.schdetail_fullname);
+            $('#schdetail_email').val(data.schdetail_email);
+            $('#schdetail_linkedin').val(data.schdetail_linkedin);
+            $('#schdetail_position').val(data.schdetail_position);
+            $('#schdetail_phone').val(data.schdetail_phone);
+        }
+    });
 }
 </script>

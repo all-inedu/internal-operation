@@ -25,7 +25,7 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/school.png');?>" alt="client management" width="100%">
+                    <img src="<?=base_url('assets/img/purchase.png');?>" alt="client management" width="50%">
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <h5>Purchase Request</h5>
                     <a href="<?=base_url('finance/purchase-request/edit/'.$purchase['purchase_id']);?>"
