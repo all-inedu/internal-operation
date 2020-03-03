@@ -22,6 +22,11 @@
         href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-colvis-1.6.1/b-flash-1.6.1/b-html5-1.6.1/fc-3.3.0/fh-3.1.6/datatables.min.css" />
     <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
     <style>
+    .display tbody tr td,
+    .table tbody tr td {
+        vertical-align: middle;
+    }
+
     .dtr-title:after {
         content: " :";
     }

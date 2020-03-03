@@ -6,6 +6,20 @@ class Program_model extends CI_model
         return $this->db->get('tbl_prog')->result_array();
     }
 
+    public function showB2C() {
+        $list = ['B2C','B2B/B2C'];
+        $this->db->select('*');
+        $this->db->where_in('prog_type', $list); 
+        return $this->db->get('tbl_prog')->result_array();
+    }
+    
+    public function showB2B() {
+        $list = ['B2B','B2B/B2C'];
+        $this->db->select('*');
+        $this->db->where_in('prog_type', $list); 
+        return $this->db->get('tbl_prog')->result_array();
+    }
+
     public function showId($id){
         $this->db->select('*');
         $this->db->where('prog_id', $id); 

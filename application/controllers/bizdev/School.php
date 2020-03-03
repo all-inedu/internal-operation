@@ -83,7 +83,7 @@ class School extends CI_Controller
     public function view($id){
         $data['sch'] = $this->sch->showId($id);
         $data['sch_detail'] = $this->sch->showDetail($id);
-        $data['program'] = $this->prog->showAll();
+        $data['program'] = $this->prog->showB2C();
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-bizdev');
         $this->load->view('bizdev/school/view-school', $data);
@@ -149,11 +149,11 @@ class School extends CI_Controller
         $idDetail = $this->input->post('schdetail_id');
         $data = [
             'sch_id' => $id,
-            'schdetail_fullname' => $this->input->post('schdetail_fullname['.$i.']'),
-            'schdetail_email' => $this->input->post('schdetail_email['.$i.']'),
-            'schdetail_linkedin' => $this->input->post('schdetail_linkedin['.$i.']'),
-            'schdetail_position' => $this->input->post('schdetail_position['.$i.']'),
-            'schdetail_phone' => $this->input->post('schdetail_phone['.$i.']'),
+            'schdetail_fullname' => $this->input->post('schdetail_fullname'),
+            'schdetail_email' => $this->input->post('schdetail_email'),
+            'schdetail_linkedin' => $this->input->post('schdetail_linkedin'),
+            'schdetail_position' => $this->input->post('schdetail_position'),
+            'schdetail_phone' => $this->input->post('schdetail_phone'),
         ];  
 
         $this->sch->updateDetail($data, $idDetail);

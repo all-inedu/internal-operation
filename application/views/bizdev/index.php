@@ -18,8 +18,8 @@
                 <div class="card mb-3 shadow">
                     <div class="row no-gutters">
                         <div class="col-md-4 text-center align-middle p-4">
-                            <img src="<?=base_url('assets/img/School.png');?>" alt="approached" width="30%"
-                                style="top:15%; position:relative;">
+                            <img src="<?=base_url('assets/img/sch.png');?>" alt="school" width="70%"
+                                style="margin:-25px;">
                         </div>
                         <div class="col-md-8 bg-primary text-white shadow align-middle">
                             <div class="card-body">

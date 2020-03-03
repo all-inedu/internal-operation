@@ -26,7 +26,7 @@
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
             <tr>
-                <th width="1%">No</th>
+                <th width="1%">#</th>
                 <th width="5%" class="text-center bg-primary text-white">Corporate Name</th>
                 <th width="5%" class="text-center">Industry</th>
                 <th width="5%" class="text-center">E-mail</th>
@@ -38,23 +38,27 @@
             </tr>
         </thead>
         <tbody>
-            <?php for($i=1;$i<=25;$i++) { ?>
-            <tr>
-                <td class="text-center"><?=$i;?></td>
-                <td class="text-center" style="cursor:pointer"
-                    onclick="window.location='<?=base_url('bizdev/corporate/view');?>'">Lorem Ipsum</td>
-                <td class="text-center">Lorem Ipsum</td>
-                <td class="text-center">Lorem Ipsum</td>
-                <td class="text-center">Lorem Ipsum</td>
-                <td class="text-center">Lorem Ipsum</td>
-                <td class="text-center">Lorem Ipsum</td>
-                <td class="text-center">Lorem Ipsum</td>
-                <td class="text-center">
-                    <div class="badge bg-white shadow text-success p-2">Approach</div>
+            <?php $i=1; foreach($corp as $c): ?>
+            <tr class="text-center">
+                <td><?=$i;?></td>
+                <td style="cursor:pointer"
+                    onclick="window.location='<?=base_url('bizdev/corporate/view/'.$c['corp_id']);?>'">
+                    <?=$c['corp_name'];?></td>
+                <td><?=$c['corp_industry'];?></td>
+                <td><?=$c['corp_mail'];?></td>
+                <td><?=$c['corp_phone'];?></td>
+                <td><?=$c['corp_insta'];?></td>
+                <td><?=$c['corp_region'];?></td>
+                <td><?=$c['corp_address'];?></td>
+                <td>
+                    <?php if($c['corp_status']!=0){ ?>
+                    <div class="badge bg-white shadow text-success p-2">Approached</div>
+                    <?php } else { ?>
                     <div class="badge bg-white shadow text-danger p-2">Not Yet</div>
+                    <?php } ?>
                 </td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>
