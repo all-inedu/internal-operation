@@ -9,13 +9,13 @@ class Employee_model extends CI_model
     }
 
     public function showActive() {
-        $this->db->select('empl_id');
+        $this->db->select('*');
         $this->db->where('empl_isactive', 1); 
         return $this->db->get('tbl_empl')->result_array();
     }
 
     public function showNotActive() {
-        $this->db->select('empl_id');
+        $this->db->select('*');
         $this->db->where('empl_isactive', 2); 
         return $this->db->get('tbl_empl')->result_array();
     }

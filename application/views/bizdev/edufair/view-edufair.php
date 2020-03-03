@@ -21,18 +21,19 @@
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
 
 <div class="row">
-    <div class="col-md-4 mb-3">
+    <div class="col-md-4 mb-1">
         <div class="card shadow card-sticky" style="background:#FAFAFA;">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/edufair.jpg');?>" alt="client management" width="80%">
+                    <img src="<?=base_url('assets/img/edufair.jpg');?>" alt="client management" width="50%">
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                    <h5>Organizer</h5>
-                    <div class="text-info">
-                        <p><i class="fas fa-envelope text-danger"></i>&nbsp; pic@gmail.com <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; 081231232xxx
+                    <h5><?=$eduf['eduf_organizer'];?></h5>
+                    <div class="text-info mb-2">
+                        <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$eduf['eduf_picmail'];?>
+                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$eduf['eduf_picphone'];?>
                     </div>
-                    <a href="<?=base_url('bizdev/edufair/edit/');?>" class="btn btn-sm btn-info"><i
+                    <a href="<?=base_url('bizdev/edufair/edit/'.$eduf['eduf_id']);?>" class="btn btn-sm btn-info"><i
                             class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
                 </div>
             </div>
@@ -51,114 +52,121 @@
                     </h6>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-1">
                             <i class="fas fa-users fa-fw"></i>&nbsp; Organizer :
                         </div>
-                        <div class="col-md-8 mb-3">
-                            Organizer Name
-                            <hr class="mb-0">
+                        <div class="col-md-8 mb-1">
+                            <?=$eduf['eduf_organizer'];?>
+                            <hr class="mt-1">
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-1">
+                            <i class="fas fa-map-marker fa-fw"></i>&nbsp; Place :
+                        </div>
+                        <div class="col-md-8 mb-1">
+                            <?=$eduf['eduf_place'];?>
+                            <hr class="mt-1">
+                        </div>
+                        <div class="col-md-4 mb-1">
                             <i class="fas fa-id-card fa-fw"></i>&nbsp; PIC Name :
                         </div>
-                        <div class="col-md-8 mb-3">
-                            PIC Name
-                            <hr class="mb-0">
+                        <div class="col-md-8 mb-1">
+                            <?=$eduf['eduf_picname'];?>
+                            <hr class="mt-1">
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-1">
                             <i class="fas fa-mobile-alt fa-fw"></i>&nbsp; PIC Contact :
                         </div>
-                        <div class="col-md-8 mb-3">
-                            08231923xxx
-                            <hr class="mb-0">
+                        <div class="col-md-8 mb-1">
+                            <?=$eduf['eduf_picphone'];?>
+                            <hr class="mt-1">
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-1">
                             <i class="fas fa-envelope fa-fw"></i>&nbsp; PIC Email :
                         </div>
-                        <div class="col-md-8 mb-3">
-                            pic@gmail.com
-                            <hr class="mb-0">
+                        <div class="col-md-8 mb-1">
+                            <?=$eduf['eduf_picmail'];?>
+                            <hr class="mt-1">
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-1">
                             <i class="fas fa-calendar fa-fw"></i>&nbsp; Discuss :
                         </div>
-                        <div class="col-md-8 mb-3">
+                        <div class="col-md-8 mb-1">
                             <div class="row">
                                 <div class="col-md-4">
                                     <small>First Discuss :</small><br>
-                                    03 January 2020
+                                    <?php if($eduf['eduf_firstdisdate']) {
+                                    echo date('d F Y', strtotime($eduf['eduf_firstdisdate']));}
+                                    ?>
+                                    <hr class="mt-1">
                                 </div>
                                 <div class="col-md-4">
                                     <small>Last Discuss :</small><br>
-                                    05 January 2020
+                                    <?php if($eduf['eduf_lastdisdate']) {
+                                    echo date('d F Y', strtotime($eduf['eduf_lastdisdate']));}
+                                    ?>
+                                    <hr class="mt-1">
                                 </div>
                             </div>
-                            <hr class="mb-0">
+
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-1">
                             <i class="fas fa-calendar-plus fa-fw"></i>&nbsp; Event :
                         </div>
-                        <div class="col-md-8 mb-3">
+                        <div class="col-md-8 mb-1">
                             <div class="row">
                                 <div class="col-md-4">
                                     <small>Start Event :</small><br>
-                                    23 February 2020
+                                    <?php if($eduf['eduf_eventstartdate']) {
+                                    echo date('d F Y', strtotime($eduf['eduf_eventstartdate']));} else {
+                                        ?>
+                                    <div class="text-danger">Not Available</div>
+                                    <?php } ?>
+                                    <hr class="mt-1">
                                 </div>
                                 <div class="col-md-4">
                                     <small>End Event :</small><br>
-                                    25 February 2020
+                                    <?php if($eduf['eduf_eventenddate']) {
+                                    echo date('d F Y', strtotime($eduf['eduf_eventenddate'])); } else {
+                                    ?>
+                                    <div class="text-danger">Not Available</div>
+                                    <?php } ?>
+                                    <hr class="mt-1">
                                 </div>
                             </div>
-                            <hr class="mb-0">
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-1">
                             <i class="fas fa-sticky-note fa-fw"></i>&nbsp; Notes :
                         </div>
-                        <div class="col-md-8 mb-3">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                            <hr class="mb-0">
+                        <div class="col-md-8 mb-1">
+                            <?php if($eduf['eduf_notes']){ ?>
+                            <?=$eduf['eduf_notes'];?>
+                            <?php } else { ?>
+                            <div class="text-danger">Not Available</div>
+                            <?php } ?>
+                            <hr class="mt-1">
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-1">
                             <i class="fas fa-question-circle fa-fw"></i>&nbsp; Status :
                         </div>
                         <div class="col-md-8 mb-3">
-                            <div class="badge badge-danger p-1">Denied</div>
-                            <div class="badge badge-warning p-1">Pending</div>
-                            <div class="badge badge-success p-1">Fix</div>
-                            <hr class="mb-0">
+                            <?php if($eduf['eduf_status']==0){ ?>
+                            <div class="badge badge-warning p-2 shadow text-muted">Pending</div>
+                            <?php } else if($eduf['eduf_status']==1) { ?>
+                            <div class="badge badge-light p-2 shadow text-success">Success</div>
+                            <?php } else { ?>
+                            <div class="badge badge-light p-2 shadow text-danger">Denied</div>
+                            <?php } ?>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-1">
                             <i class="fas fa-users-cog fa-fw"></i>&nbsp; PIC All-In Eduspace :
                         </div>
-                        <div class="col-md-8 mb-3">
-                            Anggi Prastiwi <br>
-                            Rizka <br>
-                            <hr class="mb-0">
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <i class="fas fa-clipboard fa-fw"></i>&nbsp; Review :
-                        </div>
-                        <div class="col-md-8 mb-3">
-                            Anggi : <br>
-                            <label>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                Ipsum
-                                has
-                                been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                                took a
-                                galley of type and scrambled it to make a type specimen book. It has survived not only
-                                five
-                                centuries, but also the leap into electronic typesetting, remaining essentially
-                                unchanged.</label>
-                            <br>
-                            Rizka : <br>
-                            <label>It was popularised in the 1960s with the release of Letraset sheets containing Lorem
-                                Ipsum
-                                passages, and more recently with desktop publishing software like Aldus PageMaker
-                                including
-                                versions of Lorem Ipsum.</label>
+                        <div class="col-md-8 mb-1">
+                            <?php if($eduf['eduf_picallin']){ ?>
+                            <?=$eduf['eduf_picallin'];?>
+                            <?php } else { ?>
+                            <div class="text-danger">Not Available</div>
+                            <?php } ?>
+                            <hr class="mt-1">
                         </div>
                     </div>
                 </form>

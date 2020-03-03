@@ -24,47 +24,67 @@
 <div class="content">
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th width="1%">No</th>
-                <th width="5%" class="text-center">ID Edufair</th>
-                <th width="10%" class="text-center">Organizer</th>
-                <th width="10%" class="text-center">PIC Name</th>
-                <th width="10%" class="text-center">PIC Contact</th>
-                <th width="5%" class="text-center">PIC Email</th>
-                <th width="5%" class="text-center">First Discuss</th>
-                <th width="5%" class="text-center">Last Discuss</th>
-                <th width="5%" class="text-center">Start Event</th>
-                <th width="5%" class="text-center">End Event</th>
-                <th width="5%" class="text-center">Notes</th>
-                <th width="5%" class="text-center">Status</th>
-                <th width="5%" class="text-center">PIC Team</th>
-                <th width="5%" class="text-center">Review</th>
+                <th width="5%">Organizer Name</th>
+                <th width="10%">PIC Name</th>
+                <th width="10%">PIC Contact</th>
+                <th width="5%">PIC Email</th>
+                <th width="5%">First Discuss</th>
+                <th width="5%">Last Discuss</th>
+                <th width="5%">Start Event</th>
+                <th width="5%">End Event</th>
+                <th width="5%">Status</th>
+                <th width="5%">PIC Team</th>
             </tr>
         </thead>
         <tbody>
-            <?php for($i=1;$i<=25;$i++) { ?>
-            <tr>
+            <?php $i=1; foreach($eduf as $e): ?>
+            <tr class="text-center">
                 <td class="text-center"><?=$i;?></td>
                 <td class="text-center" style="cursor:pointer"
-                    onclick="window.location='<?=base_url('bizdev/edufair/view');?>'">EDF01</td>
-                <td>Organizer</td>
-                <td>PIC Name</td>
-                <td class="text-center">Contact</td>
-                <td class="text-center">Email</td>
-                <td class="text-center">03-01-2020</td>
-                <td class="text-center">05-01-2020</td>
-                <td class="text-center">23-02-2020</td>
-                <td class="text-center">24-02-2020</td>
-                <td class="text-center">Notes</td>
-                <td class="text-center">
-                    <div class="badge badge-danger p-1">Denied</div>
-                    <div class="badge badge-warning p-1">Pending</div>
-                    <div class="badge badge-success p-1">Fix</div>
+                    onclick="window.location='<?=base_url('bizdev/edufair/view/'.$e['eduf_id']);?>'">
+                    <?=$e['eduf_organizer'];?>
                 </td>
-                <td class="text-center">All-In Team</td>
-                <td class="text-center">Review</td>
+                <td><?=$e['eduf_picname'];?></td>
+                <td><?=$e['eduf_picphone'];?></td>
+                <td><?=$e['eduf_picmail'];?></td>
+                <td>
+                    <?php if($e['eduf_firstdisdate']) {
+                    echo date('d F Y', strtotime($e['eduf_firstdisdate']));
+                    }
+                    ?>
+                </td>
+                <td>
+                    <?php if($e['eduf_lastdisdate']) {
+                    echo date('d F Y', strtotime($e['eduf_lastdisdate']));
+                    }
+                    ?>
+                </td>
+                <td>
+                    <?php if($e['eduf_eventstartdate']) {
+                    echo date('d F Y', strtotime($e['eduf_eventstartdate']));
+                    }
+                    ?>
+                </td>
+                <td>
+                    <?php if($e['eduf_eventenddate']) {
+                    echo date('d F Y', strtotime($e['eduf_eventenddate']));
+                    }
+                    ?>
+                </td>
+                <td>
+                    <?php if($e['eduf_status']==0){ ?>
+                    <div class="badge badge-light p-2 shadow text-muted">Pending</div>
+                    <?php } else if($e['eduf_status']==1) { ?>
+                    <div class="badge badge-light p-2 shadow text-success">Success</div>
+                    <?php } else { ?>
+                    <div class="badge badge-light p-2 shadow text-danger">Denied</div>
+                    <?php } ?>
+                </td>
+                <td><?=$e['eduf_picallin'];?></td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>
@@ -76,66 +96,63 @@
             <div class="modal-header">
                 <h5 class="modal-title">Add Edufair</h5>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Organizer</label>
-                            <input name="organizer" type="text" class="form-control form-control-sm"
-                                placeholder="Organizer Name">
-                            <?=form_error('organizer', '<small class="text-danger">', '</small>');?>
+            <form action="" method="post">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Organizer</label>
+                                <input name="eduf_organizer" type="text" class="form-control form-control-sm"
+                                    placeholder="Organizer Name">
+                                <?=form_error('eduf_organizer', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>PIC Name</label>
-                            <input name="picName" type="text" class="form-control form-control-sm"
-                                placeholder="PIC Name">
-                            <?=form_error('picName', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Place</label>
+                                <textarea name="eduf_place" class="form-control form-control-sm"></textarea>
+                                <?=form_error('eduf_place', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>PIC Contact</label>
-                            <input name="picCOntact" type="text" class="form-control form-control-sm"
-                                placeholder="PIC Contact">
-                            <?=form_error('picCOntact', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>PIC Name</label>
+                                <input name="eduf_picname" type="text" class="form-control form-control-sm"
+                                    placeholder="PIC Name">
+                                <?=form_error('eduf_picname', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>PIC Email</label>
-                            <input name="picEmail" type="text" class="form-control form-control-sm"
-                                placeholder="PIC Email">
-                            <?=form_error('picEmail', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>PIC Contact</label>
+                                <input name="eduf_picphone" type="text" class="form-control form-control-sm"
+                                    placeholder="PIC Contact">
+                                <?=form_error('eduf_picphone', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>First Discuss</label>
-                            <input name="organizer" type="date" class="form-control form-control-sm"
-                                placeholder="ID Program">
-                            <?=form_error('organizer', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>PIC Email</label>
+                                <input name="eduf_picmail" type="text" class="form-control form-control-sm"
+                                    placeholder="PIC Email">
+                                <?=form_error('eduf_picmail', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Discuss</label>
+                                <input name="eduf_firstdisdate" type="date" class="form-control form-control-sm">
+                                <?=form_error('eduf_firstdisdate', '<small class="text-danger">', '</small>');?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                        class="fas fa-times-circle"></i>&nbsp; Close</button>
-                <button type="button" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                            class="fas fa-times-circle"></i>&nbsp; Close</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
-<script>
-new SlimSelect({
-    select: '#mainProgram',
-    placeholder: 'Select main program ',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-</script>
