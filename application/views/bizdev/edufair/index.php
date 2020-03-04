@@ -62,13 +62,13 @@
                     ?>
                 </td>
                 <td>
-                    <?php if($e['eduf_eventstartdate']) {
+                    <?php if($e['eduf_eventstartdate']!='0000-00-00 00:00:00') {
                     echo date('d F Y', strtotime($e['eduf_eventstartdate']));
                     }
                     ?>
                 </td>
                 <td>
-                    <?php if($e['eduf_eventenddate']) {
+                    <?php if($e['eduf_eventenddate']!='0000-00-00 00:00:00') {
                     echo date('d F Y', strtotime($e['eduf_eventenddate']));
                     }
                     ?>

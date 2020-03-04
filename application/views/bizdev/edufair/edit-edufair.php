@@ -44,8 +44,8 @@
                 <form action="" method="post">
                     <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Edufair
                         <div class="float-right">
-                            <a href="<?=base_url('bizdev/edufair/view/');?>" class="btn btn-sm btn-info"><i
-                                    class="fas fa-arrow-circle-left"></i></a>
+                            <a href="<?=base_url('bizdev/edufair/view/'.$eduf['eduf_id']);?>"
+                                class="btn btn-sm btn-info"><i class="fas fa-arrow-circle-left"></i></a>
                         </div>
                     </h6>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
@@ -139,7 +139,7 @@
                                         value="<?=date('Y-m-d\TH:i:s', strtotime($eduf['eduf_eventstartdate']));?>">
                                     <?php } else { ?>
                                     <input name="eduf_eventstartdate" type="datetime-local"
-                                        class="form-control form-control-sm" value="<?=date('Y-m-d\TH:i:s');?>">
+                                        class="form-control form-control-sm">
                                     <?php } ?>
                                     <?=form_error('eduf_eventstartdate', '<small class="text-danger">', '</small>');?>
                                 </div>
@@ -151,7 +151,7 @@
                                         value="<?=date('Y-m-d\TH:i:s', strtotime($eduf['eduf_eventenddate']));?>">
                                     <?php } else { ?>
                                     <input name="eduf_eventenddate" type="datetime-local"
-                                        class="form-control form-control-sm" value="<?=date('Y-m-d\TH:i:s');?>">
+                                        class="form-control form-control-sm">
                                     <?php } ?>
                                     <?=form_error('eduf_eventenddate', '<small class="text-danger">', '</small>');?>
                                 </div>
