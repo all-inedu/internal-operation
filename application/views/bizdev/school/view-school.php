@@ -22,7 +22,7 @@
 
 <div class="row">
     <div class="col-md-3 mb-2">
-        <div class="card shadow card-sticky">
+        <div class="card shadow">
             <div class="card-body">
                 <div class="text-center">
                     <img src="<?=base_url('assets/img/sch.png');?>" alt="client management" width="60%">
@@ -40,6 +40,43 @@
                 </div>
             </div>
         </div>
+
+        <?php if($sprog) { ?>
+        <div class="card shadow mt-2 card-sticky">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6>Program List : </h6>
+                        <div class="line" style="margin-top:-5px; margin-bottom:10px;"></div>
+                    </div>
+                    <div style="height:305px; overflow-x: hidden;">
+                        <?php foreach($sprog as $sp) : ?>
+                        <div class="col-md-12">
+                            <div class="bg-light border-bottom" style="margin:0px -20px; padding:10px 20px;">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <?=$sp['prog_program'];?> <br>
+                                        <small><b>
+                                                Status :
+                                                <?php if($sp['schprog_status']==0) { echo 'Pending'; } else?>
+                                                <?php if($sp['schprog_status']==1) { echo 'Success'; } else?>
+                                                <?php if($sp['schprog_status']==2) { echo 'Denied'; }?>
+                                            </b>
+                                        </small>
+                                    </div>
+                                    <div class="col-md-3 my-auto text-right">
+                                        <a href="<?=base_url('bizdev/school-program/view/'.$sp['schprog_id']);?>"
+                                            class="btn btn-sm btn-primary"><i class="fas fa-search"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
     </div>
 
     <div class="col-md-9">
@@ -192,7 +229,7 @@
 
 <div class="modal fade" id="convertPotential" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered  modal-dialog-scrollable" role="document">
-        <form action="convertPotential" method="post" id="convert">
+        <form action="<?=base_url('bizdev/school-program/save/'.$sch['sch_id']);?>" method="post" id="convert">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Add Program</h5>
@@ -203,41 +240,40 @@
                             <div class="form-group">
                                 <label>Program Name
                                 </label>
-                                <select id="programName" name="programName">
+                                <select id="programName" name="prog_id">
                                     <option data-placeholder="true"></option>
                                     <?php foreach($program as $p): ?>
                                     <option value="<?=$p['prog_id'];?>"><?=$p['prog_sub'].' - '.$p['prog_program'];?>
                                     </option>
                                     <?php endforeach;?>
                                 </select>
-                                <?=form_error('programName', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('prog_id', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>First Discuss</label>
-                                <input name="firstDiscuss" type="date" class="form-control form-control-sm"
+                                <input name="schprog_datefirstdis" type="date" class="form-control form-control-sm"
                                     placeholder="First Discuss">
-                                <?=form_error('firstDiscuss', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('schprog_datefirstdis', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Last Discuss</label>
-                                <input name="lastDiscuss" type="date" class="form-control form-control-sm"
+                                <input name="schprog_datelastdis" type="date" class="form-control form-control-sm"
                                     placeholder="Last Discuss" disabled>
-                                <?=form_error('lastDiscuss', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('schprog_datelastdis', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Notes</label>
-                                <textarea name="notes" class="form-control form-control-sm" rows="5"></textarea>
-                                <?=form_error('notes', '<small class="text-danger">', '</small>');?>
+                                <textarea name="schprog_notes" class="form-control form-control-sm" rows="5"></textarea>
+                                <?=form_error('schprog_notes', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                     </div>

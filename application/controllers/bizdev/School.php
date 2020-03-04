@@ -9,6 +9,7 @@ class School extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         $this->load->library('schooldata');
         $this->load->model('bizdev/School_model','sch');
+        $this->load->model('bizdev/SProgram_model','sprog');
         $this->load->model('client/Program_model','prog');
     }
 
@@ -83,7 +84,8 @@ class School extends CI_Controller
     public function view($id){
         $data['sch'] = $this->sch->showId($id);
         $data['sch_detail'] = $this->sch->showDetail($id);
-        $data['program'] = $this->prog->showB2C();
+        $data['program'] = $this->prog->showB2B();
+        $data['sprog'] = $this->sprog->showId($id);
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-bizdev');
         $this->load->view('bizdev/school/view-school', $data);

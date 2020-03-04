@@ -25,7 +25,9 @@
     <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
     <style>
     .display tbody tr td,
-    .table tbody tr td {
+    .display thead tr th,
+    .table tbody tr td,
+    .table thead tr th {
         vertical-align: middle;
     }
 
