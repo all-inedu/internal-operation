@@ -22,7 +22,7 @@
 
 <div class="row">
     <div class="col-md-4 mb-2">
-        <div class="card shadow card-sticky">
+        <div class="card shadow">
             <div class="card-body">
                 <div class="text-center">
                     <img src="<?=base_url('assets/img/corporate.png');?>" alt="client management" width="50%"
@@ -43,6 +43,43 @@
                 </div>
             </div>
         </div>
+
+        <?php if($cprog) { ?>
+        <div class="card shadow mt-2 card-sticky">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6>Program List : </h6>
+                        <div class="line" style="margin-top:-5px; margin-bottom:10px;"></div>
+                    </div>
+                    <div style="height:295px; width:100%; overflow-x: hidden;">
+                        <?php foreach($cprog as $cp) : ?>
+                        <div class="col-md-12">
+                            <div class="bg-light border-bottom" style="margin:0px -20px; padding:10px 20px;">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <?=$cp['prog_program'];?> <br>
+                                        <small><b>
+                                                Status :
+                                                <?php if($cp['corprog_status']==0) { echo 'Pending'; } else?>
+                                                <?php if($cp['corprog_status']==1) { echo 'Success'; } else?>
+                                                <?php if($cp['corprog_status']==2) { echo 'Denied'; }?>
+                                            </b>
+                                        </small>
+                                    </div>
+                                    <div class="col-md-3 my-auto text-right">
+                                        <a href="<?=base_url('bizdev/corporate-program/view/'.$cp['corprog_id']);?>"
+                                            class="btn btn-sm btn-primary"><i class="fas fa-search"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
     </div>
 
     <div class="col-md-8">
@@ -175,7 +212,8 @@
 
 <div class="modal fade" id="convertPotential" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered  modal-dialog-scrollable" role="document">
-        <form action="convertPotential" method="post" id="convert">
+        <form action="<?=base_url('bizdev/corporate-program/save/'.$corp['corp_id']);?>" method="post"
+            name="addProgram">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Add Program</h5>
@@ -186,26 +224,26 @@
                             <div class="form-group">
                                 <label>Program Name
                                 </label>
-                                <select id="programName" name="programName">
+                                <select id="programName" name="prog_id">
                                     <option data-placeholder="true"></option>
                                     <?php foreach($prog as $p): ?>
                                     <option value="<?=$p['prog_id'];?>"><?=$p['prog_sub'].' - '.$p['prog_program'];?>
                                     </option>
                                     <?php endforeach;?>
                                 </select>
-                                <?=form_error('programName', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('prog_id', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Is Corporate Scheme ?</label>
-                                <select id="corporateType" name="corporateType">
+                                <select id="corporateType" name="corprog_type">
                                     <option data-placeholder="true"></option>
                                     <option value="1">Yes</option>
                                     <option value="2">No</option>
                                 </select>
-                                <?=form_error('corporateType', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('corprog_type', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -213,26 +251,26 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>First Discuss</label>
-                                <input name="firstDiscuss" type="date" class="form-control form-control-sm"
+                                <input name="corprog_datefirstdiscuss" type="date" class="form-control form-control-sm"
                                     value="First Discuss">
-                                <?=form_error('firstDiscuss', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('corprog_datefirstdiscuss', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Last Discuss</label>
-                                <input name="lastDiscuss" type="date" class="form-control form-control-sm"
+                                <input name="corprog_datelastdiscuss" type="date" class="form-control form-control-sm"
                                     value="Last Discuss" disabled>
-                                <?=form_error('lastDiscuss', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('corprog_datelastdiscuss', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Notes</label>
-                                <textarea name="notes" class="form-control form-control-sm" rows="5"></textarea>
-                                <?=form_error('notes', '<small class="text-danger">', '</small>');?>
+                                <textarea name="corprog_notes" class="form-control form-control-sm" rows="5"></textarea>
+                                <?=form_error('corprog_notes', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                     </div>

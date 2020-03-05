@@ -27,39 +27,38 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/corporate.png');?>" alt="client management" width="80%"><br>
-
-                    <!-- Status Success -->
-                    <span class="badge badge-pill badge-success mt-3 p-1" data-toggle="tooltip" data-placement="top"
-                        title="Fix">
+                    <img src="<?=base_url('assets/img/corporate.png');?>" alt="client management" width="50%"
+                        class="mb-2"><br>
+                    <?php if($cprog['corprog_status']==1) { ?>
+                    <span class="badge badge-pill badge-success p-1" data-toggle="tooltip" data-placement="top"
+                        title="Success">
                         <i class="fas fa-check fa-2x"></i>
                     </span>
-
-                    <!-- Status Pending -->
-                    <span class="badge badge-pill badge-primary mt-3 p-1 text-white" data-toggle="tooltip"
+                    <?php } else if($cprog['corprog_status']==0) { ?>
+                    <span class="badge badge-pill badge-primary p-1 text-white" data-toggle="tooltip"
                         data-placement="top" title="Pending">
                         <i class="fas fa-clock fa-2x"></i>
                     </span>
-
-                    <!-- Status Denied -->
-                    <span class="badge badge-pill badge-danger mt-3 p-1 text-white" data-toggle="tooltip"
+                    <?php } else if($cprog['corprog_status']==2) { ?>
+                    <span class="badge badge-pill badge-danger p-1 text-white" data-toggle="tooltip"
                         data-placement="top" title="Denied">
                         <i class="fas fa-frown-open fa-2x"></i>
                     </span>
-
+                    <?php } ?>
 
                     <h5 class="align-middle mt-2">
-                        Corporate Name</h5>
-                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                    <div class="text-info">
-                        <p><i class="fas fa-envelope text-danger"></i>&nbsp; student@gmail.com <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; 081231232xxx &nbsp; | &nbsp;
-                            <i class="fab fa-instagram text-danger"></i>&nbsp; @student</p>
+                        <?=$cprog['corp_name'];?></h5>
+                    <div class="text-info mb-2">
+                        <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$cprog['corp_mail'];?> <br>
+                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$cprog['corp_phone'];?> &nbsp; | &nbsp;
+                        <i class="fab fa-instagram text-danger"></i>&nbsp; <?=$cprog['corp_insta'];?>
                     </div>
-                    <a href="<?=base_url('bizdev/corporate/view');?>" class="btn btn-sm btn-info m-1"><i
-                            class="fas fa-search"></i>&nbsp; Profile</a>
-                    <a href="<?=base_url('bizdev/corporate-program/edit');?>" class="btn btn-sm btn-primary m-1"><i
-                            class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
+                    <h6 style="font-size:14px;" class="text-primary mb-2"><?=$cprog['prog_program'];?></h6>
+                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                    <a href="<?=base_url('bizdev/corporate/view/'.$cprog['corp_id']);?>"
+                        class="btn btn-sm btn-info m-1"><i class="fas fa-search"></i>&nbsp; Profile</a>
+                    <a href="<?=base_url('bizdev/corporate-program/edit/'.$cprog['corprog_id']);?>"
+                        class="btn btn-sm btn-primary m-1"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
                 </div>
             </div>
         </div>
@@ -80,24 +79,26 @@
                         <label><i class="fas fa-tag text-muted"></i>&nbsp; Program Name :</label>
                     </div>
                     <div class="col-md-9 mb-2">
-                        <label>Admission Consultant</label>
+                        <?=$cprog['prog_program'];?>
                         <hr class="mt-1 mb-1">
                     </div>
 
                     <div class="col-md-3">
                         <label><i class="fas fa-question-circle text-muted"></i>&nbsp; Is Corporate Scheme ? :</label>
                     </div>
-                    <div class="col-md-9 mb-2">
-                        <label class="badge badge-success p-1">Yes</label>
-                        <label class="badge badge-danger p-1">No</label>
-                        <hr class="mt-1 mb-1">
+                    <div class="col-md-9 mb-3">
+                        <?php if($cprog['corprog_type']==1) { ?>
+                        <div class="badge badge-success p-1 pl-3 pr-3">Yes</div>
+                        <?php } else { ?>
+                        <div class="badge badge-danger p-1 pl-3 pr-3">No</div>
+                        <?php } ?>
                     </div>
 
                     <div class="col-md-3">
                         <label><i class="fas fa-calendar-alt text-muted"></i>&nbsp; First Discuss :</label>
                     </div>
                     <div class="col-md-9 mb-2">
-                        <label>23 January 2019</label>
+                        <?=date('d F Y', strtotime($cprog['corprog_datefirstdiscuss']));?>
                         <hr class="mt-1 mb-1">
                     </div>
 
@@ -105,7 +106,7 @@
                         <label><i class="fas fa-calendar text-muted"></i>&nbsp; Last Discuss :</label>
                     </div>
                     <div class="col-md-9 mb-2">
-                        <label>24 January 2019</label>
+                        <?=date('d F Y', strtotime($cprog['corprog_datelastdiscuss']));?>
                         <hr class="mt-1 mb-1">
                     </div>
 
@@ -113,52 +114,44 @@
                         <label><i class="far fa-sticky-note text-muted"></i>&nbsp; Notes :</label>
                     </div>
                     <div class="col-md-9 mb-2">
-                        <label>What is Lorem Ipsum?
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                            passages, and more recently with desktop publishing software like Aldus PageMaker including
-                            versions of Lorem Ipsum.</label>
+                        <?=$cprog['corprog_notes'];?>
+                        <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     </div>
 
                 </div>
 
-                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                <?php if($cprog['corprog_status']==1) { ?>
                 <div class="row">
-                    <div class="col-md-12">
-                        <table class="table table-bordered">
-                            <thead class="bg-dark text-white">
-                                <tr>
-                                    <th colspan=3 class="text-center">Attachment</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="text-center">
-                                    <td><label class="font-weight-bold"> MoU 1 </label>
-                                        <a href="#" class="text-primary pl-2" data-toggle="tooltip" data-placement="top"
-                                            title="Download">
-                                            <i class="fas fa-file-download"></i>
-                                        </a>
-                                    </td>
-                                    <td><label class="font-weight-bold"> MoU 2 </label>
-                                        <a href="#" class="text-primary pl-2" data-toggle="tooltip" data-placement="top"
-                                            title="Download">
-                                            <i class="fas fa-file-download"></i>
-                                        </a>
-                                    </td>
-                                    <td><label class="font-weight-bold"> Others </label>
-                                        <a href="#" class="text-primary pl-2" data-toggle="tooltip" data-placement="top"
-                                            title="Download">
-                                            <i class="fas fa-file-download"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="col-md-9 offset-md-3">
+                        <div class="row">
+
+                            <?php for($i=1; $i<4; $i++) {?>
+                            <?php if($cprog['corprog_file'.$i]) { ?>
+                            <div class="col-md-4">
+                                <div class="card border-left-0 border-right-0 shadow bg-light border-top">
+                                    <div class="card-body p-2 my-auto"
+                                        style="height:80px; text-align: center; line-height: 70px;">
+                                        <div class="text-primary"
+                                            style="vertical-align: middle; display: inline-block;line-height: 1.5;">
+                                            <?=$cprog['corprog_file'.$i];?>
+                                        </div>
+                                    </div>
+                                    <a href="<?=base_url('upload/corporate-program/'.$cprog['corprog_attach'.$i]);?>"
+                                        target="_blank">
+                                        <div class="card-footer p-2 text-center bg-secondary text-white">
+                                            <i class="fas fa-file"></i> &nbsp; View / Download
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <?php } } ?>
+
+                        </div>
                     </div>
                 </div>
+                <?php } ?>
+
+
             </div>
         </div>
     </div>

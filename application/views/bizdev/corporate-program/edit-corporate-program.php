@@ -27,35 +27,33 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/corporate.png');?>" alt="client management" width="80%"><br>
-
-                    <!-- Status Fix -->
-                    <span class="badge badge-pill badge-success mt-3 p-1" data-toggle="tooltip" data-placement="top"
-                        title="Fix">
+                    <img src="<?=base_url('assets/img/corporate.png');?>" alt="client management" width="50%"
+                        class="mb-2"><br>
+                    <?php if($cprog['corprog_status']==1) { ?>
+                    <span class="badge badge-pill badge-success p-1" data-toggle="tooltip" data-placement="top"
+                        title="Success">
                         <i class="fas fa-check fa-2x"></i>
                     </span>
-
-                    <!-- Status Pending -->
-                    <span class="badge badge-pill badge-primary mt-3 p-1 text-white" data-toggle="tooltip"
+                    <?php } else if($cprog['corprog_status']==0) { ?>
+                    <span class="badge badge-pill badge-primary p-1 text-white" data-toggle="tooltip"
                         data-placement="top" title="Pending">
                         <i class="fas fa-clock fa-2x"></i>
                     </span>
-
-                    <!-- Status Denied -->
-                    <span class="badge badge-pill badge-danger mt-3 p-1 text-white" data-toggle="tooltip"
+                    <?php } else if($cprog['corprog_status']==2) { ?>
+                    <span class="badge badge-pill badge-danger p-1 text-white" data-toggle="tooltip"
                         data-placement="top" title="Denied">
                         <i class="fas fa-frown-open fa-2x"></i>
                     </span>
+                    <?php } ?>
 
-
-                    <h5 class="align-middle mt-1 mb-1">
-                        Corporate Name</h5>
-                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                    <div class="text-info">
-                        <p><i class="fas fa-envelope text-danger"></i>&nbsp; student@gmail.com <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; 081231232xxx &nbsp; | &nbsp;
-                            <i class="fab fa-instagram text-danger"></i>&nbsp; @student</p>
+                    <h5 class="align-middle mt-2">
+                        <?=$cprog['corp_name'];?></h5>
+                    <div class="text-info mb-2">
+                        <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$cprog['corp_mail'];?> <br>
+                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$cprog['corp_phone'];?> &nbsp; | &nbsp;
+                        <i class="fab fa-instagram text-danger"></i>&nbsp; <?=$cprog['corp_insta'];?>
                     </div>
+                    <h6 style="font-size:14px;" class="text-primary mb-2"><?=$cprog['prog_program'];?></h6>
                 </div>
             </div>
         </div>
@@ -66,35 +64,37 @@
             <div class="card-body">
                 <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Corporate Program
                     <div class="float-right">
-                        <a href="<?=base_url('bizdev/corporate-program/view/');?>" class="btn btn-sm btn-info"><i
-                                class="fas fa-arrow-circle-left"></i></a>
+                        <a href="<?=base_url('bizdev/corporate-program/view/'.$cprog['corprog_id']);?>"
+                            class="btn btn-sm btn-info"><i class="fas fa-arrow-circle-left"></i></a>
                     </div>
                 </h6>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                <form action="test.php" method="post" id="editSchoolProg">
+                <form action="" method="post" name="updateCorporateProgram" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-3">
                             <label><i class="fas fa-tag text-muted"></i>&nbsp; Program Name :</label>
                         </div>
                         <div class="col-md-9 mb-2">
-                            <label>Admission Consultant</label>
+                            <?=$cprog['prog_program'];?>
                             <hr class="mt-1 mb-1">
                         </div>
 
                         <div class="col-md-3">
                             <label><i class="fas fa-tag text-muted"></i>&nbsp; Is Corporate Scheme ? :</label>
                         </div>
-                        <div class="col-md-9 mb-2">
-                            <label class="badge badge-success p-1">Yes</label>
-                            <label class="badge badge-danger p-1">No</label>
-                            <hr class="mt-1 mb-1">
+                        <div class="col-md-9 mb-3">
+                            <?php if($cprog['corprog_type']==1) { ?>
+                            <div class="badge badge-success p-1 pl-3 pr-3">Yes</div>
+                            <?php } else { ?>
+                            <div class="badge badge-danger p-1 pl-3 pr-3">No</div>
+                            <?php } ?>
                         </div>
 
                         <div class="col-md-3">
                             <label><i class="fas fa-calendar-alt text-muted"></i>&nbsp; First Discuss :</label>
                         </div>
                         <div class="col-md-9 mb-2">
-                            <label>23 January 2019</label>
+                            <?=date('d F Y', strtotime($cprog['corprog_datefirstdiscuss']));?>
                             <hr class="mt-1 mb-1">
                         </div>
 
@@ -105,18 +105,20 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <small>Date</small>
-                                    <input name="lastDiscuss" type="date" class="form-control form-control-sm"
-                                        placeholder="Last Discuss">
-                                    <?=form_error('lastDiscuss', '<small class="text-danger">', '</small>');?>
+                                    <input type="hidden" name="corprog_id" value="<?=$cprog['corprog_id'];?>">
+                                    <input name="corprog_datelastdiscuss" type="date"
+                                        class="form-control form-control-sm"
+                                        value="<?=$cprog['corprog_datelastdiscuss'];?>">
+                                    <?=form_error('corprog_datelastdiscuss', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-3">
                                     <small>Status</small>
-                                    <select name="programStatus" id="programStatus" onchange="programFix()">
-                                        <option value="Pending">Pending</option>
-                                        <option value="Fix">Fix</option>
-                                        <option value="Denied">Denied</option>
+                                    <select name="corprog_status" id="programStatus" onchange="programFix()">
+                                        <option value="0">Pending</option>
+                                        <option value="1">Success</option>
+                                        <option value="2">Denied</option>
                                     </select>
-                                    <?=form_error('lastDiscuss', '<small class="text-danger">', '</small>');?>
+                                    <?=form_error('corprog_status', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -125,8 +127,9 @@
                             <label><i class="far fa-sticky-note text-muted"></i>&nbsp; Notes :</label>
                         </div>
                         <div class="col-md-9 mb-2">
-                            <textarea name="notes" class="form-control form-control-sm" rows="5"></textarea>
-                            <?=form_error('notes', '<small class="text-danger">', '</small>');?>
+                            <textarea name="corprog_notes" class="form-control form-control-sm"
+                                rows="5"><?=$cprog['corprog_notes'];?></textarea>
+                            <?=form_error('corprog_notes', '<small class="text-danger">', '</small>');?>
                         </div>
 
                         <div class="col-md-12" id="attachment">
@@ -135,13 +138,18 @@
                             <div class="row">
                                 <!-- Attach 1 -->
                                 <div class="col-md-3">
-                                    <label>Attachment 1</label>
+                                    Attachment 1
+                                    <?php if($cprog['corprog_attach1']) { ?>
+                                    <div class="text-info">Available</div>
+                                    <?php } else { ?>
+                                    <div class="text-danger">Not Available</div>
+                                    <?php } ?>
                                 </div>
 
                                 <div class="col-md-9 mb-3">
-                                    <input name="attach1" type="text" class="form-control form-control-sm"
-                                        placeholder="File Name">
-                                    <?=form_error('attach1', '<small class="text-danger">', '</small>');?>
+                                    <input name="corprog_file1" type="text" class="form-control form-control-sm"
+                                        value="<?=$cprog['corprog_file1'];?>">
+                                    <?=form_error('corprog_file1', '<small class="text-danger">', '</small>');?>
 
                                     <div class="text-center file-drop-area mt-1">
                                         <span class="fake-btn">Choose files</span>
@@ -152,13 +160,18 @@
 
                                 <!-- Attach 2 -->
                                 <div class="col-md-3">
-                                    <label>Attachment 2</label>
+                                    Attachment 2
+                                    <?php if($cprog['corprog_attach2']) { ?>
+                                    <div class="text-info">Available</div>
+                                    <?php } else { ?>
+                                    <div class="text-danger">Not Available</div>
+                                    <?php } ?>
                                 </div>
 
                                 <div class="col-md-9 mb-3">
-                                    <input name="attach2" type="text" class="form-control form-control-sm"
-                                        placeholder="File Name">
-                                    <?=form_error('attach2', '<small class="text-danger">', '</small>');?>
+                                    <input name="corprog_file2" type="text" class="form-control form-control-sm"
+                                        value="<?=$cprog['corprog_file2'];?>">
+                                    <?=form_error('corprog_file2', '<small class="text-danger">', '</small>');?>
 
                                     <div class="text-center file-drop-area mt-1">
                                         <span class="fake-btn">Choose files</span>
@@ -169,13 +182,18 @@
 
                                 <!-- Attach 3 -->
                                 <div class="col-md-3">
-                                    <label>Attachment 3</label>
+                                    Attachment 3
+                                    <?php if($cprog['corprog_attach3']) { ?>
+                                    <div class="text-info">Available</div>
+                                    <?php } else { ?>
+                                    <div class="text-danger">Not Available</div>
+                                    <?php } ?>
                                 </div>
 
-                                <div class="col-md-9 mb-3">
-                                    <input name="attach3" type="text" class="form-control form-control-sm"
-                                        placeholder="File Name">
-                                    <?=form_error('attach3', '<small class="text-danger">', '</small>');?>
+                                <div class="col-md-9">
+                                    <input name="corprog_file3" type="text" class="form-control form-control-sm"
+                                        value="<?=$cprog['corprog_file3'];?>">
+                                    <?=form_error('corprog_file3', '<small class="text-danger">', '</small>');?>
 
                                     <div class="text-center file-drop-area mt-1">
                                         <span class="fake-btn">Choose files</span>
@@ -186,15 +204,9 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12">
-                            <hr>
-                        </div>
-
-                        <div class="col-md-3">
-                        </div>
-
-                        <div class="col-md-9 text-right">
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp; Save
+                        <div class="col-md-9 offset-md-3 text-right">
+                            <hr class="mt-2 mb-2">
+                            <button type="submit" class="btn btn-secondary"><i class="fas fa-save"></i>&nbsp; Save
                                 changes</button>
                         </div>
                     </div>
@@ -213,10 +225,38 @@ var PS = new SlimSelect({
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
-PS.set('Fix');
+PS.set('<?=$cprog["corprog_status"];?>');
+
+var $fileInput = $('.file-input');
+var $droparea = $('.file-drop-area');
+
+// highlight drag area
+$fileInput.on('dragenter focus click', function() {
+    $droparea.addClass('is-active');
+});
+
+// back to normal state
+$fileInput.on('dragleave blur drop', function() {
+    $droparea.removeClass('is-active');
+});
+
+// change inner text
+$fileInput.on('change', function() {
+    var filesCount = $(this)[0].files.length;
+    var $textContainer = $(this).prev();
+
+    if (filesCount === 1) {
+        // if single file is selected, show file name
+        var fileName = $(this).val().split('\\').pop();
+        $textContainer.text(fileName);
+    } else {
+        // otherwise show number of files
+        $textContainer.text(filesCount + ' files selected');
+    }
+});
 
 var PE = $("#programStatus").val();
-if (PE == "Fix") {
+if (PE == "1") {
     $("#attachment").show();
 } else {
     $("#attachment").hide();
@@ -224,7 +264,7 @@ if (PE == "Fix") {
 
 function programFix() {
     var PE = $("#programStatus").val();
-    if (PE == "Fix") {
+    if (PE == "1") {
         $("#attachment").show();
     } else {
         $("#attachment").hide();

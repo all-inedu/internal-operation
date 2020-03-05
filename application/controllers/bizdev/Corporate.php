@@ -8,6 +8,7 @@ class Corporate extends CI_Controller
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('bizdev/Corporate_model', 'corp');
+        $this->load->model('bizdev/CProgram_model', 'cprog');
         $this->load->model('client/Program_model', 'prog');
     }
 
@@ -77,6 +78,7 @@ class Corporate extends CI_Controller
         $data['corp'] = $this->corp->showId($id);
         $data['detail'] = $this->corp->showDetail($id);
         $data['prog'] = $this->prog->showB2B();
+        $data['cprog'] = $this->cprog->showId($id);
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-bizdev');
         $this->load->view('bizdev/corporate/view-corporate', $data);
