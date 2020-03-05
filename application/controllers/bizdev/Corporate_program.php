@@ -30,9 +30,10 @@ class Corporate_program extends CI_Controller
     }
 
     public function index(){
+        $data['cprog'] = $this->cprog->showAll();
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-bizdev');
-        $this->load->view('bizdev/corporate-program/index');
+        $this->load->view('bizdev/corporate-program/index', $data);
         $this->load->view('templates/f-io');
     }
 

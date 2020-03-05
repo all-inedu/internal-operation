@@ -12,15 +12,6 @@ class CProgram_model extends CI_model
         $this->db->insert('tbl_corprog', $data);
     }
 
-    // public function saveProgramExec($data) {
-    //     $this->db->insert('tbl_corprogfix', $data);
-    // }
-
-    // public function showProgramExec($id) {
-    //     $this->db->select('*');
-    //     $this->db->where('tbl_corprogfix.schprog_id', $id);
-    //     return $this->db->get('tbl_corprogfix')->row_array(); 
-    // }
 
     public function showId($id){
         $this->db->select('*');
@@ -44,10 +35,4 @@ class CProgram_model extends CI_model
         $this->db->update('tbl_corprog');
     }
 
-    // public function updateProgramExec($data, $id) {
-    //     $this->db->set($data);
-    //     $this->db->where('schprogfix_id', $id);
-    //     $this->db->update('tbl_corprogfix');
-    // }
-    
 }

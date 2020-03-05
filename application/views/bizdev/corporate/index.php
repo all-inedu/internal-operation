@@ -51,7 +51,12 @@
                 <td><?=$c['corp_region'];?></td>
                 <td><?=$c['corp_address'];?></td>
                 <td>
-                    <?php if($c['corp_status']!=0){ ?>
+                    <?php 
+                        $id = $c['corp_id'];
+                        $data = $this->cprog->showId($id);
+                    ?>
+
+                    <?php if($data){ ?>
                     <div class="badge bg-white shadow text-success p-2">Approached</div>
                     <?php } else { ?>
                     <div class="badge bg-white shadow text-danger p-2">Not Yet</div>

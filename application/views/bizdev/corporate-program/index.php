@@ -22,49 +22,46 @@
 <div class="content">
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th width="1%">No</th>
-                <th width="5%" class="text-center bg-primary text-white">Corporate Name</th>
-                <th width="5%" class="text-center">Program Name</th>
-                <th width="5%" class="text-center">Is Corporate Scheme?</th>
-                <th width="5%" class="text-center">First Discuss</th>
-                <th width="5%" class="text-center">Last Discuss</th>
-                <th width="5%" class="text-center">Status</th>
-                <th width="10%" class="text-center">Notes</th>
+                <th width="10%" class="bg-primary text-white">Corporate Name</th>
+                <th width="20%">Program Name</th>
+                <th width="5%">First Discuss</th>
+                <th width="5%">Last Discuss</th>
+                <th width="1%">Approach <br>Status</th>
             </tr>
         </thead>
         <tbody>
-            <?php for($i=1;$i<=25;$i++) { ?>
-            <tr>
-                <td class="text-center align-middle"><?=$i;?></td>
-                <td class="text-center align-middle" style="cursor:pointer"
-                    onclick="window.location='<?=base_url('bizdev/corporate-program/view');?>'">Lorem Ipsum</td>
-                <td class="text-center align-middle">Lorem Ipsum</td>
-                <td class="text-center align-middle">Lorem Ipsum</td>
-                <td class="text-center align-middle">Lorem Ipsum</td>
-                <td class="text-center align-middle">Lorem Ipsum</td>
-                <td class="text-center align-middle">
-                    <!-- Status Success -->
+            <?php $i=1; foreach($cprog as $cp) : ?>
+            <tr class="text-center">
+                <td><?=$i;?></td>
+                <td style="cursor:pointer"
+                    onclick="window.location='<?=base_url('bizdev/corporate-program/view/'.$cp['corprog_id']);?>'">
+                    <?=$cp['corp_name'];?>
+                </td>
+                <td class="text-left"><?=$cp['prog_program'];?></td>
+                <td><?=date('d F Y', strtotime($cp['corprog_datefirstdiscuss']));?></td>
+                <td><?=date('d F Y', strtotime($cp['corprog_datelastdiscuss']));?></td>
+                <td>
+                    <?php if($cp['corprog_status']==1) { ?>
                     <span class="badge badge-pill badge-success p-1" data-toggle="tooltip" data-placement="top"
-                        title="Fix">
+                        title="Success">
                         <i class="fas fa-check fa-2x"></i>
                     </span>
-
-                    <!-- Status Pending -->
+                    <?php } else if($cp['corprog_status']==0) { ?>
                     <span class="badge badge-pill badge-primary p-1 text-white" data-toggle="tooltip"
                         data-placement="top" title="Pending">
                         <i class="fas fa-clock fa-2x"></i>
                     </span>
-
-                    <!-- Status Denied -->
+                    <?php } else if($cp['corprog_status']==2) { ?>
                     <span class="badge badge-pill badge-danger p-1 text-white" data-toggle="tooltip"
                         data-placement="top" title="Denied">
                         <i class="fas fa-frown-open fa-2x"></i>
                     </span>
+                    <?php } ?>
                 </td>
-                <td class="text-center align-middle">Lorem Ipsum</td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>
