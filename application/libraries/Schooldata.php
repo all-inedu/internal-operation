@@ -6,7 +6,7 @@ class Schooldata
     function show(){
         $data = [
             'type' => ['National', 'International'],
-            'level' => ['Junior','Elementary','Senior'],
+            'level' => ['Junior','Elementary','Senior','High'],
             'curriculum' => ['National','IB','A-Level']
         ];
         return $data;

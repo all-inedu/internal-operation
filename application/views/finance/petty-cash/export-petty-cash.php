@@ -21,7 +21,7 @@
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
 <div class="row">
     <div class="col-md-4 mb-2">
-        <div class="card shadow">
+        <div class="card shadow card-sticky">
             <div class="card-body">
                 <form action="" method="post">
                     <div class="row">
@@ -78,8 +78,8 @@
             <div class="card-body">
                 <?php if(empty($saldo)){ ?>
                 <div class="row">
-                    <div class="col-md-12 text-center">
-                        <img src="<?=base_url('assets/img/search.png');?>" width="10%" class="mt-2 mb-2">
+                    <div class="col-md-12 text-center mb-3">
+                        <i class="fas fa-search fa-2x mt-4 mb-2"></i>
                         <h4>List of Petty Cash Not Found</h4>
                     </div>
                 </div>
