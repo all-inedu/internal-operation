@@ -52,9 +52,9 @@
                     </span>
                     <?php } else if($sp['schprog_status']==0) {  ?>
                     <!-- Status Pending -->
-                    <span class="badge badge-pill badge-primary p-1 text-white" data-toggle="tooltip"
+                    <span class="badge badge-pill badge-warning p-1 text-dark" data-toggle="tooltip"
                         data-placement="top" title="Pending">
-                        <i class="fas fa-clock fa-2x"></i>
+                        <i class="far fa-clock fa-2x"></i>
                     </span>
                     <?php } else if($sp['schprog_status']==2) {  ?>
                     <!-- Status Denied -->

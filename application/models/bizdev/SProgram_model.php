@@ -1,6 +1,12 @@
 <?php
 class SProgram_model extends CI_model
 {
+    public function showStatus($v) {
+        $this->db->select('*');
+        $this->db->where('schprog_status', $v);
+        return $this->db->get('tbl_schprog')->result_array(); 
+    }
+
     public function showAll() {
         $this->db->select('*');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id = tbl_schprog.prog_id');

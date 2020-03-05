@@ -34,9 +34,9 @@
                         <i class="fas fa-check fa-2x"></i>
                     </span>
                     <?php } else if($sprog['schprog_status']==0) { ?>
-                    <span class="badge badge-pill badge-primary p-1 text-white" data-toggle="tooltip"
+                    <span class="badge badge-pill badge-warning p-1 text-dark" data-toggle="tooltip"
                         data-placement="top" title="Pending">
-                        <i class="fas fa-clock fa-2x"></i>
+                        <i class="far fa-clock fa-2x"></i>
                     </span>
                     <?php } else if($sprog['schprog_status']==2) { ?>
                     <span class="badge badge-pill badge-danger p-1 text-white" data-toggle="tooltip"

@@ -12,45 +12,66 @@
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
 <div class="row">
     <div class="col-md-6">
-        <h4 class="text-muted mb-3"><i class="fas fa-school"></i> &nbsp; School</h4>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card mb-3 shadow">
-                    <div class="row no-gutters">
-                        <div class="col-md-4 text-center align-middle p-4">
-                            <img src="<?=base_url('assets/img/sch.png');?>" alt="school" width="70%"
-                                style="margin:-25px;">
-                        </div>
-                        <div class="col-md-8 bg-primary text-white shadow align-middle">
-                            <div class="card-body">
-                                <h5 class="text-right mb-0">123</h5>
-                                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <h5 class="card-title text-right mb-0">List of School</h5>
+        <div class="card shadow">
+            <div class="card-header">
+                <h4 class="text-muted mb-0"><i class="fas fa-school"></i> &nbsp; School</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12" style="cursor:pointer"
+                        onclick="window.location='<?=base_url('bizdev/school');?>'">
+                        <div class="card mb-3 shadow">
+                            <div class="row no-gutters">
+                                <div class="col-md-4 text-center align-middle p-4">
+                                    <img src="<?=base_url('assets/img/sch.png');?>" alt="school" width="70%"
+                                        style="margin:-25px;">
+                                </div>
+                                <div class="col-md-8 bg-primary text-white shadow align-middle">
+                                    <div class="card-body">
+                                        <h5 class="text-right mb-0"><?=$sch;?></h5>
+                                        <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                                        <h5 class="card-title text-right mb-0">List of School
+                                        </h5>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="card shadow">
-                    <div class="row no-gutters">
-                        <div class="col-md-5 my-auto">
-                            <div class="card-body p-3">
-                                <canvas id="schoolChart" width="100px" height="100px"></canvas>
-                            </div>
-                        </div>
-                        <div class="col-md-7 bg-secondary shadow my-auto pt-5 pb-5">
-                            <div class="card-body text-white">
-                                <h5 class="card-title">Potential School's Program :</h5>
-                                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <h6>- Pending <div class="float-right font-weight-bold badge badge-warning">8</div>
-                                </h6>
-                                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <h6>- Denied <div class="float-right font-weight-bold badge badge-danger">4</div>
-                                </h6>
-                                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <h6>- Success <div class="float-right font-weight-bold badge badge-success">15</div>
-                                </h6>
+                    <div class="col-md-12" style="cursor:pointer"
+                        onclick="window.location='<?=base_url('bizdev/school-program');?>'">
+                        <div class="card shadow">
+                            <div class="row no-gutters">
+                                <div class="col-md-5 my-auto">
+                                    <div class="card-body p-3">
+                                        <canvas id="schoolChart" width="40vh" height="30vh"></canvas>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 bg-secondary shadow my-auto pt-2 pb-2">
+                                    <div class="card-body text-white">
+                                        <h5 class="card-title">Status of Program Approach :</h5>
+                                        <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                                        <h6>- Pending
+                                            <div
+                                                class="float-right font-weight-bold badge badge-warning pl-3 pr-3 shadow">
+                                                <?=$spending;?>
+                                            </div>
+                                        </h6>
+                                        <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                                        <h6>- Denied
+                                            <div
+                                                class="float-right font-weight-bold badge badge-danger pl-3 pr-3 shadow">
+                                                <?=$sdenied;?>
+                                            </div>
+                                        </h6>
+                                        <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                                        <h6>- Success
+                                            <div
+                                                class="float-right font-weight-bold badge badge-success pl-3 pr-3 shadow">
+                                                <?=$ssuccess;?>
+                                            </div>
+                                        </h6>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -59,66 +80,83 @@
         </div>
     </div>
     <div class="col-md-6">
-        <h4 class="text-muted mb-3"><i class="fas fa-building"></i> &nbsp; Corporate / Partner</h4>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card mb-3 shadow">
-                    <div class="row no-gutters">
-                        <div class="col-md-4 text-center align-middle p-4">
-                            <img src="<?=base_url('assets/img/approached.png');?>" alt="approached" width="70%"
-                                style="top:25%; position:relative;">
-                        </div>
-                        <div class="col-md-8 bg-info text-white shadow align-middle">
-                            <div class="card-body">
-                                <h5 class="text-right mb-0">1.230</h5>
-                                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <h5 class="card-title text-right mb-0">Approached</h5>
+        <div class="card shadow">
+            <div class="card-header">
+                <h4 class="text-muted mb-0"><i class="fas fa-building"></i> &nbsp; Corporate / Partner</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6" style="cursor:pointer"
+                        onclick="window.location='<?=base_url('bizdev/corporate');?>'">
+                        <div class="card mb-3 shadow">
+                            <div class="row no-gutters">
+                                <div class="col-md-4 text-center align-middle p-4">
+                                    <img src="<?=base_url('assets/img/approached.png');?>" alt="approached" width="70%"
+                                        style="top:25%; position:relative;">
+                                </div>
+                                <div class="col-md-8 bg-info text-white shadow align-middle">
+                                    <div class="card-body">
+                                        <h5 class="text-right mb-0"><?=$corp;?></h5>
+                                        <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                                        <h5 class="card-title text-right mb-0">Approached</h5>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card mb-3 shadow">
-                    <div class="row no-gutters">
-                        <div class="col-md-4 text-center align-middle p-4">
-                            <img src="<?=base_url('assets/img/not-yet.png');?>" alt="Not Yet" width="70%"
-                                style="top:25%; position:relative;">
-                        </div>
-                        <div class="col-md-8 bg-warning text-dark shadow align-middle">
-                            <div class="card-body">
-                                <h5 class="text-right mb-0">430</h5>
-                                <div class="line" style="border-color:#000; margin-top:15px; margin-bottom:15px;"></div>
-                                <h5 class="card-title text-right mb-0">Not Yet</h5>
+                    <div class="col-md-6" style="cursor:pointer"
+                        onclick="window.location='<?=base_url('bizdev/corporate');?>'">
+                        <div class="card mb-3 shadow">
+                            <div class="row no-gutters">
+                                <div class="col-md-4 text-center align-middle p-4">
+                                    <img src="<?=base_url('assets/img/not-yet.png');?>" alt="Not Yet" width="70%"
+                                        style="top:25%; position:relative;">
+                                </div>
+                                <div class="col-md-8 bg-warning text-dark shadow align-middle">
+                                    <div class="card-body">
+                                        <h5 class="text-right mb-0"><?=$cnot;?></h5>
+                                        <div class="line"
+                                            style="border-color:#000; margin-top:15px; margin-bottom:15px;"></div>
+                                        <h5 class="card-title text-right mb-0">Not Yet</h5>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="card shadow">
-                    <div class="row no-gutters">
-                        <div class="col-md-5 my-auto">
-                            <div class="card-body p-3">
-                                <canvas id="corporateSchool" width="100px" height="100px"></canvas>
-                            </div>
-                        </div>
-                        <div class="col-md-7 bg-secondary shadow my-auto pt-5 pb-5">
-                            <div class="card-body text-white">
-                                <h5 class="card-title">Potential Corporate's Program :</h5>
-                                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <h6>- Pending <div class="float-right font-weight-bold badge badge-info">8
+                    <div class="col-md-12" style="cursor:pointer"
+                        onclick="window.location='<?=base_url('bizdev/corporate-program');?>'">
+                        <div class="card shadow">
+                            <div class="row no-gutters">
+                                <div class="col-md-5 my-auto">
+                                    <div class="card-body p-3">
+                                        <canvas id="corporateSchool" width="40vh" height="30vh"></canvas>
                                     </div>
-                                </h6>
-                                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <h6>- Denied <div class="float-right font-weight-bold badge"
-                                        style="background:#F27313;">
-                                        4</div>
-                                </h6>
-                                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <h6>- Fix <div class="float-right font-weight-bold badge" style="background:#C686FF;">15
+                                </div>
+                                <div class="col-md-7 bg-secondary shadow my-auto pt-2 pb-2">
+                                    <div class="card-body text-white">
+                                        <h5 class="card-title">Status of Program Approach :</h5>
+                                        <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                                        <h6>- Pending
+                                            <div class="float-right font-weight-bold badge badge-info pl-3 pr-3 shadow">
+                                                <?=$cpending;?>
+                                            </div>
+                                        </h6>
+                                        <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                                        <h6>- Denied
+                                            <div class="float-right font-weight-bold badge pl-3 pr-3 shadow"
+                                                style="background:#F27313;">
+                                                <?=$cdenied;?>
+                                            </div>
+                                        </h6>
+                                        <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                                        <h6>- Success
+                                            <div class="float-right font-weight-bold badge pl-3 pr-3 shadow"
+                                                style="background:#C686FF;">
+                                                <?=$csuccess;?>
+                                            </div>
+                                        </h6>
                                     </div>
-                                </h6>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -139,7 +177,7 @@ var myChart = new Chart(ctx, {
         labels: ['Pending', 'Denied', 'Success'],
         datasets: [{
             label: '# of Votes',
-            data: [8, 4, 15],
+            data: ['<?=$spending;?>', '<?=$sdenied;?>', '<?=$ssuccess;?>'],
             backgroundColor: [
                 'rgba(255, 193, 7, 0.7)',
                 'rgba(255, 71, 71, 1)',
@@ -147,6 +185,11 @@ var myChart = new Chart(ctx, {
             ],
             borderWidth: 2
         }]
+    },
+    options: {
+        legend: {
+            display: false
+        }
     }
 });
 
@@ -154,10 +197,10 @@ var ctx = document.getElementById('corporateSchool');
 var corporateSchool = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['Pending', 'Denied', 'Fix'],
+        labels: ['Pending', 'Denied', 'Success'],
         datasets: [{
             label: '# of Votes',
-            data: [9, 4, 6],
+            data: ['<?=$cpending;?>', '<?=$cdenied;?>', '<?=$csuccess;?>'],
             backgroundColor: [
                 'rgba(53, 166, 242, 0.7)',
                 'rgba(242, 115, 19, 1)',
@@ -165,6 +208,11 @@ var corporateSchool = new Chart(ctx, {
             ],
             borderWidth: 2
         }]
+    },
+    options: {
+        legend: {
+            display: false
+        }
     }
 });
 </script>

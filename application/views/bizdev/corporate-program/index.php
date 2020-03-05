@@ -44,18 +44,18 @@
                 <td><?=date('d F Y', strtotime($cp['corprog_datelastdiscuss']));?></td>
                 <td>
                     <?php if($cp['corprog_status']==1) { ?>
-                    <span class="badge badge-pill badge-success p-1" data-toggle="tooltip" data-placement="top"
-                        title="Success">
+                    <span class="badge badge-pill p-1 text-white" data-toggle="tooltip" data-placement="top"
+                        title="Success" style="background:#C686FF;">
                         <i class="fas fa-check fa-2x"></i>
                     </span>
                     <?php } else if($cp['corprog_status']==0) { ?>
-                    <span class="badge badge-pill badge-primary p-1 text-white" data-toggle="tooltip"
-                        data-placement="top" title="Pending">
-                        <i class="fas fa-clock fa-2x"></i>
+                    <span class="badge badge-pill badge-info p-1 text-white" data-toggle="tooltip" data-placement="top"
+                        title="Pending">
+                        <i class="far fa-clock fa-2x"></i>
                     </span>
                     <?php } else if($cp['corprog_status']==2) { ?>
-                    <span class="badge badge-pill badge-danger p-1 text-white" data-toggle="tooltip"
-                        data-placement="top" title="Denied">
+                    <span class="badge badge-pill p-1 text-white" data-toggle="tooltip" data-placement="top"
+                        title="Denied" style="background:#F27313;">
                         <i class="fas fa-frown-open fa-2x"></i>
                     </span>
                     <?php } ?>

@@ -13,7 +13,7 @@
 <div class="row">
     <div class="col-md-6 mb-3">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style="cursor:pointer" onclick="window.location='<?=base_url('hr/employee');?>'">
                 <div class="card shadow">
                     <div class="row no-gutters">
                         <div class="col-md-4 my-auto">
@@ -52,7 +52,7 @@
 
     <div class="col-md-6 mb-3">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style="cursor:pointer" onclick="window.location='<?=base_url('hr/mentor');?>'">
                 <div class="card shadow">
                     <div class="row no-gutters">
                         <div class="col-md-4 my-auto">
@@ -87,7 +87,7 @@
 
     <div class="col-md-6 mb-3">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style="cursor:pointer" onclick="window.location='<?=base_url('hr/editor');?>'">
                 <div class="card shadow">
                     <div class="row no-gutters">
                         <div class="col-md-4 my-auto">
@@ -132,41 +132,45 @@
                         </div>
                         <div class="col-md-8 bg-light shadow my-auto">
                             <div class="card-body text-dark">
-                                <h5 class="card-title"><i class="fas fa-user-shield"></i>&nbsp; Volunteer :</h5>
-                                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h6>Active :<div
-                                                class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
-                                                <?=$volunt_active;?></div>
+                                <div class="mb-3" style="cursor:pointer"
+                                    onclick="window.location='<?=base_url('hr/volunteer');?>'">
+                                    <h5 class="card-title"><i class="fas fa-user-shield"></i>&nbsp; Volunteer :</h5>
+                                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6>Active :<div
+                                                    class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
+                                                    <?=$volunt_active;?></div>
 
-                                        </h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6>Not Active :<div
-                                                class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
-                                                <?=$volunt_notactive;?></div>
+                                            </h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6>Not Active :<div
+                                                    class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
+                                                    <?=$volunt_notactive;?></div>
 
-                                        </h6>
+                                            </h6>
+                                        </div>
                                     </div>
                                 </div>
-                                <br>
-                                <h5 class="card-title"><i class="fas fa-user-tag"></i>&nbsp; Influencer :</h5>
-                                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h6>Active :<div
-                                                class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
-                                                <?=$infl_active;?></div>
+                                <div style="cursor:pointer" onclick="window.location='<?=base_url('hr/influencer');?>'">
+                                    <h5 class="card-title"><i class="fas fa-user-tag"></i>&nbsp; Influencer :</h5>
+                                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6>Active :<div
+                                                    class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
+                                                    <?=$infl_active;?></div>
 
-                                        </h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6>Not Active :<div
-                                                class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
-                                                <?=$infl_notactive;?></div>
+                                            </h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6>Not Active :<div
+                                                    class="float-right font-weight-bold badge badge-warning pl-3 pr-3">
+                                                    <?=$infl_notactive;?></div>
 
-                                        </h6>
+                                            </h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

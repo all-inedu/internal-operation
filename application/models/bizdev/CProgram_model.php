@@ -1,6 +1,18 @@
 <?php
 class CProgram_model extends CI_model
 {
+    public function showCorporate() {
+        $this->db->select('*');
+        $this->db->group_by('corp_id');
+        return $this->db->get('tbl_corprog')->result_array(); 
+    }
+
+    public function showStatus($n) {
+        $this->db->select('*');
+        $this->db->where('corprog_status',$n);
+        return $this->db->get('tbl_corprog')->result_array(); 
+    }
+
     public function showAll() {
         $this->db->select('*');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id = tbl_corprog.prog_id');
