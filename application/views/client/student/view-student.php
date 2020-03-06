@@ -214,10 +214,14 @@
                     </div>
                 </div>
                 <?php } ?>
+            </div>
+        </div>
 
-                <?php  if($s['st_statuscli']!=0) {  ?>
-                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+        <?php  if($s['st_statuscli']!=0) {  ?>
+        <div class="card shadow mt-2 mb-3">
+            <div class="card-body">
                 <h6><i class="fa fa-tags mr-2"></i>&nbsp; Program List</h6>
+                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="row">
                     <div class="col-md-12 mt-2">
                         <table class="display table table-bordered">
@@ -257,9 +261,9 @@
                         </table>
                     </div>
                 </div>
-                <?php } ?>
             </div>
         </div>
+        <?php } ?>
     </div>
 </div>
 
