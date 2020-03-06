@@ -25,18 +25,31 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/college.png');?>" alt="client management" width="70%">
-                    <h6 class="mt-3">Students Name</h6>
-                    <hr style="width:20%; margin-bottom:5px; margin-top:5px;">
-                    <div class="text-info">
-                        <p><i class="fas fa-envelope text-danger"></i>&nbsp; student@gmail.com <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; 081231232xxx &nbsp; | &nbsp;
-                            <i class="fab fa-instagram text-danger"></i>&nbsp; @student</p>
+                    <img src="<?=base_url('assets/img/college.png');?>" alt="client management" width="50%">
+                    <h6 class="mt-3"><?=$s['st_firstname']." ".$s['st_lastname'];?></h6>
+
+                    <?php  if($s['st_statuscli']==0) {  ?>
+                    <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-danger">
+                        Prospective
+                    </div>
+                    <?php } else if($s['st_statuscli']==1) {  ?>
+                    <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-info">
+                        Potential
+                    </div>
+                    <?php } else if($s['st_statuscli']==2) {  ?>
+                    <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-success">
+                        Current Student
+                    </div>
+                    <?php } ?>
+                    <div class="text-info mt-2 mb-2">
+                        <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$s['st_mail'];?> <br>
+                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$s['st_phone'];?> &nbsp; | &nbsp;
+                        <i class="fab fa-instagram text-danger"></i>&nbsp;<?=$s['st_insta'];?>
                     </div>
                 </div>
                 <div class="row text-center">
                     <div class="col">
-                        <a href="<?=base_url('client/profile/edit/student');?>" class="btn btn-sm btn-info m-1"><i
+                        <a href="<?=base_url('client/profile/edit/'.$s['st_num']);?>" class="btn btn-sm btn-info m-1"><i
                                 class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
                     </div>
                 </div>
@@ -48,28 +61,27 @@
             <div class="card-body">
                 <h6 class="align-middle"><i class="fas fa-user"></i>&nbsp; &nbsp; Student's Profile
                     <div class="float-right">
-                        <a href="<?=base_url('client/prospective/');?>" class="btn btn-sm btn-info"><i
+                        <a href="<?=base_url('client/student/');?>" class="btn btn-sm btn-info"><i
                                 class="fas fa-arrow-circle-left"></i></a>
                     </div>
                 </h6>
                 <div class="line" style="margin-top:15px; margin-bottom:0px;"></div>
                 <div class="text-left mb-3">
-                    <small class="text-muted"><i class="far fa-calendar-alt text-danger"></i> &nbsp;Created date : 09
-                        Jan
-                        2019</small>
+                    <small class="text-muted"><i class="far fa-calendar-alt text-danger"></i> &nbsp;
+                        Created date :
+                        <?=date('d M Y H:i:s', strtotime($s['st_datecreate']));?>
+                    </small>
                     &nbsp; | &nbsp;
-                    <small class="text-muted"><i class="fas fa-calendar-alt text-primary"></i> &nbsp;Last update : 09
-                        Jan
-                        2019</small>
+                    <small class="text-muted"><i class="fas fa-calendar-alt text-primary"></i> &nbsp;Last update :
+                        <?=date('d M Y H:i:s', strtotime($s['st_datelastedit']));?>
+                    </small>
                 </div>
                 <div class="row">
                     <div class="col-md-4 mb-1">
                         <i class="fas fa-map-marker-alt"></i>&nbsp; &nbsp; Address :
                     </div>
-                    <div class="col-md-8 text-muted">
-                        Jl. Panjang No. 36, Kebon Jeruk <br>
-                        Jakarta Barat<br>
-                        11360
+                    <div class="col-md-8 ">
+                        <?=$s['st_address'];?>
                     </div>
                 </div>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
@@ -77,54 +89,67 @@
                     <div class="col-md-4 mb-2">
                         <i class="fas fa-school"></i>&nbsp; &nbsp; School Name :
                     </div>
-                    <div class="col-md-8 mb-3 text-muted">
-                        School Name
-                    </div>
-
-                    <div class="col-md-4 mb-2">
-                        <i class="fas fa-bookmark"></i>&nbsp; &nbsp; Current Education :
-                    </div>
-                    <div class="col-md-8 mb-3 text-muted">
-                        Current Education
+                    <div class="col-md-8 mb-3 ">
+                        <?=$s['sch_name'];?>
                     </div>
 
                     <div class="col-md-4 mb-2">
                         <i class="fas fa-hourglass-start"></i>&nbsp; &nbsp; Grade :
                     </div>
-                    <div class="col-md-8 mb-1 text-muted">
-                        11
+                    <div class="col-md-8 mb-1 ">
+                        <?php 
+                        $ynow = date('Y');
+                        $yinput = date('Y', strtotime($s['st_datecreate']));
+                        $ginput = $s['st_grade'];
+                        $gnow = ($ynow - $yinput) + $ginput;
+                        if($gnow <= 12) {
+                            echo $gnow;
+                        } else {
+                            echo 'Not High School';
+                        }
+                    ?>
                     </div>
                 </div>
+
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="row">
                     <div class="col-md-4 mb-2">
                         <i class="fas fa-box-open"></i>&nbsp; &nbsp; Lead Source :
                     </div>
-                    <div class="col-md-8 mb-3 text-muted">
-                        Lead Source
+                    <div class="col-md-8 mb-3 ">
+                        <?=$s['lead_name'];?>
                     </div>
 
                     <div class="col-md-4 mb-2">
                         <i class="fas fa-chart-line"></i>&nbsp; &nbsp; Level of Interest :
                     </div>
-                    <div class="col-md-8 mb-3 text-muted">
-                        <div class="badge badge-success"><i class="fas fa-check"></i></div>
-                        <span class="badge"> High</span> | &nbsp;
-                        <div class="badge badge-warning"><i class="fas fa-check"></i></div>
-                        <span class="badge"> Medium</span> | &nbsp;
-                        <div class="badge badge-danger"><i class="fas fa-check"></i></div>
+                    <div class="col-md-8 mb-3 ">
+                        <?php if($s['st_levelinterest']=="High") {?>
+                        <div class="badge badge-success pl-2 pr-2"><i class="fas fa-check"></i></div>
+                        <span class="badge"> High</span>
+                        <?php } else if($s['st_levelinterest']=="Medium") {?>
+                        <div class="badge badge-warning pl-2 pr-2"><i class="fas fa-check"></i></div>
+                        <span class="badge"> Medium</span>
+                        <?php } else if($s['st_levelinterest']=="Low") {?>
+                        <div class="badge badge-danger pl-2 pr-2"><i class="fas fa-check"></i></div>
                         <span class="badge"> Low</span>
+                        <?php } ?>
                     </div>
 
                     <div class="col-md-4 mb-2">
                         <i class="fas fa-tag"></i>&nbsp; &nbsp; Interested Program :
                     </div>
-                    <div class="col-md-8 mb-1 text-muted">
-                        <?php
-                   
-                    for($i=0;$i<count($prog);$i++){
-                        $prog_key = array_rand($badge);
-                    ?>
+                    <div class="col-md-8 mb-1 ">
+                        <?php 
+                            $pdata = explode(", ", $s['prog_id']); 
+                            $prog = [];
+                            foreach ($pdata as $pd ) {
+                                $progdata = $this->prog->showId($pd);
+                                array_push($prog, $progdata['prog_program']);
+                            }
+                            for($i=0;$i<count($prog);$i++){
+                                $prog_key = array_rand($badge);
+                            ?>
                         <span class="badge <?=$badge[$prog_key];?> p-2 mb-2"><?=$prog[$i];?></span>
                         <?php } ?>
 
@@ -135,18 +160,19 @@
                     <div class="col-md-4 mb-2">
                         <i class="fas fa-calendar-check"></i>&nbsp; &nbsp; Year of Going Study Abroad :
                     </div>
-                    <div class="col-md-8 mb-3 text-muted">
-                        School Name
+                    <div class="col-md-8 mb-3 ">
+                        <td><?=$s['st_abryear'];?></td>
                     </div>
 
                     <div class="col-md-4 mb-2">
                         <i class="fas fa-globe"></i>&nbsp; &nbsp; Country of Study Abroad :
                     </div>
-                    <div class="col-md-8 mb-1 text-muted">
-                        <?php                    
-                    for($i=0;$i<count($country);$i++){
-                        $country_key = array_rand($badge);
-                    ?>
+                    <div class="col-md-8 mb-1 ">
+                        <?php 
+                            $country = explode(", ", $s['st_abrcountry']);
+                            for($i=0;$i<count($country);$i++){
+                                $country_key = array_rand($badge);
+                        ?>
                         <span class="badge <?=$badge[$country_key];?>  p-2 mb-2"><?=$country[$i];?></span>
                         <?php } ?>
                     </div>
@@ -154,11 +180,17 @@
                     <div class=" col-md-4 mb-2">
                         <i class="fas fa-university"></i>&nbsp; &nbsp; University Destination :
                     </div>
-                    <div class="col-md-8 mb-1 text-muted">
-                        <?php                    
-                    for($i=0;$i<count($univ);$i++){
-                        $univ_key = array_rand($badge);
-                    ?>
+                    <div class="col-md-8 mb-1 ">
+                        <?php 
+                            $udata = explode(", ", $s['st_abruniv']); 
+                            $univ = [];
+                            foreach ($udata as $ud ) {
+                                $univdata = $this->univ->showId($ud);
+                                array_push($univ, $univdata['univ_name']);
+                            }                  
+                            for($i=0;$i<count($univ);$i++){
+                                $univ_key = array_rand($badge);
+                        ?>
                         <span class="badge <?=$badge[$univ_key];?>  p-2 mb-2"><?=$univ[$i];?></span>
                         <?php } ?>
                     </div>
@@ -166,15 +198,18 @@
                     <div class="col-md-4 mb-2">
                         <i class="fas fa-microscope"></i>&nbsp; &nbsp; Major of Study Abroad :
                     </div>
-                    <div class="col-md-8 mb-1 text-muted">
-                        <?php                    
-                    for($i=0;$i<count($major);$i++){
-                        $major_key = array_rand($badge);
-                    ?>
+                    <div class="col-md-8 mb-1 ">
+                        <?php
+                            $major = explode(", ", $s['st_abrmajor']);
+                            for($i=0;$i<count($major);$i++){
+                                $major_key = array_rand($badge);
+                        ?>
                         <span class="badge <?=$badge[$major_key];?>  p-2 mb-2"><?=$major[$i];?></span>
                         <?php } ?>
                     </div>
                 </div>
+                <!-- Just Prospective Client  -->
+                <?php  if($s['st_statuscli']==2) {  ?>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="row">
                     <div class="col-md-4 mb-2">
@@ -265,6 +300,7 @@
                         </div>
                     </div>
                 </div>
+                <?php } ?>
             </div>
         </div>
     </div>

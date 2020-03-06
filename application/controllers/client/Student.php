@@ -38,26 +38,16 @@ class Student extends CI_Controller
         $data['states'] = $this->states->show();
         
         // if($role=='student' or $role==''){
-            $this->form_validation->set_rules('st_firstname', 'first name', 'required');
-            $this->form_validation->set_rules('st_mail', 'email', 'required');
-            if ($this->form_validation->run() == false) {
-                $this->load->view('templates/h-io');
-                $this->load->view('templates/s-client');
-                $this->load->view('client/student/add-student', $data);
-                $this->load->view('templates/f-io');
-            } else {
-                $this->save();
-            }
-
-        // } else if ($role=='parent'){
-        //     $this->load->view('templates/h-io');
-        //     $this->load->view('templates/s-client');
-        //     $this->load->view('client/student/add-parent', $data);
-        //     $this->load->view('templates/f-io');
-
-        // } else {
-        //     redirect('/client/student');
-        // }
+        $this->form_validation->set_rules('st_firstname', 'first name', 'required');
+        $this->form_validation->set_rules('st_mail', 'email', 'required');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/h-io');
+            $this->load->view('templates/s-client');
+            $this->load->view('client/student/add-student', $data);
+            $this->load->view('templates/f-io');
+        } else {
+            $this->save();
+        }
     }
 
     private function save() {

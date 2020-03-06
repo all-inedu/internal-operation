@@ -25,26 +25,39 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/college.png');?>" alt="client management" width="70%">
-                    <h6 class="mt-3">Students Name</h6>
-                    <hr style="width:20%; margin-bottom:5px; margin-top:5px;">
-                    <div class="text-info">
-                        <p><i class="fas fa-envelope text-danger"></i>&nbsp; student@gmail.com <br>
-                            <i class="fas fa-phone text-danger"></i>&nbsp; 081231232xxx &nbsp; | &nbsp;
-                            <i class="fab fa-instagram text-danger"></i>&nbsp; @student</p>
+                    <img src="<?=base_url('assets/img/college.png');?>" alt="client management" width="50%">
+                    <h6 class="mt-3"><?=$s['st_firstname']." ".$s['st_lastname'];?></h6>
+
+                    <?php  if($s['st_statuscli']==0) {  ?>
+                    <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-danger">
+                        Prospective
+                    </div>
+                    <?php } else if($s['st_statuscli']==1) {  ?>
+                    <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-info">
+                        Potential
+                    </div>
+                    <?php } else if($s['st_statuscli']==2) {  ?>
+                    <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-success">
+                        Current Student
+                    </div>
+                    <?php } ?>
+                    <div class="text-info mt-2 mb-2">
+                        <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$s['st_mail'];?> <br>
+                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$s['st_phone'];?> &nbsp; | &nbsp;
+                        <i class="fab fa-instagram text-danger"></i>&nbsp;<?=$s['st_insta'];?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 mb-3">
         <div class="card shadow">
             <div class="card-body">
                 <form action="" method="post" enctype="multipart/form-data">
                     <h6 class="align-middle"><i class="fas fa-user"></i>&nbsp; &nbsp; Student's Profile
                         <div class="float-right">
-                            <a href="<?=base_url('client/profile/student/');?>" class="btn btn-sm btn-info"><i
-                                    class="fas fa-arrow-circle-left"></i></a>
+                            <a href="<?=base_url('client/profile/student/'.$s['st_num']);?>"
+                                class="btn btn-sm btn-info"><i class="fas fa-arrow-circle-left"></i></a>
                         </div>
                     </h6>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
@@ -225,6 +238,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php  if($s['st_statuscli']==2) {  ?>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="row">
                         <div class="col-md-4 mb-3">
@@ -332,8 +346,9 @@
                             </div>
                         </div>
                     </div>
+                    <?php } ?>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                    <div class="text-center">
+                    <div class="text-right">
                         <button type="submit" class="btn btn-sm btn-info"><i class="fas fa-save"></i>&nbsp; Save
                             changes</button>
                     </div>

@@ -3,7 +3,7 @@
         <div class="col-md-5">
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <div class="breadcrumb text-dark bg-white font-weight-bold  shadow border">
-                    <i class="fas fa-users mt-1"></i>&nbsp;&nbsp; Prospective Client
+                    <i class="fas fa-users mt-1"></i>&nbsp;&nbsp; Student
                 </div>
             </nav>
         </div>
@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
                     <li class="breadcrumb-item"><a href="<?=base_url('client/home');?>">Home</a></li>
-                    <li class="breadcrumb-item"><a href="<?=base_url('client/prospective');?>">Prospective Client</a>
+                    <li class="breadcrumb-item"><a href="<?=base_url('client/student');?>">Student</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">View</li>
                 </ol>
@@ -49,10 +49,8 @@
                 </div>
                 <div class="row text-center">
                     <div class="col">
-                        <?php if($s['st_statuscli']==2) {  ?>
-                        <a href="<?=base_url('client/profile/student/');?>" class="btn btn-sm btn-info m-1"><i
-                                class="fas fa-pencil-alt"></i>&nbsp; Profile</a>
-                        <?php } ?>
+                        <a href="<?=base_url('client/profile/student/'.$s['st_num']);?>"
+                            class="btn btn-sm btn-info m-1"><i class="fas fa-pencil-alt"></i>&nbsp; Profile</a>
                         <a href="#" class="btn btn-sm btn-success m-1" data-toggle="modal"
                             data-target="#convertPotential"><i class="fas fa-retweet"></i>&nbsp;
                             Convert</a>
@@ -66,7 +64,7 @@
             <div class="card-body">
                 <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Student's Profile
                     <div class="float-right">
-                        <a href="<?=base_url('client/prospective/');?>" class="btn btn-sm btn-info"><i
+                        <a href="<?=base_url('client/student/');?>" class="btn btn-sm btn-info"><i
                                 class="fas fa-arrow-circle-left"></i></a>
                     </div>
                 </h6>

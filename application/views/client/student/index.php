@@ -32,6 +32,7 @@
                 <th width="10%">Instagram</th>
                 <th width="5%">School Name</th>
                 <th width="5%">Student Year /<br>Grade</th>
+                <th width="5%">Status</th>
                 <th width="10%">State</th>
                 <th width="10%">Address</th>
                 <th width="10%">Lead</th>
@@ -41,7 +42,6 @@
                 <th width="5%">Country of Study Abroad</th>
                 <th width="5%">Univ Destination</th>
                 <th width="5%">Major</th>
-                <th width="5%">Status</th>
                 <th width="5%">Created Date</th>
                 <th width="5%">Updated Date</th>
             </tr>
@@ -72,7 +72,22 @@
                         } else {
                             echo 'Not High School';
                         }
-                    ?>
+                        ?>
+                </td>
+                <td>
+                    <?php  if($s['st_statuscli']==0) {  ?>
+                    <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-danger shadow">
+                        Prospective
+                    </div>
+                    <?php } else if($s['st_statuscli']==1) {  ?>
+                    <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-info shadow">
+                        Potential
+                    </div>
+                    <?php } else if($s['st_statuscli']==2) {  ?>
+                    <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-success shadow">
+                        Current Student
+                    </div>
+                    <?php } ?>
                 </td>
                 <td><?=$s['st_state'];?></td>
                 <td><?=$s['st_address'];?></td>
@@ -103,21 +118,6 @@
                     ?>
                 </td>
                 <td><?=$s['st_abrmajor'];?></td>
-                <td>
-                    <?php  if($s['st_statuscli']==0) {  ?>
-                    <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-warning shadow">
-                        Prospective
-                    </div>
-                    <?php } else if($s['st_statuscli']==1) {  ?>
-                    <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-info shadow">
-                        Potential
-                    </div>
-                    <?php } else if($s['st_statuscli']==2) {  ?>
-                    <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-success shadow">
-                        Current Student
-                    </div>
-                    <?php } ?>
-                </td>
                 <td><?=date('d M Y H:i:s', strtotime($s['st_datecreate']));?></td>
                 <td><?=date('d M Y H:i:s', strtotime($s['st_datelastedit']));?></td>
             </tr>
