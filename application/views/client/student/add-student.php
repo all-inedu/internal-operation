@@ -5,7 +5,7 @@
         <div class="col-md-5">
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <div class="breadcrumb text-dark bg-white font-weight-bold  shadow border">
-                    <i class="fas fa-users mt-1"></i>&nbsp;&nbsp; Prospective Client
+                    <i class="fas fa-users mt-1"></i>&nbsp;&nbsp; Student
                 </div>
             </nav>
         </div>
@@ -13,9 +13,9 @@
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
                     <li class="breadcrumb-item"><a href="<?=base_url('client/home');?>">Home</a></li>
-                    <li class="breadcrumb-item"><a href="<?=base_url('client/prospective');?>">Prospective Client</a>
+                    <li class="breadcrumb-item"><a href="<?=base_url('client/student');?>">Student</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Add Student</li>
+                    <li class="breadcrumb-item active" aria-current="page">Add</li>
                 </ol>
             </nav>
         </div>
@@ -35,7 +35,7 @@
                         Student
                         <div class="float-right"><i class="fas fa-arrow-circle-right"></i></div>
                     </a>
-                    <a href="<?=base_url('client/prospective/add/parent');?>"
+                    <a href="<?=base_url('client/student/add/parent');?>"
                         class="list-group-item list-group-item-action">Parent
                         <div class="float-right"><i class="fas fa-arrow-circle-right"></i></div>
                     </a>
@@ -50,7 +50,7 @@
                 <form action="" method="post">
                     <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Student
                         <div class="float-right">
-                            <a href="<?=base_url('client/prospective/');?>" class="btn btn-sm btn-info"><i
+                            <a href="<?=base_url('client/student/');?>" class="btn btn-sm btn-info"><i
                                     class="fas fa-arrow-circle-left"></i></a>
                         </div>
                     </h6>
@@ -101,7 +101,7 @@
                             <div class="form-group">
                                 <label>State / Region</label>
                                 <input name="st_state" type="text" class="form-control form-control-sm"
-                                    placeholder="State / Region">
+                                    placeholder="State / Region" id="state">
                                 <?=form_error('st_state', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
@@ -168,10 +168,10 @@
                                 <label>Student Grade</label>
                                 <select id="grade" name="st_grade">
                                     <option data-placeholder="true"></option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
+                                    <?php for($i=1; $i<=12; $i++) { ?>
+                                    <option value="<?=$i;?>"><?=$i;?></option>
+                                    <?php } ?>
+                                    <option value="13">Not High School</option>
                                 </select>
                                 <?=form_error('st_grade', '<small class="text-danger">', '</small>');?>
                             </div>
@@ -299,8 +299,18 @@
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="<?=base_url('assets/js/jquery-ui.js');?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
+$(document).ready(function() {
+    var states = '<?=implode(", ", $states);?>';
+    var arr = states.split(", ")
+    console.log(arr)
+    $("#state").autocomplete({
+        source: arr
+    });
+});
+
 new SlimSelect({
     select: '#schoolName',
     placeholder: 'Select student school',
@@ -370,6 +380,7 @@ new SlimSelect({
     allowDeselect: true,
     deselectLabel: '<span class="text-white">&nbsp; ✖</span>'
 });
+
 
 function otherSchools() {
     var sN = document.getElementById("schoolName");

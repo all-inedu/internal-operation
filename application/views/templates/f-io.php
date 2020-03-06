@@ -40,6 +40,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<script src="<?=base_url('assets/js/jquery-ui.js');?>"></script>
 <script>
 $("textarea").each(function() {
     CKEDITOR.replace(this, {

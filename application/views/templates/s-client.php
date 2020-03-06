@@ -35,7 +35,7 @@
                         class="fas fa-users-cog fa-fw"></i>&nbsp; Client</a>
                 <ul class="list-unstyled collapse" id="homeSubmenu">
                     <li>
-                        <a href="<?=base_url('client/prospective/');?>"><i class="fas fa-arrow-circle-right"></i>&nbsp;
+                        <a href="<?=base_url('client/student/');?>"><i class="fas fa-arrow-circle-right"></i>&nbsp;
                             Prospective</a>
                     </li>
                     <li>
