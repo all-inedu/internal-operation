@@ -50,6 +50,12 @@ class Students_program extends CI_Controller
             $mt_id2 = $this->input->post('mt_id2');
         }
 
+        if($this->input->post('stprog_reason')) {
+            $reason = $this->input->post('stprog_reason');
+        } else {
+            $reason = "";
+        }
+
         $check = $this->stprog->showStudentsMentor($id);
         if(!$check) {
             $stmentor = [
@@ -83,6 +89,7 @@ class Students_program extends CI_Controller
             'stprog_meetingdate' => $this->input->post('stprog_meetingdate'),
             'stprog_meetingnote' => $this->input->post('stprog_meetingnote'),
             'stprog_status' => $this->input->post('stprog_status'),
+            'stprog_reason' => $reason,
             'stprog_statusprogdate' => $this->input->post('stprog_statusprogdate'),
             'stprog_runningstatus' => $this->input->post('stprog_runningstatus')
         ];

@@ -40,6 +40,8 @@ class Student extends CI_Controller
         // if($role=='student' or $role==''){
         $this->form_validation->set_rules('st_firstname', 'first name', 'required');
         $this->form_validation->set_rules('st_mail', 'email', 'required');
+        $this->form_validation->set_rules('sch_id', 'school', 'required');
+        $this->form_validation->set_rules('lead_id', 'lead', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/h-io');
             $this->load->view('templates/s-client');

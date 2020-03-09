@@ -149,8 +149,13 @@
                             </div>
                         </div>
 
+                        <div class="col-md-8 mb-3 text-muted offset-md-4" id="reason">
+                            <small>Reason :</small>
+                            <textarea name="stprog_reason"><?=$stprog['stprog_reason'];?></textarea>
+                        </div>
+
                         <div class="col-md-4 mb-1">
-                            <i class="fas fa-hourglass"></i>&nbsp; &nbsp; Is The Program Running ? :
+                            <i class="fas fa-hourglass"></i>&nbsp; &nbsp; Is The Program Running ?
                         </div>
                         <div class="col-md-8 text-muted">
                             <div class="row">
@@ -268,20 +273,32 @@ BM.set("<?=$stmentor['mt_id2'];?>");
 $(document).ready(function() {
     var st = $("#stPotential").val();
     if (st == "1") {
+        $("#reason").hide();
         stProgram.enable();
         MM.enable();
         BM.enable();
+    } else if (st == "2") {
+        $("#reason").show();
     }
 });
 
 function programStatus() {
     var st = $("#stPotential").val();
     if (st == "1") {
+        $("#reason").hide();
         stProgram.enable();
         MM.enable();
         BM.enable();
         MM.set("<?=$stmentor['mt_id1'];?>");
         BM.set("<?=$stmentor['mt_id2'];?>");
+    } else if (st == "2") {
+        $("#reason").show();
+        stProgram.disable();
+        stProgram.set("0");
+        MM.disable();
+        BM.disable();
+        MM.set("");
+        BM.set("");
     } else {
         stProgram.disable();
         stProgram.set("0");
