@@ -69,13 +69,16 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <small>First Name</small>
-                                    <input name="stFName" type="text" placeholder="First Name"
-                                        class="form-control form-control-sm">
+                                    <input name="st_num" type="hidden" value="<?=$s['st_num'];?>">
+                                    <input name="st_firstname" type="text" class="form-control form-control-sm"
+                                        value="<?=$s['st_firstname'];?>">
+                                    <?=form_error('st_firstname', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <small>Last Name</small>
-                                    <input name="stLName" type="text" placeholder="Last Name"
-                                        class="form-control form-control-sm">
+                                    <input name="st_lastname" type="text" class="form-control form-control-sm"
+                                        value="<?=$s['st_lastname'];?>">
+                                    <?=form_error('st_lastname', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -85,9 +88,10 @@
                         </div>
                         <div class="col-md-8 text-muted">
                             <div class="row">
-                                <div class="col-md-12 mb-3">
-                                    <input name="stEmail" type="text" placeholder="E-mail"
-                                        class="form-control form-control-sm">
+                                <div class="col-md-5 mb-3">
+                                    <input name="st_mail" type="text" class="form-control form-control-sm"
+                                        value="<?=$s['st_mail'];?>">
+                                    <?=form_error('st_mail', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -97,9 +101,10 @@
                         </div>
                         <div class="col-md-8 text-muted">
                             <div class="row">
-                                <div class="col-md-12 mb-3">
-                                    <input name="stPhone" type="text" placeholder="Phone Number"
-                                        class="form-control form-control-sm">
+                                <div class="col-md-4 mb-3">
+                                    <input name="st_phone" type="text" class="form-control form-control-sm"
+                                        value="<?=$s['st_phone'];?>">
+                                    <?=form_error('st_phone', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -110,8 +115,9 @@
                         <div class="col-md-8 text-muted">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <input name="stPhone" type="text" placeholder="Instagram"
-                                        class="form-control form-control-sm">
+                                    <input name="st_insta" type="text" class="form-control form-control-sm"
+                                        value="<?=$s['st_insta'];?>">
+                                    <?=form_error('st_insta', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -122,18 +128,16 @@
                         <div class="col-md-8 text-muted">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
+                                    <small>State</small>
+                                    <input name="st_state" type="text" class="form-control form-control-sm"
+                                        value="<?=$s['st_state'];?>" id="state">
+                                    <?=form_error('st_state', '<small class="text-danger">', '</small>');?>
+                                </div>
+                                <div class="col-md-12 mb-3">
                                     <small>Address</small>
-                                    <textarea name="stAddress" id="" rows="5" class="form-control"></textarea>
-                                </div>
-                                <div class="col-md-8 mb-3">
-                                    <small>State/Region</small>
-                                    <input name="stState" type="text" placeholder="State/Region"
-                                        class="form-control form-control-sm">
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <small>Postal Code</small>
-                                    <input name="stPostalCode" type="number" placeholder="Postal Code"
-                                        class="form-control form-control-sm">
+                                    <textarea name="st_address" class="form-control form-control-sm"
+                                        rows="5"><?=$s['st_address'];?></textarea>
+                                    <?=form_error('st_address', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -146,7 +150,7 @@
                         <div class="col-md-8 text-muted">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <select name="prName" id="prName" onchange="addParent()">
+                                    <select name="pr_id" id="prName" onchange="addParent()">
                                         <option data-placeholder="true"></option>
                                         <option value="1">Budi</option>
                                         <option value="2">Aliyah</option>
@@ -188,16 +192,19 @@
                         <div class="col-md-8 mb-3 text-muted">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <select name="stSchool" id="stSchool" onchange="addSchool()">
+                                    <select id="stSchool" name="sch_id" onChange="addSchool();">
                                         <option data-placeholder="true"></option>
-                                        <option value="1">SMA 1 Jakarta</option>
-                                        <option value="2">SMA 2 Jakarta</option>
-                                        <option value="3">SMA 3 Jakarta</option>
+                                        <?php foreach($sch as $sc): ?>
+                                        <option value="<?=$sc['sch_id'];?>">
+                                            <?=$sc['sch_name'];?>
+                                        </option>
+                                        <?php endforeach;?>
                                         <option value="other">Other</option>
                                     </select>
+                                    <?=form_error('sch_id', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-6 d-none" id="oSchool">
-                                    <input id="otherSchool" name="otherSchool" type="text" placeholder="Other School"
+                                    <input id="otherSchool" name="sch_name" type="text" placeholder="Other School"
                                         class="form-control form-control-sm">
                                 </div>
 
@@ -210,13 +217,15 @@
                         <div class="col-md-8 mb-3 text-muted">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <select id="currentEducation" name="currentEducation">
+                                    <select id="currentEducation" name="st_currentsch">
                                         <option data-placeholder="true"></option>
-                                        <option value="9">Elementary School</option>
-                                        <option value="3">Middle School</option>
-                                        <option value="2">High School</option>
-                                        <option value="4">University</option>
+                                        <?php foreach($school['level'] as $lv): ?>
+                                        <option value="<?=$lv;?>">
+                                            <?=$lv;?>
+                                        </option>
+                                        <?php endforeach;?>
                                     </select>
+                                    <?=form_error('st_currentsch', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -227,17 +236,20 @@
                         <div class="col-md-8 mb-1 text-muted">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <select id="grade" name="grade">
+                                    <select id="grade" name="st_grade">
                                         <option data-placeholder="true"></option>
-                                        <option value="9">9</option>
-                                        <option value="2">10</option>
-                                        <option value="3">11</option>
-                                        <option value="4">12</option>
+                                        <?php for($i=1; $i<=12; $i++) { ?>
+                                        <option value="<?=$i;?>"><?=$i;?></option>
+                                        <?php } ?>
+                                        <option value="13">Not High School</option>
                                     </select>
+                                    <?=form_error('st_grade', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                     <?php  if($s['st_statuscli']==2) {  ?>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="row">
@@ -362,6 +374,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
+$(document).ready(function() {
+    var states = '<?=implode(", ", $states);?>';
+    var arr = states.split(", ")
+    console.log(arr)
+    $("#state").autocomplete({
+        source: arr
+    });
+});
+
 new SlimSelect({
     select: '#prName',
     placeholder: 'Select parents Name',
@@ -369,26 +390,29 @@ new SlimSelect({
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 
-new SlimSelect({
+let SS = new SlimSelect({
     select: '#stSchool',
     placeholder: 'Select school Name',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
+SS.set("<?=$s['sch_id'];?>")
 
-new SlimSelect({
+let CE = new SlimSelect({
     select: '#currentEducation',
     placeholder: 'Select current education',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
+CE.set("<?=$s['st_currentsch'];?>")
 
-new SlimSelect({
+let GR = new SlimSelect({
     select: '#grade',
     placeholder: 'Select student year / Grade',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
+GR.set("<?=$s['st_grade'];?>")
 
 function addParent() {
     var p = $('#prName').val();

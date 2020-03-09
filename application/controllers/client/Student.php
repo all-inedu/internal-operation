@@ -142,7 +142,7 @@ class Student extends CI_Controller
         ];
 
         $this->stprog->save($data, $datas, $id);
-        $this->session->set_flashdata('success', 'Prospective client has been created');
+        $this->session->set_flashdata('success', 'Students program has been created');
         redirect('/client/student/view/'.$id);
     }
 

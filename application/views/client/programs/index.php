@@ -125,11 +125,12 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Need Mentor ?
+                                <label>Need Mentor or Tutor?
                                 </label>
                                 <select name="prog_mentor" class="form-control form-control-sm">
+                                    <option value="Mentor">Mentor</option>
+                                    <option value="Tutor">Tutor</option>
                                     <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
                                 </select>
                                 <?=form_error('prog_mentor', '<small class="text-danger">', '</small>');?>
                             </div>
@@ -213,11 +214,12 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Need Mentor ?
+                                <label>Need Mentor or Tutor?
                                 </label>
                                 <select id="prog_mentor" name="prog_mentor" class="form-control form-control-sm">
+                                    <option value="Mentor">Mentor</option>
+                                    <option value="Tutor">Tutor</option>
                                     <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
                                 </select>
                                 <?=form_error('prog_mentor', '<small class="text-danger">', '</small>');?>
                             </div>

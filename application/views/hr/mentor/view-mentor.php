@@ -158,7 +158,7 @@
                             ?>
                             <div class="col-md-7">
                                 <small>Tutoring Subject</small><br>
-                                IB
+                                <?=$mentor['mt_tsubject'];?>
                                 <hr class="mt-1 m-0">
                             </div>
                         </div>

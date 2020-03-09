@@ -36,14 +36,7 @@
                 <ul class="list-unstyled collapse" id="homeSubmenu">
                     <li>
                         <a href="<?=base_url('client/student/');?>"><i class="fas fa-arrow-circle-right"></i>&nbsp;
-                            Prospective</a>
-                    </li>
-                    <li>
-                        <a href="<?=base_url('client/potential/');?>"><i class="fas fa-arrow-circle-right"></i>&nbsp;
-                            Potential</a>
-                    </li>
-                    <li>
-                        <a href="<?=base_url('client/fix/');?>"><i class="fas fa-arrow-circle-right"></i>&nbsp; Fix</a>
+                            Students</a>
                     </li>
                     <li>
                         <a href="<?=base_url('client/parents/');?>"><i class="fas fa-arrow-circle-right"></i>&nbsp;
@@ -57,8 +50,8 @@
                     Program</a>
                 <ul class="list-unstyled collapse" id="pageSubmenu">
                     <li>
-                        <a href="<?=base_url('client/client-program/');?>"><i
-                                class="fas fa-arrow-circle-right"></i>&nbsp; Student's Program</a>
+                        <a href="<?=base_url('client/students-program/');?>"><i
+                                class="fas fa-arrow-circle-right"></i>&nbsp; Students Program</a>
                     </li>
                 </ul>
             </li>

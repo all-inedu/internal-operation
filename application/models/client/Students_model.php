@@ -21,12 +21,12 @@ class Students_model extends CI_model
         $this->db->insert('tbl_students', $data);
     }
 
-    // public function update($data, $id)
-    // {
-    //     $this->db->set($data);
-    //     $this->db->where('prog_id', $id);
-    //     $this->db->update('tbl_prog');
-    // }
+    public function update($data, $id)
+    {
+        $this->db->set($data);
+        $this->db->where('st_num', $id);
+        $this->db->update('tbl_students');
+    }
 
     // public function delete($id){
     //     $this->db->where('prog_id', $id);

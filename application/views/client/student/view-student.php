@@ -53,7 +53,7 @@
                             class="btn btn-sm btn-info m-1"><i class="fas fa-pencil-alt"></i>&nbsp; Profile</a>
                         <a href="#" class="btn btn-sm btn-success m-1" data-toggle="modal"
                             data-target="#convertPotential"><i class="fas fa-retweet"></i>&nbsp;
-                            Convert</a>
+                            Add Program</a>
                     </div>
                 </div>
             </div>
@@ -239,7 +239,10 @@
                                 <?php $i=1 ;foreach ($stprog as $stp) : ?>
                                 <tr class="text-center">
                                     <td><?=$i;?></td>
-                                    <td><?=$stp['prog_program'];?></td>
+                                    <td style="cursor:pointer"
+                                        onclick="window.location='<?=base_url('client/students-program/view/'.$stp['stprog_id']);?>'">
+                                        <?=$stp['prog_program'];?>
+                                    </td>
                                     <td><?=$stp['lead_name'];?></td>
                                     <td><?=date('d M Y', strtotime($stp['stprog_firstdisdate']));?></td>
                                     <td><?=date('d M Y', strtotime($stp['stprog_lastdisdate']));?></td>
@@ -250,8 +253,24 @@
                                         <?php } else if($stp['stprog_status']==1) { ?>
                                         <div class="badge badge-light p-2 pl-3 pr-3 text-success shadow border">Success
                                         </div>
+
+                                        <!-- Running Status -->
+                                        <?php if($stp['stprog_runningstatus']==0) {  ?>
+                                        <div class="badge badge-light p-2 pl-3 pr-3 text-info shadow border">Not Yet
+                                        </div>
+                                        <?php } else if($stp['stprog_runningstatus']==1) { ?>
+                                        <div class="badge badge-light p-2 pl-3 pr-3 text-primary shadow border">Ongoing
+                                        </div>
+                                        <?php } else if($stp['stprog_runningstatus']==2) { ?>
+                                        <div class="badge badge-light p-2 pl-3 pr-3 text-success shadow border">Done
+                                        </div>
+                                        <?php } ?>
+                                        <!-- End Status -->
+
+
+
                                         <?php } else if($stp['stprog_status']==2) { ?>
-                                        <div class="badge badge-light p-2 pl-3 pr-3 text-danger shadow border">Pending
+                                        <div class="badge badge-light p-2 pl-3 pr-3 text-danger shadow border">Failed
                                         </div>
                                         <?php } ?>
                                     </td>
@@ -298,8 +317,8 @@
                                 </label>
                                 <select id="leadSource" name="lead_id">
                                     <option data-placeholder="true"></option>
-                                    <?php foreach($lead as $pr): ?>
-                                    <option value="<?=$pr['lead_id'];?>"><?=$pr['lead_name'];?></option>
+                                    <?php foreach($lead as $ld): ?>
+                                    <option value="<?=$ld['lead_id'];?>"><?=$ld['lead_name'];?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <?=form_error('lead_id', '<small class="text-danger">', '</small>');?>

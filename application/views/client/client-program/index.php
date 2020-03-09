@@ -3,7 +3,7 @@
         <div class="col-md-5">
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <div class="breadcrumb text-dark bg-white font-weight-bold  shadow border">
-                    <i class="fas fa-users mt-1"></i>&nbsp;&nbsp; Student's Program
+                    <i class="fas fa-users mt-1"></i>&nbsp;&nbsp; Students Program
                 </div>
             </nav>
         </div>
@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
                     <li class="breadcrumb-item"><a href="<?=base_url('client/home');?>">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Student's Program</li>
+                    <li class="breadcrumb-item active" aria-current="page">Students Program</li>
                 </ol>
             </nav>
         </div>
@@ -21,40 +21,53 @@
 <div class="content">
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
-            <tr>
-                <th width="1%" class="text-center">No</th>
-                <th width="10%" class="text-center  bg-primary text-white">Full Name</th>
-                <th width="10%" class="text-center">Program Name</th>
-                <th width="5%" class="text-center">First Discuss</th>
-                <th width="5%" class="text-center">Last Discuss</th>
-                <th width="5%" class="text-center">Notes</th>
-                <th width="5%" class="text-center">Meeting Date</th>
-                <th width="10%" class="text-center">Meeting Notes</th>
-                <th width="5%" class="text-center">Status Potential Client</th>
-                <th width="5%" class="text-center">Potential Updated</th>
-                <th width="5%" class="text-center">Status Program</th>
-                <th width="5%" class="text-center">Program Updated</th>
+            <tr class="text-center">
+                <th width="1%">No</th>
+                <th width="10%" class="text-center bg-primary text-white">Full Name</th>
+                <th width="10%">Program Name</th>
+                <th width="5%">First Discuss</th>
+                <th width="5%">Last Discuss</th>
+                <th width="5%">Program Status</th>
+                <th width="5%">Running Status</th>
             </tr>
         </thead>
         <tbody>
-            <?php for($i=1;$i<=50;$i++) { ?>
-            <tr>
-                <td class="text-center"><?=$i;?></td>
-                <td style="cursor:pointer" onclick="window.location='<?=base_url('client/client-program/view');?>'">
-                    Emilia
-                    Wati</td>
-                <td class="text-center">SAT Prep</td>
-                <td class="text-center">22 Nov 2019</td>
-                <td class="text-center">02 Des 2019</td>
-                <td class="text-center">Test ...</td>
-                <td class="text-center">09 Des 2019</td>
-                <td class="text-center">-</td>
-                <td class="text-center">Pending</td>
-                <td class="text-center">02 Des 2019</td>
-                <td class="text-center">Not Yet</td>
-                <td class="text-center">-</td>
+            <?php $i=1; foreach($stprog as $stpr): ?>
+            <tr class="text-center">
+                <td><?=$i;?></td>
+                <td style="cursor:pointer"
+                    onclick="window.location='<?=base_url('client/students-program/view/'.$stpr['stprog_id']);?>'">
+                    <?=$stpr['st_firstname'].' '.$stpr['st_lastname'];?>
+                </td>
+                <td class="text-left"><?=$stpr['prog_program'];?></td>
+                <td><?=date('d F Y', strtotime($stpr['stprog_firstdisdate']));?></td>
+                <td><?=date('d F Y', strtotime($stpr['stprog_lastdisdate']));?></td>
+                <td>
+                    <?php if($stpr['stprog_status']==0) { ?>
+                    <div class="badge badge-light p-2 pl-3 pr-3 text-muted shadow border">Pending
+                    </div>
+                    <?php } else if($stpr['stprog_status']==1) { ?>
+                    <div class="badge badge-light p-2 pl-3 pr-3 text-success shadow border">Success
+                    </div>
+                    <?php } else if($stpr['stprog_status']==2) { ?>
+                    <div class="badge badge-light p-2 pl-3 pr-3 text-danger shadow border">Failed
+                    </div>
+                    <?php } ?>
+                </td>
+                <td>
+                    <?php if($stpr['stprog_runningstatus']==0) {  ?>
+                    <div class="badge badge-light p-2 pl-3 pr-3 text-info shadow border">Not Yet
+                    </div>
+                    <?php } else if($stpr['stprog_runningstatus']==1) { ?>
+                    <div class="badge badge-light p-2 pl-3 pr-3 text-primary shadow border">Ongoing
+                    </div>
+                    <?php } else if($stpr['stprog_runningstatus']==2) { ?>
+                    <div class="badge badge-light p-2 pl-3 pr-3 text-success shadow border">Done
+                    </div>
+                    <?php } ?>
+                </td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>
