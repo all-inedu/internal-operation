@@ -29,11 +29,18 @@
                     <h5 class="mt-0"><?=$sch['sch_name'];?></h5>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="text-info mb-2">
+                        <?php if($sch['sch_mail']) { ?>
                         <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$sch['sch_mail'];?><br>
+                        <?php } if($sch['sch_phone']) { ?>
                         <i class="fas fa-phone text-danger"></i>&nbsp; <?=$sch['sch_phone'];?> &nbsp;
+                        <?php } ?>
                     </div>
                     <a href="<?=base_url('bizdev/school/edit/'.$sch['sch_id']);?>" class="btn btn-sm btn-info m-1"><i
                             class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
+                    <a href="<?=base_url('bizdev/school/delete/'.$sch['sch_id']);?>"
+                        class="delete-button btn btn-sm btn-danger m-1" data-message="school">
+                        <i class="fas fa-trash"></i>&nbsp; Delete
+                    </a>
                     <a href="#" class="btn btn-sm btn-success m-1" data-toggle="modal"
                         data-target="#convertPotential"><i class="fas fa-retweet"></i>&nbsp;
                         Add Program</a>
@@ -134,12 +141,10 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Is Friendly?
+                            <label>Instagram
                             </label>
-                            <select name="sch_isfriendly" id="isFriendly">
-                                <option><?=$sch['sch_isfriendly'];?></option>
-                            </select>
-
+                            <input name="sch_insta" type="text" class="form-control form-control-sm"
+                                value="<?=$sch['sch_insta'];?>" disabled>
                         </div>
                     </div>
 
@@ -325,7 +330,8 @@ var IF = new SlimSelect({
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 IF.disable();
-
+</script>
+<script>
 var PN = new SlimSelect({
     select: '#programName',
     placeholder: 'Select program name',

@@ -41,7 +41,7 @@
             <?php $i=1; foreach($corp as $c): ?>
             <tr class="text-center">
                 <td><?=$i;?></td>
-                <td style="cursor:pointer"
+                <td class="text-left" style="cursor:pointer"
                     onclick="window.location='<?=base_url('bizdev/corporate/view/'.$c['corp_id']);?>'">
                     <?=$c['corp_name'];?></td>
                 <td><?=$c['corp_industry'];?></td>

@@ -47,4 +47,9 @@ class CProgram_model extends CI_model
         $this->db->update('tbl_corprog');
     }
 
+    public function delete($id) {
+        $this->db->where('corprog_id', $id);
+        $this->db->delete('tbl_corprog');
+    }
+
 }

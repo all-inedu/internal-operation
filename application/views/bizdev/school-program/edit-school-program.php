@@ -49,8 +49,11 @@
                     <h5 class="align-middle mt-2">
                         <?=$sprog['sch_name'];?></h5>
                     <div class="text-info mb-2">
-                        <i class="fa-fw fas fa-envelope text-danger"></i>&nbsp; <?=$sprog['sch_mail'];?> &nbsp; | &nbsp;
-                        <i class="fa-fw fas fa-phone text-danger"></i>&nbsp; <?=$sprog['sch_phone'];?>
+                        <?php if($sprog['sch_mail']) { ?>
+                        <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$sprog['sch_mail'];?><br>
+                        <?php } if($sprog['sch_phone']) { ?>
+                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$sprog['sch_phone'];?> &nbsp;
+                        <?php } ?>
                     </div>
                     <h6 style="font-size:14px;" class="text-primary mb-2"><?=$sprog['prog_program'];?></h6>
                 </div>

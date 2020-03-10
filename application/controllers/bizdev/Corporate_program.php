@@ -135,5 +135,11 @@ class Corporate_program extends CI_Controller
         $this->session->set_flashdata('success', 'Corporates program data has been changed');
         redirect('/bizdev/corporate-program/edit/'.$id);
     }
+
+    public function delete($id) {
+        $this->cprog->delete($id);
+        $this->session->set_flashdata('success', 'Corporates program data has been deleted');
+        redirect('/bizdev/corporate-program/');
+    }
     
 }

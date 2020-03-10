@@ -49,7 +49,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 mb-3">
         <div class="card shadow">
             <div class="card-body">
                 <h6 class="align-middle"><i class="fas fa-user"></i>&nbsp; &nbsp; Students Program
@@ -133,7 +133,7 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <small>Status</small>
-                                    <select id="stPotential" name="stprog_status" onchange="programStatus()">
+                                    <select id="stPotential" name="stprog_status" onchange="progStatus()">
                                         <option data-placeholder="true"></option>
                                         <option value="0">Pending</option>
                                         <option value="1">Success</option>
@@ -209,6 +209,23 @@
                             </div>
                         </div>
                         <?php } ?>
+
+                        <div class="col-md-4 mb-1">
+                            <i class="fas fa-hourglass-half"></i>&nbsp; &nbsp; PIC :
+                        </div>
+                        <div class="col-md-8 text-muted">
+                            <div class="row">
+                                <div class="col-md-8 mb-3">
+                                    <select id="PIC" name="stprog_pic">
+                                        <option data-placeholder="true"></option>
+                                        <?php foreach ($empl as $e) : ?>
+                                        <option value="<?=$e['empl_id'];?>">
+                                            <?=$e['empl_firstname'].' '.$e['empl_lastname'];?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="text-center">
@@ -256,6 +273,13 @@ var MM = new SlimSelect({
 });
 MM.disable();
 MM.set("<?=$stmentor['mt_id1'];?>");
+
+var PIC = new SlimSelect({
+    select: '#PIC',
+    placeholder: 'Select PIC',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
 </script>
 
 <script>
@@ -282,7 +306,7 @@ $(document).ready(function() {
     }
 });
 
-function programStatus() {
+function progStatus() {
     var st = $("#stPotential").val();
     if (st == "1") {
         $("#reason").hide();

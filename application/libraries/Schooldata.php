@@ -5,9 +5,21 @@ class Schooldata
 {
     function show(){
         $data = [
-            'type' => ['National', 'International'],
+            'type' => ['National', 'International','-'],
             'level' => ['Grade 1','Grade 2','Grade 3', 'University'],
-            'curriculum' => ['American Curriculum', 'Australian Curriculum', 'IB', 'National Curriculum', 'Singapore Curiculum'],
+            'curriculum' => [
+                'American Curriculum', 
+                'Australian Curriculum', 
+                'Canadian Curriculum',
+                'European Curriculum',
+                'French Curriculum',
+                'GCE',
+                'IB', 
+                'IGCSE',
+                'Korean Curriculum',
+                'National Curriculum',
+                'Singapore Curiculum',
+            ],
         ];
         return $data;
     }

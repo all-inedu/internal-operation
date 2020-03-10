@@ -54,7 +54,7 @@ class School extends CI_Controller
             'sch_type' => $this->input->post('sch_type'),
             'sch_level' => $this->input->post('sch_level'),
             'sch_curriculum' => $this->input->post('sch_curriculum'),
-            'sch_isfriendly' => $this->input->post('sch_isfriendly'),
+            'sch_insta' => $this->input->post('sch_insta'),
             'sch_city' => $this->input->post('sch_city'),
             'sch_location' => $this->input->post('sch_location'),
             'sch_mail' => $this->input->post('sch_mail'),
@@ -114,7 +114,7 @@ class School extends CI_Controller
             'sch_type' => $this->input->post('sch_type'),
             'sch_level' => $this->input->post('sch_level'),
             'sch_curriculum' => $this->input->post('sch_curriculum'),
-            'sch_isfriendly' => $this->input->post('sch_isfriendly'),
+            'sch_insta' => $this->input->post('sch_insta'),
             'sch_city' => $this->input->post('sch_city'),
             'sch_location' => $this->input->post('sch_location'),
             'sch_mail' => $this->input->post('sch_mail'),
@@ -124,6 +124,12 @@ class School extends CI_Controller
         $this->sch->update($data, $id);
         $this->session->set_flashdata('success', 'School has been changed');
         redirect('/bizdev/school/view/'.$id);
+    }
+
+    public function delete($id) {
+        $this->sch->delete($id);
+        $this->session->set_flashdata('success', 'School has been deleted');
+        redirect('/bizdev/school/');
     }
 
     public function saveDetail() {

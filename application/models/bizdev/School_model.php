@@ -58,6 +58,12 @@ class School_model extends CI_model
     public function delete($id){
         $this->db->where('sch_id', $id);
         $this->db->delete('tbl_sch');
+
+        $this->db->where('sch_id', $id);
+        $this->db->delete('tbl_schdetail');
+
+        $this->db->where('sch_id', $id);
+        $this->db->delete('tbl_schprog');
     }
 
     public function deleteDetail($id){

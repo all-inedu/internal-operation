@@ -31,7 +31,7 @@
                 <th width="5%" class="text-center">Type</th>
                 <th width="5%" class="text-center">Level</th>
                 <th width="5%" class="text-center">Curriculum</th>
-                <th width="5%" class="text-center">Is Friendly ?</th>
+                <th width="5%" class="text-center">Instagram</th>
                 <th width="10%" class="text-center">City</th>
                 <th width="5%" class="text-center">Location</th>
             </tr>
@@ -39,32 +39,19 @@
         <tbody>
             <?php $i=1; foreach($sch as $s): ?>
             <tr class="text-center align-middle">
-                <td class="align-middle"><?=$i;?></td>
-                <td class="align-middle" style="cursor:pointer"
+                <td><?=$i;?></td>
+                <td class="text-left" style="cursor:pointer"
                     onclick="window.location='<?=base_url('bizdev/school/view/'.$s['sch_id']);?>'">
                     <?=$s['sch_name'];?>
                 </td>
-                <td class="align-middle"><?=$s['sch_type'];?></td>
-                <td class="align-middle"><?=$s['sch_level'];?></td>
-                <td class="align-middle"><?=$s['sch_curriculum'];?></td>
-                <td class="align-middle">
-                    <!-- Friendly -->
-                    <?php if($s['sch_isfriendly']=="Yes") {?>
-                    <span class="badge badge-pill badge-success p-1" data-toggle="tooltip" data-placement="top"
-                        title="Friendly">
-                        <i class="fas fa-smile-beam fa-2x"></i>
-                    </span>
-                    <?php } else { ?>
-                    <!-- Not Friendly -->
-                    <span class="badge badge-pill badge-danger p-1" data-toggle="tooltip" data-placement="top"
-                        title="Not">
-                        <i class="fas fa-meh fa-2x"></i>
-                    </span>
-                    <?php } ?>
-
+                <td><?=$s['sch_type'];?></td>
+                <td><?=$s['sch_level'];?></td>
+                <td><?=$s['sch_curriculum'];?></td>
+                <td>
+                    <?=$s['sch_insta'];?>
                 </td>
-                <td class="align-middle"><?=$s['sch_city'];?></td>
-                <td class="align-middle"><?=$s['sch_location'];?></td>
+                <td><?=$s['sch_city'];?></td>
+                <td><?=$s['sch_location'];?></td>
             </tr>
             <?php $i++; endforeach; ?>
         </tbody>

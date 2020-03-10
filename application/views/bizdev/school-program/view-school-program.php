@@ -49,15 +49,22 @@
                     <h5 class="align-middle mt-2">
                         <?=$sprog['sch_name'];?></h5>
                     <div class="text-info mb-2">
-                        <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$sprog['sch_mail'];?> &nbsp; | &nbsp;
-                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$sprog['sch_phone'];?>
+                        <?php if($sprog['sch_mail']) { ?>
+                        <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$sprog['sch_mail'];?><br>
+                        <?php } if($sprog['sch_phone']) { ?>
+                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$sprog['sch_phone'];?> &nbsp;
+                        <?php } ?>
                     </div>
                     <h6 style="font-size:14px;" class="text-primary mb-2"><?=$sprog['prog_program'];?></h6>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <a href="<?=base_url('bizdev/school/view/'.$sprog['sch_id']);?>" class="btn btn-sm btn-info m-1"><i
-                            class="fas fa-search"></i>&nbsp; Profile</a>
+                            class="fas fa-search"></i>&nbsp; Profile</a><br>
+
                     <a href="<?=base_url('bizdev/school-program/edit/'.$sprog['schprog_id']);?>"
                         class="btn btn-sm btn-primary m-1"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
+                    <a href="<?=base_url('bizdev/school-program/delete/'.$sprog['schprog_id']);?>"
+                        class="delete-button btn btn-sm btn-danger m-1" data-message="schools program"><i
+                            class="fas fa-trash"></i>&nbsp; Delete</a>
                 </div>
             </div>
         </div>

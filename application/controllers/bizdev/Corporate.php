@@ -53,7 +53,6 @@ class Corporate extends CI_Controller
             'corp_site' => $this->input->post('corp_site'),
             'corp_region' => $this->input->post('corp_region'),
             'corp_address' => $this->input->post('corp_address'),
-            'corp_status' => 0,
             'crop_datecreated' => date('Y-m-d H:i:s')
         ];
 
@@ -111,12 +110,17 @@ class Corporate extends CI_Controller
             'corp_site' => $this->input->post('corp_site'),
             'corp_region' => $this->input->post('corp_region'),
             'corp_address' => $this->input->post('corp_address'),
-            'corp_status' => 0,
             'crop_datecreated' => date('Y-m-d H:i:s')
         ];
         $this->corp->update($data, $id);
         $this->session->set_flashdata('success', 'Corporate has been changed');
         redirect('/bizdev/corporate/view/'.$id);
+    }
+
+    public function delete($id) {
+        $this->corp->delete($id);
+        $this->session->set_flashdata('success', 'Corporate has been deleted');
+        redirect('/bizdev/corporate/');
     }
 
     public function showDetailId($id) {

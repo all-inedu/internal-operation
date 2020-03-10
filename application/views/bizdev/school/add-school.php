@@ -99,14 +99,10 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label>Is Friendly?
+                                <label>Instagram
                                 </label>
-                                <select name="sch_isfriendly" id="isFriendly">
-                                    <option data-placeholder="true"></option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                </select>
-                                <?=form_error('sch_isfriendly', '<small class="text-danger">', '</small>');?>
+                                <input name="sch_insta" type="text" class="form-control form-control-sm">
+                                <?=form_error('sch_insta', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 

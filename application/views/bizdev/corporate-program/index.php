@@ -35,7 +35,7 @@
             <?php $i=1; foreach($cprog as $cp) : ?>
             <tr class="text-center">
                 <td><?=$i;?></td>
-                <td style="cursor:pointer"
+                <td class="text-left" style="cursor:pointer"
                     onclick="window.location='<?=base_url('bizdev/corporate-program/view/'.$cp['corprog_id']);?>'">
                     <?=$cp['corp_name'];?>
                 </td>

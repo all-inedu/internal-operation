@@ -36,9 +36,12 @@
                     </div>
                     <a href="<?=base_url('bizdev/corporate/edit/'.$corp['corp_id']);?>" class="btn btn-sm btn-info"><i
                             class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
-
-                    <a href="#" class="btn btn-sm btn-success m-1" data-toggle="modal"
-                        data-target="#convertPotential"><i class="fas fa-retweet"></i>&nbsp;
+                    <a href="<?=base_url('bizdev/corporate/delete/'.$corp['corp_id']);?>"
+                        class="delete-button btn btn-sm btn-danger m-1" data-message="corporate">
+                        <i class="fas fa-trash"></i>&nbsp; Delete
+                    </a>
+                    <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#convertPotential"><i
+                            class="fas fa-retweet"></i>&nbsp;
                         Add Program</a>
                 </div>
             </div>
@@ -224,7 +227,7 @@
                             <div class="form-group">
                                 <label>Program Name
                                 </label>
-                                <select id="programName" name="prog_id">
+                                <select id="progName" name="prog_id">
                                     <option data-placeholder="true"></option>
                                     <?php foreach($prog as $p): ?>
                                     <option value="<?=$p['prog_id'];?>"><?=$p['prog_sub'].' - '.$p['prog_program'];?>
@@ -290,7 +293,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
 var PN = new SlimSelect({
-    select: '#programName',
+    select: '#progName',
     placeholder: 'Select program name',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'

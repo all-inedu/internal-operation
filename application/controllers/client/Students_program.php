@@ -11,6 +11,7 @@ class Students_program extends CI_Controller
         $this->load->model('client/Program_model','prog');
         $this->load->model('client/Lead_model','lead');
         $this->load->model('hr/Mentor_model','mt');
+        $this->load->model('hr/Employee_model','empl');
     }
 
     public function index(){
@@ -28,6 +29,7 @@ class Students_program extends CI_Controller
         $data['program'] = $this->prog->showB2C();
         $data['mentor'] = $this->mt->showMentorActive();
         $data['tutor'] = $this->mt->showTutorActive();
+        $data['empl'] = $this->empl->showActive();
         $this->form_validation->set_rules('lead_id', 'lead source', 'required');
         if ($this->form_validation->run() == false) {
         $this->load->view('templates/h-io');

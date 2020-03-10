@@ -55,5 +55,10 @@ class SProgram_model extends CI_model
         $this->db->where('schprogfix_id', $id);
         $this->db->update('tbl_schprogfix');
     }
+
+    public function delete($id) {
+        $this->db->where('schprog_id', $id);
+        $this->db->delete('tbl_schprog');
+    }
     
 }

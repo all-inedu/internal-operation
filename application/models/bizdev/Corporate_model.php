@@ -58,6 +58,12 @@ class Corporate_model extends CI_model
     public function delete($id){
         $this->db->where('corp_id', $id);
         $this->db->delete('tbl_corp');
+
+        $this->db->where('corp_id', $id);
+        $this->db->delete('tbl_corpdetail');
+
+        $this->db->where('corp_id', $id);
+        $this->db->delete('tbl_corprog');
     }
 
     public function deleteDetail($id){

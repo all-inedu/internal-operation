@@ -74,6 +74,12 @@ class School_program extends CI_Controller
         redirect('/bizdev/school-program/edit/'.$id);
     }
 
+    public function delete($id) {
+        $this->sprog->delete($id);
+        $this->session->set_flashdata('success', 'Schools program data has been deleted');
+        redirect('/bizdev/school-program/');
+    }
+
     public function save_program_execution($id) {
         $this->form_validation->set_rules('schprog_id', 'school program id', 'is_unique[tbl_schprogfix.schprog_id]');
         if ($this->form_validation->run() == false) {

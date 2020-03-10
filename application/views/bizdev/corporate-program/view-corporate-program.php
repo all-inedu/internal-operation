@@ -59,6 +59,10 @@
                         class="btn btn-sm btn-info m-1"><i class="fas fa-search"></i>&nbsp; Profile</a>
                     <a href="<?=base_url('bizdev/corporate-program/edit/'.$cprog['corprog_id']);?>"
                         class="btn btn-sm btn-primary m-1"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
+                    <a href="<?=base_url('bizdev/corporate-program/delete/'.$cprog['corprog_id']);?>"
+                        class="delete-button btn btn-sm btn-danger m-1" data-message="corporate program">
+                        <i class="fas fa-trash"></i>&nbsp; Delete
+                    </a>
                 </div>
             </div>
         </div>
