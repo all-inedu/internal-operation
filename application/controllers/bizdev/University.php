@@ -11,11 +11,12 @@ class University extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
 
         $this->load->model('bizdev/University_model','univ');
+        $this->load->library('countries');
     }
 
     public function index(){
         $data['univ'] = $this->univ->showAll();
-        $data['country'] = ['US', 'UK', 'Canada', 'Singapore', 'Hong Kong'];
+        $data['country'] = $this->countries->show();
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-bizdev');
         $this->load->view('bizdev/university/index', $data);

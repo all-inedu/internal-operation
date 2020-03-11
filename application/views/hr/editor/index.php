@@ -45,17 +45,17 @@
         </thead>
         <tbody>
             <?php $i=1; foreach($editor as $e) : ?>
-            <tr>
-                <td class="text-center"><?=$i;?></td>
-                <td class="text-center" style="cursor:pointer"
+            <tr class="text-center">
+                <td><?=$i;?></td>
+                <td class="text-left" style="cursor:pointer"
                     onclick="window.location='<?=base_url('hr/editor/view/'.$e['editor_id']);?>'">
                     <?=$e['editor_fn']." ".$e['editor_ln'];?>
                 </td>
-                <td class="text-center"><?=$e['univ_name'];?></td>
-                <td class="text-center"><?=$e['editor_major'];?></td>
-                <td class="text-center"><?=$e['editor_mail'];?></td>
-                <td class="text-center"><?=$e['editor_phone'];?></td>
-                <td class="text-center">
+                <td class="text-left"><?=$e['univ_name'];?></td>
+                <td class="text-left"><?=$e['editor_major'];?></td>
+                <td><?=$e['editor_mail'];?></td>
+                <td><?=$e['editor_phone'];?></td>
+                <td>
                     <?php 
                     if($e['editor_status']==1){echo '<div class="p-2 badge badge-white shadow text-success">Active</div>';} else
                     if($e['editor_status']==2){echo '<div class="p-2 badge badge-white shadow text-danger">Not Active</div>';} else {echo '<div class="badge badge-warning p-2">Potential</div>';}
@@ -63,7 +63,7 @@
                 </td>
                 <td class="text-center">
                     <?php 
-                    if($e['editor_position']==1){echo 'Managing Editor';} else
+                    if($e['editor_position']==3){echo 'Managing Editor';} else
                     if($e['editor_position']==2){echo 'Senior Editor';} 
                     else {echo 'Associate Editor';}
                 ?>

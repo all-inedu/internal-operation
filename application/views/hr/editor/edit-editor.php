@@ -34,7 +34,7 @@
                     <div class="text-info">
                         <h6>
                             <?php 
-                                if($editor['editor_position']==1){echo 'Managing Editor';} else
+                                if($editor['editor_position']==3){echo 'Managing Editor';} else
                                 if($editor['editor_position']==2){echo 'Senior Editor';} 
                                 else {echo 'Associate Editor';}
                             ?>
@@ -150,7 +150,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <input name="editor_major" type="text" class="form-control form-control-sm"
-                                        value="<?=$editor['editor_fn'];?>">
+                                        value="<?=$editor['editor_major'];?>">
                                     <?=form_error('editor_major', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
@@ -167,9 +167,9 @@
                                     <small>Status</small>
                                     <select name="editor_position" type="text" id="positions">
                                         <option data-value="true"></option>
-                                        <option value="1">Managing Editor</option>
+                                        <option value="3">Managing Editor</option>
                                         <option value="2">Senior Editor</option>
-                                        <option value="3">Associate Editor</option>
+                                        <option value="1">Associate Editor</option>
                                     </select>
                                     <?=form_error('editor_position', '<small class="text-danger">', '</small>');?>
                                 </div>

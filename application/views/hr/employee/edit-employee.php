@@ -192,7 +192,6 @@
                                 <div class="col-md-6">
                                     <select name="empl_status" id="empl_status" class="form-control form-control-sm"
                                         onchange="changeStatus()">
-                                        <option value="<?=$empl['empl_status'];?>"><?=$empl['empl_status'];?></option>
                                         <option value="Full Time">Full Time</option>
                                         <option value="Contract">Contract</option>
                                         <option value="Internship">Internship</option>
@@ -361,6 +360,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+$("#empl_status").val("<?=$empl['empl_status'];?>");
+
 function changeStatus() {
     var x = $('#status').val();
     if (x == "Inactive") {

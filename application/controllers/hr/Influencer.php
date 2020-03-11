@@ -87,10 +87,15 @@ class Influencer extends CI_Controller
 
     public function view($id){
         $data['infl'] = $this->infl->showId($id);
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-hr');
-        $this->load->view('hr/influencer/view-influencer.php', $data);
-        $this->load->view('templates/f-io');
+        if($data['infl']){
+            $this->load->view('templates/h-io');
+            $this->load->view('templates/s-hr');
+            $this->load->view('hr/influencer/view-influencer.php', $data);
+            $this->load->view('templates/f-io');
+        } else {
+            $this->session->set_flashdata('warning', 'Influencer id is not found');
+            redirect('/hr/influencer/');
+        }
     }
 
     public function edit($id){

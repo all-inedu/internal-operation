@@ -33,7 +33,7 @@
                     <div class="text-info">
                         <h6>
                             <?php 
-                                if($editor['editor_position']==1){echo 'Managing Editor';} else
+                                if($editor['editor_position']==3){echo 'Managing Editor';} else
                                 if($editor['editor_position']==2){echo 'Senior Editor';} 
                                 else {echo 'Associate Editor';}
                             ?>
@@ -144,7 +144,7 @@
                             <div class="col-md-4">
                                 <small>Status</small><br>
                                 <?php 
-                                    if($editor['editor_position']==1){echo 'Managing Editor';} else
+                                    if($editor['editor_position']==3){echo 'Managing Editor';} else
                                     if($editor['editor_position']==2){echo 'Senior Editor';} 
                                     else {echo 'Associate Editor';}
                                 ?>

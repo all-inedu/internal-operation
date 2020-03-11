@@ -43,14 +43,17 @@
         </thead>
         <tbody>
             <?php $i=1; foreach($empl as $e): ?>
-            <tr class="text-center">
+            <?php if($e['empl_isactive']=='1') 
+            { $st = "text-center"; } else 
+            { $st = "text-center bg-dark text-white"; }?>
+            <tr class="<?=$st;?>">
                 <td><?=$i;?></td>
                 <td><?=$e['empl_id'];?></td>
-                <td style="cursor:pointer"
+                <td class="text-left" style="cursor:pointer"
                     onclick="window.location='<?=base_url('hr/employee/view/'.strtolower($e['empl_id']));?>'">
                     <?=$e['empl_firstname']." ".$e['empl_lastname'];?>
                 </td>
-                <td><?=$e['empl_department'];?></td>
+                <td class="text-left"><?=$e['empl_department'];?></td>
                 <td><?=date('d M Y' , strtotime($e['empl_hiredate']));?></td>
                 <td><?=date('Y')-date('Y', strtotime($e['empl_hiredate'])) ;?> Years</td>
                 <td><?=$e['empl_status'];?></td>

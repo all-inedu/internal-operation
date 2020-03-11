@@ -24,18 +24,18 @@
 <div class="content">
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
-            <tr>
-                <th width="3%" class="text-center">#</th>
-                <th width="5%" class="text-center">Asset ID</th>
-                <th width="10%" class="text-center">Asset Name</th>
-                <th width="10%" class="text-center">Merk/Type</th>
-                <th width="5%" class="text-center">Achieved Date</th>
-                <th width="5%" class="text-center">Amount</th>
-                <th width="5%" class="text-center">Unit(s)</th>
-                <th width="5%" class="text-center">Condition</th>
-                <th width="5%" class="text-center">Status</th>
-                <th width="5%" class="text-center">Last Update</th>
-                <th width="5%" class="text-center">Action</th>
+            <tr class="text-center">
+                <th width="3%">#</th>
+                <th width="5%">Asset ID</th>
+                <th width="10%">Asset Name</th>
+                <th width="10%">Merk/Type</th>
+                <th width="5%">Achieved Date</th>
+                <th width="5%">Amount</th>
+                <th width="5%">Unit(s)</th>
+                <th width="5%">Condition</th>
+                <th width="5%">Notes</th>
+                <th width="5%">Last Update</th>
+                <th width="5%">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -45,12 +45,20 @@
                 <td><?=$data['asset_id'];?></td>
                 <td><?=$data['asset_name'];?></td>
                 <td><?=$data['asset_merktype'];?></td>
-                <td><?=date('d M Y', strtotime($data['asset_dateachieved']));?></td>
+                <td>
+                    <?php
+                     if(($data['asset_dateachieved']=="0000-00-00") or($data['asset_dateachieved']=="")) { echo '-'; } else { echo date('d M Y', strtotime($data['asset_dateachieved'])); }
+                    ?>
+                </td>
                 <td><?=$data['asset_amount'];?></td>
                 <td><?=$data['asset_unit'];?></td>
                 <td><?=$data['asset_condition'];?></td>
-                <td><?=$data['asset_status'];?></td>
-                <td><?=date('d M Y', strtotime($data['asset_lastupdatedate']));?></td>
+                <td><?=$data['asset_notes'];?></td>
+                <td>
+                    <?php
+                     if(($data['asset_lastupdatedate']=="0000-00-00") or($data['asset_lastupdatedate']=="")) { echo '-'; } else { echo date('d M Y', strtotime($data['asset_lastupdatedate'])); }
+                    ?>
+                </td>
                 <td>
                     <button class="btn btn-sm btn-info" title="Edit" data-toggle="modal" data-target="#editAsset"
                         onclick="editAssets('<?=$data['asset_id'];?>')"><i class="fas fa-edit"></i></button>
@@ -86,12 +94,8 @@
                             <div class="form-group">
                                 <label>Asset Merk/Type
                                 </label>
-                                <select id="assetMerk" name="asset_merktype">
-                                    <option data-placeholder="true"></option>
-                                    <?php foreach($m as $mr): ?>
-                                    <option value="<?=$mr;?>"><?=$mr;?></option>
-                                    <?php endforeach;?>
-                                </select>
+                                <input name="asset_merktype" type="text" class="form-control form-control-sm"
+                                    placeholder="Asset Name">
                                 <?=form_error('asset_merktype', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
@@ -134,20 +138,6 @@
                                     <?php endforeach;?>
                                 </select>
                                 <?=form_error('asset_condition', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Status
-                                </label>
-                                <select id="status" name="asset_status">
-                                    <option data-placeholder="true"></option>
-                                    <?php foreach($s as $st): ?>
-                                    <option value="<?=$st;?>"><?=$st;?></option>
-                                    <?php endforeach;?>
-                                </select>
-                                <?=form_error('asset_status', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -196,12 +186,8 @@
                             <div class="form-group">
                                 <label>Asset Merk/Type
                                 </label>
-                                <select id="assetMerkEdit" name="asset_merktype">
-                                    <option data-placeholder="true"></option>
-                                    <?php foreach($m as $mr): ?>
-                                    <option value="<?=$mr;?>"><?=$mr;?></option>
-                                    <?php endforeach;?>
-                                </select>
+                                <input id="asset_merktype" name="asset_merktype" type="text"
+                                    class="form-control form-control-sm" placeholder="Asset Name">
                                 <?=form_error('asset_merktype', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
@@ -247,20 +233,6 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Status
-                                </label>
-                                <select id="statusEdit" name="asset_status">
-                                    <option data-placeholder="true"></option>
-                                    <?php foreach($s as $st): ?>
-                                    <option value="<?=$st;?>"><?=$st;?></option>
-                                    <?php endforeach;?>
-                                </select>
-                                <?=form_error('asset_status', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Notes
@@ -287,29 +259,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
 new SlimSelect({
-    select: '#assetMerk',
-    placeholder: 'Select asset merk ',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-
-new SlimSelect({
     select: '#condition',
     placeholder: 'Select type program ',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-
-new SlimSelect({
-    select: '#status',
-    // placeholder: 'Select main program ',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-
-var AM = new SlimSelect({
-    select: '#assetMerkEdit',
-    placeholder: 'Select asset merk ',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
@@ -320,14 +271,6 @@ var CD = new SlimSelect({
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
-
-var ST = new SlimSelect({
-    select: '#statusEdit',
-    // placeholder: 'Select main program ',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-
 
 
 function editAssets(x) {
@@ -340,13 +283,12 @@ function editAssets(x) {
             $('#asset').html(data.asset_id);
             $('#asset_id').val(data.asset_id);
             $('#asset_name').val(data.asset_name);
-            AM.set(data.asset_merktype);
+            $('#asset_merktype').val(data.asset_merktype);
             let achieved = data.asset_dateachieved;
             $('#asset_dateachieved').val(achieved.substring(0, 10));
             $('#asset_amount').val(data.asset_amount);
             $('#asset_unit').val(data.asset_unit);
             CD.set(data.asset_condition);
-            ST.set(data.asset_status);
             $('textarea#asset_notes').val(data.asset_notes);
             CKEDITOR.instances.asset_notes.setData(data.asset_notes);
             // console.log(data.asset_notes)

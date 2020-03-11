@@ -11,7 +11,7 @@ class Editor_model extends CI_model
     public function showManaging(){
         $this->db->select('*');
         $this->db->where('editor_status =',1);
-        $this->db->where('editor_position =',1);
+        $this->db->where('editor_position =',3);
         return $this->db->get('tbl_editor')->result_array();
     }
 
@@ -25,7 +25,7 @@ class Editor_model extends CI_model
     public function showAssociate(){
         $this->db->select('*');
         $this->db->where('editor_status =',1);
-        $this->db->where('editor_position =',3);
+        $this->db->where('editor_position =',1);
         return $this->db->get('tbl_editor')->result_array();
     }
     

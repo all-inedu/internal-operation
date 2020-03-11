@@ -149,9 +149,9 @@
                                     <small>Status</small>
                                     <select name="editor_position" type="text" id="position">
                                         <option data-placeholder="true"></option>
-                                        <option value="1">Managing Editor</option>
+                                        <option value="3">Managing Editor</option>
                                         <option value="2">Senior Editor</option>
-                                        <option value="3">Associate Editor</option>
+                                        <option value="1">Associate Editor</option>
                                     </select>
                                     <?=form_error('editor_position', '<small class="text-danger">', '</small>');?>
                                 </div>

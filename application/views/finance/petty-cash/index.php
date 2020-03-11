@@ -105,14 +105,14 @@
             <div class="">
                 <table class="table table-bordered" id="expense">
                     <thead>
-                        <tr>
-                            <th class="text-center" width="2%">No</th>
+                        <tr class="text-center">
+                            <th width="2%">No</th>
                             <th class="text-center bg-primary text-white">Date</th>
-                            <th class="text-center">Invoice</th>
-                            <th class="text-center">Supplier</th>
-                            <th class="text-center">Goods/Service</th>
-                            <th class="text-center">From</th>
-                            <th class="text-center">Total</th>
+                            <th>Invoice</th>
+                            <th>Supplier</th>
+                            <th>Goods/Service</th>
+                            <th>From</th>
+                            <th width="15%">Total</th>
                         </tr>
                     </thead>
                     <tbody>

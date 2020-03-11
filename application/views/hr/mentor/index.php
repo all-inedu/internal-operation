@@ -29,42 +29,45 @@
 <div class="content">
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th width="1%">No</th>
-                <th width="5%" class="text-center bg-primary text-white">Full Name</th>
-                <th width="5%" class="text-center">Graduated From</th>
-                <th width="5%" class="text-center">Major</th>
-                <th width="5%" class="text-center">Email</th>
-                <th width="5%" class="text-center">Phone Number</th>
-                <th width="5%" class="text-center">Mentor Status</th>
-                <th width="10%" class="text-center">Position</th>
+                <th width="15%" class="text-center bg-primary text-white">Full Name</th>
+                <th width="10%">Graduated From</th>
+                <th width="15%">Position</th>
+                <th width="10%">Email</th>
+                <th width="10%">Phone Number</th>
+                <th width="15%">Major</th>
+                <th width="10%">Mentor Status</th>
             </tr>
         </thead>
         <tbody>
             <?php $i=1; foreach($mentor as $m): ?>
-            <tr>
-                <td class="text-center"><?=$i;?></td>
-                <td class="text-center" style="cursor:pointer"
+            <?php if($m['mt_status']=='1') 
+                { $st = "text-center"; } else 
+                { $st = "text-center bg-dark text-white"; }?>
+            <tr class="<?=$st;?>">
+                <td><?=$i;?></td>
+                <td class="text-left" style="cursor:pointer"
                     onclick="window.location='<?=base_url('hr/mentor/view/'.$m['mt_id']);?>'">
                     <?=$m['mt_firstn'].' '.$m['mt_lastn'];?>
                 </td>
-                <td class="text-center"><?=$m['univ_name'];?></td>
-                <td class="text-center"><?=$m['mt_major'];?></td>
-                <td class="text-center"><?=$m['mt_email'];?></td>
-                <td class="text-center"><?=$m['mt_phone'];?></td>
-                <td class="text-center">
-                    <?php
-                        if($m['mt_status']==0){echo '<div class="p-2 badge badge-white shadow text-danger">Potential</div>';} else 
-                        if($m['mt_status']==1){echo '<div class="p-2 badge badge-white shadow text-success">Active</div>';} else
-                        if($m['mt_status']==2){echo '<div class="p-2 badge badge-white shadow text-danger">Not Active</div>';}
-                    ?>
-                </td>
-                <td class="text-center">
+                <td class="text-left"><?=$m['univ_name'];?></td>
+                <td>
                     <?php
                         if($m['mt_istutor']==1){echo 'Mentor';} else 
                         if($m['mt_istutor']==2){echo 'Mentor & Tutor';} else
                         if($m['mt_istutor']==3){echo 'Tutor';}
-                    ?>
+                        ?>
+                </td>
+                <td><?=$m['mt_email'];?></td>
+                <td><?=$m['mt_phone'];?></td>
+                <td class="text-left"><?=$m['mt_major'];?></td>
+                <td>
+                    <?php
+                                if($m['mt_status']==0){echo '<div class="p-2 badge badge-white shadow text-danger">Potential</div>';} else 
+                                if($m['mt_status']==1){echo '<div class="p-2 badge bg-white shadow text-success">Active</div>';} else
+                                if($m['mt_status']==2){echo '<div class="p-2 badge badge-white shadow text-danger">Not Active</div>';}
+                            ?>
                 </td>
             </tr>
             <?php $i++; endforeach;?>

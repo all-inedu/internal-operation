@@ -109,7 +109,7 @@ class Editor extends CI_Controller
         $this->load->view('hr/editor/view-editor.php', $data);
         $this->load->view('templates/f-io');
         } else {
-            $this->session->set_flashdata('error', 'Editor id is not found');
+            $this->session->set_flashdata('warning', 'Editor id is not found');
             redirect('/hr/editor/');
         }
     }

@@ -128,10 +128,15 @@ class Employee extends CI_Controller
 
     public function view($id){
         $data['empl'] = $this->empl->showId($id);
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-hr');
-        $this->load->view('hr/employee/view-employee.php', $data);
-        $this->load->view('templates/f-io');
+        if($data['empl']){
+            $this->load->view('templates/h-io');
+            $this->load->view('templates/s-hr');
+            $this->load->view('hr/employee/view-employee.php', $data);
+            $this->load->view('templates/f-io'); 
+        } else {
+            $this->session->set_flashdata('warning', 'Employee id is not found');
+            redirect('/hr/employee/');
+        }
     }
 
         // unlink("./upload/employee/KTP/".$id);
