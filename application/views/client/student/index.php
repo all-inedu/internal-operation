@@ -29,10 +29,10 @@
                 <th width="10%">Parents Name</th>
                 <th width="10%">Students Mail</th>
                 <th width="10%">Phone Number</th>
-                <th width="10%">Instagram</th>
+                <th width="5%">Status</th>
                 <th width="5%">School Name</th>
                 <th width="5%">Student Year /<br>Grade</th>
-                <th width="5%">Status</th>
+                <th width="10%">Instagram</th>
                 <th width="10%">State</th>
                 <th width="10%">Address</th>
                 <th width="10%">Lead</th>
@@ -50,7 +50,7 @@
             <?php $i=1; foreach($std as $s) : ?>
             <tr class=" text-center">
                 <td><?=$i;?></td>
-                <td style="cursor:pointer"
+                <td class="text-left" style="cursor:pointer"
                     onclick="window.location='<?=base_url('client/student/view/'.$s['st_num']);?>'">
                     <?=$s['st_firstname']." ".$s['st_lastname'];?>
                 </td>
@@ -59,21 +59,6 @@
                 </td>
                 <td><?=$s['st_mail'];?></td>
                 <td><?=$s['st_phone'];?></td>
-                <td><?=$s['st_insta'];?></td>
-                <td><?=$s['sch_name'];?></td>
-                <td>
-                    <?php 
-                        $ynow = date('Y');
-                        $yinput = date('Y', strtotime($s['st_datecreate']));
-                        $ginput = $s['st_grade'];
-                        $gnow = ($ynow - $yinput) + $ginput;
-                        if($gnow <= 12) {
-                            echo $gnow;
-                        } else {
-                            echo 'Not High School';
-                        }
-                        ?>
-                </td>
                 <td>
                     <?php  if($s['st_statuscli']==0) {  ?>
                     <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-danger shadow">
@@ -89,6 +74,21 @@
                     </div>
                     <?php } ?>
                 </td>
+                <td class="text-left"><?=$s['sch_name'];?></td>
+                <td>
+                    <?php 
+                        $ynow = date('Y');
+                        $yinput = date('Y', strtotime($s['st_datecreate']));
+                        $ginput = $s['st_grade'];
+                        $gnow = ($ynow - $yinput) + $ginput;
+                        if($gnow <= 12) {
+                            echo $gnow;
+                        } else {
+                            echo 'Not High School';
+                        }
+                        ?>
+                </td>
+                <td><?=$s['st_insta'];?></td>
                 <td><?=$s['st_state'];?></td>
                 <td><?=$s['st_address'];?></td>
                 <td><?=$s['lead_name'];?></td>

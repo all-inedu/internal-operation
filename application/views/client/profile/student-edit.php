@@ -199,7 +199,7 @@
                                             <?=$sc['sch_name'];?>
                                         </option>
                                         <?php endforeach;?>
-                                        <option value="other">Other</option>
+                                        <option value="0">Other</option>
                                     </select>
                                     <?=form_error('sch_id', '<small class="text-danger">', '</small>');?>
                                 </div>
@@ -248,6 +248,117 @@
                             </div>
                         </div>
                     </div>
+                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <i class="fas fa-hourglass-start"></i>&nbsp; &nbsp; Lead & Interest :
+                        </div>
+                        <div class="col-md-8 mb-3 text-muted">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <small>Lead Source</small>
+                                    <select id="leadSource" name="lead_id">
+                                        <option data-placeholder="true"></option>
+                                        <?php foreach($lead as $l): ?>
+                                        <option value="<?=$l['lead_id'];?>">
+                                            <?=$l['lead_name'];?>
+                                        </option>
+                                        <?php endforeach;?>
+                                    </select>
+                                    <?=form_error('lead_id', '<small class="text-danger">', '</small>');?>
+                                </div>
+                                <div class="col-md-4">
+                                    <small>Level of Interest</small>
+                                    <select id="levelInterest" name="st_levelinterest">
+                                        <option data-placeholder="true"></option>
+                                        <option value="High">High</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Low">Low</option>
+                                    </select>
+                                    <?=form_error('st_levelinterest', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <i class="fas fa-hourglass-start"></i>&nbsp; &nbsp; Interested Program :
+                        </div>
+                        <div class="col-md-8 mb-3 text-muted">
+                            <select id="interestedProgram" name="prog_id[]" multiple>
+                                <option data-placeholder="true"></option>
+                                <?php foreach($prog as $pr): ?>
+                                <option value="<?=$pr['prog_id'];?>">
+                                    <?=$pr['prog_sub'].' - '.$pr['prog_program'];?>
+                                </option>
+                                <?php endforeach;?>
+                            </select>
+                            <?=form_error('prog_id', '<small class="text-danger">', '</small>');?>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <i class="fas fa-hourglass-start"></i>&nbsp; &nbsp; Study Aboard :
+                        </div>
+                        <div class="col-md-8 mb-3 text-muted">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <small>Year of Going Study Abroad</small>
+                                    <select id="year" name="st_abryear">
+                                        <option data-placeholder="true"></option>
+                                        <?php
+                                        for($i=0;$i<=8;$i++){
+                                            $year = date("Y")+$i;
+                                            echo '<option value="'.$year.'">'.$year.'</option>';
+                                        }
+                                        
+                                    ?>
+                                    </select>
+                                    <?=form_error('st_abryear', '<small class="text-danger">', '</small>');?>
+                                </div>
+                                <div class="col-md-8">
+                                    <small>Country</small>
+                                    <select id="countryStudy" name="st_abrcountry[]" multiple>
+                                        <option data-placeholder="true"></option>
+                                        <?php foreach($con as $c): ?>
+                                        <option value="<?=$c;?>">
+                                            <?=$c;?>
+                                        </option>
+                                        <?php endforeach;?>
+                                    </select>
+                                    <?=form_error('st_abrcountry[]', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 mb-3 text-muted offset-md-4">
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <small>Univ Destination</small>
+                                    <select id="univDestination" name="st_abruniv[]" multiple>
+                                        <option data-placeholder="true"></option>
+                                        <?php foreach($univ as $u): ?>
+                                        <option value="<?=$u['univ_id'];?>">
+                                            <?=$u['univ_name'];?>
+                                        </option>
+                                        <?php endforeach;?>
+                                    </select>
+                                    <?=form_error('st_abruniv[]', '<small class="text-danger">', '</small>');?>
+                                </div>
+                                <div class="col-md-12">
+                                    <small>Major</small>
+                                    <select id="major" name="st_abrmajor[]" multiple>
+                                        <option data-placeholder="true"></option>
+                                        <?php foreach($majors as $m): ?>
+                                        <option value="<?=$m;?>">
+                                            <?=$m;?>
+                                        </option>
+                                        <?php endforeach;?>
+                                    </select>
+                                    <?=form_error('st_abrmajor[]', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
 
                     <?php  if($s['st_statuscli']==2) {  ?>
@@ -258,7 +369,7 @@
                         </div>
 
                         <div class="col-md-8 mb-3 text-muted">
-                            <textarea class="form-control form-control-sm" rows="5"></textarea>
+                            <textarea class="form-control form-control-sm" rows="5" name="att_persbrand"></textarea>
                         </div>
 
                         <div class="col-md-4 mb-3">
@@ -266,7 +377,7 @@
                         </div>
 
                         <div class="col-md-8 mb-3 text-muted">
-                            <textarea class="form-control form-control-sm" rows="5"></textarea>
+                            <textarea class="form-control form-control-sm" rows="5" name="att_interest"></textarea>
                         </div>
 
                         <div class="col-md-4 mb-3">
@@ -275,7 +386,7 @@
                         </div>
 
                         <div class="col-md-8 mb-3 text-muted">
-                            <textarea class="form-control form-control-sm" rows="5"></textarea>
+                            <textarea class="form-control form-control-sm" rows="5" name="att_person"></textarea>
                         </div>
                     </div>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
@@ -289,7 +400,7 @@
                             <div class="text-center file-drop-area">
                                 <span class="fake-btn">Choose files</span>
                                 <span class="file-msg">or drag and drop files here (png, jpg, jpeg)</span>
-                                <input name="photo" class="file-input" type="file">
+                                <input name="att_photo" class="file-input" type="file">
                             </div>
                         </div>
 
@@ -302,7 +413,7 @@
                             <div class="text-center file-drop-area">
                                 <span class="fake-btn">Choose files</span>
                                 <span class="file-msg">or drag and drop files here (docx, doc, pdf)</span>
-                                <input name="cv" class="file-input" type="file">
+                                <input name="att_cv" class="file-input" type="file">
                             </div>
                         </div>
 
@@ -315,20 +426,7 @@
                             <div class="text-center file-drop-area">
                                 <span class="fake-btn">Choose files</span>
                                 <span class="file-msg">or drag and drop files here (docx, doc, pdf)</span>
-                                <input name="transcript" class="file-input" type="file">
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 mb-3">
-                            <i class="fas fa-paperclip"></i>&nbsp; &nbsp; Activities Resume :
-                            <br>
-                            <small class="text-success">Available</small>
-                        </div>
-                        <div class="col-md-8 mb-3 text-muted">
-                            <div class="text-center file-drop-area">
-                                <span class="fake-btn">Choose files</span>
-                                <span class="file-msg">or drag and drop files here (docx, doc, pdf)</span>
-                                <input name="resume" class="file-input" type="file">
+                                <input name="att_trans" class="file-input" type="file">
                             </div>
                         </div>
 
@@ -341,7 +439,7 @@
                             <div class="text-center file-drop-area">
                                 <span class="fake-btn">Choose files</span>
                                 <span class="file-msg">or drag and drop files here (docx, doc, pdf)</span>
-                                <input name="questionnaire" class="file-input" type="file">
+                                <input name="att_questioneer" class="file-input" type="file">
                             </div>
                         </div>
 
@@ -354,7 +452,7 @@
                             <div class="text-center file-drop-area">
                                 <span class="fake-btn">Choose files</span>
                                 <span class="file-msg">or drag and drop files here (docx, doc, pdf)</span>
-                                <input name="others" class="file-input" type="file">
+                                <input name="att_other" class="file-input" type="file">
                             </div>
                         </div>
                     </div>
@@ -412,7 +510,79 @@ let GR = new SlimSelect({
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
-GR.set("<?=$s['st_grade'];?>")
+GR.set("<?=$s['st_grade'];?>");
+
+let LS = new SlimSelect({
+    select: '#leadSource',
+    placeholder: 'Select lead source',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+LS.set("<?=$s['lead_id'];?>");
+
+let LI = new SlimSelect({
+    select: '#levelInterest',
+    placeholder: 'Select level of interest',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+LI.set("<?=$s['st_levelinterest'];?>");
+
+let IP = new SlimSelect({
+    select: '#interestedProgram',
+    placeholder: 'Select interested program',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-white">✖</span>'
+});
+var myJSON1 = '<?=$s["prog_id"];?>';
+if (myJSON1) {
+    var a1 = myJSON1.split(", ");
+    IP.set(a1)
+}
+
+let YR = new SlimSelect({
+    select: '#year',
+    placeholder: 'Select year',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+YR.set("<?=$s['st_abryear'];?>");
+
+let CS = new SlimSelect({
+    select: '#countryStudy',
+    placeholder: 'Select country (study aboard)',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-white">&nbsp; ✖</span>'
+});
+var myJSON2 = '<?=$s["st_abrcountry"];?>';
+if (myJSON2) {
+    var a2 = myJSON2.split(", ");
+    CS.set(a2)
+}
+
+let UD = new SlimSelect({
+    select: '#univDestination',
+    placeholder: 'Select univ destination (study aboard)',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-white">&nbsp; ✖</span>'
+});
+var myJSON3 = '<?=$s["st_abruniv"];?>';
+if (myJSON3) {
+    var a3 = myJSON3.split(", ");
+    UD.set(a3)
+}
+
+let MJ = new SlimSelect({
+    select: '#major',
+    placeholder: 'Select major (study aboard)',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-white">&nbsp; ✖</span>'
+});
+var myJSON4 = '<?=$s["st_abrmajor"];?>';
+if (myJSON4) {
+    var a4 = myJSON4.split(", ");
+    MJ.set(a4)
+}
 
 function addParent() {
     var p = $('#prName').val();
@@ -429,7 +599,7 @@ function addParent() {
 function addSchool() {
     var p = $('#stSchool').val();
 
-    if (p == 'other') {
+    if (p == '0') {
         $("#oSchool").addClass("d-block");
         $("#otherSchool").focus();
     } else {

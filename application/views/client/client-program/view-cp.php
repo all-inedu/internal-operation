@@ -216,7 +216,7 @@
                         <div class="col-md-8 text-muted">
                             <div class="row">
                                 <div class="col-md-8 mb-3">
-                                    <select id="PIC" name="stprog_pic">
+                                    <select id="PIC" name="empl_id">
                                         <option data-placeholder="true"></option>
                                         <?php foreach ($empl as $e) : ?>
                                         <option value="<?=$e['empl_id'];?>">
@@ -264,7 +264,10 @@ var stProgram = new SlimSelect({
 });
 stProgram.disable();
 stProgram.set("<?=$stprog['stprog_runningstatus'];?>")
+</script>
 
+<?php if(($stprog['prog_mentor']=="Mentor") or ($stprog['prog_mentor']=="Tutor")) { ?>
+<script>
 var MM = new SlimSelect({
     select: '#mainMentor',
     placeholder: 'Select main mentor',
@@ -273,13 +276,6 @@ var MM = new SlimSelect({
 });
 MM.disable();
 MM.set("<?=$stmentor['mt_id1'];?>");
-
-var PIC = new SlimSelect({
-    select: '#PIC',
-    placeholder: 'Select PIC',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
 </script>
 
 <script>
@@ -292,17 +288,34 @@ var BM = new SlimSelect({
 BM.disable();
 BM.set("<?=$stmentor['mt_id2'];?>");
 </script>
+<?php } ?>
+
+<script>
+var PIC = new SlimSelect({
+    select: '#PIC',
+    placeholder: 'Select PIC',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+PIC.set("<?=$stprog['empl_id'];?>");
+</script>
+
 
 <script>
 $(document).ready(function() {
     var st = $("#stPotential").val();
-    if (st == "1") {
+    if (st == "2") {
+        $("#reason").show();
+    } else if (st == "1") {
         $("#reason").hide();
         stProgram.enable();
         MM.enable();
         BM.enable();
-    } else if (st == "2") {
-        $("#reason").show();
+    } else {
+        $("#reason").hide();
+        stProgram.disable();
+        MM.disable();
+        BM.disable();
     }
 });
 
@@ -324,6 +337,7 @@ function progStatus() {
         MM.set("");
         BM.set("");
     } else {
+        $("#reason").hide();
         stProgram.disable();
         stProgram.set("0");
         MM.disable();

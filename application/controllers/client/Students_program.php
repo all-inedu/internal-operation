@@ -93,7 +93,8 @@ class Students_program extends CI_Controller
             'stprog_status' => $this->input->post('stprog_status'),
             'stprog_reason' => $reason,
             'stprog_statusprogdate' => $this->input->post('stprog_statusprogdate'),
-            'stprog_runningstatus' => $this->input->post('stprog_runningstatus')
+            'stprog_runningstatus' => $this->input->post('stprog_runningstatus'),
+            'empl_id' => $this->input->post('empl_id')
         ];
         
         $this->stprog->update($data, $id);

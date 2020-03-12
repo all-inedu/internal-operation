@@ -124,6 +124,13 @@ class Petty_model extends CI_model
         return $this->db->get('tbl_pettyexpenses')->result_array();
     }
 
+    public function sumExpenseTotal($m, $y) {
+        $this->db->select_sum('pettyexpenses_total');
+        $this->db->where('month(pettyexpenses_date)', $m); 
+        $this->db->where('year(pettyexpenses_date)', $y);
+        return $this->db->get('tbl_pettyexpenses')->row_array();
+    }
+
     public function updateExpense($data, $id)
     {
         $this->db->set($data);

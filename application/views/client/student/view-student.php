@@ -228,7 +228,7 @@
                             <thead>
                                 <tr class="text-center">
                                     <td width="1%">No</td>
-                                    <td>Program Name</td>
+                                    <td class="bg-primary text-white">Program Name</td>
                                     <td>Lead Source</td>
                                     <td>First Discuss</td>
                                     <td>Last Discuss</td>
@@ -239,7 +239,7 @@
                                 <?php $i=1 ;foreach ($stprog as $stp) : ?>
                                 <tr class="text-center">
                                     <td><?=$i;?></td>
-                                    <td style="cursor:pointer"
+                                    <td class="text-left" style="cursor:pointer"
                                         onclick="window.location='<?=base_url('client/students-program/view/'.$stp['stprog_id']);?>'">
                                         <?=$stp['prog_program'];?>
                                     </td>
@@ -291,7 +291,7 @@
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Convert to Potential</h5>
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Add Program</h5>
             </div>
             <form action="" method="post" name="convertPotential">
                 <div class="modal-body">
@@ -323,6 +323,18 @@
                                 </select>
                                 <?=form_error('lead_id', '<small class="text-danger">', '</small>');?>
                             </div>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <label>PIC
+                            </label>
+                            <select id="PIC" name="empl_id">
+                                <option data-placeholder="true"></option>
+                                <?php foreach ($empl as $e) : ?>
+                                <option value="<?=$e['empl_id'];?>">
+                                    <?=$e['empl_firstname'].' '.$e['empl_lastname'];?></option>
+                                <?php endforeach;?>
+                            </select>
                         </div>
 
                         <div class="col-md-6">
@@ -386,6 +398,13 @@ new SlimSelect({
 new SlimSelect({
     select: '#leadSource',
     placeholder: 'Select lead source ',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
+new SlimSelect({
+    select: '#PIC',
+    placeholder: 'Select PIC ',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });

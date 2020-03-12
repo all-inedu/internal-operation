@@ -1,13 +1,13 @@
 <style>
 .income {
     width: 100%;
-    height: 260px;
+    height: 300px;
     overflow-y: scroll;
 }
 
 .expense {
     width: 100%;
-    height: 432px;
+    height: 462px;
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 10px;
@@ -34,7 +34,7 @@
 </div>
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-4">
         <div class="card mb-3 shadow">
             <div class="row no-gutters">
                 <div class="col-md-4 text-center align-middle p-4">
@@ -51,7 +51,7 @@
                         <div class="float-left" style="margin-top:-10px;">
                             <a href="<?=base_url('finance/petty-cash/export');?>" class="btn btn-sm btn-danger mt-2"><i
                                     class="fas fa-file-excel"></i>&nbsp;
-                                Export/Month</a>
+                                Export</a>
                         </div>
                         <h5 class="card-title text-right mb-0">Rp. <?=number_format($saldo['pettysaldo_balance']);?>
                         </h5>
@@ -93,7 +93,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-8">
         <div class="float-left">
             <h5>Expense</h5>
         </div>

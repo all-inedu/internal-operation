@@ -30,29 +30,32 @@ class Petty_cash extends CI_Controller
     public function addIncome(){
         $m = date('m', strtotime($this->input->post('pettyinflow_date')));
         $y = date('Y', strtotime($this->input->post('pettyinflow_date')));
+        $showExsp = $this->petty->sumExpenseTotal($m, $y);
+        $oldExpense = $showExsp['pettyexpenses_total'];
         
         $saldo = $this->petty->showSaldo($m, $y);
         if(empty($saldo)){
+            $newBalance = $this->input->post('pettyinflow_total') - $oldExpense;
             $data = [
                 'pettysaldo_month' => $m,
                 'pettysaldo_year' => $y,
-                'pettysaldo_inflow	' => $this->input->post('pettyinflow_total'),
-                'pettysaldo_balance	' => $this->input->post('pettyinflow_total'),
+                'pettysaldo_inflow' => $this->input->post('pettyinflow_total'),
+                'pettysaldo_expenses' => $oldExpense,
+                'pettysaldo_balance' => $newBalance
             ];
-
             $this->petty->saveSaldo($data);
         } else {
             $newtotal = $this->input->post('pettyinflow_total');
             $oldIncome = $saldo['pettysaldo_inflow'];
-            $oldExpense = $saldo['pettysaldo_expenses']; 
             $oldBalance = $saldo['pettysaldo_balance']; 
 
             $newIncome = $oldIncome + $newtotal;
             $newBalance = $newIncome - $oldExpense;
             $id = $saldo['pettysaldo_id'];
             $data = [
-                'pettysaldo_inflow	' => $newIncome,
-                'pettysaldo_balance	' => $newBalance
+                'pettysaldo_inflow' => $newIncome,
+                'pettysaldo_expenses' => $oldExpense,
+                'pettysaldo_balance' => $newBalance
             ];
             $this->petty->updateSaldo($data, $id);
         }

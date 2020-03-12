@@ -195,7 +195,7 @@ function editUniversity(x) {
             $('#univ_id').val(data.univ_id);
             $('#univ_name').val(data.univ_name);
             EC.set(data.univ_country);
-            $('textarea#univ_address').val(data.univ_address);
+            CKEDITOR.instances['univ_address'].setData(data.univ_address)
         }
     });
 }

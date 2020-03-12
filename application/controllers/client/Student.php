@@ -11,6 +11,7 @@ class Student extends CI_Controller
         $this->load->library('countries');
         $this->load->library('majors');
         $this->load->library('states');
+        $this->load->model('hr/Employee_model','empl');
         $this->load->model('bizdev/School_model','sch');
         $this->load->model('bizdev/University_model','univ');
         $this->load->model('client/Students_model','std');
@@ -39,8 +40,8 @@ class Student extends CI_Controller
         
         // if($role=='student' or $role==''){
         $this->form_validation->set_rules('st_firstname', 'first name', 'required');
-        $this->form_validation->set_rules('st_mail', 'email', 'required');
-        $this->form_validation->set_rules('sch_id', 'school', 'required');
+        // $this->form_validation->set_rules('st_mail', 'email', 'required');
+        // $this->form_validation->set_rules('sch_id', 'school', 'required');
         $this->form_validation->set_rules('lead_id', 'lead', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/h-io');
@@ -114,7 +115,10 @@ class Student extends CI_Controller
         $data['lead'] = $this->lead->showAll();
         $data['program'] = $this->prog->showB2C();
         $data['stprog'] = $this->stprog->showStProg($id);
+        $data['empl'] = $this->empl->showActive();
+
         $this->form_validation->set_rules('prog_id', 'program name', 'required');
+        $this->form_validation->set_rules('empl_id', 'PIC', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/h-io');
             $this->load->view('templates/s-client');
@@ -136,7 +140,8 @@ class Student extends CI_Controller
             'stprog_meetingdate' => $this->input->post('stprog_meetingdate'),
             'stprog_meetingnote' => $this->input->post('stprog_meetingnote'),
             'stprog_status' => 0,
-            'stprog_runningstatus' => 0
+            'stprog_runningstatus' => 0,
+            'empl_id' => $this->input->post('empl_id'),
         ];
 
         $datas = [

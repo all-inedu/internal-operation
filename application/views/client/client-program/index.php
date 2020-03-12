@@ -26,12 +26,12 @@
                 <th width="10%" class="text-center bg-primary text-white">Full Name</th>
                 <th width="10%">Program Name</th>
                 <th width="10%">Lead Source</th>
-                <th width="5%">First Discuss</th>
-                <th width="5%">Last Discuss</th>
                 <th width="5%">Program Status</th>
                 <th width="5%">Running Status</th>
                 <th width="15%">Reason</th>
                 <th width="10%">PIC</th>
+                <th width="5%">First Discuss</th>
+                <th width="5%">Last Discuss</th>
             </tr>
         </thead>
         <tbody>
@@ -44,8 +44,6 @@
                 </td>
                 <td class="text-left"><?=$stpr['prog_program'];?></td>
                 <td><?=$stpr['lead_name'];?></td>
-                <td><?=date('d F Y', strtotime($stpr['stprog_firstdisdate']));?></td>
-                <td><?=date('d F Y', strtotime($stpr['stprog_lastdisdate']));?></td>
                 <td>
                     <?php if($stpr['stprog_status']==0) { ?>
                     <div class="badge badge-light p-2 pl-3 pr-3 text-muted shadow border">Pending
@@ -71,11 +69,19 @@
                     <?php } ?>
                 </td>
                 <td>
+                    <?php if($stpr['stprog_status']==2) { ?>
                     <?=$stpr['stprog_reason'];?>
+                    <?php } else { echo '-' ;} ?>
                 </td>
                 <td>
-
+                    <?php 
+                    $id = $stpr['empl_id'];
+                    $empl = $this->empl->showId($id);
+                    echo $empl['empl_firstname']
+                    ?>
                 </td>
+                <td><?=date('d F Y', strtotime($stpr['stprog_firstdisdate']));?></td>
+                <td><?=date('d F Y', strtotime($stpr['stprog_lastdisdate']));?></td>
             </tr>
             <?php $i++; endforeach; ?>
         </tbody>
