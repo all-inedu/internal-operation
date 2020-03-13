@@ -15,6 +15,7 @@ class Student extends CI_Controller
         $this->load->model('bizdev/School_model','sch');
         $this->load->model('bizdev/University_model','univ');
         $this->load->model('client/Students_model','std');
+        $this->load->model('client/Parents_model','prt');
         $this->load->model('client/StProgram_model','stprog');
         $this->load->model('client/Program_model','prog');
         $this->load->model('client/Lead_model','lead');
@@ -105,9 +106,6 @@ class Student extends CI_Controller
         redirect('/client/student/');
     }
 
-    private function _addParent() {
-
-    }
 
     public function view($id) {
         $data['badge'] = ["badge-dark","badge-primary","badge-info","badge-success","badge-danger","badge-warning","badge-secondary"];

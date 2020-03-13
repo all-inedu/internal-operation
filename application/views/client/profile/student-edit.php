@@ -158,32 +158,33 @@
                                 <div class="col-md-12 mb-3">
                                     <select name="pr_id" id="prName" onchange="addParent()">
                                         <option data-placeholder="true"></option>
-                                        <option value="1">Budi</option>
-                                        <option value="2">Aliyah</option>
-                                        <option value="3">Siti</option>
                                         <option value="other">Add New Parent</option>
+                                        <?php foreach ($prt as $p): ?>
+                                        <option value="<?=$p['pr_id'];?>">
+                                            <?=$p['pr_firstname'].' '.$p['pr_lastname'];?></option>
+                                        <?php endforeach ;?>
                                     </select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3 parent d-none">
                                     <small>First Name</small>
-                                    <input id="pFName" name="pFName" type="text" placeholder="First Name"
+                                    <input id="pFName" name="pr_firstname" type="text" placeholder="First Name"
                                         class="form-control form-control-sm">
                                 </div>
                                 <div class="col-md-6 mb-3 parent d-none">
                                     <small>Last Name</small>
-                                    <input name="pLName" type="text" placeholder="Last Name"
+                                    <input name="pr_lastname" type="text" placeholder="Last Name"
                                         class="form-control form-control-sm">
                                 </div>
                                 <div class="col-md-6 mb-3 parent d-none">
                                     <small>E-mail</small>
-                                    <input name="pEmail" type="text" placeholder="E-mail"
+                                    <input name="pr_mail" type="text" placeholder="E-mail"
                                         class="form-control form-control-sm">
                                 </div>
                                 <div class="col-md-6 mb-3 parent d-none">
                                     <small>Phone Number</small>
-                                    <input name="pPhone" type="text" placeholder="Phone Number"
+                                    <input name="pr_phone" type="text" placeholder="Phone Number"
                                         class="form-control form-control-sm">
                                 </div>
                             </div>
@@ -375,7 +376,8 @@
                         </div>
 
                         <div class="col-md-8 mb-3 text-muted">
-                            <textarea class="form-control form-control-sm" rows="5" name="att_persbrand"></textarea>
+                            <textarea class="form-control form-control-sm" rows="5"
+                                name="att_persbrand"><?=$stdetail['att_persbrand'];?></textarea>
                         </div>
 
                         <div class="col-md-4 mb-3">
@@ -383,7 +385,8 @@
                         </div>
 
                         <div class="col-md-8 mb-3 text-muted">
-                            <textarea class="form-control form-control-sm" rows="5" name="att_interest"></textarea>
+                            <textarea class="form-control form-control-sm" rows="5"
+                                name="att_interest"><?=$stdetail['att_interest'];?></textarea>
                         </div>
 
                         <div class="col-md-4 mb-3">
@@ -392,7 +395,8 @@
                         </div>
 
                         <div class="col-md-8 mb-3 text-muted">
-                            <textarea class="form-control form-control-sm" rows="5" name="att_person"></textarea>
+                            <textarea class="form-control form-control-sm" rows="5"
+                                name="att_person"><?=$stdetail['att_person'];?></textarea>
                         </div>
                     </div>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
@@ -400,7 +404,15 @@
                         <div class="col-md-4 mb-3">
                             <i class="fas fa-paperclip"></i>&nbsp; &nbsp; Photo :
                             <br>
-                            <small class="text-success">Available</small>
+                            <?php if($stdetail['att_photo']) {?>
+                            <small class="ml-4 text-success">
+                                Available -
+                                <a class="text-primary" target="_blank"
+                                    href="<?=base_url('upload/student/photo/'.$stdetail['att_photo']);?>">View</a>
+                            </small>
+                            <?php } else { ?>
+                            <small class="ml-4 text-danger">Not Available</small>
+                            <?php } ?>
                         </div>
                         <div class="col-md-8 mb-3 text-muted">
                             <div class="text-center file-drop-area">
@@ -413,7 +425,15 @@
                         <div class="col-md-4 mb-3">
                             <i class="fas fa-paperclip"></i>&nbsp; &nbsp; Curriculum Vitae :
                             <br>
-                            <small class="text-success">Available</small>
+                            <?php if($stdetail['att_cv']) {?>
+                            <small class="ml-4 text-success">
+                                Available -
+                                <a class="text-primary" target="_blank"
+                                    href="<?=base_url('upload/student/cv/'.$stdetail['att_cv']);?>">View</a>
+                            </small>
+                            <?php } else { ?>
+                            <small class="ml-4 text-danger">Not Available</small>
+                            <?php } ?>
                         </div>
                         <div class="col-md-8 mb-3 text-muted">
                             <div class="text-center file-drop-area">
@@ -426,7 +446,15 @@
                         <div class="col-md-4 mb-3">
                             <i class="fas fa-paperclip"></i>&nbsp; &nbsp; Transcript :
                             <br>
-                            <small class="text-info">Not Available</small>
+                            <?php if($stdetail['att_trans']) {?>
+                            <small class="ml-4 text-success">
+                                Available -
+                                <a class="text-primary" target="_blank"
+                                    href="<?=base_url('upload/student/transcript/'.$stdetail['att_trans']);?>">View</a>
+                            </small>
+                            <?php } else { ?>
+                            <small class="ml-4 text-danger">Not Available</small>
+                            <?php } ?>
                         </div>
                         <div class="col-md-8 mb-3 text-muted">
                             <div class="text-center file-drop-area">
@@ -439,7 +467,15 @@
                         <div class="col-md-4 mb-3">
                             <i class="fas fa-paperclip"></i>&nbsp; &nbsp; Questionnaire :
                             <br>
-                            <small class="text-info">Not Available</small>
+                            <?php if($stdetail['att_questioneer']) {?>
+                            <small class="ml-4 text-success">
+                                Available -
+                                <a class="text-primary" target="_blank"
+                                    href="<?=base_url('upload/student/questionnaire/'.$stdetail['att_questioneer']);?>">View</a>
+                            </small>
+                            <?php } else { ?>
+                            <small class="ml-4 text-danger">Not Available</small>
+                            <?php } ?>
                         </div>
                         <div class="col-md-8 mb-3 text-muted">
                             <div class="text-center file-drop-area">
@@ -452,7 +488,15 @@
                         <div class="col-md-4 mb-3">
                             <i class="fas fa-paperclip"></i>&nbsp; &nbsp; Others :
                             <br>
-                            <small class="text-info">Not Available</small>
+                            <?php if($stdetail['att_other']) {?>
+                            <small class="ml-4 text-success">
+                                Available -
+                                <a class="text-primary" target="_blank"
+                                    href="<?=base_url('upload/student/other/'.$stdetail['att_other']);?>">View</a>
+                            </small>
+                            <?php } else { ?>
+                            <small class="ml-4 text-danger">Not Available</small>
+                            <?php } ?>
                         </div>
                         <div class="col-md-8 mb-3 text-muted">
                             <div class="text-center file-drop-area">
@@ -487,12 +531,13 @@ $(document).ready(function() {
     });
 });
 
-new SlimSelect({
+let pName = new SlimSelect({
     select: '#prName',
     placeholder: 'Select parents Name',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
+pName.set("<?=$s['pr_id'];?>")
 
 let SS = new SlimSelect({
     select: '#stSchool',

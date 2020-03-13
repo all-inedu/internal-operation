@@ -65,7 +65,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 mb-3">
         <div class="card shadow">
             <div class="card-body">
                 <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Student's Profile
@@ -91,6 +91,7 @@
                     </div>
                     <div class="col-md-8 ">
                         <?=$s['st_address'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
                 </div>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
@@ -100,6 +101,7 @@
                     </div>
                     <div class="col-md-8 mb-3 ">
                         <?=$s['sch_name'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
 
                     <div class="col-md-4 mb-2">
@@ -117,6 +119,7 @@
                             echo 'Not High School';
                         }
                     ?>
+                        <hr class="mt-1 mb-1">
                     </div>
                 </div>
 
@@ -129,6 +132,7 @@
                     </div>
                     <div class="col-md-8 mb-3 ">
                         <?=$s['lead_name'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
 
                     <div class="col-md-4 mb-2">
@@ -173,6 +177,7 @@
                     </div>
                     <div class="col-md-8 mb-3 ">
                         <td><?=$s['st_abryear'];?></td>
+                        <hr class="mt-1 mb-1">
                     </div>
 
                     <div class="col-md-4 mb-2">

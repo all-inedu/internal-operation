@@ -14,6 +14,8 @@ class Profile extends CI_Controller
         $this->load->model('bizdev/School_model','sch');
         $this->load->model('bizdev/University_model','univ');
         $this->load->model('client/Students_model','std');
+        $this->load->model('client/StDetail_model','stdetail');
+        $this->load->model('client/Parents_model','prt');
         $this->load->model('client/StProgram_model','stprog');
         $this->load->model('client/Program_model','prog');
         $this->load->model('client/Lead_model','lead');
@@ -21,11 +23,14 @@ class Profile extends CI_Controller
 
     public function student($id){
         $data['s'] = $this->std->showId($id);
+        $st_id = $data['s']['st_id'];
+        $data['stdetail'] = $this->stdetail->showId($st_id);
+        $data['badge'] = ["badge-dark","badge-primary","badge-info","badge-success","badge-danger","badge-warning","badge-secondary"];
+        $data['lead'] = $this->lead->showAll();
+        $data['program'] = $this->prog->showB2C();
+        $data['stprog'] = $this->stprog->showStProg($id);
+        
         if($data['s']) {
-            $data['badge'] = ["badge-dark","badge-primary","badge-info","badge-success","badge-danger","badge-warning","badge-secondary"];
-            $data['lead'] = $this->lead->showAll();
-            $data['program'] = $this->prog->showB2C();
-            $data['stprog'] = $this->stprog->showStProg($id);
             $this->load->view('templates/h-io');
             $this->load->view('templates/s-client');
             $this->load->view('client/profile/student-profile', $data);
@@ -36,8 +41,31 @@ class Profile extends CI_Controller
         }
     }
 
+
+    public function uploaded($file, $path, $id){
+        $config['upload_path']          = './upload/student/'.$path;
+        $config['allowed_types']        = 'gif|jpg|jpeg|png|pdf|docx|doc';
+        $config['max_size']             = 150048;
+        $config['file_name']            = strtolower($path."-".$id);
+
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+
+        if ($this->upload->do_upload($file))
+        {
+            return htmlspecialchars($this->upload->data('file_name'));
+        } else {
+            $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('error', $error['error']);
+            redirect('/client/profile/edit/'.$id);
+        }
+    }
+
     public function edit($id){
         $data['s'] = $this->std->showId($id);
+        $st_id = $data['s']['st_id'];
+        $data['stdetail'] = $this->stdetail->showId($st_id);        
+        $data['prt'] = $this->prt->showAll();
         $data['prog'] = $this->prog->showB2C();
         $data['sch'] = $this->sch->showAll();
         $data['school'] = $this->schooldata->show();
@@ -62,6 +90,23 @@ class Profile extends CI_Controller
         $id = $this->input->post('st_num');
 
         // Add Parents 
+        $pr_id = $this->input->post('pr_id');
+        if($pr_id=='0') {
+            $getPrId = $this->prt->getId();
+            $newprid = $getPrId['pr_id'] + 1;
+
+            $dataPr = [
+                'pr_id' => $newprid,
+                'pr_firstname' => $this->input->post('pr_firstname'),
+                'pr_lastname' => $this->input->post('pr_lastname'),
+                'pr_mail' => $this->input->post('pr_mail'),
+                'pr_phone' => $this->input->post('pr_phone'),
+            ];
+
+            $this->prt->save($dataPr);
+        } else {
+            $newprid = $pr_id;
+        }
 
         // Add School
         $sch_id = $this->input->post('sch_id');
@@ -94,6 +139,7 @@ class Profile extends CI_Controller
             'st_insta' => $this->input->post('st_insta'),
             'st_state' => $this->input->post('st_state'),
             'st_address' => $this->input->post('st_address'),
+            'pr_id' => $newprid,
             'sch_id' => $newid,
             'st_currentsch' => $this->input->post('st_currentsch'),
             'st_grade' => $this->input->post('st_grade'),
@@ -106,7 +152,110 @@ class Profile extends CI_Controller
             'st_abrmajor' => implode(", ", $this->input->post('st_abrmajor[]')),
             'st_datelastedit' => date('Y-m-d H:i:s'),
         ];
-        echo json_encode($data);
+
+       
+        // Student Detail 
+        $std =  $this->std->showId($id);
+        if($std['st_statuscli']==2) {
+            $st_id = $std['st_id'];
+            
+            $files1 = $_FILES['att_photo']['name'];
+            $files2 = $_FILES['att_cv']['name'];
+            $files3 = $_FILES['att_trans']['name'];
+            $files4 = $_FILES['att_questioneer']['name'];
+            $files5 = $_FILES['att_other']['name'];
+
+            $check = $this->stdetail->showId($st_id);
+            
+            if(!$check) {
+                if(empty($files1)){$photo = "";} else {$photo = $this->uploaded('att_photo', 'photo', $id);}
+                if(empty($files2)){$cv = "";} else {$cv = $this->uploaded('att_cv', 'cv', $id);}
+                if(empty($files3)){$trans = "";} else {$trans = $this->uploaded('att_trans', 'transcript', $id);}
+                if(empty($files4)){$questioneer = "";} else {$questioneer = $this->uploaded('att_questioneer', 'questionnaire', $id);}
+                if(empty($files5)){$other = "";} else {$other = $this->uploaded('att_other', 'other', $id);}
+
+                $detailData = [
+                    'st_id' => $std['st_id'],
+                    'att_persbrand' => $this->input->post('att_persbrand'),
+                    'att_interest' => $this->input->post('att_interest'),
+                    'att_person' => $this->input->post('att_person'),
+                    'att_photo' => $photo,
+                    'att_cv' => $cv,
+                    'att_trans' => $trans,
+                    'att_questioneer' => $questioneer,
+                    'att_other' => $other
+                ];
+
+                $this->stdetail->save($detailData);
+
+            } else {
+                $old_photo = $check['att_photo'];
+                $old_cv = $check['att_cv'];
+                $old_trans = $check['att_trans'];
+                $old_questioneer = $check['att_questioneer'];
+                $old_other = $check['att_other'];
+
+                if(empty($files1)){
+                    $photo = $old_photo;
+                } else {
+                    if(! $old_photo==""){
+                        unlink("./upload/student/photo/".$old_photo);
+                    }
+                    $photo = $this->uploaded('att_photo', 'photo', $id);
+                }
+
+                if(empty($files2)){
+                    $cv = $old_cv;
+                } else {
+                    if(! $old_cv==""){
+                        unlink("./upload/student/cv/".$old_cv);
+                    }
+                    $cv = $this->uploaded('att_cv', 'cv', $id);
+                }
+
+                if(empty($files3)){
+                    $trans = $old_trans;
+                } else {
+                    if(! $old_trans==""){
+                        unlink("./upload/student/trans/".$old_trans);
+                    }
+                    $trans = $this->uploaded('att_trans', 'transcript', $id);
+                }
+
+                if(empty($files4)){
+                    $questioneer = $old_questioneer;
+                } else {
+                    if(! $old_questioneer==""){
+                        unlink("./upload/student/questionnaire/".$old_questioneer);
+                    }
+                    $questioneer = $this->uploaded('att_questioneer', 'questionnaire', $id);
+                }
+
+                if(empty($files5)){
+                    $other = $old_other;
+                } else {
+                    if(! $old_other==""){
+                        unlink("./upload/student/other/".$old_other);
+                    }
+                    $other = $this->uploaded('att_other', 'other', $id);
+                }
+
+                $detailData = [
+                    'att_persbrand' => $this->input->post('att_persbrand'),
+                    'att_interest' => $this->input->post('att_interest'),
+                    'att_person' => $this->input->post('att_person'),
+                    'att_photo' => $photo,
+                    'att_cv' => $cv,
+                    'att_trans' => $trans,
+                    'att_questioneer' => $questioneer,
+                    'att_other' => $other
+                ];
+
+                $this->stdetail->update($detailData, $st_id);
+            }
+        }
+        // End Student Detail 
+        
         $this->std->update($data, $id);
         $this->session->set_flashdata('success', 'Students profile has been changed');
         redirect('/client/profile/student/'.$id);

@@ -7,6 +7,7 @@ class Students_program extends CI_Controller
     {
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
+        $this->load->model('client/Students_model','std');
         $this->load->model('client/StProgram_model','stprog');
         $this->load->model('client/Program_model','prog');
         $this->load->model('client/Lead_model','lead');
@@ -78,10 +79,30 @@ class Students_program extends CI_Controller
 
         $prog_status = $this->input->post('stprog_status');
         if($prog_status==1) {
-            $datas = [
-                'st_statuscli' => 2,
-            ];
+            // Kode Baru 
+            $query = $this->std->getId();  
+            if($query->num_rows() <> 0){           
+                $dataSt = $query->row();      
+                $idSt = intval($dataSt->kode) + 1;    
+            } else {          
+                $idSt = 1;    
+            }
+            $idmax = str_pad($idSt, 4, "0", STR_PAD_LEFT); 
+            $newid = "ST-".$idmax;
 
+            $std = $this->std->showId($st_num);
+
+            if(empty($std['st_id'])) {
+                $datas = [
+                    'st_id' => $newid,
+                    'st_statuscli' => 2,
+                ];
+            } else {
+                $datas = [
+                    'st_statuscli' => 2,
+                ];
+            }
+            
             $this->stprog->updateStudentsStatus($datas, $st_num);
         }
 

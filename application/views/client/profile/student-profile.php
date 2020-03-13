@@ -65,9 +65,9 @@
     <div class="col-md-9">
         <div class="card shadow">
             <div class="card-body">
-                <h6 class="align-middle"><i class="fas fa-user"></i>&nbsp; &nbsp; Student's Profile
+                <h6 class="align-middle"><i class="fas fa-user"></i>&nbsp; &nbsp; Students Profile
                     <div class="float-right">
-                        <a href="<?=base_url('client/student/');?>" class="btn btn-sm btn-info"><i
+                        <a href="<?=base_url('client/student/view/'.$s['st_num']);?>" class="btn btn-sm btn-info"><i
                                 class="fas fa-arrow-circle-left"></i></a>
                     </div>
                 </h6>
@@ -88,6 +88,7 @@
                     </div>
                     <div class="col-md-8 ">
                         <?=$s['st_address'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
                 </div>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
@@ -97,6 +98,7 @@
                     </div>
                     <div class="col-md-8 mb-3 ">
                         <?=$s['sch_name'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
 
                     <div class="col-md-4 mb-2">
@@ -114,6 +116,7 @@
                             echo 'Not High School';
                         }
                     ?>
+                        <hr class="mt-1 mb-1">
                     </div>
                 </div>
 
@@ -124,6 +127,7 @@
                     </div>
                     <div class="col-md-8 mb-3 ">
                         <?=$s['lead_name'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
 
                     <div class="col-md-4 mb-2">
@@ -140,6 +144,7 @@
                         <div class="badge badge-danger pl-2 pr-2"><i class="fas fa-check"></i></div>
                         <span class="badge"> Low</span>
                         <?php } ?>
+                        <hr class="mt-1 mb-1">
                     </div>
 
                     <div class="col-md-4 mb-2">
@@ -168,6 +173,7 @@
                     </div>
                     <div class="col-md-8 mb-3 ">
                         <td><?=$s['st_abryear'];?></td>
+                        <hr class="mt-1 mb-1">
                     </div>
 
                     <div class="col-md-4 mb-2">
@@ -181,6 +187,7 @@
                         ?>
                         <span class="badge <?=$badge[$country_key];?>  p-2 mb-2"><?=$country[$i];?></span>
                         <?php } ?>
+                        <hr class="mt-1 mb-1">
                     </div>
 
                     <div class=" col-md-4 mb-2">
@@ -212,6 +219,7 @@
                         ?>
                         <span class="badge <?=$badge[$major_key];?>  p-2 mb-2"><?=$major[$i];?></span>
                         <?php } ?>
+                        <hr class="mt-1 mb-1">
                     </div>
                 </div>
                 <!-- Just Prospective Client  -->
@@ -223,7 +231,8 @@
                     </div>
 
                     <div class="col-md-8 mb-3 text-muted">
-                        <textarea class="form-control form-control-sm" rows="5"></textarea>
+                        <?=$stdetail['att_persbrand'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
 
                     <div class="col-md-4 mb-2">
@@ -231,7 +240,8 @@
                     </div>
 
                     <div class="col-md-8 mb-3 text-muted">
-                        <textarea class="form-control form-control-sm" rows="5"></textarea>
+                        <?=$stdetail['att_interest'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
 
                     <div class="col-md-4 mb-2">
@@ -240,7 +250,8 @@
                     </div>
 
                     <div class="col-md-8 mb-3 text-muted">
-                        <textarea class="form-control form-control-sm" rows="5"></textarea>
+                        <?=$stdetail['att_person'];?>
+                        <hr class="mt-1 mb-1">
                     </div>
                 </div>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
@@ -255,50 +266,87 @@
                                         <th>Photo</th>
                                         <th>Curriculum Vitae</th>
                                         <th>Transcript</th>
-                                        <th>Activities Resume</th>
                                         <th>Questionnaire</th>
                                         <th>Others</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
+                                    <?php
+                                        $true = "<div class='badge badge-success'><i class='fas fa-check'></i></div>";
+                                        $false = "<div class='badge badge-danger'><i class='fas fa-times'></i></div>";
+                                    ?>
                                     <tr>
                                         <td>
-                                            <div class="badge badge-success"><i class="fas fa-check"></i></div>
+                                            <?php 
+                                            if($stdetail['att_photo']) { echo $true; } else { echo $false; }
+                                            ?>
                                         </td>
                                         <td>
-                                            <div class="badge badge-success"><i class="fas fa-check"></i></div>
+                                            <?php 
+                                            if($stdetail['att_cv']) { echo $true; } else { echo $false; }
+                                            ?>
                                         </td>
                                         <td>
-                                            <div class="badge badge-danger"><i class="fas fa-times"></i></div>
+                                            <?php 
+                                            if($stdetail['att_trans']) { echo $true; } else { echo $false; }
+                                            ?>
                                         </td>
                                         <td>
-                                            <div class="badge badge-success"><i class="fas fa-check"></i></div>
+                                            <?php 
+                                            if($stdetail['att_questioneer']) { echo $true; } else { echo $false; }
+                                            ?>
                                         </td>
                                         <td>
-                                            <div class="badge badge-danger"><i class="fas fa-times"></i></div>
-                                        </td>
-                                        <td>
-                                            <div class="badge badge-danger"><i class="fas fa-times"></i></div>
+                                            <?php 
+                                            if($stdetail['att_other']) { echo $true; } else { echo $false; }
+                                            ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-info">Download</a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-sm btn-info">Download</a>
-                                        </td>
-                                        <td>
+                                            <?php 
+                                            if($stdetail['att_photo']) { ?>
+                                            <a href="<?=base_url('upload/student/photo/'.$stdetail['att_photo']);?>"
+                                                class="btn btn-sm btn-info" target="_blank">View / Download</a>
+                                            <?php } else { ?>
                                             <div class="text-muted">Not Available</div>
+                                            <?php } ?>
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-info">Download</a>
-                                        </td>
-                                        <td>
+                                            <?php 
+                                            if($stdetail['att_cv']) { ?>
+                                            <a href="<?=base_url('upload/student/cv/'.$stdetail['att_cv']);?>"
+                                                class="btn btn-sm btn-info" target="_blank">View / Download</a>
+                                            <?php } else { ?>
                                             <div class="text-muted">Not Available</div>
+                                            <?php } ?>
                                         </td>
                                         <td>
+                                            <?php 
+                                            if($stdetail['att_trans']) { ?>
+                                            <a href="<?=base_url('upload/student/transcript/'.$stdetail['att_trans']);?>"
+                                                class="btn btn-sm btn-info" target="_blank">View / Download</a>
+                                            <?php } else { ?>
                                             <div class="text-muted">Not Available</div>
+                                            <?php } ?>
+                                        </td>
+                                        <td>
+                                            <?php 
+                                            if($stdetail['att_questioneer']) { ?>
+                                            <a href="<?=base_url('upload/student/questionnaire/'.$stdetail['att_questioneer']);?>"
+                                                class="btn btn-sm btn-info" target="_blank">View / Download</a>
+                                            <?php } else { ?>
+                                            <div class="text-muted">Not Available</div>
+                                            <?php } ?>
+                                        </td>
+                                        <td>
+                                            <?php 
+                                            if($stdetail['att_other']) { ?>
+                                            <a href="<?=base_url('upload/student/other/'.$stdetail['att_other']);?>"
+                                                class="btn btn-sm btn-info" target="_blank">View / Download</a>
+                                            <?php } else { ?>
+                                            <div class="text-muted">Not Available</div>
+                                            <?php } ?>
                                         </td>
                                     </tr>
                                 </tbody>

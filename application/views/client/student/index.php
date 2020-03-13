@@ -68,7 +68,10 @@
                     <?=$s['st_firstname']." ".$s['st_lastname'];?>
                 </td>
                 <td>
-                    -
+                    <?php 
+                        $prt = $this->prt->showId($s['pr_id']);
+                        if($prt) { echo $prt['pr_firstname'].' '.$prt['pr_lastname']; } else { echo '-'; }
+                    ?>
                 </td>
                 <td><?=$s['st_mail'];?></td>
                 <td><?=$s['st_phone'];?></td>

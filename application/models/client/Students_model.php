@@ -1,6 +1,13 @@
 <?php
 class Students_model extends CI_model
 {
+    public function getId(){
+        $this->db->select('RIGHT(tbl_students.st_id,4) as kode', FALSE);
+		$this->db->order_by('st_id','DESC');    
+		$this->db->limit(1);    
+        return $query = $this->db->get('tbl_students');
+    }
+    
     public function showAll(){
         $this->db->select('*');
         $this->db->join('tbl_sch', 'tbl_sch.sch_id=tbl_students.sch_id');
