@@ -42,9 +42,15 @@
                     </div>
                     <?php } ?>
                     <div class="text-info mt-2 mb-2">
+                        <?php if($s['st_mail']) { ?>
                         <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$s['st_mail'];?> <br>
-                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$s['st_phone'];?> &nbsp; | &nbsp;
+                        <?php } ?>
+                        <?php if($s['st_phone']) { ?>
+                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$s['st_phone'];?> <br>
+                        <?php } ?>
+                        <?php if($s['st_insta']) { ?>
                         <i class="fab fa-instagram text-danger"></i>&nbsp;<?=$s['st_insta'];?>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="row text-center">

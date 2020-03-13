@@ -21,7 +21,20 @@
 <a href="<?=base_url('client/student/add/');?>" class="btn btn-sm btn-success ml-2 add"><i
         class="fas fa-plus-circle"></i>&nbsp; Add Student</a>
 <div class="content">
-    <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+    <nav>
+        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="all" data-toggle="tab" href="#all" role="tab" aria-controls="all"
+                aria-selected="false">* All</a>
+            <a class="nav-item nav-link" id="prospective" data-toggle="tab" href="#prospective" role="tab"
+                aria-controls="prospective" aria-selected="true">Prospective</a>
+            <a class="nav-item nav-link" id="potential" data-toggle="tab" href="#potential" role="tab"
+                aria-controls="potential" aria-selected="false">Potential</a>
+            <a class="nav-item nav-link" id="current" data-toggle="tab" href="#current" role="tab"
+                aria-controls="current" aria-selected="false">Current</a>
+        </div>
+    </nav>
+
+    <table id="studentTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
             <tr class="text-center">
                 <th width="2%">No</th>
@@ -125,3 +138,38 @@
         </tbody>
     </table>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    var tables = $('#studentTable').DataTable({
+        "bLengthChange": true,
+        "pageLength": 15,
+        "bPaginate": true,
+        "bFilter": true,
+        "bInfo": false,
+        "bAutoWidth": true,
+        dom: 'Bfrtip',
+        buttons: [{
+            extend: 'excel',
+            text: '<i class="fas fa-file-excel"></i> &nbsp; Export to Excell'
+        }]
+    });
+
+    $("#prospective").click(function() {
+        tables.column(5).search('Prospective').draw();
+    });
+
+    $("#potential").click(function() {
+        tables.column(5).search('Potential').draw();
+    });
+
+    $("#current").click(function() {
+        tables.column(5).search('Current').draw();
+    });
+
+    $("#all").click(function() {
+        tables.column(5).search('').draw();
+    });
+
+});
+</script>

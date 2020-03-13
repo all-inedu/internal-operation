@@ -103,8 +103,30 @@ class Students_program extends CI_Controller
         redirect('/client/students-program/view/'.$id);
     }
 
-    public function delete($id) {
+    public function delete($id) { 
+        $stprog = $this->stprog->showId($id);
+        $st_num = $stprog['st_num'];
+        $stprog_num = count($this->stprog->showStProg($st_num));
         $this->stprog->delete($id);
+        
+        if($stprog_num==0) {
+            $datas = [
+                'st_statuscli' => 0,
+            ];
+        } else {
+            $current = $this->stprog->showStatusProgram($st_num, 1);
+            if($current) {
+                $datas = [
+                    'st_statuscli' => 2,
+                ];
+            } else {
+                $datas = [
+                    'st_statuscli' => 1,
+                ];
+            }
+        }
+        
+        $this->stprog->updateStudentsStatus($datas, $st_num);
         $this->session->set_flashdata('success', 'Students program has been deleted');
         redirect('/client/students-program');
     }

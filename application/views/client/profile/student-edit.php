@@ -21,7 +21,7 @@
 </div>
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
 <div class="row">
-    <div class="col-md-4 mb-3">
+    <div class="col-md-3 mb-3">
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
@@ -42,15 +42,21 @@
                     </div>
                     <?php } ?>
                     <div class="text-info mt-2 mb-2">
+                        <?php if($s['st_mail']) { ?>
                         <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$s['st_mail'];?> <br>
-                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$s['st_phone'];?> &nbsp; | &nbsp;
+                        <?php } ?>
+                        <?php if($s['st_phone']) { ?>
+                        <i class="fas fa-phone text-danger"></i>&nbsp; <?=$s['st_phone'];?> <br>
+                        <?php } ?>
+                        <?php if($s['st_insta']) { ?>
                         <i class="fab fa-instagram text-danger"></i>&nbsp;<?=$s['st_insta'];?>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-8 mb-3">
+    <div class="col-md-9 mb-3">
         <div class="card shadow">
             <div class="card-body">
                 <form action="" method="post" enctype="multipart/form-data">
