@@ -160,7 +160,7 @@ var myChart = new Chart(ctx, {
                 'rgba(60, 201, 69, 0.7)'
             ],
             borderWidth: 2
-        }]
+        }],
     }
 });
 
