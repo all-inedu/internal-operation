@@ -25,9 +25,9 @@
         <div class="card shadow mb-3">
             <div class="card-body text-center">
                 <img src="https://image.freepik.com/free-vector/man-with-headphones-microphone-with-computer_113065-136.jpg"
-                    alt="client management" width="70%">
-                <h5>Stella</h5>
-                <h6>Program Name</h6>
+                    alt="client management" width="60%">
+                <h5><?=$sp['st_firstname'].' '.$sp['st_lastname'];?></h5>
+                <h6 class="text-info"><?=$sp['prog_program'];?></h6>
             </div>
         </div>
         <div class="card shadow card-sticky mb-3">
@@ -76,14 +76,16 @@
                                 <label>Price</label>
                                 <div class="row">
                                     <div class="col-md-6">
+                                        <input type="hidden" name="stprog_id" value="<?=$sp['stprog_id'];?>">
+                                        <input type="hidden" name="inv_category" value="usd">
                                         <div class="form-group">
                                             <div class="input-group input-group-sm">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">$</span>
                                                 </div>
-                                                <input id="pcDollar" name="pcDollar" type="number"
+                                                <input id="pcDollar" name="inv_priceusd" type="number"
                                                     class="form-control form-control-sm">
-                                                <?=form_error('pcDollar', '<small class="text-danger">', '</small>');?>
+                                                <?=form_error('inv_priceusd', '<small class="text-danger">', '</small>');?>
                                             </div>
                                         </div>
                                     </div>
@@ -93,9 +95,9 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">Rp</span>
                                                 </div>
-                                                <input id="pcRupiah" name="pcRupiah" type="number"
+                                                <input id="pcRupiah" name="inv_priceidr" type="number"
                                                     class="form-control form-control-sm" readonly>
-                                                <?=form_error('pcRupiah', '<small class="text-danger">', '</small>');?>
+                                                <?=form_error('inv_priceidr', '<small class="text-danger">', '</small>');?>
                                             </div>
                                         </div>
                                     </div>
@@ -110,9 +112,9 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">$</span>
                                                 </div>
-                                                <input id="ebDollar" name="ebDollar" type="number"
+                                                <input id="ebDollar" name="inv_earlybirdusd" type="number"
                                                     class="form-control form-control-sm">
-                                                <?=form_error('ebDollar', '<small class="text-danger">', '</small>');?>
+                                                <?=form_error('inv_earlybirdusd', '<small class="text-danger">', '</small>');?>
                                             </div>
                                         </div>
                                     </div>
@@ -122,9 +124,9 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">Rp</span>
                                                 </div>
-                                                <input id="ebRupiah" name="ebRupiah" type="number"
+                                                <input id="ebRupiah" name="inv_earlybirdidr" type="number"
                                                     class="form-control form-control-sm" readonly>
-                                                <?=form_error('ebRupiah', '<small class="text-danger">', '</small>');?>
+                                                <?=form_error('inv_earlybirdidr', '<small class="text-danger">', '</small>');?>
                                             </div>
                                         </div>
                                     </div>
@@ -143,9 +145,9 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">$</span>
                                                 </div>
-                                                <input id="dsDollar" name="dsDollar" type="number"
+                                                <input id="dsDollar" name="inv_discusd" type="number"
                                                     class="form-control form-control-sm">
-                                                <?=form_error('dsDollar', '<small class="text-danger">', '</small>');?>
+                                                <?=form_error('inv_discusd', '<small class="text-danger">', '</small>');?>
                                             </div>
                                         </div>
                                     </div>
@@ -155,9 +157,9 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">Rp</span>
                                                 </div>
-                                                <input id="dsRupiah" name="dsRupiah" type="number"
+                                                <input id="dsRupiah" name="inv_discidr" type="number"
                                                     class="form-control form-control-sm" readonly>
-                                                <?=form_error('dsRupiah', '<small class="text-danger">', '</small>');?>
+                                                <?=form_error('inv_discidr', '<small class="text-danger">', '</small>');?>
                                             </div>
                                         </div>
                                     </div>
@@ -172,9 +174,9 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">$</span>
                                                 </div>
-                                                <input id="tpDollar" name="tpDollar" type="number"
+                                                <input id="tpDollar" name="inv_totprusd" type="number"
                                                     class="form-control form-control-sm" readonly>
-                                                <?=form_error('tpDollar', '<small class="text-danger">', '</small>');?>
+                                                <?=form_error('inv_totprusd', '<small class="text-danger">', '</small>');?>
                                             </div>
                                         </div>
                                     </div>
@@ -184,9 +186,9 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">Rp</span>
                                                 </div>
-                                                <input id="tpRupiah" name="tpRupiah" type="number"
+                                                <input id="tpRupiah" name="inv_totpridr" type="number"
                                                     class="form-control form-control-sm" readonly>
-                                                <?=form_error('tpRupiah', '<small class="text-danger">', '</small>');?>
+                                                <?=form_error('inv_totpridr', '<small class="text-danger">', '</small>');?>
                                             </div>
                                         </div>
                                     </div>
@@ -195,9 +197,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Total Price</label>
-                                    <textarea id="tpWords1" name="tpWords" class="form-control form-control-sm"
-                                        rows="1"></textarea>
-                                    <?=form_error('tpWords', '<small class="text-danger">', '</small>');?>
+                                    <input id="tpWords1" name="inv_words" class="form-control form-control-sm">
+                                    <?=form_error('inv_words', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -206,26 +207,27 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Payment Method</label>
-                                    <select id="paymentMethod" name="paymentMethod" onChange="paymentMethods();">
+                                    <select id="paymentMethod" name="inv_paymentmethod" onChange="paymentMethods();">
                                         <option data-placeholder="true"></option>
                                         <option value="Full Payment">Full Payment</option>
                                         <option value="Installment">Installment</option>
                                     </select>
-                                    <?=form_error('paymentMethod', '<small class="text-danger">', '</small>');?>
+                                    <?=form_error('inv_paymentmethod', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Date</label>
-                                    <input name="date" type="date" class="form-control form-control-sm">
-                                    <?=form_error('date', '<small class="text-danger">', '</small>');?>
+                                    <input name="inv_date" type="date" class="form-control form-control-sm">
+                                    <?=form_error('inv_date', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Due Date</label>
-                                    <input id="dueDate" name="dueDate" type="date" class="form-control form-control-sm">
-                                    <?=form_error('dueDate', '<small class="text-danger">', '</small>');?>
+                                    <input id="dueDate" name="inv_duedate" type="date"
+                                        class="form-control form-control-sm">
+                                    <?=form_error('inv_duedate', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -234,15 +236,15 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Notes</label>
-                                    <textarea name="notes" class="form-control form-control-sm" rows="6"></textarea>
-                                    <?=form_error('notes', '<small class="text-danger">', '</small>');?>
+                                    <textarea name="inv_notes" class="form-control form-control-sm" rows="6"></textarea>
+                                    <?=form_error('inv_notes', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Terms and Condition</label>
-                                    <textarea name="tnc" class="form-control form-control-sm" rows="6"></textarea>
-                                    <?=form_error('tnc', '<small class="text-danger">', '</small>');?>
+                                    <textarea name="inv_tnc" class="form-control form-control-sm" rows="6"></textarea>
+                                    <?=form_error('inv_tnc', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -257,44 +259,45 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <small>Status Name</small>
-                                            <input type="text" name="statusName[]" class="form-control form-control-sm"
-                                                value="Installment 1" readonly>
-                                            <?=form_error('statusName[]', '<small class="text-danger">', '</small>');?>
+                                            <input type="text" name="invdtl_statusname[]"
+                                                class="form-control form-control-sm" value="Installment 1">
+                                            <?=form_error('invdtl_statusname[]', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
 
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <small>Due Date</small>
-                                            <input type="date" name="dueDate[]" class="form-control form-control-sm">
-                                            <?=form_error('dueDate[]', '<small class="text-danger">', '</small>');?>
+                                            <input type="date" name="invdtl_duedate[]"
+                                                class="form-control form-control-sm">
+                                            <?=form_error('invdtl_duedate[]', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <small>Percent</small>
-                                            <input id="percent1" type="number" name="percent[]"
+                                            <input id="percent1" type="number" name="invdtl_percentage[]"
                                                 class="form-control form-control-sm">
-                                            <?=form_error('percent[]', '<small class="text-danger">', '</small>');?>
+                                            <?=form_error('invdtl_percentage[]', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <small>Amount ($)</small>
-                                            <input id="amountDollar1" type="number" name="amountDollar[]"
+                                            <input id="amountDollar1" type="number" name="invdtl_amountusd[]"
                                                 class="form-control form-control-sm">
-                                            <?=form_error('amountDollar[]', '<small class="text-danger">', '</small>');?>
+                                            <?=form_error('invdtl_amountusd[]', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <small>Amount (Rp)</small>
-                                            <input id="amountRupiah1" type="number" name="amountRupiah[]"
+                                            <input id="amountRupiah1" type="number" name="invdtl_amountidr[]"
                                                 class="form-control form-control-sm">
-                                            <?=form_error('amountRupiah[]', '<small class="text-danger">', '</small>');?>
+                                            <?=form_error('invdtl_amountidr[]', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
                                 </div>
@@ -318,6 +321,8 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Price</label>
+                                    <input type="hidden" name="stprog_id" value="<?=$sp['stprog_id'];?>">
+                                    <input type="hidden" name="inv_category" value="idr">
                                     <div class="input-group input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
@@ -414,6 +419,8 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
+                                    <input type="hidden" name="stprog_id" value="<?=$sp['stprog_id'];?>">
+                                    <input type="hidden" name="inv_category" value="session">
                                     <label>Price/<small>Hours</small></label>
                                     <div class="input-group input-group-sm">
                                         <div class="input-group-prepend">
@@ -583,13 +590,12 @@ $('#currentUSD').keyup(function() {
     let dsTot = USD * ds;
     let tpTot = USD * tp;
 
-
     $('#pcRupiah').val(pcTot);
     $('#ebRupiah').val(ebTot);
     $('#dsRupiah').val(dsTot);
     $('#tpRupiah').val(tpTot);
 
-    $('#tpWords1').text(capitalize(tpTot));
+    $('#tpWords1').val(capitalize(tpTot));
 
 });
 
@@ -606,7 +612,7 @@ $('#pcDollar').keyup(function() {
     $('#tpDollar').val(tpDollar);
     $('#tpRupiah').val(tpRupiah);
 
-    $('#tpWords1').text(capitalize(tpRupiah));
+    $('#tpWords1').val(capitalize(tpRupiah));
 });
 
 $('#ebDollar').keyup(function() {
@@ -623,7 +629,7 @@ $('#ebDollar').keyup(function() {
     $('#tpDollar').val(tpDollar);
     $('#tpRupiah').val(tpRupiah);
 
-    $('#tpWords1').text(capitalize(tpRupiah));
+    $('#tpWords1').val(capitalize(tpRupiah));
 });
 
 $('#dsDollar').keyup(function() {
@@ -640,7 +646,8 @@ $('#dsDollar').keyup(function() {
     $('#tpDollar').val(tpDollar);
     $('#tpRupiah').val(tpRupiah);
 
-    $('#tpWords1').text(capitalize(tpRupiah));
+
+    $('#tpWords1').val(capitalize(tpRupiah));
 });
 
 function paymentMethods() {
@@ -650,7 +657,7 @@ function paymentMethods() {
         $('#dueDate').prop("disabled", false);;
     } else {
         $('#steps').show();
-        $('#dueDate').prop("disabled", true);;
+        $('#dueDate').prop("disabled", false);;
     }
 }
 
@@ -698,15 +705,15 @@ $(document).ready(function() {
                 '<div class="col-md-3">' +
                 '<div class="form-group">' +
                 '<small>Status Name</small>' +
-                ' <input type="text" name="statusName[]" class="form-control form-control-sm" value="Installment ' +
-                x + '" readonly>' +
+                ' <input type="text" name="invdtl_statusname[]" class="form-control form-control-sm" value="Installment ' +
+                x + '">' +
                 '</div>' +
                 '</div>' +
 
                 '<div class="col-md-3">' +
                 '<div class="form-group">' +
                 '<small>Due Date</small>' +
-                '<input type="date" name="dueDate[]" class="form-control form-control-sm" >' +
+                '<input type="date" name="invdtl_duedate[]" class="form-control form-control-sm" >' +
                 '</div>' +
                 '</div>' +
 
@@ -714,7 +721,7 @@ $(document).ready(function() {
                 '<div class="form-group">' +
                 '<small>Percent</small>' +
                 '<input id="percent' + x +
-                '" type="number" name="percent[]" class="form-control form-control-sm">' +
+                '" type="number" name="invdtl_percentage[]" class="form-control form-control-sm">' +
                 '</div>' +
                 '</div>' +
 
@@ -722,7 +729,7 @@ $(document).ready(function() {
                 '<div class="form-group">' +
                 '<small>Amount ($)</small>' +
                 '<input id="amountDollar' + x +
-                '" type="number" name="1[]" class="form-control form-control-sm">' +
+                '" type="number" name="invdtl_amountusd[]" class="form-control form-control-sm">' +
                 '</div>' +
                 '</div>' +
 
@@ -730,7 +737,7 @@ $(document).ready(function() {
                 '<div class="form-group">' +
                 '<small>Amount (Rp)</small>' +
                 '<input id="amountRupiah' + x +
-                '" type="number" name="amountRupiah[]" class="form-control form-control-sm">' +
+                '" type="number" name="invdtl_amountidr[]" class="form-control form-control-sm">' +
                 '</div>' +
                 '</div>' +
 

@@ -97,6 +97,7 @@ class Student extends CI_Controller
             'st_abrcountry' => implode(", ", $this->input->post('st_abrcountry[]')),
             'st_abruniv' => implode(", ", $this->input->post('st_abruniv[]')),
             'st_abrmajor' => implode(", ", $this->input->post('st_abrmajor[]')),
+            'st_statuscli' => 0,
             'st_datecreate' => date('Y-m-d H:i:s'),
             'st_datelastedit' => date('Y-m-d H:i:s'),
         ];

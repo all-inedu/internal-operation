@@ -33,20 +33,36 @@
             </tr>
         </thead>
         <tbody class="text-center">
-            <?php for($i=1;$i<=25;$i++) { ?>
+            <?php $i=1; foreach($student_program as $sp) : ?>
             <tr>
                 <td><?=$i;?></td>
-                <td style="cursor:pointer"
-                    onclick="window.location='<?=base_url('finance/invoice/student/view/'.$i);?>'">Stella
+                <td class="text-left" style="cursor:pointer"
+                    onclick="window.location='<?=base_url('finance/invoice/student/view/'.$sp['stprog_id']);?>'">
+                    <?=$sp['st_firstname'].' '.$sp['st_lastname'];?>
                 </td>
-                <td>Academic Writing</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+                <td class="text-left">
+                    <?=$sp['prog_program'];?>
+                </td>
+                <?php 
+                        $inv = $this->inv->showId($sp['stprog_id']);
+                    ?>
+                <td>
+                    <?=$inv['inv_id'];?>
+                </td>
+                <td>
+                    <?=$inv['inv_paymentmethod'];?>
+                </td>
+                <td>
+                    <?php if($inv['inv_date']) { echo date('d F Y', strtotime($inv['inv_date'])); }?>
+                </td>
+                <td>
+                    <?php if($inv['inv_duedate']) { echo date('d F Y', strtotime($inv['inv_duedate'])); }?>
+                </td>
+                <td>
+                    <?php if($inv['inv_totpridr']) { echo 'Rp.'. number_format($inv['inv_totpridr']); }?>
+                </td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>
