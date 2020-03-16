@@ -11,6 +11,13 @@ class Parents_model extends CI_model
         return $this->db->get('tbl_parents')->result_array();
     }
 
+    public function showChildsParent($id) {
+        $this->db->select('*');
+        $this->db->where('pr_id', $id);
+        $this->db->join('tbl_sch', 'tbl_sch.sch_id=tbl_students.sch_id');
+        return $this->db->get('tbl_students')->result_array();        
+    }
+
     public function showId($id){
         $this->db->select('*');
         $this->db->where('pr_id', $id); 
@@ -20,6 +27,12 @@ class Parents_model extends CI_model
     public function save($data)
     {
         $this->db->insert('tbl_parents', $data);
+    }
+
+    public function update($data, $id) {
+        $this->db->set($data);
+        $this->db->where('pr_id', $id);
+        $this->db->update('tbl_parents');
     }
 
 }

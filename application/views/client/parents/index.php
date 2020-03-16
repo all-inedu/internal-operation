@@ -18,6 +18,8 @@
     </div>
 </div>
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+<a href="<?=base_url('client/parents/add/');?>" class="btn btn-sm btn-success ml-2 add"><i
+        class="fas fa-plus-circle"></i>&nbsp; Add Parent</a>
 <div class="content">
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
@@ -26,20 +28,31 @@
                 <th width="10%" class="text-center bg-primary text-white">Full Name</th>
                 <th width="10%" class="text-center">E-mail</th>
                 <th width="10%" class="text-center">Instagram</th>
-                <th width="15%" class="text-center">Address</th>
+                <th width="15%" class="text-center">Childs Name</th>
             </tr>
         </thead>
         <tbody>
-            <?php for($i=1;$i<=50;$i++) { ?>
+            <?php $i=1; foreach($parents as $p) : ?>
             <tr>
                 <td class="text-center"><?=$i;?></td>
-                <td style="cursor:pointer" onclick="window.location='<?=base_url('client/parents/view');?>'">Emilia Wati
+                <td style="cursor:pointer"
+                    onclick="window.location='<?=base_url('client/parents/view/'.$p['pr_id']);?>'">
+                    <?=$p['pr_firstname'].' '.$p['pr_lastname'];?>
                 </td>
-                <td>Emilia<?=$i;?>@all-inedu.com</td>
-                <td class="text-center">@Irawan</td>
-                <td>Jl Panjang Jkt Barat</td>
+                <td><?=$p['pr_mail'];?></td>
+                <td class="text-center"><?=$p['pr_insta'];?></td>
+                <td class="text-center">
+                    <?php 
+                        $st = $this->prt->showChildsParent($p['pr_id']);
+                        $students = [];
+                        foreach ($st as $s) {
+                            array_push($students, $s['st_firstname'].' '.$s['st_lastname']);
+                        }
+                        echo implode(", ", $students);
+                    ?>
+                </td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>

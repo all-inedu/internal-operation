@@ -35,7 +35,7 @@
                         Student
                         <div class="float-right"><i class="fas fa-arrow-circle-right"></i></div>
                     </a>
-                    <a href="<?=base_url('client/student/add/parent');?>"
+                    <a href="<?=base_url('client/parents/add/');?>"
                         class="list-group-item list-group-item-action">Parent
                         <div class="float-right"><i class="fas fa-arrow-circle-right"></i></div>
                     </a>
@@ -305,7 +305,6 @@
 $(document).ready(function() {
     var states = '<?=implode(", ", $states);?>';
     var arr = states.split(", ")
-    console.log(arr)
     $("#state").autocomplete({
         source: arr
     });

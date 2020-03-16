@@ -5,7 +5,7 @@
         <div class="col-md-5">
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <div class="breadcrumb text-dark bg-white font-weight-bold  shadow border">
-                    <i class="fas fa-users mt-1"></i>&nbsp;&nbsp; Prospective Client
+                    <i class="fas fa-users mt-1"></i>&nbsp;&nbsp; Parent
                 </div>
             </nav>
         </div>
@@ -13,9 +13,9 @@
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
                     <li class="breadcrumb-item"><a href="<?=base_url('client/home');?>">Home</a></li>
-                    <li class="breadcrumb-item"><a href="<?=base_url('client/prospective');?>">Prospective Client</a>
+                    <li class="breadcrumb-item"><a href="<?=base_url('client/parents/');?>">Parent</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Add Parent</li>
+                    <li class="breadcrumb-item active" aria-current="page">Add</li>
                 </ol>
             </nav>
         </div>
@@ -31,8 +31,7 @@
                         alt="client management" width="70%">
                 </div>
                 <div class="list-group">
-                    <a href="<?=base_url('client/prospective/add/student');?>"
-                        class="list-group-item list-group-item-action">
+                    <a href="<?=base_url('client/student/add/');?>" class="list-group-item list-group-item-action">
                         Student
                         <div class="float-right"><i class="fas fa-arrow-circle-right"></i></div>
                     </a>
@@ -60,133 +59,143 @@
                             <div class="form-group">
                                 <label>First Name
                                 </label>
-                                <input name="firstName" type="text" class="form-control form-control-sm"
+                                <input name="pr_firstname" type="text" class="form-control form-control-sm"
                                     placeholder="First name">
-                                <?=form_error('firstName', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('pr_firstname', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input name="lastName" type="text" class="form-control form-control-sm"
+                                <input name="pr_lastname" type="text" class="form-control form-control-sm"
                                     placeholder="Last name">
-                                <?=form_error('lastName', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('pr_lastname', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>E-mail</label>
-                                <input name="email" type="text" class="form-control form-control-sm"
+                                <input name="pr_mail" type="text" class="form-control form-control-sm"
                                     placeholder="E-mail">
-                                <?=form_error('email', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('pr_mail', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input name="phoneNumber" type="text" class="form-control form-control-sm"
+                                <input name="pr_phone" type="text" class="form-control form-control-sm"
                                     placeholder="Phone Number">
-                                <?=form_error('phoneNumber', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('pr_phone', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Instagram</label>
-                                <input name="instagram" type="text" class="form-control form-control-sm"
+                                <input name="pr_insta" type="text" class="form-control form-control-sm"
                                     placeholder="Instagram">
-                                <?=form_error('instagram', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('pr_insta', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>State / Region</label>
-                                <input name="state" type="text" class="form-control form-control-sm"
-                                    placeholder="State / Region">
-                                <?=form_error('state', '<small class="form-text text-muted">Please input.</small>');?>
+                                <input name="st_state" type="text" class="form-control form-control-sm"
+                                    placeholder="State / Region" id="state">
+                                <?=form_error('st_state', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Postal Code</label>
-                                <input name="postalCOde" type="text" class="form-control form-control-sm"
+                                <input name="st_pc" type="text" class="form-control form-control-sm"
                                     placeholder="Postal Code">
-                                <?=form_error('postalCOde', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('st_pc', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Address</label>
-                                <textarea name="address" class="form-control form-control-sm" placeholder="Address"
+                                <textarea name="st_address" class="form-control form-control-sm" placeholder="Address"
                                     rows="5"></textarea>
-                                <?=form_error('address', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('st_address', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                     </div>
                     <div class="line" style="margin-top:15px; margin-bottom:0px;"></div>
                     <small class="text-info font-weight-bold">Child's Profile</small>
                     <div class="row mt-3">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label>Child's First Name</label>
-                                <input name="studentFirstName" type="text" class="form-control form-control-sm"
+                                <label>Childs First Name</label>
+                                <input name="st_firstname" type="text" class="form-control form-control-sm"
                                     placeholder="Students First Name">
-                                <?=form_error('studentFirstName', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('st_firstname', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label>Child's Last Name</label>
-                                <input name="studentLastName" type="text" class="form-control form-control-sm"
+                                <label>Childs Last Name</label>
+                                <input name="st_lastname" type="text" class="form-control form-control-sm"
                                     placeholder="Students Last Name">
-                                <?=form_error('studentLastName', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('st_lastname', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Childs Email</label>
+                                <input name="st_mail" type="text" class="form-control form-control-sm"
+                                    placeholder="Students Email">
+                                <?=form_error('st_mail', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>School Name</label>
-                                <select id="schoolName" name="schoolName" onChange="otherSchool();">
+                                <select id="schoolName" name="sch_id" onChange="otherSchool();">
                                     <option data-placeholder="true"></option>
-                                    <option value="1">School 1</option>
-                                    <option value="2">School 2</option>
-                                    <option value="3">School 3</option>
-                                    <option value="4">School 4</option>
+                                    <?php foreach($sch as $sc): ?>
+                                    <option value="<?=$sc['sch_id'];?>">
+                                        <?=$sc['sch_name'];?>
+                                    </option>
+                                    <?php endforeach;?>
                                     <option value="other">Other</option>
                                 </select>
-                                <?=form_error('schoolName', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('schoolName', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6 d-none" id="otherSchool">
                             <div class="form-group">
                                 <label>Other School Name</label>
-                                <input name="otherSchool" type="text" class="form-control form-control-sm"
+                                <input name="sch_name" type="text" class="form-control form-control-sm"
                                     placeholder="Other School Name" autofocus>
-                                <?=form_error('otherSchool', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('sch_name', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-3" id="current">
                             <div class="form-group">
                                 <label>Current Education</label>
-                                <select id="currentEducation" name="currentEducation">
+                                <select id="currentEducation" name="st_currentsch">
                                     <option data-placeholder="true"></option>
-                                    <option value="9">Elementary School</option>
-                                    <option value="3">Middle School</option>
-                                    <option value="2">High School</option>
-                                    <option value="4">University</option>
+                                    <?php foreach($school['level'] as $lv): ?>
+                                    <option value="<?=$lv;?>">
+                                        <?=$lv;?>
+                                    </option>
+                                    <?php endforeach;?>
                                 </select>
-                                <?=form_error('currentEducation', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('st_currentsch', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-3" id="studentYear">
                             <div class="form-group">
-                                <label>Student Year</label>
-                                <select id="grade" name="grade">
+                                <label>Students Grade</label>
+                                <select id="grade" name="st_grade">
                                     <option data-placeholder="true"></option>
-                                    <option value="9">9</option>
-                                    <option value="2">10</option>
-                                    <option value="3">11</option>
-                                    <option value="4">12</option>
+                                    <?php for($i=1; $i<=12; $i++) { ?>
+                                    <option value="<?=$i;?>"><?=$i;?></option>
+                                    <?php } ?>
+                                    <option value="13">Not High School</option>
                                 </select>
-                                <?=form_error('grade', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('st_grade', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                     </div>
@@ -196,36 +205,41 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Lead Source</label>
-                                <select id="leadSource" name="leadSource">
+                                <select id="leadSource" name="lead_id">
                                     <option data-placeholder="true"></option>
-                                    <option value="1">Edufair</option>
-                                    <option value="2">Website</option>
+                                    <?php foreach($lead as $l): ?>
+                                    <option value="<?=$l['lead_id'];?>">
+                                        <?=$l['lead_name'];?>
+                                    </option>
+                                    <?php endforeach;?>
                                 </select>
-                                <?=form_error('leadSource', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('lead_id', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Level of Interest</label>
-                                <select id="levelInterest" name="levelInterest">
+                                <select id="levelInterest" name="st_levelinterest">
                                     <option data-placeholder="true"></option>
-                                    <option value="9">Hight</option>
-                                    <option value="3">Medium</option>
-                                    <option value="2">Low</option>
+                                    <option value="High">High</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Low">Low</option>
                                 </select>
-                                <?=form_error('levelInterest', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('st_levelinterest', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Interested Program</label>
-                                <select id="interestedProgram" name="interestedProgram" multiple>
+                                <select id="interestedProgram" name="prog_id[]" multiple>
                                     <option data-placeholder="true"></option>
-                                    <option value="9">BIP</option>
-                                    <option value="3">SRP</option>
-                                    <option value="2">Admission Cunslting</option>
+                                    <?php foreach($prog as $pr): ?>
+                                    <option value="<?=$pr['prog_id'];?>">
+                                        <?=$pr['prog_sub'].' - '.$pr['prog_program'];?>
+                                    </option>
+                                    <?php endforeach;?>
                                 </select>
-                                <?=form_error('interestedProgram', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('prog_id', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                     </div>
@@ -233,40 +247,61 @@
                     <small class="text-info font-weight-bold">Study Aboard</small>
 
                     <div class="row mt-3">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label>Country</label>
-                                <select id="countryStudy" name="countryStudy" multiple>
+                                <label>Year of Going Study Abroad</label>
+                                <select id="year" name="st_abryear">
                                     <option data-placeholder="true"></option>
-                                    <option value="1">US</option>
-                                    <option value="2">UK</option>
-                                    <option value="3">Singapore</option>
+                                    <?php
+                                        for($i=0;$i<=8;$i++){
+                                            $year = date("Y")+$i;
+                                            echo '<option value="'.$year.'">'.$year.'</option>';
+                                        }  
+                                    ?>
                                 </select>
-                                <?=form_error('countryStudy', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('st_abryear', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <select id="countryStudy" name="st_abrcountry[]" multiple>
+                                    <option data-placeholder="true"></option>
+                                    <?php foreach($con as $c): ?>
+                                    <option value="<?=$c;?>">
+                                        <?=$c;?>
+                                    </option>
+                                    <?php endforeach;?>
+                                </select>
+                                <?=form_error('st_abrcountry', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Univ Destination</label>
-                                <select id="univDestination" name="univDestination" multiple>
+                                <select id="univDestination" name="st_abruniv[]" multiple>
                                     <option data-placeholder="true"></option>
-                                    <option value="1">UC Davis</option>
-                                    <option value="2">NTU</option>
-                                    <option value="3">Harvard University</option>
+                                    <?php foreach($univ as $u): ?>
+                                    <option value="<?=$u['univ_id'];?>">
+                                        <?=$u['univ_name'];?>
+                                    </option>
+                                    <?php endforeach;?>
                                 </select>
-                                <?=form_error('univDestination', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('st_abruniv', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Major</label>
-                                <select id="major" name="major" multiple>
+                                <select id="major" name="st_abrmajor[]" multiple>
                                     <option data-placeholder="true"></option>
-                                    <option value="1">Computer Science</option>
-                                    <option value="2">Computer Science</option>
-                                    <option value="3">Computer Science</option>
+                                    <?php foreach($majors as $m): ?>
+                                    <option value="<?=$m;?>">
+                                        <?=$m;?>
+                                    </option>
+                                    <?php endforeach;?>
                                 </select>
-                                <?=form_error('major', '<small class="form-text text-muted">Please input.</small>');?>
+                                <?=form_error('st_abrmajor', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                     </div>
@@ -285,6 +320,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
+$(document).ready(function() {
+    var states = '<?=implode(", ", $states);?>';
+    var arr = states.split(", ")
+    $("#state").autocomplete({
+        source: arr
+    });
+});
+
 new SlimSelect({
     select: '#schoolName',
     placeholder: 'Select student school',
@@ -301,7 +344,7 @@ new SlimSelect({
 
 new SlimSelect({
     select: '#grade',
-    placeholder: 'Select student year / Grade',
+    placeholder: 'Select students grade',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
@@ -325,6 +368,13 @@ new SlimSelect({
     placeholder: 'Select interested program',
     allowDeselect: true,
     deselectLabel: '<span class="text-white">✖</span>'
+});
+
+new SlimSelect({
+    select: '#year',
+    placeholder: 'Select year',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
 });
 
 new SlimSelect({

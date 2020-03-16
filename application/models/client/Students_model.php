@@ -40,4 +40,10 @@ class Students_model extends CI_model
     //     $this->db->delete('tbl_prog');
     // }
 
+    public function studentStatus($n) {
+        $this->db->select('*');
+        $this->db->where('st_statuscli', $n);
+        return $this->db->get('tbl_students')->result_array();
+    }
+
 }

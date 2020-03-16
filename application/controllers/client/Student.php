@@ -137,6 +137,7 @@ class Student extends CI_Controller
             'stprog_lastdisdate' => $this->input->post('stprog_firstdisdate'),
             'stprog_meetingdate' => $this->input->post('stprog_meetingdate'),
             'stprog_meetingnote' => $this->input->post('stprog_meetingnote'),
+            'stprog_statusprogdate' => date('Y-m-d'),
             'stprog_status' => 0,
             'stprog_runningstatus' => 0,
             'empl_id' => $this->input->post('empl_id'),

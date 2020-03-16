@@ -38,7 +38,7 @@
             <?php $i=1; foreach($stprog as $stpr): ?>
             <tr class="text-center">
                 <td><?=$i;?></td>
-                <td style="cursor:pointer"
+                <td class="text-left" style="cursor:pointer"
                     onclick="window.location='<?=base_url('client/students-program/view/'.$stpr['stprog_id']);?>'">
                     <?=$stpr['st_firstname'].' '.$stpr['st_lastname'];?>
                 </td>
