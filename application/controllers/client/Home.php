@@ -12,13 +12,16 @@ class Home extends CI_Controller
     }
 
     public function index(){
+        $datenow = date('Y-m-d');
+        $days30 = date('Y-m-d', strtotime("-30 days", strtotime($datenow)));
         $data['prosp'] = count($this->std->studentStatus(0));
         $data['poten'] = count($this->std->studentStatus(1));
         $data['curr'] = count($this->std->studentStatus(2));
-        $data['pend'] = count($this->stprog->studentProgStatus(0));
-        $data['succ'] = count($this->stprog->studentProgStatus(1));
-        $data['fail'] = count($this->stprog->studentProgStatus(2));
-        $data['lead'] = $this->stprog->studentProgramLead();
+        $data['pend'] = count($this->stprog->studentProgStatus(0, $days30));
+        $data['succ'] = count($this->stprog->studentProgStatus(1, $days30));
+        $data['fail'] = count($this->stprog->studentProgStatus(2, $days30));
+        $data['lead'] = $this->stprog->studentProgramLead($days30);
+        $data['prog'] = $this->stprog->studentProgramProg($days30);
 
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-client');

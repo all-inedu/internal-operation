@@ -82,16 +82,27 @@ class StProgram_model extends CI_model
         $this->db->delete('tbl_stmentor');
     }
 
-    public function studentProgStatus($n) {
+    public function studentProgStatus($n, $d) {
         $this->db->select('*');
         $this->db->where('stprog_status', $n);
+        $this->db->where("tbl_stprog.stprog_statusprogdate >=", $d);
         return $this->db->get('tbl_stprog')->result_array();
     }
 
-    public function studentProgramLead() {
+    public function studentProgramLead($d) {
         $this->db->select("count(tbl_stprog.stprog_id), tbl_lead.lead_name");
+        // $this->db->where('tbl_stprog.stprog_status', $n);
+        $this->db->where("tbl_stprog.stprog_statusprogdate >=", $d);
         $this->db->group_by("tbl_stprog.lead_id");
         $this->db->join("tbl_lead","tbl_lead.lead_id=tbl_stprog.lead_id");
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+
+    public function studentProgramProg($d) {
+        $this->db->select("count(tbl_stprog.stprog_id), tbl_prog.prog_program");
+        $this->db->where("tbl_stprog.stprog_statusprogdate >=", $d);
+        $this->db->group_by("tbl_prog.prog_program");
+        $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
         return $this->db->get('tbl_stprog')->result_array();
     }
 

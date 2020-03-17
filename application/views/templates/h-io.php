@@ -24,6 +24,12 @@
     <link rel="stylesheet" href="<?=base_url();?>assets/css/jquery-ui.css">
     <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
     <style>
+    @import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
+
+    body {
+        font-family: 'Varela Round', sans-serif;
+    }
+
     .display tbody tr td,
     .display thead tr th,
     .table tbody tr td,
