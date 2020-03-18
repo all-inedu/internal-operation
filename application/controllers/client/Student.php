@@ -38,6 +38,7 @@ class Student extends CI_Controller
         $data['con'] = $this->countries->show();
         $data['majors'] = $this->majors->show();
         $data['states'] = $this->states->show();
+        $data['cities'] = $this->states->showCities();
         
         // if($role=='student' or $role==''){
         $this->form_validation->set_rules('st_firstname', 'first name', 'required');
@@ -86,6 +87,7 @@ class Student extends CI_Controller
             'st_phone' => $this->input->post('st_phone'),
             'st_insta' => $this->input->post('st_insta'),
             'st_state' => $this->input->post('st_state'),
+            'st_city' => $this->input->post('st_city'),
             'st_address' => $this->input->post('st_address').$this->input->post('st_pc') ,
             'sch_id' => $sch_id,
             'st_currentsch' => $this->input->post('st_currentsch'),

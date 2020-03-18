@@ -327,9 +327,9 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="pcRupiah1" name="pcRupiah" type="number"
+                                        <input id="pcRupiah1" name="inv_priceidr" type="number"
                                             class="form-control form-control-sm">
-                                        <?=form_error('pcRupiah', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('inv_priceidr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
@@ -340,9 +340,9 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="dsRupiah1" name="dsRupiah" type="number"
+                                        <input id="dsRupiah1" name="inv_discidr" type="number"
                                             class="form-control form-control-sm">
-                                        <?=form_error('dsRupiah', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('inv_discidr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
@@ -353,18 +353,18 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="tpRupiah1" name="tpRupiah" type="number"
+                                        <input id="tpRupiah1" name="inv_totpridr" type="number"
                                             class="form-control form-control-sm" readonly>
-                                        <?=form_error('tpRupiah', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('inv_totpridr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Total Price</label>
-                                    <textarea id="tpWords2" name="tpWords" class="form-control form-control-sm"
-                                        rows="1"></textarea>
-                                    <?=form_error('tpWords', '<small class="text-danger">', '</small>');?>
+                                    <input type="text" id="tpWords2" name="inv_words"
+                                        class="form-control form-control-sm">
+                                    <?=form_error('inv_words', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -373,15 +373,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Date</label>
-                                    <input name="date" type="date" class="form-control form-control-sm">
-                                    <?=form_error('date', '<small class="text-danger">', '</small>');?>
+                                    <input name="inv_date" type="date" class="form-control form-control-sm">
+                                    <?=form_error('inv_date', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Due Date</label>
-                                    <input name="dueDate" type="date" class="form-control form-control-sm">
-                                    <?=form_error('dueDate', '<small class="text-danger">', '</small>');?>
+                                    <input name="inv_duedate" type="date" class="form-control form-control-sm">
+                                    <?=form_error('inv_duedate', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -390,15 +390,15 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Notes</label>
-                                    <textarea name="notes" class="form-control form-control-sm" rows="6"></textarea>
-                                    <?=form_error('notes', '<small class="text-danger">', '</small>');?>
+                                    <textarea name="inv_notes" class="form-control form-control-sm" rows="6"></textarea>
+                                    <?=form_error('inv_notes', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Terms and Condition</label>
-                                    <textarea name="tnc" class="form-control form-control-sm" rows="6"></textarea>
-                                    <?=form_error('tnc', '<small class="text-danger">', '</small>');?>
+                                    <textarea name="inv_tnc" class="form-control form-control-sm" rows="6"></textarea>
+                                    <?=form_error('inv_tnc', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -426,9 +426,9 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="priceHours" name="priceHours" type="number"
+                                        <input id="priceHours" name="inv_priceidr" type="number"
                                             class="form-control form-control-sm">
-                                        <?=form_error('priceHours', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('inv_priceidr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
@@ -436,9 +436,9 @@
                                 <div class="form-group">
                                     <label>Session</label>
                                     <div class="input-group input-group-sm">
-                                        <input id="amount" name="session" type="number"
+                                        <input id="amount" name="inv_session" type="number"
                                             class="form-control form-control-sm">
-                                        <?=form_error('session', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('inv_session', '<small class="text-danger">', '</small>');?>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-times"></i></span>
@@ -450,9 +450,9 @@
                                 <div class="form-group">
                                     <label>Duration/<small>Minute</small></label>
                                     <div class="input-group input-group-sm">
-                                        <input id="duration" name="duration" type="number"
+                                        <input id="duration" name="inv_duration" type="number"
                                             class="form-control form-control-sm">
-                                        <?=form_error('duration', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('inv_duration', '<small class="text-danger">', '</small>');?>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-quote-right"></i></span>
@@ -467,9 +467,9 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="discount" name="discount" type="number"
+                                        <input id="discount" name="inv_discidr" type="number"
                                             class="form-control form-control-sm">
-                                        <?=form_error('discount', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('inv_discidr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
@@ -480,18 +480,18 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="totalPrice" name="totalPrice" type="number"
+                                        <input id="totalPrice" name="inv_totpridr" type="number"
                                             class="form-control form-control-sm" readonly>
-                                        <?=form_error('totalPrice', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('inv_totpridr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Total Price</label>
-                                    <textarea id="tpWords3" name="tpWords" class="form-control form-control-sm"
-                                        rows="1"></textarea>
-                                    <?=form_error('tpWords', '<small class="text-danger">', '</small>');?>
+                                    <input type="text" id="tpWords3" name="inv_words"
+                                        class="form-control form-control-sm">
+                                    <?=form_error('inv_words', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -500,15 +500,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Date</label>
-                                    <input name="date" type="date" class="form-control form-control-sm">
-                                    <?=form_error('date', '<small class="text-danger">', '</small>');?>
+                                    <input name="inv_date" type="date" class="form-control form-control-sm">
+                                    <?=form_error('inv_date', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Due Date</label>
-                                    <input name="dueDate" type="date" class="form-control form-control-sm">
-                                    <?=form_error('dueDate', '<small class="text-danger">', '</small>');?>
+                                    <input name="inv_duedate" type="date" class="form-control form-control-sm">
+                                    <?=form_error('inv_duedate', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -517,15 +517,15 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Notes</label>
-                                    <textarea name="notes" class="form-control form-control-sm" rows="6"></textarea>
-                                    <?=form_error('notes', '<small class="text-danger">', '</small>');?>
+                                    <textarea name="inv_notes" class="form-control form-control-sm" rows="6"></textarea>
+                                    <?=form_error('inv_notes', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Terms and Condition</label>
-                                    <textarea name="tnc" class="form-control form-control-sm" rows="6"></textarea>
-                                    <?=form_error('tnc', '<small class="text-danger">', '</small>');?>
+                                    <textarea name="inv_tnc" class="form-control form-control-sm" rows="6"></textarea>
+                                    <?=form_error('inv_tnc', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -548,6 +548,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script src="<?=base_url('assets/js/generate-number.js');?>"></script>
 <script>
+$(document).ready(function() {
+    $('#category').val("<?=$sp['prog_payment'];?>");
+    cFunction();
+});
+
 $('#usd').show();
 $('#steps').hide();
 $('#idr').hide();
@@ -786,7 +791,7 @@ $('#pcRupiah1').keyup(function() {
     let dsRupiah = $('#dsRupiah1').val();
     let tpRupiah = pcRupiah - dsRupiah;
     $('#tpRupiah1').val(tpRupiah);
-    $('#tpWords2').text(capitalize(tpRupiah));
+    $('#tpWords2').val(capitalize(tpRupiah));
 });
 
 $('#dsRupiah1').keyup(function() {
@@ -794,8 +799,9 @@ $('#dsRupiah1').keyup(function() {
     let dsRupiah = $('#dsRupiah1').val();
     let tpRupiah = pcRupiah - dsRupiah;
     $('#tpRupiah1').val(tpRupiah);
-    $('#tpWords2').text(capitalize(tpRupiah));
+    $('#tpWords2').val(capitalize(tpRupiah));
 });
+
 
 $('#duration').keyup(function() {
     let ph = $('#priceHours').val();
@@ -805,7 +811,7 @@ $('#duration').keyup(function() {
 
     let tpRupiah = (ph * ss) * (dr / 60) - ds;
     $('#totalPrice').val(tpRupiah);
-    $('#tpWords3').text(capitalize(tpRupiah));
+    $('#tpWords3').val(capitalize(tpRupiah));
 });
 
 $('#discount').keyup(function() {
@@ -816,6 +822,6 @@ $('#discount').keyup(function() {
 
     let tpRupiah = (ph * ss) * (dr / 60) - ds;
     $('#totalPrice').val(tpRupiah);
-    $('#tpWords3').text(capitalize(tpRupiah));
+    $('#tpWords3').val(capitalize(tpRupiah));
 });
 </script>

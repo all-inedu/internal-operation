@@ -120,7 +120,7 @@
                         </div>
                         <div class="col-md-8 text-muted">
                             <div class="row">
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-4 mb-3">
                                     <input name="st_insta" type="text" class="form-control form-control-sm"
                                         value="<?=$s['st_insta'];?>">
                                     <?=form_error('st_insta', '<small class="text-danger">', '</small>');?>
@@ -133,11 +133,17 @@
                         </div>
                         <div class="col-md-8 text-muted">
                             <div class="row">
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-5 mb-3">
                                     <small>State</small>
                                     <input name="st_state" type="text" class="form-control form-control-sm"
                                         value="<?=$s['st_state'];?>" id="state">
                                     <?=form_error('st_state', '<small class="text-danger">', '</small>');?>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <small>City</small>
+                                    <input name="st_city" type="text" class="form-control form-control-sm"
+                                        value="<?=$s['st_city'];?>" id="city">
+                                    <?=form_error('st_city', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <small>Address</small>
@@ -528,6 +534,12 @@ $(document).ready(function() {
     console.log(arr)
     $("#state").autocomplete({
         source: arr
+    });
+
+    var cities = '<?=implode(", ", $cities);?>';
+    var arr1 = cities.split(", ")
+    $("#city").autocomplete({
+        source: arr1
     });
 });
 

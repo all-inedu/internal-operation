@@ -26,11 +26,11 @@
             <div class="card-body text-center">
                 <img src="https://image.freepik.com/free-vector/man-with-headphones-microphone-with-computer_113065-136.jpg"
                     alt="client management" width="70%">
-                <h5>Stella</h5>
-                <h6>Program Name</h6>
+                <h5><?=$inv['st_firstname'].' '.$inv['st_lastname'];?></h5>
+                <h6 class="text-info"><?=$inv['prog_program'];?></h6>
                 <hr>
-                <a href="<?=base_url('finance/invoice/student/view/2');?>" class="btn btn-sm btn-secondary"><i
-                        class="fas fa-arrow-circle-left"></i>&nbsp; Back</a>
+                <a href="<?=base_url('finance/invoice/student/view/'.$inv['stprog_id']);?>"
+                    class="btn btn-sm btn-secondary"><i class="fas fa-arrow-circle-left"></i>&nbsp; Back</a>
             </div>
         </div>
 
@@ -59,14 +59,15 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 mb-3">
 
+        <?php if($inv['inv_category']=="usd") { ?>
         <!-- USD  -->
         <div class="card shadow mb-2">
             <div class="card-body">
                 <h6><i class="fas fa-dollar-sign"></i>&nbsp; &nbsp; View Invoice </h6>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                <form action="usd.php" name="usd" method="post">
+                <form action="<?=base_url('finance/invoice/student/update');?>" name="usd" method="post">
                     <div class="row">
                         <div class="col-md-3">
                             No Invoice :
@@ -74,8 +75,9 @@
                         <div class="col-md-9">
                             <div class="form-group row">
                                 <div class="col-md-4">
-                                    <input id="invoice" name="invoice" type="number"
-                                        class="form-control form-control-sm" readonly>
+                                    <input name="inv_num" type="hidden" value="<?=$inv['inv_num'];?>">
+                                    <input id="invoice" name="inv_id" type="text" class="form-control form-control-sm"
+                                        value="<?=$inv['inv_id'];?>" readonly>
                                     <?=form_error('invoice', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
@@ -90,9 +92,9 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">$</span>
                                         </div>
-                                        <input id="pcDollar" name="pcDollar" type="number"
-                                            class="form-control form-control-sm">
-                                        <?=form_error('pcDollar', '<small class="text-danger">', '</small>');?>
+                                        <input id="pcDollar" name="inv_priceusd" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_priceusd'];?>">
+                                        <?=form_error('inv_priceusd', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -100,9 +102,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="pcRupiah" name="pcRupiah" type="number"
-                                            class="form-control form-control-sm" readonly>
-                                        <?=form_error('pcRupiah', '<small class="text-danger">', '</small>');?>
+                                        <input id="pcRupiah" name="inv_priceidr" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_priceidr'];?>"
+                                            readonly>
+                                        <?=form_error('inv_priceidr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
@@ -117,9 +120,9 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">$</span>
                                         </div>
-                                        <input id="ebDollar" name="ebDollar" type="number"
-                                            class="form-control form-control-sm">
-                                        <?=form_error('ebDollar', '<small class="text-danger">', '</small>');?>
+                                        <input id="ebDollar" name="inv_earlybirdusd" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_earlybirdusd'];?>">
+                                        <?=form_error('inv_earlybirdusd', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -127,9 +130,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="ebRupiah" name="ebRupiah" type="number"
-                                            class="form-control form-control-sm" readonly>
-                                        <?=form_error('ebRupiah', '<small class="text-danger">', '</small>');?>
+                                        <input id="ebRupiah" name="inv_earlybirdidr" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_earlybirdidr'];?>"
+                                            readonly>
+                                        <?=form_error('inv_earlybirdidr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
@@ -144,9 +148,9 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">$</span>
                                         </div>
-                                        <input id="dsDollar" name="dsDollar" type="number"
-                                            class="form-control form-control-sm">
-                                        <?=form_error('dsDollar', '<small class="text-danger">', '</small>');?>
+                                        <input id="dsDollar" name="inv_discusd" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_discusd'];?>">
+                                        <?=form_error('inv_discusd', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -154,9 +158,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="dsRupiah" name="dsRupiah" type="number"
-                                            class="form-control form-control-sm" readonly>
-                                        <?=form_error('dsRupiah', '<small class="text-danger">', '</small>');?>
+                                        <input id="dsRupiah" name="inv_discidr" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_discidr'];?>"
+                                            readonly>
+                                        <?=form_error('inv_discidr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
@@ -171,9 +176,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">$</span>
                                         </div>
-                                        <input id="tpDollar" name="tpDollar" type="number"
-                                            class="form-control form-control-sm" readonly>
-                                        <?=form_error('tpDollar', '<small class="text-danger">', '</small>');?>
+                                        <input id="tpDollar" name="inv_totprusd" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_totprusd'];?>"
+                                            readonly>
+                                        <?=form_error('inv_totprusd', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
@@ -181,15 +187,16 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="tpRupiah" name="tpRupiah" type="number"
-                                            class="form-control form-control-sm" readonly>
-                                        <?=form_error('tpRupiah', '<small class="text-danger">', '</small>');?>
+                                        <input id="tpRupiah" name="inv_totpridr" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_totpridr'];?>"
+                                            readonly>
+                                        <?=form_error('inv_totpridr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea id="tpWords1" name="tpWords" class="form-control form-control-sm"
-                                        rows="1"></textarea>
-                                    <?=form_error('tpWords', '<small class="text-danger">', '</small>');?>
+                                    <input id="tpWords1" name="inv_words" class="form-control form-control-sm"
+                                        value="<?=$inv['inv_words'];?>">
+                                    <?=form_error('inv_words', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -199,12 +206,12 @@
                         <div class="col-md-9">
                             <div class="form-group row">
                                 <div class="col-md-5">
-                                    <select id="paymentMethod" name="paymentMethod" onChange="paymentMethods();">
+                                    <select id="paymentMethod" name="inv_paymentmethod" onChange="paymentMethods();">
                                         <option data-placeholder="true"></option>
                                         <option value="Full Payment">Full Payment</option>
                                         <option value="Installment">Installment</option>
                                     </select>
-                                    <?=form_error('paymentMethod', '<small class="text-danger">', '</small>');?>
+                                    <?=form_error('inv_paymentmethod', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -215,13 +222,15 @@
                             <div class="form-group row">
                                 <div class="col-md-3">
                                     <small>Invoice Date</small>
-                                    <input name="date" type="date" class="form-control form-control-sm">
-                                    <?=form_error('date', '<small class="text-danger">', '</small>');?>
+                                    <input name="inv_date" type="date" class="form-control form-control-sm"
+                                        value="<?=$inv['inv_date'];?>">
+                                    <?=form_error('inv_date', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-3">
                                     <small>Due Date</small>
-                                    <input id="dueDate" name="dueDate" type="date" class="form-control form-control-sm">
-                                    <?=form_error('dueDate', '<small class="text-danger">', '</small>');?>
+                                    <input id="dueDate" name="inv_duedate" type="date"
+                                        class="form-control form-control-sm" value="<?=$inv['inv_duedate'];?>">
+                                    <?=form_error('inv_duedate', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -231,8 +240,9 @@
                         <div class="col-md-9">
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <textarea name="notes" class="form-control form-control-sm" rows="6"></textarea>
-                                    <?=form_error('notes', '<small class="text-danger">', '</small>');?>
+                                    <textarea name="inv_notes" class="form-control form-control-sm"
+                                        rows="6"><?=$inv['inv_notes'];?></textarea>
+                                    <?=form_error('inv_notes', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -242,8 +252,9 @@
                         <div class="col-md-9 mb-2">
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <textarea name="tnc" class="form-control form-control-sm" rows="6"></textarea>
-                                    <?=form_error('tnc', '<small class="text-danger">', '</small>');?>
+                                    <textarea name="inv_tnc" class="form-control form-control-sm"
+                                        rows="6"><?=$inv['inv_tnc'];?></textarea>
+                                    <?=form_error('inv_tnc', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -251,16 +262,16 @@
                         <div class="col-md-9 text-right">
                             <button type="submit" class="btn btn-sm btn-info">Save changes</button>
                         </div>
-                        <div class="col-md-12">
+
+                        <div class="col-md-12" id="steps">
                             <hr>
-                            <small>For Installment :</small>
                             <div class="float-right">
-                                <a href="#" class="btn btn-sm btn-secondary" id="steps" data-toggle="modal"
+                                <a href="#" class="btn btn-sm btn-secondary" data-toggle="modal"
                                     data-target="#addInstallment"><i class="fas fa-plus"></i>&nbsp; Add
                                     Installment</a>
                             </div>
                         </div>
-                        <?php if($paymentMethod=='Installment'){ ?>
+                        <?php if($inv['inv_paymentmethod']=='Installment'){ ?>
                         <div class="col-md-12 mt-3">
                             <table class="table table-bordered text-center">
                                 <tr>
@@ -270,24 +281,26 @@
                                     <th>Amount</th>
                                     <th>Action</th>
                                 </tr>
-                                <?php for($i=1;$i<=4;$i++){ ?>
+                                <?php foreach($invdtl as $id){ ?>
                                 <tr>
-                                    <td>Instalment <?=$i;?></td>
-                                    <td>14 February 2020</td>
-                                    <td>25%</td>
-                                    <td>$400 (Rp. 9.000.000,-)</td>
+                                    <td><?=$id['invdtl_statusname'];?></td>
+                                    <td><?=date('d F Y', strtotime($id['invdtl_duedate']));?></td>
+                                    <td><?=$id['invdtl_percentage'];?>%</td>
+                                    <td>
+                                        $<?=number_format($id['invdtl_amountusd']);?>
+                                        ( Rp. <?=number_format($id['invdtl_amountidr']);?> )
+                                    </td>
                                     <td>
                                         <a href="#" class="btn btn-sm btn-warning" data-toggle="modal"
-                                            data-target="#editInstallment" onclick="editInstalments()"><i
+                                            data-target="#editInstallment"
+                                            onclick="editInstalments(<?=$id['invdtl_id'];?>)"><i
                                                 class="fas fa-pencil-alt"></i></a>
-                                        <a href="#" class="btn btn-sm btn-danger delete-button"
-                                            data-message="installment"><i class="fas fa-trash"></i></a>
+                                        <a href="<?=base_url('finance/invoice/student/delete-detail/'.$id['invdtl_id'].'/'.$inv['inv_num']);?>"
+                                            class="btn btn-sm btn-danger delete-button" data-message="installment"><i
+                                                class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 <?php } ?>
-                                <tr>
-                                    <td colspan="5">Full Payment Method</td>
-                                </tr>
                             </table>
                         </div>
                         <?php }?>
@@ -298,9 +311,10 @@
 
         <!-- Add Modal USD -->
         <div class="modal fade" id="addInstallment" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="addInstalment.php" name="addInstallment" method="post">
+                    <form action="<?=base_url('finance/invoice/student/save-detail');?>" name="addInstallment"
+                        method="post">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Add Installment</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -311,34 +325,36 @@
                             <div class="row">
                                 <div class="col-md-12 mb-3">
                                     <label>Installment Name</label>
-                                    <input type="text" name="statusName" class="form-control form-control-sm"
-                                        placeholder="Installment 1" readonly>
-                                    <?=form_error('statusName', '<small class="text-danger">', '</small>');?>
+                                    <input type="hidden" name="inv_id" value="<?=$inv['inv_id'];?>">
+                                    <input type="hidden" name="inv_num" value="<?=$inv['inv_num'];?>">
+                                    <input type="text" name="invdtl_statusname" class="form-control form-control-sm"
+                                        placeholder="Installment 1">
+                                    <?=form_error('invdtl_statusname', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label>Due Date</label>
-                                    <input type="date" name="dueDate" class="form-control form-control-sm">
-                                    <?=form_error('dueDate', '<small class="text-danger">', '</small>');?>
+                                    <input type="date" name="invdtl_duedate" class="form-control form-control-sm">
+                                    <?=form_error('invdtl_duedate', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label>Percent</label>
-                                    <input id="percent" type="number" name="percent"
+                                    <input id="percent" type="number" name="invdtl_percentage"
                                         class="form-control form-control-sm" max="100">
-                                    <?=form_error('percent', '<small class="text-danger">', '</small>');?>
+                                    <?=form_error('invdtl_percentage', '<small class="text-danger">', '</small>');?>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label>Amount ($)</label>
-                                    <input id="amountDollar" type="number" name="amountDollar"
+                                    <input id="amountDollar" type="number" name="invdtl_amountusd"
                                         class="form-control form-control-sm">
-                                    <?=form_error('amountDollar', '<small class="text-danger">', '</small>');?>
+                                    <?=form_error('invdtl_amountusd', '<small class="text-danger">', '</small>');?>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label>Amount (Rp)</label>
-                                    <input id="amountRupiah" type="number" name="amountRupiah"
+                                    <input id="amountRupiah" type="number" name="invdtl_amountidr"
                                         class="form-control form-control-sm">
-                                    <?=form_error('amountRupiah', '<small class="text-danger">', '</small>');?>
+                                    <?=form_error('invdtl_amountidr', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -353,11 +369,12 @@
 
         <!-- Edit Modal USD -->
         <div class="modal fade" id="editInstallment" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="addInstalment.php" name="addInstallment" method="post">
+                    <form action="<?=base_url('finance/invoice/student/update-detail');?>" name="updateInstallment"
+                        method="post">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Installment</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Installment</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -366,34 +383,37 @@
                             <div class="row">
                                 <div class="col-md-12 mb-3">
                                     <label>Installment Name</label>
-                                    <input type="text" name="statusName" class="form-control form-control-sm"
-                                        placeholder="Installment 1" readonly>
-                                    <?=form_error('statusName', '<small class="text-danger">', '</small>');?>
+                                    <input type="hidden" name="inv_num" value="<?=$inv['inv_num'];?>">
+                                    <input type="hidden" id="invdtl_id" name="invdtl_id">
+                                    <input type="text" id="invdtl_statusname" name="invdtl_statusname"
+                                        class="form-control form-control-sm">
+                                    <?=form_error('invdtl_statusname', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label>Due Date</label>
-                                    <input type="date" name="dueDate" class="form-control form-control-sm">
-                                    <?=form_error('dueDate', '<small class="text-danger">', '</small>');?>
+                                    <input type="date" id="invdtl_duedate" name="invdtl_duedate"
+                                        class="form-control form-control-sm">
+                                    <?=form_error('invdtl_duedate', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label>Percent</label>
-                                    <input id="percent1" type="number" name="percent"
+                                    <input id="percent1" type="number" name="invdtl_percentage"
                                         class="form-control form-control-sm" max="100">
-                                    <?=form_error('percent', '<small class="text-danger">', '</small>');?>
+                                    <?=form_error('invdtl_percentage', '<small class="text-danger">', '</small>');?>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label>Amount ($)</label>
-                                    <input id="amountDollar1" type="number" name="amountDollar"
+                                    <input id="amountDollar1" type="number" name="invdtl_amountusd"
                                         class="form-control form-control-sm">
-                                    <?=form_error('amountDollar', '<small class="text-danger">', '</small>');?>
+                                    <?=form_error('invdtl_amountusd', '<small class="text-danger">', '</small>');?>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label>Amount (Rp)</label>
-                                    <input id="amountRupiah1" type="number" name="amountRupiah"
+                                    <input id="amountRupiah1" type="number" name="invdtl_amountidr"
                                         class="form-control form-control-sm">
-                                    <?=form_error('amountRupiah', '<small class="text-danger">', '</small>');?>
+                                    <?=form_error('invdtl_amountidr', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -405,13 +425,13 @@
                 </div>
             </div>
         </div>
-
+        <?php } else if($inv['inv_category']=="idr") { ?>
         <!-- IDR  -->
         <div class="card shadow mb-2">
             <div class="card-body">
                 <h6><i class="fas fa-dollar-sign"></i>&nbsp; &nbsp; View Invoice </h6>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                <form action="idr.php" method="post" name="idr">
+                <form action="<?=base_url('finance/invoice/student/update');?>" method="post" name="idr">
                     <div class="row">
                         <div class="col-md-3">
                             No Invoice :
@@ -419,9 +439,10 @@
                         <div class="col-md-9">
                             <div class="form-group row">
                                 <div class="col-md-4">
-                                    <input id="invoice" name="invoice" type="number"
-                                        class="form-control form-control-sm" readonly>
-                                    <?=form_error('invoice', '<small class="text-danger">', '</small>');?>
+                                    <input type="hidden" name="inv_num" value="<?=$inv['inv_num'];?>">
+                                    <input name="inv_id" type="text" class="form-control form-control-sm"
+                                        value="<?=$inv['inv_id'];?>" readonly>
+                                    <?=form_error('inv_id', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -435,9 +456,9 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="pcRupiah1" name="pcRupiah" type="number"
-                                            class="form-control form-control-sm">
-                                        <?=form_error('pcRupiah', '<small class="text-danger">', '</small>');?>
+                                        <input id="pcRupiah1" name="inv_priceidr" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_priceidr'];?>">
+                                        <?=form_error('inv_priceidr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
@@ -452,9 +473,9 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="dsRupiah1" name="dsRupiah" type="number"
-                                            class="form-control form-control-sm">
-                                        <?=form_error('dsRupiah', '<small class="text-danger">', '</small>');?>
+                                        <input id="dsRupiah1" name="inv_discidr" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_discidr'];?>">
+                                        <?=form_error('inv_discidr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
@@ -469,30 +490,34 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="tpRupiah1" name="tpRupiah" type="number"
-                                            class="form-control form-control-sm" readonly>
-                                        <?=form_error('tpRupiah', '<small class="text-danger">', '</small>');?>
+                                        <input id="tpRupiah1" name="inv_totpridr" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_totpridr'];?>"
+                                            readonly>
+                                        <?=form_error('inv_totpridr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
-                            <textarea id="tpWords2" name="tpWords" class="form-control form-control-sm"
-                                rows="1"></textarea>
-                            <?=form_error('tpWords', '<small class="text-danger">', '</small>');?>
+                            <input type="text" id="tpWords2" name="inv_words" class="form-control form-control-sm"
+                                value="<?=$inv['inv_words'];?>">
+                            <?=form_error('inv_words', '<small class="text-danger">', '</small>');?>
                         </div>
-                        <div class="col-md-3">
+                        <div class=" col-md-3">
                             Date :
                         </div>
                         <div class="col-md-9">
                             <div class="form-group row">
                                 <div class="col-md-3">
+                                    <input name="inv_paymentmethod" type="hidden" value="Full Payment">
                                     <small>Invoice Date</small>
-                                    <input name="date" type="date" class="form-control form-control-sm">
-                                    <?=form_error('date', '<small class="text-danger">', '</small>');?>
+                                    <input name="inv_date" type="date" class="form-control form-control-sm"
+                                        value="<?=$inv['inv_date'];?>">
+                                    <?=form_error('inv_date', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-3">
                                     <small>Due Date</small>
-                                    <input name="dueDate" type="date" class="form-control form-control-sm">
-                                    <?=form_error('dueDate', '<small class="text-danger">', '</small>');?>
+                                    <input name="inv_duedate" type="date" class="form-control form-control-sm"
+                                        value="<?=$inv['inv_duedate'];?>">
+                                    <?=form_error('inv_duedate', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -502,8 +527,9 @@
                         <div class="col-md-9">
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <textarea name="notes" class="form-control form-control-sm" rows="6"></textarea>
-                                    <?=form_error('notes', '<small class="text-danger">', '</small>');?>
+                                    <textarea name="inv_notes" class="form-control form-control-sm"
+                                        rows="6"><?=$inv['inv_notes'];?></textarea>
+                                    <?=form_error('inv_notes', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -513,8 +539,9 @@
                         <div class="col-md-9">
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <textarea name="tnc" class="form-control form-control-sm" rows="6"></textarea>
-                                    <?=form_error('tnc', '<small class="text-danger">', '</small>');?>
+                                    <textarea name="inv_tnc" class="form-control form-control-sm"
+                                        rows="6"><?=$inv['inv_tnc'];?></textarea>
+                                    <?=form_error('inv_tnc', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -526,160 +553,172 @@
                 </form>
             </div>
         </div>
-
+        <?php } else if($inv['inv_category']=="session") { ?>
         <!-- Session -->
         <div class="card shadow">
             <div class="card-body">
-                <h6><i class="fas fa-dollar-sign"></i>&nbsp; &nbsp; View Invoice </h6>
-                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                <div class="row">
-                    <div class="col-md-3">
-                        No Invoice :
-                    </div>
-                    <div class="col-md-9">
-                        <div class="form-group row">
-                            <div class="col-md-5">
-                                <input id="invoice" name="invoice" type="number" class="form-control form-control-sm"
-                                    readonly>
-                                <?=form_error('invoice', '<small class="text-danger">', '</small>');?>
-                            </div>
+                <form action="<?=base_url('finance/invoice/student/update');?>" method="post" name="session">
+                    <h6><i class="fas fa-dollar-sign"></i>&nbsp; &nbsp; View Invoice </h6>
+                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            No Invoice :
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        Price/Hours :
-                    </div>
-                    <div class="col-md-9">
-                        <div class="form-group row">
-                            <div class="col-md-5">
-                                <div class="input-group input-group-sm">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Rp</span>
-                                    </div>
-                                    <input id="priceHours" name="priceHours" type="number"
-                                        class="form-control form-control-sm">
-                                    <?=form_error('priceHours', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-9">
+                            <div class="form-group row">
+                                <div class="col-md-5">
+                                    <input type="hidden" name="inv_num" value="<?=$inv['inv_num'];?>">
+                                    <input name="inv_id" type="text" class="form-control form-control-sm"
+                                        value="<?=$inv['inv_id'];?>" readonly>
+                                    <?=form_error('inv_id', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        Session :
-                    </div>
-                    <div class="col-md-9">
-                        <div class="form-group row">
-                            <div class="col-md-2">
-                                <div class="input-group input-group-sm">
-                                    <input id="amount" name="session" type="number"
-                                        class="form-control form-control-sm">
-                                    <?=form_error('session', '<small class="text-danger">', '</small>');?>
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i
-                                                class="fas fa-times"></i></span>
+                        <div class="col-md-3">
+                            Price/Hours :
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group row">
+                                <div class="col-md-5">
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                                        </div>
+                                        <input id="priceHours" name="inv_priceidr" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_priceidr'];?>">
+                                        <?=form_error('inv_priceidr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        Duration/Session :
-                    </div>
-                    <div class="col-md-9">
-                        <div class="form-group row">
-                            <div class="col-md-3">
-                                <div class="input-group input-group-sm">
-                                    <input id="duration" name="duration" type="number"
-                                        class="form-control form-control-sm">
-                                    <?=form_error('duration', '<small class="text-danger">', '</small>');?>
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Minutes</span>
+                        <div class="col-md-3">
+                            Session :
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group row">
+                                <div class="col-md-2">
+                                    <div class="input-group input-group-sm">
+                                        <input id="amount" name="inv_session" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_session'];?>">
+                                        <?=form_error('inv_session', '<small class="text-danger">', '</small>');?>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="fas fa-times"></i></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        Discount :
-                    </div>
-                    <div class="col-md-9">
-                        <div class="form-group row">
-                            <div class="col-md-5">
-                                <div class="input-group input-group-sm">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Rp</span>
+                        <div class="col-md-3">
+                            Duration/Session :
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <div class="input-group input-group-sm">
+                                        <input id="duration" name="inv_duration" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_duration'];?>">
+                                        <?=form_error('inv_duration', '<small class="text-danger">', '</small>');?>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Minutes</span>
+                                        </div>
                                     </div>
-                                    <input id="discount" name="discount" type="number"
-                                        class="form-control form-control-sm">
-                                    <?=form_error('discount', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <b>Total Price : </b>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="form-group row">
-                            <div class="col-md-5 mb-3">
-                                <div class="input-group input-group-sm">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Rp</span>
+                        <div class="col-md-3">
+                            Discount :
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group row">
+                                <div class="col-md-5">
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                                        </div>
+                                        <input id="discount" name="inv_discidr" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_discidr'];?>">
+                                        <?=form_error('inv_discidr', '<small class="text-danger">', '</small>');?>
                                     </div>
-                                    <input id="totalPrice" name="totalPrice" type="number"
-                                        class="form-control form-control-sm" readonly>
-                                    <?=form_error('totalPrice', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <b>Total Price : </b>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group row">
+                                <div class="col-md-5 mb-3">
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                                        </div>
+                                        <input id="totalPrice" name="inv_totpridr" type="number"
+                                            class="form-control form-control-sm" value="<?=$inv['inv_totpridr'];?>"
+                                            readonly>
+                                        <?=form_error('inv_totpridr', '<small class="text-danger">', '</small>');?>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="text" id="tpWords3" name="inv_words"
+                                        class="form-control form-control-sm" value="<?=$inv['inv_words'];?>">
+                                    <?=form_error('inv_words', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            Date :
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <input name="inv_paymentmethod" type="hidden" value="Full Payment">
+                                    <input name="inv_date" type="date" class="form-control form-control-sm"
+                                        value="<?=$inv['inv_date'];?>">
+                                    <?=form_error('inv_date', '<small class="text-danger">', '</small>');?>
                                 </div>
 
-                            </div>
-                            <div class="col-md-12">
-                                <textarea id="tpWords3" name="tpWords" class="form-control form-control-sm"
-                                    rows="1"></textarea>
-                                <?=form_error('tpWords', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        Date :
-                    </div>
-                    <div class="col-md-9">
-                        <div class="form-group row">
-                            <div class="col-md-3">
-                                <input name="date" type="date" class="form-control form-control-sm">
-                                <?=form_error('date', '<small class="text-danger">', '</small>');?>
-                            </div>
-
-                            <div class="col-md-3">
-                                <input name="dueDate" type="date" class="form-control form-control-sm">
-                                <?=form_error('dueDate', '<small class="text-danger">', '</small>');?>
+                                <div class="col-md-3">
+                                    <input name="inv_duedate" type="date" class="form-control form-control-sm"
+                                        value="<?=$inv['inv_duedate'];?>">
+                                    <?=form_error('inv_duedate', '<small class="text-danger">', '</small>');?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        Notes :
-                    </div>
-                    <div class="col-md-9">
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                                <textarea name="notes" class="form-control form-control-sm" rows="6"></textarea>
-                                <?=form_error('notes', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-3">
+                            Notes :
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <textarea name="inv_notes" class="form-control form-control-sm"
+                                        rows="6"><?=$inv['inv_notes'];?></textarea>
+                                    <?=form_error('inv_notes', '<small class="text-danger">', '</small>');?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        Terms & Condition :
-                    </div>
-                    <div class="col-md-9">
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                                <textarea name="tnc" class="form-control form-control-sm" rows="6"></textarea>
-                                <?=form_error('tnc', '<small class="text-danger">', '</small>');?>
+                        <div class="col-md-3">
+                            Terms & Condition :
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <textarea name="inv_tnc" class="form-control form-control-sm"
+                                        rows="6"><?=$inv['inv_tnc'];?></textarea>
+                                    <?=form_error('inv_tnc', '<small class="text-danger">', '</small>');?>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9 text-right">
+                            <button type="submit" class="btn btn-sm btn-info">Save changes</button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-
-
+        <?php } ?>
     </div>
 </div>
 
@@ -710,15 +749,20 @@ function cFunction() {
         $('#idr').hide();
     }
 }
-
-new SlimSelect({
+</script>
+<?php if($inv['inv_category']=='usd'){ ?>
+<script>
+let PM = new SlimSelect({
     select: '#paymentMethod',
     placeholder: 'Select payment method ',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 
-
+PM.set("<?=$inv['inv_paymentmethod'];?>");
+</script>
+<?php } ?>
+<script>
 $('#currentUSD').keyup(function() {
     let USD = $('#currentUSD').val();
     let pc = $('#pcDollar').val();
@@ -737,7 +781,7 @@ $('#currentUSD').keyup(function() {
     $('#dsRupiah').val(dsTot);
     $('#tpRupiah').val(tpTot);
 
-    $('#tpWords1').text(capitalize(tpTot));
+    $('#tpWords1').val(capitalize(tpTot));
 
 });
 
@@ -754,7 +798,7 @@ $('#pcDollar').keyup(function() {
     $('#tpDollar').val(tpDollar);
     $('#tpRupiah').val(tpRupiah);
 
-    $('#tpWords1').text(capitalize(tpRupiah));
+    $('#tpWords1').val(capitalize(tpRupiah));
 });
 
 $('#ebDollar').keyup(function() {
@@ -771,7 +815,7 @@ $('#ebDollar').keyup(function() {
     $('#tpDollar').val(tpDollar);
     $('#tpRupiah').val(tpRupiah);
 
-    $('#tpWords1').text(capitalize(tpRupiah));
+    $('#tpWords1').val(capitalize(tpRupiah));
 });
 
 $('#dsDollar').keyup(function() {
@@ -788,7 +832,7 @@ $('#dsDollar').keyup(function() {
     $('#tpDollar').val(tpDollar);
     $('#tpRupiah').val(tpRupiah);
 
-    $('#tpWords1').text(capitalize(tpRupiah));
+    $('#tpWords1').val(capitalize(tpRupiah));
 });
 
 function paymentMethods() {
@@ -798,9 +842,26 @@ function paymentMethods() {
         $('#dueDate').prop("disabled", false);;
     } else {
         $('#steps').show();
-        $('#dueDate').prop("disabled", true);;
+        $('#dueDate').prop("disabled", false);;
     }
 }
+
+function editInstalments(x) {
+    $.ajax({
+        type: 'post',
+        url: '<?=base_url("finance/invoice/student/view-detail/");?>' + x,
+        dataType: 'json',
+        success: function(data) {
+            $('#invdtl_id').val(data.invdtl_id);
+            $('#invdtl_statusname').val(data.invdtl_statusname);
+            $('#invdtl_duedate').val(data.invdtl_duedate);
+            $('#percent1').val(data.invdtl_percentage);
+            $('#amountDollar1').val(data.invdtl_amountusd);
+            $('#amountRupiah1').val(data.invdtl_amountidr);
+        }
+    });
+}
+
 
 $('#percent').keyup(function() {
     let USD = $('#currentUSD').val();
@@ -864,7 +925,7 @@ $('#pcRupiah1').keyup(function() {
     let dsRupiah = $('#dsRupiah1').val();
     let tpRupiah = pcRupiah - dsRupiah;
     $('#tpRupiah1').val(tpRupiah);
-    $('#tpWords2').text(capitalize(tpRupiah));
+    $('#tpWords2').val(capitalize(tpRupiah));
 });
 
 $('#dsRupiah1').keyup(function() {
@@ -872,7 +933,7 @@ $('#dsRupiah1').keyup(function() {
     let dsRupiah = $('#dsRupiah1').val();
     let tpRupiah = pcRupiah - dsRupiah;
     $('#tpRupiah1').val(tpRupiah);
-    $('#tpWords2').text(capitalize(tpRupiah));
+    $('#tpWords2').val(capitalize(tpRupiah));
 });
 
 $('#duration').keyup(function() {
@@ -883,7 +944,7 @@ $('#duration').keyup(function() {
 
     let tpRupiah = (ph * ss) * (dr / 60) - ds;
     $('#totalPrice').val(tpRupiah);
-    $('#tpWords3').text(capitalize(tpRupiah));
+    $('#tpWords3').val(capitalize(tpRupiah));
 });
 
 $('#discount').keyup(function() {
@@ -894,6 +955,6 @@ $('#discount').keyup(function() {
 
     let tpRupiah = (ph * ss) * (dr / 60) - ds;
     $('#totalPrice').val(tpRupiah);
-    $('#tpWords3').text(capitalize(tpRupiah));
+    $('#tpWords3').val(capitalize(tpRupiah));
 });
 </script>

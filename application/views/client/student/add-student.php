@@ -97,7 +97,7 @@
                                 <?=form_error('st_insta', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <label>State / Region</label>
                                 <input name="st_state" type="text" class="form-control form-control-sm"
@@ -105,7 +105,15 @@
                                 <?=form_error('st_state', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input name="st_city" type="text" class="form-control form-control-sm"
+                                    placeholder="City" id="city">
+                                <?=form_error('st_city', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>Postal Code</label>
                                 <input name="st_pc" type="text" class="form-control form-control-sm"
@@ -307,6 +315,12 @@ $(document).ready(function() {
     var arr = states.split(", ")
     $("#state").autocomplete({
         source: arr
+    });
+
+    var cities = '<?=implode(", ", $cities);?>';
+    var arr1 = cities.split(", ")
+    $("#city").autocomplete({
+        source: arr1
     });
 });
 

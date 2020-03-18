@@ -3,7 +3,7 @@
         <div class="col-md-5 ">
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <div class="breadcrumb text-dark bg-white font-weight-bold  shadow border">
-                    <i class="fas fa-tags mt-1"></i>&nbsp;&nbsp; Students Program
+                    <i class="fas fa-tags mt-1"></i>&nbsp;&nbsp; Receipt List
                 </div>
             </nav>
         </div>
@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
                     <li class="breadcrumb-item"><a href="<?=base_url('finance/home');?>">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Students Program</li>
+                    <li class="breadcrumb-item active" aria-current="page">Receipt List</li>
                 </ol>
             </nav>
         </div>
@@ -23,30 +23,31 @@
         <thead class="text-center">
             <tr>
                 <th width="1%">No</th>
-                <th width="10%" class="bg-primary text-white">Students Name</th>
-                <th width="10%">Program</th>
-                <th width="5%">Invoice</th>
+                <th width="10%" class="bg-primary text-white">Receipt ID</th>
+                <th width="5%">Invoice ID</th>
+                <th width="5%">Students Name</th>
+                <th width="5%">Program</th>
                 <th width="5%">Payment Method</th>
-                <th width="5%">Date</th>
-                <th width="5%">Due Date</th>
+                <th width="5%">Amount</th>
                 <th width="5%">Total Price</th>
             </tr>
         </thead>
         <tbody class="text-center">
-            <?php for($i=1;$i<=25;$i++) { ?>
+            <?php $i=1; foreach($receipt as $r) : ?>
             <tr>
                 <td><?=$i;?></td>
                 <td style="cursor:pointer"
-                    onclick="window.location='<?=base_url('finance/receipt/student/view/'.$i);?>'">Stella
+                    onclick="window.location='<?=base_url('finance/receipt/student/view/'.$r['receipt_num']);?>'">
+                    <?=$r['receipt_id'];?>
                 </td>
-                <td>Academic Writing</td>
-                <td>JEC/1212/XI/001</td>
-                <td>Full Payment</td>
-                <td>23 February 2020</td>
-                <td>25 February 2020</td>
-                <td>Rp. 32.00.000,-</td>
+                <td><?=$r['inv_id'];?></td>
+                <td class="text-left"><?=$r['st_firstname'].' '.$r['st_lastname'];?></td>
+                <td class="text-left"><?=$r['prog_program'];?></td>
+                <td><?=$r['receipt_mtd'];?></td>
+                <td class="text-right">Rp. <?=number_format($r['receipt_amount']);?></td>
+                <td class="text-right">Rp. <?=number_format($r['inv_totpridr']);?></td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>
