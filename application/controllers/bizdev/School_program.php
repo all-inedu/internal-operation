@@ -8,6 +8,7 @@ class School_program extends CI_Controller
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('bizdev/SProgram_model','sprog');
+        $this->load->model('hr/Employee_model','empl');
     }
 
     public function index(){
@@ -27,6 +28,7 @@ class School_program extends CI_Controller
             $data = [
                 'sch_id' => $id,
                 'prog_id' => $this->input->post('prog_id'),
+                'empl_id' => $this->input->post('empl_id'),
                 'schprog_datefirstdis' => $this->input->post('schprog_datefirstdis'),
                 'schprog_datelastdis' => $this->input->post('schprog_datefirstdis'),
                 'schprog_status' => 0,
@@ -53,6 +55,7 @@ class School_program extends CI_Controller
         if ($this->form_validation->run() == false) {
             $data['sprog'] = $this->sprog->showSProgId($id);
             $data['pexec'] = $this->sprog->showProgramExec($id);
+            $data['empl'] = $this->empl->showActive();
             $this->load->view('templates/h-io');
             $this->load->view('templates/s-bizdev');
             $this->load->view('bizdev/school-program/edit-school-program', $data);
@@ -65,6 +68,7 @@ class School_program extends CI_Controller
     public function update() {
         $id = $this->input->post('schprog_id');
         $data = [
+            'empl_id' => $this->input->post('empl_id'),
             'schprog_datelastdis' => $this->input->post('schprog_datelastdis'),
             'schprog_status' => $this->input->post('schprog_status'),
             'schprog_notes' => $this->input->post('schprog_notes')

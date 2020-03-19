@@ -52,10 +52,14 @@
                     if(!$rec) {
                     ?>
                     <button class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#addReceipt"
-                        onclick="addReceipt(<?=$inv['inv_num'];?>)"><i class="fas fa-plus"></i>&nbsp; Add
+                        onclick="addReceipt(<?=$inv['inv_num'];?>)"><i class="fas fa-plus"></i> &nbsp; Add
                         Receipt</button>
                     <?php } else { ?>
-                    <a href="#" class="btn btn-sm btn-success">View Receipt</a>
+                    <a href="<?=base_url('finance/receipt/student/view/'.$rec['receipt_num']);?>"
+                        class="btn btn-sm btn-success">
+                        <i class="icofont-search"></i> &nbsp;
+                        View Receipt
+                    </a>
                     <?php } ?>
                 </div>
                 <?php } ?>
@@ -171,10 +175,14 @@
                                         <button class="btn btn-sm btn-secondary" data-toggle="modal"
                                             data-target="#addReceipt"
                                             onclick="addReceiptInsallment(<?=$id['invdtl_id'];?>)"><i
-                                                class="fas fa-plus"></i>&nbsp; Add
+                                                class="fas fa-plus"></i> &nbsp; Add
                                             Receipt</button>
                                         <?php } else { ?>
-                                        <a href="#" class="btn btn-sm btn-success">View Receipt</a>
+                                        <a href="<?=base_url('finance/receipt/student/view/'.$rec_detail['receipt_num']);?>"
+                                            class="btn btn-sm btn-success">
+                                            <i class="icofont-search"></i> &nbsp;
+                                            View Receipt
+                                        </a>
                                         <?php } ?>
                                     </td>
                                 </tr>
@@ -200,7 +208,11 @@
                         onclick="addReceipt(<?=$inv['inv_num'];?>)"><i class="fas fa-plus"></i>&nbsp; Add
                         Receipt</button>
                     <?php } else { ?>
-                    <a href="#" class="btn btn-sm btn-success">View Receipt</a>
+                    <a href="<?=base_url('finance/receipt/student/view/'.$rec['receipt_num']);?>"
+                        class="btn btn-sm btn-success">
+                        <i class="icofont-search"></i> &nbsp;
+                        View Receipt
+                    </a>
                     <?php } ?>
                 </div>
                 <?php } ?>
@@ -291,7 +303,11 @@
                         onclick="addReceipt(<?=$inv['inv_num'];?>)"><i class="fas fa-plus"></i>&nbsp; Add
                         Receipt</button>
                     <?php } else { ?>
-                    <a href="#" class="btn btn-sm btn-success">View Receipt</a>
+                    <a href="<?=base_url('finance/receipt/student/view/'.$rec['receipt_num']);?>"
+                        class="btn btn-sm btn-success">
+                        <i class="icofont-search"></i> &nbsp;
+                        View Receipt
+                    </a>
                     <?php } ?>
                 </div>
                 <?php } ?>
@@ -403,6 +419,7 @@
                             <div class="form-group">
                                 <input type="hidden" name="inv_id" value="<?=$inv['inv_id'];?>">
                                 <input type="hidden" id="invdtl_id" name="invdtl_id">
+                                <input type="hidden" id="receipt_amountusd" name="receipt_amountusd">
                                 <input type="number" name="receipt_amount" id="amount"
                                     class="form-control form-control-sm">
                             </div>
@@ -415,6 +432,8 @@
                         </div>
                         <div class="col-md-12 mb-3">
                             <input type="text" id="words" name="receipt_words" class="form-control form-control-sm">
+                            <input type="hidden" id="wordsusd" name="receipt_wordsusd"
+                                class="form-control form-control-sm">
                         </div>
                         <div class="col-md-6">
                             <label>Payment Method</label>
@@ -466,6 +485,9 @@ function addReceipt(x) {
             console.log(data)
             $('#amount').val(data.inv_totpridr);
             $('#words').val(capitalize(data.inv_totpridr));
+            $('#receipt_amountusd').val(data.inv_totprusd);
+            $('#wordsusd').val(capitalizeUSD(data.inv_totprusd));
+
         }
     });
 }
@@ -480,6 +502,8 @@ function addReceiptInsallment(x) {
             $('#invdtl_id').val(data.invdtl_id);
             $('#amount').val(data.invdtl_amountidr);
             $('#words').val(capitalize(data.invdtl_amountidr));
+            $('#receipt_amountusd').val(data.invdtl_amountusd);
+            $('#wordsusd').val(capitalizeUSD(data.invdtl_amountusd));
         }
     });
 }

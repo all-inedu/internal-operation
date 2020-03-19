@@ -11,6 +11,7 @@ class School extends CI_Controller
         $this->load->model('bizdev/School_model','sch');
         $this->load->model('bizdev/SProgram_model','sprog');
         $this->load->model('client/Program_model','prog');
+        $this->load->model('hr/Employee_model','empl');
     }
 
     public function index(){
@@ -86,6 +87,7 @@ class School extends CI_Controller
         $data['sch_detail'] = $this->sch->showDetail($id);
         $data['program'] = $this->prog->showB2B();
         $data['sprog'] = $this->sprog->showId($id);
+        $data['empl'] = $this->empl->showActive();
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-bizdev');
         $this->load->view('bizdev/school/view-school', $data);

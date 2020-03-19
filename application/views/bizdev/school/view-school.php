@@ -56,9 +56,9 @@
                         <h6>Program List : </h6>
                         <div class="line" style="margin-top:-5px; margin-bottom:10px;"></div>
                     </div>
-                    <div style="height:305px; overflow-x: hidden;">
-                        <?php foreach($sprog as $sp) : ?>
-                        <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div style="height:210px; overflow-x: hidden;">
+                            <?php foreach($sprog as $sp) : ?>
                             <div class="bg-light border-bottom" style="margin:0px -20px; padding:10px 20px;">
                                 <div class="row">
                                     <div class="col-md-9">
@@ -256,6 +256,19 @@
                             </div>
                         </div>
 
+                        <div class="col-md-12 mb-3">
+                            <label>PIC
+                            </label>
+                            <select id="PIC" name="empl_id">
+                                <option data-placeholder="true"></option>
+                                <?php foreach ($empl as $e) : ?>
+                                <option value="<?=$e['empl_id'];?>">
+                                    <?=$e['empl_firstname'].' '.$e['empl_lastname'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>First Discuss</label>
@@ -322,19 +335,20 @@ var SC = new SlimSelect({
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 SC.disable();
-
-var IF = new SlimSelect({
-    select: '#isFriendly',
-    placeholder: 'Select is friendly',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-IF.disable();
 </script>
+
 <script>
 var PN = new SlimSelect({
     select: '#programName',
     placeholder: 'Select program name',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
+
+new SlimSelect({
+    select: '#PIC',
+    placeholder: 'Select pic',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });

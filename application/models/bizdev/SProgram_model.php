@@ -11,6 +11,7 @@ class SProgram_model extends CI_model
         $this->db->select('*');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id = tbl_schprog.prog_id');
         $this->db->join('tbl_sch', 'tbl_sch.sch_id = tbl_schprog.sch_id');
+        $this->db->join('tbl_empl', 'tbl_empl.empl_id = tbl_schprog.empl_id');
         return $this->db->get('tbl_schprog')->result_array(); 
     }
     
@@ -33,6 +34,7 @@ class SProgram_model extends CI_model
         $this->db->where('tbl_schprog.sch_id', $id); 
         $this->db->join('tbl_prog', 'tbl_prog.prog_id = tbl_schprog.prog_id');
         $this->db->join('tbl_sch', 'tbl_sch.sch_id = tbl_schprog.sch_id');
+        $this->db->join('tbl_empl', 'tbl_empl.empl_id = tbl_schprog.empl_id');
         return $this->db->get('tbl_schprog')->result_array();
     }
 
@@ -41,6 +43,7 @@ class SProgram_model extends CI_model
         $this->db->where('tbl_schprog.schprog_id', $id); 
         $this->db->join('tbl_prog', 'tbl_prog.prog_id = tbl_schprog.prog_id');
         $this->db->join('tbl_sch', 'tbl_sch.sch_id = tbl_schprog.sch_id');
+        $this->db->join('tbl_empl', 'tbl_empl.empl_id = tbl_schprog.empl_id');
         return $this->db->get('tbl_schprog')->row_array();
     }
 

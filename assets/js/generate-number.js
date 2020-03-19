@@ -60,3 +60,9 @@ function capitalize(number) {
     let words = strn.charAt(0).toUpperCase() + strn.substr(1).toLowerCase() + ' rupiah only';
     return words;
 }
+
+function capitalizeUSD(number) {
+    let strnUSD = numToWords(number);
+    let wordsUSD = strnUSD.charAt(0).toUpperCase() + strnUSD.substr(1).toLowerCase() + 'dollars';
+    return wordsUSD;
+}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?=$inv['inv_id'];?> - PDF</title>
+    <title>Invoice : <?=$inv['inv_id'];?> - PDF</title>
 </head>
 
 <body>
@@ -45,49 +45,51 @@
             style="line-height:1.6; letter-spacing:3px; font-weight:bold; text-align:center; color:#247df2; font-size:18px; margin-bottom:10px; ">
             <u><b>INVOICE</b></u>
         </h4>
-        <table border="0" width="100%">
-            <tr>
-                <td width="60%">
-                    <table width="100%">
-                        <tr>
-                            <td width="15%" valign="top">From : </td>
-                            <td width="85%"><b>PT. Jawara Edukasih Indonesia</b><br>
-                                JL. Panjang No 36 <br>
-                                Jakarta Barat 11530
-                                <br><br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">To : </td>
-                            <td><b>
-                                    <?=$inv['st_firstname'].' '.$inv['st_lastname'];?>
-                                </b><br>
-                                <?=$inv['st_address'];?>
-                                <?=$inv['st_state'];?>
-                                <br>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
+        <div style="height:190px;">
+            <table border="0" width="100%">
+                <tr>
+                    <td width="60%">
+                        <table width="110%">
+                            <tr>
+                                <td width="15%" valign="top">From : </td>
+                                <td width="85%"><b>PT. Jawara Edukasih Indonesia</b><br>
+                                    JL. Panjang No 36 <br>
+                                    Jakarta Barat 11530
+                                    <br><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">To : </td>
+                                <td><b>
+                                        <?=$inv['st_firstname'].' '.$inv['st_lastname'];?>
+                                    </b><br>
+                                    <?=$inv['st_address'];?>
+                                    <?=$inv['st_state'];?>
+                                    <br>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
 
-                <td valign="top" width="50%">
-                    <table border=0 width="100%">
-                        <tr>
-                            <td width="10%">
-                                Invoice No<br>
-                                Date<br>
-                                Due Date<br>
-                            </td>
-                            <td width="90%">
-                                : <?=$inv['inv_id'];?> <br>
-                                : <?=date('d F Y', strtotime($inv['inv_date']));?> <br>
-                                : <?=date('d F Y', strtotime($inv['inv_duedate']));?> <br>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
+                    <td valign="top" width="50%">
+                        <table border=0>
+                            <tr>
+                                <td>
+                                    Invoice No<br>
+                                    Date<br>
+                                    Due Date<br>
+                                </td>
+                                <td>
+                                    : &nbsp; <?=$inv['inv_id'];?><br>
+                                    : &nbsp; <?=date('d F Y', strtotime($inv['inv_date']));?> <br>
+                                    : &nbsp; <?=date('d F Y', strtotime($inv['inv_duedate']));?> <br>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
         <table>
             <tr>
                 <td>

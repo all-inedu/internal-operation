@@ -29,4 +29,9 @@ class InvoiceDetail_model extends CI_model
         $this->db->where('invdtl_id', $id);
         $this->db->delete('tbl_invdtl');
     }
+
+    public function deleteInvId($id) {
+        $this->db->where('inv_id', $id);
+        $this->db->delete('tbl_invdtl');
+    }
 }

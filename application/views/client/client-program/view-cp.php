@@ -151,7 +151,14 @@
 
                         <div class="col-md-8 mb-3 text-muted offset-md-4" id="reason">
                             <small>Reason :</small>
-                            <textarea name="stprog_reason"><?=$stprog['stprog_reason'];?></textarea>
+                            <select id="reasons" name="reason_id" onchange="newReason()">
+                                <?php foreach($reason as $r) : ?>
+                                <option value="<?=$r['reason_id'];?>"><?=$r['reason_name'];?></option>
+                                <?php endforeach; ?>
+                                <option value="add">Add New Reason</option>
+                            </select>
+                            <hr>
+                            <input type="text" name="new_reason" id="new_reason" class="form-control form-control-sm">
                         </div>
 
                         <div class="col-md-4 mb-1">
@@ -257,6 +264,14 @@ let SP = new SlimSelect({
 });
 SP.set("<?=$stprog['stprog_status'];?>")
 
+var reasons = new SlimSelect({
+    select: '#reasons',
+    placeholder: 'Select reason',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+reasons.set("<?=$stprog['reason_id'];?>")
+
 var stProgram = new SlimSelect({
     select: '#stProgram',
     allowDeselect: true,
@@ -306,18 +321,30 @@ $(document).ready(function() {
     var st = $("#stPotential").val();
     if (st == "2") {
         $("#reason").show();
+        $("#new_reason").hide();
     } else if (st == "1") {
         $("#reason").hide();
+        $("#new_reason").hide();
         stProgram.enable();
         MM.enable();
         BM.enable();
     } else {
         $("#reason").hide();
+        $("#new_reason").hide();
         stProgram.disable();
         MM.disable();
         BM.disable();
     }
 });
+
+function newReason() {
+    if ($("#reasons").val() == "add") {
+        $("#new_reason").show();
+        $("#new_reason").focus();
+    } else {
+        $("#new_reason").hide();
+    }
+}
 
 function progStatus() {
     var st = $("#stPotential").val();

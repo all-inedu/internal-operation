@@ -11,6 +11,7 @@ class Students_program extends CI_Controller
         $this->load->model('client/StProgram_model','stprog');
         $this->load->model('client/Program_model','prog');
         $this->load->model('client/Lead_model','lead');
+        $this->load->model('client/Reason_model','reason');
         $this->load->model('hr/Mentor_model','mt');
         $this->load->model('hr/Employee_model','empl');
     }
@@ -31,6 +32,8 @@ class Students_program extends CI_Controller
         $data['mentor'] = $this->mt->showMentorActive();
         $data['tutor'] = $this->mt->showTutorActive();
         $data['empl'] = $this->empl->showActive();
+        $data['reason'] = $this->reason->showAll();
+
         $this->form_validation->set_rules('lead_id', 'lead source', 'required');
         if ($this->form_validation->run() == false) {
         $this->load->view('templates/h-io');
@@ -53,8 +56,20 @@ class Students_program extends CI_Controller
             $mt_id2 = $this->input->post('mt_id2');
         }
 
-        if($this->input->post('stprog_reason')) {
-            $reason = $this->input->post('stprog_reason');
+        if($this->input->post('reason_id')) {
+            if($this->input->post('reason_id')=="add") {
+                $reasons = $this->reason->getId();
+                $reason = $reasons['reason_id'] + 1;
+
+                $reason_data = [
+                    'reason_id' => $reason_id,
+                    'reason_name' => $this->input->post('new_reason')
+                ];
+
+                $this->reason->save($reason_data);
+            } else {
+                $reason = $this->input->post('reason_id');
+            }
         } else {
             $reason = "";
         }
@@ -112,7 +127,7 @@ class Students_program extends CI_Controller
             'stprog_meetingdate' => $this->input->post('stprog_meetingdate'),
             'stprog_meetingnote' => $this->input->post('stprog_meetingnote'),
             'stprog_status' => $this->input->post('stprog_status'),
-            'stprog_reason' => $reason,
+            'reason_id' => $reason,
             'stprog_statusprogdate' => $this->input->post('stprog_statusprogdate'),
             'stprog_runningstatus' => $this->input->post('stprog_runningstatus'),
             'empl_id' => $this->input->post('empl_id')

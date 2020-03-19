@@ -206,7 +206,7 @@
                         <div class="col-md-9">
                             <div class="form-group row">
                                 <div class="col-md-5">
-                                    <select id="paymentMethod" name="inv_paymentmethod" onChange="paymentMethods();">
+                                    <select id="paymentMethod" name="inv_paymentmethod">
                                         <option data-placeholder="true"></option>
                                         <option value="Full Payment">Full Payment</option>
                                         <option value="Installment">Installment</option>
@@ -263,6 +263,7 @@
                             <button type="submit" class="btn btn-sm btn-info">Save changes</button>
                         </div>
 
+                        <?php if($inv['inv_paymentmethod']=='Installment'){ ?>
                         <div class="col-md-12" id="steps">
                             <hr>
                             <div class="float-right">
@@ -271,7 +272,6 @@
                                     Installment</a>
                             </div>
                         </div>
-                        <?php if($inv['inv_paymentmethod']=='Installment'){ ?>
                         <div class="col-md-12 mt-3">
                             <table class="table table-bordered text-center">
                                 <tr>
@@ -729,7 +729,6 @@
 <script src="<?=base_url('assets/js/generate-number.js');?>"></script>
 <script>
 $('#usd').show();
-$('#steps').hide();
 $('#idr').hide();
 $('#session').hide();
 
@@ -834,17 +833,6 @@ $('#dsDollar').keyup(function() {
 
     $('#tpWords1').val(capitalize(tpRupiah));
 });
-
-function paymentMethods() {
-    let pm = $('#paymentMethod').val();
-    if (pm == "Full Payment") {
-        $('#steps').hide();
-        $('#dueDate').prop("disabled", false);;
-    } else {
-        $('#steps').show();
-        $('#dueDate').prop("disabled", false);;
-    }
-}
 
 function editInstalments(x) {
     $.ajax({

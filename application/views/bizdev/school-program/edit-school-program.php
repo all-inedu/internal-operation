@@ -82,6 +82,24 @@
                         </div>
 
                         <div class="col-md-3">
+                            <label><i class="fa-fw fas fa-user text-muted"></i>&nbsp; PIC :</label>
+                        </div>
+                        <div class="col-md-9 mb-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select id="PIC" name="empl_id">
+                                        <option data-placeholder="true"></option>
+                                        <?php foreach ($empl as $e) : ?>
+                                        <option value="<?=$e['empl_id'];?>">
+                                            <?=$e['empl_firstname'].' '.$e['empl_lastname'];?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                    <?=form_error('empl_id', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
                             <label><i class="fa-fw fas fa-calendar-alt text-muted"></i>&nbsp; First Discuss :</label>
                         </div>
                         <div class="col-md-9">
@@ -359,6 +377,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
+var PIC = new SlimSelect({
+    select: '#PIC',
+    placeholder: 'Select pic ',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+PIC.set('<?=$sprog["empl_id"];?>');
+
 var PS = new SlimSelect({
     select: '#programStatus',
     placeholder: 'Select program status ',

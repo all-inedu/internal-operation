@@ -21,26 +21,30 @@
 <div class="content">
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th width="1%">No</th>
-                <th width="5%" class="text-center bg-primary text-white">School Name</th>
-                <th width="5%" class="text-center">Program Name</th>
-                <th width="5%" class="text-center">First Discuss</th>
-                <th width="5%" class="text-center">Last Discuss</th>
-                <th width="5%" class="text-center">Approach <br> Status</th>
-                <th width="1%" class="text-center">Program Execution</th>
+                <th width="5%" class="bg-primary text-white">School Name</th>
+                <th width="5%">Program Name</th>
+                <th width="5%">PIC</th>
+                <th width="5%">First Discuss</th>
+                <th width="5%">Last Discuss</th>
+                <th width="5%">Approach <br> Status</th>
+                <th width="1%">Program Execution</th>
             </tr>
         </thead>
         <tbody>
             <?php $i=1; foreach($sprog as $sp): ?>
             <tr class="text-center">
                 <td><?=$i;?></td>
-                <td style="cursor:pointer"
+                <td class="text-left" style="cursor:pointer"
                     onclick="window.location='<?=base_url('bizdev/school-program/view/'.$sp['schprog_id']);?>'">
                     <?=$sp['sch_name'];?>
                 </td>
                 <td class="text-left">
                     <?=$sp['prog_program'];?>
+                </td>
+                <td class="text-left">
+                    <?=$sp['empl_firstname'].' '.$sp['empl_lastname'];?>
                 </td>
                 <td><?=date('d F Y', strtotime($sp['schprog_datefirstdis']));?></td>
                 <td><?=date('d F Y', strtotime($sp['schprog_datelastdis']));?></td>

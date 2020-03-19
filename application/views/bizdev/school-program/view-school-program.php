@@ -58,8 +58,7 @@
                     <h6 style="font-size:14px;" class="text-primary mb-2"><?=$sprog['prog_program'];?></h6>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <a href="<?=base_url('bizdev/school/view/'.$sprog['sch_id']);?>" class="btn btn-sm btn-info m-1"><i
-                            class="fas fa-search"></i>&nbsp; Profile</a><br>
-
+                            class="fas fa-search"></i>&nbsp; Profile</a>
                     <a href="<?=base_url('bizdev/school-program/edit/'.$sprog['schprog_id']);?>"
                         class="btn btn-sm btn-primary m-1"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
                     <a href="<?=base_url('bizdev/school-program/delete/'.$sprog['schprog_id']);?>"
@@ -86,6 +85,14 @@
                     </div>
                     <div class="col-md-9">
                         <?=$sprog['prog_program'];?>
+                        <hr class="mt-1">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label><i class="fas fa-tag text-muted"></i>&nbsp; PIC :</label>
+                    </div>
+                    <div class="col-md-9">
+                        <?=$sprog['empl_firstname'].' '.$sprog['empl_lastname'];?>
                         <hr class="mt-1">
                     </div>
 

@@ -69,9 +69,15 @@
                     <?php } ?>
                 </td>
                 <td>
-                    <?php if($stpr['stprog_status']==2) { ?>
-                    <?=$stpr['stprog_reason'];?>
-                    <?php } else { echo '-' ;} ?>
+                    <?php 
+                    if($stpr['stprog_status']==2) { 
+                        $reason_id= $stpr['reason_id'];
+                        $reason = $this->reason->showId($reason_id);
+                        echo $reason['reason_name'];
+                    } else { 
+                        echo '-' ;
+                    } 
+                    ?>
                 </td>
                 <td>
                     <?php 

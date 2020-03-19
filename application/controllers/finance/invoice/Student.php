@@ -246,6 +246,13 @@ class Student extends CI_Controller
             'inv_notes' => $this->input->post('inv_notes'),
             'inv_tnc' => $this->input->post('inv_tnc'),
         ];
+
+        $inv = $this->inv->showInvNum($id);
+        $inv_id = $inv['inv_id'];
+        $pm = $this->input->post('inv_paymentmethod');
+        if($pm == "Full Payment") {
+            $this->invdetail->deleteInvId($inv_id);
+        }
         
         $this->inv->update($data, $id);
         $this->session->set_flashdata('success', 'Invoice has been changed');

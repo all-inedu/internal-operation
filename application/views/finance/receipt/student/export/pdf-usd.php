@@ -99,7 +99,7 @@
             <tr>
                 <td align="center"><?=$rec['receipt_mtd'];?></td>
                 <td align="center"><?=$rec['receipt_cheque'];?></td>
-                <td align="right">Rp. <?=number_format($rec['receipt_amount']);?></td>
+                <td align="right">$ <?=number_format($rec['receipt_amountusd']);?></td>
             </tr>
         </table>
 
@@ -107,8 +107,8 @@
             <tr align="center" style="background:#008080; color:#fff;">
                 <th width="3%">No</th>
                 <th width="50%">Description</th>
-                <th width="23%">Price (IDR)</th>
-                <th>Total (IDR)</th>
+                <th width="23%">Price</th>
+                <th>Total</th>
             </tr>
             <?php 
                 $cat = $rec['inv_category'];
@@ -120,48 +120,39 @@
                 <td valign="top" style="padding-bottom:50px;">
                     <div style="height:45px">
                         <b><?=$rec['prog_program'];?></b><br>
-                        <?php if($cat=='session') { ?>
-                        <i><?=$rec['inv_session'];?> session - <?=$rec['inv_duration']/60;?> hours</i>
-                        <?php } ?>
                     </div>
 
-                    <?php if($rec['inv_earlybirdidr']) { ?>
+                    <?php if($rec['inv_earlybirdusd']) { ?>
                     <i>Early Bird</i> <br>
                     <?php } ?>
 
-                    <?php if($rec['inv_discidr']) { ?>
+                    <?php if($rec['inv_discusd']) { ?>
                     <i>Discount</i> <br>
                     <?php } ?>
 
                 </td>
                 <td valign="top" align="right">
                     <div style="height:45px">
-                        Rp. <?=number_format($rec['inv_priceidr']);?>
+                        $ <?=number_format($rec['inv_priceusd']);?>
                     </div>
                 </td>
                 <td valign="top" align="right">
                     <div style="height:45px">
-                        <?php if($cat=='session') { 
-                            $price = $rec['inv_priceidr'] * $rec['inv_session'] * ($rec['inv_duration']/60);
-                        ?>
-                        Rp. <?=number_format($price);?>
-                        <?php } else { ?>
-                        Rp. <?=number_format($rec['inv_priceidr']);?>
-                        <?php } ?>
+                        $ <?=number_format($rec['inv_priceusd']);?>
                     </div>
-                    <?php if($rec['inv_earlybirdidr']) { ?>
-                    ( Rp. <?=number_format($rec['inv_earlybirdidr']);?> ) <br>
+                    <?php if($rec['inv_earlybirdusd']) { ?>
+                    ( $ <?=number_format($rec['inv_earlybirdusd']);?> ) <br>
                     <?php } ?>
 
-                    <?php if($rec['inv_discidr']) { ?>
-                    ( Rp. <?=number_format($rec['inv_discidr']);?> ) <br>
+                    <?php if($rec['inv_discusd']) { ?>
+                    ( $ <?=number_format($rec['inv_discusd']);?> ) <br>
                     <?php } ?>
                 </td>
             </tr>
             <tr>
                 <td colspan="3" align="right"><b>Total</b></td>
                 <td valign="top" align="right">
-                    <b>Rp. <?=number_format($rec['inv_totpridr']);?></b>
+                    <b>$ <?=number_format($rec['inv_totprusd']);?></b>
                 </td>
             </tr>
             <?php } else { ?>
@@ -175,19 +166,19 @@
                 </td>
                 <td valign="top" align="right">
                     <div style="height:45px">
-                        Rp. <?=number_format($invdtl['invdtl_amountidr']);?>
+                        $ <?=number_format($invdtl['invdtl_amountusd']);?>
                     </div>
                 </td>
                 <td valign="top" align="right">
                     <div style="height:45px">
-                        Rp. <?=number_format($invdtl['invdtl_amountidr']);?>
+                        $ <?=number_format($invdtl['invdtl_amountusd']);?>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td colspan="3" align="right"><b>Total</b></td>
                 <td valign="top" align="right">
-                    <b>Rp. <?=number_format($invdtl['invdtl_amountidr']);?></b>
+                    <b>$ <?=number_format($invdtl['invdtl_amountusd']);?></b>
                 </td>
             </tr>
             <?php } ?>
@@ -195,7 +186,7 @@
         <table>
             <tr>
                 <td>
-                    <b style="letter-spacing:0.7px;"><i>Total Amount : <?=$rec['receipt_words'];?></i> </b>
+                    <b style="letter-spacing:0.7px;">Total Amount : <i><?=$rec['receipt_wordsusd'];?></i> </b>
                     <br><br>
                 </td>
             </tr>

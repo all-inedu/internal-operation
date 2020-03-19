@@ -29,8 +29,13 @@
     .allin-header {
         position: static;
         padding-top: 20px;
-        background: rgb(76, 88, 158);
-        background: linear-gradient(90deg, rgba(76, 88, 158, 1) 0%, rgba(9, 165, 196, 1) 100%);
+        background-image: url("https://wallpaperaccess.com/full/1261770.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        /* background: rgb(76, 88, 158);
+        background: linear-gradient(90deg, rgba(76, 88, 158, 1) 0%, rgba(9, 165, 196, 1) 100%); */
         height: auto;
         padding-bottom: 90px;
         color: #ffffff;
@@ -94,8 +99,11 @@
     }
 
     .core-values {
-        background: rgb(245, 188, 107);
-        background: linear-gradient(90deg, rgba(245, 188, 107, 1) 0%, rgba(232, 132, 18, 1) 100%);
+        background-image: url("https://wallpaperaccess.com/full/1261770.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
         position: static;
         width: 100%;
         padding-top: 20px;
@@ -148,8 +156,6 @@
 
         .allin-header {
             border-radius: 0px 0px 5% 5%;
-            height: 55vh;
-            min-height: 55vh;
         }
 
         .allin-header .card h4 {
@@ -240,8 +246,8 @@
                 </div>
             </div>
         </div>
-        <div class="text-center">
-            <img src="<?=base_url('assets/img/header1.png');?>" class="logo">
+        <div class="text-center mt-5 mb-5">
+            <h1 style="font-size:50px;">ALL-IN EDUSPACE</h1>
         </div>
     </section>
     <section class="menus">
@@ -330,8 +336,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <h3 class="text-center pt-3 font-weight-bold">Our Core Values</h3>
-                    <hr width="10%" style="border:2px solid #704d28; margin-top:-5px;">
+                    <h3 class="text-center pt-3 font-weight-bold text-white">Our Core Values</h3>
+                    <hr width="10%" style="border:2px solid #fff; margin-top:-5px;">
                     <div class="card mt-3 shadow">
                         <div class="card-body">
                             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
