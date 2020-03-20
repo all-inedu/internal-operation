@@ -31,7 +31,7 @@
     table tr td,
     th {
         padding: 8px 7px;
-        line-height: 16px;
+        line-height: 19px;
     }
 
     .table-detail td,
@@ -45,6 +45,7 @@
             style="line-height:1.6; letter-spacing:3px; font-weight:bold; text-align:center; color:#247df2; font-size:18px; margin-bottom:10px; ">
             <u><b>INVOICE</b></u>
         </h4>
+        <br><br>
         <div style="height:190px;">
             <table border="0" width="100%">
                 <tr>

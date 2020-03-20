@@ -23,28 +23,33 @@
         <thead class="text-center">
             <tr>
                 <th width="1%">No</th>
-                <th width="10%" class="bg-primary text-white">School Name</th>
+                <th width="10%" class="bg-primary text-white">Receipt ID</th>
+                <th width="5%">Invoice ID</th>
+                <th width="5%">School Name</th>
                 <th width="10%">Program</th>
-                <th width="5%">Invoice</th>
                 <th width="5%">Date</th>
-                <th width="5%">Due Date</th>
-                <th width="5%">Total Price</th>
+                <th width="5%">Payment Method</th>
+                <th width="5%">Amount</th>
             </tr>
         </thead>
         <tbody class="text-center">
-            <?php for($i=1;$i<=25;$i++) { ?>
+            <?php $i=1; foreach($receipt as $r) : ?>
             <tr>
                 <td><?=$i;?></td>
-                <td style="cursor:pointer"
-                    onclick="window.location='<?=base_url('finance/receipt/school/view/'.$i);?>'">School Name
+                <td class="text-left" style="cursor:pointer"
+                    onclick="window.location='<?=base_url('finance/receipt/school/view/'.$r['receipt_num']);?>'">
+                    <?=$r['receipt_id'];?>
                 </td>
-                <td>Academic Writing</td>
-                <td>JEI/1231/12312</td>
-                <td>02 February 2020</td>
-                <td>14 February 2020</td>
-                <td>Rp. 30.000.000,-</td>
+                <td><?=$r['invsch_id'];?></td>
+                <td><?=$r['sch_name'];?></td>
+                <td class="text-left">
+                    <?=$r['prog_program'];?>
+                </td>
+                <td><?=date('d F Y', strtotime($r['receipt_date']));?></td>
+                <td><?=$r['receipt_mtd'];?></td>
+                <td>Rp. <?=number_format($r['receipt_amount']);?></td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>

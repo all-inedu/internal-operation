@@ -45,7 +45,7 @@
                 </td>
                 <?php 
                         $inv = $this->inv->showId($sp['stprog_id']);
-                    ?>
+                ?>
                 <td>
                     <?=$inv['inv_id'];?>
                 </td>

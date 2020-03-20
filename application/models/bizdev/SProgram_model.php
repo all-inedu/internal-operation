@@ -7,6 +7,15 @@ class SProgram_model extends CI_model
         return $this->db->get('tbl_schprog')->result_array(); 
     }
 
+    public function showForInvoice() {
+        $this->db->select('*');
+        $this->db->where('schprog_status', 1);
+        $this->db->join('tbl_prog', 'tbl_prog.prog_id = tbl_schprog.prog_id');
+        $this->db->join('tbl_sch', 'tbl_sch.sch_id = tbl_schprog.sch_id');
+        $this->db->join('tbl_empl', 'tbl_empl.empl_id = tbl_schprog.empl_id');
+        return $this->db->get('tbl_schprog')->result_array(); 
+    }
+
     public function showAll() {
         $this->db->select('*');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id = tbl_schprog.prog_id');

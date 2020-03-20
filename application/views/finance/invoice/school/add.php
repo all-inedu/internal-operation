@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
                     <li class="breadcrumb-item"><a href="<?=base_url('finance/home');?>">Home</a></li>
-                    <li class="breadcrumb-item"><a href="<?=base_url('finance/invoice/student/');?>"> Schools
+                    <li class="breadcrumb-item"><a href="<?=base_url('finance/invoice/school/');?>"> Schools
                             Program</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Add Invoice</li>
                 </ol>
@@ -25,10 +25,17 @@
         <div class="card shadow mb-3">
             <div class="card-body text-center">
                 <img src="https://image.freepik.com/free-vector/man-with-headphones-microphone-with-computer_113065-136.jpg"
-                    alt="client management" width="70%">
-                <h5>School Name</h5>
-                <h6>Program Name</h6>
-                02 February 2020 - 14 February 2020
+                    alt="client management" width="60%">
+                <h5><?=$schprog['sch_name'];?></h5>
+                <div class="text-info">
+                    <h6><?=$schprog['prog_program'];?></h6>
+                </div>
+                <?php if($fixprog) { ?>
+                Program Date <br>
+                <small>
+                    <?=date('d F Y', strtotime($fixprog['schprogfix_eventstartdate'])).' - '.date('d F Y', strtotime($fixprog['schprogfix_eventenddate']));?>
+                </small>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -50,10 +57,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="price" name="price" type="number"
+                                        <input id="price" name="invsch_price" type="number"
                                             class="form-control form-control-sm">
-                                        <?=form_error('price', '<small class="text-danger">', '</small>');?>
                                     </div>
+                                    <?=form_error('invsch_price', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -64,13 +71,14 @@
                             <div class="form-group row">
                                 <div class="col-md-3">
                                     <div class="input-group input-group-sm">
-                                        <input id="participans" name="participans" type="number"
-                                            class="form-control form-control-sm" value="10">
-                                        <?=form_error('participans', '<small class="text-danger">', '</small>');?>
+                                        <input id="participans" name="invsch_participants" type="number"
+                                            class="form-control form-control-sm"
+                                            value="<?=$fixprog['schprogfix_participantsnum'];?>">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Persons</span>
                                         </div>
                                     </div>
+                                    <?=form_error('invsch_participants', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -85,10 +93,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="discount" name="discount" type="number"
+                                        <input id="discount" name="invsch_disc" type="number"
                                             class="form-control form-control-sm">
-                                        <?=form_error('discount', '<small class="text-danger">', '</small>');?>
                                     </div>
+                                    <?=form_error('invsch_disc', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -103,15 +111,14 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input id="tPrice" name="tprice" type="number"
+                                        <input id="tPrice" name="invsch_totprice" type="number"
                                             class="form-control form-control-sm" readonly>
-                                        <?=form_error('tprice', '<small class="text-danger">', '</small>');?>
                                     </div>
+                                    <?=form_error('invsch_totprice', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea id="tpWords" name="tpWords" class="form-control form-control-sm"
-                                        rows="1"></textarea>
-                                    <?=form_error('tpWords', '<small class="text-danger">', '</small>');?>
+                                    <input id="tpWords" name="invsch_words" class="form-control form-control-sm">
+                                    <?=form_error('invsch_words', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -123,13 +130,14 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <small>Invoice Date </small><br>
-                                    <input name="date" type="date" class="form-control form-control-sm">
-                                    <?=form_error('date', '<small class="text-danger">', '</small>');?>
+                                    <input name="invsch_date" type="date" class="form-control form-control-sm">
+                                    <?=form_error('invsch_date', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-3">
                                     <small>Due Date</small><br>
-                                    <input id="dueDate" name="dueDate" type="date" class="form-control form-control-sm">
-                                    <?=form_error('dueDate', '<small class="text-danger">', '</small>');?>
+                                    <input id="dueDate" name="invsch_duedate" type="date"
+                                        class="form-control form-control-sm">
+                                    <?=form_error('invsch_duedate', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -138,16 +146,16 @@
                             Notes :
                         </div>
                         <div class="col-md-10 mb-3">
-                            <textarea name="notes" class="form-control form-control-sm" rows="6"></textarea>
-                            <?=form_error('notes', '<small class="text-danger">', '</small>');?>
+                            <textarea name="invsch_notes" class="form-control form-control-sm" rows="6"></textarea>
+                            <?=form_error('invsch_notes', '<small class="text-danger">', '</small>');?>
                         </div>
 
                         <div class="col-md-2 mb-3">
                             Terms & Condition :
                         </div>
                         <div class="col-md-10 mb-3">
-                            <textarea name="tnc" class="form-control form-control-sm" rows="6"></textarea>
-                            <?=form_error('tnc', '<small class="text-danger">', '</small>');?>
+                            <textarea name="invsch_tnc" class="form-control form-control-sm" rows="6"></textarea>
+                            <?=form_error('invsch_tnc', '<small class="text-danger">', '</small>');?>
                         </div>
                         <div class="col-md-2"></div>
                         <div class="col-md-10 text-right">

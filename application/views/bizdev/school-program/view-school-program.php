@@ -85,7 +85,7 @@
                     </div>
                     <div class="col-md-9">
                         <?=$sprog['prog_program'];?>
-                        <hr class="mt-1">
+                        <hr class="mt-1 mb-2">
                     </div>
 
                     <div class="col-md-3">
@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-md-9">
                         <?=$sprog['empl_firstname'].' '.$sprog['empl_lastname'];?>
-                        <hr class="mt-1">
+                        <hr class="mt-1 mb-2">
                     </div>
 
                     <div class="col-md-3">
@@ -103,7 +103,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <?=date('d F Y', strtotime($sprog['schprog_datefirstdis']));?>
-                                <hr class="mt-1">
+                                <hr class="mt-1 mb-2">
                             </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <?=date('d F Y', strtotime($sprog['schprog_datelastdis']));?>
-                                <hr class="mt-1">
+                                <hr class="mt-1 mb-2">
                             </div>
                         </div>
                     </div>
@@ -136,60 +136,60 @@
                     </div>
                     <div class="container">
                         <div class="row p-0">
-                            <div class="col-md-3 mb-2">
+                            <div class="col-md-3">
                                 <label><i class="fas fa-calendar-alt text-muted"></i>&nbsp; Date :</label>
                             </div>
-                            <div class="col-md-9 mb-2">
+                            <div class="col-md-9">
                                 <div class="row">
                                     <div class="col-md-3">
                                         <small class="font-weight-bold">Start Date : </small> <br>
                                         <?=date('d F Y', strtotime($pexec['schprogfix_eventstartdate']));?>
-                                        <hr class="mt-1">
+                                        <hr class="mt-1 mb-2">
                                     </div>
                                     <div class="col-md-3">
                                         <small class="font-weight-bold">End Date : </small> <br>
                                         <?=date('d F Y', strtotime($pexec['schprogfix_eventenddate']));?>
-                                        <hr class="mt-1">
+                                        <hr class="mt-1 mb-2">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-3 mb-2">
+                            <div class="col-md-3">
                                 <label><i class="fas fa-search-location text-muted"></i>&nbsp; Place :</label>
                             </div>
-                            <div class="col-md-9 mb-2">
+                            <div class="col-md-9">
                                 <?=$pexec['schprogfix_eventplace'];?>
-                                <hr class="mt-1">
+                                <hr class="mt-1 mb-2">
                             </div>
 
-                            <div class="col-md-3 mb-2">
+                            <div class="col-md-3">
                                 <label><i class="fas fa-user-friends text-muted"></i>&nbsp; Participans :</label>
                             </div>
-                            <div class="col-md-9 mb-2">
+                            <div class="col-md-9">
                                 <div class="row">
                                     <div class="col-md-3">
                                         <?=$pexec['schprogfix_participantsnum'];?> Person
-                                        <hr class="mt-1">
+                                        <hr class="mt-1 mb-2">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-3 mb-2">
+                            <div class="col-md-3">
                                 <label><i class="fas fa-clock text-muted"></i>&nbsp; Total Hours :</label>
                             </div>
-                            <div class="col-md-9 mb-2">
+                            <div class="col-md-9">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <?=$pexec['schprogfix_totalhours'];?> Hours
-                                        <hr class="mt-1">
+                                        <hr class="mt-1 mb-2">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-3 mb-2">
+                            <div class="col-md-3">
                                 <label><i class="fas fa-question-circle text-muted"></i>&nbsp; Status :</label>
                             </div>
-                            <div class="col-md-9 mb-2">
+                            <div class="col-md-9">
                                 <?php if($pexec['schprogfix_status']==0) { ?>
                                 <label class="badge badge-info p-1">Not Yet</label>
                                 <?php } else if($pexec['schprogfix_status']==1) { ?>
@@ -201,10 +201,10 @@
                                 <?php } ?>
                             </div>
 
-                            <div class="col-md-3 mb-2">
+                            <div class="col-md-3">
                                 <label><i class="far fa-sticky-note text-muted"></i>&nbsp; Notes :</label>
                             </div>
-                            <div class="col-md-9 mb-2">
+                            <div class="col-md-9">
                                 <?=$pexec['schprogfix_notes'];?>
                             </div>
                         </div>

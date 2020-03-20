@@ -10,7 +10,10 @@
     <script src="https://kit.fontawesome.com/27e56cd4ff.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="<?=base_url('assets/css');?>/icofont/icofont.min.css">
     <style>
+    @import url('https://fonts.googleapis.com/css?family=Monda&display=swap');
+
     body {
         font-family: 'Kanit', sans-serif;
         color: #63615f;
@@ -41,6 +44,7 @@
         color: #ffffff;
         border-radius: 0px 0px 15% 15%;
         z-index: 1;
+        font-family: 'Monda', sans-serif;
     }
 
     .allin-header .card {
@@ -54,19 +58,26 @@
     }
 
     .menus {
-        margin-top: -7%;
+        margin-top: -5%;
     }
 
-    .menus-img {
-        width: 30%;
-        cursor: pointer;
+    .menus-card {
+        background: #fff;
+        transition: all .5s;
     }
 
-    .menus-title {
-        margin-top: 5px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #626d70;
+    .menus-card:hover {
+        background: #62A8DC;
+        color: #fff;
+    }
+
+    .menus-card a {
+        padding: 15px;
+        color: #62A8DC;
+    }
+
+    .menus-card a:hover {
+        color: #fff;
     }
 
     .divider {
@@ -147,6 +158,16 @@
         height: 300px;
     }
 
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #2e7ee8;
+        border-radius: 10px;
+    }
+
     @media only screen and (max-width: 500px) {
         .home {
             margin: -24px -12px;
@@ -168,21 +189,11 @@
         }
 
         .menus {
-            margin-top: -25%;
+            margin-top: -20%;
         }
 
-        .menus-img {
-            margin-top: -5px;
-            width: 45px;
-        }
-
-        .menus-title {
-            font-size: 11px;
-            margin-bottom: -5px;
-        }
-
-        .pb {
-            padding-bottom: 20px;
+        .menus-card {
+            font-size: 12px;
         }
 
         .divider {
@@ -246,7 +257,7 @@
                 </div>
             </div>
         </div>
-        <div class="text-center mt-5 mb-5">
+        <div class="text-center mt-5 mb-3">
             <h1 style="font-size:50px;">ALL-IN EDUSPACE</h1>
         </div>
     </section>
@@ -254,37 +265,37 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-11 mx-auto">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3 col-6 text-center pb">
-                                    <a href="<?=base_url('auth/login/as/client');?>" class="text-decoration-none">
-                                        <img src="<?=base_url('assets/img/m-client.png');?>"
-                                            class="menus-img  animated infinite pulse">
-                                        <p class="menus-title">Client Management</p>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-6 text-center pb">
-                                    <a href="<?=base_url('auth/login/as/bizdev');?>" class="text-decoration-none">
-                                        <img src="<?=base_url('assets/img/m-bizdev.png');?>"
-                                            class="menus-img animated infinite pulse">
-                                        <p class="menus-title">Business Development</p>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-6 text-center">
-                                    <a href="<?=base_url('auth/login/as/finance');?>" class="text-decoration-none">
-                                        <img src="<?=base_url('assets/img/m-finance.png');?>"
-                                            class="menus-img animated infinite pulse">
-                                        <p class="menus-title">Finance</p>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-6 text-center">
-                                    <a href="<?=base_url('auth/login/as/hr');?>" class="text-decoration-none">
-                                        <img src="<?=base_url('assets/img/m-hr.png');?>"
-                                            class="menus-img animated infinite pulse">
-                                        <p class="menus-title">Human Resource</p>
-                                    </a>
-                                </div>
+                    <div class="row pt-3">
+                        <div class="col-md-3 col-6 text-center mb-3">
+                            <div class="card shadow menus-card">
+                                <a href="<?=base_url('auth/login/as/client');?>" class="text-decoration-none">
+                                    <i class="icofont-bullhorn icofont-3x"></i>
+                                    <p class="mb-0">Client Management</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 text-center  mb-3">
+                            <div class="card shadow menus-card">
+                                <a href="<?=base_url('auth/login/as/bizdev');?>" class="text-decoration-none">
+                                    <i class="icofont-presentation icofont-3x"></i>
+                                    <p class="mb-0">Business Development</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 text-center  mb-3">
+                            <div class="card shadow menus-card">
+                                <a href="<?=base_url('auth/login/as/finance');?>" class="text-decoration-none">
+                                    <i class="icofont-dollar icofont-3x"></i>
+                                    <p class="mb-0">Finance</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 text-center  mb-3">
+                            <div class="card shadow menus-card">
+                                <a href="<?=base_url('auth/login/as/hr');?>" class="text-decoration-none">
+                                    <i class="icofont-group icofont-3x"></i>
+                                    <p class="mb-0">Human Resource</p>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -302,7 +313,7 @@
                         <div class="col-lg-6 col-12 text-center">
                             <div class="card shadow">
                                 <div class="card-body">
-                                    <img src="<?=base_url('assets/img/vision.png');?>" width="50%" class="pb-2">
+                                    <img src="<?=base_url('assets/img/vision.png');?>" width="50%" class=-2">
                                     <p>
                                         ALL-in Eduspace aspires to be the cornerstone of student's educational journey,
                                         empowering
@@ -316,7 +327,7 @@
                         <div class="col-lg-6 text-center">
                             <div class="card shadow">
                                 <div class="card-body">
-                                    <img src="<?=base_url('assets/img/mission.png');?>" width="50%" class="pb-2">
+                                    <img src="<?=base_url('assets/img/mission.png');?>" width="50%" class=-2">
                                     <p>
                                         We make true impacts in students’ lives by: <br>
                                         1. Providing personal development guidance. <br>
@@ -343,24 +354,19 @@
                             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active text-center">
-                                        <img src="<?=base_url('assets/img/1-01.png');?>"
-                                            class="img-core mt-2 mb-5 pb-3">
+                                        <img src="<?=base_url('assets/img/1-01.png');?>" class="img-core mt-2 mb-5-3">
                                     </div>
                                     <div class="carousel-item text-center">
-                                        <img src="<?=base_url('assets/img/2-01.png');?>"
-                                            class="img-core mt-2 mb-5 pb-3">
+                                        <img src="<?=base_url('assets/img/2-01.png');?>" class="img-core mt-2 mb-5-3">
                                     </div>
                                     <div class="carousel-item text-center">
-                                        <img src="<?=base_url('assets/img/3-01.png');?>"
-                                            class="img-core mt-2 mb-5 pb-3">
+                                        <img src="<?=base_url('assets/img/3-01.png');?>" class="img-core mt-2 mb-5-3">
                                     </div>
                                     <div class="carousel-item text-center">
-                                        <img src="<?=base_url('assets/img/4-01.png');?>"
-                                            class="img-core mt-2 mb-5 pb-3">
+                                        <img src="<?=base_url('assets/img/4-01.png');?>" class="img-core mt-2 mb-5-3">
                                     </div>
                                     <div class="carousel-item text-center">
-                                        <img src="<?=base_url('assets/img/5-01.png');?>"
-                                            class="img-core mt-2 mb-5 pb-3">
+                                        <img src="<?=base_url('assets/img/5-01.png');?>" class="img-core mt-2 mb-5-3">
                                     </div>
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleFade" role="button"

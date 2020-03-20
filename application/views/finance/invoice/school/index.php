@@ -32,19 +32,31 @@
             </tr>
         </thead>
         <tbody class="text-center">
-            <?php for($i=1;$i<=25;$i++) { ?>
+            <?php $i=1; foreach($sch_prog as $sp): ?>
             <tr>
                 <td><?=$i;?></td>
-                <td style="cursor:pointer"
-                    onclick="window.location='<?=base_url('finance/invoice/school/view/'.$i);?>'">Stella
+                <td class="text-left" style="cursor:pointer"
+                    onclick="window.location='<?=base_url('finance/invoice/school/view/'.$sp['schprog_id']);?>'">
+                    <?=$sp['sch_name'];?>
                 </td>
-                <td>Academic Writing</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+                <td class="text-left"><?=$sp['prog_program'];?></td>
+                <td>
+                    <?php 
+                        $inv = $this->invsch->showId($sp['schprog_id']);
+                        echo $inv['invsch_id'];
+                    ?>
+                </td>
+                <td>
+                    <?php if($inv['invsch_date']) { echo date('d F Y', strtotime($inv['invsch_date'])); }?>
+                </td>
+                <td>
+                    <?php if($inv['invsch_date']) { echo date('d F Y', strtotime($inv['invsch_duedate'])); }?>
+                </td>
+                <td>
+                    <?php if($inv['invsch_totprice']) { echo 'Rp. '.number_format($inv['invsch_totprice']); }?>
+                </td>
             </tr>
-            <?php } ?>
+            <?php $i++; endforeach; ?>
         </tbody>
     </table>
 </div>

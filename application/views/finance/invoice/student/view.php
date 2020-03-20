@@ -419,9 +419,10 @@
                             <div class="form-group">
                                 <input type="hidden" name="inv_id" value="<?=$inv['inv_id'];?>">
                                 <input type="hidden" id="invdtl_id" name="invdtl_id">
+                                <input type="hidden" name="receipt_cat" value="1">
                                 <input type="hidden" id="receipt_amountusd" name="receipt_amountusd">
                                 <input type="number" name="receipt_amount" id="amount"
-                                    class="form-control form-control-sm">
+                                    class="form-control form-control-sm" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -431,7 +432,8 @@
                             </div>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <input type="text" id="words" name="receipt_words" class="form-control form-control-sm">
+                            <input type="text" id="words" name="receipt_words" class="form-control form-control-sm"
+                                readonly>
                             <input type="hidden" id="wordsusd" name="receipt_wordsusd"
                                 class="form-control form-control-sm">
                         </div>

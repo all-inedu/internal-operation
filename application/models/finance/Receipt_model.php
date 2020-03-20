@@ -51,5 +51,16 @@ class Receipt_model extends CI_model
         $this->db->update('tbl_receipt');
     }
 
+    public function showSchoolAll() {
+        $this->db->select('*');
+        $this->db->join('tbl_invsch', 'tbl_invsch.invsch_id=tbl_receipt.inv_id');
+        $this->db->join('tbl_schprog', 'tbl_schprog.schprog_id=tbl_invsch.schprog_id');
+        $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_schprog.prog_id');
+        $this->db->join('tbl_sch', 'tbl_sch.sch_id=tbl_schprog.sch_id');
+        $this->db->order_by('tbl_receipt.receipt_id','DESC');
+        return $this->db->get('tbl_receipt')->result_array();
+    }
+
+
 }
 ?>

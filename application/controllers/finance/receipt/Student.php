@@ -44,6 +44,7 @@ class Student extends CI_Controller
             'receipt_id' => $rec_id,
             'inv_id' => $inv_id,
             'invdtl_id' => $this->input->post('invdtl_id'),
+            'receipt_cat' => $this->input->post('receipt_cat'),
             'receipt_mtd' => $this->input->post('receipt_mtd'),
             'receipt_cheque' => $this->input->post('receipt_cheque'),
             'receipt_amount' => $this->input->post('receipt_amount'),
