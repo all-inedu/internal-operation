@@ -144,7 +144,7 @@
                     <br><br>
                     <?php if($schprog['invsch_tnc']) { ?>
                     Terms & Conditions :
-                    <i>Rp. <?=$schprog['invsch_tnc'];?></i>
+                    <i><?=$schprog['invsch_tnc'];?></i>
                     <?php } ?>
 
                 </td>

@@ -1,8 +1,10 @@
 <?php
 class Receipt_model extends CI_model
 {
-    public function getId(){
+    public function getId($m, $y){
         $this->db->select('*');
+        $this->db->where('MONTH(receipt_date)', $m);
+        $this->db->where('YEAR(receipt_date)', $y);
         $this->db->order_by('receipt_id', 'DESC');
         return $this->db->get('tbl_receipt')->row_array();
     }

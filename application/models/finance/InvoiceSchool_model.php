@@ -1,8 +1,10 @@
 <?php
 class InvoiceSchool_model extends CI_model
 {
-    public function getId(){
+    public function getId($m, $y){
         $this->db->select('*');
+        $this->db->where('MONTH(invsch_date)', $m);
+        $this->db->where('YEAR(invsch_date)', $y);
         $this->db->order_by('invsch_id', 'DESC');
         return $this->db->get('tbl_invsch')->row_array();
     }
@@ -18,6 +20,12 @@ class InvoiceSchool_model extends CI_model
 
     public function save($data){
         $this->db->insert('tbl_invsch', $data); 
+    }
+
+    public function update($data, $id) {
+        $this->db->set($data);
+        $this->db->where('schprog_id', $id);
+        $this->db->update('tbl_invsch');
     }
 
     public function delete($id) {

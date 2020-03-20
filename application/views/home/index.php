@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?=base_url('assets/css');?>/icofont/icofont.min.css">
     <style>
     @import url('https://fonts.googleapis.com/css?family=Monda&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Gugi&display=swap');
 
     body {
         font-family: 'Kanit', sans-serif;
@@ -44,7 +45,7 @@
         color: #ffffff;
         border-radius: 0px 0px 15% 15%;
         z-index: 1;
-        font-family: 'Monda', sans-serif;
+        font-family: 'Gugi', cursive;
     }
 
     .allin-header .card {
@@ -202,10 +203,12 @@
         }
 
         .our-vision {
-            margin-top: -23%;
-            padding-top: 100px;
+            position: relative;
+            margin-top: -50%;
+            padding-top: 185px;
             height: auto;
             padding-bottom: 30px;
+            z-index: -1;
         }
 
         .our-vision .card {
@@ -266,7 +269,7 @@
             <div class="row">
                 <div class="col-lg-11 mx-auto">
                     <div class="row pt-3">
-                        <div class="col-md-3 col-6 text-center mb-3">
+                        <div class="col-md-3 col-6 text-center mb-2">
                             <div class="card shadow menus-card">
                                 <a href="<?=base_url('auth/login/as/client');?>" class="text-decoration-none">
                                     <i class="icofont-bullhorn icofont-3x"></i>
@@ -274,7 +277,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-3 col-6 text-center  mb-3">
+                        <div class="col-md-3 col-6 text-center  mb-2">
                             <div class="card shadow menus-card">
                                 <a href="<?=base_url('auth/login/as/bizdev');?>" class="text-decoration-none">
                                     <i class="icofont-presentation icofont-3x"></i>
@@ -282,7 +285,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-3 col-6 text-center  mb-3">
+                        <div class="col-md-3 col-6 text-center  mb-2">
                             <div class="card shadow menus-card">
                                 <a href="<?=base_url('auth/login/as/finance');?>" class="text-decoration-none">
                                     <i class="icofont-dollar icofont-3x"></i>
@@ -290,7 +293,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-3 col-6 text-center  mb-3">
+                        <div class="col-md-3 col-6 text-center  mb-2">
                             <div class="card shadow menus-card">
                                 <a href="<?=base_url('auth/login/as/hr');?>" class="text-decoration-none">
                                     <i class="icofont-group icofont-3x"></i>

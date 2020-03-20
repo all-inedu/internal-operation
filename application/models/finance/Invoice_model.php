@@ -1,8 +1,10 @@
 <?php
 class Invoice_model extends CI_model
 {
-    public function getId(){
+    public function getId($m, $y){
         $this->db->select('*');
+        $this->db->where('MONTH(inv_date)', $m);
+        $this->db->where('YEAR(inv_date)', $y);
         $this->db->order_by('inv_id', 'DESC');
         return $this->db->get('tbl_inv')->row_array();
     }

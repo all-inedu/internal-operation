@@ -48,24 +48,24 @@ class School extends CI_Controller
     }
 
     public function save($id) {
+        $m = date('m', strtotime($this->input->post('invsch_date')));
+        $y = date('Y', strtotime($this->input->post('invsch_date')));
         $sp = $this->schprog->showSProgId($id);
         $prog_id = $sp['prog_id'];
         $month = ["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
-        $romawi = $month[intval(date('m'))];
-        $year = date('y');
+        $romawi = $month[intval($m)];
+        $year = date('y', strtotime($this->input->post('invsch_date')));
 
-        $inv = $this->invsch->getId();
+        $inv = $this->invsch->getId($m, $y);
         if(empty($inv)){
             $idmax = 1;
         } else {
-            $idnum = substr($inv['inv_id'],0,4);
+            $idnum = substr($inv['invsch_id'],0,4);
             $idmax = intval($idnum) + 1;
         }
         
         $newid = str_pad($idmax, 4, "0", STR_PAD_LEFT);
-         
         $inv_id = $newid.'/INV-JEI/'.$prog_id.'/'.$romawi.'/'.$year;
-
         $data = [
             'invsch_id' => $inv_id,
             'schprog_id' => $id,
@@ -97,11 +97,39 @@ class School extends CI_Controller
         $this->load->view('templates/f-io'); 
     }
 
-    public function edit() {
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
-        $this->load->view('finance/invoice/school/edit');
-        $this->load->view('templates/f-io'); 
+    public function edit($id) {
+        $data['schprog'] = $this->invsch->showId($id);
+        $data['fixprog'] = $this->schprog->showProgramExec($id); 
+        $this->form_validation->set_rules('invsch_price', 'price', 'required');
+        $this->form_validation->set_rules('invsch_date', 'date', 'required');
+        $this->form_validation->set_rules('invsch_duedate', 'due date', 'required');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/h-io');
+            $this->load->view('templates/s-finance');
+            $this->load->view('finance/invoice/school/edit', $data);
+            $this->load->view('templates/f-io'); 
+        } else {
+            $this->update();
+        }
+    }
+
+    public function update() {
+        $id = $this->input->post('schprog_id');
+        $data = [
+            'invsch_price' => $this->input->post('invsch_price'),
+            'invsch_participants' => $this->input->post('invsch_participants'),
+            'invsch_disc' => $this->input->post('invsch_disc'),
+            'invsch_totprice' => $this->input->post('invsch_totprice'),
+            'invsch_words' => $this->input->post('invsch_words'),
+            'invsch_date' => $this->input->post('invsch_date'),
+            'invsch_duedate' => $this->input->post('invsch_duedate'),
+            'invsch_notes' => $this->input->post('invsch_notes'),
+            'invsch_tnc' => $this->input->post('invsch_tnc')
+        ];
+        // echo json_encode($data);
+        $this->invsch->update($data, $id);
+        $this->session->set_flashdata('success', 'Invoice has been created');
+        redirect('/finance/invoice/school/view/'.$id);
     }
 
     public function cancel($id) {

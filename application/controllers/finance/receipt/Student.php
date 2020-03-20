@@ -23,14 +23,17 @@ class Student extends CI_Controller
     }
     
     public function save() {
+        $m = date('m', strtotime($this->input->post('receipt_date')));
+        $y = date('Y', strtotime($this->input->post('receipt_date')));
+        
         $inv_id = $this->input->post('inv_id');
         $inv = $this->inv->showInvId($inv_id);
         $prog_id = $inv['prog_id'];
         $month = ["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
-        $romawi = $month[intval(date('m'))];
-        $year = date('y');
+        $romawi = $month[intval($m)];
+        $year = date('y', strtotime($this->input->post('receipt_date')));
 
-        $rec = $this->receipt->getId();
+        $rec = $this->receipt->getId($m, $y);
         if(empty($rec)){
             $idmax = 1;
         } else {

@@ -42,36 +42,38 @@ class Student extends CI_Controller
             $this->load->view('finance/invoice/student/add', $data);
             $this->load->view('templates/f-io'); 
         } else { 
+            $m = date('m', strtotime($this->input->post('inv_date')));
+            $y = date('Y', strtotime($this->input->post('inv_date')));
+            $sp = $this->stprog->showId($id);
+            $prog_id = $sp['prog_id'];
+            $month = ["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
+            $romawi = $month[intval($m)];
+        $year = date('y', strtotime($this->input->post('inv_date')));
+            
+            $inv = $this->inv->getId($m, $y);
+            if(empty($inv)){
+                $idmax = 1;
+            } else {
+                $idnum = substr($inv['inv_id'],0,4);
+                $idmax = intval($idnum) + 1;
+            }
+            
+            $newid = str_pad($idmax, 4, "0", STR_PAD_LEFT);
+            
+            $inv_id = $newid.'/INV-JEI/'.$prog_id.'/'.$romawi.'/'.$year;
             $cat = $this->input->post('inv_category');
             if($cat=="usd") {
-                $this->saveUsd($id);
+                $this->saveUsd($id, $inv_id);
             } else if($cat=="idr") {
-                $this->saveIdr($id);
+                $this->saveIdr($id, $inv_id);
             } else {
-                $this->saveSession($id);
+                $this->saveSession($id, $inv_id);
             }
         }
     }
 
-    public function saveUsd($id) {
-        $sp = $this->stprog->showId($id);
-        $prog_id = $sp['prog_id'];
-        $month = ["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
-        $romawi = $month[intval(date('m'))];
-        $year = date('y');
-
-        $inv = $this->inv->getId();
-        if(empty($inv)){
-            $idmax = 1;
-        } else {
-            $idnum = substr($inv['inv_id'],0,4);
-            $idmax = intval($idnum) + 1;
-        }
+    public function saveUsd($id, $inv_id) {
         
-        $newid = str_pad($idmax, 4, "0", STR_PAD_LEFT);
-         
-        $inv_id = $newid.'/INV-JEI/'.$prog_id.'/'.$romawi.'/'.$year;
-
         $pm = $this->input->post('inv_paymentmethod');
         $data = [
             'inv_id' => $inv_id,
@@ -115,24 +117,8 @@ class Student extends CI_Controller
         redirect('/finance/invoice/student/view/'.$id);
     }
 
-    public function saveIdr($id) {
-        $sp = $this->stprog->showId($id);
-        $prog_id = $sp['prog_id'];
-        $month = ["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
-        $romawi = $month[intval(date('m'))];
-        $year = date('y');
-
-        $inv = $this->inv->getId();
-        if(empty($inv)){
-            $idmax = 1;
-        } else {
-            $idnum = substr($inv['inv_id'],0,4);
-            $idmax = intval($idnum) + 1;
-        }
+    public function saveIdr($id, $inv_id) {
         
-        $newid = str_pad($idmax, 4, "0", STR_PAD_LEFT);
-         
-        $inv_id = $newid.'/INV-JEI/'.$prog_id.'/'.$romawi.'/'.$year;
         $data = [
             'inv_id' => $inv_id,
             'stprog_id' => $this->input->post('stprog_id'),
@@ -154,24 +140,8 @@ class Student extends CI_Controller
         redirect('/finance/invoice/student/view/'.$id);
     }
 
-    public function saveSession($id) {
-        $sp = $this->stprog->showId($id);
-        $prog_id = $sp['prog_id'];
-        $month = ["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
-        $romawi = $month[intval(date('m'))];
-        $year = date('y');
-
-        $inv = $this->inv->getId();
-        if(empty($inv)){
-            $idmax = 1;
-        } else {
-            $idnum = substr($inv['inv_id'],0,4);
-            $idmax = intval($idnum) + 1;
-        }
+    public function saveSession($id, $inv_id) {
         
-        $newid = str_pad($idmax, 4, "0", STR_PAD_LEFT);
-         
-        $inv_id = $newid.'/INV-JEI/'.$prog_id.'/'.$romawi.'/'.$year;
         $data = [
             'inv_id' => $inv_id,
             'stprog_id' => $this->input->post('stprog_id'),
