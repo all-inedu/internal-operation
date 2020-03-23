@@ -36,6 +36,9 @@ class Student extends CI_Controller
         $data['sp'] = $this->stprog->showId($id);
 
         $this->form_validation->set_rules('inv_category', 'category', 'required');
+        $this->form_validation->set_rules('inv_date', 'invoice date', 'required');
+        $this->form_validation->set_rules('inv_priceidr', 'price', 'required');
+        $this->form_validation->set_rules('inv_paymentmethod', 'payment method', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/h-io');
             $this->load->view('templates/s-finance');
@@ -119,6 +122,7 @@ class Student extends CI_Controller
 
     public function saveIdr($id, $inv_id) {
         
+        $pm = $this->input->post('inv_paymentmethod');
         $data = [
             'inv_id' => $inv_id,
             'stprog_id' => $this->input->post('stprog_id'),
@@ -127,13 +131,30 @@ class Student extends CI_Controller
             'inv_discidr' => $this->input->post('inv_discidr'),
             'inv_totpridr' => $this->input->post('inv_totpridr'),
             'inv_words' => $this->input->post('inv_words'),
-            'inv_paymentmethod' => 'Full Payment',
+            'inv_paymentmethod' => $pm,
             'inv_date' => $this->input->post('inv_date'),
             'inv_duedate' => $this->input->post('inv_duedate'),
             'inv_notes' => $this->input->post('inv_notes'),
             'inv_tnc' => $this->input->post('inv_tnc'),
             'inv_status' => 0,
         ];
+
+        if($pm=="Installment") {
+            $n = count($this->input->post('invdtl_statusname[]'));
+
+            for($i=0; $i<$n; $i++) {
+                $install = [
+                    'inv_id' => $inv_id,
+                    'invdtl_statusname' => $this->input->post('invdtl_statusname['.$i.']'),
+                    'invdtl_duedate' => $this->input->post('invdtl_duedate['.$i.']'),
+                    'invdtl_percentage' => $this->input->post('invdtl_percentage['.$i.']'),
+                    'invdtl_amountidr' => $this->input->post('invdtl_amountidr['.$i.']'),
+                    'invdtl_status' => 0
+                ];
+                echo json_encode($install);
+                $this->inv->saveDetail($install);
+            }
+        }
 
         $this->inv->save($data);
         $this->session->set_flashdata('success', 'Invoice has been created');
@@ -152,7 +173,7 @@ class Student extends CI_Controller
             'inv_discidr' => $this->input->post('inv_discidr'),
             'inv_totpridr' => $this->input->post('inv_totpridr'),
             'inv_words' => $this->input->post('inv_words'),
-            'inv_paymentmethod' => 'Full Payment',
+            'inv_paymentmethod' => $this->input->post('inv_paymentmethod'),
             'inv_date' => $this->input->post('inv_date'),
             'inv_duedate' => $this->input->post('inv_duedate'),
             'inv_notes' => $this->input->post('inv_notes'),

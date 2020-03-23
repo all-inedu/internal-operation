@@ -22,7 +22,6 @@ class Home extends CI_Controller
         $data['fail'] = count($this->stprog->studentProgStatus(2, $days30));
         $data['lead'] = $this->stprog->studentProgramLead($days30);
         $data['prog'] = $this->stprog->studentProgramProg($days30);
-
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-client');
         $this->load->view('client/index', $data);

@@ -60,6 +60,13 @@
                         <a href="#" class="btn btn-sm btn-success m-1" data-toggle="modal"
                             data-target="#convertPotential"><i class="fas fa-retweet"></i>&nbsp;
                             Add Program</a>
+                        <?php  if($s['st_statuscli']==0) {  ?>
+                        <br>
+                        <a href="<?=base_url('client/student/delete/'.$s['st_num']);?>"
+                            class="btn btn-sm btn-danger m-1 delete-button" data-message="student"><i
+                                class="fas fa-trash"></i>&nbsp;
+                            Delete</a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -91,6 +98,7 @@
                     </div>
                     <div class="col-md-8 ">
                         <?=$s['st_address'];?>
+                        <?=$s['st_city'].' '.$s['st_state'];?>
                         <hr class="mt-1 mb-1">
                     </div>
                 </div>
@@ -322,7 +330,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>Lead Source
                                 </label>
@@ -336,7 +344,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label>PIC
                             </label>
                             <select id="PIC" name="empl_id">
@@ -346,6 +354,7 @@
                                     <?=$e['empl_firstname'].' '.$e['empl_lastname'];?></option>
                                 <?php endforeach;?>
                             </select>
+                            <?=form_error('empl_id', '<small class="text-danger">', '</small>');?>
                         </div>
 
                         <div class="col-md-6">
@@ -358,15 +367,6 @@
                         </div>
 
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Last Discuss</label>
-                                <input name="stprog_lastdisdate" type="date" class="form-control form-control-sm"
-                                    placeholder="Last Discuss" disabled>
-                                <?=form_error('stprog_lastdisdate', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Meeting Date</label>
                                 <input name="stprog_meetingdate" type="date" class="form-control form-control-sm"

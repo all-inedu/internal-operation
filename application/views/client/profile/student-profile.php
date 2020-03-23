@@ -88,6 +88,7 @@
                     </div>
                     <div class="col-md-8 ">
                         <?=$s['st_address'];?>
+                        <?=$s['st_city'].' '.$s['st_state'];?>
                         <hr class="mt-1 mb-1">
                     </div>
                 </div>

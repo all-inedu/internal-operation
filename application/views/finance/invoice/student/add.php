@@ -24,8 +24,7 @@
     <div class="col-md-3">
         <div class="card shadow mb-3">
             <div class="card-body text-center">
-                <img src="https://image.freepik.com/free-vector/man-with-headphones-microphone-with-computer_113065-136.jpg"
-                    alt="client management" width="60%">
+                <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
                 <h5><?=$sp['st_firstname'].' '.$sp['st_lastname'];?></h5>
                 <h6 class="text-info"><?=$sp['prog_program'];?></h6>
             </div>
@@ -37,8 +36,12 @@
                     </label>
                     <?php
                         $data = file_get_contents("https://kurs.web.id/api/v1/bi");
+                        if($data) {
                         $json = json_decode($data, TRUE);
                         $rupiah = $json['jual'];
+                        } else {
+                            $rupiah = 0;
+                        }
                     ?>
                     <div class="input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
@@ -85,8 +88,8 @@
                                                 </div>
                                                 <input id="pcDollar" name="inv_priceusd" type="number"
                                                     class="form-control form-control-sm">
-                                                <?=form_error('inv_priceusd', '<small class="text-danger">', '</small>');?>
                                             </div>
+                                            <?=form_error('inv_priceusd', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -97,8 +100,8 @@
                                                 </div>
                                                 <input id="pcRupiah" name="inv_priceidr" type="number"
                                                     class="form-control form-control-sm" readonly>
-                                                <?=form_error('inv_priceidr', '<small class="text-danger">', '</small>');?>
                                             </div>
+                                            <?=form_error('inv_priceidr', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
                                 </div>
@@ -114,8 +117,8 @@
                                                 </div>
                                                 <input id="ebDollar" name="inv_earlybirdusd" type="number"
                                                     class="form-control form-control-sm">
-                                                <?=form_error('inv_earlybirdusd', '<small class="text-danger">', '</small>');?>
                                             </div>
+                                            <?=form_error('inv_earlybirdusd', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -147,8 +150,8 @@
                                                 </div>
                                                 <input id="dsDollar" name="inv_discusd" type="number"
                                                     class="form-control form-control-sm">
-                                                <?=form_error('inv_discusd', '<small class="text-danger">', '</small>');?>
                                             </div>
+                                            <?=form_error('inv_discusd', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -159,8 +162,8 @@
                                                 </div>
                                                 <input id="dsRupiah" name="inv_discidr" type="number"
                                                     class="form-control form-control-sm" readonly>
-                                                <?=form_error('inv_discidr', '<small class="text-danger">', '</small>');?>
                                             </div>
+                                            <?=form_error('inv_discidr', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
                                 </div>
@@ -176,8 +179,8 @@
                                                 </div>
                                                 <input id="tpDollar" name="inv_totprusd" type="number"
                                                     class="form-control form-control-sm" readonly>
-                                                <?=form_error('inv_totprusd', '<small class="text-danger">', '</small>');?>
                                             </div>
+                                            <?=form_error('inv_totprusd', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -188,8 +191,8 @@
                                                 </div>
                                                 <input id="tpRupiah" name="inv_totpridr" type="number"
                                                     class="form-control form-control-sm" readonly>
-                                                <?=form_error('inv_totpridr', '<small class="text-danger">', '</small>');?>
                                             </div>
+                                            <?=form_error('inv_totpridr', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
                                 </div>
@@ -254,7 +257,7 @@
                                 <button class="float-right btn btn-warning add_more_button"><i
                                         class="fas fa-plus-square"></i>&nbsp; Add Installment</button>
                             </div>
-                            <div class="container mt-3" id="teacher">
+                            <div class="container mt-3" id="installmentUSD">
                                 <div class="row p-0">
                                     <div class="col-md-3">
                                         <div class="form-group">
@@ -329,8 +332,8 @@
                                         </div>
                                         <input id="pcRupiah1" name="inv_priceidr" type="number"
                                             class="form-control form-control-sm">
-                                        <?=form_error('inv_priceidr', '<small class="text-danger">', '</small>');?>
                                     </div>
+                                    <?=form_error('inv_priceidr', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -342,8 +345,8 @@
                                         </div>
                                         <input id="dsRupiah1" name="inv_discidr" type="number"
                                             class="form-control form-control-sm">
-                                        <?=form_error('inv_discidr', '<small class="text-danger">', '</small>');?>
                                     </div>
+                                    <?=form_error('inv_discidr', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -355,8 +358,8 @@
                                         </div>
                                         <input id="tpRupiah1" name="inv_totpridr" type="number"
                                             class="form-control form-control-sm" readonly>
-                                        <?=form_error('inv_totpridr', '<small class="text-danger">', '</small>');?>
                                     </div>
+                                    <?=form_error('inv_totpridr', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -370,14 +373,26 @@
                             <div class="col-md-12">
                                 <hr>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Payment Method</label>
+                                    <select id="paymentMethodIDR" name="inv_paymentmethod"
+                                        onChange="paymentMethodsIDR();">
+                                        <option data-placeholder="true"></option>
+                                        <option value="Full Payment">Full Payment</option>
+                                        <option value="Installment">Installment</option>
+                                    </select>
+                                    <?=form_error('inv_paymentmethod', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Date</label>
                                     <input name="inv_date" type="date" class="form-control form-control-sm">
                                     <?=form_error('inv_date', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Due Date</label>
                                     <input name="inv_duedate" type="date" class="form-control form-control-sm">
@@ -399,6 +414,52 @@
                                     <label>Terms and Condition</label>
                                     <textarea name="inv_tnc" class="form-control form-control-sm" rows="6"></textarea>
                                     <?=form_error('inv_tnc', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                        <div class="row" id="stepsIDR">
+                            <div class="col-md-12">
+                                <button class="float-right btn btn-warning add_more_button"><i
+                                        class="fas fa-plus-square"></i>&nbsp; Add Installment</button>
+                            </div>
+                            <div class="container mt-3" id="installmentIDR">
+                                <div class="row p-0">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <small>Status Name</small>
+                                            <input type="text" name="invdtl_statusname[]"
+                                                class="form-control form-control-sm" value="Installment 1">
+                                            <?=form_error('invdtl_statusname[]', '<small class="text-danger">', '</small>');?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <small>Due Date</small>
+                                            <input type="date" name="invdtl_duedate[]"
+                                                class="form-control form-control-sm">
+                                            <?=form_error('invdtl_duedate[]', '<small class="text-danger">', '</small>');?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <small>Percent</small>
+                                            <input id="percentIDR1" type="number" name="invdtl_percentage[]"
+                                                class="form-control form-control-sm">
+                                            <?=form_error('invdtl_percentage[]', '<small class="text-danger">', '</small>');?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <small>Amount (Rp)</small>
+                                            <input id="amountIDR1" type="number" name="invdtl_amountidr[]"
+                                                class="form-control form-control-sm">
+                                            <?=form_error('invdtl_amountidr[]', '<small class="text-danger">', '</small>');?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -428,8 +489,8 @@
                                         </div>
                                         <input id="priceHours" name="inv_priceidr" type="number"
                                             class="form-control form-control-sm">
-                                        <?=form_error('inv_priceidr', '<small class="text-danger">', '</small>');?>
                                     </div>
+                                    <?=form_error('inv_priceidr', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -438,12 +499,12 @@
                                     <div class="input-group input-group-sm">
                                         <input id="amount" name="inv_session" type="number"
                                             class="form-control form-control-sm">
-                                        <?=form_error('inv_session', '<small class="text-danger">', '</small>');?>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-times"></i></span>
                                         </div>
                                     </div>
+                                    <?=form_error('inv_session', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -452,12 +513,12 @@
                                     <div class="input-group input-group-sm">
                                         <input id="duration" name="inv_duration" type="number"
                                             class="form-control form-control-sm">
-                                        <?=form_error('inv_duration', '<small class="text-danger">', '</small>');?>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-quote-right"></i></span>
                                         </div>
                                     </div>
+                                    <?=form_error('inv_duration', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -469,8 +530,8 @@
                                         </div>
                                         <input id="discount" name="inv_discidr" type="number"
                                             class="form-control form-control-sm">
-                                        <?=form_error('inv_discidr', '<small class="text-danger">', '</small>');?>
                                     </div>
+                                    <?=form_error('inv_discidr', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -482,8 +543,8 @@
                                         </div>
                                         <input id="totalPrice" name="inv_totpridr" type="number"
                                             class="form-control form-control-sm" readonly>
-                                        <?=form_error('inv_totpridr', '<small class="text-danger">', '</small>');?>
                                     </div>
+                                    <?=form_error('inv_totpridr', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -500,6 +561,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Date</label>
+                                    <input type="hidden" name="inv_paymentmethod" value="Full Payment">
                                     <input name="inv_date" type="date" class="form-control form-control-sm">
                                     <?=form_error('inv_date', '<small class="text-danger">', '</small>');?>
                                 </div>
@@ -556,6 +618,7 @@ $(document).ready(function() {
 $('#usd').show();
 $('#steps').hide();
 $('#idr').hide();
+$('#stepsIDR').hide();
 $('#session').hide();
 
 function cFunction() {
@@ -577,6 +640,13 @@ function cFunction() {
 
 new SlimSelect({
     select: '#paymentMethod',
+    placeholder: 'Select payment method ',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
+new SlimSelect({
+    select: '#paymentMethodIDR',
     placeholder: 'Select payment method ',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
@@ -657,12 +727,23 @@ $('#dsDollar').keyup(function() {
 
 function paymentMethods() {
     let pm = $('#paymentMethod').val();
+    console.log(pm);
     if (pm == "Full Payment") {
         $('#steps').hide();
         $('#dueDate').prop("disabled", false);;
     } else {
         $('#steps').show();
         $('#dueDate').prop("disabled", false);;
+    }
+}
+
+function paymentMethodsIDR() {
+    let pm = $('#paymentMethodIDR').val();
+    console.log(pm);
+    if (pm == "Full Payment") {
+        $('#stepsIDR').hide();
+    } else {
+        $('#stepsIDR').show();
     }
 }
 
@@ -704,7 +785,7 @@ $(document).ready(function() {
         e.preventDefault();
         if (x < max_fields_limit) { //check conditions
             x++; //counter increment
-            $('#teacher').append(
+            $('#installmentUSD').append(
                 '<div class="row">' +
                 '<div class="line" style="margin-top:15px; margin-bottom:35px; width:"50%; "></div>' +
                 '<div class="col-md-3">' +
@@ -778,7 +859,7 @@ $(document).ready(function() {
 
 
     });
-    $('#teacher').on("click", ".remove_field", function(
+    $('#installmentUSD').on("click", ".remove_field", function(
         e) { //user click on remove text links
         e.preventDefault();
         $(this).parent('div').remove();
@@ -800,6 +881,95 @@ $('#dsRupiah1').keyup(function() {
     let tpRupiah = pcRupiah - dsRupiah;
     $('#tpRupiah1').val(tpRupiah);
     $('#tpWords2').val(capitalize(tpRupiah));
+});
+
+
+$('#percentIDR1').keyup(function() {
+    let tpRupiah = $('#tpRupiah1').val();
+    let percent = $('#percentIDR1').val();
+    let amountIDR = (percent / 100) * tpRupiah;
+    $('#amountIDR1').val(Math.round(amountIDR));
+});
+
+$('#amountIDR1').keyup(function() {
+    let tpRupiah = $('#tpRupiah1').val();
+    let amountIDR = $('#amountIDR1').val();
+    let percent = (amountIDR / tpRupiah) * 100;
+    $('#percentIDR1').val(percent.toFixed(1));
+});
+
+$(document).ready(function() {
+    var max_fields_limit = 8; //set limit for maximum input fields
+    var x = 1; //initialize counter for text box
+    var sum = 0;
+    $('.add_more_button').click(function(
+        e) { //click event on add more fields button having class add_more_button
+        e.preventDefault();
+        if (x < max_fields_limit) { //check conditions
+            x++; //counter increment
+            $('#installmentIDR').append(
+                '<div class="row">' +
+                '<div class="line" style="margin-top:15px; margin-bottom:35px; width:"50%; "></div>' +
+                '<div class="col-md-3">' +
+                '<div class="form-group">' +
+                '<small>Status Name</small>' +
+                ' <input type="text" name="invdtl_statusname[]" class="form-control form-control-sm" value="Installment ' +
+                x + '">' +
+                '</div>' +
+                '</div>' +
+
+                '<div class="col-md-3">' +
+                '<div class="form-group">' +
+                '<small>Due Date</small>' +
+                '<input type="date" name="invdtl_duedate[]" class="form-control form-control-sm" >' +
+                '</div>' +
+                '</div>' +
+
+                '<div class="col-md-3">' +
+                '<div class="form-group">' +
+                '<small>Percent</small>' +
+                '<input id="percentIDR' + x +
+                '" type="number" name="invdtl_percentage[]" class="form-control form-control-sm">' +
+                '</div>' +
+                '</div>' +
+
+                '<div class="col-md-3">' +
+                '<div class="form-group">' +
+                '<small>Amount (Rp)</small>' +
+                '<input id="amountIDR' + x +
+                '" type="number" name="invdtl_amountidr[]" class="form-control form-control-sm">' +
+                '</div>' +
+                '</div>' +
+
+                '<button style="position:absolute; left:20px; margin-top:22px;" class="btn btn-sm btn-danger remove_field float-right"><i class="fas fa-times-circle"></i></button>' +
+
+                '</div>'
+            ); //add input field
+
+            $('#percentIDR' + x).keyup(function() {
+                let tpRupiah = $('#tpRupiah1').val();
+                let percent = $('#percentIDR' + x).val();
+                let amountIDR = (percent / 100) * tpRupiah;
+                $('#amountIDR' + x).val(Math.round(amountIDR));
+            });
+
+            $('#amountIDR' + x).keyup(function() {
+                let tpRupiah = $('#tpRupiah1').val();
+                let amountIDR = $('#amountIDR' + x).val();
+                let percent = (amountIDR / tpRupiah) * 100;
+                $('#percentIDR' + x).val(percent.toFixed(1));
+            });
+
+        }
+
+
+    });
+    $('#installmentIDR').on("click", ".remove_field", function(
+        e) { //user click on remove text links
+        e.preventDefault();
+        $(this).parent('div').remove();
+        x--;
+    })
 });
 
 

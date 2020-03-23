@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
                     <li class="breadcrumb-item"><a href="<?=base_url('client/home');?>">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Students Program</a>
+                    <li class="breadcrumb-item"><a href="<?=base_url('client/students-program');?>">Students Program</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">View</li>
                 </ol>
@@ -41,6 +41,10 @@
                     <span class="text-muted"><i class="text-danger font font-weight-bold">*</i> Initial Assessment for
                         Admission
                         Program</span> -->
+                    <a href="<?=base_url('client/student/view/'.$stprog['st_num']);?>"
+                        class="btn btn-sm btn-outline-primary mt-3 mr-2"><i class="fas fa-pencil-alt"></i>&nbsp;
+                        Profile</a>
+
                     <a href="<?=base_url('client/students-program/delete/'.$stprog['stprog_id']);?>"
                         class="delete-button btn btn-sm btn-outline-danger mt-3" data-message="students program">
                         <i class="fas fa-trash"></i>&nbsp; Delete

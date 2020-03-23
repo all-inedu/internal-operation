@@ -18,6 +18,7 @@ class Students_program extends CI_Controller
 
     public function index(){
         $data['stprog'] = $this->stprog->showAll();
+        // echo json_encode($data['stprog']);
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-client');
         $this->load->view('client/client-program/index', $data);

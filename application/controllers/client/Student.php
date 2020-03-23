@@ -42,7 +42,10 @@ class Student extends CI_Controller
         
         // if($role=='student' or $role==''){
         $this->form_validation->set_rules('st_firstname', 'first name', 'required');
-        // $this->form_validation->set_rules('st_mail', 'email', 'required');
+        $this->form_validation->set_rules('st_mail', 'email', 'required');
+        $this->form_validation->set_rules('st_state', 'state', 'required');
+        $this->form_validation->set_rules('st_city', 'city', 'required');
+        $this->form_validation->set_rules('st_phone', 'phone', 'required');
         // $this->form_validation->set_rules('sch_id', 'school', 'required');
         $this->form_validation->set_rules('lead_id', 'lead', 'required');
         if ($this->form_validation->run() == false) {
@@ -119,7 +122,9 @@ class Student extends CI_Controller
         $data['empl'] = $this->empl->showActive();
 
         $this->form_validation->set_rules('prog_id', 'program name', 'required');
+        $this->form_validation->set_rules('lead_id', 'lead id', 'required');
         $this->form_validation->set_rules('empl_id', 'PIC', 'required');
+        $this->form_validation->set_rules('stprog_firstdisdate', 'first discuss', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/h-io');
             $this->load->view('templates/s-client');
@@ -153,6 +158,12 @@ class Student extends CI_Controller
         $this->stprog->save($data, $datas, $id);
         $this->session->set_flashdata('success', 'Students program has been created');
         redirect('/client/student/view/'.$id);
+    }
+
+    public function delete($id) {
+        $this->std->delete($id);
+        $this->session->set_flashdata('success', 'Students program has been created');
+        redirect('/client/student/');
     }
 
 }

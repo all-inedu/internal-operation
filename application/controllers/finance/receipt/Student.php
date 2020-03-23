@@ -23,44 +23,52 @@ class Student extends CI_Controller
     }
     
     public function save() {
-        $m = date('m', strtotime($this->input->post('receipt_date')));
-        $y = date('Y', strtotime($this->input->post('receipt_date')));
-        
-        $inv_id = $this->input->post('inv_id');
-        $inv = $this->inv->showInvId($inv_id);
-        $prog_id = $inv['prog_id'];
-        $month = ["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
-        $romawi = $month[intval($m)];
-        $year = date('y', strtotime($this->input->post('receipt_date')));
 
-        $rec = $this->receipt->getId($m, $y);
-        if(empty($rec)){
-            $idmax = 1;
+        $this->form_validation->set_rules('receipt_date', 'required');
+
+        if($this->form_validation->run(false)){
+            $this->session->set_flashdata('warning', 'receipt date must be fill');
+            redirect('/finance/invoice/student/');
         } else {
-            $idnum = substr($rec['receipt_id'],0,4);
-            $idmax = intval($idnum) + 1;
-        }
-        $newid = str_pad($idmax, 4, "0", STR_PAD_LEFT);
-        $rec_id = $newid.'/REC-JEI/'.$prog_id.'/'.$romawi.'/'.$year;
-        
-        $data = [
-            'receipt_id' => $rec_id,
-            'inv_id' => $inv_id,
-            'invdtl_id' => $this->input->post('invdtl_id'),
-            'receipt_cat' => $this->input->post('receipt_cat'),
-            'receipt_mtd' => $this->input->post('receipt_mtd'),
-            'receipt_cheque' => $this->input->post('receipt_cheque'),
-            'receipt_amount' => $this->input->post('receipt_amount'),
-            'receipt_amountusd' => $this->input->post('receipt_amountusd'),
-            'receipt_words' => $this->input->post('receipt_words'),
-            'receipt_wordsusd' => $this->input->post('receipt_wordsusd'),
-            'receipt_date' => $this->input->post('receipt_date'),
-            'receipt_status' => 1,
-        ];
+            $m = date('m', strtotime($this->input->post('receipt_date')));
+            $y = date('Y', strtotime($this->input->post('receipt_date')));
+            
+            $inv_id = $this->input->post('inv_id');
+            $inv = $this->inv->showInvId($inv_id);
+            $prog_id = $inv['prog_id'];
+            $month = ["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
+            $romawi = $month[intval($m)];
+            $year = date('y', strtotime($this->input->post('receipt_date')));
 
-        $this->receipt->save($data);
-        $this->session->set_flashdata('success', 'Receipt has been created');
-        redirect('/finance/receipt/student/');
+            $rec = $this->receipt->getId($m, $y);
+            if(empty($rec)){
+                $idmax = 1;
+            } else {
+                $idnum = substr($rec['receipt_id'],0,4);
+                $idmax = intval($idnum) + 1;
+            }
+            $newid = str_pad($idmax, 4, "0", STR_PAD_LEFT);
+            $rec_id = $newid.'/REC-JEI/'.$prog_id.'/'.$romawi.'/'.$year;
+            
+            $data = [
+                'receipt_id' => $rec_id,
+                'inv_id' => $inv_id,
+                'invdtl_id' => $this->input->post('invdtl_id'),
+                'receipt_cat' => $this->input->post('receipt_cat'),
+                'receipt_mtd' => $this->input->post('receipt_mtd'),
+                'receipt_cheque' => $this->input->post('receipt_cheque'),
+                'receipt_amount' => $this->input->post('receipt_amount'),
+                'receipt_amountusd' => $this->input->post('receipt_amountusd'),
+                'receipt_words' => $this->input->post('receipt_words'),
+                'receipt_wordsusd' => $this->input->post('receipt_wordsusd'),
+                'receipt_date' => $this->input->post('receipt_date'),
+                'receipt_status' => 1,
+            ];
+
+            $this->receipt->save($data);
+            $this->session->set_flashdata('success', 'Receipt has been created');
+            redirect('/finance/receipt/student/');
+        }
     }
 
     public function view($id){      

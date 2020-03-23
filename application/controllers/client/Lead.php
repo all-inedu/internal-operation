@@ -21,9 +21,9 @@ class Lead extends CI_Controller
     }
 
     public function save(){
-        $this->form_validation->set_rules('lead_id','Lead ID', 'required|is_unique[tbl_lead.lead_id]',
+        $this->form_validation->set_rules('lead_id','lead id', 'required|is_unique[tbl_lead.lead_id]',
         array('is_unique' => 'Lead ID already created'));
-
+        $this->form_validation->set_rules('lead_name','lead name', 'required|trim');
         if($this->form_validation->run()==FALSE){
             $this->index();
         } else {
@@ -44,14 +44,19 @@ class Lead extends CI_Controller
     }
 
     public function update() {
-        $id = $this->input->post('lead_id');
-        $data = [
-            'lead_name' => $this->input->post('lead_name'),
-        ];
-        // var_dump($data);
-        $this->lead->update($data, $id);
-        $this->session->set_flashdata('success', 'Lead Source has been changed');
-        redirect('/client/lead/');
+        $this->form_validation->set_rules('lead_name','lead name', 'required|trim');
+        if($this->form_validation->run()==FALSE){
+            $this->index();
+        } else {
+            $id = $this->input->post('lead_id');
+            $data = [
+                'lead_name' => $this->input->post('lead_name'),
+            ];
+            // var_dump($data);
+            $this->lead->update($data, $id);
+            $this->session->set_flashdata('success', 'Lead Source has been changed');
+            redirect('/client/lead/');
+        }
     }
 
     public function delete($id){

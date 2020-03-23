@@ -24,8 +24,7 @@
     <div class="col-md-3">
         <div class="card shadow mb-2 ">
             <div class="card-body text-center">
-                <img src="https://image.freepik.com/free-vector/man-with-headphones-microphone-with-computer_113065-136.jpg"
-                    alt="client management" width="70%">
+                <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
                 <h5><?=$inv['st_firstname'].' '.$inv['st_lastname'];?></h5>
                 <h6 class="text-info"><?=$inv['prog_program'];?></h6>
                 <hr>
@@ -501,13 +500,27 @@
                                 value="<?=$inv['inv_words'];?>">
                             <?=form_error('inv_words', '<small class="text-danger">', '</small>');?>
                         </div>
+                        <div class="col-md-3">
+                            Payment Method :
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group row">
+                                <div class="col-md-5">
+                                    <select id="paymentMethodIDR" name="inv_paymentmethod">
+                                        <option data-placeholder="true"></option>
+                                        <option value="Full Payment">Full Payment</option>
+                                        <option value="Installment">Installment</option>
+                                    </select>
+                                    <?=form_error('inv_paymentmethod', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
                         <div class=" col-md-3">
                             Date :
                         </div>
                         <div class="col-md-9">
                             <div class="form-group row">
                                 <div class="col-md-3">
-                                    <input name="inv_paymentmethod" type="hidden" value="Full Payment">
                                     <small>Invoice Date</small>
                                     <input name="inv_date" type="date" class="form-control form-control-sm"
                                         value="<?=$inv['inv_date'];?>">
@@ -549,8 +562,151 @@
                         <div class="col-md-9 text-right">
                             <button type="submit" class="btn btn-sm btn-info">Save changes</button>
                         </div>
+                        <?php if($inv['inv_paymentmethod']=='Installment'){ ?>
+                        <div class="col-md-12" id="steps">
+                            <hr>
+                            <div class="float-right">
+                                <a href="#" class="btn btn-sm btn-secondary" data-toggle="modal"
+                                    data-target="#addInstallment"><i class="fas fa-plus"></i>&nbsp; Add
+                                    Installment</a>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <table class="table table-bordered text-center">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Due Date</th>
+                                    <th>Percent</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                                <?php foreach($invdtl as $id){ ?>
+                                <tr>
+                                    <td><?=$id['invdtl_statusname'];?></td>
+                                    <td><?=date('d F Y', strtotime($id['invdtl_duedate']));?></td>
+                                    <td><?=$id['invdtl_percentage'];?>%</td>
+                                    <td>
+                                        Rp. <?=number_format($id['invdtl_amountidr']);?>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-warning" data-toggle="modal"
+                                            data-target="#editInstallment"
+                                            onclick="editInstalments(<?=$id['invdtl_id'];?>)"><i
+                                                class="fas fa-pencil-alt"></i></a>
+                                        <a href="<?=base_url('finance/invoice/student/delete-detail/'.$id['invdtl_id'].'/'.$inv['inv_num']);?>"
+                                            class="btn btn-sm btn-danger delete-button" data-message="installment"><i
+                                                class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </table>
+                        </div>
+                        <?php }?>
                     </div>
                 </form>
+            </div>
+        </div>
+
+        <!-- Add Modal IDR -->
+        <div class="modal fade" id="addInstallment" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form action="<?=base_url('finance/invoice/student/save-detail');?>" name="addInstallment"
+                        method="post">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Installment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label>Installment Name</label>
+                                    <input type="hidden" name="inv_id" value="<?=$inv['inv_id'];?>">
+                                    <input type="hidden" name="inv_num" value="<?=$inv['inv_num'];?>">
+                                    <input type="text" name="invdtl_statusname" class="form-control form-control-sm"
+                                        placeholder="Installment 1">
+                                    <?=form_error('invdtl_statusname', '<small class="text-danger">', '</small>');?>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>Due Date</label>
+                                    <input type="date" name="invdtl_duedate" class="form-control form-control-sm">
+                                    <?=form_error('invdtl_duedate', '<small class="text-danger">', '</small>');?>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>Percent</label>
+                                    <input id="percentIDR1" type="number" name="invdtl_percentage"
+                                        class="form-control form-control-sm" max="100">
+                                    <?=form_error('invdtl_percentage', '<small class="text-danger">', '</small>');?>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label>Amount (Rp)</label>
+                                    <input id="amountIDR1" type="number" name="invdtl_amountidr"
+                                        class="form-control form-control-sm">
+                                    <?=form_error('invdtl_amountidr', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Modal IDR -->
+        <div class="modal fade" id="editInstallment" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form action="<?=base_url('finance/invoice/student/update-detail');?>" name="updateInstallment"
+                        method="post">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Installment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label>Installment Name</label>
+                                    <input type="hidden" name="inv_num" value="<?=$inv['inv_num'];?>">
+                                    <input type="hidden" id="invdtl_id" name="invdtl_id">
+                                    <input type="text" id="invdtl_statusname" name="invdtl_statusname"
+                                        class="form-control form-control-sm">
+                                    <?=form_error('invdtl_statusname', '<small class="text-danger">', '</small>');?>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>Due Date</label>
+                                    <input type="date" id="invdtl_duedate" name="invdtl_duedate"
+                                        class="form-control form-control-sm">
+                                    <?=form_error('invdtl_duedate', '<small class="text-danger">', '</small>');?>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>Percent</label>
+                                    <input id="percentIDR2" type="number" name="invdtl_percentage"
+                                        class="form-control form-control-sm" max="100">
+                                    <?=form_error('invdtl_percentage', '<small class="text-danger">', '</small>');?>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label>Amount (Rp)</label>
+                                    <input id="amountIDR2" type="number" name="invdtl_amountidr"
+                                        class="form-control form-control-sm">
+                                    <?=form_error('invdtl_amountidr', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         <?php } else if($inv['inv_category']=="session") { ?>
@@ -760,7 +916,20 @@ let PM = new SlimSelect({
 
 PM.set("<?=$inv['inv_paymentmethod'];?>");
 </script>
+<?php } else {  ?>
+<script>
+let PM = new SlimSelect({
+    select: '#paymentMethodIDR',
+    placeholder: 'Select payment method ',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
+PM.set("<?=$inv['inv_paymentmethod'];?>");
+</script>
 <?php } ?>
+
+
 <script>
 $('#currentUSD').keyup(function() {
     let USD = $('#currentUSD').val();
@@ -846,6 +1015,8 @@ function editInstalments(x) {
             $('#percent1').val(data.invdtl_percentage);
             $('#amountDollar1').val(data.invdtl_amountusd);
             $('#amountRupiah1').val(data.invdtl_amountidr);
+            $('#percentIDR2').val(data.invdtl_percentage);
+            $('#amountIDR2').val(data.invdtl_amountidr);
         }
     });
 }
@@ -922,6 +1093,20 @@ $('#dsRupiah1').keyup(function() {
     let tpRupiah = pcRupiah - dsRupiah;
     $('#tpRupiah1').val(tpRupiah);
     $('#tpWords2').val(capitalize(tpRupiah));
+});
+
+$('#percentIDR1').keyup(function() {
+    let tpRupiah = $('#tpRupiah1').val();
+    let IDR1 = $('#percentIDR1').val();
+    let amount1 = (IDR1 / 100) * tpRupiah;
+    $('#amountIDR1').val(amount1);
+});
+
+$('#percentIDR2').keyup(function() {
+    let tpRupiah = $('#tpRupiah1').val();
+    let IDR2 = $('#percentIDR2').val();
+    let amount2 = (IDR2 / 100) * tpRupiah;
+    $('#amountIDR2').val(amount2);
 });
 
 $('#duration').keyup(function() {

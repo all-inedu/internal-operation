@@ -14,6 +14,7 @@ class Invoice_model extends CI_model
         $this->db->where('tbl_stprog.stprog_status', 1);
         $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
+        $this->db->order_by('tbl_stprog.stprog_statusprogdate', 'DESC');
         return $this->db->get('tbl_stprog')->result_array();
     }
 

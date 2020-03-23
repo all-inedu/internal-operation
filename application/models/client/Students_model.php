@@ -12,6 +12,7 @@ class Students_model extends CI_model
         $this->db->select('*');
         $this->db->join('tbl_sch', 'tbl_sch.sch_id=tbl_students.sch_id');
         $this->db->join('tbl_lead', 'tbl_lead.lead_id=tbl_students.lead_id');
+        $this->db->order_by('st_datecreate','DESC');   
         return $this->db->get('tbl_students')->result_array();
     }
 
@@ -35,10 +36,10 @@ class Students_model extends CI_model
         $this->db->update('tbl_students');
     }
 
-    // public function delete($id){
-    //     $this->db->where('prog_id', $id);
-    //     $this->db->delete('tbl_prog');
-    // }
+    public function delete($id){
+        $this->db->where('st_num', $id);
+        $this->db->delete('tbl_students');
+    }
 
     public function studentStatus($n) {
         $this->db->select('*');

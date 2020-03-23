@@ -24,8 +24,7 @@
     <div class="col-md-3">
         <div class="card shadow card-sticky mb-3 ">
             <div class="card-body text-center">
-                <img src="https://image.freepik.com/free-vector/man-with-headphones-microphone-with-computer_113065-136.jpg"
-                    alt="client management" width="70%">
+                <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
                 <h5><?=$inv['st_firstname'].' '.$inv['st_lastname'];?></h5>
                 <h6 class="text-info"><?=$inv['prog_program'];?></h6>
                 <hr>
@@ -286,6 +285,50 @@
                         <?=$inv['inv_tnc'];?>
                         <hr class="mt-1 mb-2">
                     </div>
+                    <?php if($inv['inv_paymentmethod']=='Installment'){ ?>
+                    <div class="col-md-12 mt-3">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Due Date</th>
+                                    <th>Percent</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                                <?php foreach($invdtl as $id){ ?>
+                                <tr>
+                                    <td><?=$id['invdtl_statusname'];?></td>
+                                    <td><?=date('d F Y', strtotime($id['invdtl_duedate']));?></td>
+                                    <td><?=$id['invdtl_percentage'];?>%</td>
+                                    <td>
+                                        Rp. <?=number_format($id['invdtl_amountidr']);?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                            $invdtl_id = $id['invdtl_id'];
+                                            $rec_detail = $this->receipt->showByInvdtlId($invdtl_id);
+                                            if(!$rec_detail){
+                                        ?>
+                                        <button class="btn btn-sm btn-secondary" data-toggle="modal"
+                                            data-target="#addReceipt"
+                                            onclick="addReceiptInsallment(<?=$id['invdtl_id'];?>)"><i
+                                                class="fas fa-plus"></i> &nbsp; Add
+                                            Receipt</button>
+                                        <?php } else { ?>
+                                        <a href="<?=base_url('finance/receipt/student/view/'.$rec_detail['receipt_num']);?>"
+                                            class="btn btn-sm btn-success">
+                                            <i class="icofont-search"></i> &nbsp;
+                                            View Receipt
+                                        </a>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </table>
+                        </div>
+                    </div>
+                    <?php }?>
                 </div>
             </div>
         </div>
@@ -428,7 +471,8 @@
                         <div class="col-md-6">
                             <label>Date</label>
                             <div class="form-group">
-                                <input type="date" name="receipt_date" id="date" class="form-control form-control-sm">
+                                <input type="date" name="receipt_date" id="date" class="form-control form-control-sm"
+                                    value="<?=date('Y-m-d');?>">
                             </div>
                         </div>
                         <div class="col-md-12 mb-3">

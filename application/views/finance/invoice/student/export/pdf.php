@@ -39,7 +39,7 @@
         border: 1px solid #dedede;
     }
     </style>
-    <br><br><br>
+    <br>
     <div class="pdf">
         <h4
             style="line-height:1.6; letter-spacing:3px; font-weight:bold; text-align:center; color:#247df2; font-size:18px; margin-bottom:10px; ">
@@ -50,7 +50,7 @@
             <table border="0" width="100%">
                 <tr>
                     <td width="60%">
-                        <table width="110%">
+                        <table width="100%" style="padding:0px; margin-left:-10px;">
                             <tr>
                                 <td width="15%" valign="top">From : </td>
                                 <td width="85%"><b>PT. Jawara Edukasih Indonesia</b><br>
@@ -65,14 +65,14 @@
                                         <?=$inv['st_firstname'].' '.$inv['st_lastname'];?>
                                     </b><br>
                                     <?=$inv['st_address'];?>
-                                    <?=$inv['st_state'];?>
+                                    <?=$inv['st_city'].' '.$inv['st_state'];?>
                                     <br>
                                 </td>
                             </tr>
                         </table>
                     </td>
 
-                    <td valign="top" width="50%">
+                    <td valign="top" width="45%">
                         <table border=0>
                             <tr>
                                 <td>
@@ -126,10 +126,10 @@
                         <i><?=$inv['inv_notes'];?></i>
                     </div>
                 </td>
-                <td valign="top" align="right">
+                <td valign="top" align="center">
                     Rp. <?=number_format($inv['inv_priceidr']);?>
                 </td>
-                <td valign="top" align="right">
+                <td valign="top" align="center">
                     <div style="height:35px;">
                         Rp. <?=number_format($inv['inv_priceidr']);?>
                     </div>
@@ -145,7 +145,7 @@
             </tr>
             <tr>
                 <td colspan="3" align="right"><b>Total</b></td>
-                <td valign="top" align="right">
+                <td valign="middle" align="center">
                     <b>Rp. <?=number_format($inv['inv_totpridr']);?></b>
                 </td>
             </tr>
@@ -173,13 +173,13 @@
                     </div>
                 </td>
 
-                <td valign="top" align="right">
+                <td valign="top" align="center">
                     <div style="height:35px;">
                         Rp. <?=number_format($inv['inv_priceidr']);?>
                     </div>
                 </td>
 
-                <td valign="top" align="right">
+                <td valign="top" align="center">
                     <div style="height:35px;">
                         Rp. <?=number_format($inv['inv_priceidr']);?>
                     </div>
@@ -192,7 +192,7 @@
             </tr>
             <tr>
                 <td colspan="3" align="right"><b>Total</b></td>
-                <td valign="top" align="right">
+                <td valign="center" align="center">
                     <b>Rp. <?=number_format($inv['inv_totpridr']);?></b>
                 </td>
             </tr>
@@ -225,14 +225,14 @@
                         <?=$inv['inv_duration']/60;?>
                     </div>
                 </td>
-                <td valign="top" align="right">
+                <td valign="top" align="center">
                     <div style="height:35px;">
                         Rp. <?=number_format($inv['inv_priceidr']);?>
                     </div>
                 </td>
-                <td valign="top" align="right">
+                <td valign="top" align="center">
                     <div style="height:35px;">
-                        Rp. <?=number_format($inv['inv_totpridr']);?>
+                        Rp. <?=number_format($inv['inv_priceidr']*$inv['inv_session']*($inv['inv_duration']/60));?>
                     </div>
                     <div style="margin-top:20px;">
                         <?php if(!empty($inv['inv_discidr'])) {?>
@@ -243,7 +243,7 @@
             </tr>
             <tr>
                 <td colspan="4" align="right"><b>Total</b></td>
-                <td valign="top" align="right">
+                <td valign="center" align="center">
                     <b>Rp. <?=number_format($inv['inv_totpridr']);?></b>
                 </td>
             </tr>
@@ -283,9 +283,9 @@
             <tr>
                 <td width="60%" valign="top">
                     <b>Bank transfer details :</b>
-                    <table border="0" width="100%" style="padding:3px;">
+                    <table border="0" style="padding:0px; margin-left:-6px;">
                         <tr>
-                            <td width="22%">
+                            <td>
                                 Beneficiancy <br>
                                 Bank <br>
                                 A/C No. <br>
