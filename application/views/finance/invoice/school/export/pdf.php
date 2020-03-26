@@ -50,10 +50,10 @@
             <table border="0" width="100%">
                 <tr>
                     <td width="60%">
-                        <table width="100%">
+                        <table style="margin-left:-10px;">
                             <tr>
-                                <td width="15%" valign="top">From : </td>
-                                <td width="85%"><b>PT. Jawara Edukasih Indonesia</b><br>
+                                <td valign="top">From : </td>
+                                <td><b>PT. Jawara Edukasih Indonesia</b><br>
                                     JL. Panjang No 36 <br>
                                     Jakarta Barat 11530
                                     <br><br>
@@ -100,7 +100,7 @@
             <tr align="center">
                 <th width="8%">No</th>
                 <th width="44%">Description</th>
-                <th width="24%">Price (IDR)</th>
+                <th width="24%">Price per <br> Students (IDR)</th>
                 <th width="24%">Total (IDR)</th>
             </tr>
             <tr>
@@ -108,19 +108,19 @@
                 <td valign="top" style="padding-bottom:30px;">
                     <div style="height:70px;">
                         <b><?=$schprog['prog_program'];?></b> <br>
+                        <?=$schprog['invsch_notes'];?>
                         <i><?=$schprog['invsch_participants'];?> students</i>
                     </div>
                     <?php if($schprog['invsch_disc']!=0) { ?>
                     <i>Discount</i>
                     <?php } ?>
-                    <?=$schprog['invsch_notes'];?>
                 </td>
-                <td valign="top" align="right">
+                <td valign="top" align="center">
                     <div style="height:70px;">
                         Rp. <?=number_format($schprog['invsch_price']);?>
                     </div>
                 </td>
-                <td valign="top" align="right">
+                <td valign="top" align="center">
                     <div style="height:70px;">
                         Rp. <?=number_format($schprog['invsch_price']*$schprog['invsch_participants']);?>
                     </div>
@@ -131,7 +131,7 @@
             </tr>
             <tr>
                 <td colspan="3" align="right"><b>Total</b></td>
-                <td valign="top" align="right">
+                <td valign="top" align="center">
                     Rp. <?=number_format($schprog['invsch_totprice']);?>
                 </td>
             </tr>
@@ -155,15 +155,15 @@
             <tr>
                 <td width="60%" valign="top">
                     <b>Bank transfer details :</b>
-                    <table border="0">
+                    <table border="0" style="margin-left:-6px;">
                         <tr>
-                            <td width="22%">
+                            <td>
                                 Beneficiancy <br>
                                 Bank <br>
                                 A/C No. <br>
                                 Branch <br>
                             </td>
-                            <td width="78%">
+                            <td>
                                 : PT. Jawara Edukasih Indonesia <br>
                                 : BCA <br>
                                 : 2483016611 <br>

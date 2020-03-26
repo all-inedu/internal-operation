@@ -180,8 +180,10 @@
                             <div class="col-md-9">
                                 <div class="row">
                                     <div class="col-md-4">
+                                        <?php if($pexec['schprogfix_totalhours']) {?>
                                         <?=$pexec['schprogfix_totalhours'];?> Hours
                                         <hr class="mt-1 mb-2">
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

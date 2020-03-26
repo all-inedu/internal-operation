@@ -64,4 +64,11 @@ class Lead extends CI_Controller
         $this->session->set_flashdata('success', 'Lead Source has been deleted');
         redirect('/client/lead/');
     }
+
+    public function import()
+	{
+            $lead = $_FILES['lead']['name'];
+            $ekstensi  = explode('.',$lead);
+    }
+
 }

@@ -27,8 +27,7 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="https://image.freepik.com/free-vector/man-with-headphones-microphone-with-computer_113065-136.jpg"
-                        alt="client management" width="50%">
+                    <img src="<?=base_url('asstes/img/user.jpg');?>" alt="client management" width="60%">
                 </div>
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action active">

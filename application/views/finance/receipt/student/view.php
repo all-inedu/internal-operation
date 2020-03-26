@@ -24,8 +24,7 @@
     <div class="col-md-3">
         <div class="card shadow mb-2 ">
             <div class="card-body text-center">
-                <img src="https://image.freepik.com/free-vector/man-with-headphones-microphone-with-computer_113065-136.jpg"
-                    alt="client management" width="70%">
+                <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
                 <h5><?=$rec['st_firstname'].' '.$rec['st_lastname'];?></h5>
                 <h6 class="text-info"><?=$rec['prog_program'];?></h6>
                 <hr>
@@ -48,13 +47,18 @@
                 <a href="#" class="btn btn-sm btn-secondary m-1" data-toggle="modal" data-target="#editReceipt"><i
                         class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
 
+                <?php 
+                    if($rec['receipt_status']==1) {
+                ?>
                 <a href="<?=base_url('finance/receipt/student/pdf/'.$rec['receipt_num']);?>"
                     class="btn btn-sm btn-primary m-1" target="_blank"><i class="fas fa-print"></i>&nbsp; Print</a>
 
                 <?php if($rec['inv_category']=='usd'){  ?>
                 <a href="<?=base_url('finance/receipt/student/pdf-usd/'.$rec['receipt_num']);?>"
                     class="btn btn-sm btn-info m-1" target="_blank"><i class="fas fa-print"></i>&nbsp; Print USD</a>
-                <?php } ?>
+                <?php } } ?>
+
+
                 <?php 
                     if($rec['receipt_status']==2) {
                 ?>
@@ -336,7 +340,7 @@
                             <div class="form-group">
                                 <input type="hidden" name="receipt_num" value="<?=$rec['receipt_num'];?>">
                                 <input type="number" name="receipt_amount" value="<?=$rec['receipt_amount'];?>"
-                                    class="form-control form-control-sm" id="amount">
+                                    class="form-control form-control-sm" id="amount" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -348,7 +352,7 @@
                         </div>
                         <div class=" col-md-12 mb-3">
                             <input type="text" id="words" name="receipt_words" class="form-control form-control-sm"
-                                value="<?=$rec['receipt_words'];?>">
+                                value="<?=$rec['receipt_words'];?>" readonly>
                         </div>
                         <div class="col-md-6">
                             <label>Payment Method</label>

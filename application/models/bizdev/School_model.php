@@ -10,6 +10,7 @@ class School_model extends CI_model
     
     public function showAll(){
         $this->db->select('*');
+        $this->db->where('sch_id !=', '');
         return $this->db->get('tbl_sch')->result_array();
     }
 

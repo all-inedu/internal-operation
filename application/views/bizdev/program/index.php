@@ -22,38 +22,49 @@
     <i class="fas fa-plus-circle mt-1"></i>&nbsp; Add Program
 </a>
 <div class="content">
-    <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
-        <thead>
-            <tr>
-                <th width="1%">#</th>
-                <th width="5%" class="text-center">Program ID</th>
-                <th width="10%" class="text-center">Main Program</th>
-                <th width="10%" class="text-center">Sub Program</th>
-                <th width="5%" class="text-center">Program</th>
-                <th width="5%" class="text-center">Type</th>
-                <th width="5%" class="text-center">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $i=1; foreach($program as $p) { ?>
-            <tr class="text-center">
-                <td><?=$i;?></td>
-                <td><?=$p['prog_id'];?></td>
-                <td><?=$p['prog_main'];?></td>
-                <td><?=$p['prog_sub'];?></td>
-                <td><?=$p['prog_program'];?></td>
-                <td><?=$p['prog_type'];?></td>
-                <td>
-                    <button class="btn btn-sm btn-info" title="Edit" data-toggle="modal" data-target="#editProgram"
-                        onclick="editPrograms('<?=$p['prog_id'];?>')"><i class="fas fa-edit"></i></button>
-                    <a href="<?=base_url('bizdev/program/delete/'.$p['prog_id']);?>"
-                        class="btn btn-sm btn-danger delete-button" data-message="program" title="Delete"><i
-                            class="fas fa-trash"></i></a>
-                </td>
-            </tr>
-            <?php $i++; } ?>
-        </tbody>
-    </table>
+    <form action="multi-delete" method="post" name="multi-delete">
+        <div class="btn btn-sm btn-primary float-left pt-2 mr-1">
+            <input type="checkbox" id="checkp">&nbsp;
+            Select All
+        </div>
+        <button type="submit" class="btn btn-danger mr-1 float-left"><i class="icofont-trash"></i> &nbsp;
+            Delete</button>
+        <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+            <thead>
+                <tr class="text-center">
+                    <th width="1%">#</th>
+                    <th width="5%">Program ID</th>
+                    <th width="10%">Main Program</th>
+                    <th width="10%">Sub Program</th>
+                    <th width="5%">Program</th>
+                    <th width="5%">Type</th>
+                    <th width="5%">Payment</th>
+                    <th width="5%">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $i=1; foreach($program as $p) { ?>
+                <tr class="text-center">
+                    <td><input class="check" type="checkbox" name="choose[]" value="<?=$p['prog_id'];?>"></td>
+                    <td><?=$p['prog_id'];?></td>
+                    <td class="text-left"><?=$p['prog_main'];?></td>
+                    <td class="text-left"><?=$p['prog_sub'];?></td>
+                    <td class="text-left"><?=$p['prog_program'];?></td>
+                    <td><?=$p['prog_type'];?></td>
+                    <td><?=strtoupper($p['prog_payment']);?></td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-info" title="Edit" data-toggle="modal"
+                            data-target="#editProgram" onclick="editPrograms('<?=$p['prog_id'];?>')"><i
+                                class="fas fa-edit"></i></a>
+                        <a href="<?=base_url('bizdev/program/delete/'.$p['prog_id']);?>"
+                            class="btn btn-sm btn-danger delete-button" data-message="program" title="Delete"><i
+                                class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                <?php $i++; } ?>
+            </tbody>
+        </table>
+    </form>
 </div>
 
 <!-- Add Modal -->
@@ -74,6 +85,21 @@
                                 <?=form_error('prog_id', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Type Program
+                                </label>
+                                <select id="typeProgram" name="prog_type">
+                                    <option data-placeholder="true"></option>
+                                    <?php foreach($typeProg as $tp): ?>
+                                    <option value="<?=$tp;?>"><?=$tp;?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?=form_error('prog_type', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Main Program
@@ -100,7 +126,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Program Name</label>
                                 <input name="prog_program" type="text" class="form-control form-control-sm"
@@ -111,27 +137,28 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Type Program
+                                <label>Need Mentor or Tutor?
                                 </label>
-                                <select id="typeProgram" name="prog_type">
-                                    <option data-placeholder="true"></option>
-                                    <?php foreach($typeProg as $tp): ?>
-                                    <option value="<?=$tp;?>"><?=$tp;?></option>
-                                    <?php endforeach; ?>
+                                <select name="prog_mentor" class="form-control form-control-sm">
+                                    <option value="Mentor">Mentor</option>
+                                    <option value="Tutor">Tutor</option>
+                                    <option value="No">No</option>
                                 </select>
-                                <?=form_error('prog_type', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('prog_mentor', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Need Mentor ?
+                                <label>Payment Category
                                 </label>
-                                <select name="prog_mentor" class="form-control form-control-sm">
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
+                                <select name="prog_payment" class="form-control form-control-sm">
+                                    <option value="">Select payment category</option>
+                                    <option value="idr">IDR / Rupiah</option>
+                                    <option value="usd">USD</option>
+                                    <option value="session">Session</option>
                                 </select>
-                                <?=form_error('prog_mentor', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('prog_payment', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                     </div>
@@ -167,6 +194,19 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label>Type Program
+                                </label>
+                                <select id="editTypeProgram" name="prog_type">
+                                    <?php foreach($typeProg as $tp): ?>
+                                    <option value="<?=$tp;?>"><?=$tp;?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?=form_error('prog_type', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label>Main Program
                                 </label>
                                 <select id="editMainPrograms" name="prog_main" onchange="editMP()">
@@ -191,7 +231,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Program Name</label>
                                 <input id="prog_program" name="prog_program" type="text"
@@ -201,25 +241,28 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Type Program
-                                </label>
-                                <select id="editTypeProgram" name="prog_type">
-                                    <?php foreach($typeProg as $tp): ?>
-                                    <option value="<?=$tp;?>"><?=$tp;?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <?=form_error('prog_type', '<small class="text-danger">', '</small>');?>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Need Mentor ?
+                                <label>Need Mentor or Tutor?
                                 </label>
                                 <select id="prog_mentor" name="prog_mentor" class="form-control form-control-sm">
+                                    <option value="Mentor">Mentor</option>
+                                    <option value="Tutor">Tutor</option>
                                     <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
                                 </select>
                                 <?=form_error('prog_mentor', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Payment Category
+                                </label>
+                                <select id="prog_payment" name="prog_payment" class="form-control form-control-sm">
+                                    <option value="">Select payment category</option>
+                                    <option value="idr">IDR / Rupiah</option>
+                                    <option value="usd">USD</option>
+                                    <option value="session">Session</option>
+                                </select>
+                                <?=form_error('prog_payment', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                     </div>
@@ -238,6 +281,20 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
+$('#checkp').click(function(event) {
+    if (this.checked) {
+        // Iterate each checkbox
+        $(':checkbox').each(function() {
+            this.checked = true;
+        });
+    } else {
+        $(':checkbox').each(function() {
+            this.checked = false;
+        });
+    }
+});
+
+
 new SlimSelect({
     select: '#mainProgram',
     placeholder: 'Select main program ',
@@ -355,15 +412,17 @@ function editPrograms(x) {
 
     $.ajax({
         type: 'post',
-        url: '<?=base_url("bizdev/program/view/");?>' + x,
+        url: '<?=base_url("client/programs/view/");?>' + x,
         dataType: 'json',
         success: function(data) {
+            // console.log(data)
             $('#prog_id').val(data.prog_id);
             EMP.set(data.prog_main);
             ESP.set(data.prog_sub);
             $('#prog_program').val(data.prog_program);
             ETP.set(data.prog_type);
             $('#prog_mentor').val(data.prog_mentor);
+            $('#prog_payment').val(data.prog_payment);
         }
     });
 }

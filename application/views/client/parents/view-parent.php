@@ -25,7 +25,7 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/parents.png');?>" alt="client management" width="50%">
+                    <img src="<?=base_url('assets/img/parents.png');?>" alt="client management" width="60%">
                     <h6 class="mt-3">
                         <?=$parent['pr_firstname'].' '.$parent['pr_lastname'];?>
                     </h6>

@@ -3,7 +3,7 @@
         <div class="col-md-5 ">
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <div class="breadcrumb text-dark bg-white font-weight-bold  shadow border">
-                    <i class="fas fa-tags mt-1"></i>&nbsp;&nbsp; Schools Program
+                    <i class="fas fa-tags mt-1"></i>&nbsp;&nbsp; Receipt List
                 </div>
             </nav>
         </div>
@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
                     <li class="breadcrumb-item"><a href="<?=base_url('finance/home');?>">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Schools Program</li>
+                    <li class="breadcrumb-item active" aria-current="page">Receipt List</li>
                 </ol>
             </nav>
         </div>

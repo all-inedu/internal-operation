@@ -59,7 +59,7 @@
                     <div class="col-md-12">
                         <div style="height:210px; overflow-x: hidden;">
                             <?php foreach($sprog as $sp) : ?>
-                            <div class="bg-light border-bottom" style="margin:0px -20px; padding:10px 20px;">
+                            <div class="border-bottom" style="margin:0px -20px; padding:10px 20px;">
                                 <div class="row">
                                     <div class="col-md-9">
                                         <?=$sp['prog_program'];?> <br>
@@ -77,8 +77,8 @@
                                     </div>
                                 </div>
                             </div>
+                            <?php endforeach; ?>
                         </div>
-                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -206,7 +206,7 @@
                                                 <th>E-mail</th>
                                                 <th>Linkedin</th>
                                                 <th>Phone Number</th>
-                                                <th>Status</th>
+                                                <th>Position</th>
                                             </tr>
                                         </thead>
                                         <tbody>

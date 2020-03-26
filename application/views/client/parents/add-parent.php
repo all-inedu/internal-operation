@@ -27,8 +27,7 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="https://image.freepik.com/free-vector/man-with-headphones-microphone-with-computer_113065-136.jpg"
-                        alt="client management" width="70%">
+                    <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
                 </div>
                 <div class="list-group">
                     <a href="<?=base_url('client/student/add/');?>" class="list-group-item list-group-item-action">
@@ -49,7 +48,7 @@
                 <form action="" method="post">
                     <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Parent
                         <div class="float-right">
-                            <a href="<?=base_url('client/prospective/');?>" class="btn btn-sm btn-info"><i
+                            <a href="<?=base_url('client/parents/');?>" class="btn btn-sm btn-info"><i
                                     class="fas fa-arrow-circle-left"></i></a>
                         </div>
                     </h6>

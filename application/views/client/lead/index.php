@@ -18,6 +18,18 @@
     </div>
 </div>
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+<form action="<?=base_url('client/lead/import');?>" method="post" enctype="multipart/form-data" name="import">
+    <div class="mb-2 row no-gutters">
+        <div class="col-md-2">
+            <input type="file" name="lead" accept="text/csv" class="form-control form-control-sm">
+            <?=form_error('lead', '<small class="text-danger">', '</small>');?>
+        </div>
+        <div class="col-md-2 m-1">
+            <button type="submit" class="btn btn-sm btn-info">Import Data</button>
+        </div>
+    </div>
+</form>
+
 <a href="#" class="btn btn-sm btn-success ml-2 add" data-toggle="modal" data-target="#addLead">
     <i class="fas fa-plus-circle mt-1"></i>&nbsp; Add Lead Source
 </a>

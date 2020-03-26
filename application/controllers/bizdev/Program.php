@@ -36,6 +36,7 @@ class Program extends CI_Controller
                 'prog_program' => $this->input->post('prog_program'),
                 'prog_type' => $this->input->post('prog_type'),
                 'prog_mentor' => $this->input->post('prog_mentor'),
+                'prog_payment' => $this->input->post('prog_payment'),
             ];
 
             $this->program->save($data);
@@ -58,6 +59,7 @@ class Program extends CI_Controller
             'prog_program' => $this->input->post('prog_program'),
             'prog_type' => $this->input->post('prog_type'),
             'prog_mentor' => $this->input->post('prog_mentor'),
+            'prog_payment' => $this->input->post('prog_payment'),
         ];
         // var_dump($data);
         $this->program->update($data, $id);

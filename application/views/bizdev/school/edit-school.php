@@ -177,7 +177,7 @@
                                                 <th>E-mail</th>
                                                 <th>Linkedin</th>
                                                 <th>Phone Number</th>
-                                                <th>Status</th>
+                                                <th>Position</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -261,7 +261,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Status</label>
+                                <label>Position</label>
                                 <select type="text" name="schdetail_position" class="form-control form-control-sm">
                                     <option value="Principal">Principal</option>
                                     <option value="Counselor">Counselor</option>
@@ -332,7 +332,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Status</label>
+                                <label>Position</label>
                                 <select type="text" name="schdetail_position" class="form-control form-control-sm"
                                     id="schdetail_position">
                                     <option value="Principal">Principal</option>

@@ -13,6 +13,7 @@ class SProgram_model extends CI_model
         $this->db->join('tbl_prog', 'tbl_prog.prog_id = tbl_schprog.prog_id');
         $this->db->join('tbl_sch', 'tbl_sch.sch_id = tbl_schprog.sch_id');
         $this->db->join('tbl_empl', 'tbl_empl.empl_id = tbl_schprog.empl_id');
+        $this->db->order_by('tbl_schprog.schprog_id','DESC');
         return $this->db->get('tbl_schprog')->result_array(); 
     }
 
