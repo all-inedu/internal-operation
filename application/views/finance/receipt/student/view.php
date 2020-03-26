@@ -410,7 +410,7 @@ $('#pph').keyup(function() {
     let amount = $('#amount').val();
     let refund = pph * amount;
     let totrefund = amount - refund;
-    console.log(refund);
-    $('#receipt_refund').val(totrefund);
+    // console.log(refund);
+    $('#receipt_refund').val(Math.round(totrefund));
 });
 </script>

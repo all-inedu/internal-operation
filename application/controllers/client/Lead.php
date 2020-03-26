@@ -68,7 +68,42 @@ class Lead extends CI_Controller
     public function import()
 	{
             $lead = $_FILES['lead']['name'];
-            $ekstensi  = explode('.',$lead);
+            if(!empty($lead)) {
+                $ekstensi  = explode('.',$lead);
+                if($ekstensi[1]!="csv") {
+                    $this->session->set_flashdata('error', 'Format file must be CSV');
+                    redirect('/client/lead/');
+                } else {
+                    $file = $_FILES['lead']['tmp_name'];
+
+                    $i = 0;
+					$handle = fopen($file, "r");
+					while (($row = fgetcsv($handle, 2048))) {
+						$i++;
+						if ($i == 1) continue;
+						
+						$data = [
+							'lead_id' => $row[0],
+							'lead_name' => $row[1]
+                        ];
+                        
+                        $num = strlen($row[0]);
+                        if($num!=5) {
+                            $this->session->set_flashdata('error', 'Please check again, part of lead id!');
+                            redirect('/client/lead/');
+                        }
+
+						$this->lead->save($data);
+					}
+
+                    fclose($handle);
+                    $this->session->set_flashdata('success', 'CSV file has been successfully');
+                     redirect('/client/lead/'); 
+                }
+            } else {
+                $this->session->set_flashdata('error', 'CSV file is not found');
+                redirect('/client/lead/'); 
+            }
     }
 
 }
