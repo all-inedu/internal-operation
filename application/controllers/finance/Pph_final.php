@@ -39,4 +39,14 @@ class Pph_final extends CI_Controller
         }
     }
 
+    public function pdf($m, $y, $x=0.5) {
+        $data['receipt'] = $this->pphfinal->showAll($m, $y);
+        $data['x'] = $x;
+        $data['m']=$m;
+        $data['y']=$y;
+
+        $html = $this->load->view('finance/pph-final/export/pdf', $data, TRUE);
+        $this->pdf->createPDF($html, 'PPH-Final- '.$m.'-'.$y, false, 'a4', 'landscape');
+    }
+
 }

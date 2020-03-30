@@ -92,7 +92,7 @@ class Profile extends CI_Controller
 
         // Add Parents 
         $pr_id = $this->input->post('pr_id');
-        if($pr_id=='0') {
+        if($pr_id=='other') {
             $getPrId = $this->prt->getId();
             $newprid = $getPrId['pr_id'] + 1;
 

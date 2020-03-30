@@ -9,8 +9,12 @@
 
 <body>
     <style>
+    @import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
+
     h4 {
         font-size: 25px !important;
+        font-family: 'Archivo Black', sans-serif;
+        letter-spacing: 10px !important;
     }
 
     p {
@@ -39,7 +43,7 @@
         border: 1px solid #dedede;
     }
     </style>
-    <br>
+    <br><br>
     <div class="pdf">
         <h4
             style="line-height:1.6; letter-spacing:3px; font-weight:bold; text-align:center; color:#247df2; font-size:18px; margin-bottom:10px; ">
@@ -302,7 +306,7 @@
                 </td>
                 <td width="40%" align="center" valign="top">
                     PT. Jawara Edukasih Indonesia
-                    <br><br><br><br><br>
+                    <br><br><br><br><br><br>
                     Nicholas Hendra Soepriatna <br>
                     Director
                 </td>

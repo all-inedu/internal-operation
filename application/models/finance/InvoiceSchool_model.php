@@ -8,6 +8,11 @@ class InvoiceSchool_model extends CI_model
         $this->db->order_by('invsch_id', 'DESC');
         return $this->db->get('tbl_invsch')->row_array();
     }
+
+    public function showALl() {
+        $this->db->select('invsch_num');
+        return $this->db->get('tbl_invsch')->result_array();
+    }
     
     public function showId($id){
         $this->db->select('*');

@@ -7,6 +7,7 @@ class StProgram_model extends CI_model
         $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
         $this->db->join('tbl_lead', 'tbl_lead.lead_id=tbl_stprog.lead_id');
+        $this->db->order_by('tbl_stprog.stprog_id', 'DESC');
         return $this->db->get('tbl_stprog')->result_array();
     }
 

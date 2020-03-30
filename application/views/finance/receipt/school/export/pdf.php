@@ -99,24 +99,26 @@
             <tr>
                 <td align="center"><?=$rec['receipt_mtd'];?></td>
                 <td align="center"><?=$rec['receipt_cheque'];?></td>
-                <td align="right">Rp. <?=number_format($rec['receipt_amount']);?></td>
+                <td align="center">Rp. <?=number_format($rec['receipt_amount']);?></td>
             </tr>
         </table>
 
         <table width="100%" class="table-detail" style="padding:8px 5px;">
             <tr align="center" style="background:#008080; color:#fff;">
                 <th width="8%">No</th>
-                <th width="44%">Description</th>
-                <th width="24%">Price (IDR)</th>
-                <th width="24%">Total (IDR)</th>
+                <th width="44%">Payment For</th>
+                <th width="24%">Price/Students</th>
+                <th width="24%">Total</th>
             </tr>
             <tr>
                 <td valign="top" align="center">1</td>
                 <td valign="top" style="padding-bottom:50px;">
                     <b><?=$rec['prog_program'];?></b>
+                    for <?=$rec['invsch_participants'];?> students
+                    <i><?=$rec['invsch_notes'];?></i>
                 </td>
                 <td valign="top" align="center">
-                    Rp. <?=number_format($rec['invsch_totprice']);?>
+                    Rp. <?=number_format($rec['invsch_price']);?>
                 </td>
                 <td valign="top" align="center">
                     Rp. <?=number_format($rec['invsch_totprice']);?>
@@ -145,7 +147,7 @@
                 </td>
                 <td width="40%" align="center" valign="top">
                     Jakarta, <?=date('d F Y', strtotime($rec['receipt_date']));?>
-                    <br><br><br><br><br>
+                    <br><br><br><br><br><br><br>
                     Nicholas Hendra Soepriatna <br>
                     Director
                 </td>

@@ -73,7 +73,12 @@
                             PPh 4(2) :
                         </div>
                         <div class="col-md-4 mt-2">
-                            <input type="text" placeholder="0.1" id="pph" class="form-control form-control-sm">
+                            <div class="input-group input-group-sm">
+                                <input type="text" placeholder="5" id="pph" class="form-control form-control-sm">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                </div>
+                            </div>
                         </div>
                         <?php } ?>
                     </div>
@@ -89,7 +94,8 @@
                 <?php } else { ?>
                 <h3>PPH Final</h3>
                 <div class="float-right" style="margin-top:-40px;">
-                    <a href="#" class="btn btn-outline-info btn-sm">Print Pdf</a>
+                    <a href="<?=base_url('finance/pph-final/pdf/'.$m.'/'.$y.'/');?>" class="btn btn-outline-info btn-sm"
+                        id="print" target="_blank">Print Pdf</a>
                 </div>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="table-responsive">
@@ -187,7 +193,10 @@ $("#pph").keyup(function() {
     let totrec = $("#totrec").val();
 
     let totpph = pph / 100 * totrec;
-    $("#totpph").html(totpph.toLocaleString());
+    let fixtot = parseInt(totpph);
+    $("#totpph").html(fixtot.toLocaleString());
+
+    $("#print").attr("href", 'pdf/<?=$m."/".$y."/";?>' + pph + '/')
 });
 </script>
 <?php } ?>

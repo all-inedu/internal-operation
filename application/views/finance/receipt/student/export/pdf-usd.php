@@ -199,7 +199,7 @@
                 </td>
                 <td width="40%" align="center" valign="top">
                     Jakarta, <?=date('d F Y', strtotime($rec['receipt_date']));?>
-                    <br><br><br><br><br>
+                    <br><br><br><br><br><br><br>
                     Nicholas Hendra Soepriatna <br>
                     Director
                 </td>

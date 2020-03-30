@@ -9,6 +9,11 @@ class Invoice_model extends CI_model
         return $this->db->get('tbl_inv')->row_array();
     }
 
+    public function showALl() {
+        $this->db->select('inv_num');
+        return $this->db->get('tbl_inv')->result_array();
+    }
+
     public function showForInvoice() {
         $this->db->select('*');
         $this->db->where('tbl_stprog.stprog_status', 1);

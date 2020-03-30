@@ -19,6 +19,11 @@ class Receipt_model extends CI_model
         return $this->db->get('tbl_receipt')->row_array();
     }
 
+    public function showAlls() {
+        $this->db->select('receipt_id');
+        return $this->db->get('tbl_receipt')->result_array();
+    }
+
     public function showAll() {
         $this->db->select('*');
         $this->db->join('tbl_inv', 'tbl_inv.inv_id=tbl_receipt.inv_id');
@@ -74,6 +79,15 @@ class Receipt_model extends CI_model
         return $this->db->get('tbl_receipt')->row_array();
     }
 
+    public function showRevenue($lm, $ly) {
+        $this->db->select_sum('receipt_amount','amount');
+        $this->db->select_sum('receipt_refund','refund');
+        $this->db->select('MONTH(receipt_date) as m, YEAR(receipt_date) as y');
+        $this->db->where('EXTRACT(YEAR_MONTH FROM receipt_date) >=', $ly.$lm);
+        $this->db->group_by('MONTH(receipt_date)');
+        $this->db->order_by('receipt_date', 'ASC');
+        return $this->db->get('tbl_receipt')->result_array();
+    }
 
 }
 ?>
