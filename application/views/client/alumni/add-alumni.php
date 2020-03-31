@@ -36,7 +36,7 @@
         <div class="card">
             <form action="" method="post">
                 <div class="card-body">
-                    <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Student
+                    <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Alumni
                         <div class="float-right">
                             <a href="<?=base_url('client/alumni/');?>" class="btn btn-sm btn-info"><i
                                     class="fas fa-arrow-circle-left"></i></a>
@@ -82,7 +82,7 @@
                             <hr style="margin-top:40px;">
                             <div id="univ_name">
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-5 mb-3">
                                         <label>University Name</label>
                                         <select name="univ_id[]" id="univ">
                                             <option data-placeholder="true"></option>
@@ -94,7 +94,7 @@
                                         </select>
                                         <?=form_error('univ_id[]', '<small class="text-danger">', '</small>');?>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 mb-3">
                                         <label>Major</label>
                                         <input type="text" name="aludetail_major[]" class="form-control form-control-sm"
                                             id="major">

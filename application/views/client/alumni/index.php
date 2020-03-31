@@ -26,7 +26,7 @@
         <thead>
             <tr class="text-center">
                 <th width="1%" rowspan="2">No</th>
-                <th width="10%" rowspan="2">Student Name</th>
+                <th width="10%" rowspan="2" class="bg-primary text-white">Student Name</th>
                 <th width="5%" rowspan="2">Graduate Date</th>
                 <th width="50%" colspan="3">University Name</th>
             </tr>
@@ -40,7 +40,10 @@
             <?php $i=1; foreach($alumni as $alu): ?>
             <tr class="text-center">
                 <td><?=$i;?></td>
-                <td class="text-left"><?=$alu['st_firstname'].' '.$alu['st_lastname'];?></td>
+                <td class="text-left" style="cursor:pointer"
+                    onclick="window.location='<?=base_url('client/alumni/view/'.$alu['alu_id']);?>'">
+                    <?=$alu['st_firstname'].' '.$alu['st_lastname'];?>
+                </td>
                 <td><?=date('d F Y',strtotime($alu['alu_graduatedate']));?></td>
                 <?php 
                     $id = $alu['alu_id'];

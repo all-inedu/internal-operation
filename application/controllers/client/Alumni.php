@@ -63,6 +63,55 @@ class Alumni extends CI_Controller
         $this->alu->save($data);
         $this->session->set_flashdata('success', 'Alumni has been created');
         redirect('/client/alumni/');
+    }
+
+    public function view($id) 
+    {
+        $data['alumni'] = $this->alu->showId($id);
+        $data['alumni_detail'] = $this->alu->showDetailId($id);
+        $data['university'] = $this->univ->showAll();
+        $data['major'] = $this->majors->show();
         
+        $this->load->view('templates/h-io');
+        $this->load->view('templates/s-client');
+        $this->load->view('client/alumni/view-alumni', $data);
+        $this->load->view('templates/f-io');
+    }
+
+    public function view_detail($id){
+        $detail = $this->alu->showIdDetail($id);
+        echo json_encode($detail);
+    }
+
+    public function add_detail($id) {
+        $data = [
+            'alu_id' => $id,
+            'univ_id' => $this->input->post('univ_id'),
+            'aludetail_major' => $this->input->post('aludetail_major'),
+            'aludetail_status' => $this->input->post('aludetail_status')
+        ];
+
+        $this->alu->saveDetail($data);
+        $this->session->set_flashdata('success', 'Alumni has been changed');
+        redirect('/client/alumni/view/'.$id);
+    }
+
+    public function update_detail($id) {
+        $aludetail_id = $this->input->post('aludetail_id');
+        $data = [
+            'univ_id' => $this->input->post('univ_id'),
+            'aludetail_major' => $this->input->post('aludetail_major'),
+            'aludetail_status' => $this->input->post('aludetail_status'),
+        ];
+
+        $this->alu->updateDetail($data, $aludetail_id);
+        $this->session->set_flashdata('success', 'Alumni has been changed');
+        redirect('/client/alumni/view/'.$id);
+    }
+
+    public function delete_detail($aludetail_id, $id) {
+        $this->alu->deleteDetail($aludetail_id);
+        $this->session->set_flashdata('success', 'Alumni has been deleted');
+        redirect('/client/alumni/view/'.$id);
     }
 }
