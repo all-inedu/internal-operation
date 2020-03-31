@@ -17,6 +17,9 @@
                 <a href="<?=base_url('hr/home/');?>"><i class="fas fa-home fa-fw"></i>&nbsp; Home</a>
             </li>
             <li>
+                <a href="<?=base_url('hr/employee/');?>"><i class="fas fa-users fa-fw"></i>&nbsp; Employee</a>
+                <!-- </li>
+            <li>
                 <a href="#employee" data-toggle="collapse" aria-expanded="false"><i
                         class="fas fa-users fa-fw"></i>&nbsp;
                     Employee</a>
@@ -31,7 +34,7 @@
                             Employee</a>
                     </li>
                 </ul>
-            </li>
+            </li> -->
             <li>
                 <a href="#mentor" data-toggle="collapse" aria-expanded="false"><i
                         class="fas fa-users-cog fa-fw"></i>&nbsp;

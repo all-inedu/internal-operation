@@ -1,5 +1,5 @@
 <?php
-class Mentor_model extends CI_model
+class Mentor_model extends CI_model 
 {    
     public function getId(){
         $this->db->select('RIGHT(tbl_mt.mt_id,4) as kode', FALSE);
@@ -97,6 +97,18 @@ class Mentor_model extends CI_model
         $this->db->set('mt_status',1);
         $this->db->where('mt_id', $id);
         $this->db->update('tbl_mt'); 
+    }
+
+    public function studentsMentorID($id) {
+        $this->db->select('*');
+        $this->db->where('tbl_stmentor.mt_id1 =', $id);
+        $this->db->or_where('tbl_stmentor.mt_id2 =', $id);
+        $this->db->join('tbl_mt','tbl_mt.mt_id=tbl_stmentor.mt_id1');
+        $this->db->join('tbl_stprog', 'tbl_stprog.stprog_id=tbl_stmentor.stprog_id');
+        $this->db->join('tbl_prog','tbl_prog.prog_id=tbl_stprog.prog_id');
+        $this->db->join('tbl_students','tbl_students.st_num=tbl_stprog.st_num');
+        $this->db->join('tbl_sch','tbl_sch.sch_id=tbl_students.sch_id');
+        return $this->db->get('tbl_stmentor')->result_array();
     }
 
 }

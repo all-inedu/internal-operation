@@ -11,7 +11,6 @@ class Mentor extends CI_Controller
         $this->load->library('bank');
         $this->load->model('bizdev/University_model','univ');
         $this->load->model('hr/Mentor_model','mt');
-
     }
 
     public function index(){
@@ -28,6 +27,8 @@ class Mentor extends CI_Controller
 
     public function view($id){
         $data['mentor'] = $this->mt->showId($id);
+        $data['stmentor'] = $this->mt->studentsMentorID($id);
+        $data['mt_id'] = $id;
         if($data['mentor']){
             $this->load->view('templates/h-io');
             $this->load->view('templates/s-hr');
@@ -268,6 +269,8 @@ class Mentor extends CI_Controller
             'mt_status' => 1,
             'mt_lastupdate' => date('Y-m-d H:i:s'),
         ];
+
+        // echo json_encode($data);
 
         $this->mt->convert($id, $data);
         $this->session->set_flashdata('success', 'Potential mentor have been converted');

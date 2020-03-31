@@ -70,7 +70,7 @@ class Majors
             "Business - General",
             "Construction Management",
             "Data Science - Analytics",
-            "Economics (National + Global)",
+            "Economics",
             "Finance",
             "Hospitality Management",
             "Human Resources Mgmt",

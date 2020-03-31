@@ -263,40 +263,36 @@
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="row">
                     <div class="col-md-12">
-                        <h5 class="text-danger">Not Available</h5>
                         <label class="font-weight-bold mb-3">Student List</label>
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr class="text-center">
                                     <th width="1%">No</th>
                                     <th>Full Name</th>
-                                    <th>Email</th>
                                     <th>School Name</th>
-                                    <th>Class</th>
+                                    <th>Program Name</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $i=1; foreach ($stmentor as $stm) : ?>
                                 <tr class="text-center">
-                                    <td>1</td>
-                                    <td>Full Name</td>
-                                    <td>Email</td>
-                                    <td>School Name</td>
-                                    <td>Class</td>
+                                    <td><?=$i;?></td>
+                                    <td class="text-left">
+                                        <?=$stm['st_firstname'].' '.$stm['st_lastname'];?>
+                                        <?php if($stm['mt_id2']==$mt_id) {  ?>
+                                        <br> <small> Main Mentor :
+                                            <?=$stm['mt_firstn'].' '.$stm['mt_lastn'];?>
+                                        </small>
+                                        <?php } ?>
+                                    </td>
+                                    <td>
+                                        <?=$stm['sch_name'];?>
+                                    </td>
+                                    <td>
+                                        <?=$stm['prog_program'];?>
+                                    </td>
                                 </tr>
-                                <tr class="text-center">
-                                    <td>2</td>
-                                    <td>Full Name</td>
-                                    <td>Email</td>
-                                    <td>School Name</td>
-                                    <td>Class</td>
-                                </tr>
-                                <tr class="text-center">
-                                    <td>3</td>
-                                    <td>Full Name</td>
-                                    <td>Email</td>
-                                    <td>School Name</td>
-                                    <td>Class</td>
-                                </tr>
+                                <?php $i++; endforeach; ?>
                             </tbody>
                         </table>
                     </div>

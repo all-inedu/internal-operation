@@ -27,7 +27,7 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('asstes/img/user.jpg');?>" alt="client management" width="60%">
+                    <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
                 </div>
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action active">

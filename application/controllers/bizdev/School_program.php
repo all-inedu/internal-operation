@@ -12,7 +12,7 @@ class School_program extends CI_Controller
     }
 
     public function index(){
-        $data['sprog'] = $this->sprog->showAll();
+        $data['sprog'] = $this->sprog->showAll(); 
         $this->load->view('templates/h-io');
         $this->load->view('templates/s-bizdev');
         $this->load->view('bizdev/school-program/index', $data);
