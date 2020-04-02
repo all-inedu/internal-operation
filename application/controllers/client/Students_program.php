@@ -14,13 +14,23 @@ class Students_program extends CI_Controller
         $this->load->model('client/Reason_model','reason');
         $this->load->model('hr/Mentor_model','mt');
         $this->load->model('hr/Employee_model','empl');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){
         $data['stprog'] = $this->stprog->showAll();
         // echo json_encode($data['stprog']);
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-client');
+        $this->load->view('templates/s-io');
         $this->load->view('client/client-program/index', $data);
         $this->load->view('templates/f-io');
     }
@@ -37,8 +47,7 @@ class Students_program extends CI_Controller
 
         $this->form_validation->set_rules('lead_id', 'lead source', 'required');
         if ($this->form_validation->run() == false) {
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-client');
+        $this->load->view('templates/s-io');
         $this->load->view('client/client-program/view-cp', $data);
         $this->load->view('templates/f-io');
         } else { 
@@ -51,6 +60,8 @@ class Students_program extends CI_Controller
         $st_num = $this->input->post('st_num');
         $mt_id1 = $this->input->post('mt_id1');
         $mt_id2 = $this->input->post('mt_id2');
+        $stprog = count($this->stprog->showStProg($st_num));
+        
         if(empty($mt_id2)){
             $mt_id2 = "" ;
         } else {
@@ -117,8 +128,16 @@ class Students_program extends CI_Controller
                 $datas = [
                     'st_statuscli' => 2,
                 ];
-            }
-            
+            }    
+            $this->stprog->updateStudentsStatus($datas, $st_num);
+        }
+
+        $pending = count($this->stprog->showStatusProgram($st_num, 0));
+        $failed = count($this->stprog->showStatusProgram($st_num, 2));
+        if(($stprog==$pending)OR($stprog==$failed)) {
+            $datas = [
+                'st_statuscli' => 1,
+            ];
             $this->stprog->updateStudentsStatus($datas, $st_num);
         }
 
@@ -135,6 +154,16 @@ class Students_program extends CI_Controller
         ];
         
         $this->stprog->update($data, $id);
+
+        $done = count($this->stprog->showStatusRunning($st_num, 2));
+
+        if($stprog==$done) {
+            $datas = [
+                'st_statuscli' => 3,
+            ];
+        
+            $this->stprog->updateStudentsStatus($datas, $st_num);  
+        }
 
         $this->session->set_flashdata('success', 'Students program has been changed');
         redirect('/client/students-program/view/'.$id);

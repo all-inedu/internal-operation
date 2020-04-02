@@ -74,15 +74,15 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>ID Lead Source</label>
+                                <label>Lead ID <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="lead_id" type="text" class="form-control form-control-sm"
-                                    placeholder="ID Lead Source">
+                                    placeholder="Lead ID">
                                 <?=form_error('lead_id', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Lead Source Name</label>
+                                <label>Lead Source Name <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="lead_name" type="text" class="form-control form-control-sm"
                                     placeholder="Lead Source Name">
                                 <?=form_error('lead_name', '<small class="text-danger">', '</small>');?>
@@ -112,15 +112,15 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>ID Lead Source</label>
+                                <label>Lead ID <i class="text-danger font-weight-bold">*</i></label>
                                 <input id="lead_id" name="lead_id" type="text" class="form-control form-control-sm"
-                                    placeholder="ID Lead Source">
+                                    placeholder="Lead ID">
                                 <?=form_error('lead_id', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Lead Source Name</label>
+                                <label>Lead Source Name <i class="text-danger font-weight-bold">*</i></label>
                                 <input id="lead_name" name="lead_name" type="text" class="form-control form-control-sm"
                                     placeholder="Lead Source Name">
                                 <?=form_error('lead_name', '<small class="text-danger">', '</small>');?>

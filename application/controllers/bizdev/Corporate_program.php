@@ -8,6 +8,17 @@ class Corporate_program extends CI_Controller
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('bizdev/CProgram_model','cprog');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function uploaded($file, $path, $id){
@@ -31,8 +42,7 @@ class Corporate_program extends CI_Controller
 
     public function index(){
         $data['cprog'] = $this->cprog->showAll();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-bizdev');
+        $this->load->view('templates/s-io');
         $this->load->view('bizdev/corporate-program/index', $data);
         $this->load->view('templates/f-io');
     }
@@ -61,8 +71,7 @@ class Corporate_program extends CI_Controller
 
     public function view($id){
         $data['cprog'] = $this->cprog->showSProgId($id);
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-bizdev');
+        $this->load->view('templates/s-io');
         $this->load->view('bizdev/corporate-program/view-corporate-program', $data);
         $this->load->view('templates/f-io');
     }
@@ -71,8 +80,7 @@ class Corporate_program extends CI_Controller
         $this->form_validation->set_rules('corprog_id', 'corporate program id', 'required');
         if ($this->form_validation->run() == false) {
         $data['cprog'] = $this->cprog->showSProgId($id);
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-bizdev');
+        $this->load->view('templates/s-io');
         $this->load->view('bizdev/corporate-program/edit-corporate-program', $data);
         $this->load->view('templates/f-io');
         } else {

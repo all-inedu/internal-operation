@@ -12,13 +12,24 @@ class University extends CI_Controller
 
         $this->load->model('bizdev/University_model','univ');
         $this->load->library('countries');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
+        
     }
 
     public function index(){
         $data['univ'] = $this->univ->showAll();
         $data['country'] = $this->countries->show();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-bizdev');
+        $this->load->view('templates/s-io');
         $this->load->view('bizdev/university/index', $data);
         $this->load->view('templates/f-io');
     }

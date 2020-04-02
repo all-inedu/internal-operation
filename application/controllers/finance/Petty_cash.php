@@ -9,6 +9,17 @@ class Petty_cash extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         $this->load->library('pdf');
         $this->load->model('finance/Petty_model','petty');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
     
     public function datas(){
@@ -21,8 +32,7 @@ class Petty_cash extends CI_Controller
         $data['income'] = $this->petty->showIncomeAll();
         $data['expense'] = $this->petty->showExpenseAll();
         $data['saldo'] = $this->petty->saldo();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/petty-cash/index',$data);
         $this->load->view('templates/f-io');
     }
@@ -393,8 +403,8 @@ class Petty_cash extends CI_Controller
         if($this->form_validation->run()==false){
             $data['m']='';
             $data['y']='';
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-finance');
+
+            $this->load->view('templates/s-io');
             $this->load->view('finance/petty-cash/export-petty-cash',$data);
             $this->load->view('templates/f-io');
         } else {
@@ -430,8 +440,7 @@ class Petty_cash extends CI_Controller
         $data['saldo'] = $this->petty->showSaldo($m, $y);
         $data['expense'] = $this->petty->showExpenseDate($m, $y);
 
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/petty-cash/export-petty-cash',$data);
         $this->load->view('templates/f-io');
     }

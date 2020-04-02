@@ -79,7 +79,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>ID Program</label>
+                                <label>ID Program <i class="text-danger font-weight-bold">*</i> </label>
                                 <input name="prog_id" type="text" class="form-control form-control-sm"
                                     placeholder="ID Program">
                                 <?=form_error('prog_id', '<small class="text-danger">', '</small>');?>
@@ -88,7 +88,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Type Program
+                                <label>Type Program <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <select id="typeProgram" name="prog_type">
                                     <option data-placeholder="true"></option>
@@ -102,7 +102,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Main Program
+                                <label>Main Program <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <select id="mainProgram" name="prog_main" onchange="mainPrograms()">
                                     <option data-placeholder="true"></option>
@@ -116,7 +116,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Sub Program
+                                <label>Sub Program <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <select id="subProgram" name="prog_sub">
                                     <option data-placeholder="true"></option>
@@ -128,7 +128,7 @@
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Program Name</label>
+                                <label>Program Name <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="prog_program" type="text" class="form-control form-control-sm"
                                     placeholder="Program Name">
                                 <?=form_error('prog_program', '<small class="text-danger">', '</small>');?>
@@ -137,7 +137,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Need Mentor or Tutor?
+                                <label>Need Mentor or Tutor? <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <select name="prog_mentor" class="form-control form-control-sm">
                                     <option value="Mentor">Mentor</option>
@@ -150,7 +150,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Payment Category
+                                <label>Payment Category <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <select name="prog_payment" class="form-control form-control-sm">
                                     <option value="">Select payment category</option>
@@ -186,7 +186,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>ID Program</label>
+                                <label>ID Program <i class="text-danger font-weight-bold">*</i></label>
                                 <input id="prog_id" name="prog_id" type="text" class="form-control form-control-sm"
                                     readonly>
                                 <?=form_error('prog_id', '<small class="text-danger">', '</small>');?>
@@ -194,7 +194,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Type Program
+                                <label>Type Program <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <select id="editTypeProgram" name="prog_type">
                                     <?php foreach($typeProg as $tp): ?>
@@ -207,7 +207,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Main Program
+                                <label>Main Program <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <select id="editMainPrograms" name="prog_main" onchange="editMP()">
                                     <?php foreach($mainProgram as $mp): ?>
@@ -220,7 +220,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Sub Program
+                                <label>Sub Program <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <select id="editSubProgram" name="prog_sub">
                                     <?php foreach($subProgram as $SP): ?>
@@ -233,7 +233,7 @@
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Program Name</label>
+                                <label>Program Name <i class="text-danger font-weight-bold">*</i></label>
                                 <input id="prog_program" name="prog_program" type="text"
                                     class="form-control form-control-sm" placeholder="Program Name">
                                 <?=form_error('prog_program', '<small class="text-danger">', '</small>');?>
@@ -241,7 +241,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Need Mentor or Tutor?
+                                <label>Need Mentor or Tutor? <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <select id="prog_mentor" name="prog_mentor" class="form-control form-control-sm">
                                     <option value="Mentor">Mentor</option>
@@ -254,7 +254,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Payment Category
+                                <label>Payment Category <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <select id="prog_payment" name="prog_payment" class="form-control form-control-sm">
                                     <option value="">Select payment category</option>

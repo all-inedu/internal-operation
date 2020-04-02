@@ -11,12 +11,22 @@ class Mentor extends CI_Controller
         $this->load->library('bank');
         $this->load->model('bizdev/University_model','univ');
         $this->load->model('hr/Mentor_model','mt');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){
         $data['mentor'] = $this->mt->showAll();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-hr');
+        $this->load->view('templates/s-io');
         $this->load->view('hr/mentor/index.php', $data);
         $this->load->view('templates/f-io');
     }
@@ -30,8 +40,8 @@ class Mentor extends CI_Controller
         $data['stmentor'] = $this->mt->studentsMentorID($id);
         $data['mt_id'] = $id;
         if($data['mentor']){
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-hr');
+
+            $this->load->view('templates/s-io');
             $this->load->view('hr/mentor/view-mentor.php', $data);
             $this->load->view('templates/f-io');
         } else {
@@ -49,8 +59,8 @@ class Mentor extends CI_Controller
             $data['mentor'] = $this->mt->showId($id);
             $data['univ'] = $this->univ->showAll();
             $data['bank'] = $this->bank->showBank();
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-hr');
+
+            $this->load->view('templates/s-io');
             $this->load->view('hr/mentor/edit-mentor.php', $data);
             $this->load->view('templates/f-io');
         } else {
@@ -156,8 +166,8 @@ class Mentor extends CI_Controller
     public function potential($v='', $id=''){
         if($v==''){
             $data['mentor'] = $this->mt->showPotentialAll();
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-hr');
+
+            $this->load->view('templates/s-io');
             $this->load->view('hr/mentor/potential-mentor.php', $data);
             $this->load->view('templates/f-io');
         } else if($v=='add') {
@@ -176,8 +186,8 @@ class Mentor extends CI_Controller
 
         if ($this->form_validation->run()==false){
             $data['univ'] = $this->univ->showAll();
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-hr');
+
+            $this->load->view('templates/s-io');
             $this->load->view('hr/mentor/add-potential.php', $data);
             $this->load->view('templates/f-io');
         } else {
@@ -208,8 +218,7 @@ class Mentor extends CI_Controller
 
     public function _viewPotential($id){
         $data['mentor'] = $this->mt->showPotentialId($id);
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-hr');
+        $this->load->view('templates/s-io');
         $this->load->view('hr/mentor/view-potential.php', $data);
         $this->load->view('templates/f-io');
     }
@@ -222,8 +231,8 @@ class Mentor extends CI_Controller
         if ($this->form_validation->run()==false){
             $data['mentor'] = $this->mt->showPotentialId($id);
             $data['univ'] = $this->univ->showAll();
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-hr');
+
+            $this->load->view('templates/s-io');
             $this->load->view('hr/mentor/edit-potential.php', $data);
             $this->load->view('templates/f-io');
         } else {

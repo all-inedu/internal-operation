@@ -56,7 +56,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>First Name
+                                <label>First Name <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <input name="pr_firstname" type="text" class="form-control form-control-sm"
                                     placeholder="First name">
@@ -73,7 +73,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>E-mail</label>
+                                <label>E-mail <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="pr_mail" type="text" class="form-control form-control-sm"
                                     placeholder="E-mail">
                                 <?=form_error('pr_mail', '<small class="text-danger">', '</small>');?>
@@ -81,7 +81,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Phone Number</label>
+                                <label>Phone Number <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="pr_phone" type="text" class="form-control form-control-sm"
                                     placeholder="Phone Number">
                                 <?=form_error('pr_phone', '<small class="text-danger">', '</small>');?>
@@ -95,15 +95,23 @@
                                 <?=form_error('pr_insta', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label>State / Region</label>
+                                <label>State / Region <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="st_state" type="text" class="form-control form-control-sm"
                                     placeholder="State / Region" id="state">
                                 <?=form_error('st_state', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>City <i class="text-danger font-weight-bold">*</i></label>
+                                <input name="st_city" type="text" class="form-control form-control-sm"
+                                    placeholder="City" id="city">
+                                <?=form_error('st_city', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>Postal Code</label>
                                 <input name="st_pc" type="text" class="form-control form-control-sm"
@@ -125,7 +133,7 @@
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Childs First Name</label>
+                                <label>Childs First Name <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="st_firstname" type="text" class="form-control form-control-sm"
                                     placeholder="Students First Name">
                                 <?=form_error('st_firstname', '<small class="text-danger">', '</small>');?>
@@ -141,7 +149,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Childs Email</label>
+                                <label>Childs Email <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="st_mail" type="text" class="form-control form-control-sm"
                                     placeholder="Students Email">
                                 <?=form_error('st_mail', '<small class="text-danger">', '</small>');?>
@@ -149,7 +157,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>School Name</label>
+                                <label>School Name <i class="text-danger font-weight-bold">*</i></label>
                                 <select id="schoolName" name="sch_id" onChange="otherSchool();">
                                     <option data-placeholder="true"></option>
                                     <?php foreach($sch as $sc): ?>
@@ -159,12 +167,12 @@
                                     <?php endforeach;?>
                                     <option value="other">Other</option>
                                 </select>
-                                <?=form_error('schoolName', '<small class="text-danger">', '</small>');?>
+                                <?=form_error('sch_id', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6 d-none" id="otherSchool">
                             <div class="form-group">
-                                <label>Other School Name</label>
+                                <label>Other School Name <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="sch_name" type="text" class="form-control form-control-sm"
                                     placeholder="Other School Name" autofocus>
                                 <?=form_error('sch_name', '<small class="text-danger">', '</small>');?>
@@ -203,7 +211,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Lead Source</label>
+                                <label>Lead Source <i class="text-danger font-weight-bold">*</i></label>
                                 <select id="leadSource" name="lead_id">
                                     <option data-placeholder="true"></option>
                                     <?php foreach($lead as $l): ?>
@@ -324,6 +332,12 @@ $(document).ready(function() {
     var arr = states.split(", ")
     $("#state").autocomplete({
         source: arr
+    });
+
+    var cities = '<?=implode(", ", $cities);?>';
+    var arr1 = cities.split(", ")
+    $("#city").autocomplete({
+        source: arr1
     });
 });
 

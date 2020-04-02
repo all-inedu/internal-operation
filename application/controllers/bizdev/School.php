@@ -12,12 +12,22 @@ class School extends CI_Controller
         $this->load->model('bizdev/SProgram_model','sprog');
         $this->load->model('client/Program_model','prog');
         $this->load->model('hr/Employee_model','empl');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){
         $data['sch'] = $this->sch->showAll();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-bizdev');
+        $this->load->view('templates/s-io');
         $this->load->view('bizdev/school/index', $data);
         $this->load->view('templates/f-io');
     }
@@ -29,8 +39,7 @@ class School extends CI_Controller
 
         if ($this->form_validation->run() == false) {
         $data = $this->schooldata->show();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-bizdev');
+        $this->load->view('templates/s-io');
         $this->load->view('bizdev/school/add-school', $data);
         $this->load->view('templates/f-io');
         } else {
@@ -88,8 +97,7 @@ class School extends CI_Controller
         $data['program'] = $this->prog->showB2B();
         $data['sprog'] = $this->sprog->showId($id);
         $data['empl'] = $this->empl->showActive();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-bizdev');
+        $this->load->view('templates/s-io');
         $this->load->view('bizdev/school/view-school', $data);
         $this->load->view('templates/f-io'); 
     }
@@ -100,8 +108,8 @@ class School extends CI_Controller
             $data = $this->schooldata->show();
             $data['sch'] = $this->sch->showId($id);
             $data['sch_detail'] = $this->sch->showDetail($id);
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-bizdev');
+
+            $this->load->view('templates/s-io');
             $this->load->view('bizdev/school/edit-school', $data);
             $this->load->view('templates/f-io'); 
         } else {

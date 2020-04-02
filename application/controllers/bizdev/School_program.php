@@ -9,12 +9,22 @@ class School_program extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('bizdev/SProgram_model','sprog');
         $this->load->model('hr/Employee_model','empl');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){
         $data['sprog'] = $this->sprog->showAll(); 
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-bizdev');
+        $this->load->view('templates/s-io');
         $this->load->view('bizdev/school-program/index', $data);
         $this->load->view('templates/f-io');
     }
@@ -44,8 +54,7 @@ class School_program extends CI_Controller
     public function view($id){
         $data['sprog'] = $this->sprog->showSProgId($id);
         $data['pexec'] = $this->sprog->showProgramExec($id);
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-bizdev');
+        $this->load->view('templates/s-io');
         $this->load->view('bizdev/school-program/view-school-program', $data);
         $this->load->view('templates/f-io');
     }
@@ -56,8 +65,8 @@ class School_program extends CI_Controller
             $data['sprog'] = $this->sprog->showSProgId($id);
             $data['pexec'] = $this->sprog->showProgramExec($id);
             $data['empl'] = $this->empl->showActive();
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-bizdev');
+
+            $this->load->view('templates/s-io');
             $this->load->view('bizdev/school-program/edit-school-program', $data);
             $this->load->view('templates/f-io');
         } else { 

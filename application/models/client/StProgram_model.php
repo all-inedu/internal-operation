@@ -35,6 +35,13 @@ class StProgram_model extends CI_model
         return $this->db->get('tbl_stprog')->result_array();
     }
 
+    public function showStatusRunning($id, $n) {
+        $this->db->select('*');
+        $this->db->where('st_num', $id); 
+        $this->db->where('stprog_runningstatus', $n); 
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+
     public function save($data, $datas, $id)
     {
         $this->db->insert('tbl_stprog', $data);

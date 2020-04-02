@@ -10,12 +10,22 @@ class Editor extends CI_Controller
         $this->load->library('bank');
         $this->load->model('hr/Editor_model','editor');
         $this->load->model('bizdev/University_model','univ');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
     
     public function index(){
         $data['editor'] = $this->editor->showAll();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-hr');
+        $this->load->view('templates/s-io');
         $this->load->view('hr/editor/index.php',$data);
         $this->load->view('templates/f-io');
     }
@@ -48,8 +58,8 @@ class Editor extends CI_Controller
         if($this->form_validation->run()==FALSE) {
             $data['univ'] = $this->univ->showAll();
             $data['bank'] = $this->bank->showBank();
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-hr');
+
+            $this->load->view('templates/s-io');
             $this->load->view('hr/editor/add-editor.php', $data);
             $this->load->view('templates/f-io');
         } else {
@@ -104,8 +114,7 @@ class Editor extends CI_Controller
     public function view($id){
         $data['editor'] = $this->editor->showId($id);
         if($data['editor']){
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-hr');
+        $this->load->view('templates/s-io');
         $this->load->view('hr/editor/view-editor.php', $data);
         $this->load->view('templates/f-io');
         } else {
@@ -123,8 +132,8 @@ class Editor extends CI_Controller
             $data['editor'] = $this->editor->showId($id);
             $data['univ'] = $this->univ->showAll();
             $data['bank'] = $this->bank->showBank();
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-hr');
+
+            $this->load->view('templates/s-io');
             $this->load->view('hr/editor/edit-editor.php', $data);
             $this->load->view('templates/f-io');
         } else {

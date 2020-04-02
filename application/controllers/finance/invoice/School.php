@@ -12,12 +12,22 @@ class School extends CI_Controller
         $this->load->model('bizdev/SProgram_model','schprog');
         $this->load->model('finance/InvoiceSchool_model','invsch');
         $this->load->model('finance/Receipt_model','receipt');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){     
         $data['sch_prog'] = $this->schprog->showForInvoice(); 
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/invoice/school/index', $data);
         $this->load->view('templates/f-io');
     }
@@ -38,8 +48,8 @@ class School extends CI_Controller
         $this->form_validation->set_rules('invsch_date', 'date', 'required');
         $this->form_validation->set_rules('invsch_duedate', 'due date', 'required');
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-finance');
+
+            $this->load->view('templates/s-io');
             $this->load->view('finance/invoice/school/add', $data);
             $this->load->view('templates/f-io'); 
         } else {
@@ -91,8 +101,7 @@ class School extends CI_Controller
         $inv_id = $data['schprog']['invsch_id'];
         $data['fixprog'] = $this->schprog->showProgramExec($id); 
         $data['rec'] = $this->receipt->showByInvId($inv_id);
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/invoice/school/view', $data);
         $this->load->view('templates/f-io'); 
     }
@@ -104,8 +113,8 @@ class School extends CI_Controller
         $this->form_validation->set_rules('invsch_date', 'date', 'required');
         $this->form_validation->set_rules('invsch_duedate', 'due date', 'required');
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-finance');
+
+            $this->load->view('templates/s-io');
             $this->load->view('finance/invoice/school/edit', $data);
             $this->load->view('templates/f-io'); 
         } else {

@@ -10,12 +10,22 @@ class Corporate extends CI_Controller
         $this->load->model('bizdev/Corporate_model', 'corp');
         $this->load->model('bizdev/CProgram_model', 'cprog');
         $this->load->model('client/Program_model', 'prog');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){
         $data['corp'] = $this->corp->showAll();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-bizdev');
+        $this->load->view('templates/s-io');
         $this->load->view('bizdev/corporate/index', $data);
         $this->load->view('templates/f-io');
     }
@@ -23,8 +33,8 @@ class Corporate extends CI_Controller
     public function add() {
         $this->form_validation->set_rules('corp_name','corporate name','required');
         if($this->form_validation->run()==false){
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-bizdev');
+
+            $this->load->view('templates/s-io');
             $this->load->view('bizdev/corporate/add-corporate');
             $this->load->view('templates/f-io');
         } else {
@@ -78,8 +88,7 @@ class Corporate extends CI_Controller
         $data['detail'] = $this->corp->showDetail($id);
         $data['prog'] = $this->prog->showB2B();
         $data['cprog'] = $this->cprog->showId($id);
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-bizdev');
+        $this->load->view('templates/s-io');
         $this->load->view('bizdev/corporate/view-corporate', $data);
         $this->load->view('templates/f-io');
     }
@@ -89,8 +98,7 @@ class Corporate extends CI_Controller
         if ($this->form_validation->run() == false) {
             $data['corp'] = $this->corp->showId($id);
             $data['detail'] = $this->corp->showDetail($id);
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-bizdev');
+            $this->load->view('templates/s-io');
             $this->load->view('bizdev/corporate/edit-corporate', $data);
             $this->load->view('templates/f-io');
         } else {

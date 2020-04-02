@@ -8,14 +8,24 @@ class Lead extends CI_Controller
         parent::__construct();
 
         date_default_timezone_set('Asia/Jakarta');
-
         $this->load->model('client/Lead_model','lead');
+
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){
         $data['lead'] = $this->lead->showAll();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-client');
+        $this->load->view('templates/s-io');
         $this->load->view('client/lead/index', $data);
         $this->load->view('templates/f-io');
     }

@@ -1,3 +1,11 @@
+<style>
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+
+.count-title {
+    font-size: 24px;
+    font-family: 'Lobster', cursive;
+}
+</style>
 <div class="container-fluid p-1">
     <div class="row">
         <div class="col-md-12">
@@ -28,7 +36,7 @@
                                 </div>
                                 <div class="col-md-8 bg-primary text-white shadow align-middle">
                                     <div class="card-body">
-                                        <h5 class="text-right mb-0"><?=$sch;?></h5>
+                                        <h5 class="text-right mb-0 count-title"><?=$sch;?></h5>
                                         <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                                         <h5 class="card-title text-right mb-0">List of School
                                         </h5>
@@ -96,7 +104,7 @@
                                 </div>
                                 <div class="col-md-8 bg-info text-white shadow align-middle">
                                     <div class="card-body">
-                                        <h5 class="text-right mb-0"><?=$corp;?></h5>
+                                        <h5 class="text-right mb-0 count-title"><?=$corp;?></h5>
                                         <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                                         <h5 class="card-title text-right mb-0">Approached</h5>
                                     </div>
@@ -114,7 +122,7 @@
                                 </div>
                                 <div class="col-md-8 bg-warning text-dark shadow align-middle">
                                     <div class="card-body">
-                                        <h5 class="text-right mb-0"><?=$cnot;?></h5>
+                                        <h5 class="text-right mb-0 count-title"><?=$cnot;?></h5>
                                         <div class="line"
                                             style="border-color:#000; margin-top:15px; margin-bottom:15px;"></div>
                                         <h5 class="card-title text-right mb-0">Not Yet</h5>

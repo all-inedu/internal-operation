@@ -36,31 +36,14 @@
 </head>
 
 <body>
-    <?php
-if ($this->session->flashdata('success')) {
-    echo '<div class="flash-data" data-success="' . $this->session->flashdata('success') . '"></div>';
-} else if ($this->session->flashdata('error')) {
-    echo '<div class="flash-data" data-error="' . $this->session->flashdata('error') . '"></div>';
-} else if ($this->session->flashdata('warning')) {
-    echo '<div class="flash-data" data-warning="' . $this->session->flashdata('warning') . '"></div>';
-}
-?>
     <section class="login">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 mx-auto">
                     <div class="card">
-                        <div class="card-header">
-                            <div class="float-left">
-                                <img src="<?=base_url('assets/img/'.$img);?>" width="40px">
-                            </div>
-                            <div class="float-right mt-2">
-                                <?=$role;?>
-                            </div>
-                        </div>
                         <div class="card-body pb-4">
                             <form action="" method="post">
-                                <h4 class="text-center">Login</h4>
+                                <h4 class="text-center">New Password</h4>
                                 <hr width="30%">
                                 <label>E-mail :</label>
                                 <?=form_error('username', '<small class="text-danger">', '</small>');?>
@@ -70,16 +53,16 @@ if ($this->session->flashdata('success')) {
                                                 class="far fa-envelope"></i></span>
                                     </div>
                                     <input type="text" name="username" class="form-control form-control-sm"
-                                        placeholder="Input your email">
+                                        value="<?=$empl_email;?>" readonly>
                                 </div>
-                                <label>Password :</label>
-                                <?=form_error('password', '<small class="text-danger">', '</small>');?>
+                                <label>New Password :</label>
+                                <?=form_error('new_password', '<small class="text-danger">', '</small>');?>
                                 <div class="input-group mb-3 pb-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i
                                                 class="fas fa-key"></i></span>
                                     </div>
-                                    <input type="text" name="password" class="form-control form-control-sm"
+                                    <input type="text" name="new_password" class="form-control form-control-sm"
                                         placeholder="Input your password">
                                 </div>
                                 <hr class="pt-2">

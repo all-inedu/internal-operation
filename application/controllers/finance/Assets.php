@@ -8,8 +8,18 @@ class Assets extends CI_Controller
         parent::__construct();
 
         date_default_timezone_set('Asia/Jakarta');
-
         $this->load->model('finance/Asset_model','asset');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){
@@ -17,9 +27,7 @@ class Assets extends CI_Controller
         $data['c'] = ['Good','Good Enough','Not Good'];
         $data['s'] = ['Equipment', 'Supplies', 'SRP Equipment'];
         $data['asset'] = $this->asset->showAll();
-
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/assets/index', $data);
         $this->load->view('templates/f-io');
     }

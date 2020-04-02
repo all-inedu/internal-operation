@@ -12,12 +12,22 @@ class Alumni extends CI_Controller
         $this->load->model('client/Students_model','std');
         $this->load->model('client/Alumni_model','alu');
         $this->load->model('bizdev/University_model','univ');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){
         $data['alumni'] = $this->alu->showAll();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-client');
+        $this->load->view('templates/s-io');
         $this->load->view('client/alumni/index', $data);
         $this->load->view('templates/f-io');
     }
@@ -29,9 +39,13 @@ class Alumni extends CI_Controller
 
         $this->form_validation->set_rules('st_id', 'student', 'required|is_unique[tbl_alu.st_id]',
         array('is_unique' => 'Student\'s name already exists'));
+        $this->form_validation->set_rules('alu_graduatedate','graduated date', 'required');
+        $this->form_validation->set_rules('univ_id','univ name', 'required');
+        $this->form_validation->set_rules('aludetail_major','major', 'required');
+        $this->form_validation->set_rules('aludetail_status','status', 'required');
         if($this->form_validation->run()==false) {
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-client');
+
+            $this->load->view('templates/s-io');
             $this->load->view('client/alumni/add-alumni', $data);
             $this->load->view('templates/f-io');
         } else {
@@ -72,8 +86,7 @@ class Alumni extends CI_Controller
         $data['university'] = $this->univ->showAll();
         $data['major'] = $this->majors->show();
         
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-client');
+        $this->load->view('templates/s-io');
         $this->load->view('client/alumni/view-alumni', $data);
         $this->load->view('templates/f-io');
     }

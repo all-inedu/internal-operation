@@ -45,7 +45,7 @@
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="row">
                         <div class="col-md-3">
-                            Student Name :
+                            Student Name : <i class="text-danger font-weight-bold">*</i>
                         </div>
                         <div class="col-md-9 mb-3">
                             <div class="row">
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            Graduate Date :
+                            Graduate Date : <i class="text-danger font-weight-bold">*</i>
                         </div>
                         <div class="col-md-9 mb-3">
                             <div class="row">
@@ -83,7 +83,7 @@
                             <div id="univ_name">
                                 <div class="row">
                                     <div class="col-md-5 mb-3">
-                                        <label>University Name</label>
+                                        <label>University Name <i class="text-danger font-weight-bold">*</i></label>
                                         <select name="univ_id[]" id="univ">
                                             <option data-placeholder="true"></option>
                                             <?php foreach ($university as $univ): ?>
@@ -92,16 +92,16 @@
                                             </option>
                                             <?php endforeach;?>
                                         </select>
-                                        <?=form_error('univ_id[]', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('univ_id', '<small class="text-danger">', '</small>');?>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label>Major</label>
+                                        <label>Major <i class="text-danger font-weight-bold">*</i></label>
                                         <input type="text" name="aludetail_major[]" class="form-control form-control-sm"
                                             id="major">
                                         <?=form_error('aludetail_major', '<small class="text-danger">', '</small>');?>
                                     </div>
                                     <div class="col-md-3">
-                                        <label>Status</label>
+                                        <label>Status <i class="text-danger font-weight-bold">*</i></label>
                                         <select name="aludetail_status[]" id="status">
                                             <option data-placeholder="true"></option>
                                             <option value="1">Waitlist</option>
@@ -172,7 +172,7 @@ $(document).ready(function() {
                 '<div class="line" style="margin-top:15px; margin-bottom:35px; width:"50%; "></div>' +
                 '<div class="col-md-5">' +
                 '<div class="form-group">' +
-                '<label>University Name</label>' +
+                '<label>University Name <i class="text-danger font-weight-bold">*</i></label>' +
                 '<select name="univ_id[]" id="univ' + x + '">' +
                 '<option data-placeholder="true"></option>' +
                 '<?php foreach ($university as $univ): ?>' +
@@ -186,7 +186,7 @@ $(document).ready(function() {
 
                 '<div class="col-md-4">' +
                 '<div class="form-group">' +
-                '<label>Major</label>' +
+                '<label>Major <i class="text-danger font-weight-bold">*</i></label>' +
                 '<input type="text" name="aludetail_major[]" class="form-control form-control-sm" id="major' +
                 x + '">' +
                 '</div>' +
@@ -194,7 +194,7 @@ $(document).ready(function() {
 
                 '<div class="col-md-3">' +
                 '<div class="form-group">' +
-                '<small>Status</small>' +
+                '<small>Status <i class="text-danger font-weight-bold">*</i></small>' +
                 '<select name="aludetail_status[]" id="status' + x + '">' +
                 '<option data-placeholder="true"></option>' +
                 '<option value="1">Waitlist</option>' +

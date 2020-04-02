@@ -88,6 +88,10 @@
                     <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-success shadow">
                         Current Student
                     </div>
+                    <?php } else if($s['st_statuscli']==3) {  ?>
+                    <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-primary shadow">
+                        Completed
+                    </div>
                     <?php } ?>
                 </td>
                 <td class="text-left"><?=$s['sch_name'];?></td>

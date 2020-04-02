@@ -8,16 +8,24 @@ class Vendor extends CI_Controller
         parent::__construct();
 
         date_default_timezone_set('Asia/Jakarta');
-
         $this->load->model('finance/Vendor_model','vendor');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){
         $data['t'] = ['Flyer','Infopack','Poster','Name Card','ID Card staff','Sticker','Voucher','Totte bag','T-shirt','Banner','Letterhead','Print BW','Print Colour','Notaris'];
         $data['vendor'] = $this->vendor->showAll();
-
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/vendor/index', $data);
         $this->load->view('templates/f-io');
     }

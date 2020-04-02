@@ -9,22 +9,30 @@ class Employee extends CI_Controller
         parent::__construct();
 
         date_default_timezone_set('Asia/Jakarta');
-
         $this->load->model('hr/Employee_model','empl');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){
         $data['empl'] = $this->empl->showAll();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-hr');
+        $this->load->view('templates/s-io');
         $this->load->view('hr/employee/index.php', $data);
         $this->load->view('templates/f-io');
     }
 
     public function candidate(){
-        $this->load->view('templates/h-io');
         $this->load->view('information/maintance');
-        // $this->load->view('templates/s-hr');
+        // $this->load->view('templates/s-io');
         // $this->load->view('hr/employee/employee-candidate.php');
         $this->load->view('templates/f-io');
     }
@@ -40,8 +48,8 @@ class Employee extends CI_Controller
         $this->form_validation->set_rules('empl_phone', 'phone number','required');
 
         if($this->form_validation->run()==FALSE) {
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-hr');
+
+            $this->load->view('templates/s-io');
             $this->load->view('hr/employee/add-employee.php');
             $this->load->view('templates/f-io');
         } else {
@@ -129,8 +137,8 @@ class Employee extends CI_Controller
     public function view($id){
         $data['empl'] = $this->empl->showId($id);
         if($data['empl']){
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-hr');
+
+            $this->load->view('templates/s-io');
             $this->load->view('hr/employee/view-employee.php', $data);
             $this->load->view('templates/f-io'); 
         } else {
@@ -148,8 +156,8 @@ class Employee extends CI_Controller
 
         if($this->form_validation->run()==FALSE) {
             $data['empl'] = $this->empl->showId($id);
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-hr');
+
+            $this->load->view('templates/s-io');
             $this->load->view('hr/employee/edit-employee.php',$data);
             $this->load->view('templates/f-io');
         } else {

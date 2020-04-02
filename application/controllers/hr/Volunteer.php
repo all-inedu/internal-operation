@@ -11,6 +11,17 @@ class Volunteer extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         $this->load->library('bank');
         $this->load->model('hr/Volunteer_model','volunt');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function uploaded($file, $path, $id){
@@ -34,8 +45,7 @@ class Volunteer extends CI_Controller
     
     public function index(){
         $data['volunt'] = $this->volunt->showAll();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-hr');
+        $this->load->view('templates/s-io');
         $this->load->view('hr/volunteer/index.php', $data);
         $this->load->view('templates/f-io');
     }
@@ -46,8 +56,7 @@ class Volunteer extends CI_Controller
         array('is_unique' => 'The email already used'));
         $this->form_validation->set_rules('volunt_phone','phone number','required');
         if ($this->form_validation->run()==false){
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-hr');
+        $this->load->view('templates/s-io');
         $this->load->view('hr/volunteer/add-volunteer.php');
         $this->load->view('templates/f-io');
         } else {
@@ -101,8 +110,7 @@ class Volunteer extends CI_Controller
             $this->session->set_flashdata('warning', 'Volunteer ID is not found');
             redirect('/hr/volunteer/');  
         }
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-hr');
+        $this->load->view('templates/s-io');
         $this->load->view('hr/volunteer/view-volunteer.php', $data);
         $this->load->view('templates/f-io');
     }
@@ -113,8 +121,8 @@ class Volunteer extends CI_Controller
         $this->form_validation->set_rules('volunt_mail','email','required');
         $this->form_validation->set_rules('volunt_phone','phone number','required');
         if ($this->form_validation->run()==false){
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-hr');
+
+            $this->load->view('templates/s-io');
             $this->load->view('hr/volunteer/edit-volunteer.php',$data);
             $this->load->view('templates/f-io');
         } else {

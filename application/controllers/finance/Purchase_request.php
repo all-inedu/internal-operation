@@ -9,6 +9,17 @@ class Purchase_request extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         $this->load->library('pdf');
         $this->load->model('finance/Purchase_model', 'purchase');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
     
     public function datas(){
@@ -19,8 +30,7 @@ class Purchase_request extends CI_Controller
 
     public function index(){
         $data['purchase'] = $this->purchase->showAll();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/purchase-req/index', $data);
         $this->load->view('templates/f-io');
     }
@@ -34,8 +44,7 @@ class Purchase_request extends CI_Controller
         $this->form_validation->set_rules('purchasedtl_good[]', 'item name', 'required');
 
         if($this->form_validation->run()==false){
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/purchase-req/add-purchase', $data);
         $this->load->view('templates/f-io');
         } else {
@@ -84,8 +93,7 @@ class Purchase_request extends CI_Controller
     public function view($id) {
         $data['purchase'] = $this->purchase->showId($id);
         $data['detail'] = $this->purchase->showDetail($id);
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/purchase-req/view-purchase', $data);
         $this->load->view('templates/f-io');
     }
@@ -97,8 +105,8 @@ class Purchase_request extends CI_Controller
             $data = $this->datas();
             $data['purchase'] = $this->purchase->showId($id);
             $data['detail'] = $this->purchase->showDetail($id);
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-finance');
+
+            $this->load->view('templates/s-io');
             $this->load->view('finance/purchase-req/edit-purchase', $data);
             $this->load->view('templates/f-io');
         } else {

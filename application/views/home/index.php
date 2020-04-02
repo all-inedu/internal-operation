@@ -33,7 +33,7 @@
     .allin-header {
         position: static;
         padding-top: 20px;
-        background-image: url("https://wallpaperaccess.com/full/1261770.jpg");
+        background-image: url("assets/img/bg.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         background-attachment: fixed;
@@ -111,7 +111,7 @@
     }
 
     .core-values {
-        background-image: url("https://wallpaperaccess.com/full/1261770.jpg");
+        background-image: url("assets/img/bg.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         background-attachment: fixed;
@@ -239,6 +239,15 @@
 </head>
 
 <body>
+    <?php
+if ($this->session->flashdata('success')) {
+    echo '<div class="flash-data" data-success="' . $this->session->flashdata('success') . '"></div>';
+} else if ($this->session->flashdata('error')) {
+    echo '<div class="flash-data" data-error="' . $this->session->flashdata('error') . '"></div>';
+} else if ($this->session->flashdata('warning')) {
+    echo '<div class="flash-data" data-warning="' . $this->session->flashdata('warning') . '"></div>';
+}
+?>
     <section class="allin-header">
         <div class="container">
             <div class="row">
@@ -393,5 +402,45 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="<?=base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+<script>
+const flashSuccess = $('.flash-data').data('success');
+const flashError = $('.flash-data').data('error');
+const flashWarning = $('.flash-data').data('warning');
+const flashLogin = $('.flash-data').data('login');
+
+if (flashSuccess) {
+    Swal.fire(
+        'Congratulations !',
+        '' + flashSuccess,
+        'success'
+    )
+} else if (flashError) {
+    Swal.fire(
+        'Error !',
+        '' + flashError,
+        'error'
+    )
+} else if (flashLogin) {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+
+    Toast.fire({
+        type: 'success',
+        title: '' + flashLogin
+    })
+} else if (flashWarning) {
+    Swal.fire(
+        'Information !',
+        '' + flashWarning,
+        'info'
+    )
+}
+</script>
 
 </html>

@@ -9,6 +9,17 @@ class Influencer extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('hr/Influencer_model','infl');
         $this->load->library('bank');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function uploaded($file, $path, $id){
@@ -32,8 +43,7 @@ class Influencer extends CI_Controller
 
     public function index(){
         $data['infl'] = $this->infl->showAll();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-hr');
+        $this->load->view('templates/s-io');
         $this->load->view('hr/influencer/index.php', $data);
         $this->load->view('templates/f-io');
     }
@@ -46,8 +56,8 @@ class Influencer extends CI_Controller
 
         if($this->form_validation->run()==FALSE) {
             $data['bank'] = $this->bank->showBank();
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-hr');
+
+            $this->load->view('templates/s-io');
             $this->load->view('hr/influencer/add-influencer.php', $data);
             $this->load->view('templates/f-io');
         } else {
@@ -88,8 +98,8 @@ class Influencer extends CI_Controller
     public function view($id){
         $data['infl'] = $this->infl->showId($id);
         if($data['infl']){
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-hr');
+
+            $this->load->view('templates/s-io');
             $this->load->view('hr/influencer/view-influencer.php', $data);
             $this->load->view('templates/f-io');
         } else {
@@ -103,8 +113,8 @@ class Influencer extends CI_Controller
         if($this->form_validation->run()==FALSE) {
             $data['infl'] = $this->infl->showId($id);
             $data['bank'] = $this->bank->showBank();
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-hr');
+
+            $this->load->view('templates/s-io');
             $this->load->view('hr/influencer/edit-influencer.php', $data);
             $this->load->view('templates/f-io');
         } else {

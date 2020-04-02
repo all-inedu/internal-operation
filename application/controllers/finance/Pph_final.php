@@ -12,6 +12,17 @@ class Pph_final extends CI_Controller
         $this->load->model('finance/Invoice_model','inv');
         $this->load->model('finance/InvoiceDetail_model','invdtl');
         $this->load->model('finance/InvoiceSchool_model','invsch');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index() {
@@ -20,8 +31,7 @@ class Pph_final extends CI_Controller
         if($this->form_validation->run()==false){
             $data['m']='';
             $data['y']='';
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-finance');
+            $this->load->view('templates/s-io');
             $this->load->view('finance/pph-final/index', $data);
             $this->load->view('templates/f-io');
         } else {
@@ -32,8 +42,7 @@ class Pph_final extends CI_Controller
             $data['m']=$m;
             $data['y']=$y;
    
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-finance');
+            $this->load->view('templates/s-io');
             $this->load->view('finance/pph-final/index', $data);
             $this->load->view('templates/f-io');
         }

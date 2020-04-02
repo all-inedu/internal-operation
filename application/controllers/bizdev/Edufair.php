@@ -9,14 +9,24 @@ class Edufair extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('bizdev/Edufair_model', 'eduf');
         $this->load->model('hr/Employee_model', 'empl');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){
         $this->form_validation->set_rules('eduf_organizer','organizer name','required');
         if($this->form_validation->run()==false) {
             $data['eduf'] = $this->eduf->showAll();
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-bizdev');
+            $this->load->view('templates/s-io');
             $this->load->view('bizdev/edufair/index', $data);
             $this->load->view('templates/f-io');
         } else {
@@ -66,8 +76,7 @@ class Edufair extends CI_Controller
         $data['eduf'] = $this->eduf->showId($id);
         $data['review'] = $this->eduf->showReview($id);
         $data['empl'] = $this->empl->showActive();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-bizdev');
+        $this->load->view('templates/s-io');
         $this->load->view('bizdev/edufair/view-edufair', $data);
         $this->load->view('templates/f-io');
     }
@@ -82,8 +91,7 @@ class Edufair extends CI_Controller
         if($this->form_validation->run()==false) {
             $data['eduf'] = $this->eduf->showId($id);
             $data['empl'] = $this->empl->showActive();
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-bizdev');
+            $this->load->view('templates/s-io');
             $this->load->view('bizdev/edufair/edit-edufair', $data);
             $this->load->view('templates/f-io');
         } else {

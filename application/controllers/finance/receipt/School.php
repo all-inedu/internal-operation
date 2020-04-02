@@ -11,12 +11,22 @@ class School extends CI_Controller
         $this->load->model('bizdev/SProgram_model','schprog');
         $this->load->model('finance/InvoiceSchool_model','invsch');
         $this->load->model('finance/Receipt_model','receipt');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){   
         $data['receipt'] = $this->receipt->showAllB2B();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/receipt/school/index', $data);
         $this->load->view('templates/f-io');
     }
@@ -69,8 +79,7 @@ class School extends CI_Controller
     public function view($id){  
         $data['rec'] = $this->receipt->showIdB2B($id); 
         // echo json_encode($data['rec']);
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/receipt/school/view', $data);
         $this->load->view('templates/f-io');
     }

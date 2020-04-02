@@ -12,12 +12,22 @@ class Student extends CI_Controller
         $this->load->model('finance/Receipt_model', 'receipt');
         $this->load->model('finance/Invoice_model', 'inv');
         $this->load->model('finance/InvoiceDetail_model','invdetail');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){      
         $data['receipt'] = $this->receipt->showAll();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/receipt/student/index', $data);
         $this->load->view('templates/f-io');
     }
@@ -75,8 +85,7 @@ class Student extends CI_Controller
         $data['rec'] = $this->receipt->showId($id);
         $inv_id = $data['rec']['inv_id'];
         $data['invdtls'] = $this->invdetail->showId($inv_id);
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/receipt/student/view',$data);
         $this->load->view('templates/f-io');
     }

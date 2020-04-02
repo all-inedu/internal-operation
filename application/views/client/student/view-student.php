@@ -40,7 +40,12 @@
                     <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-success">
                         Current Student
                     </div>
+                    <?php } else if($s['st_statuscli']==3) {  ?>
+                    <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-primary shadow">
+                        Completed
+                    </div>
                     <?php } ?>
+
                     <div class="text-info mt-2 mb-2">
                         <?php if($s['st_mail']) { ?>
                         <i class="fas fa-envelope text-danger"></i>&nbsp; <?=$s['st_mail'];?> <br>
@@ -317,7 +322,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Program Name
+                                <label>Program Name <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <input type="hidden" value="<?=$s['st_num'];?>" name="st_num">
                                 <select id="programName" name="prog_id">
@@ -332,7 +337,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Lead Source
+                                <label>Lead Source <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <select id="leadSource" name="lead_id">
                                     <option data-placeholder="true"></option>
@@ -345,7 +350,7 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label>PIC
+                            <label>PIC <i class="text-danger font-weight-bold">*</i>
                             </label>
                             <select id="PIC" name="empl_id">
                                 <option data-placeholder="true"></option>
@@ -359,7 +364,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>First Discuss</label>
+                                <label>First Discuss <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="stprog_firstdisdate" type="date" class="form-control form-control-sm"
                                     placeholder="First Discuss">
                                 <?=form_error('stprog_firstdisdate', '<small class="text-danger">', '</small>');?>

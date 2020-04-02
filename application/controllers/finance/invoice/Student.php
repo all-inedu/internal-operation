@@ -13,12 +13,22 @@ class Student extends CI_Controller
         $this->load->model('finance/InvoiceDetail_model','invdetail');
         $this->load->model('client/StProgram_model','stprog');
         $this->load->model('finance/Receipt_model','receipt');
+        $this->load->model('Menus_model','menu');
+        
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        } else {
+            $data['empl_id'] = $empl_id;
+            $data['menus'] = $this->menu->showId($empl_id, 1);
+            $this->load->view('templates/h-io', $data);
+            // echo json_encode($data);
+        }
     }
 
     public function index(){  
         $data['student_program'] = $this->inv->showForInvoice();
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/invoice/student/index', $data);
         $this->load->view('templates/f-io');
     }
@@ -40,8 +50,8 @@ class Student extends CI_Controller
         $this->form_validation->set_rules('inv_priceidr', 'price', 'required');
         $this->form_validation->set_rules('inv_paymentmethod', 'payment method', 'required');
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/h-io');
-            $this->load->view('templates/s-finance');
+
+            $this->load->view('templates/s-io');
             $this->load->view('finance/invoice/student/add', $data);
             $this->load->view('templates/f-io'); 
         } else { 
@@ -194,8 +204,7 @@ class Student extends CI_Controller
         $data['invdtl'] = $this->invdetail->showId($inv_id);
         $data['rec'] = $this->receipt->showByInvId($inv_id);
         // echo json_encode($data['inv']);
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/invoice/student/view',$data);
         $this->load->view('templates/f-io'); 
     }
@@ -210,8 +219,7 @@ class Student extends CI_Controller
         $inv_id = $data['inv']['inv_id'];
         $data['invdtl'] = $this->invdetail->showId($inv_id);
         $data['paymentMethod'] = 'Installment';
-        $this->load->view('templates/h-io');
-        $this->load->view('templates/s-finance');
+        $this->load->view('templates/s-io');
         $this->load->view('finance/invoice/student/edit',$data);
         $this->load->view('templates/f-io'); 
     }

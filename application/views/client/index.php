@@ -22,7 +22,7 @@
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
 <div class="content">
     <div class="row">
-        <div class="col-md-4 mb-2">
+        <div class="col-md-3 mb-2">
             <div class="card mb-3 shadow">
                 <div class="row no-gutters">
                     <div class="col-md-4 text-center align-middle p-4">
@@ -32,7 +32,7 @@
                         <div class="card-body">
                             <div class="row no-gutters">
                                 <div class="col-8">
-                                    <h5 class="card-title text-left mb-0">Prospective <br>Client</h5>
+                                    <h5 class="card-title text-left mb-0">Prospect <br>Client</h5>
                                 </div>
                                 <div class="col my-auto text-right">
                                     <i class="icofont-student-alt icofont-4x"></i>
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mb-2">
+        <div class="col-md-3 mb-2">
             <div class="card mb-3 shadow">
                 <div class="row no-gutters">
                     <div class="col-md-4 text-center align-middle p-4">
@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mb-2">
+        <div class="col-md-3 mb-2">
             <div class="card mb-3 shadow">
                 <div class="row no-gutters">
                     <div class="col-md-4 text-center align-middle p-4">
@@ -78,6 +78,27 @@
                                 </div>
                                 <div class="col my-auto text-right">
                                     <i class="icofont-group-students icofont-4x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-2">
+            <div class="card mb-3 shadow">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center align-middle p-4">
+                        <h2 class="count-title mb-0"><?=$compl;?></h2>
+                    </div>
+                    <div class="col-md-8 bg-dark text-white shadow align-middle">
+                        <div class="card-body">
+                            <div class="row no-gutters">
+                                <div class="col-8">
+                                    <h5 class="card-title text-left mb-0">Completed <br>Client</h5>
+                                </div>
+                                <div class="col my-auto text-right">
+                                    <i class="icofont-check icofont-4x"></i>
                                 </div>
                             </div>
                         </div>

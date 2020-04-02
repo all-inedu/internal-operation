@@ -30,6 +30,12 @@ class Employee_model extends CI_model
         $this->db->where('empl_id', $id); 
         return $this->db->get('tbl_empl')->row_array();
     }
+
+    public function showEmail($username){
+        $this->db->select('*');
+        $this->db->where('empl_email', $username); 
+        return $this->db->get('tbl_empl')->row_array();
+    }
     
     public function save($data)
     {
