@@ -339,13 +339,27 @@
                             <div class="form-group">
                                 <label>Lead Source <i class="text-danger font-weight-bold">*</i>
                                 </label>
-                                <select id="leadSource" name="lead_id">
+                                <select id="leadSource" name="lead_id" onchange="leads()">
                                     <option data-placeholder="true"></option>
                                     <?php foreach($lead as $ld): ?>
                                     <option value="<?=$ld['lead_id'];?>"><?=$ld['lead_name'];?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <?=form_error('lead_id', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 d-none" id="edufForm">
+                            <div class="form-group">
+                                <label>Edufair Name<i class="text-danger font-weight-bold">*</i>
+                                </label>
+                                <select id="edufair" name="eduf_id">
+                                    <option data-placeholder="true"></option>
+                                    <?php foreach($eduf as $ed): ?>
+                                    <option value="<?=$ed['eduf_id'];?>"><?=$ed['eduf_organizer'];?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?=form_error('eduf_id', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -418,10 +432,27 @@ new SlimSelect({
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 
+let ED = new SlimSelect({
+    select: '#edufair',
+    placeholder: 'Select edufair name ',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
 new SlimSelect({
     select: '#PIC',
     placeholder: 'Select PIC ',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
+
+function leads() {
+    let lead_id = $("#leadSource").val();
+    if (lead_id == "LS004") {
+        $("#edufForm").removeClass("d-none");
+    } else {
+        $("#edufForm").addClass("d-none");
+        ED.set('');
+    }
+}
 </script>

@@ -62,7 +62,7 @@
     <div class="col-md-8">
         <div class="card shadow">
             <div class="card-body">
-                <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Corporate Program
+                <h6><i class="icofont-building-alt"></i>&nbsp; Corporate Program
                     <div class="float-right">
                         <a href="<?=base_url('bizdev/corporate-program/view/'.$cprog['corprog_id']);?>"
                             class="btn btn-sm btn-info"><i class="fas fa-arrow-circle-left"></i></a>

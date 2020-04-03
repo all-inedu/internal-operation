@@ -24,7 +24,7 @@
     <div class="col-md-3">
         <div class="card shadow card-sticky mb-3 ">
             <div class="card-body text-center">
-                <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
+                <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
                 <h5><?=$inv['st_firstname'].' '.$inv['st_lastname'];?></h5>
                 <h6 class="text-info"><?=$inv['prog_program'];?></h6>
                 <hr>
@@ -458,7 +458,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Amount</label>
+                            <label>Amount <i class="text-danger font-weight-bold">*</i></label>
                             <div class="form-group">
                                 <input type="hidden" name="inv_id" value="<?=$inv['inv_id'];?>">
                                 <input type="hidden" id="invdtl_id" name="invdtl_id">
@@ -469,7 +469,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label>Date</label>
+                            <label>Date <i class="text-danger font-weight-bold">*</i></label>
                             <div class="form-group">
                                 <input type="date" name="receipt_date" id="date" class="form-control form-control-sm"
                                     value="<?=date('Y-m-d');?>">
@@ -482,7 +482,7 @@
                                 class="form-control form-control-sm">
                         </div>
                         <div class="col-md-6">
-                            <label>Payment Method</label>
+                            <label>Payment Method <i class="text-danger font-weight-bold">*</i></label>
                             <div class="form-group">
                                 <select name="receipt_mtd" id="paymentMethod" class="form-control form-control-sm"
                                     onchange="paymentMethods()">

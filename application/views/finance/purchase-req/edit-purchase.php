@@ -38,7 +38,7 @@
         <div class="card shadow">
             <div class="card-body">
                 <form action="" method="post">
-                    <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Purchase Request
+                    <h6><i class="icofont-notebook"></i>&nbsp; Purchase Request
                         <div class="float-right">
                             <a href="<?=base_url('finance/purchase-request/view/'.$purchase['purchase_id']);?>"
                                 class="btn btn-sm btn-info"><i class="fas fa-arrow-circle-left"></i></a>
@@ -48,7 +48,7 @@
                     <div class="row">
 
                         <div class="col-md-4 mb-2">
-                            ID Purchase :
+                            Purchase ID : <i class="text-danger font-weight-bold">*</i>
                         </div>
                         <div class="col-md-8 mb-3">
                             <div class="row">
@@ -61,7 +61,7 @@
                         </div>
 
                         <div class="col-md-4 mb-2">
-                            Division :
+                            Division : <i class="text-danger font-weight-bold">*</i>
                         </div>
                         <div class="col-md-8 mb-3">
                             <div class="row">
@@ -78,7 +78,7 @@
                         </div>
 
                         <div class="col-md-4 mb-2">
-                            Request Status :
+                            Request Status : <i class="text-danger font-weight-bold">*</i>
                         </div>
                         <div class="col-md-8 mb-3">
                             <div class="row">
@@ -94,7 +94,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-2">
-                            Request Date :
+                            Request Date : <i class="text-danger font-weight-bold">*</i>
                         </div>
                         <div class="col-md-8 mb-3">
                             <div class="row">

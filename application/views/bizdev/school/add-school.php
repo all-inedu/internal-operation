@@ -37,7 +37,7 @@
         <div class="card shadow">
             <div class="card-body">
                 <form action="" method="post">
-                    <h6><i class="fas fa-user"></i>&nbsp; &nbsp; School
+                    <h6><i class="icofont-building"></i> &nbsp; School
                         <div class="float-right">
                             <a href="<?=base_url('bizdev/school/');?>" class="btn btn-sm btn-info"><i
                                     class="fas fa-arrow-circle-left"></i></a>
@@ -47,7 +47,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>School Name
+                                <label>School Name <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <input name="sch_name" type="text" class="form-control form-control-sm"
                                     placeholder="School Name">

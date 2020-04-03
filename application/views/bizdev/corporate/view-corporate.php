@@ -89,7 +89,7 @@
         <div class="card shadow">
             <div class="card-body">
                 <form action="" method="post">
-                    <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Corporate
+                    <h6><i class="icofont-building-alt"></i> &nbsp; Corporate
                         <div class="float-right">
                             <a href="<?=base_url('bizdev/corporate/');?>" class="btn btn-sm btn-info"><i
                                     class="fas fa-arrow-circle-left"></i></a>
@@ -225,7 +225,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Program Name
+                                <label>Program Name <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <select id="progName" name="prog_id">
                                     <option data-placeholder="true"></option>
@@ -253,7 +253,7 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>First Discuss</label>
+                                <label>First Discuss <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="corprog_datefirstdiscuss" type="date" class="form-control form-control-sm"
                                     value="First Discuss">
                                 <?=form_error('corprog_datefirstdiscuss', '<small class="text-danger">', '</small>');?>

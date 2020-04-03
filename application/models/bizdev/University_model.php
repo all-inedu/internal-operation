@@ -10,6 +10,7 @@ class University_model extends CI_model
     
     public function showAll(){
         $this->db->select('*');
+        $this->db->where('univ_id !=', '');
         return $this->db->get('tbl_univ')->result_array();
     }
 

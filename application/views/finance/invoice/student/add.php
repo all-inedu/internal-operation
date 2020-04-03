@@ -24,7 +24,7 @@
     <div class="col-md-3">
         <div class="card shadow mb-3">
             <div class="card-body text-center">
-                <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
+                <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
                 <h5><?=$sp['st_firstname'].' '.$sp['st_lastname'];?></h5>
                 <h6 class="text-info"><?=$sp['prog_program'];?></h6>
             </div>
@@ -76,7 +76,7 @@
                     <form action="" method="post" name="usd">
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Price</label>
+                                <label>Price <i class="text-danger font-weight-bold">*</i></label>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <input type="hidden" name="stprog_id" value="<?=$sp['stprog_id'];?>">
@@ -209,7 +209,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Payment Method</label>
+                                    <label>Payment Method <i class="text-danger font-weight-bold">*</i></label>
                                     <select id="paymentMethod" name="inv_paymentmethod" onChange="paymentMethods();">
                                         <option data-placeholder="true"></option>
                                         <option value="Full Payment">Full Payment</option>
@@ -220,14 +220,14 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Date</label>
+                                    <label>Date <i class="text-danger font-weight-bold">*</i></label>
                                     <input name="inv_date" type="date" class="form-control form-control-sm">
                                     <?=form_error('inv_date', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Due Date</label>
+                                    <label>Due Date <i class="text-danger font-weight-bold">*</i></label>
                                     <input id="dueDate" name="inv_duedate" type="date"
                                         class="form-control form-control-sm">
                                     <?=form_error('inv_duedate', '<small class="text-danger">', '</small>');?>
@@ -323,7 +323,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Price</label>
+                                    <label>Price <i class="text-danger font-weight-bold">*</i></label>
                                     <input type="hidden" name="stprog_id" value="<?=$sp['stprog_id'];?>">
                                     <input type="hidden" name="inv_category" value="idr">
                                     <div class="input-group input-group-sm">
@@ -375,7 +375,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Payment Method</label>
+                                    <label>Payment Method <i class="text-danger font-weight-bold">*</i></label>
                                     <select id="paymentMethodIDR" name="inv_paymentmethod"
                                         onChange="paymentMethodsIDR();">
                                         <option data-placeholder="true"></option>
@@ -387,14 +387,14 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Date</label>
+                                    <label>Date <i class="text-danger font-weight-bold">*</i></label>
                                     <input name="inv_date" type="date" class="form-control form-control-sm">
                                     <?=form_error('inv_date', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Due Date</label>
+                                    <label>Due Date <i class="text-danger font-weight-bold">*</i></label>
                                     <input name="inv_duedate" type="date" class="form-control form-control-sm">
                                     <?=form_error('inv_duedate', '<small class="text-danger">', '</small>');?>
                                 </div>
@@ -482,7 +482,8 @@
                                 <div class="form-group">
                                     <input type="hidden" name="stprog_id" value="<?=$sp['stprog_id'];?>">
                                     <input type="hidden" name="inv_category" value="session">
-                                    <label>Price/<small>Hours</small></label>
+                                    <label>Price/<small>Hours</small> <i
+                                            class="text-danger font-weight-bold">*</i></label>
                                     <div class="input-group input-group-sm">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
@@ -495,7 +496,7 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label>Session</label>
+                                    <label>Session <i class="text-danger font-weight-bold">*</i></label>
                                     <div class="input-group input-group-sm">
                                         <input id="amount" name="inv_session" type="number"
                                             class="form-control form-control-sm">
@@ -509,7 +510,8 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label>Duration/<small>Minute</small></label>
+                                    <label>Duration/<small>Minute</small> <i
+                                            class="text-danger font-weight-bold">*</i></label>
                                     <div class="input-group input-group-sm">
                                         <input id="duration" name="inv_duration" type="number"
                                             class="form-control form-control-sm">
@@ -560,7 +562,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Date</label>
+                                    <label>Date <i class="text-danger font-weight-bold">*</i></label>
                                     <input type="hidden" name="inv_paymentmethod" value="Full Payment">
                                     <input name="inv_date" type="date" class="form-control form-control-sm">
                                     <?=form_error('inv_date', '<small class="text-danger">', '</small>');?>
@@ -568,7 +570,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Due Date</label>
+                                    <label>Due Date <i class="text-danger font-weight-bold">*</i></label>
                                     <input name="inv_duedate" type="date" class="form-control form-control-sm">
                                     <?=form_error('inv_duedate', '<small class="text-danger">', '</small>');?>
                                 </div>

@@ -44,7 +44,7 @@
                 <td><?=$u['univ_country'];?></td>
                 <td>
                     <button class="btn btn-sm btn-info" title="Edit" data-toggle="modal" data-target="#editUniversity"
-                        onclick="editUniversity('<?=$u['univ_id'];?>')"><i class="fas fa-edit"></i></button>
+                        onclick="editUniv('<?=$u['univ_id'];?>')"><i class="fas fa-edit"></i></button>
                     <a href="<?=base_url('bizdev/university/delete/'.$u['univ_id']);?>"
                         class="btn btn-sm btn-danger delete-button" data-message="university" title="Delete"><i
                             class="fas fa-trash"></i></a>
@@ -61,13 +61,13 @@
         <form action="save" method="post" name="save">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle">Add Program</h5>
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Add University</h5>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>University Name</label>
+                                <label>University Name <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="univ_name" type="text" class="form-control form-control-sm"
                                     placeholder="University Name">
                                 <?=form_error('univ_name', '<small class="text-danger">', '</small>');?>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Country
+                                <label>Country <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <select id="univ_country" name="univ_country">
                                     <option data-placeholder="true"></option>
@@ -113,13 +113,13 @@
         <form action="update" method="post" name="update">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle">Add Program</h5>
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Edit University</h5>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>ID University</label>
+                                <label>ID University <i class="text-danger font-weight-bold">*</i></label>
                                 <input id="univ_id" name="univ_id" type="text" class="form-control form-control-sm"
                                     placeholder="ID University" readonly>
                                 <?=form_error('univ_id', '<small class="text-danger">', '</small>');?>
@@ -127,7 +127,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>University Name</label>
+                                <label>University Name <i class="text-danger font-weight-bold">*</i></label>
                                 <input id="univ_name" name="univ_name" type="text" class="form-control form-control-sm"
                                     placeholder="University Name">
                                 <?=form_error('univ_name', '<small class="text-danger">', '</small>');?>
@@ -186,9 +186,9 @@ var EC = new SlimSelect({
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 
-function editUniversity(x) {
+function editUniv(x) {
     $.ajax({
-        type: 'post',
+        type: 'POST',
         url: '<?=base_url("bizdev/university/view/");?>' + x,
         dataType: 'json',
         success: function(data) {

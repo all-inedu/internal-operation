@@ -44,7 +44,7 @@
         <div class="card shadow">
             <div class="card-body">
                 <form action="test.php" method="post" id="editSchool">
-                    <h6><i class="fas fa-user"></i>&nbsp; &nbsp; School
+                    <h6><i class="icofont-building"></i> &nbsp; School
                         <div class="float-right">
                             <a href="<?=base_url('bizdev/school/view/'.$sch['sch_id']);?>"
                                 class="btn btn-sm btn-info"><i class="fas fa-arrow-circle-left"></i></a>

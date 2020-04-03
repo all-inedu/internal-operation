@@ -61,7 +61,7 @@ class Student extends CI_Controller
             $prog_id = $sp['prog_id'];
             $month = ["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
             $romawi = $month[intval($m)];
-        $year = date('y', strtotime($this->input->post('inv_date')));
+            $year = date('y', strtotime($this->input->post('inv_date')));
             
             $inv = $this->inv->getId($m, $y);
             if(empty($inv)){

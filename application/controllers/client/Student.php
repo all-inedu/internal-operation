@@ -14,6 +14,7 @@ class Student extends CI_Controller
         $this->load->model('hr/Employee_model','empl');
         $this->load->model('bizdev/School_model','sch');
         $this->load->model('bizdev/University_model','univ');
+        $this->load->model('bizdev/Edufair_model','eduf');
         $this->load->model('client/Students_model','std');
         $this->load->model('client/Parents_model','prt');
         $this->load->model('client/StProgram_model','stprog');
@@ -53,8 +54,8 @@ class Student extends CI_Controller
         // if($role=='student' or $role==''){
         $this->form_validation->set_rules('st_firstname', 'first name', 'required');
         $this->form_validation->set_rules('st_mail', 'email', 'required');
-        $this->form_validation->set_rules('st_state', 'state', 'required');
-        $this->form_validation->set_rules('st_city', 'city', 'required');
+        // $this->form_validation->set_rules('st_state', 'state', 'required');
+        // $this->form_validation->set_rules('st_city', 'city', 'required');
         $this->form_validation->set_rules('st_phone', 'phone', 'required');
         // $this->form_validation->set_rules('sch_id', 'school', 'required');
         $this->form_validation->set_rules('lead_id', 'lead', 'required');
@@ -103,7 +104,6 @@ class Student extends CI_Controller
             'st_city' => $this->input->post('st_city'),
             'st_address' => $this->input->post('st_address').$this->input->post('st_pc') ,
             'sch_id' => $sch_id,
-            'st_currentsch' => $this->input->post('st_currentsch'),
             'st_grade' => $this->input->post('st_grade'),
             'lead_id' => $this->input->post('lead_id'),
             'st_levelinterest' => $this->input->post('st_levelinterest'),
@@ -130,6 +130,7 @@ class Student extends CI_Controller
         $data['program'] = $this->prog->showB2C();
         $data['stprog'] = $this->stprog->showStProg($id);
         $data['empl'] = $this->empl->showActive();
+        $data['eduf'] = $this->eduf->showSuccess();
 
         $this->form_validation->set_rules('prog_id', 'program name', 'required');
         $this->form_validation->set_rules('lead_id', 'lead id', 'required');
@@ -151,6 +152,7 @@ class Student extends CI_Controller
             'st_num' => $id,
             'prog_id' => $this->input->post('prog_id'),
             'lead_id' => $this->input->post('lead_id'),
+            'eduf_id' => $this->input->post('eduf_id'),
             'stprog_firstdisdate' => $this->input->post('stprog_firstdisdate'),
             'stprog_lastdisdate' => $this->input->post('stprog_firstdisdate'),
             'stprog_meetingdate' => $this->input->post('stprog_meetingdate'),

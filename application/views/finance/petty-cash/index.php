@@ -149,14 +149,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Date</label>
+                                <label>Date <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="pettyinflow_date" type="date" class="form-control form-control-sm">
                                 <?=form_error('pettyinflow_date', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Amount</label>
+                                <label>Amount <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="pettyinflow_total" type="number" class="form-control form-control-sm"
                                     placeholder="0">
                                 <?=form_error('pettyinflow_total', '<small class="text-danger">', '</small>');?>
@@ -188,7 +188,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Date</label>
+                                <label>Date <i class="text-danger font-weight-bold">*</i></label>
                                 <input id="pettyinflow_id" name="pettyinflow_id" type="hidden"
                                     class="form-control form-control-sm">
                                 <input id="pettyinflow_date" name="pettyinflow_date" type="date"
@@ -198,7 +198,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Amount</label>
+                                <label>Amount <i class="text-danger font-weight-bold">*</i></label>
                                 <input id="pettyinflow_total" name="pettyinflow_total" type="number"
                                     class="form-control form-control-sm" placeholder="0">
                                 <?=form_error('pettyinflow_total', '<small class="text-danger">', '</small>');?>
@@ -239,21 +239,21 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Date</label>
+                                <label>Date <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="pettyexpenses_date" type="date" class="form-control form-control-sm">
                                 <?=form_error('pettyexpenses_date', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Invoice</label>
+                                <label>Invoice <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="pettyexpenses_inv" type="text" class="form-control form-control-sm">
                                 <?=form_error('pettyexpenses_inv', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Supplier</label>
+                                <label>Supplier <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="pettyexpenses_supplier" type="text" class="form-control form-control-sm">
                                 <?=form_error('pettyexpenses_supplier', '<small class="text-danger">', '</small>');?>
                             </div>
@@ -275,7 +275,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Total</label>
+                                <label>Total <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="pettyexpenses_total" type="number" class="form-control form-control-sm"
                                     placeholder="0">
                                 <?=form_error('pettyexpenses_total', '<small class="text-danger">', '</small>');?>
@@ -307,7 +307,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Date</label>
+                                <label>Date <i class="text-danger font-weight-bold">*</i></label>
                                 <input id="pettyexpenses_id" name="pettyexpenses_id" type="hidden">
                                 <input id="pettyexpenses_date" name="pettyexpenses_date" type="date"
                                     class="form-control form-control-sm">
@@ -316,7 +316,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Invoice</label>
+                                <label>Invoice <i class="text-danger font-weight-bold">*</i></label>
                                 <input id="pettyexpenses_inv" name="pettyexpenses_inv" type="text"
                                     class="form-control form-control-sm">
                                 <?=form_error('pettyexpenses_inv', '<small class="text-danger">', '</small>');?>
@@ -324,7 +324,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Supplier</label>
+                                <label>Supplier <i class="text-danger font-weight-bold">*</i></label>
                                 <input id="pettyexpenses_supplier" name="pettyexpenses_supplier" type="text"
                                     class="form-control form-control-sm">
                                 <?=form_error('pettyexpenses_supplier', '<small class="text-danger">', '</small>');?>
@@ -348,7 +348,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Total</label>
+                                <label>Total <i class="text-danger font-weight-bold">*</i></label>
                                 <input id="pettyexpenses_total" name="pettyexpenses_total" type="number"
                                     class="form-control form-control-sm" placeholder="0">
                                 <?=form_error('pettyexpenses_total', '<small class="text-danger">', '</small>');?>

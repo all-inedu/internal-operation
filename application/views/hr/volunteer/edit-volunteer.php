@@ -68,7 +68,7 @@
                         <div class="col-md-7 mb-3">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <small>First Name</small>
+                                    <small>First Name <i class="text-danger font-weight-bold">*</i></small>
                                     <input name="volunt_firstname" type="text" class="form-control form-control-sm"
                                         value="<?=$volunt['volunt_firstname'];?>">
                                     <?=form_error('volunt_firstname', '<small class="text-danger">', '</small>');?>
@@ -83,7 +83,8 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label><i class="fas fa-envelope fa-fw text-muted"></i>&nbsp; Email :</label>
+                            <label><i class="fas fa-envelope fa-fw text-muted"></i>&nbsp; Email : <i
+                                    class="text-danger font-weight-bold">*</i></label>
                         </div>
                         <div class="col-md-7 mb-3">
                             <div class="row">
@@ -105,7 +106,8 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Phone Number :</label>
+                            <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Phone Number : <i
+                                    class="text-danger font-weight-bold">*</i></label>
                         </div>
                         <div class="col-md-7 mb-3">
                             <div class="row">

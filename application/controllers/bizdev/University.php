@@ -35,30 +35,35 @@ class University extends CI_Controller
     }
 
     public function save(){
-        $query = $this->univ->getId();
-          //cek dulu apakah ada sudah ada kode di tabel.    
-		if($query->num_rows() <> 0){      
-		    //jika kode ternyata sudah ada.      
-            $data = $query->row();      
-            $id = intval($data->kode) + 1;    
-		} else {      
-		   //jika kode belum ada      
-		    $id = 1;    
-		}
-        $idmax = str_pad($id, 3, "0", STR_PAD_LEFT); 
-        $newid = "UNIV-".$idmax;
-        
-        $data = [
-            'univ_id' => $newid,
-            'univ_name' => $this->input->post('univ_name'),
-            'univ_country' => $this->input->post('univ_country'),
-            'univ_address' => $this->input->post('univ_address'),
-        ];
+        $this->form_validation->set_rules('univ_name', 'univ name', 'required|trim');
+        $this->form_validation->set_rules('univ_country', 'country', 'required|trim');
+        if($this->form_validation->run()==FALSE){
+            $this->index();
+        } else {
+            $query = $this->univ->getId();
+            //cek dulu apakah ada sudah ada kode di tabel.    
+            if($query->num_rows() <> 0){      
+                //jika kode ternyata sudah ada.      
+                $data = $query->row();      
+                $id = intval($data->kode) + 1;    
+            } else {      
+            //jika kode belum ada      
+                $id = 1;    
+            }
+            $idmax = str_pad($id, 3, "0", STR_PAD_LEFT); 
+            $newid = "UNIV-".$idmax;
+            
+            $data = [
+                'univ_id' => $newid,
+                'univ_name' => $this->input->post('univ_name'),
+                'univ_country' => $this->input->post('univ_country'),
+                'univ_address' => $this->input->post('univ_address'),
+            ];
 
-        $this->univ->save($data);
-        $this->session->set_flashdata('success', 'University has been created');
-        redirect('/bizdev/university/');
-
+            $this->univ->save($data);
+            $this->session->set_flashdata('success', 'University has been created');
+            redirect('/bizdev/university/');
+        }
     }
 
     public function view($id) {

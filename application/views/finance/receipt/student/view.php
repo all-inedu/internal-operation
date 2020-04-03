@@ -24,7 +24,7 @@
     <div class="col-md-3">
         <div class="card shadow mb-2 ">
             <div class="card-body text-center">
-                <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
+                <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
                 <h5><?=$rec['st_firstname'].' '.$rec['st_lastname'];?></h5>
                 <h6 class="text-info"><?=$rec['prog_program'];?></h6>
                 <hr>

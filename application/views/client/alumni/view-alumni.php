@@ -30,7 +30,7 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center text-info">
-                    <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
+                    <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
                     <h5>View Alumni</h5>
                 </div>
             </div>

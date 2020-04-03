@@ -76,7 +76,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Vendor Name</label>
+                                <label>Vendor Name <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="vendor_name" type="text" class="form-control form-control-sm"
                                     placeholder="Vendor Name">
                                 <?=form_error('vendor_name', '<small class="text-danger">', '</small>');?>
@@ -178,7 +178,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Vendor Name</label>
+                                <label>Vendor Name <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="vendor_id" type="hidden" id="vendor_id">
                                 <input name="vendor_name" type="text" class="form-control form-control-sm"
                                     placeholder="Vendor Name" id="vendor_name">

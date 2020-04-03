@@ -17,6 +17,7 @@ class CProgram_model extends CI_model
         $this->db->select('*');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id = tbl_corprog.prog_id');
         $this->db->join('tbl_corp', 'tbl_corp.corp_id = tbl_corprog.corp_id');
+        $this->db->order_by('tbl_corprog.corprog_id','DESC');
         return $this->db->get('tbl_corprog')->result_array(); 
     }
     

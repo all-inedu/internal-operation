@@ -13,6 +13,11 @@ class login extends CI_Controller
 
     public function As($id)
     {
+        $empl_id = $this->session->userdata('empl_id');
+        if($empl_id) {
+            redirect('/'.$id);
+        } 
+
         if($id=='client'){
             $data['role'] = 'Client Management';
             $data['img'] = 'm-client.png';

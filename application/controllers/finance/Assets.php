@@ -33,35 +33,42 @@ class Assets extends CI_Controller
     }
 
     public function save(){      
-        $query = $this->asset->getId();
-          //cek dulu apakah ada sudah ada kode di tabel.    
-		if($query->num_rows() <> 0){      
-		    //jika kode ternyata sudah ada.      
-            $data = $query->row();      
-            $id = intval($data->kode) + 1;    
-		} else {      
-		   //jika kode belum ada      
-		    $id = 1;    
-		}
-        $idmax = str_pad($id, 4, "0", STR_PAD_LEFT); 
-        $newid = "AS-".$idmax;
+        $this->form_validation->set_rules('asset_name','asset name', 'required');
+        if($this->form_validation->run()==false) {
+            $this->index();
+        } else {
 
-        $data = [
-            'asset_id' => $newid,
-            'asset_name' => $this->input->post('asset_name'),
-            'asset_merktype' => $this->input->post('asset_merktype'),
-            'asset_dateachieved' => $this->input->post('asset_dateachieved'),
-            'asset_amount' => $this->input->post('asset_amount'),
-            'asset_unit' => $this->input->post('asset_unit'),
-            'asset_condition' => $this->input->post('asset_condition'),   
-            'asset_status' => $this->input->post('asset_status'), 
-            'asset_notes' => $this->input->post('asset_notes'), 
-            'asset_lastupdatedate' => date('Y-m-d H:i:s')
-        ];
-
-        $this->asset->save($data);
-        $this->session->set_flashdata('success', 'Asset has been saved');
-        redirect('/finance/assets/');
+            $query = $this->asset->getId();
+            //cek dulu apakah ada sudah ada kode di tabel.    
+            if($query->num_rows() <> 0){      
+                //jika kode ternyata sudah ada.      
+                $data = $query->row();      
+                $id = intval($data->kode) + 1;    
+            } else {      
+                //jika kode belum ada      
+                $id = 1;    
+            }
+            $idmax = str_pad($id, 4, "0", STR_PAD_LEFT); 
+            $newid = "AS-".$idmax;
+    
+            $data = [
+                'asset_id' => $newid,
+                'asset_name' => $this->input->post('asset_name'),
+                'asset_merktype' => $this->input->post('asset_merktype'),
+                'asset_dateachieved' => $this->input->post('asset_dateachieved'),
+                'asset_amount' => $this->input->post('asset_amount'),
+                'asset_unit' => $this->input->post('asset_unit'),
+                'asset_condition' => $this->input->post('asset_condition'),   
+                'asset_status' => $this->input->post('asset_status'), 
+                'asset_notes' => $this->input->post('asset_notes'), 
+                'asset_lastupdatedate' => date('Y-m-d H:i:s')
+            ];
+    
+            $this->asset->save($data);
+            $this->session->set_flashdata('success', 'Asset has been saved');
+            redirect('/finance/assets/');
+              
+        }
     }
 
     public function view($id) {

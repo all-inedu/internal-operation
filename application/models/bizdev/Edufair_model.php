@@ -6,6 +6,12 @@ class Edufair_model extends CI_model
         return $this->db->get('tbl_eduf')->result_array();
     }
 
+    public function showSuccess(){
+        $this->db->select('*');
+        $this->db->where('eduf_status', 1);
+        return $this->db->get('tbl_eduf')->result_array();
+    }
+
     public function save($data)
     {
         $this->db->insert('tbl_eduf', $data);

@@ -64,7 +64,7 @@
     <div class="col-md-9">
         <div class="card shadow">
             <div class="card-body">
-                <h6><i class="fa-fw fas fa-user"></i>&nbsp; &nbsp; Schools Program
+                <h6><i class="icofont-university"></i>&nbsp; Schools Program
                     <div class="float-right">
                         <a href="<?=base_url('bizdev/school-program/view/'.$sprog['schprog_id']);?>"
                             class="btn btn-sm btn-info"><i class="fa-fw fas fa-arrow-circle-left"></i></a>

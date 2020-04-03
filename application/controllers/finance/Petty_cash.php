@@ -38,46 +38,52 @@ class Petty_cash extends CI_Controller
     }
 
     public function addIncome(){
-        $m = date('m', strtotime($this->input->post('pettyinflow_date')));
-        $y = date('Y', strtotime($this->input->post('pettyinflow_date')));
-        $showExsp = $this->petty->sumExpenseTotal($m, $y);
-        $oldExpense = $showExsp['pettyexpenses_total'];
-        
-        $saldo = $this->petty->showSaldo($m, $y);
-        if(empty($saldo)){
-            $newBalance = $this->input->post('pettyinflow_total') - $oldExpense;
-            $data = [
-                'pettysaldo_month' => $m,
-                'pettysaldo_year' => $y,
-                'pettysaldo_inflow' => $this->input->post('pettyinflow_total'),
-                'pettysaldo_expenses' => $oldExpense,
-                'pettysaldo_balance' => $newBalance
-            ];
-            $this->petty->saveSaldo($data);
+        $this->form_validation->set_rules('pettyinflow_date','income date', 'required');
+        $this->form_validation->set_rules('pettyinflow_total','total income', 'required');
+        if($this->form_validation->run()==false) {
+            $this->index();
         } else {
-            $newtotal = $this->input->post('pettyinflow_total');
-            $oldIncome = $saldo['pettysaldo_inflow'];
-            $oldBalance = $saldo['pettysaldo_balance']; 
-
-            $newIncome = $oldIncome + $newtotal;
-            $newBalance = $newIncome - $oldExpense;
-            $id = $saldo['pettysaldo_id'];
+            $m = date('m', strtotime($this->input->post('pettyinflow_date')));
+            $y = date('Y', strtotime($this->input->post('pettyinflow_date')));
+            $showExsp = $this->petty->sumExpenseTotal($m, $y);
+            $oldExpense = $showExsp['pettyexpenses_total'];
+            
+            $saldo = $this->petty->showSaldo($m, $y);
+            if(empty($saldo)){
+                $newBalance = $this->input->post('pettyinflow_total') - $oldExpense;
+                $data = [
+                    'pettysaldo_month' => $m,
+                    'pettysaldo_year' => $y,
+                    'pettysaldo_inflow' => $this->input->post('pettyinflow_total'),
+                    'pettysaldo_expenses' => $oldExpense,
+                    'pettysaldo_balance' => $newBalance
+                ];
+                $this->petty->saveSaldo($data);
+            } else {
+                $newtotal = $this->input->post('pettyinflow_total');
+                $oldIncome = $saldo['pettysaldo_inflow'];
+                $oldBalance = $saldo['pettysaldo_balance']; 
+    
+                $newIncome = $oldIncome + $newtotal;
+                $newBalance = $newIncome - $oldExpense;
+                $id = $saldo['pettysaldo_id'];
+                $data = [
+                    'pettysaldo_inflow' => $newIncome,
+                    'pettysaldo_expenses' => $oldExpense,
+                    'pettysaldo_balance' => $newBalance
+                ];
+                $this->petty->updateSaldo($data, $id);
+            }
+    
             $data = [
-                'pettysaldo_inflow' => $newIncome,
-                'pettysaldo_expenses' => $oldExpense,
-                'pettysaldo_balance' => $newBalance
+                'pettyinflow_date' => $this->input->post('pettyinflow_date'),
+                'pettyinflow_total' => $this->input->post('pettyinflow_total')
             ];
-            $this->petty->updateSaldo($data, $id);
+            $this->petty->saveIncome($data);
+    
+            $this->session->set_flashdata('success', 'Income have been saved');
+            redirect('/finance/petty-cash/');
         }
-
-        $data = [
-            'pettyinflow_date' => $this->input->post('pettyinflow_date'),
-            'pettyinflow_total' => $this->input->post('pettyinflow_total')
-        ];
-        $this->petty->saveIncome($data);
-
-        $this->session->set_flashdata('success', 'Income have been saved');
-        redirect('/finance/petty-cash/');
     }
 
     public function view_income($id){
@@ -213,49 +219,56 @@ class Petty_cash extends CI_Controller
     }
 
     public function addExpense(){
-
-        $m = date('m', strtotime($this->input->post('pettyexpenses_date')));
-        $y = date('Y', strtotime($this->input->post('pettyexpenses_date')));
-        
-        $saldo = $this->petty->showSaldo($m, $y);
-        if(empty($saldo)){
-            $data = [
-                'pettysaldo_month' => $m,
-                'pettysaldo_year' => $y,
-                'pettysaldo_expenses' => $this->input->post('pettyexpenses_total'),
-                'pettysaldo_balance	' => -($this->input->post('pettyexpenses_total')),
-            ];
-
-            $this->petty->saveSaldo($data);
-            
+        $this->form_validation->set_rules('pettyexpenses_date','expense date', 'required');
+        $this->form_validation->set_rules('pettyexpenses_total','total expense', 'required');
+        $this->form_validation->set_rules('pettyexpenses_inv','invoice', 'required');
+        $this->form_validation->set_rules('pettyexpenses_supplier','supplier', 'required');
+        if($this->form_validation->run()==false) {
+            $this->index();
         } else {
-            $newTotal = $this->input->post('pettyexpenses_total');
-            $oldExpense = $saldo['pettysaldo_expenses'];
-            $oldIncome = $saldo['pettysaldo_inflow'];
-            $oldBalance = $saldo['pettysaldo_balance'];
-
-            $newExpense = $oldExpense + $newTotal;
-            $newBalance = $oldIncome - $newExpense;
-
-            $id = $saldo['pettysaldo_id'];
+            $m = date('m', strtotime($this->input->post('pettyexpenses_date')));
+            $y = date('Y', strtotime($this->input->post('pettyexpenses_date')));
+            
+            $saldo = $this->petty->showSaldo($m, $y);
+            if(empty($saldo)){
+                $data = [
+                    'pettysaldo_month' => $m,
+                    'pettysaldo_year' => $y,
+                    'pettysaldo_expenses' => $this->input->post('pettyexpenses_total'),
+                    'pettysaldo_balance	' => -($this->input->post('pettyexpenses_total')),
+                ];
+    
+                $this->petty->saveSaldo($data);
+                
+            } else {
+                $newTotal = $this->input->post('pettyexpenses_total');
+                $oldExpense = $saldo['pettysaldo_expenses'];
+                $oldIncome = $saldo['pettysaldo_inflow'];
+                $oldBalance = $saldo['pettysaldo_balance'];
+    
+                $newExpense = $oldExpense + $newTotal;
+                $newBalance = $oldIncome - $newExpense;
+    
+                $id = $saldo['pettysaldo_id'];
+                $data = [
+                    'pettysaldo_expenses' => $newExpense,
+                    'pettysaldo_balance	' => $newBalance
+                ];
+                $this->petty->updateSaldo($data, $id);
+            }
+    
             $data = [
-                'pettysaldo_expenses' => $newExpense,
-                'pettysaldo_balance	' => $newBalance
+                'pettyexpenses_date' => $this->input->post('pettyexpenses_date'),
+                'pettyexpenses_inv' => $this->input->post('pettyexpenses_inv'),
+                'pettyexpenses_supplier' => $this->input->post('pettyexpenses_supplier'),
+                'pettyexpenses_type' => $this->input->post('pettyexpenses_type'),
+                'pettyexpenses_paymentfrom' => $this->input->post('pettyexpenses_paymentfrom'),
+                'pettyexpenses_total' => $this->input->post('pettyexpenses_total')
             ];
-            $this->petty->updateSaldo($data, $id);
+            $this->petty->saveExpense($data);
+            $this->session->set_flashdata('success', 'Expense have been saved');
+            redirect('/finance/petty-cash/');
         }
-
-        $data = [
-            'pettyexpenses_date' => $this->input->post('pettyexpenses_date'),
-            'pettyexpenses_inv' => $this->input->post('pettyexpenses_inv'),
-            'pettyexpenses_supplier' => $this->input->post('pettyexpenses_supplier'),
-            'pettyexpenses_type' => $this->input->post('pettyexpenses_type'),
-            'pettyexpenses_paymentfrom' => $this->input->post('pettyexpenses_paymentfrom'),
-            'pettyexpenses_total' => $this->input->post('pettyexpenses_total')
-        ];
-        $this->petty->saveExpense($data);
-        $this->session->set_flashdata('success', 'Expense have been saved');
-        redirect('/finance/petty-cash/');
     }
 
     public function view_expense($id){

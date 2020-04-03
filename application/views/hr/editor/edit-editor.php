@@ -74,7 +74,7 @@
                         <div class="col-md-7 mb-3">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <small>First Name</small>
+                                    <small>First Name <i class="text-danger font-weight-bold">*</i></small>
                                     <input name="editor_id" type="hidden" value="<?=$editor['editor_id'];?>">
                                     <input name="editor_fn" type="text" class="form-control form-control-sm"
                                         value="<?=$editor['editor_fn'];?>">
@@ -90,7 +90,8 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label><i class="fas fa-envelope fa-fw text-muted"></i>&nbsp; Email :</label>
+                            <label><i class="fas fa-envelope fa-fw text-muted"></i>&nbsp; Email :<i
+                                    class="text-danger font-weight-bold">*</i></label>
                         </div>
                         <div class="col-md-7 mb-3">
                             <div class="row">
@@ -112,7 +113,8 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Phone Number :</label>
+                            <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Phone Number :<i
+                                    class="text-danger font-weight-bold">*</i></label>
                         </div>
                         <div class="col-md-7 mb-3">
                             <div class="row">

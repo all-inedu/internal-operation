@@ -101,7 +101,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Organizer</label>
+                                <label>Organizer <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="eduf_organizer" type="text" class="form-control form-control-sm"
                                     placeholder="Organizer Name">
                                 <?=form_error('eduf_organizer', '<small class="text-danger">', '</small>');?>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>PIC Name</label>
+                                <label>PIC Name <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="eduf_picname" type="text" class="form-control form-control-sm"
                                     placeholder="PIC Name">
                                 <?=form_error('eduf_picname', '<small class="text-danger">', '</small>');?>
@@ -124,7 +124,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>PIC Contact</label>
+                                <label>PIC Contact <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="eduf_picphone" type="text" class="form-control form-control-sm"
                                     placeholder="PIC Contact">
                                 <?=form_error('eduf_picphone', '<small class="text-danger">', '</small>');?>
@@ -132,7 +132,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>PIC Email</label>
+                                <label>PIC Email <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="eduf_picmail" type="text" class="form-control form-control-sm"
                                     placeholder="PIC Email">
                                 <?=form_error('eduf_picmail', '<small class="text-danger">', '</small>');?>
@@ -140,7 +140,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>First Discuss</label>
+                                <label>First Discuss <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="eduf_firstdisdate" type="date" class="form-control form-control-sm">
                                 <?=form_error('eduf_firstdisdate', '<small class="text-danger">', '</small>');?>
                             </div>

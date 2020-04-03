@@ -24,7 +24,7 @@
     <div class="col-md-3">
         <div class="card shadow mb-3">
             <div class="card-body text-center">
-                <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
+                <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
                 <h5><?=$schprog['sch_name'];?></h5>
                 <div class="text-info">
                     <h6><?=$schprog['prog_program'];?></h6>
@@ -50,7 +50,7 @@
                 <form action="" method="post">
                     <div class="row">
                         <div class="col-md-2">
-                            Price :
+                            Price : <i class="text-danger font-weight-bold">*</i>
                         </div>
                         <div class="col-md-10">
                             <input type="hidden" name="schprog_id" value="<?=$schprog['schprog_id'];?>">
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                            Participans :
+                            Participans : <i class="text-danger font-weight-bold">*</i>
                         </div>
                         <div class="col-md-10">
                             <div class="form-group row">
@@ -129,7 +129,7 @@
                         </div>
 
                         <div class="col-md-2">
-                            Date :
+                            Date : <i class="text-danger font-weight-bold">*</i>
                         </div>
                         <div class="col-md-10 mb-3">
                             <div class="row">
@@ -140,7 +140,7 @@
                                     <?=form_error('invsch_date', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-3">
-                                    <small>Due Date</small><br>
+                                    <small>Due Date </small><br>
                                     <input id="dueDate" name="invsch_duedate" type="date"
                                         class="form-control form-control-sm" value="<?=$schprog['invsch_duedate'];?>">
                                     <?=form_error('invsch_duedate', '<small class="text-danger">', '</small>');?>

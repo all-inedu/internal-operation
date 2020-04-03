@@ -84,7 +84,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Asset Name</label>
+                                <label>Asset Name <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="asset_name" type="text" class="form-control form-control-sm"
                                     placeholder="Asset Name">
                                 <?=form_error('asset_name', '<small class="text-danger">', '</small>');?>
@@ -175,7 +175,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Asset Name</label>
+                                <label>Asset Name <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="asset_id" type="hidden" class="form-control form-control-sm" id="asset_id">
                                 <input name="asset_name" type="text" class="form-control form-control-sm"
                                     placeholder="Asset Name" id="asset_name">

@@ -63,7 +63,8 @@
                             <label class="font-weight-bold mb-3">Personal Information</label>
                         </div>
                         <div class="col-md-4">
-                            <label><i class="fas fa-id-card fa-fw text-muted"></i>&nbsp; Full Name :</label>
+                            <label><i class="fas fa-id-card fa-fw text-muted"></i>&nbsp; Full Name : <i
+                                    class="text-danger font-weight-bold">*</i></label>
                         </div>
                         <div class="col-md-7 mb-3">
                             <div class="row">
@@ -77,7 +78,8 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label><i class="fas fa-envelope fa-fw text-muted"></i>&nbsp; Email :</label>
+                            <label><i class="fas fa-envelope fa-fw text-muted"></i>&nbsp; Email : <i
+                                    class="text-danger font-weight-bold">*</i></label>
                         </div>
                         <div class="col-md-7 mb-3">
                             <div class="row">
@@ -99,7 +101,8 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Phone Number :</label>
+                            <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Phone Number : <i
+                                    class="text-danger font-weight-bold">*</i></label>
                         </div>
                         <div class="col-md-7 mb-3">
                             <div class="row">

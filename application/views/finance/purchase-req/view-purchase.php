@@ -44,7 +44,7 @@
         <div class="card shadow">
             <div class="card-body">
                 <form action="" method="post">
-                    <h6><i class="fas fa-user"></i>&nbsp; &nbsp; Purchase Request
+                    <h6><i class="icofont-notebook"></i>&nbsp; Purchase Request
                         <div class="float-right">
                             <a href="<?=base_url('finance/purchase-request');?>" class="btn btn-sm btn-info"><i
                                     class="fas fa-arrow-circle-left"></i></a>
@@ -54,7 +54,7 @@
                     <div class="row">
 
                         <div class="col-md-4 mb-2">
-                            ID Purchase :
+                            Purchase ID :
                         </div>
                         <div class="col-md-7 mb-3">
                             <?=$purchase['purchase_id'];?>

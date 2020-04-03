@@ -24,7 +24,7 @@
     <div class="col-md-3">
         <div class="card shadow mb-3">
             <div class="card-body text-center">
-                <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
+                <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
                 <h5><?=$schprog['sch_name'];?></h5>
                 <div class="text-info">
                     <h6><?=$schprog['prog_program'];?></h6>
@@ -47,7 +47,7 @@
                 <form action="" method="post">
                     <div class="row">
                         <div class="col-md-2">
-                            Price :
+                            Price : <i class="text-danger font-weight-bold">*</i>
                         </div>
                         <div class="col-md-10">
                             <div class="form-group row">
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                            Participans :
+                            Participans : <i class="text-danger font-weight-bold">*</i>
                         </div>
                         <div class="col-md-10">
                             <div class="form-group row">

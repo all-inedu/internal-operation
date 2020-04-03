@@ -24,7 +24,7 @@
     <div class="col-md-3">
         <div class="card shadow mb-2 ">
             <div class="card-body text-center">
-                <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
+                <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
                 <h5><?=$inv['st_firstname'].' '.$inv['st_lastname'];?></h5>
                 <h6 class="text-info"><?=$inv['prog_program'];?></h6>
                 <hr>
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            Price :
+                            Price : <i class="text-danger font-weight-bold">*</i>
                         </div>
                         <div class="col-md-9">
                             <div class="form-group row">
@@ -446,7 +446,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            Price :
+                            Price : <i class="text-danger font-weight-bold">*</i>
                         </div>
                         <div class="col-md-9">
                             <div class="form-group row">
@@ -731,7 +731,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            Price/Hours :
+                            Price/Hours : <i class="text-danger font-weight-bold">*</i>
                         </div>
                         <div class="col-md-9">
                             <div class="form-group row">

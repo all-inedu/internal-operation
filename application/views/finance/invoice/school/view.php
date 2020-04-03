@@ -24,7 +24,7 @@
     <div class="col-md-3">
         <div class="card shadow mb-3">
             <div class="card-body text-center">
-                <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
+                <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
                 <h5><?=$schprog['sch_name'];?></h5>
                 <div class="text-info">
                     <h6><?=$schprog['prog_program'];?></h6>
@@ -159,7 +159,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Amount</label>
+                            <label>Amount <i class="text-danger font-weight-bold">*</i></label>
                             <div class="form-group">
                                 <input type="hidden" name="invsch_id" value="<?=$schprog['invsch_id'];?>">
                                 <input type="hidden" name="schprog_id" value="<?=$schprog['schprog_id'];?>">
@@ -170,7 +170,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label>Date</label>
+                            <label>Date <i class="text-danger font-weight-bold">*</i></label>
                             <div class="form-group">
                                 <input type="date" name="receipt_date" id="date" class="form-control form-control-sm">
                             </div>
@@ -180,7 +180,7 @@
                                 value="<?=$schprog['invsch_words'];?>" readonly>
                         </div>
                         <div class="col-md-6">
-                            <label>Payment Method</label>
+                            <label>Payment Method <i class="text-danger font-weight-bold">*</i></label>
                             <div class="form-group">
                                 <select name="receipt_mtd" id="paymentMethod" class="form-control form-control-sm"
                                     onchange="paymentMethods()">

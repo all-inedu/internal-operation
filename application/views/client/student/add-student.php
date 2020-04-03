@@ -27,7 +27,7 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/user.jpg');?>" alt="client management" width="60%">
+                    <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
                 </div>
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action active">
@@ -98,7 +98,7 @@
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label>State / Region <i class="text-danger font-weight-bold">*</i></label>
+                                <label>State / Region</label>
                                 <input name="st_state" type="text" class="form-control form-control-sm"
                                     placeholder="State / Region" id="state">
                                 <?=form_error('st_state', '<small class="text-danger">', '</small>');?>
@@ -106,7 +106,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>City <i class="text-danger font-weight-bold">*</i></label>
+                                <label>City</label>
                                 <input name="st_city" type="text" class="form-control form-control-sm"
                                     placeholder="City" id="city">
                                 <?=form_error('st_city', '<small class="text-danger">', '</small>');?>
@@ -156,7 +156,7 @@
                                 <?=form_error('sch_name', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-3" id="current">
+                        <div class="col-md-6 d-none" id="currentSchool">
                             <div class="form-group">
                                 <label>Current Education</label>
                                 <select id="currentEducation" name="st_currentsch">
@@ -170,7 +170,7 @@
                                 <?=form_error('st_currentsch', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-3" id="studentYear">
+                        <div class="col-md-6" id="studentYear">
                             <div class="form-group">
                                 <label>Student Grade</label>
                                 <select id="grade" name="st_grade">
@@ -398,23 +398,15 @@ function otherSchools() {
     var sN = document.getElementById("schoolName");
     var snValues = sN.value;
     var oS = document.getElementById("otherSchool");
-    var cE = document.getElementById("current");
+    var cE = document.getElementById("currentSchool");
     var sY = document.getElementById("studentYear");
 
     if (snValues == 'other') {
         oS.classList.remove("d-none");
-        cE.classList.remove("col-md-3");
-        sY.classList.remove("col-md-3");
-
-        cE.classList.add("col-md-6");
-        sY.classList.add("col-md-6");
+        cE.classList.remove("d-none");
     } else {
-        cE.classList.remove("col-md-6");
-        sY.classList.remove("col-md-6");
-
-        cE.classList.add("col-md-3");
-        sY.classList.add("col-md-3");
         oS.classList.add("d-none");
+        cE.classList.add("d-none");
     }
 }
 </script>

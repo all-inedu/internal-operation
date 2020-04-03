@@ -58,7 +58,7 @@ a:focus {
     left: -250px;
     height: 100vh;
     z-index: 999;
-    background: #7386D5;
+    background : #7386D5;
     color: #fff;
     transition: all 0.3s;
     overflow-y: scroll;

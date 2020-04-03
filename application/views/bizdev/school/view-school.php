@@ -89,7 +89,7 @@
     <div class="col-md-9">
         <div class="card shadow">
             <div class="card-body">
-                <h6><i class="fas fa-user"></i>&nbsp; &nbsp; School
+                <h6><i class="icofont-building"></i> &nbsp; School
                     <div class="float-right">
                         <a href="<?=base_url('bizdev/school/');?>" class="btn btn-sm btn-info"><i
                                 class="fas fa-arrow-circle-left"></i></a>
@@ -243,7 +243,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Program Name
+                                <label>Program Name <i class="text-danger font-weight-bold">*</i>
                                 </label>
                                 <select id="programName" name="prog_id">
                                     <option data-placeholder="true"></option>
@@ -257,7 +257,7 @@
                         </div>
 
                         <div class="col-md-12 mb-3">
-                            <label>PIC
+                            <label>PIC <i class="text-danger font-weight-bold">*</i>
                             </label>
                             <select id="PIC" name="empl_id">
                                 <option data-placeholder="true"></option>
@@ -271,7 +271,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>First Discuss</label>
+                                <label>First Discuss <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="schprog_datefirstdis" type="date" class="form-control form-control-sm"
                                     placeholder="First Discuss">
                                 <?=form_error('schprog_datefirstdis', '<small class="text-danger">', '</small>');?>
