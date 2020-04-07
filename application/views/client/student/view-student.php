@@ -363,6 +363,20 @@
                             </div>
                         </div>
 
+                        <div class="col-md-6 d-none" id="inflForm">
+                            <div class="form-group">
+                                <label>Influencer Name<i class="text-danger font-weight-bold">*</i>
+                                </label>
+                                <select id="influencer" name="infl_id">
+                                    <option data-placeholder="true"></option>
+                                    <?php foreach($infl as $if): ?>
+                                    <option value="<?=$if['infl_id'];?>"><?=$if['infl_fn'];?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?=form_error('infl_id', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+
                         <div class="col-md-6 mb-3">
                             <label>PIC <i class="text-danger font-weight-bold">*</i>
                             </label>
@@ -439,6 +453,13 @@ let ED = new SlimSelect({
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 
+let INF = new SlimSelect({
+    select: '#influencer',
+    placeholder: 'Select influencer name ',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
 new SlimSelect({
     select: '#PIC',
     placeholder: 'Select PIC ',
@@ -450,9 +471,18 @@ function leads() {
     let lead_id = $("#leadSource").val();
     if (lead_id == "LS004") {
         $("#edufForm").removeClass("d-none");
-    } else {
+        $("#inflForm").addClass("d-none");
+        INF.set('');
+    } else
+    if (lead_id == "LS014") {
+        $("#inflForm").removeClass("d-none");
         $("#edufForm").addClass("d-none");
         ED.set('');
+    } else {
+        $("#edufForm").addClass("d-none");
+        $("#inflForm").addClass("d-none");
+        ED.set('');
+        INF.set('');
     }
 }
 </script>

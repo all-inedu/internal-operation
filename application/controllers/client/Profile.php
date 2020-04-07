@@ -19,6 +19,8 @@ class Profile extends CI_Controller
         $this->load->model('client/StProgram_model','stprog');
         $this->load->model('client/Program_model','prog');
         $this->load->model('client/Lead_model','lead');
+        $this->load->model('bizdev/Edufair_model','eduf');
+        $this->load->model('hr/Influencer_model', 'infl');
         $this->load->model('Menus_model','menu');
         
         $empl_id = $this->session->userdata('empl_id');
@@ -80,6 +82,8 @@ class Profile extends CI_Controller
         $data['sch'] = $this->sch->showAll();
         $data['school'] = $this->schooldata->show();
         $data['lead'] = $this->lead->showAll();
+        $data['eduf'] = $this->eduf->showSuccess();
+        $data['infl'] = $this->infl->showActive();
         $data['univ'] = $this->univ->showAll();
         $data['con'] = $this->countries->show();
         $data['majors'] = $this->majors->show();
@@ -152,9 +156,10 @@ class Profile extends CI_Controller
             'st_address' => $this->input->post('st_address'),
             'pr_id' => $newprid,
             'sch_id' => $newid,
-            'st_currentsch' => $this->input->post('st_currentsch'),
             'st_grade' => $this->input->post('st_grade'),
             'lead_id' => $this->input->post('lead_id'),
+            'eduf_id' => $this->input->post('eduf_id'),
+            'infl_id' => $this->input->post('infl_id'),
             'st_levelinterest' => $this->input->post('st_levelinterest'),
             'prog_id' => implode(", ", $this->input->post('prog_id[]')),
             'st_abryear' => $this->input->post('st_abryear'),

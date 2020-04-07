@@ -135,6 +135,7 @@ class login extends CI_Controller
 
     public function sign_out() {
         $this->session->unset_userdata('empl_id');
+        $this->session->unset_userdata('empl_email');
         $this->session->set_flashdata('error', 'Username not register');
         $this->session->set_flashdata('success', 'Successfully logged out');
         redirect('/');  

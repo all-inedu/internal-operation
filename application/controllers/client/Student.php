@@ -15,6 +15,7 @@ class Student extends CI_Controller
         $this->load->model('bizdev/School_model','sch');
         $this->load->model('bizdev/University_model','univ');
         $this->load->model('bizdev/Edufair_model','eduf');
+        $this->load->model('hr/Influencer_model', 'infl');
         $this->load->model('client/Students_model','std');
         $this->load->model('client/Parents_model','prt');
         $this->load->model('client/StProgram_model','stprog');
@@ -45,6 +46,8 @@ class Student extends CI_Controller
         $data['sch'] = $this->sch->showAll();
         $data['school'] = $this->schooldata->show();
         $data['lead'] = $this->lead->showAll();
+        $data['eduf'] = $this->eduf->showSuccess();
+        $data['infl'] = $this->infl->showActive();
         $data['univ'] = $this->univ->showAll();
         $data['con'] = $this->countries->show();
         $data['majors'] = $this->majors->show();
@@ -106,6 +109,8 @@ class Student extends CI_Controller
             'sch_id' => $sch_id,
             'st_grade' => $this->input->post('st_grade'),
             'lead_id' => $this->input->post('lead_id'),
+            'eduf_id' => $this->input->post('eduf_id'),
+            'infl_id' => $this->input->post('infl_id'),
             'st_levelinterest' => $this->input->post('st_levelinterest'),
             'prog_id' => implode(", ", $this->input->post('prog_id[]')),
             'st_abryear' => $this->input->post('st_abryear'),
@@ -131,6 +136,7 @@ class Student extends CI_Controller
         $data['stprog'] = $this->stprog->showStProg($id);
         $data['empl'] = $this->empl->showActive();
         $data['eduf'] = $this->eduf->showSuccess();
+        $data['infl'] = $this->infl->showActive();
 
         $this->form_validation->set_rules('prog_id', 'program name', 'required');
         $this->form_validation->set_rules('lead_id', 'lead id', 'required');
@@ -153,6 +159,7 @@ class Student extends CI_Controller
             'prog_id' => $this->input->post('prog_id'),
             'lead_id' => $this->input->post('lead_id'),
             'eduf_id' => $this->input->post('eduf_id'),
+            'infl_id' => $this->input->post('infl_id'),
             'stprog_firstdisdate' => $this->input->post('stprog_firstdisdate'),
             'stprog_lastdisdate' => $this->input->post('stprog_firstdisdate'),
             'stprog_meetingdate' => $this->input->post('stprog_meetingdate'),

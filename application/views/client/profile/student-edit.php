@@ -225,25 +225,6 @@
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <i class="fas fa-bookmark"></i>&nbsp; &nbsp; Current Education :
-                        </div>
-                        <div class="col-md-8 mb-3 text-muted">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <select id="currentEducation" name="st_currentsch">
-                                        <option data-placeholder="true"></option>
-                                        <?php foreach($school['level'] as $lv): ?>
-                                        <option value="<?=$lv;?>">
-                                            <?=$lv;?>
-                                        </option>
-                                        <?php endforeach;?>
-                                    </select>
-                                    <?=form_error('st_currentsch', '<small class="text-danger">', '</small>');?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 mb-3">
                             <i class="fas fa-hourglass-start"></i>&nbsp; &nbsp; Grade :
                         </div>
                         <div class="col-md-8 mb-1 text-muted">
@@ -270,7 +251,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <small>Lead Source</small>
-                                    <select id="leadSource" name="lead_id">
+                                    <select id="leadSource" name="lead_id" onchange="leads()">
                                         <option data-placeholder="true"></option>
                                         <?php foreach($lead as $l): ?>
                                         <option value="<?=$l['lead_id'];?>">
@@ -280,6 +261,45 @@
                                     </select>
                                     <?=form_error('lead_id', '<small class="text-danger">', '</small>');?>
                                 </div>
+
+                                <?php 
+                                    if($s['eduf_id']>0) { 
+                                        $class=""; 
+                                    } else {
+                                        $class="d-none";
+                                    }
+                                ?>
+                                <div class="col-md-6 mb-2 <?=$class;?>" id="edufForm">
+                                    <small>Edufair Name<i class="text-danger font-weight-bold">*</i>
+                                    </small>
+                                    <select id="edufair" name="eduf_id">
+                                        <option data-placeholder="true"></option>
+                                        <?php foreach($eduf as $ed): ?>
+                                        <option value="<?=$ed['eduf_id'];?>"><?=$ed['eduf_organizer'];?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <?=form_error('eduf_id', '<small class="text-danger">', '</small>');?>
+                                </div>
+
+                                <?php 
+                                    if($s['infl_id']>0) { 
+                                        $class="";  
+                                    } else {
+                                        $class="d-none"; 
+                                    }
+                                ?>
+                                <div class="col-md-6 mb-2 <?=$class;?>" id="inflForm">
+                                    <small>Influencer Name<i class="text-danger font-weight-bold">*</i>
+                                    </small>
+                                    <select id="influencer" name="infl_id">
+                                        <option data-placeholder="true"></option>
+                                        <?php foreach($infl as $if): ?>
+                                        <option value="<?=$if['infl_id'];?>"><?=$if['infl_fn'];?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <?=form_error('infl_id', '<small class="text-danger">', '</small>');?>
+                                </div>
+
                                 <div class="col-md-4">
                                     <small>Level of Interest</small>
                                     <select id="levelInterest" name="st_levelinterest">
@@ -526,12 +546,12 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="<?=base_url('assets/js/jquery-ui.js');?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
 $(document).ready(function() {
     var states = '<?=implode(", ", $states);?>';
     var arr = states.split(", ")
-    console.log(arr)
     $("#state").autocomplete({
         source: arr
     });
@@ -551,6 +571,18 @@ let pName = new SlimSelect({
 });
 pName.set("<?=$s['pr_id'];?>")
 
+function addParent() {
+    var p = $('#prName').val();
+
+    if (p == 'other') {
+        $(".parent").addClass("d-block");
+        $("#pFName").focus();
+    } else {
+        $(".parent").removeClass("d-block");
+        $(".parent").addClass("d-none");
+    }
+}
+
 let SS = new SlimSelect({
     select: '#stSchool',
     placeholder: 'Select school Name',
@@ -558,14 +590,6 @@ let SS = new SlimSelect({
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 SS.set("<?=$s['sch_id'];?>")
-
-let CE = new SlimSelect({
-    select: '#currentEducation',
-    placeholder: 'Select current education',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-CE.set("<?=$s['st_currentsch'];?>")
 
 let GR = new SlimSelect({
     select: '#grade',
@@ -582,6 +606,22 @@ let LS = new SlimSelect({
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 LS.set("<?=$s['lead_id'];?>");
+
+let ED = new SlimSelect({
+    select: '#edufair',
+    placeholder: 'Select edufair name ',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+ED.set("<?=$s['eduf_id'];?>")
+
+let INF = new SlimSelect({
+    select: '#influencer',
+    placeholder: 'Select influencer name ',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+INF.set("<?=$s['infl_id'];?>")
 
 let LI = new SlimSelect({
     select: '#levelInterest',
@@ -647,17 +687,6 @@ if (myJSON4) {
     MJ.set(a4)
 }
 
-function addParent() {
-    var p = $('#prName').val();
-
-    if (p == 'other') {
-        $(".parent").addClass("d-block");
-        $("#pFName").focus();
-    } else {
-        $(".parent").removeClass("d-block");
-        $(".parent").addClass("d-none");
-    }
-}
 
 function addSchool() {
     var p = $('#stSchool').val();
@@ -668,6 +697,25 @@ function addSchool() {
     } else {
         $("#oSchool").removeClass("d-block");
         $("#oSchool").addClass("d-none");
+    }
+}
+
+function leads() {
+    let lead_id = $("#leadSource").val();
+    if (lead_id == "LS004") {
+        $("#edufForm").removeClass("d-none");
+        $("#inflForm").addClass("d-none");
+        INF.set('');
+    } else
+    if (lead_id == "LS014") {
+        $("#inflForm").removeClass("d-none");
+        $("#edufForm").addClass("d-none");
+        ED.set('');
+    } else {
+        $("#edufForm").addClass("d-none");
+        $("#inflForm").addClass("d-none");
+        ED.set('');
+        INF.set('');
     }
 }
 
