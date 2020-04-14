@@ -99,10 +99,16 @@ if ($this->session->flashdata('success')) {
                 <?php } ?>
                 <?php endforeach; ?>
             </ul>
-
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="<?=base_url('auth/login/sign-out');?>" class="download">Logout</a>
+                    <a href="<?=base_url('profile/change-password');?>" class="download bg-dark text-white shadow mb-2"
+                        target="_blank"><i class="icofont-key"></i> &nbsp; Change
+                        Password</a>
+                </li>
+                <li>
+                    <a href="<?=base_url('auth/login/sign-out');?>" class="download shadow"> <i
+                            class="icofont-sign-out"></i>
+                        &nbsp; Logout</a>
                 </li>
             </ul>
         </nav>

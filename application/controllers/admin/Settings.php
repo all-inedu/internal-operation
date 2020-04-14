@@ -10,6 +10,11 @@ class Settings extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('hr/Employee_model','empl');
         $this->load->model('Menus_model','menu');
+
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/');
+        }
     }
 
     public function menus($id='') 

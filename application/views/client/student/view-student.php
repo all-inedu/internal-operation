@@ -241,7 +241,7 @@
             </div>
         </div>
 
-        <?php  if($s['st_statuscli']!=0) {  ?>
+        <?php  if($s['st_statuscli']>=0) {  ?>
         <div class="card shadow mt-2 mb-3">
             <div class="card-body">
                 <h6><i class="fa fa-tags mr-2"></i>&nbsp; Program List</h6>

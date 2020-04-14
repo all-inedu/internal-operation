@@ -105,6 +105,10 @@ class Students_program extends CI_Controller
         }
 
         $prog_status = $this->input->post('stprog_status');
+        $pending = count($this->stprog->showStatusProgram($st_num, 0)) - 1;
+        $success = count($this->stprog->showStatusProgram($st_num, 1)) - 1;
+        $failed = count($this->stprog->showStatusProgram($st_num, 2));
+
         if($prog_status==1) {
             // Kode Baru 
             $query = $this->std->getId();  
@@ -130,15 +134,25 @@ class Students_program extends CI_Controller
                 ];
             }    
             $this->stprog->updateStudentsStatus($datas, $st_num);
-        }
 
-        $pending = count($this->stprog->showStatusProgram($st_num, 0));
-        $failed = count($this->stprog->showStatusProgram($st_num, 2));
-        if(($stprog==$pending)OR($stprog==$failed)) {
+        } else if(($prog_status==0) AND ($stprog>=0) AND ($success<=0)) {
             $datas = [
                 'st_statuscli' => 1,
             ];
             $this->stprog->updateStudentsStatus($datas, $st_num);
+            
+        } else if(($prog_status==2) AND ($stprog>=0) AND ($success<=0) AND ($pending<=0) ) {
+            $datas = [
+                'st_statuscli' => 0,
+            ];
+            $this->stprog->updateStudentsStatus($datas, $st_num);
+            
+        } else if(($prog_status==1) AND ($success>=0)) {
+            $datas = [
+                'st_statuscli' => 2,
+            ];
+            $this->stprog->updateStudentsStatus($datas, $st_num);
+
         }
 
         $data = [
@@ -156,8 +170,9 @@ class Students_program extends CI_Controller
         $this->stprog->update($data, $id);
 
         $done = count($this->stprog->showStatusRunning($st_num, 2));
-
-        if($stprog==$done) {
+        $tot_stprog = ($stprog - $failed);
+        echo $tot_stprog;
+        if($tot_stprog==$done) {
             $datas = [
                 'st_statuscli' => 3,
             ];

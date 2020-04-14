@@ -19,6 +19,11 @@ class Home extends CI_Controller
         $this->load->model('finance/Invoice_model','inv');
         $this->load->model('finance/InvoiceSchool_model','invsch');
         $this->load->model('finance/Receipt_model','rec');
+
+        $empl_id = $this->session->userdata('empl_id');
+        if(empty($empl_id)) {
+            redirect('/admin/login');
+        }
     }
 
     public function index() 

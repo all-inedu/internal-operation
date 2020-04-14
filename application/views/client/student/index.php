@@ -31,6 +31,8 @@
                 aria-controls="potential" aria-selected="false">Potential</a>
             <a class="nav-item nav-link" id="current" data-toggle="tab" href="#current" role="tab"
                 aria-controls="current" aria-selected="false">Current</a>
+            <a class="nav-item nav-link" id="completed" data-toggle="tab" href="#completed" role="tab"
+                aria-controls="current" aria-selected="false">Completed</a>
         </div>
     </nav>
 
@@ -185,6 +187,10 @@ $(document).ready(function() {
 
     $("#current").click(function() {
         tables.column(5).search('Current').draw();
+    });
+
+    $("#completed").click(function() {
+        tables.column(5).search('Completed').draw();
     });
 
     $("#all").click(function() {
