@@ -65,6 +65,18 @@ body {
 
 
 <body>
+    <?php
+if ($this->session->flashdata('success')) {
+    echo '<div class="flash-data" data-success="' . $this->session->flashdata('success') . '"></div>';
+} else if ($this->session->flashdata('error')) {
+    echo '<div class="flash-data" data-error="' . $this->session->flashdata('error') . '"></div>';
+} else if ($this->session->flashdata('warning')) {
+    echo '<div class="flash-data" data-warning="' . $this->session->flashdata('warning') . '"></div>';
+} else if ($this->session->flashdata('login')) {
+    echo '<div class="flash-data" data-login="' . $this->session->flashdata('login') . '"></div>';
+}
+?>
+
     <a href="<?=base_url('admin/settings/menus');?>" class="role shadow" title="Settings" target="_blank">
         <i class="icofont-settings icofont-2x"></i>
     </a>
@@ -456,3 +468,48 @@ body {
             </div>
         </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="<?=base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <script>
+    const flashSuccess = $('.flash-data').data('success');
+    const flashError = $('.flash-data').data('error');
+    const flashWarning = $('.flash-data').data('warning');
+    const flashLogin = $('.flash-data').data('login');
+
+    if (flashSuccess) {
+        Swal.fire(
+            'Congratulations !',
+            '' + flashSuccess,
+            'success'
+        )
+    } else if (flashError) {
+        Swal.fire(
+            'Error !',
+            '' + flashError,
+            'error'
+        )
+    } else if (flashLogin) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        Toast.fire({
+            type: 'success',
+            title: '' + flashLogin
+        })
+    } else if (flashWarning) {
+        Swal.fire(
+            'Information !',
+            '' + flashWarning,
+            'info'
+        )
+    }
+    </script>
+
+</html>

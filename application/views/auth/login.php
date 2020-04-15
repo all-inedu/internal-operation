@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/27e56cd4ff.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?=base_url('assets/css');?>/icofont/icofont.min.css">
     <style>
     body {
         font-family: 'Kanit', sans-serif;
@@ -67,7 +68,7 @@ if ($this->session->flashdata('success')) {
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i
-                                                class="far fa-envelope"></i></span>
+                                                class="icofont-envelope"></i></span>
                                     </div>
                                     <input type="text" name="username" class="form-control form-control-sm"
                                         placeholder="Input your email">
@@ -77,9 +78,9 @@ if ($this->session->flashdata('success')) {
                                 <div class="input-group mb-3 pb-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i
-                                                class="fas fa-key"></i></span>
+                                                class="icofont-key"></i></span>
                                     </div>
-                                    <input type="text" name="password" class="form-control form-control-sm"
+                                    <input type="password" name="password" class="form-control form-control-sm"
                                         placeholder="Input your password">
                                 </div>
                                 <hr class="pt-2">

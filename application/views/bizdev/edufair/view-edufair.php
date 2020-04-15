@@ -22,7 +22,7 @@
 
 <div class="row">
     <div class="col-md-4 mb-1">
-        <div class="card shadow card-sticky" style="background:#FAFAFA;">
+        <div class="card shadow" style="background:#FAFAFA;">
             <div class="card-body">
                 <div class="text-center">
                     <img src="<?=base_url('assets/img/edufair.jpg');?>" alt="client management" width="50%">
@@ -42,6 +42,42 @@
                 </div>
             </div>
         </div>
+        <?php if($eduf['eduf_status']==1){ ?>
+        <div class="card shadow card-sticky mt-2" style="background:#FAFAFA;">
+            <div class="card-body text-center">
+                <h5><i class="icofont-user-alt-5"></i>&nbsp; Students</h5>
+                <hr class="m-0 mb-3">
+                <h6>
+                    <div class="row">
+                        <div class="col-md-8 mb-1 text-left">
+                            <i class="icofont-arrow-right"></i> Prospective Client
+                        </div>
+                        <div class="col-md-4 mb-2 text-right">
+                            <?=$prosp;?>
+                        </div>
+                        <div class="col-md-8 mb-1 text-left">
+                            <i class="icofont-arrow-right"></i> Potential Client
+                        </div>
+                        <div class="col-md-4 mb-2 text-right">
+                            <?=$pot;?>
+                        </div>
+                        <div class="col-md-8 mb-1 text-left">
+                            <i class="icofont-arrow-right"></i> Current Client
+                        </div>
+                        <div class="col-md-4 mb-2 text-right">
+                            <?=$curr;?>
+                        </div>
+                        <div class="col-md-8 mb-1 text-left">
+                            <i class="icofont-arrow-right"></i> Completed Client
+                        </div>
+                        <div class="col-md-4 mb-2 text-right">
+                            <?=$comp;?>
+                        </div>
+                    </div>
+                </h6>
+            </div>
+        </div>
+        <?php } ?>
     </div>
 
     <div class="col-md-8">

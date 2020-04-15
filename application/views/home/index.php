@@ -270,7 +270,7 @@ if ($this->session->flashdata('success')) {
             </div>
         </div>
         <div class="text-center mt-5 mb-3">
-            <h1 style="font-size:50px;">ALL-IN EDUSPACE - PUSH GITHUB</h1>
+            <h1 style="font-size:50px;">ALL-IN EDUSPACE</h1>
         </div>
     </section>
     <section class="menus">
@@ -294,7 +294,7 @@ if ($this->session->flashdata('success')) {
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-3 col-6 text-center  mb-2">
+                        <div class="col-md-3 col-6 text-center  mb-2 ml-0">
                             <div class="card shadow menus-card">
                                 <a href="<?=base_url('auth/login/as/finance');?>" class="text-decoration-none">
                                     <i class="icofont-dollar icofont-3x"></i>

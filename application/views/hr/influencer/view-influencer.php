@@ -23,7 +23,7 @@
 
 <div class="row">
     <div class="col-md-4 mb-3">
-        <div class="card shadow card-sticky">
+        <div class="card shadow">
             <div class="card-body">
                 <div class="text-center">
                     <img src="<?=base_url('assets/img/user/infl.svg');?>" alt="employee" width="30%"><br><br>
@@ -60,6 +60,40 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="card shadow card-sticky mt-2">
+            <div class="card-body text-center">
+                <h5><i class="icofont-user-alt-5"></i>&nbsp; Students</h5>
+                <hr class="m-0 mb-3">
+                <h6>
+                    <div class="row">
+                        <div class="col-md-8 mb-1 text-left">
+                            <i class="icofont-arrow-right"></i> Prospective Client
+                        </div>
+                        <div class="col-md-4 mb-2 text-right">
+                            <?=$prosp;?>
+                        </div>
+                        <div class="col-md-8 mb-1 text-left">
+                            <i class="icofont-arrow-right"></i> Potential Client
+                        </div>
+                        <div class="col-md-4 mb-2 text-right">
+                            <?=$pot;?>
+                        </div>
+                        <div class="col-md-8 mb-1 text-left">
+                            <i class="icofont-arrow-right"></i> Current Client
+                        </div>
+                        <div class="col-md-4 mb-2 text-right">
+                            <?=$curr;?>
+                        </div>
+                        <div class="col-md-8 mb-1 text-left">
+                            <i class="icofont-arrow-right"></i> Completed Client
+                        </div>
+                        <div class="col-md-4 mb-2 text-right">
+                            <?=$comp;?>
+                        </div>
+                    </div>
+                </h6>
             </div>
         </div>
     </div>

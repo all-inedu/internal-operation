@@ -42,19 +42,19 @@ class Login extends CI_Controller
                     if (password_verify($password, $data['empl_password'])) {
                         $data['position'] = $id;
                         $this->session->set_userdata($data);
-                        $this->session->set_flashdata('success', 'Signed in successfully');
+                        $this->session->set_flashdata('login', 'Signed in successfully');
                         redirect('/admin/home');  
 
                     } else {
                         $this->session->set_flashdata('error', 'Your password is wrong');
-                        redirect('/');
+                        redirect('/admin/login');
                     }
                 }
 
             }   
         } else {
             $this->session->set_flashdata('error', 'Username not register');
-            redirect('/admin/login');    
+            redirect('/');    
         }
         
     }

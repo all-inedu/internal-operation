@@ -97,8 +97,11 @@ class Influencer extends CI_Controller
 
     public function view($id){
         $data['infl'] = $this->infl->showId($id);
+        $data['prosp'] = count($this->infl->showStudentsByInfl($id, 0));
+        $data['pot'] = count($this->infl->showStudentsByInfl($id, 1));
+        $data['curr'] = count($this->infl->showStudentsByInfl($id, 2));
+        $data['comp'] = count($this->infl->showStudentsByInfl($id, 3));
         if($data['infl']){
-
             $this->load->view('templates/s-io');
             $this->load->view('hr/influencer/view-influencer.php', $data);
             $this->load->view('templates/f-io');

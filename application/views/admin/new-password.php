@@ -62,7 +62,7 @@
                                         <span class="input-group-text" id="basic-addon1"><i
                                                 class="fas fa-key"></i></span>
                                     </div>
-                                    <input type="text" name="new_password" class="form-control form-control-sm"
+                                    <input type="password" name="new_password" class="form-control form-control-sm"
                                         placeholder="Input your password">
                                 </div>
                                 <hr class="pt-2">

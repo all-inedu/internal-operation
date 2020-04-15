@@ -66,5 +66,13 @@ class Edufair_model extends CI_model
         $this->db->where('edufreview_id', $id);
         $this->db->delete('tbl_edufreview');
     }
+
+    public function showStudentsByEduf($id, $n) 
+    {
+        $this->db->select('st_firstname');
+        $this->db->where('st_statuscli', $n);
+        $this->db->where('eduf_id', $id); 
+        return $this->db->get('tbl_students')->result_array();
+    }
 }
 ?>

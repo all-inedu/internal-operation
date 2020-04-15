@@ -58,4 +58,12 @@ class Influencer_model extends CI_model
         $this->db->where('infl_id', $id);
         $this->db->update('tbl_infl'); 
     }
+
+    public function showStudentsByInfl($id, $n)
+    {
+        $this->db->select('st_firstname');
+        $this->db->where('st_statuscli', $n);
+        $this->db->where('infl_id', $id); 
+        return $this->db->get('tbl_students')->result_array();
+    }
 }

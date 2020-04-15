@@ -76,6 +76,10 @@ class Edufair extends CI_Controller
         $data['eduf'] = $this->eduf->showId($id);
         $data['review'] = $this->eduf->showReview($id);
         $data['empl'] = $this->empl->showActive();
+        $data['prosp'] = count($this->eduf->showStudentsByEduf($id, 0));
+        $data['pot'] = count($this->eduf->showStudentsByEduf($id, 1));
+        $data['curr'] = count($this->eduf->showStudentsByEduf($id, 2));
+        $data['comp'] = count($this->eduf->showStudentsByEduf($id, 3));
         $this->load->view('templates/s-io');
         $this->load->view('bizdev/edufair/view-edufair', $data);
         $this->load->view('templates/f-io');
