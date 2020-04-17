@@ -150,7 +150,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label class="font-weight-bold">Teacher Contact Person</label>
-                            <button class="float-right btn btn-warning add_more_button"><i
+                            <button type="button" class="float-right btn btn-warning add_more_button"><i
                                     class="fas fa-plus-square"></i>&nbsp; Add Teacher</button>
                         </div>
                         <div class="container mt-3" id="teacher">
@@ -242,12 +242,12 @@ new SlimSelect({
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 
-new SlimSelect({
-    select: '#isFriendly',
-    placeholder: 'Select school curriculum',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
+// new SlimSelect({
+//     select: '#isFriendly',
+//     placeholder: 'Select school curriculum',
+//     allowDeselect: true,
+//     deselectLabel: '<span class="text-danger">✖</span>'
+// });
 
 $(document).ready(function() {
     var max_fields_limit = 5; //set limit for maximum input fields
