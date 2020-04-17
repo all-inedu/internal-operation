@@ -141,7 +141,7 @@
 <div class="modal fade" id="addIncome" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <form action="addIncome" name="income" method="post">
+            <form action="<?=base_url('finance/petty-cash/addIncome');?>" name="income" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Add Income</h5>
                 </div>
@@ -180,7 +180,7 @@
 <div class="modal fade" id="viewIncomes" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <form action="updateIncome" name="updateIncome" method="post">
+            <form action="<?=base_url('finance/petty-cash/updateIncome');?>" name="updateIncome" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Income</h5>
                 </div>
@@ -231,7 +231,7 @@
 <div class="modal fade" id="addExpense" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <form action="addExpense" name="addExpense" method="post">
+            <form action="<?=base_url('finance/petty-cash/addExpense');?>" name="addExpense" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Add Expense</h5>
                 </div>
@@ -299,7 +299,7 @@
 <div class="modal fade" id="viewExpenses" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <form action="updateExpense" name="updateExpense" method="post">
+            <form action="<?=base_url('finance/petty-cash/updateExpense');?>" name="updateExpense" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Add Expense</h5>
                 </div>

@@ -74,7 +74,7 @@
                         </div>
                         <div class="col-md-4 mt-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" placeholder="5" id="pph" class="form-control form-control-sm">
+                                <input type="text" placeholder="0.5" id="pph" class="form-control form-control-sm">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">%</span>
                                 </div>

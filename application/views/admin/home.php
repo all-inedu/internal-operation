@@ -378,7 +378,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/pph-final');?>" target="_blank">
+                        <a href="<?=base_url('finance/pph-final/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     PPH Final

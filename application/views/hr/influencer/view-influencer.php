@@ -147,7 +147,7 @@
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="row">
                     <div class="col-md-4">
-                        <label><i class="fas fa-dollar-sign fa-fw text-muted"></i>&nbsp; Position :</label>
+                        <label><i class="fas fa-dollar-sign fa-fw text-muted"></i>&nbsp; Fee Per Post :</label>
                     </div>
                     <div class="col-md-7 mb-3">
                         Rp. <?=number_format($infl['infl_feeperpost']);?>
