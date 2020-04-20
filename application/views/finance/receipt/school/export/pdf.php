@@ -40,8 +40,10 @@
         border: 1px solid #dedede;
     }
     </style>
-    <br><br><br><br>
-
+    <br><br>
+    <img src="<?=base_url('assets/img/header-allin.png');?>" width="114%" style="margin:-83px -50px -30px -50px;">
+    <img src="<?=base_url('assets/img/confidential.png');?>" width="85%"
+        style="position:absolute; left:8%; top:25%; z-index:-999; opacity:0.04;">
     <table>
         <tr>
             <td>
@@ -162,6 +164,7 @@
             </tr>
         </table>
     </div>
+    <img src="<?=base_url('assets/img/footer-allin.png');?>" width="100%" style="bottom:60px; position:absolute;">
 </body>
 
 </html>

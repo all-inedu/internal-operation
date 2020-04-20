@@ -8,6 +8,7 @@ class Pdf
     function createPDF($html, $filename='', $download=TRUE, $paper='A4', $orientation='potrait'){
         $dompdf = new Dompdf();
         $dompdf->load_html($html);
+        $dompdf->set_option('isRemoteEnabled', TRUE);
         $dompdf->set_paper($paper, $orientation);
         $dompdf->render();
         if($download)

@@ -24,7 +24,7 @@
     }
 
     .pdf {
-        font-size: 12px !important;
+        font-size: 11px !important;
         font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
         margin: 0 20px;
     }
@@ -36,7 +36,7 @@
     table tr td,
     th {
         padding: 8px 7px;
-        line-height: 19px;
+        line-height: 15px;
     }
 
     .table-detail td,
@@ -45,13 +45,16 @@
     }
     </style>
     <br><br>
+    <img src="<?=base_url('assets/img/header-allin.png');?>" width="114%" style="margin:-83px -50px -30px -50px;">
+    <img src="<?=base_url('assets/img/confidential.png');?>" width="85%"
+        style="position:absolute; left:8%; top:25%; z-index:-999; opacity:0.04;">
     <div class="pdf">
         <h4
             style="line-height:1.6; letter-spacing:3px; font-weight:bold; text-align:center; color:#247df2; font-size:18px; margin-bottom:10px; ">
             <u><b>INVOICE</b></u>
         </h4>
         <br><br>
-        <div style="height:190px;">
+        <div style="height:150px;">
             <table border="0" width="100%">
                 <tr>
                     <td width="60%">
@@ -186,7 +189,7 @@
             </tr>
         </table>
     </div>
-
+    <img src="<?=base_url('assets/img/footer-allin.png');?>" width="100%" style="bottom:60px; position:absolute;">
 </body>
 
 </html>

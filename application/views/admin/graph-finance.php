@@ -78,6 +78,7 @@
                 <div class="card-body text-center">
                     <h4>Invoice</h4>
                     <hr>
+                    <small>* All</small>
                     <canvas id="invoiceChart"></canvas>
                 </div>
             </div>
@@ -88,6 +89,7 @@
                 <div class="card-body text-center">
                     <h4>Receipt</h4>
                     <hr>
+                    <small>* All</small>
                     <canvas id="receiptChart"></canvas>
                 </div>
             </div>
@@ -98,6 +100,7 @@
                 <div class="card-body text-center">
                     <h4>Revenue</h4>
                     <hr>
+                    <small>M : Million</small>
                     <canvas id="myChart3"></canvas>
                 </div>
             </div>
@@ -112,7 +115,7 @@ $totrev = [];
 foreach($revenue as $rev) :
 $tot = $rev['amount']-$rev['refund'];
 array_push($mon, $month[$rev['m']].' '.$rev['y']);
-array_push($totrev,$tot);
+array_push($totrev,$tot/1000000);
 endforeach; 
 $arr1 = implode(",",$mon);
 $arr2 = implode(",",$totrev);
@@ -120,6 +123,33 @@ $arr2 = implode(",",$totrev);
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 <script>
+function number_format(number, decimals, dec_point, thousands_sep) {
+    // *     example: number_format(1234.56, 2, ',', ' ');
+    // *     return: '1 234,56'
+    number = (number + '').replace(',', '').replace(' ', '');
+    var n = !isFinite(+number) ? 0 : +number,
+        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+        s = '',
+        toFixedFix = function(n, prec) {
+            var k = Math.pow(10, prec);
+            return '' + Math.round(n * k) / k;
+        };
+    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+    if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '').length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1).join('0');
+    }
+    return s.join(dec);
+}
+
+
+
 var invoice = $("#invoiceChart");
 new Chart(invoice, {
     data: {
@@ -169,14 +199,25 @@ new Chart(ctx3, {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true,
+                    beginAtZero: false,
+                    callback: function(value, index, values) {
+                        return 'Rp. ' + number_format(value) + ' M';
+                    }
                 }
             }],
             xAxes: [{
                 ticks: {
-                    display: false
+                    display: true
                 }
             }],
+        },
+        tooltips: {
+            callbacks: {
+                label: function(tooltipItem, chart) {
+                    var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || ' ';
+                    return datasetLabel + ': Rp. ' + number_format(tooltipItem.yLabel, 2) + ' M';
+                }
+            }
         },
         legend: {
             display: false
