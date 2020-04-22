@@ -108,7 +108,7 @@ if ($this->session->flashdata('success')) {
                         Client Management
                     </div>
                     <div class="card-body menu-link">
-                        <a href="<?=base_url('client/programs');?>" target="_blank">
+                        <a href="<?=base_url('client/programs/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Program List
@@ -119,7 +119,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/lead');?>" target="_blank">
+                        <a href="<?=base_url('client/lead/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Lead Source List
@@ -130,7 +130,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/university');?>" target="_blank">
+                        <a href="<?=base_url('bizdev/university/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     University List
@@ -141,7 +141,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/student');?>" target="_blank">
+                        <a href="<?=base_url('client/student/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Student List
@@ -152,7 +152,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/parents');?>" target="_blank">
+                        <a href="<?=base_url('client/parents/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Parent List
@@ -163,7 +163,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/students-program');?>" target="_blank">
+                        <a href="<?=base_url('client/students-program/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Students Program List
@@ -174,7 +174,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/alumni');?>" target="_blank">
+                        <a href="<?=base_url('client/alumni/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Alumni/Acceptance List
@@ -194,7 +194,7 @@ if ($this->session->flashdata('success')) {
                         Business Development
                     </div>
                     <div class="card-body menu-link">
-                        <a href="<?=base_url('client/programs');?>" target="_blank">
+                        <a href="<?=base_url('client/programs/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Program List
@@ -205,7 +205,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/lead');?>" target="_blank">
+                        <a href="<?=base_url('client/lead/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Lead Source List
@@ -216,7 +216,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/university');?>" target="_blank">
+                        <a href="<?=base_url('bizdev/university/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     University List
@@ -227,7 +227,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/school');?>" target="_blank">
+                        <a href="<?=base_url('bizdev/school/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     School List
@@ -238,7 +238,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/corporate');?>" target="_blank">
+                        <a href="<?=base_url('bizdev/corporate/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Corporate List
@@ -249,7 +249,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/school-program');?>" target="_blank">
+                        <a href="<?=base_url('bizdev/school-program/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Schools Program List
@@ -260,7 +260,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/corporate-program');?>" target="_blank">
+                        <a href="<?=base_url('bizdev/corporate-program/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Corporates Program List
@@ -271,7 +271,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/edufair');?>" target="_blank">
+                        <a href="<?=base_url('bizdev/edufair/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Edufair List
@@ -291,7 +291,7 @@ if ($this->session->flashdata('success')) {
                         Finance
                     </div>
                     <div class="card-body menu-link">
-                        <a href="<?=base_url('finance/assets');?>" target="_blank">
+                        <a href="<?=base_url('finance/assets/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Asset List
@@ -302,7 +302,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/vendor');?>" target="_blank">
+                        <a href="<?=base_url('finance/vendor/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Vendor List
@@ -313,7 +313,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/purchase-request');?>" target="_blank">
+                        <a href="<?=base_url('finance/purchase-request/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Purchase Request List
@@ -324,7 +324,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/petty-cash');?>" target="_blank">
+                        <a href="<?=base_url('finance/petty-cash/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Petty Cash
@@ -335,7 +335,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/invoice/student');?>" target="_blank">
+                        <a href="<?=base_url('finance/invoice/student/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Students Invoice List
@@ -346,7 +346,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/invoice/school');?>" target="_blank">
+                        <a href="<?=base_url('finance/invoice/school/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Schools Invoice List
@@ -357,7 +357,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/receipt/student');?>" target="_blank">
+                        <a href="<?=base_url('finance/receipt/student/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Students Receipt List
@@ -368,7 +368,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/receipt/school');?>" target="_blank">
+                        <a href="<?=base_url('finance/receipt/school/');?>" target="_blank">
                             <div class="row">
                                 <div class="col-10">
                                     Schools Receipt List
