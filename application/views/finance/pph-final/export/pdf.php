@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PPH Final <?=date('F', mktime(0, 0, 0, $m, 10)).' '.$y;?></title>
+    <link rel="icon" href="<?=base_url('assets/img/bigdata.ico');?>" type="image/gif" sizes="16x16">
     <style>
     h3,
     h4 {
