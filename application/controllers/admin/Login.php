@@ -14,10 +14,6 @@ class Login extends CI_Controller
     public function index()
     {
         $empl_id = $this->session->userdata('empl_id');
-        $position = $this->session->userdata('position');
-        if($position) {
-            redirect('../');
-        } else
         if($empl_id) {
             redirect('admin/');
         } 

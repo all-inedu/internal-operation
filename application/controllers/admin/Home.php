@@ -21,6 +21,10 @@ class Home extends CI_Controller
         $this->load->model('finance/Receipt_model','rec');
 
         $empl_id = $this->session->userdata('empl_id');
+        $position = $this->session->userdata('position');
+        if(!empty($position)) {
+            redirect('/');
+        } else
         if(empty($empl_id)) {
             redirect('/admin/login');
         }
