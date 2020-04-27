@@ -13,6 +13,11 @@ class Login extends CI_Controller
 
     public function index()
     {
+        $empl_id = $this->session->userdata('empl_id');
+        if($empl_id) {
+            redirect('admin/');
+        } 
+
         $this->form_validation->set_rules('username','username', 'required');
         $this->form_validation->set_rules('password','password', 'required');
         if($this->form_validation->run()==false) {
