@@ -271,7 +271,7 @@ if ($this->session->flashdata('success')) {
             </div>
         </div>
         <div class="text-center mt-5 mb-3">
-            <h1 style="font-size:50px;">ALL-IN EDUSPACE</h1>
+            <h1 style="font-size:50px;">ALL-IN EDUSPACE - TEST PULL</h1>
         </div>
     </section>
     <section class="menus">
