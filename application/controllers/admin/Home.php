@@ -22,7 +22,7 @@ class Home extends CI_Controller
 
         $empl_id = $this->session->userdata('empl_id');
         $position = $this->session->userdata('position');
-        if(!empty($position)) {
+        if((!empty($empl_id)) and (!empty($position))) {
             redirect('/');
         } else
         if(empty($empl_id)) {
