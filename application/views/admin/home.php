@@ -62,6 +62,10 @@ body {
 .role:hover {
     color: black;
 }
+
+.count-title {
+    font-size: 15px;
+}
 </style>
 
 
