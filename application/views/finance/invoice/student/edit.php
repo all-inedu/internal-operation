@@ -38,17 +38,11 @@
                 <div class="form-group text-center">
                     <label>Current USD
                     </label>
-                    <?php
-                        $data = file_get_contents("https://kurs.web.id/api/v1/bi");
-                        $json = json_decode($data, TRUE);
-                        $rupiah = $json['jual'];
-                    ?>
                     <div class="input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3">Rp.</span>
                         </div>
-                        <input type="text" class="form-control" id="currentUSD" aria-describedby="basic-addon3"
-                            value="<?=round($rupiah);?>">
+                        <input type="text" class="form-control" id="currentUSD" aria-describedby="basic-addon3">
                     </div>
                 </div>
                 <a href="https://www.bi.go.id/id/moneter/informasi-kurs/transaksi-bi/Default.aspx"

@@ -9,7 +9,7 @@
             <div class="card mb-3 shadow">
                 <div class="row no-gutters">
                     <div class="col-md-4 text-center align-middle p-4">
-                        <img src="<?=base_url('assets/img/petty-cash.png');?>" alt="petty cash" width="70%">
+                        <img src="<?=base_url('assets/img/petty-cash.png');?>" alt="petty cash" width="100%">
                     </div>
                     <div class="col-md-8 bg-info text-white shadow align-middle">
                         <div class="card-body">
