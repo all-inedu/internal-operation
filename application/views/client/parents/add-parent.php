@@ -178,7 +178,7 @@
                                 <?=form_error('sch_name', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-3" id="current">
+                        <div class="col-md-6 d-none" id="currentSchool">
                             <div class="form-group">
                                 <label>Current Education</label>
                                 <select id="currentEducation" name="st_currentsch">
@@ -192,7 +192,7 @@
                                 <?=form_error('st_currentsch', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-3" id="studentYear">
+                        <div class="col-md-6" id="studentYear">
                             <div class="form-group">
                                 <label>Students Grade</label>
                                 <select id="grade" name="st_grade">
@@ -415,23 +415,15 @@ function otherSchool() {
     var sN = document.getElementById("schoolName");
     var snValues = sN.value;
     var oS = document.getElementById("otherSchool");
-    var cE = document.getElementById("current");
+    var cE = document.getElementById("currentSchool");
     var sY = document.getElementById("studentYear");
 
     if (snValues == 'other') {
         oS.classList.remove("d-none");
-        cE.classList.remove("col-md-3");
-        sY.classList.remove("col-md-3");
-
-        cE.classList.add("col-md-6");
-        sY.classList.add("col-md-6");
+        cE.classList.remove("d-none");
     } else {
-        cE.classList.remove("col-md-6");
-        sY.classList.remove("col-md-6");
-
-        cE.classList.add("col-md-3");
-        sY.classList.add("col-md-3");
         oS.classList.add("d-none");
+        cE.classList.add("d-none");
     }
 }
 </script>

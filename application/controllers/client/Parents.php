@@ -116,7 +116,6 @@ class Parents extends CI_Controller
             'st_city' => $this->input->post('st_city'),
             'st_address' => $this->input->post('st_address').$this->input->post('st_pc') ,
             'sch_id' => $sch_id,
-            'st_currentsch' => $this->input->post('st_currentsch'),
             'st_grade' => $this->input->post('st_grade'),
             'lead_id' => $this->input->post('lead_id'),
             'st_levelinterest' => $this->input->post('st_levelinterest'),
