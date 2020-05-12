@@ -35,7 +35,7 @@ class School extends CI_Controller
     public function add(){
     
         $this->form_validation->set_rules('sch_name', 'school name', 'required');
-        $this->form_validation->set_rules('schdetail_fullname[]', 'full name', 'required');
+        // $this->form_validation->set_rules('schdetail_fullname[]', 'full name', 'required');
 
         if ($this->form_validation->run() == false) {
         $data = $this->schooldata->show();
