@@ -55,11 +55,17 @@ class login extends CI_Controller
                 $this->session->set_userdata($dataset);
                 redirect('/auth/login/new-password/'.$id);
             } else {
+                
                 $role = $data['empl_role'];
                 if($role==1) { $roles = 'client' ;} else 
                 if($role==2) { $roles = 'bizdev' ;} else 
                 if($role==3) { $roles = 'finance' ;} else 
-                if($role==4) { $roles = 'hr' ;}
+                if($role==4) { $roles = 'hr' ;} else        
+                
+                if(empty($role)) {
+                    $this->session->set_flashdata('warning', 'Please log in at the admin login page');
+                    redirect('./');
+                }
 
                 if($id!=$roles) {
                     $this->session->set_flashdata('error', 'Please input your account');
