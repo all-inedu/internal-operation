@@ -172,6 +172,30 @@
                             </div>
                         </div>
 
+                        <?php
+                            if($empl['empl_role']==0) {
+                        ?>
+                        <div class="col-md-4">
+                            <label><i class="fas fa-crosshairs fa-fw text-muted"></i>&nbsp; Role :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <select name="empl_role" id="empl_role" class="form-control form-control-sm">
+                                        <option value="5">Select Role</option>
+                                        <option value="1">Client Management</option>
+                                        <option value="2">Business Development</option>
+                                        <option value="3">Finance</option>
+                                        <option value="4">Human Resource</option>
+                                        <option value="0">Admin</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <?php 
+                            }
+                        ?>
+
                         <div class="col-md-4">
                             <label><i class="fas fa-calendar-alt fa-fw text-muted"></i>&nbsp; Hire Date :</label>
                         </div>
@@ -217,6 +241,29 @@
                                 </div>
                             </div>
                         </div>
+                        <?php
+                            if($empl['empl_role']==0) {
+                        ?>
+                        <div class="col-md-4">
+                            <label><i class="fas fa-key fa-fw text-muted"></i>&nbsp; Password :</label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="password" class="form-control form-control-sm" name="empl_password">
+                                </div>
+                            </div>
+                            <div class="text-danger">
+                                <?php 
+                                if($empl['empl_password']) {
+                                    echo '* Change password';
+                                }
+                            ?>
+                            </div>
+                        </div>
+                        <?php 
+                            }
+                        ?>
                     </div>
 
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
@@ -363,6 +410,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 $("#empl_status").val("<?=$empl['empl_status'];?>");
+$("#empl_role").val("<?=$empl['empl_role'];?>");
 
 function changeStatus() {
     var x = $('#status').val();

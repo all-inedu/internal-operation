@@ -40,7 +40,7 @@ class Home extends CI_Controller
         $data['compl'] = count($this->std->studentStatus(3));
         $data['pend'] = count($this->stprog->studentProgStatus(0, $days30));
         $data['succ'] = count($this->stprog->studentProgStatus(1, $days30));
-        $data['fail'] = count($this->stprog->studentProgStatus(2, $days30));
+        $data['fail'] = count($this->stprog->studentProgStatus(2, $days30)); 
         $data['lead'] = $this->stprog->studentProgramLead($days30);
         $data['prog'] = $this->stprog->studentProgramProg($days30);
 

@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Employee extends CI_Controller
 {
-
+ 
     public function __construct()
     {
         parent::__construct();
@@ -42,6 +42,8 @@ class Employee extends CI_Controller
     }
 
     public function add(){
+        $id = $this->session->userdata('empl_id');
+        $data['empl'] = $this->empl->showId($id);
         $this->form_validation->set_rules('empl_firstname', 'first name','required');
         $this->form_validation->set_rules('empl_email', 'email','required|is_unique[tbl_empl.empl_email]',
         array('is_unique' => 'The email already used'));
@@ -50,7 +52,7 @@ class Employee extends CI_Controller
         if($this->form_validation->run()==FALSE) {
 
             $this->load->view('templates/s-io');
-            $this->load->view('hr/employee/add-employee.php');
+            $this->load->view('hr/employee/add-employee.php', $data);
             $this->load->view('templates/f-io');
         } else {
             $this->save();
@@ -124,8 +126,9 @@ class Employee extends CI_Controller
             'empl_idcard' => $idcard,	
             'empl_tax' => $tax,	
             'empl_healthinsurance' => $healthinsurance,	
-            'empl_emplinsurance' => $emplinsurance,	
-            'empl_password' => '',	
+            'empl_emplinsurance' => $emplinsurance,
+            'empl_password' => password_hash($this->input->post('empl_password'), PASSWORD_DEFAULT),
+            'empl_role' => $this->input->post('empl_role'),
             'empl_lastupdatedate' => date('Y-m-d H:i:s')
         ];
         
@@ -245,7 +248,8 @@ class Employee extends CI_Controller
             'empl_tax' => $tax,	
             'empl_healthinsurance' => $healthinsurance,	
             'empl_emplinsurance' => $emplinsurance,	
-            'empl_password' => '',	
+            'empl_password' => password_hash($this->input->post('empl_password'), PASSWORD_DEFAULT),
+            'empl_role' => $this->input->post('empl_role'),	
             'empl_lastupdatedate' => date('Y-m-d H:i:s')
         ];
 

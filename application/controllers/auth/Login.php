@@ -48,12 +48,14 @@ class login extends CI_Controller
         $username = $this->input->post('username');
         $password = $this->input->post('password');
 
-        $data = $this->empl->showEmail($username);
+        $data = $this->empl->showEmail($username); 
         if($data) {
             if(empty($data['empl_password'])) {
-                $dataset['empl_email'] = $data['empl_email'];
-                $this->session->set_userdata($dataset);
-                redirect('/auth/login/new-password/'.$id);
+                // $dataset['empl_email'] = $data['empl_email'];
+                // $this->session->set_userdata($dataset);
+                // redirect('/auth/login/new-password/'.$id);
+                $this->session->set_flashdata('warning', 'Your email has been registered<br> Please contact admin to get your password');
+                redirect('/auth/login/as/'.$id);    
             } else {
                 
                 $role = $data['empl_role'];
