@@ -67,4 +67,16 @@ class Employee_model extends CI_model
         $this->db->update('tbl_empl'); 
     }
 
+    public function export_enable($id){
+        $this->db->set('empl_export',1);
+        $this->db->where('empl_id', $id);
+        $this->db->update('tbl_empl'); 
+    }
+
+    public function export_disable($id){
+        $this->db->set('empl_export',0);
+        $this->db->where('empl_id', $id);
+        $this->db->update('tbl_empl'); 
+    }
+
 }

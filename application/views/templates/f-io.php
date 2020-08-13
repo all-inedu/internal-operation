@@ -1,3 +1,10 @@
+<?php
+    $CI =& get_instance();
+    $CI->load->model('hr/Employee_model','empl');
+    $empl_id = $CI->session->userdata('empl_id');
+    $data = $CI->empl->showId($empl_id);
+    // echo $data['empl_export'];
+?>
 </div>
 </div>
 
@@ -164,11 +171,14 @@ $('.convert-button').on('click', function(e) {
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
+<?php 
+    if($data['empl_export']==1) {
+?>
 <script>
 $(document).ready(function() {
     var tables = $('table.display').DataTable({
         "bLengthChange": true,
-        "pageLength": 15,
+        "pageLength": 25,
         "bPaginate": true,
         "bFilter": true,
         "bInfo": false,
@@ -193,6 +203,36 @@ $(document).ready(function() {
     });
 });
 </script>
+<?php 
+    } else {
+?>
+<script>
+$(document).ready(function() {
+    var tables = $('table.display').DataTable({
+        "bLengthChange": true,
+        "pageLength": 25,
+        "bPaginate": true,
+        "bFilter": true,
+        "bInfo": false,
+        "bAutoWidth": true,
+    });
+
+    $('#searchData1').on('keyup', function() {
+        tables.column(1).search($(this).val()).draw();
+    });
+
+    $('#searchData2').on('keyup', function() {
+        tables.column(2).search($(this).val()).draw();
+    });
+
+    $('#searchData3').on('keyup', function() {
+        tables.column(3).search($(this).val()).draw();
+    });
+});
+</script>
+<?php 
+    }
+?>
 <script type="text/javascript">
 $(document).ready(function() {
     $("#sidebar").mCustomScrollbar({
@@ -216,6 +256,20 @@ var userList = new List('users', {
     valueNames: ['name', 'born', 'email'],
     page: 5,
     pagination: true
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    //Disable cut copy paste
+    $('body').bind('cut copy paste', function(e) {
+        e.preventDefault();
+    });
+
+    //Disable mouse right click
+    $("body").on("contextmenu", function(e) {
+        return false;
+    });
 });
 </script>
 </body>

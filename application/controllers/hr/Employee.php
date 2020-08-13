@@ -88,6 +88,12 @@ class Employee extends CI_Controller
 		}
         $idmax = str_pad($id, 4, "0", STR_PAD_LEFT); 
         $newid = "EMPL-".$idmax;
+        $pass = $this->input->post('empl_password');
+        if(empty($pass)) {
+            $new_pass = '';
+        } else { 
+            $new_pass = password_hash($pass, PASSWORD_DEFAULT);
+        }
 
         $files1 = $_FILES['empl_cv']['name'];
         $files2 = $_FILES['empl_idcard']['name'];
@@ -127,7 +133,7 @@ class Employee extends CI_Controller
             'empl_tax' => $tax,	
             'empl_healthinsurance' => $healthinsurance,	
             'empl_emplinsurance' => $emplinsurance,
-            'empl_password' => password_hash($this->input->post('empl_password'), PASSWORD_DEFAULT),
+            'empl_password' => $new_pass,
             'empl_role' => $this->input->post('empl_role'),
             'empl_lastupdatedate' => date('Y-m-d H:i:s')
         ];
@@ -138,6 +144,8 @@ class Employee extends CI_Controller
     }
 
     public function view($id){
+        $user_id = $this->session->userdata('empl_id');
+        $data['user_empl'] = $this->empl->showId($user_id);
         $data['empl'] = $this->empl->showId($id);
         if($data['empl']){
 
@@ -153,13 +161,15 @@ class Employee extends CI_Controller
         // unlink("./upload/employee/KTP/".$id);
 
     public function edit($id){
+        $user_id = $this->session->userdata('empl_id');
+        $data['user_empl'] = $this->empl->showId($user_id);
+
         $this->form_validation->set_rules('empl_firstname', 'first name','required');
         $this->form_validation->set_rules('empl_email', 'email','required');
         $this->form_validation->set_rules('empl_phone', 'phone number','required');
 
         if($this->form_validation->run()==FALSE) {
             $data['empl'] = $this->empl->showId($id);
-
             $this->load->view('templates/s-io');
             $this->load->view('hr/employee/edit-employee.php',$data);
             $this->load->view('templates/f-io');
@@ -176,6 +186,13 @@ class Employee extends CI_Controller
         $empl_tax = $empl['empl_tax'];
         $empl_healthinsurance = $empl['empl_healthinsurance'];
         $empl_emplinsurance = $empl['empl_emplinsurance'];
+        $pass = $this->input->post('empl_password');
+        $old_pass = $empl['empl_password'];
+        if(empty($pass)) {
+            $new_pass = $old_pass;
+        } else { 
+            $new_pass = password_hash($pass, PASSWORD_DEFAULT);
+        }
    
         $files1 = $_FILES['empl_cv']['name'];
         $files2 = $_FILES['empl_idcard']['name'];
@@ -248,7 +265,7 @@ class Employee extends CI_Controller
             'empl_tax' => $tax,	
             'empl_healthinsurance' => $healthinsurance,	
             'empl_emplinsurance' => $emplinsurance,	
-            'empl_password' => password_hash($this->input->post('empl_password'), PASSWORD_DEFAULT),
+            'empl_password' => $new_pass,
             'empl_role' => $this->input->post('empl_role'),	
             'empl_lastupdatedate' => date('Y-m-d H:i:s')
         ];
@@ -267,6 +284,18 @@ class Employee extends CI_Controller
     public function activate($id){
         $this->empl->activate($id);
         $this->session->set_flashdata('success', 'Employee has been activated');
+        redirect('/hr/employee/view/'.$id);
+    }
+
+    public function export_enable($id){
+        $this->empl->export_enable($id);
+        $this->session->set_flashdata('success', 'Export has been enabled');
+        redirect('/hr/employee/view/'.$id);
+    }
+
+    public function export_disable($id){
+        $this->empl->export_disable($id);
+        $this->session->set_flashdata('success', 'Export has been disabled');
         redirect('/hr/employee/view/'.$id);
     }
 

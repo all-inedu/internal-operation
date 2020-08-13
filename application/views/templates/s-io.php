@@ -100,6 +100,22 @@ if ($this->session->flashdata('success')) {
                 <?php endforeach; ?>
             </ul>
             <ul class="list-unstyled CTAs">
+                <?php
+                    $CI =& get_instance();
+                    $CI->load->model('hr/Employee_model','empl');
+                    $empl_id = $CI->session->userdata('empl_id');
+                    $data = $CI->empl->showId($empl_id);
+                    if($data['empl_role']==0) {
+                    // echo $data['empl_export'];
+                ?>
+                <li>
+                    <a href="<?=base_url('admin/home');?>" class="mb-2 bg-info text-white shadow"><i
+                            class="icofont-home"></i>
+                        &nbsp; Dashboard</a>
+                </li>
+                <?php
+                    }
+                ?>
                 <li>
                     <a href="<?=base_url('profile/change-password');?>" class="download bg-dark text-white shadow mb-2"
                         target="_blank"><i class="icofont-key"></i> &nbsp; Change

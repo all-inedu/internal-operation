@@ -160,12 +160,22 @@
         </tbody>
     </table>
 </div>
+<?php
+    $CI =& get_instance();
+    $CI->load->model('hr/Employee_model','empl');
+    $empl_id = $CI->session->userdata('empl_id');
+    $data = $CI->empl->showId($empl_id);
+    // echo $data['empl_export'];
+?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<?php 
+    if($data['empl_export']==1) {
+?>
 <script>
 $(document).ready(function() {
     var tables = $('#studentTable').DataTable({
         "bLengthChange": true,
-        "pageLength": 15,
+        "pageLength": 25,
         "bPaginate": true,
         "bFilter": true,
         "bInfo": false,
@@ -199,3 +209,42 @@ $(document).ready(function() {
 
 });
 </script>
+<?php 
+    } else {
+?>
+<script>
+$(document).ready(function() {
+    var tables = $('#studentTable').DataTable({
+        "bLengthChange": true,
+        "pageLength": 25,
+        "bPaginate": true,
+        "bFilter": true,
+        "bInfo": false,
+        "bAutoWidth": true,
+    });
+
+    $("#prospective").click(function() {
+        tables.column(5).search('Prospective').draw();
+    });
+
+    $("#potential").click(function() {
+        tables.column(5).search('Potential').draw();
+    });
+
+    $("#current").click(function() {
+        tables.column(5).search('Current').draw();
+    });
+
+    $("#completed").click(function() {
+        tables.column(5).search('Completed').draw();
+    });
+
+    $("#all").click(function() {
+        tables.column(5).search('').draw();
+    });
+
+});
+</script>
+<?php
+    }
+?>

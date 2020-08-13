@@ -48,16 +48,32 @@
                         Edit</a>
                     <?php if($empl['empl_isactive']==1){ ?>
                     <a href="<?=base_url('hr/employee/deactivate/'.$empl['empl_id']);?>"
-                        class="btn btn-sm btn-danger m-1 convert-button" data-message="Deactivate this employee ?"><i
-                            class="fas fa-user-times"></i>&nbsp;
+                        class="btn btn-sm btn-danger m-1 mt-2 convert-button"
+                        data-message="Deactivate this employee ?"><i class="fas fa-user-times"></i>&nbsp;
                         Deactivate</a>
                     <?php } else ?>
                     <?php if($empl['empl_isactive']==2){ ?>
                     <a href="<?=base_url('hr/employee/activate/'.$empl['empl_id']);?>"
-                        class="btn btn-sm btn-success m-1 convert-button" data-message="Activate this employee ?"><i
-                            class="fas fa-user-times"></i>&nbsp;
+                        class="btn btn-sm btn-success m-1 mt-2 convert-button"
+                        data-message="Activate this employee ?"><i class="fas fa-user-times"></i>&nbsp;
                         Activate</a>
                     <?php } ?>
+                    <br>
+                    <?php
+                        if($user_empl['empl_role']==0) {
+                        if($empl['empl_export']==0) {
+                    ?>
+                    <a href="<?=base_url('hr/employee/export-enable/'.strtolower($empl['empl_id']));?>"
+                        class="btn btn-sm btn-danger mt-2 pl-3 pr-3">
+                        Export : Disable</a>
+                    <?php } else { ?>
+                    <a href="<?=base_url('hr/employee/export-disable/'.strtolower($empl['empl_id']));?>"
+                        class="btn btn-sm btn-success mt-2 pl-3 pr-3">
+                        Export : Enable</a>
+                    <?php 
+                    }
+                        }
+                    ?>
                 </div>
             </div>
         </div>

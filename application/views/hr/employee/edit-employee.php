@@ -173,7 +173,7 @@
                         </div>
 
                         <?php
-                            if($empl['empl_role']==0) {
+                            if($user_empl['empl_role']==0) {
                         ?>
                         <div class="col-md-4">
                             <label><i class="fas fa-crosshairs fa-fw text-muted"></i>&nbsp; Role :</label>
@@ -242,7 +242,7 @@
                             </div>
                         </div>
                         <?php
-                            if($empl['empl_role']==0) {
+                            if($user_empl['empl_role']==0) {
                         ?>
                         <div class="col-md-4">
                             <label><i class="fas fa-key fa-fw text-muted"></i>&nbsp; Password :</label>
