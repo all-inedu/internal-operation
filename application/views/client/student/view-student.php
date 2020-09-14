@@ -27,7 +27,6 @@
                 <div class="text-center">
                     <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
                     <h6 class="mt-3"><?=$s['st_firstname']." ".$s['st_lastname'];?></h6>
-
                     <?php  if($s['st_statuscli']==0) {  ?>
                     <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-danger">
                         Prospective
@@ -126,6 +125,9 @@
                         $yinput = date('Y', strtotime($s['st_datecreate']));
                         $ginput = $s['st_grade'];
                         $gnow = ($ynow - $yinput) + $ginput;
+                        if($ginput=="0") {
+                            echo '-';
+                        } else
                         if($gnow <= 12) {
                             echo $gnow;
                         } else {

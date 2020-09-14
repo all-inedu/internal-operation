@@ -111,6 +111,9 @@
                         $yinput = date('Y', strtotime($s['st_datecreate']));
                         $ginput = $s['st_grade'];
                         $gnow = ($ynow - $yinput) + $ginput;
+                        if($ginput=="0") {
+                            echo '-';
+                        } else
                         if($gnow <= 12) {
                             echo $gnow;
                         } else {

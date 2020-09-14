@@ -114,18 +114,20 @@
                 <td><?=$s['st_state'];?></td>
                 <td><?=$s['st_address'];?></td>
                 <td>
-                    <?=$s['lead_name'];?>
-                    <br> (
+                    <?php
+                        $lead = $this->lead->showId($s['lead_id']);
+                    ?>
+                    <?=$lead['lead_name'];?>
+                    <br>
                     <?php
                         if(!empty($s['eduf_id'])) {
                             $eduf = $this->eduf->showId($s['eduf_id']);
-                            echo $eduf['eduf_organizer'];
+                            echo '('.$eduf['eduf_organizer'].')';
                         } else if(!empty($s['infl_id'])) {
                             $infl = $this->infl->showId($s['infl_id']);
-                            echo $infl['infl_fn'];
+                            echo '('.$infl['infl_fn'].')';
                         }
                     ?>
-                    )
                 </td>
                 <td><?=$s['st_levelinterest'];?></td>
                 <td>

@@ -41,7 +41,7 @@ class Student extends CI_Controller
         $this->load->view('templates/f-io');
     }
 
-    public function add(){
+    public function add(){ 
         $data['prog'] = $this->prog->showB2C();
         $data['sch'] = $this->sch->showAll();
         $data['school'] = $this->schooldata->show();
