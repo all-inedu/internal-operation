@@ -113,7 +113,7 @@ class login extends CI_Controller
                 'empl_password' => $password,
                 'empl_role' => $role
             ];
-            $this->empl->update($dt, $empl_id);
+            $this->empl->update($dt, $empl_id); 
 
             if($id=='client') {
                 $menus = ['1','5','6','7','8','9','10','11'] ;                       

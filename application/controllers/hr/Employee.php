@@ -139,6 +139,28 @@ class Employee extends CI_Controller
         ];
         
         $this->empl->save($data);
+
+        $role = $this->input->post('empl_role');
+        if($role=='1') {
+            $menus = ['1','5','6','7','8','9','10','11'] ;                       
+        } else if($role=='2') {
+            $menus = ['2','5','7','12','13','14','15','16'] ;                       
+        } else if($role=='3') {
+            $menus = ['3','17','18','19','20','21','22','23','24','25'] ;                       
+        } else if($role=='4') {
+            $menus = ['4','26','27','28','29','30','31'] ;                       
+        }
+
+        $n = count($menus);
+        for($i=0;$i<$n;$i++) {
+           $data_menus = [
+               'menus_id' => $menus[$i],
+               'empl_id' => $newid,
+               'status' => 1
+           ];
+           $this->db->insert('tbl_menusdtl', $data_menus);
+        }
+
         $this->session->set_flashdata('success', 'Employee has been created');
         redirect('/hr/employee/');
     }
@@ -271,6 +293,33 @@ class Employee extends CI_Controller
         ];
 
         $this->empl->update($data, $id);
+
+        $old_role = $empl['empl_role'];
+        $role = $this->input->post('empl_role');
+
+        if($role=='1') {
+            $menus = ['1','5','6','7','8','9','10','11'] ;                       
+        } else if($role=='2') {
+            $menus = ['2','5','7','12','13','14','15','16'] ;                       
+        } else if($role=='3') {
+            $menus = ['3','17','18','19','20','21','22','23','24','25'] ;                       
+        } else if($role=='4') {
+            $menus = ['4','26','27','28','29','30','31'] ;                       
+        }
+
+        if($old_role!=$role) {
+            $this->menu->delete($id);
+            $n = count($menus);
+            for($i=0;$i<$n;$i++) {
+            $data_menus = [
+                'menus_id' => $menus[$i],
+                'empl_id' => $id,
+                'status' => 1
+            ];
+            $this->db->insert('tbl_menusdtl', $data_menus);
+            }
+        }
+
         $this->session->set_flashdata('success', 'Employee has been changed');
         redirect('/hr/employee/view/'.$id);
     }
