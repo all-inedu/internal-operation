@@ -20,7 +20,7 @@
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
 <div class="row">
     <div class="col-md-3 mb-2">
-        <div class="card shadow card-sticky">
+        <div class="card shadow ">
             <div class="card-body">
                 <?php 
                     if(isset($start)) {
@@ -200,7 +200,7 @@
         </div>
         <div class="card shadow mb-2">
             <div class="card-body">
-                <h6>4. Average Time Converted to Current Client</h6>
+                <h6>4. Average Time : Converted to Current Client</h6>
                 <div class="table-responsive">
                     <table class="table table-bordered" width="100%">
                         <tr class="text-center">
@@ -218,7 +218,7 @@
                                 $f_date = $avg['f_date'];
                                 $l_date = $avg['l_date'];
                                 $tot = $avg['tot'];
-                                $avg_time = ($l_date - $f_date)/$tot;
+                                $avg_time = number_format(($l_date - $f_date)/$tot);
                             ?>
                             <td align="center"><?=$avg_time." day";?></td>
                         </tr>

@@ -178,6 +178,17 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
+                        <a href="<?=base_url('client/tracking/');?>" target="">
+                            <div class="row">
+                                <div class="col-10">
+                                    Sales Tracking
+                                </div>
+                                <div class="col-2 my-auto">
+                                    <i class="icofont-paper-plane icofont-1x"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="mt-1 mb-1">
                         <a href="<?=base_url('client/alumni/');?>" target="">
                             <div class="row">
                                 <div class="col-10">
