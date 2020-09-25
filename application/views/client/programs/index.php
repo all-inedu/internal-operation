@@ -339,32 +339,60 @@ var ETP = new SlimSelect({
 
 function mainPrograms() {
     var p = $('#mainProgram').val();
-    if (p == 'Enrichment Program') {
+    if (p == 'Admissions Advisory') {
         $('#subProgram').html('');
         $('#subProgram').html(
-            '<?php foreach($subEP as $EP): ?>' +
-            '<option value="<?=$EP;?>"><?=$EP;?></option>' +
-            '<?php endforeach; ?>'
-        );
-    } else if (p == 'Experiential Learning') {
-        $('#subProgram').html('');
-        $('#subProgram').html(
-            '<?php foreach($subEL as $EL): ?>' +
-            '<option value="<?=$EL;?>"><?=$EL;?></option>' +
+            '<?php foreach($adm as $admissions): ?>' +
+            '<option value="<?=$admissions;?>"><?=$admissions;?></option>' +
             '<?php endforeach; ?>'
         );
     } else if (p == 'Standardized Test') {
         $('#subProgram').html('');
         $('#subProgram').html(
-            '<?php foreach($subST as $ST): ?>' +
-            '<option value="<?=$ST;?>"><?=$ST;?></option>' +
+            '<?php foreach($sta as $standardized): ?>' +
+            '<option value="<?=$standardized;?>"><?=$standardized;?></option>' +
             '<?php endforeach; ?>'
         );
-    } else if (p == 'University & Scholarship') {
+    } else if (p == 'Essay Guidance') {
         $('#subProgram').html('');
         $('#subProgram').html(
-            '<?php foreach($subUS as $US): ?>' +
-            '<option value="<?=$US;?>"><?=$US;?></option>' +
+            '<?php foreach($ess as $essay): ?>' +
+            '<option value="<?=$essay;?>"><?=$essay;?></option>' +
+            '<?php endforeach; ?>'
+        );
+    } else if (p == 'Interview Preparation') {
+        $('#subProgram').html('');
+        $('#subProgram').html(
+            '<?php foreach($int as $interview): ?>' +
+            '<option value="<?=$interview;?>"><?=$interview;?></option>' +
+            '<?php endforeach; ?>'
+        );
+    } else if (p == 'Tutoring') {
+        $('#subProgram').html('');
+        $('#subProgram').html(
+            '<?php foreach($tut as $tutoring): ?>' +
+            '<option value="<?=$tutoring;?>"><?=$tutoring;?></option>' +
+            '<?php endforeach; ?>'
+        );
+    } else if (p == 'Experiential Learning') {
+        $('#subProgram').html('');
+        $('#subProgram').html(
+            '<?php foreach($exp as $experiential): ?>' +
+            '<option value="<?=$experiential;?>"><?=$experiential;?></option>' +
+            '<?php endforeach; ?>'
+        );
+    } else if (p == 'Enrichment Program') {
+        $('#subProgram').html('');
+        $('#subProgram').html(
+            '<?php foreach($enr as $enrichment): ?>' +
+            '<option value="<?=$enrichment;?>"><?=$enrichment;?></option>' +
+            '<?php endforeach; ?>'
+        );
+    } else if (p == 'Workshop') {
+        $('#subProgram').html('');
+        $('#subProgram').html(
+            '<?php foreach($wor as $workshop): ?>' +
+            '<option value="<?=$workshop;?>"><?=$workshop;?></option>' +
             '<?php endforeach; ?>'
         );
     }
@@ -372,32 +400,60 @@ function mainPrograms() {
 
 function editMP() {
     var p = $('#editMainPrograms').val();
-    if (p == 'Enrichment Program') {
-        $('#editSubProgram').html('');
-        $('#editSubProgram').html(
-            '<?php foreach($subEP as $EP): ?>' +
-            '<option value="<?=$EP;?>"><?=$EP;?></option>' +
-            '<?php endforeach; ?>'
-        );
-    } else if (p == 'Experiential Learning') {
-        $('#editSubProgram').html('');
-        $('#editSubProgram').html(
-            '<?php foreach($subEL as $EL): ?>' +
-            '<option value="<?=$EL;?>"><?=$EL;?></option>' +
+    if (p == 'Admissions Advisory') {
+        $('#subProgram').html('');
+        $('#subProgram').html(
+            '<?php foreach($adm as $admissions): ?>' +
+            '<option value="<?=$admissions;?>"><?=$admissions;?></option>' +
             '<?php endforeach; ?>'
         );
     } else if (p == 'Standardized Test') {
-        $('#editSubProgram').html('');
-        $('#editSubProgram').html(
-            '<?php foreach($subST as $ST): ?>' +
-            '<option value="<?=$ST;?>"><?=$ST;?></option>' +
+        $('#subProgram').html('');
+        $('#subProgram').html(
+            '<?php foreach($sta as $standardized): ?>' +
+            '<option value="<?=$standardized;?>"><?=$standardized;?></option>' +
             '<?php endforeach; ?>'
         );
-    } else if (p == 'University & Scholarship') {
-        $('#editSubProgram').html('');
-        $('#editSubProgram').html(
-            '<?php foreach($subUS as $US): ?>' +
-            '<option value="<?=$US;?>"><?=$US;?></option>' +
+    } else if (p == 'Essay Guidance') {
+        $('#subProgram').html('');
+        $('#subProgram').html(
+            '<?php foreach($ess as $essay): ?>' +
+            '<option value="<?=$essay;?>"><?=$essay;?></option>' +
+            '<?php endforeach; ?>'
+        );
+    } else if (p == 'Interview Preparation') {
+        $('#subProgram').html('');
+        $('#subProgram').html(
+            '<?php foreach($int as $interview): ?>' +
+            '<option value="<?=$interview;?>"><?=$interview;?></option>' +
+            '<?php endforeach; ?>'
+        );
+    } else if (p == 'Tutoring') {
+        $('#subProgram').html('');
+        $('#subProgram').html(
+            '<?php foreach($tut as $tutoring): ?>' +
+            '<option value="<?=$tutoring;?>"><?=$tutoring;?></option>' +
+            '<?php endforeach; ?>'
+        );
+    } else if (p == 'Experiential Learning') {
+        $('#subProgram').html('');
+        $('#subProgram').html(
+            '<?php foreach($exp as $experiential): ?>' +
+            '<option value="<?=$experiential;?>"><?=$experiential;?></option>' +
+            '<?php endforeach; ?>'
+        );
+    } else if (p == 'Enrichment Program') {
+        $('#subProgram').html('');
+        $('#subProgram').html(
+            '<?php foreach($enr as $enrichment): ?>' +
+            '<option value="<?=$enrichment;?>"><?=$enrichment;?></option>' +
+            '<?php endforeach; ?>'
+        );
+    } else if (p == 'Workshop') {
+        $('#subProgram').html('');
+        $('#subProgram').html(
+            '<?php foreach($wor as $workshop): ?>' +
+            '<option value="<?=$workshop;?>"><?=$workshop;?></option>' +
             '<?php endforeach; ?>'
         );
     }
