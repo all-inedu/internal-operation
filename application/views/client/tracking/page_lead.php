@@ -35,7 +35,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php $i=1; foreach($stprog as $stpr): ?>
+            <?php $i=1; foreach($lead as $stpr): ?>
             <tr class="text-center">
                 <td><?=$i;?></td>
                 <td class="text-left" style="cursor:pointer"

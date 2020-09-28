@@ -41,7 +41,13 @@
                     <?=$sp['st_firstname'].' '.$sp['st_lastname'];?>
                 </td>
                 <td class="text-left">
-                    <?=$sp['prog_program'];?>
+                    <?php 
+                        if($sp['prog_sub']=='-') {
+                            echo $sp['prog_program'];
+                        } else {
+                            echo $sp['prog_sub'].': '.$sp['prog_program'];
+                        }
+                    ?>
                 </td>
                 <?php 
                         $inv = $this->inv->showId($sp['stprog_id']);

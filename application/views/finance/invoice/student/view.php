@@ -28,7 +28,15 @@
                 <h5><a target="_blank" href="<?=base_url('client/profile/edit/'.$inv['st_num']);?>">
                         <?=$inv['st_firstname'].' '.$inv['st_lastname'];?>
                     </a></h5>
-                <h6 class="text-info"><?=$inv['prog_program'];?></h6>
+                <h6 class="text-info">
+                    <?php 
+                        if($inv['prog_sub']=='-') {
+                            echo $inv['prog_program'];
+                        } else {
+                            echo $inv['prog_sub'].': '.$inv['prog_program'];
+                        }
+                    ?>
+                </h6>
                 <hr>
                 <a href="<?=base_url('finance/invoice/student/cancel/'.$inv['inv_num']);?>"
                     class="btn btn-sm btn-danger cancel-button" data-message="invoice"><i

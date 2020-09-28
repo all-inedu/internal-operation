@@ -267,7 +267,13 @@
                                     <td><?=$i;?></td>
                                     <td class="text-left" style="cursor:pointer"
                                         onclick="window.location='<?=base_url('client/students-program/view/'.$stp['stprog_id']);?>'">
-                                        <?=$stp['prog_program'];?>
+                                        <?php 
+                                            if($stp['prog_sub']=='-') {
+                                                echo $stp['prog_program'];
+                                            } else {
+                                                echo $stp['prog_sub'].': '.$stp['prog_program'];
+                                            }
+                                        ?>
                                     </td>
                                     <td><?=$stp['lead_name'];?></td>
                                     <td><?=date('d M Y', strtotime($stp['stprog_firstdisdate']));?></td>
@@ -330,7 +336,15 @@
                                 <select id="programName" name="prog_id">
                                     <option data-placeholder="true"></option>
                                     <?php foreach($program as $pr): ?>
-                                    <option value="<?=$pr['prog_id'];?>"><?=$pr['prog_program'];?></option>
+                                    <option value="<?=$pr['prog_id'];?>">
+                                        <?php 
+                                            if($pr['prog_sub']=='-') {
+                                                echo $pr['prog_program'];
+                                            } else {
+                                                echo $pr['prog_sub'].': '.$pr['prog_program'];
+                                            }
+                                        ?>
+                                    </option>
                                     <?php endforeach; ?>
                                 </select>
                                 <?=form_error('prog_id', '<small class="text-danger">', '</small>');?>
@@ -471,11 +485,11 @@ new SlimSelect({
 
 function leads() {
     let lead_id = $("#leadSource").val();
-    if (lead_id == "LS004") {
-        $("#edufForm").removeClass("d-none");
-        $("#inflForm").addClass("d-none");
-        INF.set('');
-    } else
+    // if (lead_id == "LS004") {
+    //     $("#edufForm").removeClass("d-none");
+    //     $("#inflForm").addClass("d-none");
+    //     INF.set('');
+    // } else
     if (lead_id == "LS014") {
         $("#inflForm").removeClass("d-none");
         $("#edufForm").addClass("d-none");

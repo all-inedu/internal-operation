@@ -60,17 +60,26 @@
                             <th width="80%">Status</th>
                             <th>Total</th>
                         </tr>
-                        <tr>
+                        <tr style="cursor:pointer"
+                            onclick="window.open('<?=base_url('client/tracking/p_status/0/'.$start.'/'.$end);?>','_blank')">
                             <td>Pending</td>
-                            <td align="center"><?=$st_pending;?></td>
+                            <td align="center">
+                                <?=$st_pending;?>
+                            </td>
                         </tr>
-                        <tr>
+                        <tr style="cursor:pointer"
+                            onclick="window.open('<?=base_url('client/tracking/p_status/1/'.$start.'/'.$end);?>','_blank')">
                             <td>Success</td>
-                            <td align="center"><?=$st_success;?></td>
+                            <td align="center">
+                                <?=$st_success;?>
+                            </td>
                         </tr>
-                        <tr>
+                        <tr style="cursor:pointer"
+                            onclick="window.open('<?=base_url('client/tracking/p_status/2/'.$start.'/'.$end);?>','_blank')">
                             <td>Failed</td>
-                            <td align="center"><?=$st_failed;?></td>
+                            <td align="center">
+                                <?=$st_failed;?>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -90,7 +99,8 @@
                             <th width="15%">Total</th>
                         </tr>
                         <?php $no=1; foreach ($lead_pending as $lead): ?>
-                        <tr>
+                        <tr style="cursor:pointer"
+                            onclick="window.open('<?=base_url('client/tracking/p_lead/0/'.$lead['lead_id'].'/'.$start.'/'.$end);?>','_blank')">
                             <td align="center"><?=$no;?></td>
                             <td><?=$lead['lead_name'];?></td>
                             <td align="center"><?=$lead['tot'];?></td>
@@ -107,7 +117,8 @@
                             <th width="15%">Total</th>
                         </tr>
                         <?php $no=1; foreach ($lead_success as $lead): ?>
-                        <tr>
+                        <tr style="cursor:pointer"
+                            onclick="window.open('<?=base_url('client/tracking/p_lead/1/'.$lead['lead_id'].'/'.$start.'/'.$end);?>','_blank')">
                             <td align="center"><?=$no;?></td>
                             <td><?=$lead['lead_name'];?></td>
                             <td align="center"><?=$lead['tot'];?></td>
@@ -124,7 +135,8 @@
                             <th width="15%">Total</th>
                         </tr>
                         <?php $no=1; foreach ($lead_failed as $lead): ?>
-                        <tr>
+                        <tr style="cursor:pointer"
+                            onclick="window.open('<?=base_url('client/tracking/p_lead/2/'.$lead['lead_id'].'/'.$start.'/'.$end);?>','_blank')">
                             <td align="center"><?=$no;?></td>
                             <td><?=$lead['lead_name'];?></td>
                             <td align="center"><?=$lead['tot'];?></td>
@@ -149,10 +161,19 @@
                             <th width="15%">Total</th>
                         </tr>
                         <?php $no=1; foreach ($prog_pending as $prog): ?>
-                        <tr>
+                        <tr style="cursor:pointer"
+                            onclick="window.open('<?=base_url('client/tracking/p_program/0/'.$prog['prog_id'].'/'.$start.'/'.$end);?>','_blank')">
                             <td align="center"><?=$no;?></td>
                             <td align="center"><?=$prog['prog_id'];?></td>
-                            <td><?=$prog['prog_program'];?></td>
+                            <td>
+                                <?php 
+                                    if($prog['prog_sub']=='-') {
+                                        echo $prog['prog_program'];
+                                    } else {
+                                        echo $prog['prog_sub'].': '.$prog['prog_program'];
+                                    }
+                                ?>
+                            </td>
                             <td align="center"><?=$prog['tot'];?></td>
                         </tr>
                         <?php $no++; endforeach; ?>
@@ -168,10 +189,19 @@
                             <th width="15%">Total</th>
                         </tr>
                         <?php $no=1; foreach ($prog_success as $prog): ?>
-                        <tr>
+                        <tr style="cursor:pointer"
+                            onclick="window.open('<?=base_url('client/tracking/p_program/1/'.$prog['prog_id'].'/'.$start.'/'.$end);?>','_blank')">
                             <td align="center"><?=$no;?></td>
                             <td align="center"><?=$prog['prog_id'];?></td>
-                            <td><?=$prog['prog_program'];?></td>
+                            <td>
+                                <?php 
+                                    if($prog['prog_sub']=='-') {
+                                        echo $prog['prog_program'];
+                                    } else {
+                                        echo $prog['prog_sub'].': '.$prog['prog_program'];
+                                    }
+                                ?>
+                            </td>
                             <td align="center"><?=$prog['tot'];?></td>
                         </tr>
                         <?php $no++; endforeach; ?>
@@ -187,10 +217,19 @@
                             <th width="15%">Total</th>
                         </tr>
                         <?php $no=1; foreach ($prog_failed as $prog): ?>
-                        <tr>
+                        <tr style="cursor:pointer"
+                            onclick="window.open('<?=base_url('client/tracking/p_program/2/'.$prog['prog_id'].'/'.$start.'/'.$end);?>','_blank')">
                             <td align="center"><?=$no;?></td>
                             <td align="center"><?=$prog['prog_id'];?></td>
-                            <td><?=$prog['prog_program'];?></td>
+                            <td>
+                                <?php 
+                                    if($prog['prog_sub']=='-') {
+                                        echo $prog['prog_program'];
+                                    } else {
+                                        echo $prog['prog_sub'].': '.$prog['prog_program'];
+                                    }
+                                ?>
+                            </td>
                             <td align="center"><?=$prog['tot'];?></td>
                         </tr>
                         <?php $no++; endforeach; ?>
@@ -213,8 +252,15 @@
                         <tr>
                             <td align="center"><?=$no;?></td>
                             <td align="center"><?=$avg['prog_id'];?></td>
-                            <td><?=$avg['prog_program'];?></td>
-                            <?php 
+                            <td>
+                                <?php 
+                                    if($avg['prog_sub']=='-') {
+                                        echo $avg['prog_program'];
+                                    } else {
+                                        echo $avg['prog_sub'].': '.$avg['prog_program'];
+                                    }
+                                ?>
+                                <?php 
                                 $f_date = $avg['f_date'];
                                 $l_date = $avg['l_date'];
                                 $tot = $avg['tot'];

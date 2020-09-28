@@ -10,6 +10,7 @@ class Tracking extends CI_Controller
         $this->load->model('Menus_model','menu');
         $this->load->model('client/Students_model','std');
         $this->load->model('client/StProgram_model','stprog');
+        $this->load->model('client/Reason_model','reason');
 
         $empl_id = $this->session->userdata('empl_id');
         if(empty($empl_id)) {
@@ -60,4 +61,25 @@ class Tracking extends CI_Controller
         $this->load->view('templates/f-io');
     }
 
+
+    public function p_status($n, $start, $end) {
+        $data['status'] = $this->stprog->stprog_status($n, $start, $end);
+        $this->load->view('templates/s-io');
+        $this->load->view('client/tracking/page_status', $data);
+        $this->load->view('templates/f-io');
+    }
+
+    public function p_lead($n, $lead_id, $start, $end) {
+        $data['lead'] = $this->stprog->stprog_leads($n, $lead_id, $start, $end);
+        $this->load->view('templates/s-io');
+        $this->load->view('client/tracking/page_lead', $data);
+        $this->load->view('templates/f-io');
+    }
+
+    public function p_program($n, $prog_id, $start, $end) {
+        $data['program'] = $this->stprog->stprog_progs($n, $prog_id, $start, $end);
+        $this->load->view('templates/s-io');
+        $this->load->view('client/tracking/page_program', $data);
+        $this->load->view('templates/f-io');
+    }
 }

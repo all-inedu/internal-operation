@@ -26,7 +26,15 @@
             <div class="card-body text-center">
                 <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
                 <h5><?=$sp['st_firstname'].' '.$sp['st_lastname'];?></h5>
-                <h6 class="text-info"><?=$sp['prog_program'];?></h6>
+                <h6 class="text-info">
+                    <?php 
+                        if($sp['prog_sub']=='-') {
+                            echo $sp['prog_program'];
+                        } else {
+                            echo $sp['prog_sub'].': '.$sp['prog_program'];
+                        }
+                    ?>
+                </h6>
             </div>
         </div>
         <div class="card shadow card-sticky mb-3">

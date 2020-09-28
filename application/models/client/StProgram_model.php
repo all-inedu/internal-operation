@@ -102,6 +102,9 @@ class StProgram_model extends CI_model
         $this->db->where('stprog_status', $n);
         $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
         $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
+        $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');
+        $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
+        $this->db->join('tbl_lead', 'tbl_lead.lead_id=tbl_stprog.lead_id');
         return $this->db->get('tbl_stprog')->result_array();
     }
 
@@ -116,7 +119,7 @@ class StProgram_model extends CI_model
     }
 
     public function stprog_lead($n, $start, $end) {
-        $this->db->select("count(tbl_stprog.stprog_id) as tot, tbl_lead.lead_name");
+        $this->db->select("count(tbl_stprog.stprog_id) as tot, tbl_lead.lead_id, tbl_lead.lead_name");
         $this->db->where("tbl_stprog.stprog_status =", $n);
         $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
         $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
@@ -125,8 +128,20 @@ class StProgram_model extends CI_model
         return $this->db->get('tbl_stprog')->result_array();
     }
 
+    public function stprog_leads($n, $lead_id, $start, $end) {
+        $this->db->select("*");
+        $this->db->where("tbl_stprog.stprog_status =", $n);
+        $this->db->where("tbl_stprog.lead_id =", $lead_id);
+        $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
+        $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
+        $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');
+        $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
+        $this->db->join('tbl_lead', 'tbl_lead.lead_id=tbl_stprog.lead_id');
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+
     public function studentProgramProg($d) {
-        $this->db->select("count(tbl_stprog.stprog_id), tbl_prog.prog_program");
+        $this->db->select("count(tbl_stprog.stprog_id), tbl_prog.prog_sub, tbl_prog.prog_program");
         $this->db->where("tbl_stprog.stprog_status <=", 2);
         $this->db->where("tbl_stprog.stprog_statusprogdate >=", $d);
         $this->db->group_by("tbl_prog.prog_program");
@@ -135,7 +150,7 @@ class StProgram_model extends CI_model
     }
 
     public function stprog_prog($n, $start, $end) {
-        $this->db->select("count(tbl_stprog.stprog_id) as tot,tbl_prog.prog_id, tbl_prog.prog_program");
+        $this->db->select("count(tbl_stprog.stprog_id) as tot,tbl_prog.prog_id, tbl_prog.prog_sub,  tbl_prog.prog_program");
         $this->db->where("tbl_stprog.stprog_status =", $n);
         $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
         $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
@@ -144,8 +159,20 @@ class StProgram_model extends CI_model
         return $this->db->get('tbl_stprog')->result_array();
     }
 
+    public function stprog_progs($n, $prog_id, $start, $end) {
+        $this->db->select("*");
+        $this->db->where("tbl_stprog.stprog_status =", $n);
+        $this->db->where("tbl_stprog.prog_id =", $prog_id);
+        $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
+        $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
+        $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');
+        $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
+        $this->db->join('tbl_lead', 'tbl_lead.lead_id=tbl_stprog.lead_id');
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+
     public function stprog_avg($start, $end) {
-        $this->db->select("count(tbl_stprog.stprog_id) as tot,tbl_prog.prog_id, tbl_prog.prog_program, sum(tbl_stprog.stprog_firstdisdate) as f_date, sum(tbl_stprog.stprog_statusprogdate) as l_date");
+        $this->db->select("count(tbl_stprog.stprog_id) as tot,tbl_prog.prog_id, tbl_prog.prog_sub, tbl_prog.prog_program, sum(tbl_stprog.stprog_firstdisdate) as f_date, sum(tbl_stprog.stprog_statusprogdate) as l_date");
         $this->db->where("tbl_stprog.stprog_status =", 1);
         $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
         $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);

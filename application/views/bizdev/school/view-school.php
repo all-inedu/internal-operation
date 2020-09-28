@@ -248,7 +248,14 @@
                                 <select id="programName" name="prog_id">
                                     <option data-placeholder="true"></option>
                                     <?php foreach($program as $p): ?>
-                                    <option value="<?=$p['prog_id'];?>"><?=$p['prog_sub'].' - '.$p['prog_program'];?>
+                                    <option value="<?=$p['prog_id'];?>">
+                                        <?php 
+                                            if($p['prog_sub']=='-') {
+                                                echo $p['prog_program'];
+                                            } else {
+                                                echo $p['prog_sub'].': '.$p['prog_program'];
+                                            }
+                                        ?>
                                     </option>
                                     <?php endforeach;?>
                                 </select>

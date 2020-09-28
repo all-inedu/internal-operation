@@ -32,7 +32,15 @@
                     <hr style="width:20%; margin-bottom:5px; margin-top:5px;">
                     <div class="text-info">
                         Program Name : <br>
-                        <b><?=$stprog['prog_program'];?></b>
+                        <b>
+                            <?php 
+                                if($stprog['prog_sub']=='-') {
+                                    echo $stprog['prog_program'];
+                                } else {
+                                    echo $stprog['prog_sub'].': '.$stprog['prog_program'];
+                                }
+                            ?>
+                        </b>
                     </div>
                     <!-- <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addInitial">Add Initial
