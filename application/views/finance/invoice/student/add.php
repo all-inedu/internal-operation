@@ -320,7 +320,7 @@
                 <div id="idr">
                     <form action="" method="post" name="idr">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Price <i class="text-danger font-weight-bold">*</i></label>
                                     <input type="hidden" name="stprog_id" value="<?=$sp['stprog_id'];?>">
@@ -335,7 +335,20 @@
                                     <?=form_error('inv_priceidr', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
+                                <label>Early Bird</label>
+                                <div class="form-group">
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                                        </div>
+                                        <input id="ebRupiah1" name="inv_earlybirdidr" type="number"
+                                            class="form-control form-control-sm">
+                                        <?=form_error('inv_earlybirdidr', '<small class="text-danger">', '</small>');?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Discount</label>
                                     <div class="input-group input-group-sm">
@@ -348,7 +361,7 @@
                                     <?=form_error('inv_discidr', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Total Price (Rp)</label>
                                     <div class="input-group input-group-sm">
@@ -871,7 +884,8 @@ $(document).ready(function() {
 $('#pcRupiah1').keyup(function() {
     let pcRupiah = $('#pcRupiah1').val();
     let dsRupiah = $('#dsRupiah1').val();
-    let tpRupiah = pcRupiah - dsRupiah;
+    let ebRupiah = $('#ebRupiah1').val();
+    let tpRupiah = pcRupiah - dsRupiah - ebRupiah;
     $('#tpRupiah1').val(tpRupiah);
     $('#tpWords2').val(capitalize(tpRupiah));
 });
@@ -879,7 +893,17 @@ $('#pcRupiah1').keyup(function() {
 $('#dsRupiah1').keyup(function() {
     let pcRupiah = $('#pcRupiah1').val();
     let dsRupiah = $('#dsRupiah1').val();
-    let tpRupiah = pcRupiah - dsRupiah;
+    let ebRupiah = $('#ebRupiah1').val();
+    let tpRupiah = pcRupiah - dsRupiah - ebRupiah;
+    $('#tpRupiah1').val(tpRupiah);
+    $('#tpWords2').val(capitalize(tpRupiah));
+});
+
+$('#ebRupiah1').keyup(function() {
+    let pcRupiah = $('#pcRupiah1').val();
+    let dsRupiah = $('#dsRupiah1').val();
+    let ebRupiah = $('#ebRupiah1').val();
+    let tpRupiah = pcRupiah - dsRupiah - ebRupiah;
     $('#tpRupiah1').val(tpRupiah);
     $('#tpWords2').val(capitalize(tpRupiah));
 });

@@ -119,7 +119,15 @@
                 <td valign="top" align="center">1</td>
                 <td valign="top" style="padding-bottom:50px;">
                     <div style="height:35px;">
-                        <b><?=$inv['prog_program'];?> ($<?=number_format($inv['inv_priceusd']);?>)</b>
+                        <b>
+                            <?php 
+                                if($inv['prog_sub']=='-') {
+                                    echo $inv['prog_program'];
+                                } else {
+                                    echo $inv['prog_sub'].': '.$inv['prog_program'];
+                                }
+                            ?>
+                            ($<?=number_format($inv['inv_priceusd']);?>)</b>
                     </div>
 
                     <div style="margin-top:20px;">
@@ -170,9 +178,21 @@
                 <td valign="top" align="center">1</td>
                 <td valign="top" style="padding-bottom:50px;">
                     <div style="height:35px;">
-                        <b><?=$inv['prog_program'];?></b>
+                        <b>
+                            <?php 
+                                if($inv['prog_sub']=='-') {
+                                    echo $inv['prog_program'];
+                                } else {
+                                    echo $inv['prog_sub'].': '.$inv['prog_program'];
+                                }
+                            ?>
+                        </b>
                     </div>
                     <div style="margin-top:20px;">
+                        <?php if($inv['inv_earlybirdidr']) {?>
+                        <i>Early Bird</i> <br>
+                        <?php } ?>
+
                         <?php if($inv['inv_discidr']) {?>
                         <i>Discount</i><br>
                         <?php } ?>
@@ -192,6 +212,9 @@
                         Rp. <?=number_format($inv['inv_priceidr']);?>
                     </div>
                     <div style="margin-top:20px;">
+                        <?php if(!empty($inv['inv_earlybirdidr'])) {?>
+                        (Rp. <?=number_format($inv['inv_earlybirdidr']);?>) <br>
+                        <?php } ?>
                         <?php if(!empty($inv['inv_discidr'])) {?>
                         (Rp. <?=number_format($inv['inv_discidr']);?>) <br>
                         <?php } ?>
@@ -218,7 +241,15 @@
                 <td valign="top" align="center">1</td>
                 <td valign="top" style="padding-bottom:50px;">
                     <div style="height:45px;">
-                        <b><?=$inv['prog_program'];?></b> <br>
+                        <b>
+                            <?php 
+                                if($inv['prog_sub']=='-') {
+                                    echo $inv['prog_program'];
+                                } else {
+                                    echo $inv['prog_sub'].': '.$inv['prog_program'];
+                                }
+                            ?>
+                        </b> <br>
                         <i><?=$inv['inv_session'];?> sessions</i>
                         <i><?=$inv['inv_notes'];?></i>
                     </div>

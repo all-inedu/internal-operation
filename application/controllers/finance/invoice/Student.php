@@ -138,6 +138,7 @@ class Student extends CI_Controller
             'stprog_id' => $this->input->post('stprog_id'),
             'inv_category' => $this->input->post('inv_category'),
             'inv_priceidr' => $this->input->post('inv_priceidr'),
+            'inv_earlybirdidr' => $this->input->post('inv_earlybirdidr'),
             'inv_discidr' => $this->input->post('inv_discidr'),
             'inv_totpridr' => $this->input->post('inv_totpridr'),
             'inv_words' => $this->input->post('inv_words'),

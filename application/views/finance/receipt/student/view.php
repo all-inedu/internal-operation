@@ -26,7 +26,15 @@
             <div class="card-body text-center">
                 <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
                 <h5><?=$rec['st_firstname'].' '.$rec['st_lastname'];?></h5>
-                <h6 class="text-info"><?=$rec['prog_program'];?></h6>
+                <h6 class="text-info">
+                    <?php 
+                        if($rec['prog_sub']=='-') {
+                            echo $rec['prog_program'];
+                        } else {
+                            echo $rec['prog_sub'].': '.$rec['prog_program'];
+                        }
+                    ?>
+                </h6>
                 <hr>
                 <?php 
                     if($rec['receipt_status']==1) {

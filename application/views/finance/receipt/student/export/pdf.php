@@ -108,7 +108,7 @@
         <table width="100%" class="table-detail" style="padding:8px 5px;">
             <tr align="center" style="background:#008080; color:#fff;">
                 <th width="3%">No</th>
-                <th width="50%">Description</th>
+                <th width="50%">Descriptions</th>
                 <th width="23%">Price (IDR)</th>
                 <th>Total (IDR)</th>
             </tr>
@@ -121,7 +121,15 @@
                 <td valign="top" align="center">1</td>
                 <td valign="top" style="padding-bottom:50px;">
                     <div style="height:45px">
-                        <b><?=$rec['prog_program'];?></b><br>
+                        <b>
+                            <?php 
+                                if($rec['prog_sub']=='-') {
+                                    echo $rec['prog_program'];
+                                } else {
+                                    echo $rec['prog_sub'].': '.$rec['prog_program'];
+                                }
+                            ?>
+                        </b><br>
                         <?php if($cat=='session') { ?>
                         <i><?=$rec['inv_session'];?> session - <?=$rec['inv_duration']/60;?> hours</i>
                         <?php } ?>
@@ -171,7 +179,15 @@
                 <td valign="top" align="center">1</td>
                 <td valign="top" style="padding-bottom:50px;">
                     <div style="height:45px">
-                        <b><?=$rec['prog_program'];?></b> <br>
+                        <b>
+                            <?php 
+                                if($rec['prog_sub']=='-') {
+                                    echo $rec['prog_program'];
+                                } else {
+                                    echo $rec['prog_sub'].': '.$rec['prog_program'];
+                                }
+                            ?>
+                        </b> <br>
                         <?=$invdtl['invdtl_statusname'];?>
                     </div>
                 </td>

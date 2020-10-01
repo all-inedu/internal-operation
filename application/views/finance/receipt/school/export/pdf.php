@@ -116,7 +116,15 @@
             <tr>
                 <td valign="top" align="center">1</td>
                 <td valign="top" style="padding-bottom:50px;">
-                    <b><?=$rec['prog_program'];?></b>
+                    <b>
+                        <?php 
+                                if($rec['prog_sub']=='-') {
+                                    echo $rec['prog_program'];
+                                } else {
+                                    echo $rec['prog_sub'].': '.$rec['prog_program'];
+                                }
+                            ?>
+                    </b>
                     for <?=$rec['invsch_participants'];?> students
                     <i><?=$rec['invsch_notes'];?></i>
                 </td>

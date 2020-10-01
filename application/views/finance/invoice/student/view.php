@@ -242,6 +242,13 @@
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
+                        Early Bird :
+                    </div>
+                    <div class="col-md-9">
+                        Rp. <?=number_format($inv['inv_earlybirdidr']);?>
+                        <hr class="mt-1 mb-2">
+                    </div>
+                    <div class="col-md-3">
                         Discount :
                     </div>
                     <div class="col-md-9">

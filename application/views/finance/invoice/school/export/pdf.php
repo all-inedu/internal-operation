@@ -116,7 +116,15 @@
                 <td valign="top" align="center">1</td>
                 <td valign="top" style="padding-bottom:30px;">
                     <div style="height:70px;">
-                        <b><?=$schprog['prog_program'];?></b> <br>
+                        <b>
+                            <?php 
+                                if($schprog['prog_sub']=='-') {
+                                    echo $schprog['prog_program'];
+                                } else {
+                                    echo $schprog['prog_sub'].': '.$schprog['prog_program'];
+                                }
+                            ?>
+                        </b> <br>
                         <?=$schprog['invsch_notes'];?>
                         <i><?=$schprog['invsch_participants'];?> students</i>
                     </div>

@@ -43,7 +43,13 @@
                 <td><?=$r['invsch_id'];?></td>
                 <td><?=$r['sch_name'];?></td>
                 <td class="text-left">
-                    <?=$r['prog_program'];?>
+                    <?php 
+                        if($r['prog_sub']=='-') {
+                            echo $r['prog_program'];
+                        } else {
+                            echo $r['prog_sub'].': '.$r['prog_program'];
+                        }
+                    ?>
                 </td>
                 <td><?=date('d F Y', strtotime($r['receipt_date']));?></td>
                 <td><?=$r['receipt_mtd'];?></td>
