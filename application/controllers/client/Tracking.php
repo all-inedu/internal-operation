@@ -35,11 +35,15 @@ class Tracking extends CI_Controller
             $end = $this->input->post('end_date');
             $data['start'] = $start;
             $data['end'] = $end;
+
+            
             //students status
             $data['st_pending'] = count($this->stprog->stprog_status(0,$start, $end));
             $data['st_success'] = count($this->stprog->stprog_status(1,$start, $end));
             $data['st_failed'] = count($this->stprog->stprog_status(2,$start, $end));
             //lead
+
+            $data['leads'] = $this->stprog->lead_prog($start, $end);
             $data['lead_pending'] = $this->stprog->stprog_lead(0, $start, $end);
             $data['lead_success'] = $this->stprog->stprog_lead(1, $start, $end);
             $data['lead_failed'] = $this->stprog->stprog_lead(2, $start, $end);

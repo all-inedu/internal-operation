@@ -118,6 +118,15 @@ class StProgram_model extends CI_model
         return $this->db->get('tbl_stprog')->result_array();
     }
 
+    public function lead_prog($start, $end) {
+        $this->db->select("tbl_lead.lead_id, tbl_lead.lead_name");
+        $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
+        $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
+        $this->db->group_by("tbl_stprog.lead_id");
+        $this->db->join("tbl_lead","tbl_lead.lead_id=tbl_stprog.lead_id");
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+
     public function stprog_lead($n, $start, $end) {
         $this->db->select("count(tbl_stprog.stprog_id) as tot, tbl_lead.lead_id, tbl_lead.lead_name");
         $this->db->where("tbl_stprog.stprog_status =", $n);
@@ -125,6 +134,37 @@ class StProgram_model extends CI_model
         $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
         $this->db->group_by("tbl_stprog.lead_id");
         $this->db->join("tbl_lead","tbl_lead.lead_id=tbl_stprog.lead_id");
+        $this->db->order_by("tot","DESC");
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+
+    public function stprog_leadID($n, $start, $end, $lead_id) {
+        $this->db->select("count(tbl_stprog.stprog_id) as tot");
+        $this->db->where("tbl_stprog.stprog_status =", $n);
+        $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
+        $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
+        $this->db->where("tbl_stprog.lead_id =", $lead_id);
+        $this->db->group_by("tbl_stprog.lead_id");
+        return $this->db->get('tbl_stprog')->row_array();
+    }
+
+    public function stprog_leadTot($n, $start, $end) {
+        $this->db->select("count(tbl_stprog.stprog_id) as tot");
+        $this->db->where("tbl_stprog.stprog_status =", $n);
+        $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
+        $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
+        return $this->db->get('tbl_stprog')->row_array();
+    }
+
+    public function stprog_lead_dtl($n, $start, $end, $prog) {
+        $this->db->select("count(tbl_stprog.stprog_id) as tot, tbl_lead.lead_id, tbl_lead.lead_name");
+        $this->db->where("tbl_stprog.stprog_status =", $n);
+        $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
+        $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
+        $this->db->where("tbl_stprog.prog_id =", $prog);
+        $this->db->group_by("tbl_stprog.lead_id");
+        $this->db->join("tbl_lead","tbl_lead.lead_id=tbl_stprog.lead_id");
+        $this->db->order_by("tot","DESC");
         return $this->db->get('tbl_stprog')->result_array();
     }
 
@@ -156,6 +196,7 @@ class StProgram_model extends CI_model
         $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
         $this->db->group_by("tbl_prog.prog_program");
         $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
+        $this->db->order_by("tot","DESC");
         return $this->db->get('tbl_stprog')->result_array();
     }
 
