@@ -213,7 +213,7 @@ class StProgram_model extends CI_model
     }
 
     public function stprog_avg($start, $end) {
-        $this->db->select("count(tbl_stprog.stprog_id) as tot,tbl_prog.prog_id, tbl_prog.prog_sub, tbl_prog.prog_program, sum(tbl_stprog.stprog_firstdisdate) as f_date, sum(tbl_stprog.stprog_statusprogdate) as l_date");
+        $this->db->select("count(tbl_stprog.stprog_id) as tot,tbl_prog.prog_id, tbl_prog.prog_sub, tbl_prog.prog_program, sum(tbl_stprog.stprog_statusprogdate - tbl_stprog.stprog_firstdisdate) as cal_date");
         $this->db->where("tbl_stprog.stprog_status =", 1);
         $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
         $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);

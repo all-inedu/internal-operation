@@ -399,12 +399,13 @@
                                     }
                                 ?>
                                 <?php 
-                                $f_date = $avg['f_date'];
-                                $l_date = $avg['l_date'];
+                                $cal_date = $avg['cal_date'];
                                 $tot = $avg['tot'];
-                                $avg_time = number_format(($l_date - $f_date)/$tot);
+                                $avg_time = number_format($cal_date/$tot);
                             ?>
-                            <td align="center"><?=$avg_time." day";?></td>
+                            <td align="center">
+                                <?=$avg_time." day";?>
+                            </td>
                         </tr>
                         <?php $no++; endforeach;?>
                     </table>
