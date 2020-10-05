@@ -90,7 +90,7 @@
             <div class="card mb-3 shadow">
                 <div class="row no-gutters">
                     <div class="col-md-4 text-center align-middle p-4">
-                        <h2 class="count-title mb-0"><?=$compl;?>2323</h2>
+                        <h2 class="count-title mb-0"><?=$compl;?></h2>
                     </div>
                     <div class="col-md-8 bg-dark text-white shadow align-middle">
                         <div class="card-body">
