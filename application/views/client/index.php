@@ -26,7 +26,7 @@
             <div class="card mb-3 shadow">
                 <div class="row no-gutters">
                     <div class="col-md-4 text-center align-middle p-4">
-                        <h2 class="count-title mb-0"><?=$prosp;?></h2>
+                        <h5 class="count-title mb-0"><?=$prosp;?></h5>
                     </div>
                     <div class="col-md-8 bg-info text-white shadow align-middle">
                         <div class="card-body">
@@ -47,7 +47,7 @@
             <div class="card mb-3 shadow">
                 <div class="row no-gutters">
                     <div class="col-md-4 text-center align-middle p-4">
-                        <h2 class="count-title mb-0"><?=$poten;?></h2>
+                        <h5 class="count-title mb-0"><?=$poten;?></h5>
                     </div>
                     <div class="col-md-8 bg-primary text-white shadow align-middle">
                         <div class="card-body">
@@ -68,7 +68,7 @@
             <div class="card mb-3 shadow">
                 <div class="row no-gutters">
                     <div class="col-md-4 text-center align-middle p-4">
-                        <h2 class="count-title mb-0"><?=$curr;?></h2>
+                        <h5 class="count-title mb-0"><?=$curr;?></h5>
                     </div>
                     <div class="col-md-8 bg-success text-white shadow align-middle">
                         <div class="card-body">
@@ -89,7 +89,7 @@
             <div class="card mb-3 shadow">
                 <div class="row no-gutters">
                     <div class="col-md-4 text-center align-middle p-4">
-                        <h2 class="count-title mb-0"><?=$compl;?></h2>
+                        <h5 class="count-title mb-0"><?=$compl;?></h5>
                     </div>
                     <div class="col-md-8 bg-dark text-white shadow align-middle">
                         <div class="card-body">
