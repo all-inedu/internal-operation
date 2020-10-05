@@ -404,8 +404,6 @@
                                 $avg_time = number_format($cal_date/$tot);
                             ?>
                             <td align="center">
-                                <?=$cal_date;?><br>
-                                <?=$tot;?><br>
                                 <?=$avg_time." day";?>
                             </td>
                         </tr>
