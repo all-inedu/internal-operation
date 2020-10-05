@@ -2,7 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
 
 .count-title {
-    font-size: 40px;
+    margin-top: 5px;
+    font-size: 23px;
     font-family: 'Lobster', cursive;
     color: #3f3b3b;
 }
@@ -26,7 +27,7 @@
             <div class="card mb-3 shadow">
                 <div class="row no-gutters">
                     <div class="col-md-4 text-center align-middle p-4">
-                        <h5 class="count-title mb-0"><?=$prosp;?></h5>
+                        <h2 class="count-title mb-0"><?=$prosp;?></h2>
                     </div>
                     <div class="col-md-8 bg-info text-white shadow align-middle">
                         <div class="card-body">
@@ -47,7 +48,7 @@
             <div class="card mb-3 shadow">
                 <div class="row no-gutters">
                     <div class="col-md-4 text-center align-middle p-4">
-                        <h5 class="count-title mb-0"><?=$poten;?></h5>
+                        <h2 class="count-title mb-0"><?=$poten;?></h2>
                     </div>
                     <div class="col-md-8 bg-primary text-white shadow align-middle">
                         <div class="card-body">
@@ -68,7 +69,7 @@
             <div class="card mb-3 shadow">
                 <div class="row no-gutters">
                     <div class="col-md-4 text-center align-middle p-4">
-                        <h5 class="count-title mb-0"><?=$curr;?></h5>
+                        <h2 class="count-title mb-0"><?=$curr;?></h2>
                     </div>
                     <div class="col-md-8 bg-success text-white shadow align-middle">
                         <div class="card-body">
@@ -89,7 +90,7 @@
             <div class="card mb-3 shadow">
                 <div class="row no-gutters">
                     <div class="col-md-4 text-center align-middle p-4">
-                        <h5 class="count-title mb-0"><?=$compl;?></h5>
+                        <h2 class="count-title mb-0"><?=$compl;?>2323</h2>
                     </div>
                     <div class="col-md-8 bg-dark text-white shadow align-middle">
                         <div class="card-body">
