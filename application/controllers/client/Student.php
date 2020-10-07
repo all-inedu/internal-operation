@@ -56,7 +56,7 @@ class Student extends CI_Controller
         
         // if($role=='student' or $role==''){
         $this->form_validation->set_rules('st_firstname', 'first name', 'required');
-        $this->form_validation->set_rules('st_mail', 'email', 'required');
+        // $this->form_validation->set_rules('st_mail', 'email', 'required');
         // $this->form_validation->set_rules('st_state', 'state', 'required');
         // $this->form_validation->set_rules('st_city', 'city', 'required');
         $this->form_validation->set_rules('st_phone', 'phone', 'required');

@@ -74,7 +74,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>E-mail <i class="text-danger font-weight-bold">*</i></label>
+                                <label>E-mail</label>
                                 <input name="st_mail" type="text" class="form-control form-control-sm"
                                     placeholder="E-mail">
                                 <?=form_error('st_mail', '<small class="text-danger">', '</small>');?>

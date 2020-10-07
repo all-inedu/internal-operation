@@ -50,7 +50,7 @@ class Parents extends CI_Controller
         $data['cities'] = $this->states->showCities();
         
         $this->form_validation->set_rules('pr_firstname', 'first name', 'required');
-        $this->form_validation->set_rules('pr_mail', 'email', 'required');
+        // $this->form_validation->set_rules('pr_mail', 'email', 'required');
         $this->form_validation->set_rules('pr_phone', 'phone', 'required');
         $this->form_validation->set_rules('lead_id', 'lead', 'required');
         $this->form_validation->set_rules('st_firstname', 'first name', 'required');
