@@ -154,8 +154,14 @@
     $prog_count = [];
     $prog_name = [];
     foreach ($prog as $p) {
+        if($p['prog_sub']=='-') {
+            $prg = $p['prog_program'];
+        } else {
+            $prg = $p['prog_sub'].': '.$p['prog_program'];
+        }
+
         array_push($prog_count, $p['count(tbl_stprog.stprog_id)']);
-        array_push($prog_name, $p['prog_program']);
+        array_push($prog_name, $prg);
     }
     $arr3 = implode(", ", $prog_name);
     $arr4 = implode(", ", $prog_count);
