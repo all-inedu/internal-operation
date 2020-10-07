@@ -18,6 +18,39 @@
     </div>
 </div>
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+<div class="text-center">
+    <h6>Search :</h6><br>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col-md-3 text-center">
+        <select id="searchData2" class="form-control form-control-sm">
+            <option data-placeholder="true"></option>
+            <?php foreach($program as $pr): ?>
+            <?php 
+                if($pr['prog_sub']=='-') {
+            ?>
+            <option value="<?=$pr['prog_program'];?>"><?=$pr['prog_program']; ?></option>
+            <?php
+                } else {
+            ?>
+            <option value="<?=$pr['prog_sub'].": ".$pr['prog_program'];?>">
+                <?=$pr['prog_sub'].": ".$pr['prog_program'];?></option>
+            <?php
+                }
+            ?>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <div class="col-md-3 text-center">
+        <select id="searchData4" class="form-control form-control-sm">
+            <option data-placeholder="true"></option>
+            <option value="Pending">Pending</option>
+            <option value="Success">Success</option>
+            <option value="Failed">Failed</option>
+        </select>
+    </div>
+</div>
+<div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
 <div class="content">
     <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
@@ -101,3 +134,21 @@
         </tbody>
     </table>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="<?=base_url('assets/js/jquery-ui.js');?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
+<script>
+new SlimSelect({
+    select: '#searchData2',
+    placeholder: 'Select program name',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
+new SlimSelect({
+    select: '#searchData4',
+    placeholder: 'Select program status',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+</script>

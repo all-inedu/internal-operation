@@ -22,7 +22,7 @@
     <div class="col-md-12 text-center">
         <h6>Search :</h6>
         <input type="text" placeholder="Graduated From" id="searchData2" class="text-center m-2">
-        <input type="text" placeholder="Major" id="searchData3" class="text-center m-2">
+        <input type="text" placeholder="Mentor / Tutor" id="searchData3" class="text-center m-2">
     </div>
 </div>
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>

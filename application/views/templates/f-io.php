@@ -190,16 +190,20 @@ $(document).ready(function() {
         }]
     });
 
-    $('#searchData1').on('keyup', function() {
+    $('#searchData1').on('change', function() {
         tables.column(1).search($(this).val()).draw();
     });
 
-    $('#searchData2').on('keyup', function() {
+    $('#searchData2').on('change', function() {
         tables.column(2).search($(this).val()).draw();
     });
 
-    $('#searchData3').on('keyup', function() {
+    $('#searchData3').on('change', function() {
         tables.column(3).search($(this).val()).draw();
+    });
+
+    $('#searchData4').on('change', function() {
+        tables.column(4).search($(this).val()).draw();
     });
 });
 </script>
@@ -217,16 +221,20 @@ $(document).ready(function() {
         "bAutoWidth": true,
     });
 
-    $('#searchData1').on('keyup', function() {
+    $('#searchData1').on('change', function() {
         tables.column(1).search($(this).val()).draw();
     });
 
-    $('#searchData2').on('keyup', function() {
+    $('#searchData2').on('change', function() {
         tables.column(2).search($(this).val()).draw();
     });
 
-    $('#searchData3').on('keyup', function() {
+    $('#searchData3').on('change', function() {
         tables.column(3).search($(this).val()).draw();
+    });
+
+    $('#searchData4').on('change', function() {
+        tables.column(4).search($(this).val()).draw();
     });
 });
 </script>
