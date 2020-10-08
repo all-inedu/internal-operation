@@ -130,7 +130,7 @@
                             ($<?=number_format($inv['inv_priceusd']);?>)</b>
                     </div>
 
-                    <div style="margin-top:20px;">
+                    <div style="margin-top:5px;">
                         <?php if($inv['inv_earlybirdusd']) {?>
                         <i>Early Bird ($<?=number_format($inv['inv_earlybirdusd']);?>)</i> <br>
                         <?php } ?>
@@ -188,7 +188,7 @@
                             ?>
                         </b>
                     </div>
-                    <div style="margin-top:20px;">
+                    <div style="margin-top:5px;">
                         <?php if($inv['inv_earlybirdidr']) {?>
                         <i>Early Bird</i> <br>
                         <?php } ?>
