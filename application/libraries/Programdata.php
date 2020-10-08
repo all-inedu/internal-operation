@@ -12,7 +12,7 @@ class Programdata
         $data['ess'] = ['-'];
         $data['int'] = ['-'];
         $data['tut'] = ['-'];
-        $data['exp'] = ['Summer Science Research Program','JuniorXplorer','-'];
+        $data['exp'] = ['Summer Science Research Program','PassionXplorer','JuniorXplorer','-'];
         $data['enr'] = ['-'];
         $data['wor'] = ['-'];
         
