@@ -54,10 +54,10 @@ class Parents extends CI_Controller
         $this->form_validation->set_rules('pr_phone', 'phone', 'required');
         $this->form_validation->set_rules('lead_id', 'lead', 'required');
         $this->form_validation->set_rules('st_firstname', 'first name', 'required');
-        $this->form_validation->set_rules('st_state', 'state', 'required');
-        $this->form_validation->set_rules('st_city', 'city', 'required');
-        $this->form_validation->set_rules('st_mail', 'email', 'required');
-        $this->form_validation->set_rules('sch_id', 'school', 'required');
+        // $this->form_validation->set_rules('st_state', 'state', 'required');
+        // $this->form_validation->set_rules('st_city', 'city', 'required');
+        // $this->form_validation->set_rules('st_mail', 'email', 'required');
+        // $this->form_validation->set_rules('sch_id', 'school', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/s-io');
             $this->load->view('client/parents/add-parent', $data);

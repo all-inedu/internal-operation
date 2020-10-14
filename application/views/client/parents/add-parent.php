@@ -149,7 +149,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Childs Email <i class="text-danger font-weight-bold">*</i></label>
+                                <label>Childs Email</label>
                                 <input name="st_mail" type="text" class="form-control form-control-sm"
                                     placeholder="Students Email">
                                 <?=form_error('st_mail', '<small class="text-danger">', '</small>');?>
@@ -157,7 +157,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>School Name <i class="text-danger font-weight-bold">*</i></label>
+                                <label>School Name</label>
                                 <select id="schoolName" name="sch_id" onChange="otherSchool();">
                                     <option data-placeholder="true"></option>
                                     <?php foreach($sch as $sc): ?>
