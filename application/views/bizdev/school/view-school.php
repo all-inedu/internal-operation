@@ -327,13 +327,13 @@ var ST = new SlimSelect({
 });
 ST.disable();
 
-var SL = new SlimSelect({
-    select: '#schoolLevel',
-    placeholder: 'Select school level',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-SL.disable();
+// var SL = new SlimSelect({
+//     select: '#schoolLevel',
+//     placeholder: 'Select school level',
+//     allowDeselect: true,
+//     deselectLabel: '<span class="text-danger">✖</span>'
+// });
+// SL.disable();
 
 var SC = new SlimSelect({
     select: '#schoolCurriculum',
