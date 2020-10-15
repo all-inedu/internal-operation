@@ -52,7 +52,7 @@
                     </h6>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>School Name
                                 </label>
@@ -63,7 +63,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>Type
                                 </label>
@@ -76,7 +76,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label>Level
                                 </label>
@@ -87,9 +87,9 @@
                                 </select>
                                 <?=form_error('sch_level', '<small class="text-danger">', '</small>');?>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>Curriculum
                                 </label>
@@ -175,9 +175,9 @@
                                             <tr class="text-center">
                                                 <th>Full Name</th>
                                                 <th>E-mail</th>
-                                                <th>Linkedin</th>
                                                 <th>Phone Number</th>
                                                 <th>Position</th>
+                                                <th>School Grade</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -186,9 +186,9 @@
                                             <tr class="text-center">
                                                 <td><?=$s['schdetail_fullname'];?></td>
                                                 <td><?=$s['schdetail_email'];?></td>
-                                                <td><?=$s['schdetail_linkedin'];?></td>
                                                 <td><?=$s['schdetail_phone'];?></td>
                                                 <td><?=$s['schdetail_position'];?></td>
+                                                <td><?=$s['schdetail_grade'];?></td>
                                                 <td class="text-center">
                                                     <button class="btn btn-sm btn-info" title="Edit" data-toggle="modal"
                                                         data-target="#editTeacher"
@@ -243,10 +243,14 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Linkedin</label>
-                                <input name="schdetail_linkedin" type="text" class="form-control form-control-sm"
-                                    placeholder="Teacher Linkedin">
-                                <?=form_error('schdetail_linkedin', '<small class="text-danger">', '</small>');?>
+                                <small>School Grade</small>
+                                <select type="text" name="schdetail_grade" class="form-control form-control-sm">
+                                    <option value="Middle School">Middle School</option>
+                                    <option value="High School">High School</option>
+                                    <option value="Middle School & High School">Middle School & High School
+                                    </option>
+                                </select>
+                                <?=form_error('schdetail_grade', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -266,6 +270,7 @@
                                     <option value="Principal">Principal</option>
                                     <option value="Counselor">Counselor</option>
                                     <option value="Teacher">Teacher</option>
+                                    <option value="Marketing">Marketing</option>
                                 </select>
                                 <?=form_error('schdetail_position', '<small class="text-danger">', '</small>');?>
                             </div>
@@ -314,10 +319,15 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Linkedin</label>
-                                <input name="schdetail_linkedin" type="text" class="form-control form-control-sm"
-                                    id="schdetail_linkedin">
-                                <?=form_error('schdetail_linkedin', '<small class="text-danger">', '</small>');?>
+                                <small>School Grade</small>
+                                <select type="text" name="schdetail_grade" class="form-control form-control-sm"
+                                    id="schdetail_grade">
+                                    <option value="Middle School">Middle School</option>
+                                    <option value="High School">High School</option>
+                                    <option value="Middle School & High School">Middle School & High School
+                                    </option>
+                                </select>
+                                <?=form_error('schdetail_grade', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
 
@@ -338,6 +348,7 @@
                                     <option value="Principal">Principal</option>
                                     <option value="Counselor">Counselor</option>
                                     <option value="Teacher">Teacher</option>
+                                    <option value="Marketing">Marketing</option>
                                 </select>
                                 <?=form_error('schdetail_position', '<small class="text-danger">', '</small>');?>
                             </div>
@@ -363,12 +374,12 @@ let st = new SlimSelect({
 });
 st.set('<?=$sch["sch_type"];?>');
 
-let slevel = new SlimSelect({
-    select: '#schoolLevel',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-slevel.set('<?=$sch["sch_level"];?>');
+// let slevel = new SlimSelect({
+//     select: '#schoolLevel',
+//     allowDeselect: true,
+//     deselectLabel: '<span class="text-danger">✖</span>'
+// });
+// slevel.set('<?=$sch["sch_level"];?>');
 
 let sc = new SlimSelect({
     select: '#schoolCurriculum',
@@ -388,7 +399,7 @@ function editTeacherId(x) {
             $('#sch_id').val(data.sch_id);
             $('#schdetail_fullname').val(data.schdetail_fullname);
             $('#schdetail_email').val(data.schdetail_email);
-            $('#schdetail_linkedin').val(data.schdetail_linkedin);
+            $('#schdetail_grade').val(data.schdetail_grade);
             $('#schdetail_position').val(data.schdetail_position);
             $('#schdetail_phone').val(data.schdetail_phone);
         }

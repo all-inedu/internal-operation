@@ -29,7 +29,7 @@
                 <th width="1%">No</th>
                 <th width="5%" class="text-center bg-primary text-white">School Name</th>
                 <th width="5%" class="text-center">Type</th>
-                <th width="5%" class="text-center">Level</th>
+                <!-- <th width="5%" class="text-center">Level</th> -->
                 <th width="5%" class="text-center">Curriculum</th>
                 <th width="5%" class="text-center">Instagram</th>
                 <th width="10%" class="text-center">City</th>
@@ -45,7 +45,7 @@
                     <?=$s['sch_name'];?>
                 </td>
                 <td><?=$s['sch_type'];?></td>
-                <td><?=$s['sch_level'];?></td>
+                <!-- <td><?=$s['sch_level'];?></td> -->
                 <td><?=$s['sch_curriculum'];?></td>
                 <td>
                     <?=$s['sch_insta'];?>

@@ -359,12 +359,12 @@ new SlimSelect({
     deselectLabel: '<span class="text-danger">✖</span>'
 });
 
-new SlimSelect({
-    select: '#currentEducation',
-    placeholder: 'Select current education',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
+// new SlimSelect({
+//     select: '#currentEducation',
+//     placeholder: 'Select current education',
+//     allowDeselect: true,
+//     deselectLabel: '<span class="text-danger">✖</span>'
+// });
 
 new SlimSelect({
     select: '#grade',
@@ -441,15 +441,15 @@ function otherSchools() {
     var sN = document.getElementById("schoolName");
     var snValues = sN.value;
     var oS = document.getElementById("otherSchool");
-    var cE = document.getElementById("currentSchool");
+    // var cE = document.getElementById("currentSchool");
     var sY = document.getElementById("studentYear");
 
     if (snValues == 'other') {
         oS.classList.remove("d-none");
-        cE.classList.remove("d-none");
+        // cE.classList.remove("d-none");
     } else {
         oS.classList.add("d-none");
-        cE.classList.add("d-none");
+        // cE.classList.add("d-none");
     }
 }
 

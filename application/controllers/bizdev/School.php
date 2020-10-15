@@ -78,7 +78,7 @@ class School extends CI_Controller
                 'sch_id' => $newid,
                 'schdetail_fullname' => $this->input->post('schdetail_fullname['.$i.']'),
                 'schdetail_email' => $this->input->post('schdetail_email['.$i.']'),
-                'schdetail_linkedin' => $this->input->post('schdetail_linkedin['.$i.']'),
+                'schdetail_grade' => $this->input->post('schdetail_grade['.$i.']'),
                 'schdetail_position' => $this->input->post('schdetail_position['.$i.']'),
                 'schdetail_phone' => $this->input->post('schdetail_phone['.$i.']'),
             ];  
@@ -148,7 +148,7 @@ class School extends CI_Controller
             'sch_id' => $id,
             'schdetail_fullname' => $this->input->post('schdetail_fullname'),
             'schdetail_email' => $this->input->post('schdetail_email'),
-            'schdetail_linkedin' => $this->input->post('schdetail_linkedin'),
+            'schdetail_grade' => $this->input->post('schdetail_grade'),
             'schdetail_position' => $this->input->post('schdetail_position'),
             'schdetail_phone' => $this->input->post('schdetail_phone'),
         ];  
@@ -169,7 +169,7 @@ class School extends CI_Controller
             'sch_id' => $id,
             'schdetail_fullname' => $this->input->post('schdetail_fullname'),
             'schdetail_email' => $this->input->post('schdetail_email'),
-            'schdetail_linkedin' => $this->input->post('schdetail_linkedin'),
+            'schdetail_grade' => $this->input->post('schdetail_grade'),
             'schdetail_position' => $this->input->post('schdetail_position'),
             'schdetail_phone' => $this->input->post('schdetail_phone'),
         ];  

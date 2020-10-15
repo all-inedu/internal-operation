@@ -89,7 +89,7 @@ class Student extends CI_Controller
             $school_data = [
                 'sch_id' => $newid,
                 'sch_name' => $this->input->post('sch_name'),
-                'sch_level' => $this->input->post('st_currentsch'),
+                // 'sch_level' => $this->input->post('st_currentsch'),
             ];
             $this->sch->save($school_data);
             $sch_id = $newid;
@@ -143,7 +143,6 @@ class Student extends CI_Controller
         $this->form_validation->set_rules('empl_id', 'PIC', 'required');
         $this->form_validation->set_rules('stprog_firstdisdate', 'first discuss', 'required');
         if ($this->form_validation->run() == false) {
-
             $this->load->view('templates/s-io');
             $this->load->view('client/student/view-student', $data);
             $this->load->view('templates/f-io');

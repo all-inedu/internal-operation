@@ -204,9 +204,9 @@
                                             <tr class="text-center">
                                                 <th>Full Name</th>
                                                 <th>E-mail</th>
-                                                <th>Linkedin</th>
                                                 <th>Phone Number</th>
                                                 <th>Position</th>
+                                                <th>School Grade</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -214,9 +214,9 @@
                                             <tr class="text-center">
                                                 <td><?=$s['schdetail_fullname'];?></td>
                                                 <td><?=$s['schdetail_email'];?></td>
-                                                <td><?=$s['schdetail_linkedin'];?></td>
                                                 <td><?=$s['schdetail_phone'];?></td>
                                                 <td><?=$s['schdetail_position'];?></td>
+                                                <td><?=$s['schdetail_grade'];?></td>
                                             </tr>
                                             <?php endforeach;?>
                                         </tbody>
