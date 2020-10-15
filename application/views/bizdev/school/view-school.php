@@ -97,7 +97,7 @@
                 </h6>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>School Name
                             </label>
@@ -106,7 +106,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Type
                             </label>
@@ -117,7 +117,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="form-group">
                             <label>Level
                             </label>
@@ -126,9 +126,9 @@
                             </select>
 
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Curriculum
                             </label>
