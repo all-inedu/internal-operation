@@ -130,6 +130,7 @@
                                 }
                             ?>
                         </b><br>
+                        <?=$rec['inv_notes'];?>
                         <?php if($cat=='session') { ?>
                         <i><?=$rec['inv_session'];?> session - <?=$rec['inv_duration']/60;?> hours</i>
                         <?php } ?>
@@ -166,6 +167,7 @@
                     <?php if($rec['inv_discidr']) { ?>
                     ( Rp. <?=number_format($rec['inv_discidr']);?> ) <br>
                     <?php } ?>
+
                 </td>
             </tr>
             <tr>
