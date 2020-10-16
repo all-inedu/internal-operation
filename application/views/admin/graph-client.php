@@ -131,8 +131,8 @@
                         $no=0;
                         foreach ($lead as $l) {
                     ?>
-                    &nbsp; | &nbsp; <a class="badge badge-primary" style="background:<?=$color1[$no];?>"> - </a>
-                    <?=$l['lead_name'];?>&nbsp; | &nbsp;
+                    &nbsp; [ &nbsp; <a class="badge badge-primary" style="background:<?=$color1[$no];?>"> - </a>
+                    <?=$l['lead_name'];?>&nbsp; ] &nbsp;
                     <?php
                     $no++; }
                     ?>
