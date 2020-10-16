@@ -1,3 +1,32 @@
+<?php 
+    $color1 = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
+    '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+    '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
+    '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+    '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC',
+    '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+    '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680',
+    '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+    '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
+    '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'
+    ];
+    shuffle($color1);
+    $colorArray1 = implode(", ", $color1);
+    
+    $color2 = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
+    '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC',
+    '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+    '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
+    '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+    '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+    '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680',
+    '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+    '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
+    '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'
+    ];
+    shuffle($color2);
+    $colorArray2 = implode(", ", $color2);
+?>
 <div class="container mt-4">
     <hr>
     <div class="col-md-12 text-center mb-3">
@@ -96,6 +125,19 @@
                     <canvas id="myLead" style="height:95vh; width:90vw"></canvas>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-body text-center">
+                    <?php
+                        $no=0;
+                        foreach ($lead as $l) {
+                    ?>
+                    &nbsp; | &nbsp; <a class="badge badge-primary" style="background:<?=$color1[$no];?>"> - </a>
+                    <?=$l['lead_name'];?>&nbsp; | &nbsp;
+                    <?php
+                    $no++; }
+                    ?>
+                </div>
+            </div>
         </div>
         <div class="col-md-4 mb-2">
             <div class="card shadow">
@@ -104,6 +146,24 @@
                     <small>30 days ago</small>
                     <hr class="mb-3 mt-0">
                     <canvas id="program" style="height:95vh; width:90vw"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <?php
+                        $no=0;
+                        foreach ($prog as $pr) {
+                            if($pr['prog_sub']=='-') {
+                                $prg = $pr['prog_program'];
+                            } else {
+                                $prg = $pr['prog_sub'].': '.$pr['prog_program'];
+                            }
+                    ?>
+                    <a class="badge badge-primary" style="background:<?=$color2[$no];?>"> - </a> &nbsp;
+                    <?=$prg;?></br>
+                    <?php
+                    $no++; }
+                    ?>
                 </div>
             </div>
         </div>
@@ -134,42 +194,25 @@
     }
     $arr3 = implode(", ", $prog_name);
     $arr4 = implode(", ", $prog_count);
-?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+?><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 <script>
-var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
-    '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
-    '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
-    '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
-    '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC',
-    '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
-    '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680',
-    '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
-    '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
-    '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'
-];
-
-function shuffle(array) {
-    var currentIndex = array.length,
-        temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
+let myColor1 = "<?=$colorArray1;?>";
+let color1 = myColor1.split(",");
+let myColor2 = "<?=$colorArray2;?>";
+let color2 = myColor2.split(",");
+// var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
+//     '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+//     '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
+//     '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+//     '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC',
+//     '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+//     '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680',
+//     '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+//     '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
+//     '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'
+// ];
 
 var ctx = document.getElementById('myChart');
 var myChart = new Chart(ctx, {
@@ -203,7 +246,7 @@ var myChart = new Chart(ls, {
             label: 'Lead Source',
             data: a2,
             borderColor: '#f4f4f4',
-            backgroundColor: shuffle(colorArray),
+            backgroundColor: color1,
             borderWidth: 2
         }]
     },
@@ -217,7 +260,7 @@ var myChart = new Chart(ls, {
             }],
             xAxes: [{
                 ticks: {
-                    display: true,
+                    display: false,
                     fontSize: 10,
                 }
             }],
@@ -243,7 +286,7 @@ var myChart = new Chart(prog, {
             label: 'Total Program',
             data: a4,
             borderColor: '#f4f4f4',
-            backgroundColor: shuffle(colorArray),
+            backgroundColor: color2,
             borderWidth: 2,
         }]
     },
@@ -257,7 +300,7 @@ var myChart = new Chart(prog, {
             }],
             xAxes: [{
                 ticks: {
-                    display: true,
+                    display: false,
                     fontSize: 8,
                 },
             }],
