@@ -15,9 +15,9 @@
                         <div class="card-body">
                             <h5 class="text-right mb-0">Petty Cash</h5>
                             <div class="line" style="margin-top:8px; margin-bottom:7px;"></div>
-                            <h5 class="card-title text-right mb-0">Rp.
+                            <h6 class="card-title text-right mb-0">Rp.
                                 <?=number_format($saldo['pettysaldo_balance']);?>
-                            </h5>
+                            </h6>
                         </div>
                     </div>
                 </div>
