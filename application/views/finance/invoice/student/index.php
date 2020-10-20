@@ -25,6 +25,7 @@
                 <th width="1%">No</th>
                 <th width="10%" class="bg-primary text-white">Students Name</th>
                 <th width="10%">Program</th>
+                <th>Program Success Date</th>
                 <th width="5%">Invoice</th>
                 <th width="5%">Payment Method</th>
                 <th width="5%">Date</th>
@@ -48,6 +49,9 @@
                             echo $sp['prog_sub'].': '.$sp['prog_program'];
                         }
                     ?>
+                </td>
+                <td>
+                    <?=date('d F Y', strtotime($sp['stprog_statusprogdate']));?>
                 </td>
                 <?php 
                         $inv = $this->inv->showId($sp['stprog_id']);
