@@ -57,6 +57,7 @@ body {
     border-radius: 10px;
     padding: 10px;
     color: white;
+    z-index: 999;
 }
 
 .role:hover {
@@ -106,7 +107,7 @@ if ($this->session->flashdata('success')) {
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-3 mb-2">
                 <div class="card shadow menus">
                     <div class="card-header text-center">
                         Client Management
@@ -203,7 +204,7 @@ if ($this->session->flashdata('success')) {
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-3 mb-2">
                 <div class="card shadow menus">
                     <div class="card-header text-center">
                         Business Development
@@ -300,7 +301,7 @@ if ($this->session->flashdata('success')) {
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-3 mb-2">
                 <div class="card shadow menus">
                     <div class="card-header text-center">
                         Finance
@@ -408,7 +409,7 @@ if ($this->session->flashdata('success')) {
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-3 mb-2">
                 <div class="card shadow menus">
                     <div class="card-header text-center">
                         Human Resource
