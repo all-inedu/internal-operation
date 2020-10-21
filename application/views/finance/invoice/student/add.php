@@ -280,7 +280,7 @@
                                         <div class="form-group">
                                             <small>Percent</small>
                                             <input id="percent1" type="number" name="invdtl_percentage[]"
-                                                class="form-control form-control-sm">
+                                                class="form-control form-control-sm" step="any">
                                             <?=form_error('invdtl_percentage[]', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
@@ -289,7 +289,7 @@
                                         <div class="form-group">
                                             <small>Amount ($)</small>
                                             <input id="amountDollar1" type="number" name="invdtl_amountusd[]"
-                                                class="form-control form-control-sm">
+                                                class="form-control form-control-sm" step="any">
                                             <?=form_error('invdtl_amountusd[]', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
@@ -298,7 +298,7 @@
                                         <div class="form-group">
                                             <small>Amount (Rp)</small>
                                             <input id="amountRupiah1" type="number" name="invdtl_amountidr[]"
-                                                class="form-control form-control-sm">
+                                                class="form-control form-control-sm" step="any">
                                             <?=form_error('invdtl_amountidr[]', '<small class="text-danger">', '</small>');?>
                                         </div>
                                     </div>
@@ -821,7 +821,7 @@ $(document).ready(function() {
                 '<div class="form-group">' +
                 '<small>Percent</small>' +
                 '<input id="percent' + x +
-                '" type="number" name="invdtl_percentage[]" class="form-control form-control-sm">' +
+                '" type="number" step="any" name="invdtl_percentage[]" class="form-control form-control-sm">' +
                 '</div>' +
                 '</div>' +
 
@@ -829,7 +829,7 @@ $(document).ready(function() {
                 '<div class="form-group">' +
                 '<small>Amount ($)</small>' +
                 '<input id="amountDollar' + x +
-                '" type="number" name="invdtl_amountusd[]" class="form-control form-control-sm">' +
+                '" type="number" step="any" name="invdtl_amountusd[]" class="form-control form-control-sm">' +
                 '</div>' +
                 '</div>' +
 
@@ -837,7 +837,7 @@ $(document).ready(function() {
                 '<div class="form-group">' +
                 '<small>Amount (Rp)</small>' +
                 '<input id="amountRupiah' + x +
-                '" type="number" name="invdtl_amountidr[]" class="form-control form-control-sm">' +
+                '" type="number" step="any" name="invdtl_amountidr[]" class="form-control form-control-sm">' +
                 '</div>' +
                 '</div>' +
 
