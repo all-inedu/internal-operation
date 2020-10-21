@@ -791,7 +791,7 @@ $('#amountDollar1').keyup(function() {
 
 
 $(document).ready(function() {
-    var max_fields_limit = 8; //set limit for maximum input fields
+    var max_fields_limit = 20; //set limit for maximum input fields
     var x = 1; //initialize counter for text box
     var sum = 0;
     $('.add_more_button').click(function(
