@@ -96,11 +96,21 @@ class Student extends CI_Controller
             'receipt_mtd' => $this->input->post('receipt_mtd'),
             'receipt_cheque' => $this->input->post('receipt_cheque'),
             'receipt_amount' => $this->input->post('receipt_amount'),
+            'receipt_amountusd' => $this->input->post('invdtl_amountusd'),
             'receipt_words' => $this->input->post('receipt_words'),
+            'receipt_wordsusd' => $this->input->post('receipt_wordsusd'),
             'receipt_date' => $this->input->post('receipt_date'),
             'receipt_status' => 1,
         ];
         
+        $invdtl_id = $this->input->post('invdtl_id');
+        $invdtl = [
+            'invdtl_percentage' => $this->input->post('invdtl_percentage'),
+            'invdtl_amountusd' => $this->input->post('invdtl_amountusd'),
+            'invdtl_amountidr' => $this->input->post('receipt_amount')
+        ];
+
+        $this->invdetail->update($invdtl, $invdtl_id);
         $this->receipt->update($data, $id);
         $this->session->set_flashdata('success', 'Receipt has been changed');
         redirect('/finance/receipt/student/view/'.$id);
