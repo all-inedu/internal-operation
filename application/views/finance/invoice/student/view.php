@@ -474,13 +474,34 @@
             <form action="<?=base_url('finance/receipt/student/save');?>" method="post" name="receipt">
                 <div class="modal-body">
                     <div class="row">
+                        <?php
+                            $invidr = $inv['inv_priceidr'];
+                            $invusd = $inv['inv_priceusd'];
+                            $rupiah = $invidr/$invusd;
+                        ?>
                         <div class="col-md-6">
-                            <label>Amount <i class="text-danger font-weight-bold">*</i></label>
+                            <label>Percentage <i class="text-danger font-weight-bold">*</i></label>
                             <div class="form-group">
+                                <input type="hidden" name="stprog_id" value="<?=$inv['stprog_id'];?>">
                                 <input type="hidden" name="inv_id" value="<?=$inv['inv_id'];?>">
+                                <input type="hidden" name="priceIDR" id="priceIDR" value="<?=$inv['inv_priceidr'];?>">
                                 <input type="hidden" id="invdtl_id" name="invdtl_id">
                                 <input type="hidden" name="receipt_cat" value="1">
-                                <input type="hidden" id="receipt_amountusd" name="receipt_amountusd">
+                                <input type="hidden" name="rupiah" id="rupiah" value="<?=$rupiah;?>" readonly>
+                                <input type="number" name="invdtl_percentage" id="percentage"
+                                    class="form-control form-control-sm" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Amount (USD) <i class="text-danger font-weight-bold">*</i></label>
+                            <div class="form-group">
+                                <input type="number" step="any" id="receipt_amountusd" name="receipt_amountusd"
+                                    class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Amount (IDR) <i class="text-danger font-weight-bold">*</i></label>
+                            <div class="form-group">
                                 <input type="number" name="receipt_amount" id="amount"
                                     class="form-control form-control-sm">
                             </div>
@@ -563,6 +584,7 @@ function addReceiptInsallment(x) {
         success: function(data) {
             console.log(data)
             $('#invdtl_id').val(data.invdtl_id);
+            $('#percentage').val(data.invdtl_percentage);
             $('#amount').val(data.invdtl_amountidr);
             $('#words').val(capitalize(data.invdtl_amountidr));
             $('#receipt_amountusd').val(data.invdtl_amountusd);
@@ -573,6 +595,30 @@ function addReceiptInsallment(x) {
 
 $('#amount').keyup(function() {
     let am = $(this).val();
+    let rp = $('#rupiah').val();
+    let pIDR = $('#priceIDR').val();
+    let amUSD = am / rp;
+    let amUSDFix = amUSD.toFixed(2);
+    let percent = (am / pIDR) * 100;
+    let perFixed = percent.toFixed(2);
+
+    $('#receipt_amountusd').val(amUSDFix);
+    $('#percentage').val(perFixed);
     $('#words').val(capitalize(am));
+    $('#wordsusd').val(capitalizeUSD(amUSDFix));
+});
+
+$('#receipt_amountusd').keyup(function() {
+    let amUSD = $(this).val();
+    let rp = $('#rupiah').val();
+    let pIDR = $('#priceIDR').val();
+    let am2 = amUSD * rp;
+    let percent = (am2 / pIDR) * 100;
+    let perFixed = percent.toFixed(2);
+
+    $('#amount').val(am2);
+    $('#percentage').val(perFixed);
+    $('#words').val(capitalize(am2));
+    $('#wordsusd').val(capitalizeUSD(amUSD));
 });
 </script>
