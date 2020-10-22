@@ -85,7 +85,15 @@ class Student extends CI_Controller
                     'invdtl_amountidr' => $this->input->post('receipt_amount')
                 ];
                 $this->invdetail->update($invdtl, $invdtl_id);
-            } 
+            } else {
+                $inv_num = $this->input->post('inv_num');
+                $inv_data = [
+                    'inv_priceidr' => $this->input->post('receipt_amount'),
+                    'inv_totpridr' => $this->input->post('receipt_amount'),
+                    'inv_words' => $this->input->post('receipt_words')
+                ];
+                $this->inv->update($inv_data, $inv_num);
+            }
                         
             $this->receipt->save($data);
             $this->session->set_flashdata('success', 'Receipt has been created');
@@ -123,6 +131,14 @@ class Student extends CI_Controller
                 'invdtl_amountidr' => $this->input->post('receipt_amount')
             ];
             $this->invdetail->update($invdtl, $invdtl_id);
+        } else {
+            $inv_num = $this->input->post('inv_num');
+                $inv_data = [
+                    'inv_priceidr' => $this->input->post('receipt_amount'),
+                    'inv_totpridr' => $this->input->post('receipt_amount'),
+                    'inv_words' => $this->input->post('receipt_words')
+                ];
+                $this->inv->update($inv_data, $inv_num);
         }
         
         $this->receipt->update($data, $id);
@@ -151,6 +167,12 @@ class Student extends CI_Controller
         $this->receipt->update($data, $id);
         $this->session->set_flashdata('success', 'Cancel refund has been successfully');
         redirect('/finance/receipt/student/view/'.$id);
+    }
+
+    public function delete($id) {        
+        $this->receipt->delete($id);
+        $this->session->set_flashdata('success', 'Delete has been successfully');
+        redirect('/finance/receipt/student');
     }
 
     public function pdf($id)

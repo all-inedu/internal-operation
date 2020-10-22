@@ -55,10 +55,13 @@
                 <a href="#" class="btn btn-sm btn-secondary m-1" data-toggle="modal" data-target="#editReceipt"><i
                         class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
 
+                <a href="<?=base_url('finance/receipt/student/delete/'.$rec['receipt_num']);?>"
+                    class="btn btn-sm btn-light m-1 shadow text-danger"><i class="fas fa-trash"></i>&nbsp; Delete</a>
+
                 <?php 
                     if($rec['receipt_status']==1) {
                 ?>
-                <a href="<?=base_url('finance/receipt/student/pdf/'.$rec['receipt_num']);?>"
+                <a href=" <?=base_url('finance/receipt/student/pdf/'.$rec['receipt_num']);?>"
                     class="btn btn-sm btn-primary m-1" target="_blank"><i class="fas fa-print"></i>&nbsp; Print</a>
 
                 <?php if($rec['inv_category']=='usd'){  ?>
@@ -343,28 +346,38 @@
             <form action="<?=base_url('finance/receipt/student/edit');?>" method="post" name="receipt">
                 <div class="modal-body">
                     <div class="row">
-                        <?php 
+                        <?php
                             $invidr = $rec['inv_priceidr'];
                             $invusd = $rec['inv_priceusd'];
-                            $rupiah = $invidr/$invusd;
+                            $invdtl_id = $rec['invdtl_id'];
+                            if($invdtl_id>0) {
+                                $invdtl = $this->invdetail->showDetailId($invdtl_id);
+                                $percen = $invdtl['invdtl_percentage'];
+                                $amountUSD = $invdtl['invdtl_amountusd'];
+                                $rupiah = $invidr/$invusd;
+                            } else {
+                                $percen = '0';
+                                $amountUSD = '0';
+                                $rupiah = $invidr;
+                            }
+
                         ?>
-                        <div class="col-md-6">
+                        <div class="col-md-6 usd">
                             <label>Percentage</label>
                             <div class="form-group">
-                                <input type="hidden" name="invdtl_id" value="<?=$rec['invdtl_id'];?>">
+                                <input type="hidden" id="invdtl_id" name="invdtl_id" value="<?=$rec['invdtl_id'];?>">
                                 <input type="hidden" name="rupiah" value="<?=$rupiah;?>" id="rupiah">
+                                <input type="hidden" name="inv_num" value="<?=$rec['inv_num'];?>">
                                 <input type="hidden" name="priceIDR" value="<?=$rec['inv_priceidr'];?>" id="priceIDR">
                                 <input class="form-control form-control-sm" type="number" step="any"
-                                    name="invdtl_percentage" value="<?=$rec['invdtl_percentage'];?>" id="percentage"
-                                    readonly>
+                                    name="invdtl_percentage" value="<?=$percen;?>" id="percentage" readonly>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 usd">
                             <label>Amount (USD)</label>
                             <div class="form-group">
                                 <input class="form-control form-control-sm" type="number" name="invdtl_amountusd"
-                                    value="<?=$rec['invdtl_amountusd'];?>" id="amountUSD"
-                                    max="<?=$rec['inv_priceusd'];?>">
+                                    value="<?=$amountUSD;?>" id="amountUSD" max="<?=$rec['inv_priceusd'];?>">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -434,9 +447,18 @@ function paymentMethods() {
     }
 }
 
-$('#amount').keyup(function() {
-    let am = $(this).val();
-    $('#words').val(capitalize(am));
+// $('#amount').keyup(function() {
+//     let am = $(this).val();
+//     $('#words').val(capitalize(am));
+// });
+
+$(document).ready(function() {
+    let invdtl = $('#invdtl_id').val();
+    if (invdtl > 0) {
+        $('.usd').show();
+    } else {
+        $('.usd').hide();
+    }
 });
 
 $('#amount1').keyup(function() {
@@ -447,11 +469,18 @@ $('#amount1').keyup(function() {
     let amUSDFix = amUSD.toFixed(2);
     let percent = (am1 / pIDR) * 100;
     let perFixed = percent.toFixed(2);
+    let invdtl = $('#invdtl_id').val();
 
-    $('#amountUSD').val(amUSDFix);
-    $('#percentage').val(perFixed);
-    $('#words1').val(capitalize(am1));
-    $('#words2').val(capitalizeUSD(amUSDFix));
+    if (invdtl > 0) {
+        $('#amountUSD').val(amUSDFix);
+        $('#percentage').val(perFixed);
+        $('#words1').val(capitalize(am1));
+        $('#words2').val(capitalizeUSD(amUSDFix));
+    } else {
+        $('#words1').val(capitalize(am1));
+    }
+
+
 });
 
 $('#amountUSD').keyup(function() {
@@ -461,6 +490,7 @@ $('#amountUSD').keyup(function() {
     let am2 = amUSD * rp;
     let percent = (am2 / pIDR) * 100;
     let perFixed = percent.toFixed(2);
+    let invdtl = $('#invdtl_id').val();
 
     $('#amount1').val(am2);
     $('#percentage').val(perFixed);

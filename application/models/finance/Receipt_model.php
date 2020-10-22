@@ -90,5 +90,10 @@ class Receipt_model extends CI_model
         return $this->db->get('tbl_receipt')->result_array();
     }
 
+    public function delete($id) {
+        $this->db->where('receipt_num', $id);
+        $this->db->delete('tbl_receipt');
+    }
+
 }
 ?>

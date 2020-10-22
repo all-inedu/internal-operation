@@ -490,6 +490,7 @@
                             <div class="form-group">
                                 <input type="hidden" name="stprog_id" value="<?=$inv['stprog_id'];?>">
                                 <input type="hidden" name="inv_id" value="<?=$inv['inv_id'];?>">
+                                <input type="hidden" name="inv_num" value="<?=$inv['inv_num'];?>">
                                 <input type="hidden" name="priceIDR" id="priceIDR" value="<?=$inv['inv_priceidr'];?>">
                                 <input type="hidden" id="invdtl_id" name="invdtl_id">
                                 <input type="hidden" name="receipt_cat" value="1">
