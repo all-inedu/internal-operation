@@ -482,7 +482,7 @@
                                 <input type="hidden" name="receipt_cat" value="1">
                                 <input type="hidden" id="receipt_amountusd" name="receipt_amountusd">
                                 <input type="number" name="receipt_amount" id="amount"
-                                    class="form-control form-control-sm" readonly>
+                                    class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="col-md-6">

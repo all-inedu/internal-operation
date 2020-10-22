@@ -95,8 +95,8 @@ class Student extends CI_Controller
         $data = [
             'receipt_mtd' => $this->input->post('receipt_mtd'),
             'receipt_cheque' => $this->input->post('receipt_cheque'),
-            // 'receipt_amount' => $this->input->post('receipt_amount'),
-            // 'receipt_words' => $this->input->post('receipt_words'),
+            'receipt_amount' => $this->input->post('receipt_amount'),
+            'receipt_words' => $this->input->post('receipt_words'),
             'receipt_date' => $this->input->post('receipt_date'),
             'receipt_status' => 1,
         ];

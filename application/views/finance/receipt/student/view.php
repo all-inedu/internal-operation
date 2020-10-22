@@ -348,7 +348,7 @@
                             <div class="form-group">
                                 <input type="hidden" name="receipt_num" value="<?=$rec['receipt_num'];?>">
                                 <input type="number" name="receipt_amount" value="<?=$rec['receipt_amount'];?>"
-                                    class="form-control form-control-sm" id="amount" readonly>
+                                    class="form-control form-control-sm" id="amount1">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -359,7 +359,7 @@
                             </div>
                         </div>
                         <div class=" col-md-12 mb-3">
-                            <input type="text" id="words" name="receipt_words" class="form-control form-control-sm"
+                            <input type="text" id="words1" name="receipt_words" class="form-control form-control-sm"
                                 value="<?=$rec['receipt_words'];?>" readonly>
                         </div>
                         <div class="col-md-6">
@@ -411,6 +411,11 @@ function paymentMethods() {
 $('#amount').keyup(function() {
     let am = $(this).val();
     $('#words').val(capitalize(am));
+});
+
+$('#amount1').keyup(function() {
+    let am1 = $(this).val();
+    $('#words1').val(capitalize(am1));
 });
 
 $('#pph').keyup(function() {
