@@ -477,9 +477,15 @@
                         <?php
                             $invidr = $inv['inv_priceidr'];
                             $invusd = $inv['inv_priceusd'];
-                            $rupiah = $invidr/$invusd;
+                            if($invusd>0) {
+                                $rupiah = $invidr/$invusd;
+                                $show = "";
+                            } else {
+                                $rupiah = $invidr;
+                                $show = "readonly";
+                            }
                         ?>
-                        <div class="col-md-6">
+                        <div class="col-md-6 usd">
                             <label>Percentage <i class="text-danger font-weight-bold">*</i></label>
                             <div class="form-group">
                                 <input type="hidden" name="stprog_id" value="<?=$inv['stprog_id'];?>">
@@ -492,11 +498,11 @@
                                     class="form-control form-control-sm" readonly>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 usd">
                             <label>Amount (USD) <i class="text-danger font-weight-bold">*</i></label>
                             <div class="form-group">
                                 <input type="number" step="any" id="receipt_amountusd" name="receipt_amountusd"
-                                    class="form-control form-control-sm">
+                                    class="form-control form-control-sm" <?=$show;?>>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -561,6 +567,7 @@ function paymentMethods() {
 }
 
 function addReceipt(x) {
+    $('.usd').hide();
     $.ajax({
         type: 'post',
         url: '<?=base_url("finance/invoice/student/showinvnumjson/");?>' + x,
@@ -577,12 +584,13 @@ function addReceipt(x) {
 }
 
 function addReceiptInsallment(x) {
+    $('.usd').show();
     $.ajax({
         type: 'post',
         url: '<?=base_url("finance/invoice/student/showinvdtljson/");?>' + x,
         dataType: 'json',
         success: function(data) {
-            console.log(data)
+            // console.log(data)
             $('#invdtl_id').val(data.invdtl_id);
             $('#percentage').val(data.invdtl_percentage);
             $('#amount').val(data.invdtl_amountidr);
@@ -591,6 +599,8 @@ function addReceiptInsallment(x) {
             $('#wordsusd').val(capitalizeUSD(data.invdtl_amountusd));
         }
     });
+
+
 }
 
 $('#amount').keyup(function() {
@@ -601,11 +611,17 @@ $('#amount').keyup(function() {
     let amUSDFix = amUSD.toFixed(2);
     let percent = (am / pIDR) * 100;
     let perFixed = percent.toFixed(2);
+    let invDtl = $('#invdtl_id').val();
 
-    $('#receipt_amountusd').val(amUSDFix);
-    $('#percentage').val(perFixed);
-    $('#words').val(capitalize(am));
-    $('#wordsusd').val(capitalizeUSD(amUSDFix));
+    if (invDtl > 0) {
+        $('#receipt_amountusd').val(amUSDFix);
+        $('#percentage').val(perFixed);
+        $('#words').val(capitalize(am));
+        $('#wordsusd').val(capitalizeUSD(amUSDFix));
+    } else {
+        $('#words').val(capitalize(am));
+    }
+
 });
 
 $('#receipt_amountusd').keyup(function() {

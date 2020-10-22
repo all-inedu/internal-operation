@@ -13,7 +13,7 @@ class Receipt_model extends CI_model
         $this->db->select('*');
         $this->db->where('receipt_num', $id);
         $this->db->join('tbl_inv', 'tbl_inv.inv_id=tbl_receipt.inv_id');
-        $this->db->join('tbl_invdtl', 'tbl_invdtl.invdtl_id=tbl_receipt.invdtl_id');
+        // $this->db->join('tbl_invdtl', 'tbl_invdtl.invdtl_id=tbl_receipt.invdtl_id');
         $this->db->join('tbl_stprog', 'tbl_stprog.stprog_id=tbl_inv.stprog_id');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
         $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');

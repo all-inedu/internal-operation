@@ -77,13 +77,16 @@ class Student extends CI_Controller
 
             $stprog_id = $this->input->post('stprog_id');
             $invdtl_id = $this->input->post('invdtl_id');
-            $invdtl = [
-                'invdtl_percentage' => $this->input->post('invdtl_percentage'),
-                'invdtl_amountusd' => $this->input->post('receipt_amountusd'),
-                'invdtl_amountidr' => $this->input->post('receipt_amount')
-            ];
-
-            $this->invdetail->update($invdtl, $invdtl_id);
+            
+            if($invdtl_id > 0){
+                $invdtl = [
+                    'invdtl_percentage' => $this->input->post('invdtl_percentage'),
+                    'invdtl_amountusd' => $this->input->post('receipt_amountusd'),
+                    'invdtl_amountidr' => $this->input->post('receipt_amount')
+                ];
+                $this->invdetail->update($invdtl, $invdtl_id);
+            } 
+                        
             $this->receipt->save($data);
             $this->session->set_flashdata('success', 'Receipt has been created');
             redirect('/finance/invoice/student/view/'.$stprog_id);
@@ -113,13 +116,15 @@ class Student extends CI_Controller
         ];
         
         $invdtl_id = $this->input->post('invdtl_id');
-        $invdtl = [
-            'invdtl_percentage' => $this->input->post('invdtl_percentage'),
-            'invdtl_amountusd' => $this->input->post('invdtl_amountusd'),
-            'invdtl_amountidr' => $this->input->post('receipt_amount')
-        ];
-
-        $this->invdetail->update($invdtl, $invdtl_id);
+        if($invdtl_id > 0){
+            $invdtl = [
+                'invdtl_percentage' => $this->input->post('invdtl_percentage'),
+                'invdtl_amountusd' => $this->input->post('invdtl_amountusd'),
+                'invdtl_amountidr' => $this->input->post('receipt_amount')
+            ];
+            $this->invdetail->update($invdtl, $invdtl_id);
+        }
+        
         $this->receipt->update($data, $id);
         $this->session->set_flashdata('success', 'Receipt has been changed');
         redirect('/finance/receipt/student/view/'.$id);
