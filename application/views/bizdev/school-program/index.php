@@ -11,6 +11,7 @@
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
                     <li class="breadcrumb-item"><a href="<?=base_url('bizdev/home');?>">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<?=base_url('bizdev/school/');?>">School</a>
                     <li class="breadcrumb-item active" aria-current="page">Schools Program</li>
                 </ol>
             </nav>
