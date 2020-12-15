@@ -116,8 +116,10 @@
                         $cat = $rec['receipt_cat'];
                         if($cat==1) {
                             $inv = $this->inv->showInvId($rec['inv_id']);
-                        } else {
+                        } else if($cat==2) {
                             $inv = $this->invsch->showInvId($rec['inv_id']);
+                        } else if($cat==3) {
+                            $inv = $this->partners->showId($rec['pt_id']);
                         }
                     ?>
                         <tr>
@@ -125,11 +127,19 @@
                             <td>
                                 <?php if($cat==1) { ?>
                                 <?=$inv['st_firstname'].' '.$inv['st_lastname'];?>
-                                <?php } else { ?>
+                                <?php } else if($cat==2) { ?>
                                 <?=$inv['sch_name'];?>
+                                <?php } else if($cat==3) { ?>
+                                <?=$inv['pt_name'];?>
                                 <?php } ?>
                             </td>
-                            <td><?=$inv['prog_program'];?></td>
+                            <td>
+                            <?php if($cat!=3) { ?>
+                            <?=$inv['prog_program'];?>
+                            <?php } else { ?>
+                            <?=$rec['receipt_notes'];?>
+                            <?php } ?>
+                            </td>
                             <td class="text-center">
                                 <?=$invdtl['invdtl_statusname'];?>
                                 <?php if($rec['receipt_status']==2) { echo "<br><small>Cancel/Refund</small>"; }?>

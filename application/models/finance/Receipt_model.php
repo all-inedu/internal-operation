@@ -25,6 +25,20 @@ class Receipt_model extends CI_model
         return $this->db->get('tbl_receipt')->result_array();
     }
 
+    public function showAllRef() {
+        $this->db->select('*');
+        $this->db->join('tbl_pt', 'tbl_pt.pt_id=tbl_receipt.pt_id');
+        $this->db->order_by('tbl_receipt.receipt_date','DESC');
+        return $this->db->get('tbl_receipt')->result_array();
+    }
+
+    public function showRefId($id) {
+        $this->db->select('*');
+        $this->db->where('receipt_num', $id);
+        $this->db->join('tbl_pt', 'tbl_pt.pt_id=tbl_receipt.pt_id');
+        return $this->db->get('tbl_receipt')->row_array();
+    }
+
     public function showAll() {
         $this->db->select('*');
         $this->db->join('tbl_inv', 'tbl_inv.inv_id=tbl_receipt.inv_id');

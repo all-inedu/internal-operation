@@ -42,7 +42,7 @@ body {
 }
 
 .menus {
-    height: 330px !important;
+    height: 350px !important;
 }
 
 .menu-link a:hover {
@@ -388,6 +388,17 @@ if ($this->session->flashdata('success')) {
                             <div class="row">
                                 <div class="col-10">
                                     Schools Receipt List
+                                </div>
+                                <div class="col-2 my-auto">
+                                    <i class="icofont-paper-plane icofont-1x"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="mt-1 mb-1">
+                        <a href="<?=base_url('finance/receipt/referral/');?>" target="">
+                            <div class="row">
+                                <div class="col-10">
+                                    Referral
                                 </div>
                                 <div class="col-2 my-auto">
                                     <i class="icofont-paper-plane icofont-1x"></i>

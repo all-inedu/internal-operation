@@ -12,6 +12,7 @@ class Pph_final extends CI_Controller
         $this->load->model('finance/Invoice_model','inv');
         $this->load->model('finance/InvoiceDetail_model','invdtl');
         $this->load->model('finance/InvoiceSchool_model','invsch');
+        $this->load->model('finance/Partners_model','partners');
         $this->load->model('Menus_model','menu');
         
         $empl_id = $this->session->userdata('empl_id');
