@@ -104,7 +104,7 @@
                             <div class="form-group">
                                 <label>Main Program <i class="text-danger font-weight-bold">*</i>
                                 </label>
-                                <input type="text" name="main_number" id="mainNumber">
+                                <input type="text" name="main_number" id="mainNumber" hidden>
                                 <select id="mainProgram" name="prog_main" onchange="mainPrograms()">
                                     <option data-placeholder="true"></option>
                                     <?php foreach($mainProgram as $mp): ?>
