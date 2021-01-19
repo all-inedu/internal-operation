@@ -78,6 +78,7 @@ class School_program extends CI_Controller
         $id = $this->input->post('schprog_id');
         $data = [
             'empl_id' => $this->input->post('empl_id'),
+            'schprog_datefirstdis' => $this->input->post('schprog_datefirstdis'),
             'schprog_datelastdis' => $this->input->post('schprog_datelastdis'),
             'schprog_status' => $this->input->post('schprog_status'),
             'schprog_notes' => $this->input->post('schprog_notes')

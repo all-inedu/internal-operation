@@ -1005,8 +1005,8 @@ $('#duration').keyup(function() {
     let ds = $('#discount').val();
 
     let tpRupiah = (ph * ss) * (dr / 60) - ds;
-    $('#totalPrice').val(tpRupiah);
-    $('#tpWords3').val(capitalize(tpRupiah));
+    $('#totalPrice').val(tpRupiah.toFixed(0));
+    $('#tpWords3').val(capitalize(tpRupiah.toFixed(0)));
 });
 
 $('#discount').keyup(function() {
@@ -1016,7 +1016,7 @@ $('#discount').keyup(function() {
     let ds = $('#discount').val();
 
     let tpRupiah = (ph * ss) * (dr / 60) - ds;
-    $('#totalPrice').val(tpRupiah);
-    $('#tpWords3').val(capitalize(tpRupiah));
+    $('#totalPrice').val(tpRupiah.toFixed(0));
+    $('#tpWords3').val(capitalize(tpRupiah.toFixed(0)));
 });
 </script>

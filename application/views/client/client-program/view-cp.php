@@ -35,13 +35,14 @@
                         Program Name : <br>
                         <b>
                             <?php 
-                                if($stprog['prog_sub']=='-') {
+                                if($stprog['prog_sub']=='') {
                                     echo $stprog['prog_program'];
                                 } else {
                                     echo $stprog['prog_sub'].': '.$stprog['prog_program'];
                                 }
                             ?>
                         </b>
+                        <input type="text" value="<?=$stprog['prog_sub'];?>" id="sub-program" hidden>
                     </div>
                     <!-- <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addInitial">Add Initial
@@ -101,7 +102,7 @@
                                 <div class="col-md-6 mb-3">
                                     <small>First Discuss</small>
                                     <input name="stprog_firstdisdate" type="date" class="form-control form-control-sm"
-                                        value="<?=$stprog['stprog_firstdisdate'];?>" disabled>
+                                        value="<?=$stprog['stprog_firstdisdate'];?>">
                                     <?=form_error('stprog_firstdisdate', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -157,6 +158,26 @@
                                     <small>Date</small>
                                     <input type="date" name="stprog_statusprogdate"
                                         value="<?=$stprog['stprog_statusprogdate'];?>"
+                                        class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="row" id="sub-pending">
+                                <div class="col-md-6 mb-3 text-right">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <small>Initial Consultation Date</small>
+                                    <input type="date" name="stprog_init_consult"
+                                        value="<?=$stprog['stprog_init_consult'];?>"
+                                        class="form-control form-control-sm">
+                                    <br>
+                                    <small>Initial Assessment Sent</small>
+                                    <input type="date" name="stprog_ass_sent"
+                                        value="<?=$stprog['stprog_ass_sent'];?>"
+                                        class="form-control form-control-sm">
+                                    <br>
+                                    <small>Negotiation Date</small>
+                                    <input type="date" name="stprog_nego"
+                                        value="<?=$stprog['stprog_nego'];?>"
                                         class="form-control form-control-sm">
                                 </div>
                             </div>
@@ -332,18 +353,23 @@ PIC.set("<?=$stprog['empl_id'];?>");
 <script>
 $(document).ready(function() {
     var st = $("#stPotential").val();
+    var pr = $("#sub-program").val();
+
     if (st == "2") {
         $("#reason").show();
         $("#new_reason").hide();
+        $("#sub-pending").hide();
     } else if (st == "1") {
         $("#reason").hide();
         $("#new_reason").hide();
+        $("#sub-pending").hide();
         stProgram.enable();
         MM.enable();
         BM.enable();
-    } else {
+    } else if (st == "0" && pr == "Admissions Consulting" ) {
         $("#reason").hide();
         $("#new_reason").hide();
+        $("#sub-pending").show();
         stProgram.disable();
         MM.disable();
         BM.disable();
@@ -361,8 +387,10 @@ function newReason() {
 
 function progStatus() {
     var st = $("#stPotential").val();
+    var pr = $("#sub-program").val();
     if (st == "1") {
         $("#reason").hide();
+        $("#sub-pending").hide();
         stProgram.enable();
         MM.enable();
         BM.enable();
@@ -370,14 +398,16 @@ function progStatus() {
         BM.set("<?=$stmentor['mt_id2'];?>");
     } else if (st == "2") {
         $("#reason").show();
+        $("#sub-pending").hide();
         stProgram.disable();
         stProgram.set("0");
         MM.disable();
         BM.disable();
         MM.set("");
         BM.set("");
-    } else {
+    } else if (st == "0" && pr == "Admissions Consulting" ) {
         $("#reason").hide();
+        $("#sub-pending").show();
         stProgram.disable();
         stProgram.set("0");
         MM.disable();

@@ -165,6 +165,9 @@ class Students_program extends CI_Controller
             'reason_id' => $reason,
             'stprog_statusprogdate' => $this->input->post('stprog_statusprogdate'),
             'stprog_runningstatus' => $this->input->post('stprog_runningstatus'),
+            'stprog_init_consult' => $this->input->post('stprog_init_consult'),
+            'stprog_ass_sent' => $this->input->post('stprog_ass_sent'),
+            'stprog_nego' => $this->input->post('stprog_nego'),
             'empl_id' => $this->input->post('empl_id')
         ];
         

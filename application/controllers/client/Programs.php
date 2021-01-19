@@ -36,7 +36,7 @@ class Programs extends CI_Controller
         array('is_unique' => 'Program ID already created'));
         $this->form_validation->set_rules('prog_type', 'type program', 'required|trim');
         $this->form_validation->set_rules('prog_main', 'main program', 'required|trim');
-        $this->form_validation->set_rules('prog_sub', 'sub program', 'required|trim');
+        // $this->form_validation->set_rules('prog_sub', 'sub program', 'required|trim');
         $this->form_validation->set_rules('prog_program', 'program name', 'required|trim');
         $this->form_validation->set_rules('prog_mentor', 'need mentor', 'required|trim');
         $this->form_validation->set_rules('prog_payment', 'payment', 'required|trim');
@@ -47,6 +47,7 @@ class Programs extends CI_Controller
             $data = [
                 'prog_id' => $this->input->post('prog_id'),
                 'prog_main' => $this->input->post('prog_main'),
+                'main_number' => $this->input->post('main_number'),
                 'prog_sub' => $this->input->post('prog_sub'),
                 'prog_program' => $this->input->post('prog_program'),
                 'prog_type' => $this->input->post('prog_type'),
@@ -59,7 +60,7 @@ class Programs extends CI_Controller
             redirect('/client/programs/');
         }
     }
-
+ 
     public function view($id) {
         $data = $this->program->showId($id);
         echo json_encode($data);
@@ -68,7 +69,7 @@ class Programs extends CI_Controller
     public function update() {
         $this->form_validation->set_rules('prog_type', 'type program', 'required|trim');
         $this->form_validation->set_rules('prog_main', 'main program', 'required|trim');
-        $this->form_validation->set_rules('prog_sub', 'sub program', 'required|trim');
+        // $this->form_validation->set_rules('prog_sub', 'sub program', 'required|trim');
         $this->form_validation->set_rules('prog_program', 'program name', 'required|trim');
         $this->form_validation->set_rules('prog_mentor', 'need mentor', 'required|trim');
         $this->form_validation->set_rules('prog_payment', 'payment', 'required|trim');
@@ -79,6 +80,7 @@ class Programs extends CI_Controller
             $id = $this->input->post('prog_id');
             $data = [
                 'prog_main' => $this->input->post('prog_main'),
+                'main_number' => $this->input->post('main_number'),
                 'prog_sub' => $this->input->post('prog_sub'),
                 'prog_program' => $this->input->post('prog_program'),
                 'prog_type' => $this->input->post('prog_type'),

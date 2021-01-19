@@ -268,7 +268,7 @@
                                     <td class="text-left" style="cursor:pointer"
                                         onclick="window.location='<?=base_url('client/students-program/view/'.$stp['stprog_id']);?>'">
                                         <?php 
-                                            if($stp['prog_sub']=='-') {
+                                            if($stp['prog_sub']=='') {
                                                 echo $stp['prog_program'];
                                             } else {
                                                 echo $stp['prog_sub'].': '.$stp['prog_program'];
@@ -338,7 +338,7 @@
                                     <?php foreach($program as $pr): ?>
                                     <option value="<?=$pr['prog_id'];?>">
                                         <?php 
-                                            if($pr['prog_sub']=='-') {
+                                            if($pr['prog_sub']=='') {
                                                 echo $pr['prog_program'];
                                             } else {
                                                 echo $pr['prog_sub'].': '.$pr['prog_program'];

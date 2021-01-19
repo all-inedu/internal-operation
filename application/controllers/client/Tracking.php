@@ -41,16 +41,23 @@ class Tracking extends CI_Controller
             $data['st_pending'] = count($this->stprog->stprog_status(0,$start, $end));
             $data['st_success'] = count($this->stprog->stprog_status(1,$start, $end));
             $data['st_failed'] = count($this->stprog->stprog_status(2,$start, $end));
-            //lead
 
+            //lead
             $data['leads'] = $this->stprog->lead_prog($start, $end);
             $data['lead_pending'] = $this->stprog->stprog_lead(0, $start, $end);
             $data['lead_success'] = $this->stprog->stprog_lead(1, $start, $end);
             $data['lead_failed'] = $this->stprog->stprog_lead(2, $start, $end);
+            $data['lead_ovl'] = $this->stprog->lead_prog_ovl($start, $end);
+
             //program
             $data['prog_pending'] = $this->stprog->stprog_prog(0, $start, $end);
             $data['prog_success'] = $this->stprog->stprog_prog(1, $start, $end);
             $data['prog_failed'] = $this->stprog->stprog_prog(2, $start, $end);
+
+            #New Update
+            $data['main_prog_pending'] = $this->stprog->stprog_main_program(0, $start, $end);
+            $data['main_prog_success'] = $this->stprog->stprog_main_program(1, $start, $end);
+            
 
             $data['convert_avg'] = $this->stprog->stprog_avg($start, $end);
 

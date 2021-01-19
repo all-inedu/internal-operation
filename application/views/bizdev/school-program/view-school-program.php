@@ -27,7 +27,7 @@
         <div class="card shadow card-sticky">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="<?=base_url('assets/img/sch.png');?>" alt="client management" width="60%">
+                    <img src="<?=base_url('assets/img/sch.png');?>" alt="bizdev" width="60%">
                     <br>
                     <?php if($sprog['schprog_status']==1) { ?>
                     <span class="badge badge-pill badge-success p-1" data-toggle="tooltip" data-placement="top"

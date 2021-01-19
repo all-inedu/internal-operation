@@ -3,6 +3,7 @@ class Program_model extends CI_model
 {
     public function showAll(){
         $this->db->select('*');
+        $this->db->order_by('main_number');
         return $this->db->get('tbl_prog')->result_array();
     }
 

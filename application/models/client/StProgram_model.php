@@ -128,6 +128,15 @@ class StProgram_model extends CI_model
         return $this->db->get('tbl_stprog')->result_array();
     }
 
+    public function lead_prog_ovl($start, $end) {
+        $this->db->select("tbl_lead.lead_id, tbl_lead.lead_name, count(tbl_stprog.stprog_id) as tot");
+        $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
+        $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
+        $this->db->group_by("tbl_stprog.lead_id");
+        $this->db->join("tbl_lead","tbl_lead.lead_id=tbl_stprog.lead_id");
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+
     public function stprog_lead($n, $start, $end) {
         $this->db->select("count(tbl_stprog.stprog_id) as tot, tbl_lead.lead_id, tbl_lead.lead_name");
         $this->db->where("tbl_stprog.stprog_status =", $n);
@@ -198,6 +207,60 @@ class StProgram_model extends CI_model
         $this->db->group_by("tbl_prog.prog_program");
         $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
         $this->db->order_by("tot","DESC");
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+
+    #new update
+    public function stprog_main_program($n, $start, $end) {
+        $this->db->select("tbl_prog.prog_main, tbl_prog.prog_sub, count(tbl_stprog.stprog_id) as tot");
+        $this->db->where("tbl_stprog.stprog_status =", $n);
+        $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
+        $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
+        $this->db->group_by("tbl_prog.prog_main");
+        $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
+        $this->db->order_by("tbl_prog.main_number","ASC");
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+
+    public function stprog_sub_program($n, $start, $end, $main_prog="") {
+        $this->db->select("tbl_prog.prog_id, tbl_prog.prog_sub, tbl_prog.prog_program, count(tbl_stprog.stprog_id) as tot ");
+        $this->db->where("tbl_stprog.stprog_status =", $n);
+        $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
+        $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
+        $this->db->where("tbl_prog.prog_main =", $main_prog);
+        $this->db->group_by("tbl_prog.prog_program");
+        $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
+        $this->db->order_by("tbl_prog.prog_main","ASC");
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+
+    public function stprog_sub_program_ovl($n, $start, $end) {
+        $this->db->select("tbl_prog.prog_id, tbl_prog.prog_sub, tbl_prog.prog_program, count(tbl_stprog.stprog_id) as tot ");
+        // $this->db->where("tbl_stprog.stprog_status =", $n);
+        $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
+        $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
+        $this->db->group_by("tbl_prog.prog_program");
+        $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
+        $this->db->order_by("tbl_prog.prog_main","ASC");
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+
+    public function stprog_adm_init_avg($n, $start, $end) {
+        $this->db->select("
+            tbl_prog.prog_id,
+            tbl_prog.prog_sub,
+            tbl_prog.prog_program,
+            count(tbl_stprog.stprog_id) as tot,
+            sum(datediff(tbl_stprog.stprog_ass_sent, tbl_stprog.stprog_init_consult)) as init_make,
+            sum(datediff(tbl_stprog.stprog_nego, tbl_stprog.stprog_ass_sent)) as long_response
+        ");
+        $this->db->where("tbl_stprog.stprog_status =", $n);
+        $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
+        $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
+        $this->db->where("tbl_prog.prog_sub =", "Admissions Consulting");
+        $this->db->group_by("tbl_prog.prog_id");
+        $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
+        $this->db->order_by("tbl_prog.prog_main","ASC");
         return $this->db->get('tbl_stprog')->result_array();
     }
 

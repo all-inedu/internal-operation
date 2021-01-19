@@ -183,7 +183,7 @@
                     <?php
                         $no=0;
                         foreach ($prog as $pr) {
-                            if($pr['prog_sub']=='-') {
+                            if($pr['prog_sub']=='') {
                                 $prg = $pr['prog_program'];
                             } else {
                                 $prg = $pr['prog_sub'].': '.$pr['prog_program'];
@@ -213,7 +213,7 @@
     $prog_count = [];
     $prog_name = [];
     foreach ($prog as $p) {
-        if($p['prog_sub']=='-') {
+        if($p['prog_sub']=='') {
             $prg = $p['prog_program'];
         } else {
             $prg = $p['prog_sub'].': '.$p['prog_program'];

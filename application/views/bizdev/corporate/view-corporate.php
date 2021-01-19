@@ -232,7 +232,7 @@
                                     <?php foreach($prog as $p): ?>
                                     <option value="<?=$p['prog_id'];?>">
                                         <?php 
-                                            if($p['prog_sub']=='-') {
+                                            if($p['prog_sub']=='') {
                                                 echo $p['prog_program'];
                                             } else {
                                                 echo $p['prog_sub'].': '.$p['prog_program'];

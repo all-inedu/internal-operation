@@ -102,9 +102,14 @@
                         <div class="col-md-3">
                             <label><i class="fa-fw fas fa-calendar-alt text-muted"></i>&nbsp; First Discuss :</label>
                         </div>
-                        <div class="col-md-9">
-                            <?=date('d F Y', strtotime($sprog['schprog_datefirstdis']));?>
-                            <hr class="mt-1">
+                        <div class="col-md-9 mb-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input name="schprog_datefirstdis" type="date" class="form-control form-control-sm" value="<?=$sprog['schprog_datefirstdis'];?>">
+                                    <?=form_error('schprog_datefirstdis', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                            <!-- <?=date('d F Y', strtotime($sprog['schprog_datefirstdis']));?> -->
                         </div>
 
                         <div class="col-md-3">

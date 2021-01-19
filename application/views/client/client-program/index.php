@@ -28,7 +28,7 @@
             <option data-placeholder="true"></option>
             <?php foreach($program as $pr): ?>
             <?php 
-                if($pr['prog_sub']=='-') {
+                if($pr['prog_sub']=='') {
             ?>
             <option value="<?=$pr['prog_program'];?>"><?=$pr['prog_program']; ?></option>
             <?php
@@ -78,7 +78,7 @@
                 </td>
                 <td class="text-left">
                     <?php 
-                        if($stpr['prog_sub']=='-') {
+                        if($stpr['prog_sub']=='') {
                             echo $stpr['prog_program'];
                         } else {
                             echo $stpr['prog_sub'].': '.$stpr['prog_program'];
@@ -128,8 +128,8 @@
                     echo $empl['empl_firstname']
                     ?>
                 </td>
-                <td><?=date('d F Y', strtotime($stpr['stprog_firstdisdate']));?></td>
-                <td><?=date('d F Y', strtotime($stpr['stprog_lastdisdate']));?></td>
+                <td data-sort="<?=$stpr['stprog_firstdisdate'];?>"><?=date('d F Y', strtotime($stpr['stprog_firstdisdate']));?></td>
+                <td data-sort="<?=$stpr['stprog_firstdisdate'];?>"><?=date('d F Y', strtotime($stpr['stprog_lastdisdate']));?></td>
             </tr>
             <?php $i++; endforeach; ?>
         </tbody>

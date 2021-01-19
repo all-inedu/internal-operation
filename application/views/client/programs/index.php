@@ -104,6 +104,7 @@
                             <div class="form-group">
                                 <label>Main Program <i class="text-danger font-weight-bold">*</i>
                                 </label>
+                                <input type="text" name="main_number" id="mainNumber">
                                 <select id="mainProgram" name="prog_main" onchange="mainPrograms()">
                                     <option data-placeholder="true"></option>
                                     <?php foreach($mainProgram as $mp): ?>
@@ -116,7 +117,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Sub Program <i class="text-danger font-weight-bold">*</i>
+                                <label>Sub Program
                                 </label>
                                 <select id="subProgram" name="prog_sub">
                                     <option data-placeholder="true"></option>
@@ -209,6 +210,7 @@
                             <div class="form-group">
                                 <label>Main Program <i class="text-danger font-weight-bold">*</i>
                                 </label>
+                                <input type="text" name="main_number" id="editMainNumber" hidden>
                                 <select id="editMainPrograms" name="prog_main" onchange="editMP()">
                                     <?php foreach($mainProgram as $mp): ?>
                                     <option value="<?=$mp;?>"><?=$mp;?></option>
@@ -220,7 +222,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Sub Program <i class="text-danger font-weight-bold">*</i>
+                                <label>Sub Program
                                 </label>
                                 <select id="editSubProgram" name="prog_sub">
                                     <?php foreach($subProgram as $SP): ?>
@@ -294,6 +296,12 @@ $('#checkp').click(function(event) {
     }
 });
 
+new SlimSelect({
+    select: '#typeProgram',
+    placeholder: 'Select type program ',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
 
 new SlimSelect({
     select: '#mainProgram',
@@ -305,13 +313,6 @@ new SlimSelect({
 new SlimSelect({
     select: '#subProgram',
     placeholder: 'Select sub program ',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-
-new SlimSelect({
-    select: '#typeProgram',
-    placeholder: 'Select type program ',
     allowDeselect: true,
     deselectLabel: '<span class="text-danger">✖</span>'
 });
@@ -339,123 +340,91 @@ var ETP = new SlimSelect({
 
 function mainPrograms() {
     var p = $('#mainProgram').val();
-    if (p == 'Admissions Advisory') {
+    if (p == 'Admissions Consulting') {
         $('#subProgram').html('');
         $('#subProgram').html(
             '<?php foreach($adm as $admissions): ?>' +
             '<option value="<?=$admissions;?>"><?=$admissions;?></option>' +
             '<?php endforeach; ?>'
         );
-    } else if (p == 'Standardized Test') {
+        $('#mainNumber').val('1');
+    } else if (p == 'Career Exploration') {
         $('#subProgram').html('');
         $('#subProgram').html(
-            '<?php foreach($sta as $standardized): ?>' +
-            '<option value="<?=$standardized;?>"><?=$standardized;?></option>' +
+            '<?php foreach($ce as $career): ?>' +
+            '<option value="<?=$career;?>"><?=$career;?></option>' +
             '<?php endforeach; ?>'
         );
-    } else if (p == 'Essay Guidance') {
+        $('#mainNumber').val('2');
+    } else if (p == 'Application Bootcamp') {
         $('#subProgram').html('');
         $('#subProgram').html(
-            '<?php foreach($ess as $essay): ?>' +
-            '<option value="<?=$essay;?>"><?=$essay;?></option>' +
+            '<?php foreach($apb as $application): ?>' +
+            '<option value="<?=$application;?>"><?=$application;?></option>' +
             '<?php endforeach; ?>'
         );
-    } else if (p == 'Interview Preparation') {
+        $('#mainNumber').val('3');
+    } else if (p == 'Academic & Test Preparation') {
         $('#subProgram').html('');
         $('#subProgram').html(
-            '<?php foreach($int as $interview): ?>' +
-            '<option value="<?=$interview;?>"><?=$interview;?></option>' +
+            '<?php foreach($aca as $academic): ?>' +
+            '<option value="<?=$academic;?>"><?=$academic;?></option>' +
             '<?php endforeach; ?>'
         );
-    } else if (p == 'Tutoring') {
+        $('#mainNumber').val('4');
+    } else if (p == 'Events & Info Sessions') {
         $('#subProgram').html('');
         $('#subProgram').html(
-            '<?php foreach($tut as $tutoring): ?>' +
-            '<option value="<?=$tutoring;?>"><?=$tutoring;?></option>' +
+            '<?php foreach($ei as $events): ?>' +
+            '<option value="<?=$events;?>"><?=$events;?></option>' +
             '<?php endforeach; ?>'
         );
-    } else if (p == 'Experiential Learning') {
-        $('#subProgram').html('');
-        $('#subProgram').html(
-            '<?php foreach($exp as $experiential): ?>' +
-            '<option value="<?=$experiential;?>"><?=$experiential;?></option>' +
-            '<?php endforeach; ?>'
-        );
-    } else if (p == 'Enrichment Program') {
-        $('#subProgram').html('');
-        $('#subProgram').html(
-            '<?php foreach($enr as $enrichment): ?>' +
-            '<option value="<?=$enrichment;?>"><?=$enrichment;?></option>' +
-            '<?php endforeach; ?>'
-        );
-    } else if (p == 'Workshop') {
-        $('#subProgram').html('');
-        $('#subProgram').html(
-            '<?php foreach($wor as $workshop): ?>' +
-            '<option value="<?=$workshop;?>"><?=$workshop;?></option>' +
-            '<?php endforeach; ?>'
-        );
+        $('#mainNumber').val('5');
     }
 }
 
 function editMP() {
     var p = $('#editMainPrograms').val();
-    if (p == 'Admissions Advisory') {
-        $('#subProgram').html('');
-        $('#subProgram').html(
+    if (p == 'Admissions Consulting') {
+        $('#editSubProgram').html('');
+        $('#editSubProgram').html(
             '<?php foreach($adm as $admissions): ?>' +
             '<option value="<?=$admissions;?>"><?=$admissions;?></option>' +
             '<?php endforeach; ?>'
         );
-    } else if (p == 'Standardized Test') {
-        $('#subProgram').html('');
-        $('#subProgram').html(
-            '<?php foreach($sta as $standardized): ?>' +
-            '<option value="<?=$standardized;?>"><?=$standardized;?></option>' +
+        $('#editMainNumber').val('1');
+    } else if (p == 'Career Exploration') {
+        $('#editSubProgram').html('');
+        $('#editSubProgram').html(
+            '<?php foreach($ce as $career): ?>' +
+            '<option value="<?=$career;?>"><?=$career;?></option>' +
             '<?php endforeach; ?>'
         );
-    } else if (p == 'Essay Guidance') {
-        $('#subProgram').html('');
-        $('#subProgram').html(
-            '<?php foreach($ess as $essay): ?>' +
-            '<option value="<?=$essay;?>"><?=$essay;?></option>' +
+        $('#editMainNumber').val('2');
+    } else if (p == 'Application Bootcamp') {
+        $('#editSubProgram').html('');
+        $('#editSubProgram').html(
+            '<?php foreach($apb as $application): ?>' +
+            '<option value="<?=$application;?>"><?=$application;?></option>' +
             '<?php endforeach; ?>'
         );
-    } else if (p == 'Interview Preparation') {
-        $('#subProgram').html('');
-        $('#subProgram').html(
-            '<?php foreach($int as $interview): ?>' +
-            '<option value="<?=$interview;?>"><?=$interview;?></option>' +
+        $('#editMainNumber').val('3');
+    } else if (p == 'Academic & Test Preparation') {
+        $('#editSubProgram').html('');
+        $('#editSubProgram').html(
+            '<?php foreach($aca as $academic): ?>' +
+            '<option value="<?=$academic;?>"><?=$academic;?></option>' +
             '<?php endforeach; ?>'
         );
-    } else if (p == 'Tutoring') {
-        $('#subProgram').html('');
-        $('#subProgram').html(
-            '<?php foreach($tut as $tutoring): ?>' +
-            '<option value="<?=$tutoring;?>"><?=$tutoring;?></option>' +
+        $('#editMainNumber').val('4');
+    } else if (p == 'Events & Info Sessions') {
+        $('#editSubProgram').html('');
+        $('#editSubProgram').html(
+            '<?php foreach($ei as $events): ?>' +
+            '<option value="<?=$events;?>"><?=$events;?></option>' +
             '<?php endforeach; ?>'
         );
-    } else if (p == 'Experiential Learning') {
-        $('#subProgram').html('');
-        $('#subProgram').html(
-            '<?php foreach($exp as $experiential): ?>' +
-            '<option value="<?=$experiential;?>"><?=$experiential;?></option>' +
-            '<?php endforeach; ?>'
-        );
-    } else if (p == 'Enrichment Program') {
-        $('#subProgram').html('');
-        $('#subProgram').html(
-            '<?php foreach($enr as $enrichment): ?>' +
-            '<option value="<?=$enrichment;?>"><?=$enrichment;?></option>' +
-            '<?php endforeach; ?>'
-        );
-    } else if (p == 'Workshop') {
-        $('#subProgram').html('');
-        $('#subProgram').html(
-            '<?php foreach($wor as $workshop): ?>' +
-            '<option value="<?=$workshop;?>"><?=$workshop;?></option>' +
-            '<?php endforeach; ?>'
-        );
+        $('#editMainNumber').val('5');
     }
 }
 
