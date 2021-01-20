@@ -106,9 +106,9 @@ class Students_program extends CI_Controller
         }
 
         $prog_status = $this->input->post('stprog_status');
-        $pending = count($this->stprog->showStatusProgram($st_num, 0))-1;
-        $success = count($this->stprog->showStatusProgram($st_num, 1))-1;
-        $failed = count($this->stprog->showStatusProgram($st_num, 2))-1;
+        $pending = count($this->stprog->showStatusProgram($st_num, 0, $id));
+        $success = count($this->stprog->showStatusProgram($st_num, 1, $id));
+        $failed = count($this->stprog->showStatusProgram($st_num, 2, $id));
 
         if($prog_status==1) {
             // Kode Baru 
@@ -137,7 +137,7 @@ class Students_program extends CI_Controller
             $this->stprog->updateStudentsStatus($datas, $st_num);
 
         } else if($prog_status==0) {  // jika statusnya pending
-            if($success >= 0) {
+            if($success > 0) {
                 $status_cli = 2;
             } else {
                 $status_cli = 1;
@@ -145,9 +145,9 @@ class Students_program extends CI_Controller
             $datas = ['st_statuscli' => $status_cli];            
             $this->stprog->updateStudentsStatus($datas, $st_num);
         } else if($prog_status==2) { // jika statusnya gagal
-            if($success >= 0) {
+            if($success > 0) {
                 $status_cli = 2;
-            } else if($pending >= 0){
+            } else if($pending > 0){
                 $status_cli = 1;
             } else {
                 $status_cli = 0;
@@ -155,7 +155,7 @@ class Students_program extends CI_Controller
             $datas = ['st_statuscli' => $status_cli];            
             $this->stprog->updateStudentsStatus($datas, $st_num);
         } else if(($prog_status==1)) { // jika statusnya berhasil
-            if(($pending >= 0) or ($failed >= 0)) {
+            if(($pending > 0) or ($failed > 0)) {
                 $status_cli = 2;
             } 
             $datas = ['st_statuscli' => $status_cli];

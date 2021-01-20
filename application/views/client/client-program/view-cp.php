@@ -362,9 +362,11 @@ $(document).ready(function() {
     if (st == "2") {
         $("#reason").show();
         $("#new_reason").hide();
+        $("#sub-pending").hide();
     } else if (st == "1") {
         $("#reason").hide();
         $("#new_reason").hide();
+        $("#sub-pending").hide();
         stProgram.enable();
         MM.enable();
         BM.enable();

@@ -29,10 +29,11 @@ class StProgram_model extends CI_model
         return $this->db->get('tbl_stprog')->result_array();
     }
 
-    public function showStatusProgram($id, $n) {
+    public function showStatusProgram($id, $n, $stprog_id) {
         $this->db->select('*');
         $this->db->where('st_num', $id); 
-        $this->db->where('stprog_status', $n); 
+        $this->db->where('stprog_status', $n);
+        $this->db->where('stprog_id !=', $stprog_id); 
         return $this->db->get('tbl_stprog')->result_array();
     }
 
