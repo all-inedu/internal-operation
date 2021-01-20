@@ -42,23 +42,23 @@
                     <?=$cp['corp_name'];?>
                 </td>
                 <td class="text-left"><?=$cp['prog_program'];?></td>
-                <td><?=date('d F Y', strtotime($cp['corprog_datefirstdiscuss']));?></td>
-                <td><?=date('d F Y', strtotime($cp['corprog_datelastdiscuss']));?></td>
+                <td date-sort="<?=$cp['corprog_datefirstdiscuss'];?>"><?=date('d F Y', strtotime($cp['corprog_datefirstdiscuss']));?></td>
+                <td date-sort="<?=$cp['corprog_datelastdiscuss'];?>"><?=date('d F Y', strtotime($cp['corprog_datelastdiscuss']));?></td>
                 <td>
                     <?php if($cp['corprog_status']==1) { ?>
                     <span class="badge badge-pill p-1 text-white" data-toggle="tooltip" data-placement="top"
                         title="Success" style="background:#C686FF;">
-                        <i class="fas fa-check fa-2x"></i>
+                        <i class="fas fa-check fa-1x"></i>
                     </span>
                     <?php } else if($cp['corprog_status']==0) { ?>
                     <span class="badge badge-pill badge-info p-1 text-white" data-toggle="tooltip" data-placement="top"
                         title="Pending">
-                        <i class="far fa-clock fa-2x"></i>
+                        <i class="far fa-clock fa-1x"></i>
                     </span>
                     <?php } else if($cp['corprog_status']==2) { ?>
                     <span class="badge badge-pill p-1 text-white" data-toggle="tooltip" data-placement="top"
                         title="Denied" style="background:#F27313;">
-                        <i class="fas fa-frown-open fa-2x"></i>
+                        <i class="fas fa-frown-open fa-1x"></i>
                     </span>
                     <?php } ?>
                 </td>

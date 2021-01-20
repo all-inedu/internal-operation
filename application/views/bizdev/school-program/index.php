@@ -27,7 +27,6 @@
                 <th width="5%" class="bg-primary text-white">School Name</th>
                 <th width="5%">Program Name</th>
                 <th width="5%">PIC</th>
-                <th width="5%">First Discuss</th>
                 <th width="5%">Last Discuss</th>
                 <th width="5%">Approach <br> Status</th>
                 <th width="1%">Program Execution</th>
@@ -47,8 +46,7 @@
                 <td class="text-left">
                     <?=$sp['empl_firstname'].' '.$sp['empl_lastname'];?>
                 </td>
-                <td><?=date('d F Y', strtotime($sp['schprog_datefirstdis']));?></td>
-                <td><?=date('d F Y', strtotime($sp['schprog_datelastdis']));?></td>
+                <td data-sort="<?=$sp['schprog_datelastdis'];?>"><?=date('d F Y', strtotime($sp['schprog_datelastdis']));?></td>
                 <td>
                     <?php if($sp['schprog_status']==1) { ?>
                     <span class="badge badge-pill badge-success p-1" data-toggle="tooltip" data-placement="top"
@@ -73,7 +71,7 @@
                     <?php 
                         $id = $sp['schprog_id'];
                         $data = $this->sprog->showProgramExec($id);
-                        if($data) { 
+                        if($data) {                             
                     ?>
                     <?php if($data['schprogfix_status']==0) {?>
                     <label class="badge badge-info p-1">Not Yet</label>
@@ -84,6 +82,14 @@
                     <?php } else if($data['schprogfix_status']==3) {?>
                     <label class="badge badge-danger p-1">Not Running</label>
                     <?php } ?>
+                    <small>
+                    <br>
+                    <b>Start Date :</b>
+                    <?=date('d F Y', strtotime($data['schprogfix_eventstartdate']));?>
+                    <br>
+                    <b>End Date :</b>
+                    <?=date('d F Y', strtotime($data['schprogfix_eventenddate']));?>
+                    </small>
                     <?php } else { echo 'Not Available'; } ?>
                 </td>
             </tr>

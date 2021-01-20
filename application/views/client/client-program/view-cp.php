@@ -355,21 +355,22 @@ $(document).ready(function() {
     var st = $("#stPotential").val();
     var pr = $("#sub-program").val();
 
+    if(pr != "Admissions Consulting") {
+        $("#sub-pending").hide();
+    }
+
     if (st == "2") {
         $("#reason").show();
         $("#new_reason").hide();
-        $("#sub-pending").hide();
     } else if (st == "1") {
         $("#reason").hide();
         $("#new_reason").hide();
-        $("#sub-pending").hide();
         stProgram.enable();
         MM.enable();
         BM.enable();
-    } else if (st == "0" && pr == "Admissions Consulting" ) {
+    } else if (st == "0") {
         $("#reason").hide();
         $("#new_reason").hide();
-        $("#sub-pending").show();
         stProgram.disable();
         MM.disable();
         BM.disable();
