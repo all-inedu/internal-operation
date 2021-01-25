@@ -36,6 +36,10 @@
         line-height: 15px;
     }
 
+    .table-detail {
+        width:100%;
+    }
+
     .table-detail td,
     th {
         border: 1px solid #dedede;
@@ -107,10 +111,10 @@
 
         <table width="100%" class="table-detail" style="padding:8px 5px;">
             <tr align="center" style="background:#008080; color:#fff;">
-                <th width="3%">No</th>
-                <th width="50%">Descriptions</th>
-                <th width="23%">Price (IDR)</th>
-                <th>Total (IDR)</th>
+                <th width="5%">No</th>
+                <th width="55%">Descriptions</th>
+                <th width="20%">Price (IDR)</th>
+                <th width="20%">Total (IDR)</th>
             </tr>
             <?php 
                 $cat = $rec['inv_category'];
@@ -123,7 +127,7 @@
                     <div style="height:45px">
                         <b>
                             <?php 
-                                if($rec['prog_sub']=='-') {
+                                if($rec['prog_sub']=='') {
                                     echo $rec['prog_program'];
                                 } else {
                                     echo $rec['prog_sub'].': '.$rec['prog_program'];
@@ -150,24 +154,34 @@
                         Rp. <?=number_format($rec['inv_priceidr']);?>
                     </div>
                 </td>
+                <?php 
+                    if($cat=='session') { 
+                        $pri = $rec['inv_priceidr'] * $rec['inv_session'] * ($rec['inv_duration']/60);
+                        $price = "Rp. ".number_format($pri);
+                    } else { 
+                        $price = "Rp. ".number_format($rec['inv_priceidr']);
+                    } 
+                ?>
+                <?php 
+                    if($rec['inv_earlybirdidr']) { 
+                        $early = "Rp. ".number_format($rec['inv_earlybirdidr']);
+                    } else {
+                        $early = "";
+                    }
+                ?>
+                <?php 
+                    if($rec['inv_discidr']) { 
+                        $disc =  "Rp. ".number_format($rec['inv_discidr']);
+                    } else {
+                        $disc = "";
+                    }
+                ?>
                 <td valign="top" align="right">
-                    <div style="height:45px">
-                        <?php if($cat=='session') { 
-                            $price = $rec['inv_priceidr'] * $rec['inv_session'] * ($rec['inv_duration']/60);
-                        ?>
-                        Rp. <?=number_format($price);?>
-                        <?php } else { ?>
-                        Rp. <?=number_format($rec['inv_priceidr']);?>
-                        <?php } ?>
+                    <div style="height:45px;">
+                        <?=$price;?> 
                     </div>
-                    <?php if($rec['inv_earlybirdidr']) { ?>
-                    ( Rp. <?=number_format($rec['inv_earlybirdidr']);?> ) <br>
-                    <?php } ?>
-
-                    <?php if($rec['inv_discidr']) { ?>
-                    ( Rp. <?=number_format($rec['inv_discidr']);?> ) <br>
-                    <?php } ?>
-
+                    <?=$early;?> <br>
+                    <?=$disc;?> <br>
                 </td>
             </tr>
             <tr>
@@ -183,7 +197,7 @@
                     <div style="height:45px">
                         <b>
                             <?php 
-                                if($rec['prog_sub']=='-') {
+                                if($rec['prog_sub']=='') {
                                     echo $rec['prog_program'];
                                 } else {
                                     echo $rec['prog_sub'].': '.$rec['prog_program'];

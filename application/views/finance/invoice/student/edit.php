@@ -25,10 +25,14 @@
         <div class="card shadow mb-2 ">
             <div class="card-body text-center">
                 <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
-                <h5><?=$inv['st_firstname'].' '.$inv['st_lastname'];?></h5>
+                <h5>
+                <a target="_blank" href="<?=base_url('client/profile/edit/'.$inv['st_num']);?>">
+                <?=$inv['st_firstname'].' '.$inv['st_lastname'];?>
+                </a>
+                </h5>
                 <h6 class="text-info">
                     <?php 
-                        if($inv['prog_sub']=='-') {
+                        if($inv['prog_sub']=='') {
                             echo $inv['prog_program'];
                         } else {
                             echo $inv['prog_sub'].': '.$inv['prog_program'];

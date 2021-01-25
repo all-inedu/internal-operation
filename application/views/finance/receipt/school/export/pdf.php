@@ -118,7 +118,7 @@
                 <td valign="top" style="padding-bottom:50px;">
                     <b>
                         <?php 
-                                if($rec['prog_sub']=='-') {
+                                if($rec['prog_sub']=='') {
                                     echo $rec['prog_program'];
                                 } else {
                                     echo $rec['prog_sub'].': '.$rec['prog_program'];

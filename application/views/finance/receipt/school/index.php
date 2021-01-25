@@ -44,7 +44,7 @@
                 <td><?=$r['sch_name'];?></td>
                 <td class="text-left">
                     <?php 
-                        if($r['prog_sub']=='-') {
+                        if($r['prog_sub']=='') {
                             echo $r['prog_program'];
                         } else {
                             echo $r['prog_sub'].': '.$r['prog_program'];

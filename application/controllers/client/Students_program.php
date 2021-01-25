@@ -110,7 +110,7 @@ class Students_program extends CI_Controller
         $success = count($this->stprog->showStatusProgram($st_num, 1, $id));
         $failed = count($this->stprog->showStatusProgram($st_num, 2, $id));
 
-        if($prog_status==1) {
+        if($prog_status==1) { 
             // Kode Baru 
             $query = $this->std->getId();  
             if($query->num_rows() <> 0){           
@@ -205,7 +205,7 @@ class Students_program extends CI_Controller
                 'st_statuscli' => 0,
             ];
         } else {
-            $current = $this->stprog->showStatusProgram($st_num, 1);
+            $current = $this->stprog->showStatusProgram($st_num, 1, $id);
             if($current) {
                 $datas = [
                     'st_statuscli' => 2,
@@ -219,6 +219,6 @@ class Students_program extends CI_Controller
         
         $this->stprog->updateStudentsStatus($datas, $st_num);
         $this->session->set_flashdata('success', 'Students program has been deleted');
-        redirect('/client/students-program');
+        redirect('/client/student/view/'.$st_num);
     }
 }

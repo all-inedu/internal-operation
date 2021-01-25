@@ -169,8 +169,16 @@ class Student extends CI_Controller
             'empl_id' => $this->input->post('empl_id'),
         ];
 
+        $success = count($this->stprog->showStatusProgram($st_num, 1, 0));
+
+        if($success > 0) {
+            $status_cli = 2;
+        } else {
+            $status_cli = 1;
+        }
+
         $datas = [
-            'st_statuscli' => 1,
+            'st_statuscli' => $status_cli,
         ];
 
         $this->stprog->save($data, $datas, $id);

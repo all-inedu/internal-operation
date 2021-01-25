@@ -30,7 +30,7 @@
                     </a></h5>
                 <h6 class="text-info">
                     <?php 
-                        if($inv['prog_sub']=='-') {
+                        if($inv['prog_sub']=='') {
                             echo $inv['prog_program'];
                         } else {
                             echo $inv['prog_sub'].': '.$inv['prog_program'];

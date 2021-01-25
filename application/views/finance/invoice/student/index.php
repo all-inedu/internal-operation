@@ -43,14 +43,14 @@
                 </td>
                 <td class="text-left">
                     <?php 
-                        if($sp['prog_sub']=='-') {
+                        if($sp['prog_sub']=='') {
                             echo $sp['prog_program'];
                         } else {
                             echo $sp['prog_sub'].': '.$sp['prog_program'];
                         }
                     ?>
                 </td>
-                <td>
+                <td data-sort="<?=$sp['stprog_statusprogdate'];?>">
                     <?=date('d F Y', strtotime($sp['stprog_statusprogdate']));?>
                 </td>
                 <?php 
@@ -62,10 +62,10 @@
                 <td>
                     <?=$inv['inv_paymentmethod'];?>
                 </td>
-                <td>
+                <td data-sort="<?=$inv['inv_date'];?>">
                     <?php if($inv['inv_date']) { echo date('d F Y', strtotime($inv['inv_date'])); }?>
                 </td>
-                <td>
+                <td data-sort="<?=$inv['inv_duedate'];?>">
                     <?php if($inv['inv_duedate']) { echo date('d F Y', strtotime($inv['inv_duedate'])); }?>
                 </td>
                 <td>

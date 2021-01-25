@@ -28,7 +28,7 @@
                 <h5><?=$rec['sch_name'];?></h5>
                 <h6 class="text-info">
                     <?php 
-                        if($rec['prog_sub']=='-') {
+                        if($rec['prog_sub']=='') {
                             echo $rec['prog_program'];
                         } else {
                             echo $rec['prog_sub'].': '.$rec['prog_program'];
