@@ -204,7 +204,7 @@
                                 }
                             ?>
                         </b> <br>
-                        <?=$invdtl['invdtl_statusname'];?>
+                        <?=$invdtl['invdtl_statusname']." (".$invdtl['invdtl_percentage']."%) ";?>
                     </div>
                 </td>
                 <td valign="top" align="right">

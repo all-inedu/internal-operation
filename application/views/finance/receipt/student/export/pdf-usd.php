@@ -108,10 +108,10 @@
 
         <table width="100%" class="table-detail" style="padding:8px 5px;">
             <tr align="center" style="background:#008080; color:#fff;">
-                <th width="3%">No</th>
-                <th width="50%">Descriptions</th>
-                <th width="23%">Price</th>
-                <th>Total</th>
+                <th width="5%">No</th>
+                <th width="55%">Descriptions</th>
+                <th width="20%">Price</th>
+                <th width="20%">Total</th>
             </tr>
             <?php 
                 $cat = $rec['inv_category'];
@@ -173,14 +173,14 @@
                     <div style="height:45px">
                         <b>
                             <?php 
-                                if($rec['prog_sub']=='-') {
+                                if($rec['prog_sub']=='') {
                                     echo $rec['prog_program'];
                                 } else {
                                     echo $rec['prog_sub'].': '.$rec['prog_program'];
                                 }
                             ?>
                         </b> <br>
-                        <?=$invdtl['invdtl_statusname'];?>
+                        <?=$invdtl['invdtl_statusname']." (".$invdtl['invdtl_percentage']."%) ";?>
                     </div>
                 </td>
                 <td valign="top" align="right">
