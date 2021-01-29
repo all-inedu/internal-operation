@@ -142,7 +142,8 @@
                                         $sub_prog = $this->stprog->stprog_sub_program(0, $start, $end, $mpp['prog_main']);
                                         foreach ($sub_prog as $sp):
                                     ?>
-                                        <tr>
+                                        <tr style="cursor:pointer"
+                            onclick="window.open('<?=base_url('client/tracking/p_program/0/'.$sp['prog_id'].'/'.$start.'/'.$end);?>','_blank')">
                                             <td>
                                                 <?php
                                                 if($sp['prog_sub']){
@@ -189,7 +190,8 @@
                                         $sub_prog = $this->stprog->stprog_sub_program(1, $start, $end, $mps['prog_main']);
                                         foreach ($sub_prog as $sp):
                                     ?>
-                                        <tr>
+                                        <tr style="cursor:pointer"
+                            onclick="window.open('<?=base_url('client/tracking/p_program/1/'.$sp['prog_id'].'/'.$start.'/'.$end);?>','_blank')">
                                             <td>
                                             <?php
                                                 if($sp['prog_sub']){

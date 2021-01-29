@@ -44,7 +44,7 @@
                 </td>
                 <td class="text-left">
                     <?php 
-                        if($stpr['prog_sub']=='-') {
+                        if($stpr['prog_sub']=='') {
                             echo $stpr['prog_program'];
                         } else {
                             echo $stpr['prog_sub'].': '.$stpr['prog_program'];
