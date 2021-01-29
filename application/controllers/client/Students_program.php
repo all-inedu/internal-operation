@@ -164,6 +164,7 @@ class Students_program extends CI_Controller
 
         $data = [
             'lead_id' => $this->input->post('lead_id'),
+            'stprog_firstdisdate' => $this->input->post('stprog_firstdisdate'),
             'stprog_lastdisdate' => $this->input->post('stprog_lastdisdate'),
             'stprog_meetingdate' => $this->input->post('stprog_meetingdate'),
             'stprog_meetingnote' => $this->input->post('stprog_meetingnote'),

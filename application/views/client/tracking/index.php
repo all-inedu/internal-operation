@@ -114,7 +114,7 @@
                 </div>
             </div>
         </div>
-                <div class="card shadow mb-2" style="background:#fff;">
+        <div class="card shadow mb-2" style="background:#fff;">
             <div class="card-body">
                 <h6>2. Program</h6>
                 <div class="table-responsive">
@@ -223,7 +223,15 @@
                                 shuffle($prog);
                                 $n=0; foreach ($prog as $ps): ?>
                                     <div id="tagcloud1">
-                                        <a href="#" rel="<?=$ps['tot'];?>" style="background:<?=$color[$n];?>"><?=$ps['prog_program'];?></a>
+                                        <a href="#" rel="<?=$ps['tot'];?>" style="background:<?=$color[$n];?>">
+                                        <?php
+                                            if($ps['prog_sub']=="") {
+                                                echo $ps['prog_program'];
+                                            } else {
+                                                echo $ps['prog_sub'].": ".$ps['prog_program'];
+                                            }
+                                        ?>
+                                        </a>
                                     </div>     
                                 <?php $n++; endforeach; ?>
                             </div>
@@ -383,7 +391,7 @@
                             <td align="center"><?=$avg['prog_id'];?></td>
                             <td>
                                 <?php 
-                                    if($avg['prog_sub']=='-') {
+                                    if($avg['prog_sub']=='') {
                                         echo $avg['prog_program'];
                                     } else {
                                         echo $avg['prog_sub'].': '.$avg['prog_program'];
