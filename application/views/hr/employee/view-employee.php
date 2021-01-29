@@ -175,7 +175,20 @@
                         <label><i class="fas fa-calendar fa-fw text-muted"></i>&nbsp; Length of Work :</label>
                     </div>
                     <div class="col-md-7 mb-2">
-                        <label><?=date('Y')-date('Y', strtotime($empl['empl_hiredate'])) ;?> Years</label>
+                        <label>
+                         <?php
+                            if($empl['empl_isactive']=='1') {
+                                $long = date('Y')-date('Y', strtotime($empl['empl_hiredate']));
+                            } else {
+                                if($empl['empl_statusenddate']!="0000-00-00") {
+                                    $long = date('Y', strtotime($empl['empl_statusenddate']))-date('Y', strtotime($empl['empl_hiredate']));
+                                } else {
+                                    $long = 0;
+                                }
+                            }
+                            ?>
+                        <?=$long;?> Years                        
+                        </label>
                         <hr class="mt-1 mb-1">
                     </div>
 

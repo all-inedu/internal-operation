@@ -205,7 +205,7 @@ class Employee extends CI_Controller
         $empl = $this->empl->showId($id);
         $empl_cv = $empl['empl_cv'];
         $empl_idcard = $empl['empl_idcard'];
-        $empl_tax = $empl['empl_tax'];
+        $empl_tax = $empl['empl_tax']; 
         $empl_healthinsurance = $empl['empl_healthinsurance'];
         $empl_emplinsurance = $empl['empl_emplinsurance'];
         $pass = $this->input->post('empl_password');

@@ -55,7 +55,21 @@
                 </td>
                 <td class="text-left"><?=$e['empl_department'];?></td>
                 <td><?=date('d M Y' , strtotime($e['empl_hiredate']));?></td>
-                <td><?=date('Y')-date('Y', strtotime($e['empl_hiredate'])) ;?> Years</td>
+                <td>
+                    <?php
+                    if($e['empl_isactive']=='1') {
+                        $long = date('Y')-date('Y', strtotime($e['empl_hiredate']));
+                    } else {
+                        if($e['empl_statusenddate']!="0000-00-00") {
+                            $long = date('Y', strtotime($e['empl_statusenddate']))-date('Y', strtotime($e['empl_hiredate']));
+                        } else {
+                            $long = 0;
+                        }
+                    }
+                    ?>
+                <?=$long;?> Years
+                
+                </td>
                 <td><?=$e['empl_status'];?></td>
                 <td><?=$e['empl_email'];?></td>
                 <td><?=$e['empl_graduatefr'];?></td>

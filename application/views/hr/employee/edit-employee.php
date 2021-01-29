@@ -307,7 +307,7 @@
                                             <div class="row no-gutters">
                                                 <div class="col-md-7">
                                                     <small>Number :</small>
-                                                    <input name="empl_bankaccount" type="number" class="form-control"
+                                                    <input name="empl_bankaccount" type="text" class="form-control"
                                                         value="<?=$empl['empl_bankaccount'];?>">
                                                     <?=form_error('empl_bankaccount', '<small class="text-danger">', '</small>');?>
                                                 </div>
