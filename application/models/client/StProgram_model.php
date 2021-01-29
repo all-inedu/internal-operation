@@ -253,7 +253,7 @@ class StProgram_model extends CI_model
             tbl_prog.prog_program,
             count(tbl_stprog.stprog_id) as tot,
             sum(datediff(tbl_stprog.stprog_ass_sent, tbl_stprog.stprog_init_consult)) as init_make,
-            sum(datediff(tbl_stprog.stprog_nego, tbl_stprog.stprog_ass_sent)) as long_response
+            sum(datediff(tbl_stprog.stprog_statusprogdate, tbl_stprog.stprog_ass_sent)) as long_response
         ");
         $this->db->where("tbl_stprog.stprog_status =", $n);
         $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
