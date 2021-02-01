@@ -318,6 +318,17 @@ class Student extends CI_Controller
         $this->pdf->createPDF($html, $new_name, false);
     }
 
+    public function pdf_usd($id)
+    {
+        $data['inv'] = $this->inv->showInvNum($id);
+        $inv_id = $data['inv']['inv_id'];
+        $data['invdtl'] = $this->invdetail->showId($inv_id);
+        $name = explode("/",$data['inv']['inv_id']);
+        $new_name = implode("-", $name);
+        $html = $this->load->view('finance/invoice/student/export/pdf-usd', $data, true);
+        $this->pdf->createPDF($html, $new_name, false);
+    }
+
     public function showInvNumJson($id){
         $data = $this->inv->showInvNum($id);
         echo json_encode($data);

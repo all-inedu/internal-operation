@@ -107,75 +107,6 @@
             </tr>
         </table>
 
-        <?php if($inv['inv_category']=="usd") { ?>
-        <table width="100%" class="table-detail" style="padding:8px 5px;">
-            <tr align="center">
-                <th width="5%">No</th>
-                <th width="55%">Description</th>
-                <th width="20%">Price (IDR)</th>
-                <th width="20%">Total (IDR)</th>
-            </tr>
-            <tr>
-                <td valign="top" align="center">1</td>
-                <td valign="top" style="padding-bottom:50px;">
-                    <div style="height:35px;">
-                        <b>
-                            <?php 
-                                if($inv['prog_sub']=='') {
-                                    echo $inv['prog_program'];
-                                } else {
-                                    echo $inv['prog_sub'].': '.$inv['prog_program'];
-                                }
-                            ?>
-                            ($<?=number_format($inv['inv_priceusd']);?>)</b>
-                    </div>
-
-                    <div style="margin-top:5px;">
-                        <?php if($inv['inv_earlybirdusd']) {?>
-                        <i>Early Bird ($<?=number_format($inv['inv_earlybirdusd']);?>)</i> <br>
-                        <?php } ?>
-
-                        <?php if($inv['inv_discusd']) {?>
-                        <i>Discount ($<?=number_format($inv['inv_discusd']);?>)</i><br>
-                        <?php } ?>
-
-                        <i><?=$inv['inv_notes'];?></i>
-                    </div>
-                </td>
-                <td valign="top" align="center">
-                    Rp. <?=number_format($inv['inv_priceidr']);?>
-                </td>
-                <?php 
-                    if(!empty($inv['inv_earlybirdidr'])) {
-                        $early = "Rp. ".number_format($inv['inv_earlybirdidr']);
-                    } else {
-                        $early = "";
-                    }
-
-                    if(!empty($inv['inv_discidr'])) {
-                        $disc = "Rp. ".number_format($inv['inv_discidr']);
-                    } else {
-                        $disc = "";
-                    }
-                ?>
-                <td valign="top" align="center">
-                    <div style="height:35px;">
-                        Rp. <?=number_format($inv['inv_priceidr']);?>
-                    </div>
-                    <div style="margin-top:20px;">
-                        <?=$early;?> <br>
-                        <?=$disc;?><br>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" align="right"><b>Total</b></td>
-                <td valign="middle" align="center">
-                    <b>Rp. <?=number_format($inv['inv_totpridr']);?></b>
-                </td>
-            </tr>
-        </table>
-        <?php } else if($inv['inv_category']=="idr") { ?>
         <table width="100%" class="table-detail" style="padding:8px 5px;">
             <tr align="center">
                 <th width="5%">No</th>
@@ -197,123 +128,53 @@
                             ?>
                         </b>
                     </div>
-                    <div style="margin-top:10px;">
-                        <?php if($inv['inv_earlybirdidr']) {?>
+
+                    <div style="margin-top:5px;">
+                        <?php if($inv['inv_earlybirdusd']) {?>
                         <i>Early Bird</i> <br>
                         <?php } ?>
 
-                        <?php if($inv['inv_discidr']) {?>
+                        <?php if($inv['inv_discusd']) {?>
                         <i>Discount</i><br>
                         <?php } ?>
 
                         <i><?=$inv['inv_notes'];?></i>
                     </div>
                 </td>
-
                 <td valign="top" align="center">
-                    <div style="height:35px;">
-                        Rp. <?=number_format($inv['inv_priceidr']);?>
-                    </div>
+                    $<?=number_format($inv['inv_priceusd']);?>
                 </td>
                 <?php 
-                    if(!empty($inv['inv_earlybirdidr'])) {
-                        $early = "Rp. ".number_format($inv['inv_earlybirdidr']);
+                    if(!empty($inv['inv_earlybirdusd'])) {
+                        $early = "$".number_format($inv['inv_earlybirdusd']);
                     } else {
                         $early = "";
                     }
 
-                    if(!empty($inv['inv_discidr'])) {
-                        $disc = "Rp. ".number_format($inv['inv_discidr']);
+                    if(!empty($inv['inv_discusd'])) {
+                        $disc = "$".number_format($inv['inv_discusd']);
                     } else {
                         $disc = "";
                     }
                 ?>
-                <td valign="top" align="center" style="padding-bottom:50px;">
+                <td valign="top" align="center">
                     <div style="height:35px;">
-                        Rp. <?=number_format($inv['inv_priceidr']);?>
+                        $<?=number_format($inv['inv_priceusd']);?>
                     </div>
-                    <div style="margin-top:-5px;">
-                        <?=$early;?><br>
+                    <div style="margin-top:20px;">
+                        <?=$early;?> <br>
                         <?=$disc;?><br>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td colspan="3" align="right"><b>Total</b></td>
-                <td valign="center" align="center">
-                    <b>Rp. <?=number_format($inv['inv_totpridr']);?></b>
+                <td valign="middle" align="center">
+                    <b>$<?=number_format($inv['inv_totprusd']);?></b>
                 </td>
             </tr>
         </table>
-        <?php } else if($inv['inv_category']=="session") {?>
-        <table width="100%" class="table-detail" style="padding:8px 5px;">
-            <tr align="center">
-                <th width="5%">No</th>
-                <th width="45%">Description</th>
-                <th>Hours</th>
-                <th width="20%">Price</th>
-                <th width="20%">Total</th>
-            </tr>
-            <tr>
-                <td valign="top" align="center">1</td>
-                <td valign="top" style="padding-bottom:50px;">
-                    <div style="height:45px;">
-                        <b>
-                            <?php 
-                                if($inv['prog_sub']=='') {
-                                    echo $inv['prog_program'];
-                                } else {
-                                    echo $inv['prog_sub'].': '.$inv['prog_program'];
-                                }
-                            ?>
-                        </b> <br>
-                        <i><?=$inv['inv_session'];?> sessions</i>
-                        <i><?=$inv['inv_notes'];?></i>
-                    </div>
-                    <div style="margin-top:20px;">
-                        <?php if($inv['inv_discidr']) {?>
-                        <i>Discount</i><br>
-                        <?php } ?>
-                    </div>
-                </td>
-                <td valign="top" align="center">
-                    <div style="height:45px;">
-                        <?=$inv['inv_duration']/60;?>
-                    </div>
-                </td>
-                <td valign="top" align="center">
-                    <div style="height:35px;">
-                        Rp. <?=number_format($inv['inv_priceidr']);?>
-                    </div>
-                </td>
-                <?php 
-                    $tot_price = $inv['inv_priceidr']*$inv['inv_session']*($inv['inv_duration']/60);
-
-                    if(!empty($inv['inv_discidr'])) {
-                        $disc = "Rp. ".number_format($inv['inv_discidr']);
-                    } else {
-                        $disc = "";
-                    }
-                ?>
-                <td valign="top" align="center">
-                    <div style="height:35px;">
-                        Rp. <?=number_format($tot_price);?>
-                    </div>
-                    <div style="margin-top:28px;">
-                        <?=$disc;?>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4" align="right"><b>Total</b></td>
-                <td valign="center" align="center">
-                    <b>Rp. <?=number_format($inv['inv_totpridr']);?></b>
-                </td>
-            </tr>
-        </table>
-        <?php } ?>
-
-
+        
         <table>
             <tr>
                 <td>
@@ -325,7 +186,7 @@
                     <div style="margin-left:2px;">
                         <?php foreach ($invdtl as $id) : ?>
                         -
-                        <?=$id['invdtl_statusname'].' '.$id['invdtl_percentage'].'% on '.date('d F Y', strtotime($id['invdtl_duedate'])).' : Rp. '.number_format($id['invdtl_amountidr']) ;?>
+                        <?=$id['invdtl_statusname'].' '.$id['invdtl_percentage'].'% on '.date('d F Y', strtotime($id['invdtl_duedate'])).' : $'.number_format($id['invdtl_amountusd']) ;?>
                         <br>
                         <?php endforeach; ?>
                     </div>
