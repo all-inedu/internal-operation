@@ -112,8 +112,8 @@
             <tr align="center">
                 <th width="5%">No</th>
                 <th width="55%">Description</th>
-                <th width="20%">Price (IDR)</th>
-                <th width="20%">Total (IDR)</th>
+                <th width="20%">Price</th>
+                <th width="20%">Total</th>
             </tr>
             <tr>
                 <td valign="top" align="center">1</td>
@@ -127,19 +127,18 @@
                                     echo $inv['prog_sub'].': '.$inv['prog_program'];
                                 }
                             ?>
-                            ($<?=number_format($inv['inv_priceusd']);?>)</b>
+                            </b>
+                            <i><?=$inv['inv_notes'];?></i>
                     </div>
 
                     <div style="margin-top:5px;">
                         <?php if($inv['inv_earlybirdusd']) {?>
-                        <i>Early Bird ($<?=number_format($inv['inv_earlybirdusd']);?>)</i> <br>
+                        <i>Early Bird</i> <br>
                         <?php } ?>
 
                         <?php if($inv['inv_discusd']) {?>
-                        <i>Discount ($<?=number_format($inv['inv_discusd']);?>)</i><br>
+                        <i>Discount</i><br>
                         <?php } ?>
-
-                        <i><?=$inv['inv_notes'];?></i>
                     </div>
                 </td>
                 <td valign="top" align="center">
@@ -162,7 +161,7 @@
                     <div style="height:35px;">
                         Rp. <?=number_format($inv['inv_priceidr']);?>
                     </div>
-                    <div style="margin-top:20px;">
+                    <div style="margin-top:5px;">
                         <?=$early;?> <br>
                         <?=$disc;?><br>
                     </div>
