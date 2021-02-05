@@ -101,6 +101,7 @@ class Student extends CI_Controller
             'inv_totprusd' => $this->input->post('inv_totprusd'),
             'inv_totpridr' => $this->input->post('inv_totpridr'),
             'inv_words' => $this->input->post('inv_words'),
+            'inv_wordsusd' => $this->input->post('inv_wordsusd'),
             'inv_paymentmethod' => $pm,
             'inv_date' => $this->input->post('inv_date'),
             'inv_duedate' => $this->input->post('inv_duedate'),

@@ -45,6 +45,10 @@
                     class="btn btn-sm btn-warning ml-2 mr-2"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
                 <a href="<?=base_url('finance/invoice/student/pdf/'.$inv['inv_num']);?>" class="btn btn-sm btn-primary"
                     target="_blank"><i class="fas fa-print"></i>&nbsp; Print</a>
+                <?php  if($inv['inv_category']=="usd"){  ?>
+                <a href="<?=base_url('finance/invoice/student/pdf-usd/'.$inv['inv_num']);?>" class="btn btn-sm btn-primary mt-2"
+                    target="_blank"><i class="fas fa-print"></i>&nbsp; Print(USD)</a>
+                <?php } ?>
             </div>
         </div>
     </div>

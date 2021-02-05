@@ -203,6 +203,7 @@
                                 <div class="form-group">
                                     <label>Total Price</label>
                                     <input id="tpWords1" name="inv_words" class="form-control form-control-sm">
+                                    <input id="tpWordsUSD" name="inv_wordsusd" class="form-control form-control-sm" hidden>
                                     <?=form_error('inv_words', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
@@ -688,7 +689,7 @@ $('#currentUSD').keyup(function() {
     $('#tpRupiah').val(tpTot);
 
     $('#tpWords1').val(capitalize(tpTot));
-
+    $('#tpWordsUSD').val(capitalizeUSD(tp));
 });
 
 $('#pcDollar').keyup(function() {
@@ -705,6 +706,7 @@ $('#pcDollar').keyup(function() {
     $('#tpRupiah').val(tpRupiah);
 
     $('#tpWords1').val(capitalize(tpRupiah));
+    $('#tpWordsUSD').val(capitalizeUSD(tpDollar));
 });
 
 $('#ebDollar').keyup(function() {
@@ -722,6 +724,7 @@ $('#ebDollar').keyup(function() {
     $('#tpRupiah').val(tpRupiah);
 
     $('#tpWords1').val(capitalize(tpRupiah));
+    $('#tpWordsUSD').val(capitalizeUSD(tpDollar));
 });
 
 $('#dsDollar').keyup(function() {
@@ -740,6 +743,7 @@ $('#dsDollar').keyup(function() {
 
 
     $('#tpWords1').val(capitalize(tpRupiah));
+    $('#tpWordsUSD').val(capitalizeUSD(tpDollar));
 });
 
 function paymentMethods() {

@@ -126,19 +126,19 @@
                                     echo $inv['prog_sub'].': '.$inv['prog_program'];
                                 }
                             ?>
+                            <i><?=$inv['inv_notes'];?></i>
                         </b>
                     </div>
 
                     <div style="margin-top:5px;">
+                        
                         <?php if($inv['inv_earlybirdusd']) {?>
                         <i>Early Bird</i> <br>
                         <?php } ?>
-
                         <?php if($inv['inv_discusd']) {?>
                         <i>Discount</i><br>
                         <?php } ?>
 
-                        <i><?=$inv['inv_notes'];?></i>
                     </div>
                 </td>
                 <td valign="top" align="center">
@@ -161,7 +161,7 @@
                     <div style="height:35px;">
                         $<?=number_format($inv['inv_priceusd']);?>
                     </div>
-                    <div style="margin-top:20px;">
+                    <div style="margin-top:5px;">
                         <?=$early;?> <br>
                         <?=$disc;?><br>
                     </div>
@@ -178,7 +178,7 @@
         <table>
             <tr>
                 <td>
-                    <b style="letter-spacing:0.7px;"><i>Total Amount : <?=$inv['inv_words'];?></i> </b>
+                    <b style="letter-spacing:0.7px;"><i>Total Amount : <?=$inv['inv_wordsusd'];?></i> </b>
                     <br><br>
 
                     <?php if($inv['inv_paymentmethod']=="Installment") { ?>
@@ -234,6 +234,5 @@
         </table>
     </div>
     <img src="<?=base_url('assets/img/footer-allin.png');?>" width="100%" style="bottom:60px; position:absolute;">
-</body>
-
+    </body>
 </html>
