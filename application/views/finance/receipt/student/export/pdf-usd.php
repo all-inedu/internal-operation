@@ -108,7 +108,7 @@
 
         <table width="100%" class="table-detail" style="padding:8px 5px;">
             <tr align="center" style="background:#008080; color:#fff;">
-                <th width="5%">No</th>
+                <th width="5%">No</th> 
                 <th width="55%">Descriptions</th>
                 <th width="20%">Price</th>
                 <th width="20%">Total</th>
@@ -147,17 +147,26 @@
                         $ <?=number_format($rec['inv_priceusd']);?>
                     </div>
                 </td>
+                <?php 
+                    if($rec['inv_earlybirdusd']) { 
+                        $early = "$ ".number_format($rec['inv_earlybirdusd']);
+                    } else {
+                        $early = "";
+                    }
+                ?>
+                <?php 
+                    if($rec['inv_discusd']) { 
+                        $disc =  "$ ".number_format($rec['inv_discusd']);
+                    } else {
+                        $disc = "";
+                    }
+                ?>
                 <td valign="top" align="right">
                     <div style="height:45px">
                         $ <?=number_format($rec['inv_priceusd']);?>
                     </div>
-                    <?php if($rec['inv_earlybirdusd']) { ?>
-                    ( $ <?=number_format($rec['inv_earlybirdusd']);?> ) <br>
-                    <?php } ?>
-
-                    <?php if($rec['inv_discusd']) { ?>
-                    ( $ <?=number_format($rec['inv_discusd']);?> ) <br>
-                    <?php } ?>
+                    <?=$early;?> <br>
+                    <?=$disc;?> <br>
                 </td>
             </tr>
             <tr>
