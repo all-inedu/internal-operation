@@ -136,6 +136,38 @@
                     ?>
                         <hr class="mt-1 mb-1">
                     </div>
+                    <?php
+                        $pr = $this->prt->showId($s['pr_id']);
+                        if($pr){
+                            $hr = "<hr class='mt-1 mb-1'>";
+                        } else {
+                            $hr = "-<hr class='mt-1 mb-1'>";
+                        }
+                    ?>
+                </div>
+                <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
+                <div class="row">
+                    <div class="col-md-4 mb-2">
+                        <i class="fas fa-user"></i>&nbsp; &nbsp; Parents Name :
+                    </div>
+                    <div class="col-md-8 mb-3 ">
+                        <?=$pr['pr_firstname']." ".$pr['pr_lastname'];?>
+                        <?=$hr?>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <i class="fas fa-envelope"></i>&nbsp; &nbsp; Parents Email :
+                    </div>
+                    <div class="col-md-8 mb-3 ">
+                        <?=$pr['pr_mail'];?>
+                        <?=$hr;?>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <i class="fas fa-phone"></i>&nbsp; &nbsp; Parents Phone Number :
+                    </div>
+                    <div class="col-md-8 mb-3 ">
+                        <?=$pr['pr_phone'];?>
+                        <?=$hr;?>
+                    </div>
                 </div>
 
                 <!-- Just Prospective Client  -->
@@ -280,21 +312,26 @@
                                     <td><?=date('d M Y', strtotime($stp['stprog_lastdisdate']));?></td>
                                     <td>
                                         <?php if($stp['stprog_status']==0) { ?>
-                                        <div class="badge badge-light p-2 pl-3 pr-3 text-muted shadow border">Pending
+                                        <div class="badge badge-light p-2 pl-3 pr-3 text-muted shadow border">
+                                            Pending
                                         </div>
                                         <?php } else if($stp['stprog_status']==1) { ?>
-                                        <div class="badge badge-light p-2 pl-3 pr-3 text-success shadow border">Success
+                                        <div class="badge badge-light p-2 pl-3 pr-3 text-success shadow border">
+                                            Success
                                         </div>
 
                                         <!-- Running Status -->
                                         <?php if($stp['stprog_runningstatus']==0) {  ?>
-                                        <div class="badge badge-light p-2 pl-3 pr-3 text-info shadow border">Not Yet
+                                        <div class="badge badge-light p-2 pl-3 pr-3 text-info shadow border">Not
+                                            Yet
                                         </div>
                                         <?php } else if($stp['stprog_runningstatus']==1) { ?>
-                                        <div class="badge badge-light p-2 pl-3 pr-3 text-primary shadow border">Ongoing
+                                        <div class="badge badge-light p-2 pl-3 pr-3 text-primary shadow border">
+                                            Ongoing
                                         </div>
                                         <?php } else if($stp['stprog_runningstatus']==2) { ?>
-                                        <div class="badge badge-light p-2 pl-3 pr-3 text-success shadow border">Done
+                                        <div class="badge badge-light p-2 pl-3 pr-3 text-success shadow border">
+                                            Done
                                         </div>
                                         <?php } ?>
                                         <!-- End Status -->
@@ -302,7 +339,8 @@
 
 
                                         <?php } else if($stp['stprog_status']==2) { ?>
-                                        <div class="badge badge-light p-2 pl-3 pr-3 text-danger shadow border">Failed
+                                        <div class="badge badge-light p-2 pl-3 pr-3 text-danger shadow border">
+                                            Failed
                                         </div>
                                         <?php } ?>
                                     </td>
