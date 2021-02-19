@@ -185,9 +185,9 @@
                                 </div>
                             </div>
                         </div>
-                        <?php 
-                            }
-                        ?>
+                        <?php  } else { ?>
+                        <input type="text" value="5" name="empl_role" hidden>
+                        <?php }  ?>
 
                         <div class="col-md-4">
                             <label><i class="fas fa-calendar-alt fa-fw text-muted"></i>&nbsp; Hire Date :</label>
