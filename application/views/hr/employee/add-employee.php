@@ -108,15 +108,34 @@
                         </div>
 
                         <div class="col-md-4">
+                            <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Emergency Contact : <i
+                                    class="text-danger font-weight-bold">*</i></label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input name="empl_emergency_contact" type="text"
+                                        class="form-control form-control-sm" placeholder="Phone Number">
+                                    <?=form_error('empl_emergency_contact', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
                             <label><i class="fas fa-university fa-fw text-muted"></i>&nbsp; Graduated From
                                 :</label>
                         </div>
                         <div class="col-md-7 mb-3">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <input name="empl_graduatefr" type="text" class="form-control form-control-sm"
+                                    <small>Bachelor :</small>
+                                    <input name="empl_graduatefr" type="text" class="form-control form-control-sm mb-2"
                                         placeholder="Graduated From">
                                     <?=form_error('empl_graduatefr', '<small class="text-danger">', '</small>');?>
+                                    <small>Magister :</small>
+                                    <input name="empl_graduatefr_magister" type="text"
+                                        class="form-control form-control-sm" placeholder="Graduated From">
+                                    <?=form_error('empl_graduatefr_magister', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -128,9 +147,15 @@
                         <div class="col-md-7 mb-3">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input name="empl_major" type="text" class="form-control form-control-sm"
+                                    <small>Bachelor :</small>
+                                    <input name="empl_major" type="text" class="form-control form-control-sm mb-2"
                                         placeholder="Major">
                                     <?=form_error('empl_major', '<small class="text-danger">', '</small>');?>
+
+                                    <small>Magister :</small>
+                                    <input name="empl_major_magister" type="text" class="form-control form-control-sm"
+                                        placeholder="Major">
+                                    <?=form_error('empl_major_magister', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
@@ -281,8 +306,11 @@
                                         <td>
                                             <div class="row no-gutters">
                                                 <div class="col-md-7">
+                                                    <small>Account Name :</small>
+                                                    <input type="text" name="empl_bankaccountname"
+                                                        class="form-control mb-2" placeholder="Account Name">
                                                     <small>Number :</small>
-                                                    <input name="empl_bankaccount" type="number" class="form-control">
+                                                    <input name="empl_bankaccount" type="text" class="form-control">
                                                     <?=form_error('empl_bankaccount', '<small class="text-danger">', '</small>');?>
                                                 </div>
                                             </div>
@@ -292,6 +320,8 @@
                                         <td class="align-middle"> <i class="fas fa-paperclip fa-fw"></i> &nbsp; KTP :
                                         </td>
                                         <td>
+                                            <input type="text" name="empl_nik" class="form-control"
+                                                placeholder="337204xxxxxxxxxx">
                                             <div class="text-center file-drop-area">
                                                 <span class="fake-btn">Choose files</span>
                                                 <span class="file-msg">or drag and drop files here (docx, doc,
@@ -304,6 +334,8 @@
                                         <td class="align-middle"><i class="fas fa-paperclip fa-fw"></i> &nbsp; NPWP :
                                         </td>
                                         <td>
+                                            <input type="text" name="empl_npwp" class="form-control"
+                                                placeholder="66.991.xxx.xxx">
                                             <div class="text-center file-drop-area">
                                                 <span class="fake-btn">Choose files</span>
                                                 <span class="file-msg">or drag and drop files here (docx, doc,

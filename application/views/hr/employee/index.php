@@ -37,6 +37,10 @@
                 <th width="5%">Major</th>
                 <th width="5%">Date of Birth</th>
                 <th width="10%">Phone Number</th>
+                <th width="10%">Emergency Contact</th>
+                <th width="10%">NIK</th>
+                <th width="10%">NPWP</th>
+                <th width="10%">Bank Account</th>
                 <th width="10%">Status</th>
                 <th>Address</th>
             </tr>
@@ -67,15 +71,28 @@
                         }
                     }
                     ?>
-                <?=$long;?> Years
-                
+                    <?=$long;?> Years
+
                 </td>
                 <td><?=$e['empl_status'];?></td>
                 <td><?=$e['empl_email'];?></td>
-                <td><?=$e['empl_graduatefr'];?></td>
-                <td><?=$e['empl_major'];?></td>
+                <td>
+                    Bachelor : <?=$e['empl_graduatefr'];?> <br>
+                    Magister : <?=$e['empl_graduatefr_magister'];?>
+                </td>
+                <td>
+                    Bachelor : <?=$e['empl_major'];?> <br>
+                    Magister : <?=$e['empl_major_magister'];?>
+                </td>
                 <td><?=date('d M Y' , strtotime($e['empl_datebirth']));?></td>
                 <td><?=$e['empl_phone'];?></td>
+                <td><?=$e['empl_emergency_contact'];?></td>
+                <td><?=$e['empl_nik'];?></td>
+                <td><?=$e['empl_npwp'];?></td>
+                <td>
+                    <?=$e['empl_bankaccountname'];?><br>
+                    <?=$e['empl_bankaccount'];?>
+                </td>
                 <td>
                     <?php
                     if($e['empl_isactive']==1){echo '<div class="badge bg-white text-success shadow p-2">Active</div>';} else

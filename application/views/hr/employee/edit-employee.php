@@ -115,15 +115,36 @@
                         </div>
 
                         <div class="col-md-4">
+                            <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Emergency Contact : <i
+                                    class="text-danger font-weight-bold">*</i></label>
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input name="empl_emergency_contact" type="text"
+                                        class="form-control form-control-sm"
+                                        value="<?=$empl['empl_emergency_contact'];?>">
+                                    <?=form_error('empl_emergency_contact', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
                             <label><i class="fas fa-university fa-fw text-muted"></i>&nbsp; Graduated From
                                 :</label>
                         </div>
                         <div class="col-md-7 mb-3">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <input name="empl_graduatefr" type="text" class="form-control form-control-sm"
+                                    <small>Bachelor :</small>
+                                    <input name="empl_graduatefr" type="text" class="form-control form-control-sm mb-2"
                                         value="<?=$empl['empl_graduatefr'];?>">
                                     <?=form_error('empl_graduatefr', '<small class="text-danger">', '</small>');?>
+
+                                    <small>Magister :</small>
+                                    <input name="empl_graduatefr_magister" type="text"
+                                        class="form-control form-control-sm"
+                                        value="<?=$empl['empl_graduatefr_magister'];?>">
                                 </div>
                             </div>
                         </div>
@@ -135,9 +156,14 @@
                         <div class="col-md-7 mb-3">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input name="empl_major" type="text" class="form-control form-control-sm"
+                                    <small>Bachelor :</small>
+                                    <input name="empl_major" type="text" class="form-control form-control-sm mb-2"
                                         value="<?=$empl['empl_major'];?>">
                                     <?=form_error('empl_major', '<small class="text-danger">', '</small>');?>
+
+                                    <small>Magister :</small>
+                                    <input name="empl_major_magister" type="text" class="form-control form-control-sm"
+                                        value="<?=$empl['empl_major_magister'];?>">
                                 </div>
                             </div>
                         </div>
@@ -306,6 +332,11 @@
                                         <td>
                                             <div class="row no-gutters">
                                                 <div class="col-md-7">
+                                                    <small>Account Name :</small>
+                                                    <input name="empl_bankaccountname" type="text"
+                                                        class="form-control mb-2"
+                                                        value="<?=$empl['empl_bankaccountname'];?>">
+
                                                     <small>Number :</small>
                                                     <input name="empl_bankaccount" type="text" class="form-control"
                                                         value="<?=$empl['empl_bankaccount'];?>">
@@ -325,6 +356,9 @@
                                             ?>
                                         </td>
                                         <td>
+                                            <small>NIK</small>
+                                            <input name="empl_nik" type="text" class="form-control mb-2"
+                                                value="<?=$empl['empl_nik'];?>">
                                             <div class="text-center file-drop-area">
                                                 <span class="fake-btn">Choose files</span>
                                                 <span class="file-msg">or drag and drop files here (docx, doc,
@@ -344,6 +378,9 @@
                                             ?>
                                         </td>
                                         <td>
+                                            <small>NPWP Number</small>
+                                            <input name="empl_npwp" type="text" class="form-control mb-2"
+                                                value="<?=$empl['empl_npwp'];?>">
                                             <div class="text-center file-drop-area">
                                                 <span class="fake-btn">Choose files</span>
                                                 <span class="file-msg">or drag and drop files here (docx, doc,

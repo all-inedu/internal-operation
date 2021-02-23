@@ -26,18 +26,21 @@
             <div class="card-body text-center">
                 <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
                 <h5>
-                <a target="_blank" href="<?=base_url('client/profile/edit/'.$sp['st_num']);?>">
-                <?=$sp['st_firstname'].' '.$sp['st_lastname'];?></h5>
+                    <a target="_blank" href="<?=base_url('client/profile/edit/'.$sp['st_num']);?>">
+                        <?=$sp['st_firstname'].' '.$sp['st_lastname'];?>
+                </h5>
                 </a>
-                <h6 class="text-info">
-                    <?php 
+                <a target="_blank" href="<?=base_url('client/students-program/view/'.$sp['stprog_id']);?>">
+                    <h6 class="text-info">
+                        <?php 
                         if($sp['prog_sub']=='') {
                             echo $sp['prog_program'];
                         } else {
                             echo $sp['prog_sub'].': '.$sp['prog_program'];
                         }
                     ?>
-                </h6>
+                    </h6>
+                </a>
             </div>
         </div>
         <div class="card shadow card-sticky mb-3">
@@ -203,7 +206,8 @@
                                 <div class="form-group">
                                     <label>Total Price</label>
                                     <input id="tpWords1" name="inv_words" class="form-control form-control-sm">
-                                    <input id="tpWordsUSD" name="inv_wordsusd" class="form-control form-control-sm" hidden>
+                                    <input id="tpWordsUSD" name="inv_wordsusd" class="form-control form-control-sm"
+                                        hidden>
                                     <?=form_error('inv_words', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>

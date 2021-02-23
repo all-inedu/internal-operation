@@ -26,15 +26,17 @@
             <div class="card-body text-center">
                 <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
                 <h5><?=$rec['st_firstname'].' '.$rec['st_lastname'];?></h5>
-                <h6 class="text-info">
-                    <?php 
+                <a target="_blank" href="<?=base_url('client/students-program/view/'.$rec['stprog_id']);?>">
+                    <h6 class="text-info">
+                        <?php 
                         if($rec['prog_sub']=='') {
                             echo $rec['prog_program'];
                         } else {
                             echo $rec['prog_sub'].': '.$rec['prog_program'];
                         }
                     ?>
-                </h6>
+                    </h6>
+                </a>
                 <hr>
                 <?php 
                     if($rec['receipt_status']==1) {

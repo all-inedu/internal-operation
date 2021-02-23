@@ -126,11 +126,20 @@
                     </div>
 
                     <div class="col-md-4">
+                        <label><i class="fas fa-phone fa-fw text-muted"></i>&nbsp; Emergency Contact :</label>
+                    </div>
+                    <div class="col-md-7 mb-2">
+                        <label><?=$empl['empl_emergency_contact'];?></label>
+                        <hr class="mt-1 mb-1">
+                    </div>
+
+                    <div class="col-md-4">
                         <label><i class="fas fa-university fa-fw text-muted"></i>&nbsp; Graduated From
                             :</label>
                     </div>
                     <div class="col-md-7 mb-2">
-                        <label><?=$empl['empl_graduatefr'];?></label>
+                        <label>Bachelor : <?=$empl['empl_graduatefr'];?></label><br>
+                        <label>Magister : <?=$empl['empl_graduatefr_magister'];?></label>
                         <hr class="mt-1 mb-1">
                     </div>
 
@@ -139,7 +148,8 @@
                             :</label>
                     </div>
                     <div class="col-md-7 mb-2">
-                        <label><?=$empl['empl_major'];?></label>
+                        <label>Bachelor : <?=$empl['empl_major'];?></label><br>
+                        <label>Magister : <?=$empl['empl_major_magister'];?></label>
                         <hr class="mt-1 mb-1">
                     </div>
 
@@ -176,7 +186,7 @@
                     </div>
                     <div class="col-md-7 mb-2">
                         <label>
-                         <?php
+                            <?php
                             if($empl['empl_isactive']=='1') {
                                 $long = date('Y')-date('Y', strtotime($empl['empl_hiredate']));
                             } else {
@@ -187,7 +197,7 @@
                                 }
                             }
                             ?>
-                        <?=$long;?> Years                        
+                            <?=$long;?> Years
                         </label>
                         <hr class="mt-1 mb-1">
                     </div>
@@ -206,7 +216,13 @@
                             :</label>
                     </div>
                     <div class="col-md-7 mb-2">
-                        <label><?=date('d M Y', strtotime($empl['empl_statusenddate']));?></label>
+                        <label>
+                            <?php  
+                            if($empl['empl_statusenddate']!="0000-00-00") { 
+                                echo date('d M Y', strtotime($empl['empl_statusenddate']));
+                            } else { echo "-"; }
+                            ?>
+                        </label>
                         <hr class="mt-1 mb-1">
                     </div>
                 </div>
@@ -236,6 +252,7 @@
                                 <div class="card  text-center">
                                     <div class="card-body">
                                         <b>Bank Account</b>
+                                        <p><?=$empl['empl_bankaccountname'];?></p>
                                     </div>
                                     <div class="card-footer p-2">
                                         <?php 
@@ -252,6 +269,7 @@
                                 <div class="card  text-center">
                                     <div class="card-body">
                                         <b>KTP</b>
+                                        <p><?=$empl['empl_nik'];?></p>
                                     </div>
                                     <div class="card-footer p-1">
                                         <?php 
@@ -268,6 +286,7 @@
                                 <div class="card  text-center">
                                     <div class="card-body">
                                         <b>NPWP</b>
+                                        <p><?=$empl['empl_npwp'];?></p>
                                     </div>
                                     <div class="card-footer p-1">
                                         <?php 
