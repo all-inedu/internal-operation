@@ -22,6 +22,8 @@ class Employee_model extends CI_model
     
     public function showAll(){
         $this->db->select('*');
+        $this->db->order_by('empl_isactive','ASC');
+        $this->db->order_by('empl_id','DESC');   
         return $this->db->get('tbl_empl')->result_array();
     }
 
