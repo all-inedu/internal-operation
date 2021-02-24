@@ -1076,7 +1076,7 @@ $('#amountDollar').keyup(function() {
 
     let percent = (amountDollar / tpDollar) * 100;
     let amountRupiah = amountDollar * IDR;
-    $('#percent').val(percent.toFixed(1));
+    $('#percent').val(percent.toFixed(2));
     $('#amountRupiah').val(Math
         .round(amountRupiah));
 });
@@ -1106,7 +1106,7 @@ $('#amountDollar1').keyup(function() {
 
     let percent1 = (amountDollar1 / tpDollar) * 100;
     let amountRupiah1 = amountDollar1 * IDR;
-    $('#percent1').val(percent1.toFixed(1));
+    $('#percent1').val(percent1.toFixed(2));
     $('#amountRupiah1').val(Math
         .round(amountRupiah1));
 });
