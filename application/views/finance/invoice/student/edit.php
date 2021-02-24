@@ -661,7 +661,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label>Percent</label>
-                                    <input id="percentIDR1" type="number" name="invdtl_percentage"
+                                    <input id="percentIDR1" type="text" name="invdtl_percentage"
                                         class="form-control form-control-sm" max="100">
                                     <?=form_error('invdtl_percentage', '<small class="text-danger">', '</small>');?>
                                 </div>
@@ -713,7 +713,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label>Percent</label>
-                                    <input id="percentIDR2" type="number" name="invdtl_percentage"
+                                    <input id="percentIDR2" type="text" name="invdtl_percentage"
                                         class="form-control form-control-sm" max="100">
                                     <?=form_error('invdtl_percentage', '<small class="text-danger">', '</small>');?>
                                 </div>
