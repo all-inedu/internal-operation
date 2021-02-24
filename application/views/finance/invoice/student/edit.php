@@ -331,9 +331,11 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
+                                    <?php $idr = $inv['inv_priceidr']/$inv['inv_priceusd']; ?>
                                     <label>Installment Name</label>
                                     <input type="hidden" name="inv_id" value="<?=$inv['inv_id'];?>">
                                     <input type="hidden" name="inv_num" value="<?=$inv['inv_num'];?>">
+                                    <input type="hidden" name="idr" value="<?=$idr;?>" id="idr">
                                     <input type="text" name="invdtl_statusname" class="form-control form-control-sm"
                                         placeholder="Installment 1">
                                     <?=form_error('invdtl_statusname', '<small class="text-danger">', '</small>');?>
@@ -345,7 +347,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label>Percent</label>
-                                    <input id="percent" type="number" name="invdtl_percentage"
+                                    <input id="percent" type="text" name="invdtl_percentage"
                                         class="form-control form-control-sm" max="100">
                                     <?=form_error('invdtl_percentage', '<small class="text-danger">', '</small>');?>
                                 </div>
@@ -389,8 +391,10 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
+                                    <?php $idr = $inv['inv_priceidr']/$inv['inv_priceusd']; ?>
                                     <label>Installment Name</label>
                                     <input type="hidden" name="inv_num" value="<?=$inv['inv_num'];?>">
+                                    <input type="hidden" name="idr" value="<?=$idr;?>" id="idr">
                                     <input type="hidden" id="invdtl_id" name="invdtl_id">
                                     <input type="text" id="invdtl_statusname" name="invdtl_statusname"
                                         class="form-control form-control-sm">
@@ -404,7 +408,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label>Percent</label>
-                                    <input id="percent1" type="number" name="invdtl_percentage"
+                                    <input id="percent1" type="text" name="invdtl_percentage"
                                         class="form-control form-control-sm" max="100">
                                     <?=form_error('invdtl_percentage', '<small class="text-danger">', '</small>');?>
                                 </div>
@@ -1049,17 +1053,19 @@ function editInstalments(x) {
 
 $('#percent').keyup(function() {
     let USD = $('#currentUSD').val();
+    let IDR = $('#idr').val();
     let tpDollar = $('#tpDollar').val();
     let tpRupiah = $('#tpRupiah').val();
     let percent = $('#percent').val();
     let amountDollar = (percent / 100) * tpDollar;
-    let amountRupiah = amountDollar * USD;
+    let amountRupiah = amountDollar * IDR;
     $('#amountDollar').val(amountDollar);
     $('#amountRupiah').val(Math.round(amountRupiah));
 });
 
 $('#amountDollar').keyup(function() {
     let USD = $('#currentUSD').val();
+    let IDR = $('#idr').val();
     let tpDollar = parseInt($('#tpDollar').val());
     let tpRupiah = $('#tpRupiah').val();
     let amountDollar = $('#amountDollar').val();
@@ -1069,7 +1075,7 @@ $('#amountDollar').keyup(function() {
     }
 
     let percent = (amountDollar / tpDollar) * 100;
-    let amountRupiah = amountDollar * USD;
+    let amountRupiah = amountDollar * IDR;
     $('#percent').val(percent.toFixed(1));
     $('#amountRupiah').val(Math
         .round(amountRupiah));
@@ -1077,17 +1083,19 @@ $('#amountDollar').keyup(function() {
 
 $('#percent1').keyup(function() {
     let USD = $('#currentUSD').val();
+    let IDR = $('#idr').val();
     let tpDollar = $('#tpDollar').val();
     let tpRupiah = $('#tpRupiah').val();
     let percent1 = $('#percent1').val();
     let amountDollar1 = (percent1 / 100) * tpDollar;
-    let amountRupiah1 = amountDollar1 * USD;
+    let amountRupiah1 = amountDollar1 * IDR;
     $('#amountDollar1').val(amountDollar1);
     $('#amountRupiah1').val(Math.round(amountRupiah1));
 });
 
 $('#amountDollar1').keyup(function() {
     let USD = $('#currentUSD').val();
+    let IDR = $('#idr').val();
     let tpDollar = parseInt($('#tpDollar').val());
     let tpRupiah = $('#tpRupiah').val();
     let amountDollar1 = $('#amountDollar1').val();
@@ -1097,7 +1105,7 @@ $('#amountDollar1').keyup(function() {
     }
 
     let percent1 = (amountDollar1 / tpDollar) * 100;
-    let amountRupiah1 = amountDollar1 * USD;
+    let amountRupiah1 = amountDollar1 * IDR;
     $('#percent1').val(percent1.toFixed(1));
     $('#amountRupiah1').val(Math
         .round(amountRupiah1));
