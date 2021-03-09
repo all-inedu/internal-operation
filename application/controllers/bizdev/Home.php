@@ -20,9 +20,9 @@ class Home extends CI_Controller
         if(empty($empl_id)) {
             redirect('/');
         } else {
-            if($position!='bizdev') {
-                redirect('/'.$position);
-            }
+            // if($position!='bizdev') {
+            //     redirect('/'.$position);
+            // }
 
             $data['empl_id'] = $empl_id;
             $data['menus'] = $this->menu->showId($empl_id, 1);
