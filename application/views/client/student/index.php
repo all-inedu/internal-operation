@@ -36,29 +36,144 @@
         </div>
     </nav>
 
+    <div class="row mb-2 mt-2">
+        <div class="col-md-12">
+            <div class="card p-2">
+                <p>Filter : </p>
+                <div class="row">
+                    <div class="col-md-3 mb-2">
+                        <select id="schName">
+                            <option data-placeholder="true"></option>
+                            <?php foreach($sch as $sc): ?>
+                            <option value="<?=$sc['sch_name'];?>">
+                                <?=$sc['sch_name'];?>
+                            </option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <select id="grade">
+                            <option data-placeholder="true"></option>
+                            <?php for($i=1; $i<=12; $i++) { ?>
+                            <option value="<?=$i;?>"><?=$i;?></option>
+                            <?php } ?>
+                            <option value="Not High School">Not High School</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <select id="leadName">
+                            <option data-placeholder="true"></option>
+                            <?php foreach($lead as $l): ?>
+                            <option value="<?=$l['lead_id'];?>">
+                                <?=$l['lead_name'];?>
+                            </option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <select id="lvlInterest">
+                            <option data-placeholder="true"></option>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <select id="iProg">
+                            <option data-placeholder="true"></option>
+                            <?php foreach($prog as $pr): ?>
+                            <option value="<?php
+                                    if($pr['prog_sub']){
+                                        echo $pr['prog_sub'].' - '.$pr['prog_program'];
+                                    } else {
+                                        echo $pr['prog_program'];
+                                    }
+                                ?>">
+                                <?php
+                                    if($pr['prog_sub']){
+                                        echo $pr['prog_sub'].' - '.$pr['prog_program'];
+                                    } else {
+                                        echo $pr['prog_program'];
+                                    }
+                                ?>
+                            </option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <select id="sProg">
+                            <option data-placeholder="true"></option>
+                            <?php foreach($prog as $pr): ?>
+                            <option value="<?php
+                                    if($pr['prog_sub']){
+                                        echo $pr['prog_sub'].' - '.$pr['prog_program'];
+                                    } else {
+                                        echo $pr['prog_program'];
+                                    }
+                                ?>">
+                                <?php
+                                    if($pr['prog_sub']){
+                                        echo $pr['prog_sub'].' - '.$pr['prog_program'];
+                                    } else {
+                                        echo $pr['prog_program'];
+                                    }
+                                ?>
+                            </option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <select id="year">
+                            <option data-placeholder="true"></option>
+                            <?php
+                                $start_year = 2016;
+                                $year_now = date("Y");
+                                $diff = $year_now-$start_year;
+                                for($i=0;$i<=$diff+8;$i++){
+                                    $year = $start_year+$i;
+                                    echo '<option value="'.$year.'">'.$year.'</option>';
+                                }    
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <select id="country">
+                            <option data-placeholder="true"></option>
+                            <?php foreach($con as $c): ?>
+                            <option value="<?=$c;?>">
+                                <?=$c;?>
+                            </option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <table id="studentTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
             <tr class="text-center">
                 <th width="2%">No</th>
-                <th width="15%" class="text-center bg-primary text-white">Full Name</th>
-                <th width="10%">Parents Name</th>
+                <th width="15%" class="text-center bg-primary text-white">Students Name</th>
                 <th width="10%">Students Mail</th>
-                <th width="10%">Phone Number</th>
-                <th width="5%">Status</th>
+                <th width="10%">Students Number</th>
+                <th width="10%">Parents Name</th>
+                <th width="10%">Parents Number</th>
                 <th width="5%">School Name</th>
                 <th width="5%">Student Year /<br>Grade</th>
                 <th width="10%">Instagram</th>
-                <th width="10%">State</th>
                 <th width="10%">Address</th>
                 <th width="10%">Lead</th>
                 <th width="5%">Level of Interest</th>
-                <th width="5%">Interested Program</th>
+                <th width="60">Interested Program</th>
+                <th width="10%">Success Program</th>
                 <th width="5%">Year of Study Abroad</th>
                 <th width="5%">Country of Study Abroad</th>
                 <th width="5%">Univ Destination</th>
                 <th width="5%">Major</th>
                 <th width="5%">Created Date</th>
-                <th width="5%">Updated Date</th>
+                <th width="5%">Status</th>
             </tr>
         </thead>
         <tbody>
@@ -69,14 +184,106 @@
                     onclick="window.location='<?=base_url('client/student/view/'.$s['st_num']);?>'">
                     <?=$s['st_firstname']." ".$s['st_lastname'];?>
                 </td>
+                <td><?=$s['st_mail'];?></td>
+                <td><?=$s['st_phone'];?></td>
                 <td>
                     <?php 
                         $prt = $this->prt->showId($s['pr_id']);
-                        if($prt) { echo $prt['pr_firstname'].' '.$prt['pr_lastname']; } else { echo '-'; }
+                        if($prt) { 
+                            echo $prt['pr_firstname'].' '.$prt['pr_lastname']; 
+                        } else { 
+                            echo '-'; 
+                        }
                     ?>
                 </td>
-                <td><?=$s['st_mail'];?></td>
-                <td><?=$s['st_phone'];?></td>
+                <td>
+                    <?php 
+                        if($prt) { 
+                            echo $prt['pr_phone']; 
+                        } else { 
+                            echo '-'; 
+                        }
+                    ?>
+                </td>
+                <td class="text-left"><?=$s['sch_name'];?></td>
+                <td>
+                    <?php 
+                        $ynow = date('Y');
+                        $yinput = date('Y', strtotime($s['st_datecreate']));
+                        $ginput = $s['st_grade'];
+                        $gnow = ($ynow - $yinput) + $ginput;
+                        if($gnow <= 12) {
+                            echo $gnow;
+                        } else {
+                            echo 'Not High School';
+                        }
+                        ?>
+                </td>
+                <td><?=$s['st_insta'];?></td>
+                <td>
+                    <?=$s['st_address'];?><br>
+                    <?=$s['st_state'];?>
+                </td>
+                <td>
+                    <?php
+                        $lead = $this->lead->showId($s['lead_id']);
+                        ?>
+                    <?=$lead['lead_name'];?>
+                    <br>
+                    <?php
+                        if(!empty($s['eduf_id'])) {
+                            $eduf = $this->eduf->showId($s['eduf_id']);
+                            echo '('.$eduf['eduf_organizer'].')';
+                        } else if(!empty($s['infl_id'])) {
+                            $infl = $this->infl->showId($s['infl_id']);
+                            echo '('.$infl['infl_fn'].')';
+                        }
+                        ?>
+                </td>
+                <td><?=$s['st_levelinterest'];?></td>
+                <td>
+                    <?php 
+                        $pdata = explode(", ", $s['prog_id']); 
+                        foreach ($pdata as $pd) {
+                            $progdata = $this->prog->showId($pd);
+                            if($progdata['prog_sub']==""){
+                                echo "<div class='badge badge-warning p-2 m-1'>".$progdata['prog_program']."</div> <br>";
+                            } else {
+                                echo "<div class='badge badge-warning p-2 m-1'>".$progdata['prog_sub']." - ".$progdata['prog_program']."</div> <br>";
+                            }
+                        }
+                        ?>
+                </td>
+                <td>
+                    <?php
+                        $st_num = $s['st_num']; 
+                        $stprog = $this->stprog->showStProg($st_num);
+                        $no=0;
+                        foreach ($stprog as $p) {
+                            if($p['stprog_status']==1) {
+                                if($p['prog_sub']==""){
+                                    echo "<div class='badge badge-success p-2 m-1'>".$p['prog_program']."</div> <br>";
+                                } else {
+                                    echo "<div class='badge badge-success p-2 m-1'>".$p['prog_sub']." - ".$p['prog_program']."</div> <br>";
+                                }
+                            }
+                            $no++;
+                        }
+                    ?>
+                </td>
+                <td><?=$s['st_abryear'];?></td>
+                <td><?=$s['st_abrcountry'];?></td>
+                <td>
+                    <?php 
+                        $udata = explode(", ", $s['st_abruniv']); 
+                        foreach ($udata as $ud ) {
+                            $univdata = $this->univ->showId($ud);
+                            echo "<div class='badge badge-primary p-2 m-1'>".$univdata['univ_name']."</div>";
+                        }
+                    ?>
+                </td>
+                <td><?=$s['st_abrmajor'];?></td>
+                <td><?=date('d M Y H:i:s', strtotime($s['st_datecreate']));?></td>
                 <td>
                     <?php  if($s['st_statuscli']==0) {  ?>
                     <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-danger shadow">
@@ -96,67 +303,6 @@
                     </div>
                     <?php } ?>
                 </td>
-                <td class="text-left"><?=$s['sch_name'];?></td>
-                <td>
-                    <?php 
-                        $ynow = date('Y');
-                        $yinput = date('Y', strtotime($s['st_datecreate']));
-                        $ginput = $s['st_grade'];
-                        $gnow = ($ynow - $yinput) + $ginput;
-                        if($gnow <= 12) {
-                            echo $gnow;
-                        } else {
-                            echo 'Not High School';
-                        }
-                        ?>
-                </td>
-                <td><?=$s['st_insta'];?></td>
-                <td><?=$s['st_state'];?></td>
-                <td><?=$s['st_address'];?></td>
-                <td>
-                    <?php
-                        $lead = $this->lead->showId($s['lead_id']);
-                    ?>
-                    <?=$lead['lead_name'];?>
-                    <br>
-                    <?php
-                        if(!empty($s['eduf_id'])) {
-                            $eduf = $this->eduf->showId($s['eduf_id']);
-                            echo '('.$eduf['eduf_organizer'].')';
-                        } else if(!empty($s['infl_id'])) {
-                            $infl = $this->infl->showId($s['infl_id']);
-                            echo '('.$infl['infl_fn'].')';
-                        }
-                    ?>
-                </td>
-                <td><?=$s['st_levelinterest'];?></td>
-                <td>
-                    <?php 
-                        $pdata = explode(", ", $s['prog_id']); 
-                        $prog = [];
-                        foreach ($pdata as $pd ) {
-                            $progdata = $this->prog->showId($pd);
-                            array_push($prog, $progdata['prog_program']);
-                        }
-                        echo implode(", ", $prog);
-                    ?>
-                </td>
-                <td><?=$s['st_abryear'];?></td>
-                <td><?=$s['st_abrcountry'];?></td>
-                <td>
-                    <?php 
-                        $udata = explode(", ", $s['st_abruniv']); 
-                        $univ = [];
-                        foreach ($udata as $ud ) {
-                            $univdata = $this->univ->showId($ud);
-                            array_push($univ, $univdata['univ_name']);
-                        }
-                        echo implode(", ", $univ);
-                    ?>
-                </td>
-                <td><?=$s['st_abrmajor'];?></td>
-                <td><?=date('d M Y H:i:s', strtotime($s['st_datecreate']));?></td>
-                <td><?=date('d M Y H:i:s', strtotime($s['st_datelastedit']));?></td>
             </tr>
             <?php $i++; endforeach; ?>
         </tbody>
@@ -170,84 +316,130 @@
     // echo $data['empl_export'];
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="<?=base_url('assets/js/disable-copas.js');?>"></script>
-<?php 
-    if($data['empl_export']==1) {
-?>
+<script src="https://cdn.datatables.net/fixedcolumns/3.3.2/js/dataTables.fixedColumns.min.js"></script>
+<!-- <script src="<?=base_url('assets/js/disable-copas.js');?>"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
+
 <script>
 $(document).ready(function() {
-    var tables = $('#studentTable').DataTable({
-        "bLengthChange": true,
-        "pageLength": 25,
-        "bPaginate": true,
-        "bFilter": true,
-        "bInfo": false,
-        "bAutoWidth": true,
-        dom: 'Bfrtip',
-        buttons: [{
-            extend: 'excel',
-            text: '<i class="fas fa-file-excel"></i> &nbsp; Export to Excell'
-        }]
+    new SlimSelect({
+        select: '#schName',
+        placeholder: 'School Name',
+        allowDeselect: true,
+        deselectLabel: '<span class="text-danger">✖</span>'
     });
 
-    $("#prospective").click(function() {
-        tables.column(5).search('Prospective').draw();
+    new SlimSelect({
+        select: '#grade',
+        placeholder: 'Grade',
+        allowDeselect: true,
+        deselectLabel: '<span class="text-danger">✖</span>'
     });
 
-    $("#potential").click(function() {
-        tables.column(5).search('Potential').draw();
+    new SlimSelect({
+        select: '#leadName',
+        placeholder: 'Lead Source',
+        allowDeselect: true,
+        deselectLabel: '<span class="text-danger">✖</span>'
     });
 
-    $("#current").click(function() {
-        tables.column(5).search('Current').draw();
+    new SlimSelect({
+        select: '#lvlInterest',
+        placeholder: 'Level of Interest',
+        allowDeselect: true,
+        deselectLabel: '<span class="text-danger">✖</span>'
     });
 
-    $("#completed").click(function() {
-        tables.column(5).search('Completed').draw();
+    new SlimSelect({
+        select: '#iProg',
+        placeholder: 'Interested Program',
+        allowDeselect: true,
+        deselectLabel: '<span class="text-danger">✖</span>'
     });
 
-    $("#all").click(function() {
-        tables.column(5).search('').draw();
+    new SlimSelect({
+        select: '#sProg',
+        placeholder: 'Success Program',
+        allowDeselect: true,
+        deselectLabel: '<span class="text-danger">✖</span>'
     });
 
-});
-</script>
-<?php 
+    new SlimSelect({
+        select: '#year',
+        placeholder: 'Year',
+        allowDeselect: true,
+        deselectLabel: '<span class="text-danger">✖</span>'
+    });
+
+    new SlimSelect({
+        select: '#country',
+        placeholder: 'Country',
+        allowDeselect: true,
+        deselectLabel: '<span class="text-danger">✖</span>'
+    });
+
+
+
+    if ("<?=$data['empl_export'];?>" == 1) {
+        var tables = $('#studentTable').DataTable({
+            scrollY: 500,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: true,
+            pageLength: 50,
+            fixedColumns: {
+                leftColumns: 2,
+                rightColumns: 1,
+            },
+            dom: 'Bfrtip',
+            buttons: [{
+                extend: 'excel',
+                text: '<i class="fas fa-file-excel"></i> &nbsp; Export to Excell'
+            }]
+        });
     } else {
-?>
-<script>
-$(document).ready(function() {
-    var tables = $('#studentTable').DataTable({
-        "bLengthChange": true,
-        "pageLength": 25,
-        "bPaginate": true,
-        "bFilter": true,
-        "bInfo": false,
-        "bAutoWidth": true,
-    });
+        var tables = $('#studentTable').DataTable({
+            scrollY: 500,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: true,
+            pageLength: 50,
+            fixedColumns: {
+                leftColumns: 2,
+            },
+        });
+    }
 
+    // Students Status
+    tables.column(19).search('<?=$status;?>').draw();
     $("#prospective").click(function() {
-        tables.column(5).search('Prospective').draw();
+        tables.column(19).search('Prospective').draw();
     });
-
     $("#potential").click(function() {
-        tables.column(5).search('Potential').draw();
+        tables.column(19).search('Potential').draw();
     });
-
     $("#current").click(function() {
-        tables.column(5).search('Current').draw();
+        tables.column(19).search('Current').draw();
     });
-
     $("#completed").click(function() {
-        tables.column(5).search('Completed').draw();
+        tables.column(19).search('Completed').draw();
+    });
+    $("#all").click(function() {
+        tables.column(19).search('').draw();
     });
 
-    $("#all").click(function() {
-        tables.column(5).search('').draw();
+    //Filter
+    $('#schName').on('change', function() {
+        tables.column(6).search($(this).val()).draw();
     });
+    $('#iProg').on('change', function() {
+        console.log($(this).val())
+        tables.column(12).search($(this).val()).draw();
+    });
+    $('#sProg').on('change', function() {
+        tables.column(13).search($(this).val()).draw();
+    });
+
 
 });
 </script>
-<?php
-    }
-?>

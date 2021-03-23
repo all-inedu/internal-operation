@@ -75,6 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
+	// 'hostname' => '153.92.10.151',
+	// 'username' => 'u5794939_crm_allinedu',
+	// 'password' => 'crm_allinedu',
+	// 'database' => 'u5794939_allin_bd',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',

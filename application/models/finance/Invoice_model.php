@@ -14,6 +14,28 @@ class Invoice_model extends CI_model
         return $this->db->get('tbl_inv')->result_array();
     }
 
+    public function showAllByProg($m, $y, $p) {
+        $this->db->select('sum(tbl_inv.inv_totpridr) as tot');
+        $this->db->join('tbl_stprog', 'tbl_stprog.stprog_id=tbl_inv.stprog_id');
+        $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
+        $this->db->where('tbl_stprog.stprog_status', 1);
+        $this->db->where('month(tbl_stprog.stprog_statusprogdate)', $m);
+        $this->db->where('year(tbl_stprog.stprog_statusprogdate)', $y);
+        $this->db->like('tbl_prog.prog_sub', $p);
+        return $this->db->get('tbl_inv')->result_array();
+    }
+
+    public function showAllByProgMain($m, $y, $p) {
+        $this->db->select('sum(tbl_inv.inv_totpridr) as tot');
+        $this->db->join('tbl_stprog', 'tbl_stprog.stprog_id=tbl_inv.stprog_id');
+        $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
+        $this->db->where('tbl_stprog.stprog_status', 1);
+        $this->db->where('month(tbl_stprog.stprog_statusprogdate)', $m);
+        $this->db->where('year(tbl_stprog.stprog_statusprogdate)', $y);
+        $this->db->where('tbl_prog.prog_main', $p);
+        return $this->db->get('tbl_inv')->result_array();
+    }
+
     public function showForInvoice() {
         $this->db->select('*');
         $this->db->where('tbl_stprog.stprog_status', 1);

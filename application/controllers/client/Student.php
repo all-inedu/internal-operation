@@ -34,8 +34,13 @@ class Student extends CI_Controller
         }
     }
 
-    public function index(){
+    public function index($s=""){
         $data['std'] = $this->std->showAll();
+        $data['status'] = $s;
+        $data['sch'] = $this->sch->showAll();
+        $data['lead'] = $this->lead->showAll();
+        $data['prog'] = $this->prog->showB2C();
+        $data['con'] = $this->countries->show();
         $this->load->view('templates/s-io');
         $this->load->view('client/student/index', $data);
         $this->load->view('templates/f-io');

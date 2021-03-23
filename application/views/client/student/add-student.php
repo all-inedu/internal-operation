@@ -250,7 +250,13 @@
                                     <option data-placeholder="true"></option>
                                     <?php foreach($prog as $pr): ?>
                                     <option value="<?=$pr['prog_id'];?>">
-                                        <?=$pr['prog_sub'].' - '.$pr['prog_program'];?>
+                                        <?php
+                                            if($pr['prog_sub']){
+                                                echo $pr['prog_sub'].' - '.$pr['prog_program'];
+                                            } else {
+                                                echo $pr['prog_program'];
+                                            }
+                                        ?>
                                     </option>
                                     <?php endforeach;?>
                                 </select>
@@ -273,7 +279,6 @@
                                             $year = date("Y")+$i;
                                             echo '<option value="'.$year.'">'.$year.'</option>';
                                         }
-                                        
                                     ?>
                                 </select>
                                 <?=form_error('st_abryear', '<small class="text-danger">', '</small>');?>

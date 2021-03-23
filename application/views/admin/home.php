@@ -113,10 +113,10 @@ if ($this->session->flashdata('success')) {
                         Client Management
                     </div>
                     <div class="card-body menu-link">
-                        <a href="<?=base_url('client/programs/');?>" target="">
+                        <a href="<?=base_url('client/alumni/');?>" target="">
                             <div class="row">
                                 <div class="col-10">
-                                    Program List
+                                    Alumni/Acceptance List
                                 </div>
                                 <div class="col-2 my-auto">
                                     <i class="icofont-paper-plane icofont-1x"></i>
@@ -135,10 +135,21 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/university/');?>" target="">
+                        <a href="<?=base_url('client/parents/');?>" target="">
                             <div class="row">
                                 <div class="col-10">
-                                    University List
+                                    Parent List
+                                </div>
+                                <div class="col-2 my-auto">
+                                    <i class="icofont-paper-plane icofont-1x"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="mt-1 mb-1">
+                        <a href="<?=base_url('client/programs/');?>" target="">
+                            <div class="row">
+                                <div class="col-10">
+                                    Program List
                                 </div>
                                 <div class="col-2 my-auto">
                                     <i class="icofont-paper-plane icofont-1x"></i>
@@ -150,17 +161,6 @@ if ($this->session->flashdata('success')) {
                             <div class="row">
                                 <div class="col-10">
                                     Student List
-                                </div>
-                                <div class="col-2 my-auto">
-                                    <i class="icofont-paper-plane icofont-1x"></i>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/parents/');?>" target="">
-                            <div class="row">
-                                <div class="col-10">
-                                    Parent List
                                 </div>
                                 <div class="col-2 my-auto">
                                     <i class="icofont-paper-plane icofont-1x"></i>
@@ -190,48 +190,6 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/alumni/');?>" target="">
-                            <div class="row">
-                                <div class="col-10">
-                                    Alumni/Acceptance List
-                                </div>
-                                <div class="col-2 my-auto">
-                                    <i class="icofont-paper-plane icofont-1x"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-2">
-                <div class="card shadow menus">
-                    <div class="card-header text-center">
-                        Business Development
-                    </div>
-                    <div class="card-body menu-link">
-                        <a href="<?=base_url('client/programs/');?>" target="">
-                            <div class="row">
-                                <div class="col-10">
-                                    Program List
-                                </div>
-                                <div class="col-2 my-auto">
-                                    <i class="icofont-paper-plane icofont-1x"></i>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/lead/');?>" target="">
-                            <div class="row">
-                                <div class="col-10">
-                                    Lead Source List
-                                </div>
-                                <div class="col-2 my-auto">
-                                    <i class="icofont-paper-plane icofont-1x"></i>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="mt-1 mb-1">
                         <a href="<?=base_url('bizdev/university/');?>" target="">
                             <div class="row">
                                 <div class="col-10">
@@ -242,11 +200,21 @@ if ($this->session->flashdata('success')) {
                                 </div>
                             </div>
                         </a>
-                        <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/school/');?>" target="">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-2">
+                <div class="card shadow menus">
+                    <div class="card-header text-center">
+                        Business Development
+                    </div>
+                    <div class="card-body menu-link">
+                        <a href="<?=base_url('bizdev/edufair/');?>" target="">
                             <div class="row">
                                 <div class="col-10">
-                                    School List
+                                    Edufair List
                                 </div>
                                 <div class="col-2 my-auto">
                                     <i class="icofont-paper-plane icofont-1x"></i>
@@ -265,17 +233,6 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/school-program/');?>" target="">
-                            <div class="row">
-                                <div class="col-10">
-                                    Schools Program List
-                                </div>
-                                <div class="col-2 my-auto">
-                                    <i class="icofont-paper-plane icofont-1x"></i>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="mt-1 mb-1">
                         <a href="<?=base_url('bizdev/corporate-program/');?>" target="">
                             <div class="row">
                                 <div class="col-10">
@@ -287,16 +244,28 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/edufair/');?>" target="">
+                        <a href="<?=base_url('bizdev/school/');?>" target="">
                             <div class="row">
                                 <div class="col-10">
-                                    Edufair List
+                                    School List
                                 </div>
                                 <div class="col-2 my-auto">
                                     <i class="icofont-paper-plane icofont-1x"></i>
                                 </div>
                             </div>
                         </a>
+                        <hr class="mt-1 mb-1">
+                        <a href="<?=base_url('bizdev/school-program/');?>" target="">
+                            <div class="row">
+                                <div class="col-10">
+                                    Schools Program List
+                                </div>
+                                <div class="col-2 my-auto">
+                                    <i class="icofont-paper-plane icofont-1x"></i>
+                                </div>
+                            </div>
+                        </a>
+
                     </div>
                 </div>
             </div>
@@ -318,10 +287,10 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/vendor/');?>" target="">
+                        <a href="<?=base_url('finance/petty-cash/');?>" target="">
                             <div class="row">
                                 <div class="col-10">
-                                    Vendor List
+                                    Petty Cash
                                 </div>
                                 <div class="col-2 my-auto">
                                     <i class="icofont-paper-plane icofont-1x"></i>
@@ -340,54 +309,10 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/petty-cash/');?>" target="">
+                        <a href="<?=base_url('finance/pph-final/');?>" target="">
                             <div class="row">
                                 <div class="col-10">
-                                    Petty Cash
-                                </div>
-                                <div class="col-2 my-auto">
-                                    <i class="icofont-paper-plane icofont-1x"></i>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/invoice/student/');?>" target="">
-                            <div class="row">
-                                <div class="col-10">
-                                    Students Invoice List
-                                </div>
-                                <div class="col-2 my-auto">
-                                    <i class="icofont-paper-plane icofont-1x"></i>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/invoice/school/');?>" target="">
-                            <div class="row">
-                                <div class="col-10">
-                                    Schools Invoice List
-                                </div>
-                                <div class="col-2 my-auto">
-                                    <i class="icofont-paper-plane icofont-1x"></i>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/receipt/student/');?>" target="">
-                            <div class="row">
-                                <div class="col-10">
-                                    Students Receipt List
-                                </div>
-                                <div class="col-2 my-auto">
-                                    <i class="icofont-paper-plane icofont-1x"></i>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/receipt/school/');?>" target="">
-                            <div class="row">
-                                <div class="col-10">
-                                    Schools Receipt List
+                                    PPH Final
                                 </div>
                                 <div class="col-2 my-auto">
                                     <i class="icofont-paper-plane icofont-1x"></i>
@@ -406,10 +331,54 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/pph-final/');?>" target="">
+                        <a href="<?=base_url('finance/invoice/student/');?>" target="">
                             <div class="row">
                                 <div class="col-10">
-                                    PPH Final
+                                    Students Invoice List
+                                </div>
+                                <div class="col-2 my-auto">
+                                    <i class="icofont-paper-plane icofont-1x"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="mt-1 mb-1">
+                        <a href="<?=base_url('finance/receipt/student/');?>" target="">
+                            <div class="row">
+                                <div class="col-10">
+                                    Students Receipt List
+                                </div>
+                                <div class="col-2 my-auto">
+                                    <i class="icofont-paper-plane icofont-1x"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="mt-1 mb-1">
+                        <a href="<?=base_url('finance/invoice/school/');?>" target="">
+                            <div class="row">
+                                <div class="col-10">
+                                    Schools Invoice List
+                                </div>
+                                <div class="col-2 my-auto">
+                                    <i class="icofont-paper-plane icofont-1x"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="mt-1 mb-1">
+                        <a href="<?=base_url('finance/receipt/school/');?>" target="">
+                            <div class="row">
+                                <div class="col-10">
+                                    Schools Receipt List
+                                </div>
+                                <div class="col-2 my-auto">
+                                    <i class="icofont-paper-plane icofont-1x"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="mt-1 mb-1">
+                        <a href="<?=base_url('finance/vendor/');?>" target="">
+                            <div class="row">
+                                <div class="col-10">
+                                    Vendor List
                                 </div>
                                 <div class="col-2 my-auto">
                                     <i class="icofont-paper-plane icofont-1x"></i>
@@ -426,10 +395,32 @@ if ($this->session->flashdata('success')) {
                         Human Resource
                     </div>
                     <div class="card-body menu-link">
+                        <a href="<?=base_url('hr/editor');?>" target="">
+                            <div class="row">
+                                <div class="col-10">
+                                    Editor List
+                                </div>
+                                <div class="col-2 my-auto">
+                                    <i class="icofont-paper-plane icofont-1x"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="mt-1 mb-1">
                         <a href="<?=base_url('hr/employee');?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Employee List
+                                </div>
+                                <div class="col-2 my-auto">
+                                    <i class="icofont-paper-plane icofont-1x"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="mt-1 mb-1">
+                        <a href="<?=base_url('hr/influencer');?>" target="">
+                            <div class="row">
+                                <div class="col-10">
+                                    Influencer List
                                 </div>
                                 <div class="col-2 my-auto">
                                     <i class="icofont-paper-plane icofont-1x"></i>
@@ -459,32 +450,10 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('hr/editor');?>" target="">
-                            <div class="row">
-                                <div class="col-10">
-                                    Editor List
-                                </div>
-                                <div class="col-2 my-auto">
-                                    <i class="icofont-paper-plane icofont-1x"></i>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="mt-1 mb-1">
                         <a href="<?=base_url('hr/volunteer');?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Volunteer List
-                                </div>
-                                <div class="col-2 my-auto">
-                                    <i class="icofont-paper-plane icofont-1x"></i>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('hr/influencer');?>" target="">
-                            <div class="row">
-                                <div class="col-10">
-                                    Influencer List
                                 </div>
                                 <div class="col-2 my-auto">
                                     <i class="icofont-paper-plane icofont-1x"></i>

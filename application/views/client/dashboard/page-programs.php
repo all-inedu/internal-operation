@@ -24,34 +24,6 @@
 </div>
 <div class="row justify-content-md-center">
     <div class="col-md-3 text-center">
-        <select id="sProg" class="form-control form-control-sm">
-            <option data-placeholder="true"></option>
-            <?php foreach($program as $pr): ?>
-            <?php 
-                if($pr['prog_sub']=='') {
-            ?>
-            <option value="<?=$pr['prog_program'];?>"><?=$pr['prog_program']; ?></option>
-            <?php
-                } else {
-            ?>
-            <option value="<?=$pr['prog_sub'].": ".$pr['prog_program'];?>">
-                <?=$pr['prog_sub'].": ".$pr['prog_program'];?></option>
-            <?php
-                }
-            ?>
-            <?php endforeach; ?>
-        </select>
-    </div>
-    <div class="col-md-3 text-center">
-        <select id="sStatus" class="form-control form-control-sm">
-            <option data-placeholder="true"></option>
-            <option value="Pending">Pending</option>
-            <option value="Success">Success</option>
-            <option value="Failed">Failed</option>
-        </select>
-    </div>
-
-    <div class="col-md-3 text-center">
         <select id="sConvLead" class="form-control form-control-sm">
             <option data-placeholder="true"></option>
             <?php 
@@ -74,6 +46,7 @@
         </select>
     </div>
 </div>
+
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
 <div class="content">
     <table id="stprog" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
@@ -189,20 +162,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
 new SlimSelect({
-    select: '#sProg',
-    placeholder: 'Select program name',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-
-new SlimSelect({
-    select: '#sStatus',
-    placeholder: 'Select program status',
-    allowDeselect: true,
-    deselectLabel: '<span class="text-danger">✖</span>'
-});
-
-new SlimSelect({
     select: '#sConvLead',
     placeholder: 'Select conversion leads',
     allowDeselect: true,
@@ -218,7 +177,7 @@ new SlimSelect({
 
 $(document).ready(function() {
     var table = $('#stprog').DataTable({
-        scrollY: 300,
+        scrollY: 500,
         scrollX: true,
         scrollCollapse: true,
         paging: true,
@@ -233,6 +192,7 @@ $(document).ready(function() {
             text: '<i class="fas fa-file-excel"></i> &nbsp; Export to Excell'
         }]
     });
+    table.column(5).search("<?= ucfirst($status);?>").draw();
 
     $('#sProg').on('change', function() {
         table.column(2).search($(this).val()).draw();
