@@ -2,6 +2,12 @@
 class StProgram_model extends CI_model
 {
 
+    public function getId() {
+        $this->db->select('stprog_id');
+        $this->db->order_by('stprog_id', 'DESC');
+        return $this->db->get('tbl_stprog')->row_array();
+    }    
+
     public function showAll() {
         $this->db->select('*');
         $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');
@@ -60,6 +66,7 @@ class StProgram_model extends CI_model
         $this->db->where('tbl_stprog.st_num', $id); 
         $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
         $this->db->join('tbl_lead', 'tbl_lead.lead_id=tbl_stprog.lead_id');
+        $this->db->join('tbl_empl', 'tbl_empl.empl_id=tbl_stprog.empl_id');
         $this->db->order_by('tbl_stprog.stprog_statusprogdate', 'DESC');
         return $this->db->get('tbl_stprog')->result_array();
     }
@@ -345,7 +352,7 @@ class StProgram_model extends CI_model
         $this->db->where("tbl_stprog.stprog_status =", $n);
         $this->db->where("tbl_stprog.stprog_statusprogdate >=", $start);
         $this->db->where("tbl_stprog.stprog_statusprogdate <=", $end);
-        $this->db->where("tbl_prog.prog_sub =", "Admissions Consulting");
+        $this->db->where("tbl_prog.prog_sub =", "Admissions Mentoring");
         $this->db->group_by("tbl_prog.prog_id");
         $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
         $this->db->order_by("tbl_prog.prog_main","ASC");
@@ -360,9 +367,10 @@ class StProgram_model extends CI_model
             count(tbl_stprog.stprog_id) as tot,
             sum(datediff(tbl_stprog.stprog_ass_sent, tbl_stprog.stprog_init_consult)) as ass_making,
         ");
-        $this->db->where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
-        $this->db->where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
-        $this->db->where("tbl_prog.prog_sub =", "Admissions Consulting");
+        $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
+        $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
+        $this->db->where("tbl_prog.prog_sub =", "Admissions Mentoring");
+        // $this->db->where("tbl_stprog.stprog_status", 1);
         $this->db->group_by("tbl_prog.prog_sub");
         $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
         $this->db->order_by("tbl_prog.prog_main","ASC");
@@ -401,15 +409,21 @@ class StProgram_model extends CI_model
 
     public function init_consult_date($m, $y) {
         $this->db->select('*');
-        $this->db->where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
-        $this->db->where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
+        $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate)", $m);
+        $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate)", $y);
+        $this->db->where("tbl_prog.prog_sub =", "Admissions Mentoring");
+        // $this->db->where("tbl_stprog.stprog_status", 1);
+        $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
         return $this->db->get('tbl_stprog')->result_array();
     }
 
     public function assessment_sent($m, $y) {
         $this->db->select('*');
-        $this->db->where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
-        $this->db->where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
+        $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate)", $m);
+        $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate)", $y);
+        $this->db->where("tbl_prog.prog_sub =", "Admissions Mentoring");
+        // $this->db->where("tbl_stprog.stprog_status", 1);
+        $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
         return $this->db->get('tbl_stprog')->result_array();
     }
 

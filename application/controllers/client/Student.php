@@ -19,6 +19,7 @@ class Student extends CI_Controller
         $this->load->model('client/Students_model','std');
         $this->load->model('client/Parents_model','prt');
         $this->load->model('client/StProgram_model','stprog');
+        $this->load->model('client/FollowUp_model','flw');
         $this->load->model('client/Program_model','prog');
         $this->load->model('client/Lead_model','lead');
         $this->load->model('Menus_model','menu');
@@ -41,6 +42,7 @@ class Student extends CI_Controller
         $data['lead'] = $this->lead->showAll();
         $data['prog'] = $this->prog->showB2C();
         $data['con'] = $this->countries->show();
+        $data['states'] = $this->states->show();
         $this->load->view('templates/s-io');
         $this->load->view('client/student/index', $data);
         $this->load->view('templates/f-io');
@@ -49,6 +51,7 @@ class Student extends CI_Controller
     public function add(){ 
         $data['prog'] = $this->prog->showB2C();
         $data['sch'] = $this->sch->showAll();
+         $data['prt'] = $this->prt->showAll();
         $data['school'] = $this->schooldata->show();
         $data['lead'] = $this->lead->showAll();
         $data['eduf'] = $this->eduf->showSuccess();
@@ -61,12 +64,12 @@ class Student extends CI_Controller
         
         // if($role=='student' or $role==''){
         $this->form_validation->set_rules('st_firstname', 'first name', 'required');
-        // $this->form_validation->set_rules('st_mail', 'email', 'required');
-        // $this->form_validation->set_rules('st_state', 'state', 'required');
-        // $this->form_validation->set_rules('st_city', 'city', 'required');
         $this->form_validation->set_rules('st_phone', 'phone', 'required');
-        // $this->form_validation->set_rules('sch_id', 'school', 'required');
         $this->form_validation->set_rules('lead_id', 'lead', 'required');
+        $this->form_validation->set_rules('st_state', 'state', 'required');
+        // $this->form_validation->set_rules('st_mail', 'email', 'required');
+        // $this->form_validation->set_rules('st_city', 'city', 'required');
+        // $this->form_validation->set_rules('sch_id', 'school', 'required');
         if ($this->form_validation->run() == false) {
 
             $this->load->view('templates/s-io');
@@ -78,8 +81,27 @@ class Student extends CI_Controller
     }
 
     private function save() {
+        // Add Parent
+        $pr_id = $this->input->post('pr_id');
+        if($pr_id=='other') {
+            $getPrId = $this->prt->getId();
+            $newprid = $getPrId['pr_id'] + 1;
+            
+            $dataPr = [
+                'pr_id' => $newprid,
+                'pr_firstname' => $this->input->post('pr_firstname'),
+                'pr_lastname' => $this->input->post('pr_lastname'),
+                'pr_mail' => $this->input->post('pr_mail'),
+                'pr_phone' => $this->input->post('pr_phone'),
+            ];
+            
+            $this->prt->save($dataPr);
+        } else {
+            $newprid = $pr_id;
+        }
+        
+        // Add School 
         $sch_id = $this->input->post('sch_id');
-
         if($sch_id=='other') {
             $query = $this->sch->getId();   
             if($query->num_rows() <> 0){        
@@ -111,6 +133,7 @@ class Student extends CI_Controller
             'st_state' => $this->input->post('st_state'),
             'st_city' => $this->input->post('st_city'),
             'st_address' => $this->input->post('st_address').$this->input->post('st_pc') ,
+            'pr_id' => $newprid,
             'sch_id' => $sch_id,
             'st_grade' => $this->input->post('st_grade'),
             'lead_id' => $this->input->post('lead_id'),
@@ -157,24 +180,39 @@ class Student extends CI_Controller
     }
 
     public function convertPotential() {
+        $stprog = $this->stprog->getId();
+        $stprog_id = $stprog['stprog_id'] + 1;
+
         $id = $this->input->post('st_num');
+        $plan = $this->input->post('stprog_followupdate');
+
+        if(!empty($plan)) {
+            $followup_data = [
+                'stprog_id' => $stprog_id,
+                'flw_date' => $this->input->post('stprog_followupdate'),
+                'flw_mark' => '0'
+            ];
+
+            $this->flw->save($followup_data);
+        } 
+        
         $data = [
+            'stprog_id' => $stprog_id,
             'st_num' => $id,
             'prog_id' => $this->input->post('prog_id'),
             'lead_id' => $this->input->post('lead_id'),
             'eduf_id' => $this->input->post('eduf_id'),
             'infl_id' => $this->input->post('infl_id'),
             'stprog_firstdisdate' => $this->input->post('stprog_firstdisdate'),
-            'stprog_lastdisdate' => $this->input->post('stprog_firstdisdate'),
-            'stprog_meetingdate' => $this->input->post('stprog_meetingdate'),
+            'stprog_followupdate' => $this->input->post('stprog_followupdate'),
             'stprog_meetingnote' => $this->input->post('stprog_meetingnote'),
-            'stprog_statusprogdate' => date('Y-m-d'),
+            // 'stprog_statusprogdate' => date('Y-m-d'),
             'stprog_status' => 0,
             'stprog_runningstatus' => 0,
             'empl_id' => $this->input->post('empl_id'),
         ];
 
-        $success = count($this->stprog->showStatusProgram($st_num, 1, 0));
+        $success = count($this->stprog->showStatusProgram($id, 1, 0));
 
         if($success > 0) {
             $status_cli = 2;

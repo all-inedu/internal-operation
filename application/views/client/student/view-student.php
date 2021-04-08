@@ -288,8 +288,8 @@
                                     <td width="1%">No</td>
                                     <td class="bg-primary text-white">Program Name</td>
                                     <td>Lead Source</td>
-                                    <td>First Discuss</td>
                                     <td>Last Discuss</td>
+                                    <td>PIC</td>
                                     <td>Program Status</td>
                                 </tr>
                             </thead>
@@ -308,8 +308,21 @@
                                         ?>
                                     </td>
                                     <td><?=$stp['lead_name'];?></td>
-                                    <td><?=date('d M Y', strtotime($stp['stprog_firstdisdate']));?></td>
-                                    <td><?=date('d M Y', strtotime($stp['stprog_lastdisdate']));?></td>
+                                    <td>
+                                        <?php 
+                                        if($stp['stprog_statusprogdate']) {
+                                            $last_discuss = $stp['stprog_statusprogdate'];
+                                        } else if($stp['stprog_ass_sent']){
+                                            $last_discuss = $stp['stprog_ass_sent'];
+                                        } else if($stp['stprog_init_consult']) {
+                                            $last_discuss = $stp['stprog_init_consult'];
+                                        } else {
+                                            $last_discuss = $stp['stprog_firstdisdate'];
+                                        }
+                                    ?>
+                                        <?=date('d M Y', strtotime($last_discuss));?>
+                                    </td>
+                                    <td><?=$stp['empl_firstname'];?></td>
                                     <td>
                                         <?php if($stp['stprog_status']==0) { ?>
                                         <div class="badge badge-light p-2 pl-3 pr-3 text-muted shadow border">
@@ -455,9 +468,9 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Meeting Date</label>
-                                <input name="stprog_meetingdate" type="date" class="form-control form-control-sm"
-                                    placeholder="Meeting Date">
+                                <label>Planned Follow Up</label>
+                                <input name="stprog_followupdate" type="date" class="form-control form-control-sm"
+                                    onchange="followUp()" id="follow-up">
                                 <?=form_error('stprog_meetingdate', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
@@ -486,6 +499,29 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
+function followUp() {
+    let date = $("#follow-up").val();
+    let y = date.substr(0, 4)
+    let m = date.substr(5, 2)
+    let d = date.substr(8, 2)
+    let n = "<?=$s['st_firstname'].' '.$s['st_lastname'];?>"
+    let p = $("#programName").val();
+    $.ajax({
+        url: "<?=base_url('client/programs/getid/');?>" + p,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data)
+            window.open(
+                "http://calendar.google.com/calendar/u/0/r/eventedit?text=Follow+Up+&dates=" + y + "" +
+                m + "" + d +
+                "T150000Z/" + y + "" + m + "" + d + "T150000Z&details=" + n + "%20(" + data.prog_sub +
+                " " + data.prog_program + ")&trp=true",
+                "_blank"
+            );
+        }
+    });
+}
+
 new SlimSelect({
     select: '#programName',
     placeholder: 'Select program name ',
@@ -523,11 +559,6 @@ new SlimSelect({
 
 function leads() {
     let lead_id = $("#leadSource").val();
-    // if (lead_id == "LS004") {
-    //     $("#edufForm").removeClass("d-none");
-    //     $("#inflForm").addClass("d-none");
-    //     INF.set('');
-    // } else
     if (lead_id == "LS014") {
         $("#inflForm").removeClass("d-none");
         $("#edufForm").addClass("d-none");

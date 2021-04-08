@@ -9,6 +9,7 @@ class Students_program extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('client/Students_model','std');
         $this->load->model('client/StProgram_model','stprog');
+        $this->load->model('client/FollowUp_model','flw');
         $this->load->model('client/Program_model','prog');
         $this->load->model('client/Lead_model','lead');
         $this->load->model('client/Reason_model','reason');
@@ -69,6 +70,19 @@ class Students_program extends CI_Controller
             $mt_id2 = $this->input->post('mt_id2');
         }
 
+        // Follow up 
+        $stprog_data = $this->stprog->showId($id);
+        $followup = $stprog_data['stprog_followupdate'];
+        if($this->input->post('stprog_followupdate')!=$followup ) {
+            $followup_data = [
+                'stprog_id' => $id,
+                'flw_date' => $this->input->post('stprog_followupdate'),
+                'flw_mark' => '0'
+            ];
+            $this->flw->save($followup_data);
+        }
+
+        // Reason 
         if($this->input->post('reason_id')) {
             if($this->input->post('reason_id')=="add") {
                 $reasons = $this->reason->getId();
@@ -87,6 +101,7 @@ class Students_program extends CI_Controller
             $reason = "";
         }
 
+        // Mentorship 
         $check = $this->stprog->showStudentsMentor($id);
         if(!$check) {
             $stmentor = [
@@ -105,6 +120,7 @@ class Students_program extends CI_Controller
             $this->stprog->updateStudentsMentor($stmentor, $stmentor_id);
         }
 
+        // Status of Client 
         $prog_status = $this->input->post('stprog_status');
         $pending = count($this->stprog->showStatusProgram($st_num, 0, $id));
         $success = count($this->stprog->showStatusProgram($st_num, 1, $id));
@@ -162,11 +178,11 @@ class Students_program extends CI_Controller
             $this->stprog->updateStudentsStatus($datas, $st_num);
         }
 
+        // Data from Form Input 
         $data = [
             'lead_id' => $this->input->post('lead_id'),
             'stprog_firstdisdate' => $this->input->post('stprog_firstdisdate'),
-            'stprog_lastdisdate' => $this->input->post('stprog_lastdisdate'),
-            'stprog_meetingdate' => $this->input->post('stprog_meetingdate'),
+            'stprog_followupdate' => $this->input->post('stprog_followupdate'),
             'stprog_meetingnote' => $this->input->post('stprog_meetingnote'),
             'stprog_status' => $this->input->post('stprog_status'),
             'reason_id' => $reason,
@@ -174,7 +190,23 @@ class Students_program extends CI_Controller
             'stprog_runningstatus' => $this->input->post('stprog_runningstatus'),
             'stprog_init_consult' => $this->input->post('stprog_init_consult'),
             'stprog_ass_sent' => $this->input->post('stprog_ass_sent'),
-            'stprog_nego' => $this->input->post('stprog_nego'),
+            // SAT 
+            'stprog_test_date'  => $this->input->post('stprog_test_date'),
+            'stprog_last_class'  => $this->input->post('stprog_last_class'),
+            'stprog_diag_score'  => $this->input->post('stprog_diag_score'),
+            'stprog_test_score'  => $this->input->post('stprog_test_score'),
+            // Tutoring 
+            'stprog_price_from_tutor'  => $this->input->post('stprog_price_from_tutor'),
+            'stprog_our_price_tutor'  => $this->input->post('stprog_our_price_tutor'),
+            'stprog_total_price_tutor'  => $this->input->post('stprog_total_price_tutor'),
+            'stprog_duration'  => $this->input->post('stprog_duration'),
+            // Admissions 
+            'stprog_tot_uni'  => $this->input->post('stprog_tot_uni'),
+            'stprog_tot_dollar'  => $this->input->post('stprog_tot_dollar'),
+            'stprog_kurs'  => $this->input->post('stprog_kurs'),
+            'stprog_tot_idr'  => $this->input->post('stprog_tot_idr'),
+            'stprog_install_plan'  => $this->input->post('stprog_install_plan'),
+
             'empl_id' => $this->input->post('empl_id')
         ];
         

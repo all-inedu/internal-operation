@@ -340,7 +340,7 @@ var ETP = new SlimSelect({
 
 function mainPrograms() {
     var p = $('#mainProgram').val();
-    if (p == 'Admissions Consulting') {
+    if (p == 'Admissions Mentoring') {
         $('#subProgram').html('');
         $('#subProgram').html(
             '<?php foreach($adm as $admissions): ?>' +
@@ -385,7 +385,7 @@ function mainPrograms() {
 
 function editMP() {
     var p = $('#editMainPrograms').val();
-    if (p == 'Admissions Consulting') {
+    if (p == 'Admissions Mentoring') {
         $('#editSubProgram').html('');
         $('#editSubProgram').html(
             '<?php foreach($adm as $admissions): ?>' +

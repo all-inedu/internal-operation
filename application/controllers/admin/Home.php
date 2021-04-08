@@ -47,10 +47,10 @@ class Home extends CI_Controller
         $data['succ'] = count($this->stprog->studentProgStatus(1, $month, $year));
         $data['fail'] = count($this->stprog->studentProgStatus(2, $month, $year)); 
 
-        $data['tot_inv_adm'] = $this->inv->showAllByProg($month, $year, "Admissions Consulting");
-        $data['pend_adm'] = count($this->stprog->studentProgStatusByProg(0, $month, $year, "Admissions Consulting"));
-        $data['succ_adm'] = count($this->stprog->studentProgStatusByProg(1, $month, $year, "Admissions Consulting"));
-        $data['fail_adm'] = count($this->stprog->studentProgStatusByProg(2, $month, $year, "Admissions Consulting"));
+        $data['tot_inv_adm'] = $this->inv->showAllByProg($month, $year, "Admissions Mentoring");
+        $data['pend_adm'] = count($this->stprog->studentProgStatusByProg(0, $month, $year, "Admissions Mentoring"));
+        $data['succ_adm'] = count($this->stprog->studentProgStatusByProg(1, $month, $year, "Admissions Mentoring"));
+        $data['fail_adm'] = count($this->stprog->studentProgStatusByProg(2, $month, $year, "Admissions Mentoring"));
         
         $data['tot_inv_career'] = $this->inv->showAllByProgMain($month, $year, "Career Exploration");
         $data['pend_career'] = count($this->stprog->studentProgStatusByProgMain(0, $month, $year, "Career Exploration"));
@@ -69,7 +69,7 @@ class Home extends CI_Controller
 
         $data['lead'] = $this->stprog->studentProgramLead($month, $year);
         $data['con_lead'] = $this->stprog->studentProgramConversionLead($month, $year);
-        $data['adm_lead'] = $this->stprog->studentProgramLeadByProg($month, $year, "Admissions Consulting");
+        $data['adm_lead'] = $this->stprog->studentProgramLeadByProg($month, $year, "Admissions Mentoring");
         $data['career_lead'] = $this->stprog->studentProgramLeadByProgMain($month, $year, "Career Exploration");
         $data['sat_lead'] = $this->stprog->studentProgramLeadByProg($month, $year, "SAT");
         $data['writing_lead'] = $this->stprog->studentProgramLeadByProg($month, $year, "Writing Course");

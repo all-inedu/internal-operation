@@ -1,3 +1,17 @@
+<?php
+    $source = file_get_contents('https://www.google.com/finance/quote/USD-IDR');
+    function getStringBetween($string, $start, $end) {
+        $string = " ".$string;
+        $ini = strpos($string,$start);
+        if ($ini == 0) return "";
+        $ini += strlen($start);
+        $len = strpos($string,$end,$ini) - $ini;
+        return substr($string,$ini,$len);
+    }
+    $str  =  getStringBetween($source,  '<div jsname="ip75Cb" class="kf1m0"><div class="YMlKec fxKbKc">',  '</div></div>');
+    $new_str = substr(str_replace(",","",$str),0,6);
+    $idr_google = intval($new_str);
+?>
 <div class="container-fluid p-1">
     <div class="row">
         <div class="col-md-5">
@@ -11,7 +25,7 @@
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
                     <li class="breadcrumb-item"><a href="<?=base_url('client/home');?>">Home</a></li>
-                     <li class="breadcrumb-item"><a href="<?=base_url('client/student/');?>">Students</a></li>
+                    <li class="breadcrumb-item"><a href="<?=base_url('client/student/');?>">Students</a></li>
                     <li class="breadcrumb-item"><a href="<?=base_url('client/students-program');?>">Students Program</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">View</li>
@@ -44,13 +58,6 @@
                         </b>
                         <input type="text" value="<?=$stprog['prog_sub'];?>" id="sub-program" hidden>
                     </div>
-                    <!-- <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                    <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addInitial">Add Initial
-                        Assessment</a>
-                    <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                    <span class="text-muted"><i class="text-danger font font-weight-bold">*</i> Initial Assessment for
-                        Admission
-                        Program</span> -->
                     <a href="<?=base_url('client/student/view/'.$stprog['st_num']);?>"
                         class="btn btn-sm btn-outline-primary mt-3 mr-2"><i class="fas fa-pencil-alt"></i>&nbsp;
                         Profile</a>
@@ -76,7 +83,7 @@
                 <form action="" method="post" name="editSP">
                     <div class="row">
                         <div class="col-md-4 mb-1">
-                            <i class="fas fa-calendar-alt"></i>&nbsp; &nbsp; Lead Source :
+                            <i class="fas fa-network-wired fa-fw"></i>&nbsp; &nbsp; Lead Source :
                         </div>
                         <div class="col-md-8 text-muted">
                             <div class="row">
@@ -95,7 +102,7 @@
                         </div>
 
                         <div class="col-md-4 mb-1">
-                            <i class="fas fa-calendar-alt"></i>&nbsp; &nbsp; Date :
+                            <i class="fas fa-calendar-alt fa-fw"></i>&nbsp; &nbsp; Date :
                         </div>
                         <div class="col-md-8 text-muted">
                             <div class="row">
@@ -106,29 +113,17 @@
                                     <?=form_error('stprog_firstdisdate', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <small>Last Discuss</small>
-                                    <input name="stprog_lastdisdate" type="date" class="form-control form-control-sm"
-                                        value="<?=$stprog['stprog_lastdisdate'];?>">
+                                    <small>Planned Follow Up</small>
+                                    <input name="stprog_followupdate" type="date" class="form-control form-control-sm"
+                                        value="<?=$stprog['stprog_followupdate'];?>" onchange="followUp()"
+                                        id="follow-up">
                                     <?=form_error('stprog_lastdisdate', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-md-4 mb-1">
-                            <i class="fas fa-calendar-check"></i>&nbsp; &nbsp; Meeting Date :
-                        </div>
-                        <div class="col-md-8 text-muted">
-                            <div class="row">
-                                <div class="col-md-12 mb-3">
-                                    <input name="stprog_meetingdate" type="date"
-                                        value="<?=$stprog['stprog_meetingdate'];?>"
-                                        class="form-control form-control-sm">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 mb-1">
-                            <i class="fas fa-sticky-note"></i>&nbsp; &nbsp; Notes :
+                            <i class="fas fa-sticky-note fa-fw"></i>&nbsp; &nbsp; Notes :
                         </div>
                         <div class="col-md-8 text-muted">
                             <div class="row">
@@ -141,7 +136,7 @@
                         </div>
 
                         <div class="col-md-4 mb-1">
-                            <i class="fas fa-hourglass-half"></i>&nbsp; &nbsp; Program Status :
+                            <i class="fas fa-hourglass-half fa-fw"></i>&nbsp; &nbsp; Program Status :
                         </div>
                         <div class="col-md-8 text-muted">
                             <div class="row">
@@ -154,32 +149,31 @@
                                         <option value="2">Failed</option>
                                     </select>
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-3" id="successDate">
                                     <small>Date</small>
+                                    <!-- <input type="date" name="stprog_pendingdate"
+                                        value="<?=$stprog['stprog_pendingdate'];?>" class="form-control form-control-sm"
+                                        id="pendingDate"> -->
                                     <input type="date" name="stprog_statusprogdate"
                                         value="<?=$stprog['stprog_statusprogdate'];?>"
                                         class="form-control form-control-sm">
                                 </div>
                             </div>
-                            <div class="row" id="sub-pending">
-                                <div class="col-md-6 mb-3 text-right">
-                                </div>
+
+                            <div class="row mb-3" id="sub-pending">
+                                <?php if($stprog['prog_sub']=="Admissions Mentoring") { ?>
                                 <div class="col-md-6 mb-3">
                                     <small>Initial Consultation Date</small>
                                     <input type="date" name="stprog_init_consult"
                                         value="<?=$stprog['stprog_init_consult'];?>"
                                         class="form-control form-control-sm">
-                                    <br>
+                                </div>
+                                <div class="col-md-6 mb-3">
                                     <small>Initial Assessment Sent</small>
-                                    <input type="date" name="stprog_ass_sent"
-                                        value="<?=$stprog['stprog_ass_sent'];?>"
-                                        class="form-control form-control-sm">
-                                    <br>
-                                    <small>Negotiation Date</small>
-                                    <input type="date" name="stprog_nego"
-                                        value="<?=$stprog['stprog_nego'];?>"
+                                    <input type="date" name="stprog_ass_sent" value="<?=$stprog['stprog_ass_sent'];?>"
                                         class="form-control form-control-sm">
                                 </div>
+                                <?php } ?>
                             </div>
                         </div>
 
@@ -194,9 +188,105 @@
                             <hr>
                             <input type="text" name="new_reason" id="new_reason" class="form-control form-control-sm">
                         </div>
+                    </div>
 
+                    <div class="row" id="prog-detail">
                         <div class="col-md-4 mb-1">
-                            <i class="fas fa-hourglass"></i>&nbsp; &nbsp; Is The Program Running ?
+                            <i class="fa fa-info fa-fw"></i>&nbsp; &nbsp; Program Detail :
+                        </div>
+                        <div class="col-md-8 text-muted">
+                            <!-- SAT  -->
+                            <?php if(substr($stprog['prog_sub'],0,3)=="SAT") { ?>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <small>Test Date</small>
+                                    <input type="date" name="stprog_test_date" class="form-control form-control-sm"
+                                        value="<?=$stprog['stprog_test_date'];?>">
+                                </div>
+                                <div class=" col-md-6 mb-3">
+                                    <small>Last Class</small>
+                                    <input type="date" name="stprog_last_class" class="form-control form-control-sm"
+                                        value="<?=$stprog['stprog_last_class'];?>">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <small>Diagnostic Score</small>
+                                    <input type="number" name="stprog_diag_score" class="form-control form-control-sm"
+                                        value="<?=$stprog['stprog_diag_score'];?>">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <small>Test Score</small>
+                                    <input type="number" name="stprog_test_score" class="form-control form-control-sm"
+                                        value="<?=$stprog['stprog_test_score'];?>">
+                                </div>
+                            </div>
+                            <!-- tutoring  -->
+                            <?php } else if($stprog['prog_sub']=="Subject Tutoring") { ?>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <small>Price from Tutor</small>
+                                    <input type="number" name="stprog_price_from_tutor"
+                                        class="form-control form-control-sm"
+                                        value="<?=$stprog['stprog_price_from_tutor'];?>">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <small>Our Price</small>
+                                    <input type="number" name="stprog_our_price_tutor"
+                                        class="form-control form-control-sm"
+                                        value="<?=$stprog['stprog_our_price_tutor'];?>">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <small>Total Price</small>
+                                    <input type="number" name="stprog_total_price_tutor"
+                                        class="form-control form-control-sm"
+                                        value="<?=$stprog['stprog_total_price_tutor'];?>">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <small>Date Time & Duration</small>
+                                    <textarea name="stprog_duration"><?=$stprog['stprog_duration'];?></textarea>
+                                </div>
+                            </div>
+                            <!-- Admission Payment  -->
+                            <?php  } else if($stprog['prog_sub']=="Admissions Mentoring") { ?>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <small>Total Universities</small>
+                                    <input type="number" name="stprog_tot_uni" class="form-control form-control-sm"
+                                        value="<?=$stprog['stprog_tot_uni'];?>">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <small>Total Dollar</small>
+                                    <input type="number" name="stprog_tot_dollar" class="form-control form-control-sm"
+                                        id="dollar" value="<?=$stprog['stprog_tot_dollar'];?>">
+                                </div>
+                                <?
+                                    if(!empty($stprog['stprog_kurs'])){
+                                        $kurs = $stprog['stprog_kurs'];
+                                    } else {
+                                        $kurs = $idr_google;
+                                    }
+                                ?>
+                                <div class="col-md-6 mb-3">
+                                    <small>Kurs Dollar-Rupiah</small>
+                                    <input type="number" name="stprog_kurs" class="form-control form-control-sm"
+                                        value="<?=$kurs;?>" id="kurs">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <small>Total Rupiah</small>
+                                    <input type="number" name="stprog_tot_idr" class="form-control form-control-sm"
+                                        id="tot_rupiah" value="<?=$stprog['stprog_tot_idr'];?>">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <small>Installment Plan</small>
+                                    <textarea name="stprog_install_plan"><?=$stprog['stprog_install_plan'];?></textarea>
+                                </div>
+                            </div>
+                            <?php } else { echo "<div class='mb-4'>-</div>"; }?>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-1">
+                            <i class="fas fa-hourglass fa-fw"></i>&nbsp; &nbsp; Is The Program Running ?
                         </div>
                         <div class="col-md-8 text-muted">
                             <div class="row">
@@ -209,6 +299,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <?php if(($stprog['prog_mentor']=="Mentor") or ($stprog['prog_mentor']=="Tutor")) { ?>
                         <div class="col-md-4 mb-1">
                             <i class="fas fa-user-plus"></i>&nbsp; &nbsp; Mentor / Tutor Name :
@@ -252,7 +343,7 @@
                         <?php } ?>
 
                         <div class="col-md-4 mb-1">
-                            <i class="fas fa-hourglass-half"></i>&nbsp; &nbsp; PIC :
+                            <i class="fas fa-user-alt fa-fw"></i>&nbsp; &nbsp; PIC :
                         </div>
                         <div class="col-md-8 text-muted">
                             <div class="row">
@@ -282,6 +373,20 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
+function followUp() {
+    let date = $("#follow-up").val();
+    let y = date.substr(0, 4)
+    let m = date.substr(5, 2)
+    let d = date.substr(8, 2)
+    let n = "<?=$stprog['st_firstname']." ".$stprog['st_lastname']; ?>";
+    let p = "<?=$stprog['prog_sub'].': '.$stprog['prog_program'];?>"
+    window.open(
+        "http://calendar.google.com/calendar/u/0/r/eventedit?text=Follow+Up+&dates=" + y + "" + m + "" + d +
+        "T150000Z/" + y + "" + m + "" + d + "T150000Z&details=" + n + "%20(" + p + ")&trp=true",
+        "_blank"
+    );
+}
+
 let LS = new SlimSelect({
     select: '#leadSource',
     placeholder: 'Select lead source ',
@@ -355,7 +460,7 @@ $(document).ready(function() {
     var st = $("#stPotential").val();
     var pr = $("#sub-program").val();
 
-    if(pr != "Admissions Consulting") {
+    if (pr != "Admissions Mentoring") {
         $("#sub-pending").hide();
     }
 
@@ -363,16 +468,22 @@ $(document).ready(function() {
         $("#reason").show();
         $("#new_reason").hide();
         $("#sub-pending").hide();
+        $("#pendingDate").hide();
+        $("#prog-detail").hide();
     } else if (st == "1") {
         $("#reason").hide();
         $("#new_reason").hide();
         $("#sub-pending").hide();
+        $("#pendingDate").hide();
+        $("#prog-detail").show();
         stProgram.enable();
         MM.enable();
         BM.enable();
     } else if (st == "0") {
         $("#reason").hide();
         $("#new_reason").hide();
+        $("#successDate").hide();
+        $("#prog-detail").hide();
         stProgram.disable();
         MM.disable();
         BM.disable();
@@ -394,6 +505,9 @@ function progStatus() {
     if (st == "1") {
         $("#reason").hide();
         $("#sub-pending").hide();
+        $("#pendingDate").hide();
+        $("#successDate").show();
+        $("#prog-detail").show();
         stProgram.enable();
         MM.enable();
         BM.enable();
@@ -402,15 +516,21 @@ function progStatus() {
     } else if (st == "2") {
         $("#reason").show();
         $("#sub-pending").hide();
+        $("#pendingDate").hide();
+        $("#successDate").show();
+        $("#prog-detail").hide();
         stProgram.disable();
         stProgram.set("0");
         MM.disable();
         BM.disable();
         MM.set("");
         BM.set("");
-    } else if (st == "0" && pr == "Admissions Consulting" ) {
+    } else if (st == "0") {
         $("#reason").hide();
         $("#sub-pending").show();
+        $("#pendingDate").show();
+        $("#successDate").hide();
+        $("#prog-detail").hide();
         stProgram.disable();
         stProgram.set("0");
         MM.disable();
@@ -419,4 +539,14 @@ function progStatus() {
         BM.set("");
     }
 }
+
+$("#dollar").keyup(function() {
+    let tot = $("#dollar").val() * $("#kurs").val()
+    $("#tot_rupiah").val(tot)
+})
+
+$("#kurs").keyup(function() {
+    let tot = $("#dollar").val() * $("#kurs").val()
+    $("#tot_rupiah").val(tot)
+})
 </script>

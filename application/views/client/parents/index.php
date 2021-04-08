@@ -27,6 +27,7 @@
                 <th width="1%">No</th>
                 <th width="10%" class="text-center bg-primary text-white">Full Name</th>
                 <th width="10%" class="text-center">E-mail</th>
+                <th width="10%" class="text-center">Phone Number</th>
                 <th width="10%" class="text-center">Instagram</th>
                 <th width="15%" class="text-center">Childs Name</th>
             </tr>
@@ -39,7 +40,8 @@
                     onclick="window.location='<?=base_url('client/parents/view/'.$p['pr_id']);?>'">
                     <?=$p['pr_firstname'].' '.$p['pr_lastname'];?>
                 </td>
-                <td><?=$p['pr_mail'];?></td>
+                <td class="text-center"><?=$p['pr_mail'];?></td>
+                <td class="text-center"><?=$p['pr_phone'];?></td>
                 <td class="text-center"><?=$p['pr_insta'];?></td>
                 <td class="text-center">
                     <?php 

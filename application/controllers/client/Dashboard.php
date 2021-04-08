@@ -37,7 +37,7 @@ class Dashboard extends CI_Controller
             $data['stprog'] = $this->stprog->showAllByDate($m, $y);
         } 
         else if($p=="admissions") {
-            $p = "Admissions Consulting";
+            $p = "Admissions Mentoring";
             $data['stprog'] = $this->stprog->showAllByProgSub($m, $y, $p);
         }
         else if($p=="career") {

@@ -140,6 +140,7 @@
                         echo 'Consultation<br>'. date('d F Y', strtotime($stpr['stprog_init_consult']));
                     }
                     else if (($stpr['stprog_ass_sent']) AND ($stpr['stprog_ass_sent']!="0000-00-00")) {
+                        echo 'Consultation<br>'. date('d F Y', strtotime($stpr['stprog_init_consult']))."<hr class='m-0'>";
                         echo 'Assessment Sent<br>'. date('d F Y', strtotime($stpr['stprog_ass_sent']));
                     } 
                     ?>

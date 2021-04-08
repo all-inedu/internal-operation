@@ -37,9 +37,11 @@
     </nav>
 
     <div class="row mb-2 mt-2">
-        <div class="col-md-12">
+        <p class="badge badge-info p-2 pl-3 pr-3 ml-3" onclick="filter()" style="cursor:pointer"><i
+                class="fas fa-search fa-fw"></i>
+            Filter</p>
+        <div class="col-md-12" id="filter" style="display:none;">
             <div class="card p-2">
-                <p>Filter : </p>
                 <div class="row">
                     <div class="col-md-3 mb-2">
                         <select id="schName">
@@ -51,7 +53,7 @@
                             <?php endforeach;?>
                         </select>
                     </div>
-                    <div class="col-md-3 mb-2">
+                    <div class="col-md-2 mb-2">
                         <select id="grade">
                             <option data-placeholder="true"></option>
                             <?php for($i=1; $i<=12; $i++) { ?>
@@ -64,18 +66,28 @@
                         <select id="leadName">
                             <option data-placeholder="true"></option>
                             <?php foreach($lead as $l): ?>
-                            <option value="<?=$l['lead_id'];?>">
+                            <option value="<?=$l['lead_name'];?>">
                                 <?=$l['lead_name'];?>
                             </option>
                             <?php endforeach;?>
                         </select>
                     </div>
-                    <div class="col-md-3 mb-2">
+                    <div class="col-md-2 mb-2">
                         <select id="lvlInterest">
                             <option data-placeholder="true"></option>
                             <option value="High">High</option>
                             <option value="Medium">Medium</option>
                             <option value="Low">Low</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <select id="location">
+                            <option data-placeholder="true"></option>
+                            <?php foreach($states as $s): ?>
+                            <option value="<?=$s;?>">
+                                <?=$s;?>
+                            </option>
+                            <?php endforeach;?>
                         </select>
                     </div>
                     <div class="col-md-3 mb-2">
@@ -164,6 +176,7 @@
                 <th width="5%">Student Year /<br>Grade</th>
                 <th width="10%">Instagram</th>
                 <th width="10%">Address</th>
+                <th width="10%">Location</th>
                 <th width="10%">Lead</th>
                 <th width="5%">Level of Interest</th>
                 <th width="60">Interested Program</th>
@@ -221,8 +234,11 @@
                 </td>
                 <td><?=$s['st_insta'];?></td>
                 <td>
-                    <?=$s['st_address'];?><br>
-                    <?=$s['st_state'];?>
+                    <?=$s['st_address'];?>
+                </td>
+                <td>
+                    <?=$s['st_state'];?> <br>
+                    <?=$s['st_city'];?>
                 </td>
                 <td>
                     <?php
@@ -321,7 +337,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 
 <script>
+function filter() {
+    $("#filter").toggle();
+}
 $(document).ready(function() {
+    $("#filter").hide();
     new SlimSelect({
         select: '#schName',
         placeholder: 'School Name',
@@ -346,6 +366,13 @@ $(document).ready(function() {
     new SlimSelect({
         select: '#lvlInterest',
         placeholder: 'Level of Interest',
+        allowDeselect: true,
+        deselectLabel: '<span class="text-danger">✖</span>'
+    });
+
+    new SlimSelect({
+        select: '#location',
+        placeholder: 'Location',
         allowDeselect: true,
         deselectLabel: '<span class="text-danger">✖</span>'
     });
@@ -411,33 +438,51 @@ $(document).ready(function() {
     }
 
     // Students Status
-    tables.column(19).search('<?=$status;?>').draw();
+    tables.column(20).search('<?=$status;?>').draw();
     $("#prospective").click(function() {
-        tables.column(19).search('Prospective').draw();
+        tables.column(20).search('Prospective').draw();
     });
     $("#potential").click(function() {
-        tables.column(19).search('Potential').draw();
+        tables.column(20).search('Potential').draw();
     });
     $("#current").click(function() {
-        tables.column(19).search('Current').draw();
+        tables.column(20).search('Current').draw();
     });
     $("#completed").click(function() {
-        tables.column(19).search('Completed').draw();
+        tables.column(20).search('Completed').draw();
     });
     $("#all").click(function() {
-        tables.column(19).search('').draw();
+        tables.column(20).search('').draw();
     });
 
     //Filter
     $('#schName').on('change', function() {
         tables.column(6).search($(this).val()).draw();
     });
-    $('#iProg').on('change', function() {
-        console.log($(this).val())
+    $('#grade').on('change', function() {
+        tables.column(7).search($(this).val()).draw();
+    });
+    $('#location').on('change', function() {
+        tables.column(10).search($(this).val()).draw();
+    });
+    $('#leadName').on('change', function() {
+        tables.column(11).search($(this).val()).draw();
+    });
+    $('#lvlInterest').on('change', function() {
         tables.column(12).search($(this).val()).draw();
     });
-    $('#sProg').on('change', function() {
+    $('#iProg').on('change', function() {
+        console.log($(this).val())
         tables.column(13).search($(this).val()).draw();
+    });
+    $('#sProg').on('change', function() {
+        tables.column(14).search($(this).val()).draw();
+    });
+    $('#year').on('change', function() {
+        tables.column(15).search($(this).val()).draw();
+    });
+    $('#country').on('change', function() {
+        tables.column(16).search($(this).val()).draw();
     });
 
 

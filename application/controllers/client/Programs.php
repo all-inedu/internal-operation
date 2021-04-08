@@ -115,4 +115,10 @@ class Programs extends CI_Controller
         $this->session->set_flashdata('success', 'Program has been deleted');
         redirect('/client/programs/');
     }
+
+    public function getId($id){
+        $prog = $this->program->showId($id);
+
+        echo json_encode($prog);
+    }
 }

@@ -19,11 +19,13 @@
     </div>
 </div>
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-<div class="text-center">
-    <h6>Search :</h6><br>
+<div class="text-left">
+    <p class="badge badge-info p-2 pl-3 pr-3" onclick="filter()" style="cursor:pointer"><i
+            class="fas fa-search fa-fw"></i>
+        Filter</p>
 </div>
-<div class="row justify-content-md-center">
-    <div class="col-md-3 text-center">
+<div class="row justify-content-md-center" id="filter" style="display:none;">
+    <div class=" col-md-3 text-center">
         <select id="sProg" class="form-control form-control-sm">
             <option data-placeholder="true"></option>
             <?php foreach($program as $pr): ?>
@@ -188,6 +190,13 @@
 <script src="<?=base_url('assets/js/jquery-ui.js');?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
+function filter() {
+    $("#filter").toggle();
+}
+$(document).ready(function() {
+    $("#filter").hide();
+});
+
 new SlimSelect({
     select: '#sProg',
     placeholder: 'Select program name',
