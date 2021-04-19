@@ -19,10 +19,40 @@
     </div>
 </div>
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-<div class="text-center">
-    <h6>Search :</h6><br>
+<div class="text-left">
+    <p class="badge badge-info p-2 pl-3 pr-3" onclick="filter()" style="cursor:pointer"><i
+            class="fas fa-search fa-fw"></i>
+        Filter</p>
 </div>
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center" id="filter" style="display:none;">
+    <div class=" col-md-3 text-center">
+        <select id="sProg" class="form-control form-control-sm">
+            <option data-placeholder="true"></option>
+            <?php foreach($program as $pr): ?>
+            <?php 
+                if($pr['prog_sub']=='') {
+            ?>
+            <option value="<?=$pr['prog_program'];?>"><?=$pr['prog_program']; ?></option>
+            <?php
+                } else {
+            ?>
+            <option value="<?=$pr['prog_sub'].": ".$pr['prog_program'];?>">
+                <?=$pr['prog_sub'].": ".$pr['prog_program'];?></option>
+            <?php
+                }
+            ?>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <div class="col-md-3 text-center">
+        <select id="sStatus" class="form-control form-control-sm">
+            <option data-placeholder="true"></option>
+            <option value="Pending">Pending</option>
+            <option value="Success">Success</option>
+            <option value="Failed">Failed</option>
+        </select>
+    </div>
+
     <div class="col-md-3 text-center">
         <select id="sConvLead" class="form-control form-control-sm">
             <option data-placeholder="true"></option>
@@ -46,7 +76,6 @@
         </select>
     </div>
 </div>
-
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
 <div class="content">
     <table id="stprog" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
@@ -140,7 +169,6 @@
                         echo 'Consultation<br>'. date('d F Y', strtotime($stpr['stprog_init_consult']));
                     }
                     else if (($stpr['stprog_ass_sent']) AND ($stpr['stprog_ass_sent']!="0000-00-00")) {
-                        echo 'Consultation<br>'. date('d F Y', strtotime($stpr['stprog_init_consult']))."<hr class='m-0'>";
                         echo 'Assessment Sent<br>'. date('d F Y', strtotime($stpr['stprog_ass_sent']));
                     } 
                     ?>
@@ -153,15 +181,43 @@
     </table>
 </div>
 
+<?php
+    $CI =& get_instance();
+    $CI->load->model('hr/Employee_model','empl');
+    $empl_id = $CI->session->userdata('empl_id');
+    $data = $CI->empl->showId($empl_id);
+    // echo $data['empl_export'];
+?>
 
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 <script src="https://cdn.datatables.net/fixedcolumns/3.3.2/js/dataTables.fixedColumns.min.js"></script>
 <script src="<?=base_url('assets/js/disable-copas.js');?>"></script>
 <script src="<?=base_url('assets/js/jquery-ui.js');?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
+function filter() {
+    $("#filter").toggle();
+}
+$(document).ready(function() {
+    $("#filter").hide();
+});
+
+new SlimSelect({
+    select: '#sProg',
+    placeholder: 'Select program name',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
+new SlimSelect({
+    select: '#sStatus',
+    placeholder: 'Select program status',
+    allowDeselect: true,
+    deselectLabel: '<span class="text-danger">✖</span>'
+});
+
 new SlimSelect({
     select: '#sConvLead',
     placeholder: 'Select conversion leads',
@@ -177,23 +233,38 @@ new SlimSelect({
 });
 
 $(document).ready(function() {
-    var table = $('#stprog').DataTable({
-        scrollY: 500,
-        scrollX: true,
-        scrollCollapse: true,
-        paging: true,
-        pageLength: 100,
-        fixedColumns: {
-            leftColumns: 3,
-            rightColumns: 1,
-        },
-        dom: 'Bfrtip',
-        buttons: [{
-            extend: 'excel',
-            text: '<i class="fas fa-file-excel"></i> &nbsp; Export to Excell'
-        }]
-    });
-    table.column(5).search("<?= ucfirst($status);?>").draw();
+
+    if ("<?=$data['empl_export'];?>" == 1) {
+        var table = $('#stprog').DataTable({
+            scrollY: 300,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: true,
+            pageLength: 50,
+            // fixedColumns: {
+            //     leftColumns: 3,
+            //     rightColumns: 1,
+            // },
+            dom: 'Bfrtip',
+            buttons: [{
+                extend: 'excel',
+                text: '<i class="fas fa-file-excel"></i> &nbsp; Export to Excell'
+            }]
+        });
+
+    } else {
+        var table = $('#stprog').DataTable({
+            scrollY: 300,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: true,
+            pageLength: 50,
+            // fixedColumns: {
+            //     leftColumns: 3,
+            //     rightColumns: 1,
+            // }
+        });
+    }
 
     $('#sProg').on('change', function() {
         table.column(2).search($(this).val()).draw();

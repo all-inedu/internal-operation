@@ -333,7 +333,7 @@
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/fixedcolumns/3.3.2/js/dataTables.fixedColumns.min.js"></script>
-<!-- <script src="<?=base_url('assets/js/disable-copas.js');?>"></script> -->
+<script src="<?=base_url('assets/js/disable-copas.js');?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 
 <script>
@@ -409,15 +409,15 @@ $(document).ready(function() {
 
     if ("<?=$data['empl_export'];?>" == 1) {
         var tables = $('#studentTable').DataTable({
-            scrollY: 500,
+            scrollY: 300,
             scrollX: true,
             scrollCollapse: true,
             paging: true,
             pageLength: 50,
-            fixedColumns: {
-                leftColumns: 2,
-                rightColumns: 1,
-            },
+            // fixedColumns: {
+            //     leftColumns: 2,
+            //     rightColumns: 1,
+            // },
             dom: 'Bfrtip',
             buttons: [{
                 extend: 'excel',
@@ -426,14 +426,14 @@ $(document).ready(function() {
         });
     } else {
         var tables = $('#studentTable').DataTable({
-            scrollY: 500,
+            scrollY: 300,
             scrollX: true,
             scrollCollapse: true,
             paging: true,
             pageLength: 50,
-            fixedColumns: {
-                leftColumns: 2,
-            },
+            // fixedColumns: {
+            //     leftColumns: 2,
+            // },
         });
     }
 

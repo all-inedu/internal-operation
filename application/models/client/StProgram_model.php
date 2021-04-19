@@ -17,6 +17,14 @@ class StProgram_model extends CI_model
         return $this->db->get('tbl_stprog')->result_array();
     }
 
+    public function showByEmpl($m, $y, $id) {
+        $this->db->select('stprog_id');
+        $this->db->where('month(stprog_statusprogdate)',$m);
+        $this->db->where('year(stprog_statusprogdate)',$y);
+        $this->db->where('empl_id',$id);
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+
     public function showAllByDate($m, $y) {
         $this->db->select('*');
         $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');

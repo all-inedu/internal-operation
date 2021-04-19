@@ -181,10 +181,17 @@
     </table>
 </div>
 
+<?php
+    $CI =& get_instance();
+    $CI->load->model('hr/Employee_model','empl');
+    $empl_id = $CI->session->userdata('empl_id');
+    $data = $CI->empl->showId($empl_id);
+    // echo $data['empl_export'];
+?>
 
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 <script src="https://cdn.datatables.net/fixedcolumns/3.3.2/js/dataTables.fixedColumns.min.js"></script>
 <script src="<?=base_url('assets/js/disable-copas.js');?>"></script>
 <script src="<?=base_url('assets/js/jquery-ui.js');?>"></script>
@@ -226,22 +233,38 @@ new SlimSelect({
 });
 
 $(document).ready(function() {
-    var table = $('#stprog').DataTable({
-        scrollY: 300,
-        scrollX: true,
-        scrollCollapse: true,
-        paging: true,
-        pageLength: 100,
-        fixedColumns: {
-            leftColumns: 3,
-            rightColumns: 1,
-        },
-        dom: 'Bfrtip',
-        buttons: [{
-            extend: 'excel',
-            text: '<i class="fas fa-file-excel"></i> &nbsp; Export to Excell'
-        }]
-    });
+
+    if ("<?=$data['empl_export'];?>" == 1) {
+        var table = $('#stprog').DataTable({
+            scrollY: 300,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: true,
+            pageLength: 50,
+            // fixedColumns: {
+            //     leftColumns: 3,
+            //     rightColumns: 1,
+            // },
+            dom: 'Bfrtip',
+            buttons: [{
+                extend: 'excel',
+                text: '<i class="fas fa-file-excel"></i> &nbsp; Export to Excell'
+            }]
+        });
+
+    } else {
+        var table = $('#stprog').DataTable({
+            scrollY: 300,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: true,
+            pageLength: 50,
+            // fixedColumns: {
+            //     leftColumns: 3,
+            //     rightColumns: 1,
+            // }
+        });
+    }
 
     $('#sProg').on('change', function() {
         table.column(2).search($(this).val()).draw();

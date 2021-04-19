@@ -116,7 +116,7 @@
                                         </div>
                                         <input id="tPrice" name="invsch_totprice" type="number"
                                             class="form-control form-control-sm"
-                                            value="<?=$schprog['invsch_totprice'];?>" readonly>
+                                            value="<?=$schprog['invsch_totprice'];?>">
                                     </div>
                                     <?=form_error('invsch_totprice', '<small class="text-danger">', '</small>');?>
                                 </div>
@@ -206,6 +206,11 @@ $('#discount').keyup(function() {
     let tp = (pc * pr) - ds;
 
     $('#tPrice').val(tp);
+    $('#tpWords').val(capitalize(tp));
+});
+
+$('#tPrice').keyup(function() {
+    let tp = $('#tPrice').val();
     $('#tpWords').val(capitalize(tp));
 });
 </script>

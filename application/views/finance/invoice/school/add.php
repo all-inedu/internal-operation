@@ -111,7 +111,7 @@
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
                                         <input id="tPrice" name="invsch_totprice" type="number"
-                                            class="form-control form-control-sm" readonly>
+                                            class="form-control form-control-sm">
                                     </div>
                                     <?=form_error('invsch_totprice', '<small class="text-danger">', '</small>');?>
                                 </div>
@@ -197,6 +197,11 @@ $('#discount').keyup(function() {
     let tp = (pc * pr) - ds;
 
     $('#tPrice').val(tp);
+    $('#tpWords').val(capitalize(tp));
+});
+
+$('#tPrice').keyup(function() {
+    let tp = $('#tPrice').val();
     $('#tpWords').val(capitalize(tp));
 });
 </script>
