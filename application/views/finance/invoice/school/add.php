@@ -44,124 +44,133 @@
             <div class="card-body">
                 <h6><i class="fas fa-dollar-sign"></i>&nbsp; &nbsp; Add Invoice </h6>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
-                <form action="" method="post">
-                    <div class="row">
-                        <div class="col-md-2">
-                            Price : <i class="text-danger font-weight-bold">*</i>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="form-group row">
-                                <div class="col-md-5">
-                                    <div class="input-group input-group-sm">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                <div id="session">
+                    <form action="" method="post">
+                        <div class="row">
+                            <div class="col-md-2">
+                                Price : <i class="text-danger font-weight-bold">*</i>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="form-group row">
+                                    <div class="col-md-5">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">Rp</span>
+                                            </div>
+                                            <input id="price" name="invsch_price" type="number"
+                                                class="form-control form-control-sm">
                                         </div>
-                                        <input id="price" name="invsch_price" type="number"
+                                        <?=form_error('invsch_price', '<small class="text-danger">', '</small>');?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                Participans : <i class="text-danger font-weight-bold">*</i>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="form-group row">
+                                    <div class="col-md-3 col-6">
+                                        <div class="input-group input-group-sm">
+                                            <input id="participans" name="invsch_participants" type="number"
+                                                class="form-control form-control-sm"
+                                                value="<?=$fixprog['schprogfix_participantsnum'];?>">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">Persons</span>
+                                            </div>
+                                        </div>
+                                        <?=form_error('invsch_participants', '<small class="text-danger">', '</small>');?>
+                                    </div>
+                                    <div class="col-md-3 col-6 mt-1">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check"
+                                                onclick="pricePerson()">
+                                            <label class="form-check-label">price/person</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                Discount :
+                            </div>
+                            <div class="col-md-10">
+                                <div class="form-group row">
+                                    <div class="col-md-5">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">Rp</span>
+                                            </div>
+                                            <input id="discount" name="invsch_disc" type="number"
+                                                class="form-control form-control-sm">
+                                        </div>
+                                        <?=form_error('invsch_disc', '<small class="text-danger">', '</small>');?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                Total Price :
+                            </div>
+                            <div class="col-md-10">
+                                <div class="form-group row">
+                                    <div class="col-md-5 mb-3">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">Rp</span>
+                                            </div>
+                                            <input id="tPrice" name="invsch_totprice" type="number"
+                                                class="form-control form-control-sm">
+                                        </div>
+                                        <?=form_error('invsch_totprice', '<small class="text-danger">', '</small>');?>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input id="tpWords" name="invsch_words" class="form-control form-control-sm">
+                                        <?=form_error('invsch_words', '<small class="text-danger">', '</small>');?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                Date :
+                            </div>
+                            <div class="col-md-10 mb-3">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <small>Invoice Date </small><br>
+                                        <input name="invsch_date" type="date" class="form-control form-control-sm">
+                                        <?=form_error('invsch_date', '<small class="text-danger">', '</small>');?>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <small>Due Date</small><br>
+                                        <input id="dueDate" name="invsch_duedate" type="date"
                                             class="form-control form-control-sm">
+                                        <?=form_error('invsch_duedate', '<small class="text-danger">', '</small>');?>
                                     </div>
-                                    <?=form_error('invsch_price', '<small class="text-danger">', '</small>');?>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2">
-                            Participans : <i class="text-danger font-weight-bold">*</i>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="form-group row">
-                                <div class="col-md-3">
-                                    <div class="input-group input-group-sm">
-                                        <input id="participans" name="invsch_participants" type="number"
-                                            class="form-control form-control-sm"
-                                            value="<?=$fixprog['schprogfix_participantsnum'];?>">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">Persons</span>
-                                        </div>
-                                    </div>
-                                    <?=form_error('invsch_participants', '<small class="text-danger">', '</small>');?>
-                                </div>
+
+                            <div class="col-md-2 mb-3">
+                                Notes :
+                            </div>
+                            <div class="col-md-10 mb-3">
+                                <textarea name="invsch_notes" class="form-control form-control-sm" rows="6"></textarea>
+                                <?=form_error('invsch_notes', '<small class="text-danger">', '</small>');?>
+                            </div>
+
+                            <div class="col-md-2 mb-3">
+                                Terms & Condition :
+                            </div>
+                            <div class="col-md-10 mb-3">
+                                <textarea name="invsch_tnc" class="form-control form-control-sm" rows="6"></textarea>
+                                <?=form_error('invsch_tnc', '<small class="text-danger">', '</small>');?>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-10 text-right">
+                                <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
                             </div>
                         </div>
-
-                        <div class="col-md-2">
-                            Discount :
-                        </div>
-                        <div class="col-md-10">
-                            <div class="form-group row">
-                                <div class="col-md-5">
-                                    <div class="input-group input-group-sm">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">Rp</span>
-                                        </div>
-                                        <input id="discount" name="invsch_disc" type="number"
-                                            class="form-control form-control-sm">
-                                    </div>
-                                    <?=form_error('invsch_disc', '<small class="text-danger">', '</small>');?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
-                            Total Price :
-                        </div>
-                        <div class="col-md-10">
-                            <div class="form-group row">
-                                <div class="col-md-5 mb-3">
-                                    <div class="input-group input-group-sm">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">Rp</span>
-                                        </div>
-                                        <input id="tPrice" name="invsch_totprice" type="number"
-                                            class="form-control form-control-sm">
-                                    </div>
-                                    <?=form_error('invsch_totprice', '<small class="text-danger">', '</small>');?>
-                                </div>
-                                <div class="col-md-12">
-                                    <input id="tpWords" name="invsch_words" class="form-control form-control-sm">
-                                    <?=form_error('invsch_words', '<small class="text-danger">', '</small>');?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
-                            Date :
-                        </div>
-                        <div class="col-md-10 mb-3">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <small>Invoice Date </small><br>
-                                    <input name="invsch_date" type="date" class="form-control form-control-sm">
-                                    <?=form_error('invsch_date', '<small class="text-danger">', '</small>');?>
-                                </div>
-                                <div class="col-md-3">
-                                    <small>Due Date</small><br>
-                                    <input id="dueDate" name="invsch_duedate" type="date"
-                                        class="form-control form-control-sm">
-                                    <?=form_error('invsch_duedate', '<small class="text-danger">', '</small>');?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2 mb-3">
-                            Notes :
-                        </div>
-                        <div class="col-md-10 mb-3">
-                            <textarea name="invsch_notes" class="form-control form-control-sm" rows="6"></textarea>
-                            <?=form_error('invsch_notes', '<small class="text-danger">', '</small>');?>
-                        </div>
-
-                        <div class="col-md-2 mb-3">
-                            Terms & Condition :
-                        </div>
-                        <div class="col-md-10 mb-3">
-                            <textarea name="invsch_tnc" class="form-control form-control-sm" rows="6"></textarea>
-                            <?=form_error('invsch_tnc', '<small class="text-danger">', '</small>');?>
-                        </div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-10 text-right">
-                            <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -171,33 +180,67 @@
 <script src="<?=base_url('assets/js/generate-number.js');?>"></script>
 <script>
 $('#price').keyup(function() {
+    let checkBox = document.getElementById("check");
     let pc = $('#price').val();
     let pr = $('#participans').val();
     let ds = $('#discount').val();
-    let tp = (pc * pr) - ds;
-
-    $('#tPrice').val(tp);
-    $('#tpWords').val(capitalize(tp));
+    if (checkBox.checked == true) {
+        let tp = (pc * pr) - ds;
+        $('#tPrice').val(tp);
+        $('#tpWords').val(capitalize(tp));
+    } else {
+        let tp = pc - ds;
+        $('#tPrice').val(tp);
+        $('#tpWords').val(capitalize(tp));
+    }
 });
 
 $('#participans').keyup(function() {
+    let checkBox = document.getElementById("check");
     let pc = $('#price').val();
     let pr = $('#participans').val();
     let ds = $('#discount').val();
-    let tp = (pc * pr) - ds;
-
-    $('#tPrice').val(tp);
-    $('#tpWords').val(capitalize(tp));
+    if (checkBox.checked == true) {
+        let tp = (pc * pr) - ds;
+        $('#tPrice').val(tp);
+        $('#tpWords').val(capitalize(tp));
+    } else {
+        let tp = pc - ds;
+        $('#tPrice').val(tp);
+        $('#tpWords').val(capitalize(tp));
+    }
 });
 
-$('#discount').keyup(function() {
+function pricePerson() {
+    let checkBox = document.getElementById("check");
     let pc = $('#price').val();
     let pr = $('#participans').val();
     let ds = $('#discount').val();
-    let tp = (pc * pr) - ds;
+    if (checkBox.checked == true) {
+        let tp = (pc * pr) - ds;
+        $('#tPrice').val(tp);
+        $('#tpWords').val(capitalize(tp));
+    } else {
+        let tp = pc - ds;
+        $('#tPrice').val(tp);
+        $('#tpWords').val(capitalize(tp));
+    }
+}
 
-    $('#tPrice').val(tp);
-    $('#tpWords').val(capitalize(tp));
+$('#discount').keyup(function() {
+    let checkBox = document.getElementById("check");
+    let pc = $('#price').val();
+    let pr = $('#participans').val();
+    let ds = $('#discount').val();
+    if (checkBox.checked == true) {
+        let tp = (pc * pr) - ds;
+        $('#tPrice').val(tp);
+        $('#tpWords').val(capitalize(tp));
+    } else {
+        let tp = pc - ds;
+        $('#tPrice').val(tp);
+        $('#tpWords').val(capitalize(tp));
+    }
 });
 
 $('#tPrice').keyup(function() {

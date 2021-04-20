@@ -109,5 +109,10 @@ class Receipt_model extends CI_model
         $this->db->delete('tbl_receipt');
     }
 
+    public function deleteByInv($id) {
+        $this->db->where('inv_id', $id);
+        $this->db->delete('tbl_receipt');
+    }
+
 }
 ?>

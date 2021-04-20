@@ -304,6 +304,7 @@ class Student extends CI_Controller
         $inv_id = $inv['inv_id'];
         $this->inv->delete($id);
         $this->invdetail->delete($inv_id);
+        $this->receipt->deleteByInv($inv_id);
         $this->session->set_flashdata('success', 'Invoice has been canceled');
         redirect('/finance/invoice/student/');
     }

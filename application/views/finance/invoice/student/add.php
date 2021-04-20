@@ -53,10 +53,11 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3">Rp.</span>
                         </div>
-                        <input type="text" class="form-control" id="currentUSD" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control" id="currentUSD" aria-describedby="basic-addon3"
+                            value="<?=$sp['stprog_kurs'];?>">
                     </div>
                 </div>
-                <a href="https://www.bi.go.id/id/moneter/informasi-kurs/transaksi-bi/Default.aspx"
+                <a href="https://www.bi.go.id/id/statistik/informasi-kurs/transaksi-bi/default.aspx"
                     class="btn btn-sm btn-primary btn-block" target="_blank"><i class="fas fa-search"></i>&nbsp; Check
                     BI (Bank
                     Indonesia)</a>
