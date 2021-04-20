@@ -121,7 +121,7 @@
                     <div class="col-md-4 align-middle p-1">
                         <div class="card-body text-center">
                             <h5 class="mb-0">Overall Students Program Status</h5>
-                            <small>Months to Date</small>
+                            <small>Month to Date</small>
                             <hr class="mb-3 mt-0">
                             <canvas id="myChart" style="height:105vh; width:90vw"></canvas>
                         </div>
@@ -129,7 +129,7 @@
                         <div class=" card shadow mt-2">
                             <div class="card-body text-center">
                                 <h6 class="mb-0">Initial Consultation</h6>
-                                <small>Months to Date</small>
+                                <small>Month to Date</small>
                                 <hr class="mb-3 mt-2">
                                 Initial Consultation : <b><?=$init_consult;?></b> <br>
                                 Initial Assessment Sent: <b><?=$ass_sent;?></b>
@@ -149,7 +149,7 @@
                         <div class="card shadow">
                             <div class="card-body text-center">
                                 <h5 class="mb-0">Admissions Mentoring</h5>
-                                <small>Months to Date</small>
+                                <small>Month to Date</small>
                                 <hr class="mb-3 mt-0">
                                 <canvas id="admChart" style="height:60vh; width:90vw"></canvas>
                                 <div class="badge badge-default p-1 pl-4 pr-4 m-1">
@@ -161,7 +161,7 @@
                         <div class="card shadow mt-2">
                             <div class="card-body text-center">
                                 <h5 class="mb-0">Career Exploration</h5>
-                                <small>Months to Date</small>
+                                <small>Month to Date</small>
                                 <hr class="mb-3 mt-0">
                                 <canvas id="careerChart" style="height:60vh; width:90vw"></canvas>
                                 <div class="badge badge-default p-1 pl-4 pr-4 m-1">
@@ -175,7 +175,7 @@
                         <div class="card shadow">
                             <div class="card-body text-center">
                                 <h5 class="mb-0">SAT</h5>
-                                <small>Months to Date</small>
+                                <small>Month to Date</small>
                                 <hr class="mb-3 mt-0">
                                 <canvas id="satChart" style="height:60vh; width:90vw"></canvas>
                                 <div class="badge badge-default p-1 pl-4 pr-4 m-1">
@@ -187,7 +187,7 @@
                         <div class="card shadow mt-2">
                             <div class="card-body text-center">
                                 <h5 class="mb-0">Writing Course</h5>
-                                <small>Months to Date</small>
+                                <small>Month to Date</small>
                                 <hr class="mb-3 mt-0">
                                 <canvas id="writingChart" style="height:60vh; width:90vw"></canvas>
                                 <div class="badge badge-default p-1 pl-4 pr-4 m-1">
@@ -205,7 +205,7 @@
             <div class="card shadow">
                 <div class="card-body text-center">
                     <h5 class="mb-0">Lead Source</h5>
-                    <small>Months to Date</small>
+                    <small>Month to Date</small>
                     <hr class="mb-3 mt-0">
                     <canvas id="myLead" style="height:70vh; width:90vw"></canvas>
                 </div>
@@ -215,7 +215,7 @@
             <div class="card shadow">
                 <div class="card-body text-center">
                     <h5 class="mb-0">Conversion Leads</h5>
-                    <small>Months to Date</small>
+                    <small>Month to Date</small>
                     <hr class="mb-3 mt-0">
                     <canvas id="conversionLead" style="height:70vh; width:90vw"></canvas>
                 </div>
@@ -225,7 +225,7 @@
             <div class="card shadow">
                 <div class="card-body text-center">
                     <h5 class="mb-0">Admissions Mentoring</h5>
-                    <small>Months to Date</small>
+                    <small>Month to Date</small>
                     <hr class="mb-3 mt-0">
                     <canvas id="admLead" style="height:100vh; width:100vh"></canvas>
                 </div>
@@ -235,7 +235,7 @@
             <div class="card shadow">
                 <div class="card-body text-center">
                     <h5 class="mb-0">Career Exploration</h5>
-                    <small>Months to Date</small>
+                    <small>Month to Date</small>
                     <hr class="mb-3 mt-0">
                     <canvas id="careerLead" style="height:100vh; width:100vh"></canvas>
                 </div>
@@ -245,7 +245,7 @@
             <div class="card shadow">
                 <div class="card-body text-center">
                     <h5 class="mb-0">SAT</h5>
-                    <small>Months to Date</small>
+                    <small>Month to Date</small>
                     <hr class="mb-3 mt-0">
                     <canvas id="satLead" style="height:100vh; width:100vh"></canvas>
                 </div>
@@ -255,7 +255,7 @@
             <div class="card shadow">
                 <div class="card-body text-center">
                     <h5 class="mb-0">Writing Course</h5>
-                    <small>Months to Date</small>
+                    <small>Month to Date</small>
                     <hr class="mb-3 mt-0">
                     <canvas id="writingLead" style="height:100vh; width:100vh"></canvas>
                 </div>
