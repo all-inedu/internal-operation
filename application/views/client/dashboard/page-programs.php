@@ -270,9 +270,12 @@ $(document).ready(function() {
         table.column(2).search($(this).val()).draw();
     });
 
+    table.column(5).search("<?=$status;?>").draw();
+
     $('#sStatus').on('change', function() {
         table.column(5).search($(this).val()).draw();
     });
+
 
     $('#sConvLead').on('change', function() {
         table.column(4).search($(this).val()).draw();
