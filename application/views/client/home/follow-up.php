@@ -24,7 +24,7 @@
             <tr>
                 <th width="1%">#</th>
                 <th width="20%" class="text-center">Students Name</th>
-                <th width="30%" class="text-center">Follow-Up Date</th>
+                <th width="30%" class="text-center">Program Name</th>
                 <th width="10%" class="text-center">Follow-Up Date</th>
                 <th width="30%" class="text-center">Notes</th>
                 <th width="9%" class="text-center">Status</th>
