@@ -73,7 +73,8 @@ class Students_program extends CI_Controller
         // Follow up 
         $stprog_data = $this->stprog->showId($id);
         $followup = $stprog_data['stprog_followupdate'];
-        if($this->input->post('stprog_followupdate')!=$followup ) {
+        $followup_post = $this->input->post('stprog_followupdate');
+        if(($followup_post!="")and($followup_post!=$followup)){
             $followup_data = [
                 'stprog_id' => $id,
                 'flw_date' => $this->input->post('stprog_followupdate'),
@@ -214,7 +215,6 @@ class Students_program extends CI_Controller
 
         $done = count($this->stprog->showStatusRunning($st_num, 2));
         $tot_stprog = ($stprog - $failed);
-        echo $tot_stprog;
         if($tot_stprog==$done) {
             $datas = [
                 'st_statuscli' => 3,
