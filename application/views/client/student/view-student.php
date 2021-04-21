@@ -310,11 +310,11 @@
                                     <td><?=$stp['lead_name'];?></td>
                                     <td>
                                         <?php 
-                                        if($stp['stprog_statusprogdate']) {
+                                        if(($stp['stprog_statusprogdate'])and($stp['stprog_statusprogdate']!="0000-00-00")) {
                                             $last_discuss = $stp['stprog_statusprogdate'];
-                                        } else if($stp['stprog_ass_sent']){
+                                        } else if(($stp['stprog_ass_sent'])and($stp['stprog_ass_sent']!="0000-00-00")){
                                             $last_discuss = $stp['stprog_ass_sent'];
-                                        } else if($stp['stprog_init_consult']) {
+                                        } else if(($stp['stprog_init_consult'])and($stp['stprog_init_consult']!="0000-00-00")) {
                                             $last_discuss = $stp['stprog_init_consult'];
                                         } else {
                                             $last_discuss = $stp['stprog_firstdisdate'];
