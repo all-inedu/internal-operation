@@ -20,33 +20,36 @@ class Home extends CI_Controller
     public function send_flw()
     {
         $datenow = date('Y-m-d');
-        $next_day = date('Y-m-d',(strtotime ( '+1 day' , strtotime ( date('Y-m-d')) ) ));
+        $next_day = date('Y-m-d',(strtotime ( '+1 day' , strtotime ($datenow))));
 
-        $check_flw = $this->flw->sendFollowUpByDate($next_day); 
+        $check_flw = $this->flw->checkFollowUp($next_day); 
         if($check_flw) {
-            $data['flw'] = $check_flw;
             foreach ($check_flw as $flw) {
-                $flw_id = $flw['flw_id'];
-                $this->flw->sendEmail($flw_id);
+                $empl_id = $flw['empl_id'];
+                $email = $flw['empl_email'];
+                $data = $this->flw->showFollowUpByPIC($empl_id, $next_day);
+                $datas['flw'] = $data;
+                foreach ($data as $d) {
+                 $flw_id = $d['flw_id'];
+                 $this->flw->sendEmail($flw_id);
+                }
+                $this->sendEmail($datas, $email);
             }
-            
-            $this->sendEmail($data);
-            // $this->load->view('home/mail/follow-sent', $data);
         }
     }
 
-    public function sendEmail($data)
+    public function sendEmail($datas, $email)
     {
         $config = $this->mail_smtp->smtp();
         $this->load->library('mail_smtp', $config);
         $this->email->initialize($config);
         $this->email->from('info@all-inedu.com', 'ALL-in Eduspace');
-        $this->email->to('hafidz.fanany@all-inedu.com');
-        $this->email->bcc('');
+        $this->email->to($email);
+        $this->email->cc('hafidz.fanany@all-inedu.com');
 
         $this->email->subject('Follow-Up Reminder');
 
-        $bodyMail = $this->load->view('home/mail/follow-sent', $data, true);
+        $bodyMail = $this->load->view('home/mail/follow-sent', $datas, true);
         $this->email->message($bodyMail);
 
             // Send Email

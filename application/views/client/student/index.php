@@ -305,7 +305,7 @@
                     ?>
                 </td>
                 <td><?=$s['st_abrmajor'];?></td>
-                <td data-sort="<?=$s['st_datecreate'];?>"><?=date('d M Y H:i:s', strtotime($s['st_datecreate']));?></td>
+                <td data-sort="<?=$s['st_datecreate'];?>"><?=date('d M Y', strtotime($s['st_datecreate']));?></td>
                 <td>
                     <?php  if($s['st_statuscli']==0) {  ?>
                     <div class="badge border pt-2 pb-2 pl-3 pr-3 badge-light text-danger shadow">
