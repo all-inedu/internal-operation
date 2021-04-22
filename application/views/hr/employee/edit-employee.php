@@ -247,6 +247,7 @@
                                         <option value="Full Time">Full Time</option>
                                         <option value="Contract">Contract</option>
                                         <option value="Internship">Internship</option>
+                                        <option value="Part Time">Part Time</option>
                                         <option value="Probation">Probation</option>
                                     </select>
                                     <?=form_error('empl_status', '<small class="text-danger">', '</small>');?>
