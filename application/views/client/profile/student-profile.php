@@ -110,7 +110,13 @@
                         $ynow = date('Y');
                         $yinput = date('Y', strtotime($s['st_datecreate']));
                         $ginput = $s['st_grade'];
-                        $gnow = ($ynow - $yinput) + $ginput;
+                        $mnow = date('m'); 
+                        if($mnow>=7) {
+                            $gnow = ($ynow - $yinput) + $ginput;
+                        } else {
+                            $gnow = (($ynow - $yinput) + $ginput) - 1;
+                        }
+                        
                         if($ginput=="0") {
                             echo '-';
                         } else

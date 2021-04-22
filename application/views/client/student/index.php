@@ -222,10 +222,10 @@
                 <td>
                     <?php 
                         $ynow = date('Y');
-                        $mnow = date('m'); 
                         $yinput = date('Y', strtotime($s['st_datecreate']));
                         $ginput = $s['st_grade'];
-                        if($mnow==7) {
+                        $mnow = date('m'); 
+                        if($mnow>=7) {
                             $gnow = ($ynow - $yinput) + $ginput;
                         } else {
                             $gnow = (($ynow - $yinput) + $ginput) - 1;
