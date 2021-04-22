@@ -22,7 +22,7 @@ class Home extends CI_Controller
         $datenow = date('Y-m-d');
         $next_day = date('Y-m-d',(strtotime ( '+1 day' , strtotime ( date('Y-m-d')) ) ));
 
-        $check_flw = $this->flw->sendFollowUpByDate($next_day);
+        $check_flw = $this->flw->sendFollowUpByDate($next_day); 
         if($check_flw) {
             $data['flw'] = $check_flw;
             foreach ($check_flw as $flw) {
