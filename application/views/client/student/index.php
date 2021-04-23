@@ -225,10 +225,12 @@
                         $yinput = date('Y', strtotime($s['st_datecreate']));
                         $ginput = $s['st_grade'];
                         $mnow = date('m'); 
-                        if($mnow>=7) {
+                        if(($mnow>=7) and ($ynow>$yinput)) {
                             $gnow = ($ynow - $yinput) + $ginput;
-                        } else {
+                        } else if($ynow>$yinput) {
                             $gnow = (($ynow - $yinput) + $ginput) - 1;
+                        } else {
+                            $gnow = $ginput;
                         }
 
                         if($gnow <= 12) {
