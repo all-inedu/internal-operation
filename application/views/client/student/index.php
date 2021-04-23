@@ -227,10 +227,12 @@
                         $mnow = date('m'); 
                         if(($mnow>=7) and ($ynow>$yinput)) {
                             $gnow = ($ynow - $yinput) + $ginput;
-                        } else if(($mnow>=7) and ($ynow==$yinput)) {
+                        } else 
+                        if(($mnow<7) and ($ynow>$yinput)) {
+                            $gnow = ($ynow - $yinput) + ($ginput - 1);
+                        } else 
+                        if(($mnow>=7) and ($ynow==$yinput)) {
                             $gnow = $ginput + 1;
-                        } else if($ynow>$yinput) {
-                            $gnow = (($ynow - $yinput) + $ginput) - 1;
                         } else {
                             $gnow = $ginput;
                         }
