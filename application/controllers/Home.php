@@ -31,7 +31,7 @@ class Home extends CI_Controller
                 $datas['flw'] = $data;
                 foreach ($data as $d) {
                  $flw_id = $d['flw_id'];
-                 $this->flw->sendEmail($flw_id);
+                //  $this->flw->sendEmail($flw_id);
                 }
                 $this->sendEmail($datas, $email);
             }
