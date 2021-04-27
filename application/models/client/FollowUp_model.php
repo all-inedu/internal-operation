@@ -2,12 +2,15 @@
 class FollowUp_model extends CI_model
 {
 
-    public function showAll($e) {
+    public function showAll($e="") {
         $this->db->select('*');
         $this->db->join("tbl_stprog", "tbl_stprog.stprog_id=tbl_followup.stprog_id");
         $this->db->join("tbl_prog", "tbl_prog.prog_id=tbl_stprog.prog_id");
         $this->db->join("tbl_students", "tbl_students.st_num=tbl_stprog.st_num");
-        $this->db->where('tbl_stprog.empl_id', $e); 
+        if($e!="") {
+            $this->db->where('tbl_stprog.empl_id', $e); 
+        } 
+        $this->db->join("tbl_empl", "tbl_empl.empl_id=tbl_stprog.empl_id");
         $this->db->order_by('tbl_followup.flw_mark', 'ASC');
         $this->db->order_by('tbl_followup.flw_date', 'ASC');
         return $this->db->get('tbl_followup')->result_array();

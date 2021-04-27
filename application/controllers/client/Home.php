@@ -18,7 +18,7 @@ class Home extends CI_Controller
         if(empty($empl_id)) {
             redirect('/');
         } else {
-            if($position!='client') {
+            if(($position!='client') AND ($position!='admin')) {
                 redirect('/'.$position);
             }
 
@@ -103,7 +103,12 @@ class Home extends CI_Controller
 
     public function follow_up()
     {
-        $empl_id = $this->session->userdata('empl_id');
+        $position = $this->session->userdata('position');
+        if($position=="client") {
+            $empl_id = $this->session->userdata('empl_id');
+        } else {
+            $empl_id = "";
+        }
         $data['follow'] = $this->flw->showAll($empl_id);
         $this->load->view('templates/s-io');
         $this->load->view('client/home/follow-up', $data);

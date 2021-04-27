@@ -26,6 +26,12 @@
                 <th width="20%" class="text-center">Students Name</th>
                 <th width="30%" class="text-center">Program Name</th>
                 <th width="10%" class="text-center">Follow-Up Date</th>
+                <?php
+                    $position = $this->session->userdata('position');
+                    if($position=="admin") {
+                ?>
+                <th width="10%" class="text-center">PIC</th>
+                <?php } ?>
                 <th width="30%" class="text-center">Notes</th>
                 <th width="9%" class="text-center">Status</th>
             </tr>
@@ -48,6 +54,13 @@
                 <td data-sort="<?=$f['flw_date'];?>" class="text-center">
                     <?=date('d F Y', strtotime($f['flw_date']));?>
                 </td>
+                <?php 
+                    if($position=="admin") {
+                ?>
+                <td class="text-center"><?=$f['empl_firstname'];?></td>
+                <?php
+                    }
+                ?>
                 <td><?=$f['flw_notes'];?></td>
                 <td class="text-center">
                     <?php

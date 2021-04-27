@@ -45,7 +45,7 @@ class Login extends CI_Controller
                     redirect('/');
                  } else {
                     if (password_verify($password, $data['empl_password'])) {
-                        $data['position'] = $id;
+                        $data['position'] = "admin";
                         $this->session->set_userdata($data);
                         $this->session->set_flashdata('login', 'Signed in successfully');
                         redirect('/admin/home');  
