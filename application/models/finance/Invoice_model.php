@@ -19,9 +19,17 @@ class Invoice_model extends CI_model
         $this->db->join('tbl_stprog', 'tbl_stprog.stprog_id=tbl_inv.stprog_id');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
         $this->db->where('tbl_stprog.stprog_status', 1);
-        $this->db->where('month(tbl_stprog.stprog_statusprogdate)', $m);
-        $this->db->where('year(tbl_stprog.stprog_statusprogdate)', $y);
         $this->db->like('tbl_prog.prog_sub', $p);
+        $this->db->group_start();
+            $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
+            $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
+            $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
+        $this->db->group_end();
+        $this->db->group_start();
+            $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
+            $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
+            $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
+        $this->db->group_end();
         return $this->db->get('tbl_inv')->result_array();
     }
 

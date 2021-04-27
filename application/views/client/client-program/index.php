@@ -174,7 +174,6 @@
                     ?>
                 </td>
                 <td data-sort="<?=$stpr['stprog_statusprogdate'];?>">
-
                     <?php
                     if($stpr['stprog_statusprogdate']!="0000-00-00") {
                         echo date('d F Y', strtotime($stpr['stprog_statusprogdate']));
