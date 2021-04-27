@@ -39,6 +39,7 @@ class Students_program extends CI_Controller
 
     public function view($id){
         $data['stprog'] = $this->stprog->showId($id);
+        $data['flw'] = $this->flw->showFollowUpByStprogId($id);
         $data['stmentor'] = $this->stprog->showStudentsMentor($id);
         $data['lead'] = $this->lead->showAll();
         $data['program'] = $this->prog->showB2C();

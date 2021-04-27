@@ -73,6 +73,20 @@ class FollowUp_model extends CI_model
         return $this->db->get('tbl_followup')->result_array();
     }
 
+    public function showFollowUpById($id) 
+    {
+        $this->db->select('*');
+        $this->db->where('flw_id', $id);
+        return $this->db->get('tbl_followup')->row_array();
+    }
+
+    public function showFollowUpByStprogId($id) 
+    {
+        $this->db->select('*');
+        $this->db->where('stprog_id', $id);
+        return $this->db->get('tbl_followup')->result_array();
+    }
+
      public function update($data, $id)
     {
         $this->db->set($data);

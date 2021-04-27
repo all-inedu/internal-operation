@@ -83,11 +83,35 @@ class Home extends CI_Controller
 
     public function follow_mark() {
         $id = $this->input->post('flw_id');
+        $stprog = $this->flw->showFollowUpById($id);
+        $stprog_id = $stprog['stprog_id'];
+
+        // Next follow up 
+        $stprog_data = $this->stprog->showId($stprog_id);
+        $followup = $stprog_data['stprog_followupdate'];
+        $followup_post = $this->input->post('flw_date');
+        if(($followup_post!="")and($followup_post!=$followup)){
+            $followup_data = [
+                'stprog_id' => $stprog_id,
+                'flw_date' => $followup_post,
+                'flw_mark' => '0'
+            ];
+            $this->flw->save($followup_data);
+
+            // update stprog
+            $datas = [
+                'stprog_followupdate' => $followup_post
+            ]; 
+            $this->stprog->update($datas, $stprog_id);
+        }
+
+        // Update follow-up
         $data = [
             'flw_mark' => 1,
             'flw_notes' => $this->input->post('flw_notes')
         ];
         $this->flw->update($data, $id);
+
         $this->session->set_flashdata('success', 'You have updated the follow-up list');
         redirect('/client/home/follow-up');
     }

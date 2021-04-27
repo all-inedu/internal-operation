@@ -174,6 +174,11 @@
                     <input type="text" name="flw_id" id="flw_id" hidden>
                     <label>Notes</label>
                     <textarea name="flw_notes"></textarea>
+                    <br>
+                    <label>Next Follow-Up</label>
+                    <input type="date" name="flw_date" class="form-control form-control-sm">
+
+                    <hr>
                     <div class="float-right mt-2">
                         <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                     </div>

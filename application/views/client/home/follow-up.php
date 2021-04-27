@@ -40,7 +40,9 @@
             <?php $no=1; foreach ($follow as $f) : ?>
             <tr>
                 <td><?=$no;?></td>
-                <td><?=$f['st_firstname']." ".$f['st_lastname'];?></td>
+                <td style="cursor:pointer"
+                    onclick="window.location='<?=base_url('client/students-program/view/'.$f['stprog_id']);?>'">
+                    <?=$f['st_firstname']." ".$f['st_lastname'];?></td>
                 <td>
                     <?php
                         if($f['prog_sub'])
@@ -90,7 +92,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Follow Up</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Follow-Up</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -100,6 +102,11 @@
                     <input type="text" name="flw_id" id="flw_id" hidden>
                     <label>Notes</label>
                     <textarea name="flw_notes"></textarea>
+                    <br>
+                    <label>Next Follow-Up</label>
+                    <input type="date" name="flw_date" class="form-control form-control-sm">
+
+                    <hr>
                     <div class="float-right mt-2">
                         <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                     </div>

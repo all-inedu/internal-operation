@@ -174,7 +174,19 @@
                     ?>
                 </td>
                 <td data-sort="<?=$stpr['stprog_statusprogdate'];?>">
-                    <?=date('d F Y', strtotime($stpr['stprog_statusprogdate']));?></td>
+
+                    <?php
+                    if($stpr['stprog_statusprogdate']!="0000-00-00") {
+                        echo date('d F Y', strtotime($stpr['stprog_statusprogdate']));
+                    } else if($stpr['stprog_ass_sent']!="0000-00-00") { 
+                        echo date('d F Y', strtotime($stpr['stprog_ass_sent']));
+                    } else if($stpr['stprog_init_consult']!="0000-00-00") { 
+                        echo date('d F Y', strtotime($stpr['stprog_init_consult']));
+                    } else if($stpr['stprog_firstdisdate']!="0000-00-00") { 
+                        echo date('d F Y', strtotime($stpr['stprog_firstdisdate']));
+                    }
+                    ?>
+                </td>
             </tr>
             <?php $i++; endforeach; ?>
         </tbody>

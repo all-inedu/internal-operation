@@ -37,7 +37,7 @@
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
 <div class="row">
     <div class="col-md-4 mb-2">
-        <div class="card shadow card-sticky">
+        <div class="card shadow">
             <div class="card-body pb-4">
                 <div class="text-center">
                     <img src="<?=base_url('assets/img/student-prog.png');?>" alt="client management" width="70%">
@@ -67,6 +67,39 @@
                         <i class="fas fa-trash"></i>&nbsp; Delete
                     </a>
                 </div>
+            </div>
+        </div>
+        <div class="card shadow mt-2">
+            <div class="card-header pb-0">
+                <h6><i class="fas fa-history fa-fw"></i> Follow-Up History</h6>
+            </div>
+            <div class="card-body">
+
+                <?php 
+                        $no=1;
+                        foreach ($flw as $flw):
+                    ?>
+                <b><?=$no;?>. Date : <?= date('d M Y', strtotime($flw['flw_date']));?></b>
+                <?php
+                    if($flw['flw_mark']==0){
+                        echo "<i class='fas fa-clock text-info float-right' title='Not Yet'></i>";
+                    } else {
+                        echo "<i class='fas fa-check text-success float-right' title='Done'></i>";
+                    }
+                ?>
+                <hr class="m-0 pb-2">
+                <?php
+                    if($flw['flw_mark']==0){
+                        echo '<i>Not follow-up yet!</i>';
+                    } else {
+                        echo $flw['flw_notes'];
+                    }
+                    
+                    echo "<br>";
+
+                    $no++;
+                    endforeach;
+                ?>
             </div>
         </div>
     </div>
@@ -113,7 +146,7 @@
                                     <?=form_error('stprog_firstdisdate', '<small class="text-danger">', '</small>');?>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <small>Planned Follow Up</small>
+                                    <small>Planned Follow-Up</small>
                                     <input name="stprog_followupdate" type="date" class="form-control form-control-sm"
                                         value="<?=$stprog['stprog_followupdate'];?>" onchange="followUp()"
                                         id="follow-up">
