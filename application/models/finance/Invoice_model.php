@@ -22,11 +22,13 @@ class Invoice_model extends CI_model
             $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
             $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
             $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
+            $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
         $this->db->group_end();
         $this->db->group_start();
             $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
             $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
             $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
+            $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
         $this->db->group_end();
         $this->db->join('tbl_stprog', 'tbl_stprog.stprog_id=tbl_inv.stprog_id');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
@@ -41,11 +43,13 @@ class Invoice_model extends CI_model
             $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
             $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
             $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
+            $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
         $this->db->group_end();
         $this->db->group_start();
             $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
             $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
             $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
+            $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
         $this->db->group_end();
         $this->db->join('tbl_stprog', 'tbl_stprog.stprog_id=tbl_inv.stprog_id');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
