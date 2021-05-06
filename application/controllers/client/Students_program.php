@@ -278,7 +278,7 @@ class Students_program extends CI_Controller
         {
             $p = $this->input->post('prog_id');
             if($p=="all") {
-                $prog = 'all';
+                $prog = '';
             } else {
                 $prog = $p;
             }
