@@ -284,9 +284,9 @@ class Students_program extends CI_Controller
             }
             $data['m']= $this->input->post('month');
             $data['y']= $this->input->post('year');
-            $data['p']= $prog;
+            $data['p']= $this->input->post('prog_id');
             $data['s']= $this->input->post('status');
-            $data['stprog'] = $this->stprog->showAllByDateProgramStatus($data['m'], $data['y'], $data['p'], $data['s']);
+            $data['stprog'] = $this->stprog->showAllByDateProgramStatus($data['m'], $data['y'], $prog, $data['s']);
             $this->load->view('templates/s-io');
             $this->load->view('client/client-program/report/index', $data);
             $this->load->view('templates/f-io');
