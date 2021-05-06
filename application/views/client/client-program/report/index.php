@@ -219,9 +219,9 @@
                                     echo date('d F Y', strtotime($stpr['stprog_statusprogdate']));
                                 } else if(($stpr['stprog_ass_sent']!="0000-00-00") AND ($stpr['stprog_ass_sent']!="")) { 
                                     echo date('d F Y', strtotime($stpr['stprog_ass_sent']));
-                                } else if(($stpr['stprog_init_consult']!="0000-00-00") AND ($stpr['stprog_ass_sent']!="")) { 
+                                } else if(($stpr['stprog_init_consult']!="0000-00-00") AND ($stpr['stprog_init_consult']!="")) { 
                                     echo date('d F Y', strtotime($stpr['stprog_init_consult']));
-                                } else if(($stpr['stprog_firstdisdate']!="0000-00-00") AND ($stpr['stprog_ass_sent']!="")) { 
+                                } else if(($stpr['stprog_firstdisdate']!="0000-00-00") AND ($stpr['stprog_firstdisdate']!="")) { 
                                     echo date('d F Y', strtotime($stpr['stprog_firstdisdate']));
                                 }
                                 ?>
