@@ -138,5 +138,10 @@ class Home extends CI_Controller
         $this->load->view('client/home/follow-up', $data);
         $this->load->view('templates/f-io');
     }
+
+    public function showFollowUpByStprog($id) {
+        $data = $this->flw->showFollowUpByStprog($id);
+        echo json_encode($data);
+    }
  
 }

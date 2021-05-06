@@ -87,6 +87,16 @@ class FollowUp_model extends CI_model
         return $this->db->get('tbl_followup')->result_array();
     }
 
+    // tanpa id yg di select 
+    public function showFollowUpByStprog($stprog) 
+    {
+        $this->db->select('*');
+        $this->db->where('stprog_id', $stprog);
+        $this->db->where('flw_mark', 1);
+        $this->db->order_by('tbl_followup.flw_date', 'DESC');
+        return $this->db->get('tbl_followup')->result_array();
+    }
+
      public function update($data, $id)
     {
         $this->db->set($data);

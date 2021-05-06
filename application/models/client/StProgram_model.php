@@ -56,6 +56,31 @@ class StProgram_model extends CI_model
         return $this->db->get('tbl_stprog')->result_array();
     }
 
+    public function showAllByDateProgramStatus($m, $y, $p='', $s) {
+        $this->db->select('*');
+        $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');
+        $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
+        $this->db->join('tbl_lead', 'tbl_lead.lead_id=tbl_stprog.lead_id');
+        $this->db->order_by('tbl_stprog.stprog_statusprogdate', 'DESC');
+        if($p!=''){
+            $this->db->where("tbl_stprog.prog_id =", $p);
+        }
+        $this->db->where("tbl_stprog.stprog_status =", $s);
+        $this->db->group_start();
+            $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
+            $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
+            $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
+            $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
+        $this->db->group_end();
+        $this->db->group_start();
+            $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
+            $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
+            $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
+            $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
+        $this->db->group_end();
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+
     public function showAllByProgSub($m, $y, $p) {
         $this->db->select('*');
         $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');
@@ -724,6 +749,13 @@ class StProgram_model extends CI_model
         $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
         $this->db->order_by("tbl_prog.prog_main","ASC");
         return $this->db->get('tbl_stprog')->row_array();
+    }
+    
+    function getMentorById($id) {
+        $this->db->select('*');
+        $this->db->where('tbl_stmentor.stprog_id', $id);
+        $this->db->join("tbl_mt","tbl_mt.mt_id=tbl_stmentor.mt_id1");
+        return $this->db->get('tbl_stmentor')->row_array();
     }
 
 }

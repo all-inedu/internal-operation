@@ -131,7 +131,7 @@
                                 <h6 class="mb-0">Initial Consultation</h6>
                                 <small>Month to Date</small>
                                 <hr class="mb-3 mt-2">
-                                Initial Consultation : <b><?=$init_consult;?></b> <br>
+                                Potential of Admissions Mentoring : <b><?=$init_consult;?></b> <br>
                                 Initial Assessment Sent: <b><?=$ass_sent;?></b>
                                 <hr class="mb-2 mt-2">
                                 Initial Assessment Making: <b>

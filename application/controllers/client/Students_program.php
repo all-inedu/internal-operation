@@ -255,4 +255,41 @@ class Students_program extends CI_Controller
         $this->session->set_flashdata('success', 'Students program has been deleted');
         redirect('/client/student/view/'.$st_num);
     }
+
+    public function report() {
+        $data['program'] = $this->prog->showB2C();
+        
+        $this->form_validation->set_rules('month', 'Month', 'required');
+        $this->form_validation->set_rules('year', 'Year', 'required');
+        $this->form_validation->set_rules('prog_id', 'Program', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+        if ($this->form_validation->run() == False)
+        {
+            $data['m']='';
+            $data['y']='';
+            $data['p']='All';
+            $data['s']='';
+            $data['stprog'] = '';
+            $this->load->view('templates/s-io');
+            $this->load->view('client/client-program/report/index', $data);
+            $this->load->view('templates/f-io');
+        }
+            else
+        {
+            $p = $this->input->post('prog_id');
+            if($p=="all") {
+                $prog = '';
+            } else {
+                $prog = $p;
+            }
+            $data['m']= $this->input->post('month');
+            $data['y']= $this->input->post('year');
+            $data['p']= $prog;
+            $data['s']= $this->input->post('status');
+            $data['stprog'] = $this->stprog->showAllByDateProgramStatus($data['m'], $data['y'], $data['p'], $data['s']);
+            $this->load->view('templates/s-io');
+            $this->load->view('client/client-program/report/index', $data);
+            $this->load->view('templates/f-io');
+        }
+    }
 }

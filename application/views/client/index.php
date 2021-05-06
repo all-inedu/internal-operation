@@ -7,6 +7,14 @@
     font-family: 'Lobster', cursive;
     color: #3f3b3b;
 }
+
+.history-box {
+    width: 100%;
+    height: 100px;
+    overflow: scroll;
+    border: 1px solid #dedede;
+    padding: 5px;
+}
 </style>
 <?php 
     $color1 = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
@@ -85,6 +93,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <!-- Today  -->
                 <b><?=date('d M Y',(strtotime($now) ));?></b>
                 <hr class="m-0">
                 <table class="mt-2" width="100%">
@@ -102,11 +111,13 @@
                         <td width="50%" class="text-left"><?=$f['prog_sub']." ".$f['prog_program'];?></td>
                         <td width="10%" class="text-center">
                             <?php if($f['flw_mark']==0) {?>
-                            <button class="btn btn-sm btn-info" data-id="<?=$f['flw_id'];?>" onclick="followMark(this)"
-                                title="Not Yet"><i class="fas fa-clock"></i></button>
+                            <button class="btn btn-sm btn-info" data-id="<?=$f['flw_id'];?>"
+                                data-stprog="<?=$f['stprog_id'];?>" onclick="followMark(this)" title="Not Yet"><i
+                                    class="fas fa-clock"></i></button>
                             <?php } else { ?>
                             <button class="btn btn-sm btn-success" data-id="<?=$f['flw_id'];?>"
-                                onclick="followUnmark(this)" title="Done"><i class="fas fa-check"></i></button>
+                                data-stprog="<?=$f['stprog_id'];?>" onclick="followUnmark(this)" title="Done"><i
+                                    class="fas fa-check"></i></button>
                             <?php } ?>
                         </td>
                     </tr>
@@ -117,6 +128,7 @@
                 </table>
                 <hr>
 
+                <!-- Next Day  -->
                 <b><?= date('d M Y',strtotime ($next_day) );?></b>
                 <hr class=" m-0">
                 <table class="mt-2" width="100%">
@@ -134,11 +146,13 @@
                         <td width="50%" class="text-left"><?=$f['prog_sub']." ".$f['prog_program'];?></td>
                         <td width="10%" class="text-center">
                             <?php if($f['flw_mark']==0) {?>
-                            <button class="btn btn-sm btn-info" data-id="<?=$f['flw_id'];?>" onclick="followMark(this)"
-                                title="Not Yet"><i class="fas fa-clock"></i></button>
+                            <button class="btn btn-sm btn-info" data-id="<?=$f['flw_id'];?>"
+                                data-stprog="<?=$f['stprog_id'];?>" onclick="followMark(this)" title="Not Yet"><i
+                                    class="fas fa-clock"></i></button>
                             <?php } else { ?>
                             <button class="btn btn-sm btn-success" data-id="<?=$f['flw_id'];?>"
-                                onclick="followUnmark(this)" title="Done"><i class="fas fa-check"></i></button>
+                                data-stprog="<?=$f['stprog_id'];?>" onclick="followUnmark(this)" title="Done"><i
+                                    class="fas fa-check"></i></button>
                             <?php } ?>
                         </td>
                     </tr>
@@ -170,6 +184,12 @@
                 </button>
             </div>
             <div class="modal-body">
+                <p>History</p>
+                <div class="history-box mb-2">
+                    <div class="history-list">
+
+                    </div>
+                </div>
                 <form action="<?=base_url('client/home/follow_mark');?>" method="post">
                     <input type="text" name="flw_id" id="flw_id" hidden>
                     <label>Notes</label>
@@ -288,7 +308,7 @@
                                 <h6 class="mb-0">Initial Consultation</h6>
                                 <small>Month to Date</small>
                                 <hr class="mb-3 mt-2">
-                                Initial Consultation : <b><?=$init_consult;?></b> <br>
+                                Potential of Admissions Mentoring : <b><?=$init_consult;?></b> <br>
                                 Initial Assessment Sent: <b><?=$ass_sent;?></b>
                                 <hr class="mb-2 mt-2">
                                 Initial Assessment Making: <b>
@@ -478,10 +498,30 @@
     $arr12 = implode(", ", $writing_lead_count);
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="<?=base_url('assets/js/moment.js');?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 <script>
 function followMark(mark) {
     let flw_id = mark.getAttribute('data-id')
+    let stprog_id = mark.getAttribute('data-stprog')
+
+    // Ambil data follow-up
+    $.ajax({
+        type: 'post',
+        url: '<?=base_url("client/home/showFollowUpByStprog/");?>' + stprog_id,
+        dataType: 'json',
+        success: function(datas) {
+            $.each(datas, function(index, data) {
+                $('.history-list').append(
+                    '<small><b>' +
+                    moment(data.flw_date).format('MMMM Do YYYY') +
+                    '</small></b><hr class="m-0">' +
+                    data.flw_notes + '<br>'
+                )
+            });
+        }
+    });
+
     $("#followUp").modal("hide")
     $("#followUpNotes").modal("show")
     $("#flw_id").val(flw_id)

@@ -20,11 +20,13 @@
 </div>
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
 <div class="text-left">
-    <p class="badge badge-info p-2 pl-3 pr-3" onclick="filter()" style="cursor:pointer"><i
+    <a href="<?=base_url('client/students-program/report');?>" class="btn btn-sm btn-primary p-1 px-3"><i
+            class="fas fa-file-alt fa-fw"></i> Report</a>
+    <p class="btn btn-sm btn-info p-1 px-3" onclick="filter()" style="cursor:pointer"><i
             class="fas fa-search fa-fw"></i>
         Filter</p>
 </div>
-<div class="row justify-content-md-center" id="filter" style="display:none;">
+<div class="row justify-content-md-center mt-2" id="filter" style="display:none;">
     <div class=" col-md-3 text-center">
         <select id="sProg" class="form-control form-control-sm">
             <option data-placeholder="true"></option>
