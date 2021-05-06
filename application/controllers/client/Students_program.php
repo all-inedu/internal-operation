@@ -267,7 +267,7 @@ class Students_program extends CI_Controller
         {
             $data['m']='';
             $data['y']='';
-            $data['p']='All';
+            $data['p']='all';
             $data['s']='';
             $data['stprog'] = '';
             $this->load->view('templates/s-io');
@@ -278,7 +278,7 @@ class Students_program extends CI_Controller
         {
             $p = $this->input->post('prog_id');
             if($p=="all") {
-                $prog = '';
+                $prog = 'all';
             } else {
                 $prog = $p;
             }
