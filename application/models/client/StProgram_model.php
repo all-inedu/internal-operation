@@ -61,7 +61,10 @@ class StProgram_model extends CI_model
         $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
         $this->db->join('tbl_lead', 'tbl_lead.lead_id=tbl_stprog.lead_id');
-        $this->db->order_by('tbl_stprog.stprog_statusprogdate', 'DESC');
+        $this->db->order_by('tbl_stprog.stprog_statusprogdate', 'ASC');
+        $this->db->order_by('tbl_stprog.stprog_ass_sent', 'ASC');
+        $this->db->order_by('tbl_stprog.stprog_init_consult', 'ASC');
+        $this->db->order_by('tbl_stprog.stprog_firstdisdate', 'ASC');
         if($p!=''){
             $this->db->where("tbl_stprog.prog_id =", $p);
         }
