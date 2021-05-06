@@ -68,15 +68,15 @@ class StProgram_model extends CI_model
         $this->db->where("tbl_stprog.stprog_status =", $s);
         $this->db->group_start();
             $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
-            $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
-            $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
-            $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
+            // $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
+            // $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
+            // $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
         $this->db->group_end();
         $this->db->group_start();
             $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
-            $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
-            $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
-            $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
+            // $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
+            // $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
+            // $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
         $this->db->group_end();
         return $this->db->get('tbl_stprog')->result_array();
     }
