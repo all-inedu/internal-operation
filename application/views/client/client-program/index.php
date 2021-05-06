@@ -177,7 +177,7 @@
                 </td>
                 <td data-sort="<?=$stpr['stprog_statusprogdate'];?>">
                     <?php
-                        if(($stpr['stprog_statusprogdate']!="0000-00-00") AND ($stpr['stprog_statusprogdate']!="")) {
+                        if(($stpr['stprog_statusprogdate']!="0000-00-00") AND ($stpr['stprog_statusprogdate']!="") AND ($stpr['stprog_status']==1)) {
                             echo date('d F Y', strtotime($stpr['stprog_statusprogdate']));
                         } else if(($stpr['stprog_ass_sent']!="0000-00-00") AND ($stpr['stprog_ass_sent']!="")) { 
                             echo date('d F Y', strtotime($stpr['stprog_ass_sent']));
