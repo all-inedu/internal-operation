@@ -134,7 +134,10 @@
                             <?php endforeach;?>
                         </select>
                     </div>
-                    <div class="col-md-3 mb-2">
+                    <div class="col-md-2 mb-2">
+                        <input type="text" class="form-control form-control-sm" placeholder="Parents Name" id="parent">
+                    </div>
+                    <div class="col-md-2 mb-2">
                         <select id="year">
                             <option data-placeholder="true"></option>
                             <?php
@@ -148,7 +151,7 @@
                             ?>
                         </select>
                     </div>
-                    <div class="col-md-3 mb-2">
+                    <div class="col-md-2 mb-2">
                         <select id="country">
                             <option data-placeholder="true"></option>
                             <?php foreach($con as $c): ?>

@@ -72,7 +72,9 @@
                                 <div class="badge badge-danger"><?=$flw_up;?></div>
                             </div>
                             <b class="px-2 flex-column">|</b>
-                            <i class="fas fa-users"></i>&nbsp; <?=$pic." ".$data['empl_firstname'];?>'s Contributions
+                            <label title="Month to Date">
+                                <i class="fas fa-users"></i>&nbsp; <?=$pic." ".$data['empl_firstname'];?>'s
+                                Contributions</label>
                         </div>
                     </div>
                 </div>
@@ -293,7 +295,9 @@
         </div>
 
         <div class="col-md-12 mb-2">
-            <div class="card shadow">
+            <button id="overallButton" class="btn btn-outline-primary">Overall</button>
+            <button id="yourClient" class="btn btn-outline-primary">Your Client</button>
+            <div class="card shadow" id="ALL">
                 <div class="row no-gutters p-2">
                     <div class="col-md-4 align-middle p-1">
                         <div class="card-body text-center">
@@ -375,132 +379,123 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row no-gutters">
-        <div class="col-md-6 mb-2 p-1">
-            <div class="card shadow">
-                <div class="card-body text-center">
-                    <h5 class="mb-0">Lead Source</h5>
-                    <small>Month to Date</small>
-                    <hr class="mb-3 mt-0">
-                    <canvas id="myLead" style="height:70vh; width:90vw"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 mb-2 p-1">
-            <div class="card shadow">
-                <div class="card-body text-center">
-                    <h5 class="mb-0">Conversion Leads</h5>
-                    <small>Month to Date</small>
-                    <hr class="mb-3 mt-0">
-                    <canvas id="conversionLead" style="height:70vh; width:90vw"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 mb-2 p-1">
-            <div class="card shadow">
-                <div class="card-body text-center">
-                    <h5 class="mb-0">Admissions Mentoring</h5>
-                    <small>Month to Date</small>
-                    <hr class="mb-3 mt-0">
-                    <canvas id="admLead" style="height:100vh; width:100vh"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 mb-2 p-1">
-            <div class="card shadow">
-                <div class="card-body text-center">
-                    <h5 class="mb-0">Career Exploration</h5>
-                    <small>Month to Date</small>
-                    <hr class="mb-3 mt-0">
-                    <canvas id="careerLead" style="height:100vh; width:100vh"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 mb-2 p-1">
-            <div class="card shadow">
-                <div class="card-body text-center">
-                    <h5 class="mb-0">SAT</h5>
-                    <small>Month to Date</small>
-                    <hr class="mb-3 mt-0">
-                    <canvas id="satLead" style="height:100vh; width:100vh"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 mb-2 p-1">
-            <div class="card shadow">
-                <div class="card-body text-center">
-                    <h5 class="mb-0">Writing Course</h5>
-                    <small>Month to Date</small>
-                    <hr class="mb-3 mt-0">
-                    <canvas id="writingLead" style="height:100vh; width:100vh"></canvas>
+
+            <div class="card shadow" id="EMPL">
+                <div class="row no-gutters p-2">
+                    <div class="col-md-4 align-middle p-1">
+                        <div class="card-body text-center">
+                            <h5 class="mb-0">Overall Students Program Status</h5>
+                            <small>Month to Date</small>
+                            <hr class="mb-3 mt-0">
+                            <canvas id="Overall" style="height:105vh; width:90vw"></canvas>
+                        </div>
+
+                        <div class=" card shadow mt-2">
+                            <div class="card-body text-center">
+                                <h6 class="mb-0">Initial Consultation</h6>
+                                <small>Month to Date</small>
+                                <hr class="mb-3 mt-2">
+                                Potential of Admissions Mentoring : <b><?=$init_consult_empl;?></b> <br>
+                                Initial Assessment Sent: <b><?=$ass_sent_empl;?></b>
+                                <hr class="mb-2 mt-2">
+                                Initial Assessment Making: <b>
+                                    <?php
+                                        if(empty($ass_making_empl['ass_making'])) { echo '-';}
+                                        else {
+                                            echo number_format(($ass_making_empl['ass_making']/$ass_making_empl['tot']),0);
+                                        }
+                                    ?> Days
+                                </b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 p-1">
+                        <div class="card shadow">
+                            <div class="card-body text-center">
+                                <h5 class="mb-0">Admissions Mentoring</h5>
+                                <small>Month to Date</small>
+                                <hr class="mb-3 mt-0">
+                                <canvas id="admChartEmpl" style="height:60vh; width:90vw"></canvas>
+                                <div class="badge badge-default p-1 pl-4 pr-4 m-1">
+                                    Total IDR : Rp. <?= number_format($tot_inv_adm_empl[0]['tot'],0);?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card shadow mt-2">
+                            <div class="card-body text-center">
+                                <h5 class="mb-0">Career Exploration</h5>
+                                <small>Month to Date</small>
+                                <hr class="mb-3 mt-0">
+                                <canvas id="careerChartEmpl" style="height:60vh; width:90vw"></canvas>
+                                <div class="badge badge-default p-1 pl-4 pr-4 m-1">
+                                    Total IDR : Rp. <?= number_format($tot_inv_career_empl[0]['tot'],0);?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 p-1">
+                        <div class="card shadow">
+                            <div class="card-body text-center">
+                                <h5 class="mb-0">SAT</h5>
+                                <small>Month to Date</small>
+                                <hr class="mb-3 mt-0">
+                                <canvas id="satChartEmpl" style="height:60vh; width:90vw"></canvas>
+                                <div class="badge badge-default p-1 pl-4 pr-4 m-1">
+                                    Total IDR : Rp. <?= number_format($tot_inv_sat_empl[0]['tot'],0);?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card shadow mt-2">
+                            <div class="card-body text-center">
+                                <h5 class="mb-0">Writing Course</h5>
+                                <small>Month to Date</small>
+                                <hr class="mb-3 mt-0">
+                                <canvas id="writingChartEmpl" style="height:60vh; width:90vw"></canvas>
+                                <div class="badge badge-default p-1 pl-4 pr-4 m-1">
+                                    Total IDR : Rp. <?= number_format($tot_inv_writing_empl[0]['tot'],0);?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div class="content">
+    <div class="row">
+
+    </div>
+</div>
 
 
-<?php 
-    $lead_count = [];
-    $lead_name = [];
-    foreach ($lead as $l) {
-        array_push($lead_count, $l['count(tbl_stprog.stprog_id)']);
-        array_push($lead_name, $l['lead_name']);
-    }
-    $arr1 = implode(", ", $lead_name);
-    $arr2 = implode(", ", $lead_count);
-
-    $con_lead_count = [];
-    $con_lead_name = [];
-    foreach ($con_lead as $l) {
-        array_push($con_lead_count, $l['count(tbl_stprog.stprog_id)']);
-        array_push($con_lead_name, $l['lead_name']);
-    }
-    $arr3 = implode(", ", $con_lead_name);
-    $arr4 = implode(", ", $con_lead_count);
-
-    $adm_lead_count = [];
-    $adm_lead_name = [];
-    foreach ($adm_lead as $l) {
-        array_push($adm_lead_count, $l['tot']);
-        array_push($adm_lead_name, $l['lead_name']);
-    }
-    $arr5 = implode(", ", $adm_lead_name);
-    $arr6 = implode(", ", $adm_lead_count);
-
-    $career_lead_count = [];
-    $career_lead_name = [];
-    foreach ($career_lead as $l) {
-        array_push($career_lead_count, $l['tot']);
-        array_push($career_lead_name, $l['lead_name']);
-    }
-    $arr7 = implode(", ", $career_lead_name);
-    $arr8 = implode(", ", $career_lead_count);
-
-    $sat_lead_count = [];
-    $sat_lead_name = [];
-    foreach ($sat_lead as $l) {
-        array_push($sat_lead_count, $l['tot']);
-        array_push($sat_lead_name, $l['lead_name']);
-    }
-    $arr9 = implode(", ", $sat_lead_name);
-    $arr10 = implode(", ", $sat_lead_count);
-
-    $writing_lead_count = [];
-    $writing_lead_name = [];
-    foreach ($writing_lead as $l) {
-        array_push($writing_lead_count, $l['tot']);
-        array_push($writing_lead_name, $l['lead_name']);
-    }
-    $arr11 = implode(", ", $writing_lead_name);
-    $arr12 = implode(", ", $writing_lead_count);
-?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="<?=base_url('assets/js/moment.js');?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 <script>
+$(document).ready(function() {
+    $('#ALL').hide();
+    $('#yourClient').addClass("bg-info text-white");
+
+    $('#overallButton').click(function() {
+        $('#EMPL').hide();
+        $('#ALL').show('fade');
+        $('#overallButton').addClass("bg-info text-white");
+        $('#yourClient').removeClass("bg-info text-white");
+    });
+
+    $('#yourClient').click(function() {
+        $('#ALL').hide();
+        $('#EMPL').show('fade');
+        $('#yourClient').addClass("bg-info text-white");
+        $('#overallButton').removeClass("bg-info text-white");
+    });
+});
+
+
 function followMark(mark) {
     let flw_id = mark.getAttribute('data-id')
     let stprog_id = mark.getAttribute('data-stprog')
@@ -712,190 +707,185 @@ var writing = new Chart($('#writingChart'), {
     }
 });
 
-
-
-let myJson1 = "<?=$arr1;?>";
-let a1 = myJson1.split(",");
-let myJson2 = "<?=$arr2;?>";
-let a2 = myJson2.split(",");
-
-var ls = document.getElementById('myLead');
-var myChart = new Chart(ls, {
-    type: 'horizontalBar',
+var ctxEmpl = document.getElementById('Overall');
+var progsEmpl = new Chart(ctxEmpl, {
+    type: 'doughnut',
     data: {
-        labels: a1,
+        labels: ['Pending', 'Failed', 'Success'],
         datasets: [{
-            label: 'Lead Source',
-            data: a2,
-            borderColor: '#f4f4f4',
-            backgroundColor: color1,
+            label: '# of Votes',
+            data: ['<?=$pend_empl;?>', '<?=$fail_empl;?>', '<?=$succ_empl;?>'],
+            backgroundColor: [
+                'rgba(255, 193, 7, 0.7)',
+                'rgba(255, 71, 71, 1)',
+                'rgba(60, 201, 69, 0.7)'
+            ],
             borderWidth: 2
-        }]
+        }],
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    fontSize: 10,
-                }
-            }],
-            xAxes: [{
-                ticks: {
-                    precision: 0,
-                    beginAtZero: true,
-                }
-            }],
+        legend: {
+            display: true,
+            labels: {
+                boxWidth: 10
+            }
         },
+        'onClick': function(e) {
+            var activePoints = progsEmpl.getElementsAtEvent(e);
+            var selectedIndex = activePoints[0]._index;
+            if (selectedIndex == 0) {
+                window.location.href = "<?=base_url('client/dashboard/program/all/pending/'.$empl_id);?>";
+            } else if (selectedIndex == 1) {
+                window.location.href = "<?=base_url('client/dashboard/program/all/failed/'.$empl_id);?>";
+            } else if (selectedIndex == 2) {
+                window.location.href = "<?=base_url('client/dashboard/program/all/success/'.$empl_id);?>";
+            }
+        }
+    },
+});
+
+
+//Admission Chart
+var admsEmpl = new Chart($('#admChartEmpl'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Pending', 'Failed', 'Success'],
+        datasets: [{
+            label: '# of Votes',
+            data: ['<?=$pend_adm_empl;?>', '<?=$fail_adm_empl;?>', '<?=$succ_adm_empl;?>'],
+            backgroundColor: [
+                'rgba(255, 193, 7, 0.7)',
+                'rgba(255, 71, 71, 1)',
+                'rgba(60, 201, 69, 0.7)'
+            ],
+            borderWidth: 2
+        }],
+    },
+    options: {
         legend: {
             display: false
+        },
+        'onClick': function(e) {
+            var activePoints = admsEmpl.getElementsAtEvent(e);
+            var selectedIndex = activePoints[0]._index;
+            if (selectedIndex == 0) {
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/admissions/pending/'.$empl_id);?>";
+            } else if (selectedIndex == 1) {
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/admissions/failed/'.$empl_id);?>";
+            } else if (selectedIndex == 2) {
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/admissions/success/'.$empl_id);?>";
+            }
         }
     }
 });
 
-let myJson3 = "<?=$arr3;?>";
-let a3 = myJson3.split(",");
-let myJson4 = "<?=$arr4;?>";
-let a4 = myJson4.split(",");
-
-var ls = document.getElementById('conversionLead');
-var myChart = new Chart(ls, {
-    type: 'horizontalBar',
+//Career Exploration Chart
+var careerEmpl = new Chart($('#careerChartEmpl'), {
+    type: 'doughnut',
     data: {
-        labels: a3,
+        labels: ['Pending', 'Failed', 'Success'],
         datasets: [{
-            label: 'Conversion Leads',
-            data: a4,
-            borderColor: '#f4f4f4',
-            backgroundColor: color2,
+            label: '# of Votes',
+            data: ['<?=$pend_career_empl;?>', '<?=$fail_career_empl;?>', '<?=$succ_career_empl;?>'],
+            backgroundColor: [
+                'rgba(255, 193, 7, 0.7)',
+                'rgba(255, 71, 71, 1)',
+                'rgba(60, 201, 69, 0.7)'
+            ],
             borderWidth: 2
-        }]
+        }],
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    fontSize: 10,
-                }
-            }],
-            xAxes: [{
-                ticks: {
-                    display: true,
-                    precision: 0,
-                    beginAtZero: true
-                }
-            }],
-        },
         legend: {
-            display: false,
+            display: false
+        },
+        'onClick': function(e) {
+            var activePoints = careerEmpl.getElementsAtEvent(e);
+            var selectedIndex = activePoints[0]._index;
+            if (selectedIndex == 0) {
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/career/pending/'.$empl_id);?>";
+            } else if (selectedIndex == 1) {
+                window.location.href = "<?=base_url('client/dashboard/program/career/failed/'.$empl_id);?>";
+            } else if (selectedIndex == 2) {
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/career/success/'.$empl_id);?>";
+            }
         }
     }
 });
 
-let myJson5 = "<?=$arr5;?>";
-let a5 = myJson5.split(",");
-let myJson6 = "<?=$arr6;?>";
-let a6 = myJson6.split(",");
-new Chart($('#admLead'), {
-    type: 'pie',
+//SAT Chart
+var satEmpl = new Chart($('#satChartEmpl'), {
+    type: 'doughnut',
     data: {
-        labels: a5,
+        labels: ['Pending', 'Failed', 'Success'],
         datasets: [{
-            data: a6,
-            backgroundColor: color1,
+            label: '# of Votes',
+            data: ['<?=$pend_sat_empl;?>', '<?=$fail_sat_empl;?>', '<?=$succ_sat_empl;?>'],
+            backgroundColor: [
+                'rgba(255, 193, 7, 0.7)',
+                'rgba(255, 71, 71, 1)',
+                'rgba(60, 201, 69, 0.7)'
+            ],
             borderWidth: 2
         }],
     },
     options: {
         legend: {
-            display: true,
-            labels: {
-                fontSize: 10,
-                boxWidth: 10,
-                padding: 5
-            }
+            display: false
         },
+        'onClick': function(e) {
+            var activePoints = satEmpl.getElementsAtEvent(e);
+            var selectedIndex = activePoints[0]._index;
+            if (selectedIndex == 0) {
+                window.location.href = "<?=base_url('client/dashboard/program/sat/pending/'.$empl_id);?>";
+            } else if (selectedIndex == 1) {
+                window.location.href = "<?=base_url('client/dashboard/program/sat/failed/'.$empl_id);?>";
+            } else if (selectedIndex == 2) {
+                window.location.href = "<?=base_url('client/dashboard/program/sat/success/'.$empl_id);?>";
+            }
+        }
     }
-
 });
 
-let myJson7 = "<?=$arr7;?>";
-let a7 = myJson7.split(",");
-let myJson8 = "<?=$arr8;?>";
-let a8 = myJson8.split(",");
-new Chart($('#careerLead'), {
-    type: 'pie',
+//SAT Chart
+var writingEmpl = new Chart($('#writingChartEmpl'), {
+    type: 'doughnut',
     data: {
-        labels: a7,
+        labels: ['Pending', 'Failed', 'Success'],
         datasets: [{
-            data: a8,
-            backgroundColor: color1,
+            label: '# of Votes',
+            data: ['<?=$pend_writing_empl;?>', '<?=$fail_writing_empl;?>', '<?=$succ_writing_empl;?>'],
+            backgroundColor: [
+                'rgba(255, 193, 7, 0.7)',
+                'rgba(255, 71, 71, 1)',
+                'rgba(60, 201, 69, 0.7)'
+            ],
             borderWidth: 2
         }],
     },
     options: {
         legend: {
-            display: true,
-            labels: {
-                fontSize: 10,
-                boxWidth: 10,
-                padding: 5
-            }
+            display: false
         },
-    }
-
-});
-
-let myJson9 = "<?=$arr9;?>";
-let a9 = myJson9.split(",");
-let myJson10 = "<?=$arr10;?>";
-let a10 = myJson10.split(",");
-new Chart($('#satLead'), {
-    type: 'pie',
-    data: {
-        labels: a9,
-        datasets: [{
-            data: a10,
-            backgroundColor: color1,
-            borderWidth: 2
-        }],
-    },
-    options: {
-        legend: {
-            display: true,
-            labels: {
-                fontSize: 10,
-                boxWidth: 10,
-                padding: 5
+        'onClick': function(e) {
+            var activePoints = writingEmpl.getElementsAtEvent(e);
+            var selectedIndex = activePoints[0]._index;
+            if (selectedIndex == 0) {
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/writing/pending/'.$empl_id);?>";
+            } else if (selectedIndex == 1) {
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/writing/failed/'.$empl_id);?>";
+            } else if (selectedIndex == 2) {
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/writing/success/'.$empl_id);?>";
             }
-        },
+        }
     }
-
-});
-
-let myJson11 = "<?=$arr11;?>";
-let a11 = myJson11.split(",");
-let myJson12 = "<?=$arr12;?>";
-let a12 = myJson12.split(",");
-new Chart($('#writingLead'), {
-    type: 'pie',
-    data: {
-        labels: a11,
-        datasets: [{
-            data: a12,
-            backgroundColor: color1,
-            borderWidth: 2
-        }],
-    },
-    options: {
-        legend: {
-            display: true,
-            labels: {
-                fontSize: 10,
-                boxWidth: 10,
-                padding: 5
-            }
-        },
-    }
-
 });
 </script>

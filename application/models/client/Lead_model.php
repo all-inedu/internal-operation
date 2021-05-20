@@ -1,8 +1,16 @@
 <?php
 class Lead_model extends CI_model
 {
+    public function getId(){
+        $this->db->select('RIGHT(tbl_lead.lead_id,3) as kode', FALSE);
+		$this->db->order_by('lead_id','DESC');    
+		$this->db->limit(1);    
+        return $query = $this->db->get('tbl_lead');
+    }
+
     public function showAll(){
         $this->db->select('*');
+        $this->db->order_by('lead_name', 'ASC');
         return $this->db->get('tbl_lead')->result_array();
     }
 

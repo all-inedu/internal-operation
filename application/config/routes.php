@@ -59,3 +59,6 @@ $route['lead'] = 'client/Lead/index';
 $route['student'] = 'client/student/index';
 // $route['student/view/(:num)'] = 'client/student/view/$1';
 $route['student/profile/(:num)'] = 'client/profile/student/$1';
+
+$route['api/save/school'] = 'Api/schoolSave';
+$route['api/save/lead'] = 'Api/leadSave';

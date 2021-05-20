@@ -28,29 +28,30 @@ class Dashboard extends CI_Controller
         }
     }
 
-    public function program($p="",$s=""){
+    public function program($p="",$s="", $e=""){
+        
         $m = date('m');
         $y = date('Y');
         $data['program'] = $this->prog->showB2C();
         $data['status'] = $s;
         if($p=="all") {
-            $data['stprog'] = $this->stprog->showAllByDate($m, $y);
+            $data['stprog'] = $this->stprog->showAllByDate($m, $y, $e);
         } 
         else if($p=="admissions") {
             $p = "Admissions Mentoring";
-            $data['stprog'] = $this->stprog->showAllByProgSub($m, $y, $p);
+            $data['stprog'] = $this->stprog->showAllByProgSub($m, $y, $p, $e);
         }
         else if($p=="career") {
             $p = "Career Exploration";
-            $data['stprog'] = $this->stprog->showAllByProgMain($m, $y, $p);
+            $data['stprog'] = $this->stprog->showAllByProgMain($m, $y, $p, $e);
         }
         else if($p=="sat") {
             $p = "SAT";
-            $data['stprog'] = $this->stprog->showAllByProgSub($m, $y, $p);
+            $data['stprog'] = $this->stprog->showAllByProgSub($m, $y, $p, $e);
         }
         else if($p=="writing") {
             $p = "Writing Course";
-            $data['stprog'] = $this->stprog->showAllByProgSub($m, $y, $p);
+            $data['stprog'] = $this->stprog->showAllByProgSub($m, $y, $p, $e);
         }
         
         $this->load->view('templates/s-io');

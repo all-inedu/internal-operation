@@ -11,7 +11,7 @@ class Program_model extends CI_model
         $list = ['B2C','B2B/B2C'];
         $this->db->select('*');
         $this->db->where_in('prog_type', $list); 
-        $this->db->order_by('prog_sub', 'ASC');
+        $this->db->order_by('main_number', 'ASC');
         return $this->db->get('tbl_prog')->result_array();
     }
     

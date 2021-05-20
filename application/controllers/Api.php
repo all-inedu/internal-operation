@@ -29,4 +29,53 @@ class Api extends CI_Controller
         echo json_encode($this->lead->showAll());
     }
 
+    public function schoolSave() {
+        $query = $this->sch->getId();   
+		if($query->num_rows() <> 0){        
+            $data = $query->row();      
+            $id = intval($data->kode) + 1;    
+		} else { 
+		    $id = 1;    
+		}
+        $idmax = str_pad($id, 4, "0", STR_PAD_LEFT); 
+        $newid = "SCH-".$idmax;
+
+        $data = [
+            'sch_id' => $newid,
+            'sch_name' => $this->input->post('sch_name')
+        ];
+
+        $process = $this->sch->save($data);
+        if($process) {
+			echo "001";
+		} else {
+			echo "03"; // error
+		}
+    }
+
+    public function leadSave() {
+        $query = $this->lead->getId();   
+		if($query->num_rows() <> 0){        
+            $data = $query->row();      
+            $id = intval($data->kode) + 1;    
+		} else { 
+		    $id = 1;    
+		}
+        $idmax = str_pad($id, 3, "0", STR_PAD_LEFT); 
+        $newid = "LS".$idmax;
+
+        echo $newid;
+
+        $data = [
+            'lead_id' => $newid,
+            'lead_name' => $this->input->post('lead_name'),
+        ];
+
+        $process = $this->lead->save($data);
+        if($process) {
+			echo "001";
+		} else {
+			echo "03"; // error
+		}
+    }
 }

@@ -14,9 +14,12 @@ class Invoice_model extends CI_model
         return $this->db->get('tbl_inv')->result_array();
     }
 
-    public function showAllByProg($m, $y, $p) {
+    public function showAllByProg($m, $y, $p, $e="") {
         $this->db->select('sum(tbl_inv.inv_totpridr) as tot');
         $this->db->where('tbl_stprog.stprog_status', 1);
+        if($e!="") {
+           $this->db->where('tbl_stprog.empl_id', $e); 
+        }
         $this->db->like('tbl_prog.prog_sub', $p);
         $this->db->group_start();
             $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
@@ -35,10 +38,13 @@ class Invoice_model extends CI_model
         return $this->db->get('tbl_inv')->result_array();
     }
 
-    public function showAllByProgMain($m, $y, $p) {
+    public function showAllByProgMain($m, $y, $p, $e="") {
         $this->db->select('sum(tbl_inv.inv_totpridr) as tot');
         $this->db->where('tbl_prog.prog_main', $p);
         $this->db->where('tbl_stprog.stprog_status', 1);
+        if($e!="") {
+           $this->db->where('tbl_stprog.empl_id', $e); 
+        }
         $this->db->group_start();
             $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
             $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);

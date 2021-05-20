@@ -42,32 +42,74 @@ class Home extends CI_Controller
         $data['poten'] = count($this->std->studentStatus(1));
         $data['curr'] = count($this->std->studentStatus(2));
         $data['compl'] = count($this->std->studentStatus(3));
+
+
         $data['init_consult'] = count($this->stprog->init_consult_date($month,$year));
         $data['ass_sent'] = count($this->stprog->assessment_sent($month,$year));
         $data['ass_making'] = $this->stprog->stprog_adm_ass_making($month, $year);
+
+        // EMPL 
+        $data['init_consult_empl'] = count($this->stprog->init_consult_date($month,$year, $empl_id));
+        $data['ass_sent_empl'] = count($this->stprog->assessment_sent($month,$year, $empl_id));
+        $data['ass_making_empl'] = $this->stprog->stprog_adm_ass_making($month, $year, $empl_id);
+
+        // ALL 
         $data['pend'] = count($this->stprog->studentProgStatus(0, $month, $year));
         $data['succ'] = count($this->stprog->studentProgStatus(1, $month, $year));
         $data['fail'] = count($this->stprog->studentProgStatus(2, $month, $year)); 
 
+        // EMPL
+        $data['pend_empl'] = count($this->stprog->studentProgStatus(0, $month, $year, $empl_id));
+        $data['succ_empl'] = count($this->stprog->studentProgStatus(1, $month, $year, $empl_id));
+        $data['fail_empl'] = count($this->stprog->studentProgStatus(2, $month, $year, $empl_id)); 
+
+        // ALL 
         $data['tot_inv_adm'] = $this->inv->showAllByProg($month, $year, "Admissions Mentoring");
         $data['pend_adm'] = count($this->stprog->studentProgStatusByProg(0, $month, $year, "Admissions Mentoring"));
         $data['succ_adm'] = count($this->stprog->studentProgStatusByProg(1, $month, $year, "Admissions Mentoring"));
         $data['fail_adm'] = count($this->stprog->studentProgStatusByProg(2, $month, $year, "Admissions Mentoring"));
+
+        // EMPL 
+        $data['tot_inv_adm_empl'] = $this->inv->showAllByProg($month, $year, "Admissions Mentoring", $empl_id);
+        $data['pend_adm_empl'] = count($this->stprog->studentProgStatusByProg(0, $month, $year, "Admissions Mentoring", $empl_id));
+        $data['succ_adm_empl'] = count($this->stprog->studentProgStatusByProg(1, $month, $year, "Admissions Mentoring", $empl_id));
+        $data['fail_adm_empl'] = count($this->stprog->studentProgStatusByProg(2, $month, $year, "Admissions Mentoring", $empl_id));
         
+        // ALL 
         $data['tot_inv_career'] = $this->inv->showAllByProgMain($month, $year, "Career Exploration");
         $data['pend_career'] = count($this->stprog->studentProgStatusByProgMain(0, $month, $year, "Career Exploration"));
         $data['succ_career'] = count($this->stprog->studentProgStatusByProgMain(1, $month, $year, "Career Exploration"));
         $data['fail_career'] = count($this->stprog->studentProgStatusByProgMain(2, $month, $year, "Career Exploration"));
-        
+
+        // EMPL 
+        $data['tot_inv_career_empl'] = $this->inv->showAllByProgMain($month, $year, "Career Exploration", $empl_id);
+        $data['pend_career_empl'] = count($this->stprog->studentProgStatusByProgMain(0, $month, $year, "Career Exploration", $empl_id));
+        $data['succ_career_empl'] = count($this->stprog->studentProgStatusByProgMain(1, $month, $year, "Career Exploration", $empl_id));
+        $data['fail_career_empl'] = count($this->stprog->studentProgStatusByProgMain(2, $month, $year, "Career Exploration", $empl_id));
+             
+        // ALL 
         $data['tot_inv_sat'] = $this->inv->showAllByProg($month, $year, "SAT");
         $data['pend_sat'] = count($this->stprog->studentProgStatusByProg(0, $month, $year, "SAT"));
         $data['succ_sat'] = count($this->stprog->studentProgStatusByProg(1, $month, $year, "SAT"));
         $data['fail_sat'] = count($this->stprog->studentProgStatusByProg(2, $month, $year, "SAT"));
+        
+        // EMPL 
+        $data['tot_inv_sat_empl'] = $this->inv->showAllByProg($month, $year, "SAT", $empl_id);
+        $data['pend_sat_empl'] = count($this->stprog->studentProgStatusByProg(0, $month, $year, "SAT", $empl_id));
+        $data['succ_sat_empl'] = count($this->stprog->studentProgStatusByProg(1, $month, $year, "SAT", $empl_id));
+        $data['fail_sat_empl'] = count($this->stprog->studentProgStatusByProg(2, $month, $year, "SAT", $empl_id));
 
+        // ALL 
         $data['tot_inv_writing'] = $this->inv->showAllByProg($month, $year, "Writing Course");
         $data['pend_writing'] = count($this->stprog->studentProgStatusByProg(0, $month, $year, "Writing Course"));
         $data['succ_writing'] = count($this->stprog->studentProgStatusByProg(1, $month, $year, "Writing Course"));
         $data['fail_writing'] = count($this->stprog->studentProgStatusByProg(2, $month, $year, "Writing Course"));
+
+        // EMPL 
+        $data['tot_inv_writing_empl'] = $this->inv->showAllByProg($month, $year, "Writing Course", $empl_id);
+        $data['pend_writing_empl'] = count($this->stprog->studentProgStatusByProg(0, $month, $year, "Writing Course", $empl_id));
+        $data['succ_writing_empl'] = count($this->stprog->studentProgStatusByProg(1, $month, $year, "Writing Course", $empl_id));
+        $data['fail_writing_empl'] = count($this->stprog->studentProgStatusByProg(2, $month, $year, "Writing Course", $empl_id));
 
         $data['lead'] = $this->stprog->studentProgramLead($month, $year);
         $data['con_lead'] = $this->stprog->studentProgramConversionLead($month, $year);
@@ -78,6 +120,8 @@ class Home extends CI_Controller
             
         $this->load->view('templates/s-io');
         $this->load->view('client/index', $data);
+        // $this->load->view('client/contribute', $data);
+        $this->load->view('client/lead', $data);
         $this->load->view('templates/f-io');
     }
 
