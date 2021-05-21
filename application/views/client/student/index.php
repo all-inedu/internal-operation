@@ -493,6 +493,9 @@ $(document).ready(function() {
     $('#sProg').on('change', function() {
         tables.column(14).search($(this).val()).draw();
     });
+    $('#parent').on('keyup', function() {
+        tables.column(4).search($(this).val()).draw();
+    });
     $('#year').on('change', function() {
         tables.column(15).search($(this).val()).draw();
     });
