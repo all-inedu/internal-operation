@@ -127,8 +127,8 @@
                                     echo $inv['prog_sub'].': '.$inv['prog_program'];
                                 }
                             ?>
-                            </b>
-                            <i><?=$inv['inv_notes'];?></i>
+                        </b>
+                        <i><?=$inv['inv_notes'];?></i>
                     </div>
 
                     <div style="margin-top:5px;">
@@ -231,7 +231,7 @@
                     <div style="height:35px;">
                         Rp. <?=number_format($inv['inv_priceidr']);?>
                     </div>
-                    <div style="margin-top:-5px;">
+                    <div style="margin-top:-10px;">
                         <?=$early;?><br>
                         <?=$disc;?><br>
                     </div>

@@ -161,7 +161,8 @@
                         </div>
                         <div class="col-md-8 text-muted">
                             <div class="row">
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-6 mb-3">
+                                    <small>Full Name</small>
                                     <select name="pr_id" id="prName" onchange="addParent()">
                                         <option data-placeholder="true"></option>
                                         <option value="other">Add New Parent</option>
@@ -171,7 +172,18 @@
                                         <?php endforeach ;?>
                                     </select>
                                 </div>
+                                <?php
+                                    if($s['pr_id']!="") {
+                                        $pr = $this->prt->showId($s['pr_id']);
+                                ?>
+                                <div class="col-md-6 parent-mail">
+                                    <small>Parents Email</small>
+                                    <input type="text" value="<?=$pr['pr_mail'];?>" class="form-control form-control-sm"
+                                        readonly>
+                                </div>
+                                <?php } ?>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6 mb-3 parent d-none">
                                     <small>First Name</small>
@@ -577,7 +589,18 @@ function addParent() {
     if (p == 'other') {
         $(".parent").addClass("d-block");
         $("#pFName").focus();
+        $(".parent-mail").hide();
     } else {
+        $(".parent-mail").show();
+        $.ajax({
+            type: 'post',
+            url: '<?=base_url("api/parent/");?>' + p,
+            dataType: 'json',
+            success: function(data) {
+                // console.log(data)
+                $(".parent-mail input").val(data.pr_mail);
+            }
+        });
         $(".parent").removeClass("d-block");
         $(".parent").addClass("d-none");
     }

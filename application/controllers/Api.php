@@ -15,6 +15,7 @@ class Api extends CI_Controller
         $this->load->library('majors');
         $this->load->model('bizdev/School_model','sch');
         $this->load->model('client/Lead_model','lead');
+        $this->load->model('client/Parents_model','prt');
     }
 
     public function countries() {
@@ -34,6 +35,7 @@ class Api extends CI_Controller
     }
 
     public function schoolSave() {
+        $sch = $this->input->post('sch_name');
         $query = $this->sch->getId();   
 		if($query->num_rows() <> 0){        
             $data = $query->row();      
@@ -44,17 +46,20 @@ class Api extends CI_Controller
         $idmax = str_pad($id, 4, "0", STR_PAD_LEFT); 
         $newid = "SCH-".$idmax;
 
-        $data = [
-            'sch_id' => $newid,
-            'sch_name' => $this->input->post('sch_name')
-        ];
-
-        $process = $this->sch->save($data);
-        if($process) {
-			echo "001";
-		} else {
-			echo "03"; // error
-		}
+        if($sch!="") {
+            $data = [
+                'sch_id' => $newid,
+                'sch_name' => $sch
+            ];
+            $process = $this->sch->save($data);
+            if($process) {
+                echo "001";
+            } else {
+                echo "03"; // error
+            }
+        } else {
+            echo "no data";
+        }
     }
 
     public function leadSave() {
@@ -81,5 +86,16 @@ class Api extends CI_Controller
 		} else {
 			echo "03"; // error
 		}
+    }
+
+    public function parent($id="") 
+    {
+        if($id=="") {
+            $pr = $this->prt->showAll();
+        } else {
+            $pr = $this->prt->showId($id);
+        }
+
+        echo json_encode($pr);
     }
 }
