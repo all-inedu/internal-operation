@@ -62,7 +62,7 @@ class Student extends CI_Controller
             
             $data = [
                 'receipt_id' => $rec_id,
-                'inv_id' => $inv_id,
+                'inv_id' => $inv_id, 
                 'invdtl_id' => $this->input->post('invdtl_id'),
                 'receipt_cat' => $this->input->post('receipt_cat'),
                 'receipt_mtd' => $this->input->post('receipt_mtd'),

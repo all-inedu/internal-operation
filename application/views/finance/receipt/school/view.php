@@ -210,6 +210,29 @@
                     <div class="col-md-9 mb-3 mb-3">
                         <?=$rec['invsch_tnc'];?>
                     </div>
+
+                    <?php if($rec['invsch_pm']=='Installment'){ ?>
+                    <div class="col-md-12 mt-3">
+                        <table class="table table-bordered text-center">
+                            <tr>
+                                <th>Name</th>
+                                <th>Due Date</th>
+                                <th>Percent</th>
+                                <th>Amount</th>
+                            </tr>
+                            <?php foreach($invdtls as $id){ ?>
+                            <tr>
+                                <td><?=$id['invdtl_statusname'];?></td>
+                                <td><?=date('d F Y', strtotime($id['invdtl_duedate']));?></td>
+                                <td><?=$id['invdtl_percentage'];?>%</td>
+                                <td>
+                                    Rp. <?=number_format($id['invdtl_amountidr']);?>
+                                </td>
+                            </tr>
+                            <?php } ?>
+                        </table>
+                    </div>
+                    <?php }?>
                 </div>
             </div>
         </div>

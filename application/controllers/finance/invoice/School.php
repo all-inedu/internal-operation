@@ -10,7 +10,9 @@ class School extends CI_Controller
 
         $this->load->library('pdf');
         $this->load->model('bizdev/SProgram_model','schprog');
+        $this->load->model('finance/Invoice_model','inv');
         $this->load->model('finance/InvoiceSchool_model','invsch');
+        $this->load->model('finance/InvoiceDetail_model','invdetail');
         $this->load->model('finance/Receipt_model','receipt');
         $this->load->model('Menus_model','menu');
         
@@ -84,21 +86,86 @@ class School extends CI_Controller
             'invsch_disc' => $this->input->post('invsch_disc'),
             'invsch_totprice' => $this->input->post('invsch_totprice'),
             'invsch_words' => $this->input->post('invsch_words'),
+            'invsch_pm' => $this->input->post('invsch_pm'),
             'invsch_date' => $this->input->post('invsch_date'),
             'invsch_duedate' => $this->input->post('invsch_duedate'),
             'invsch_notes' => $this->input->post('invsch_notes'),
             'invsch_tnc' => $this->input->post('invsch_tnc')
         ];
+
+        $pm = $this->input->post('invsch_pm');
+        if($pm=="Installment") {
+            $n = count($this->input->post('invdtl_statusname[]'));
+
+            for($i=0; $i<$n; $i++) {
+                $install = [
+                    'inv_id' => $inv_id,
+                    'invdtl_statusname' => $this->input->post('invdtl_statusname['.$i.']'),
+                    'invdtl_duedate' => $this->input->post('invdtl_duedate['.$i.']'),
+                    'invdtl_percentage' => $this->input->post('invdtl_percentage['.$i.']'),
+                    'invdtl_amountidr' => $this->input->post('invdtl_amountidr['.$i.']'),
+                    'invdtl_status' => 0
+                ];
+                $this->inv->saveDetail($install);
+                // echo json_encode($install);
+
+            }
+        }
         // echo json_encode($data);
         $this->invsch->save($data);
         $this->session->set_flashdata('success', 'Invoice has been created');
         redirect('/finance/invoice/school/view/'.$id);
     }
 
+    public function view_detail($id) {
+        $data = $this->invdetail->showDetailId($id);
+        echo json_encode($data);
+    }
+
+    public function save_detail() {
+        $inv_num = $this->input->post('inv_num');
+        $id = $this->input->post('id');
+        $data = [
+            'inv_id' => $this->input->post('inv_id'),
+            'invdtl_statusname' => $this->input->post('invdtl_statusname'),
+            'invdtl_duedate' => $this->input->post('invdtl_duedate'),
+            'invdtl_percentage' => $this->input->post('invdtl_percentage'),
+            'invdtl_amountusd' => $this->input->post('invdtl_amountusd'),
+            'invdtl_amountidr' => $this->input->post('invdtl_amountidr'),
+        ];
+        
+        $this->invdetail->save($data);
+        $this->session->set_flashdata('success', 'Installment has been created');
+        redirect('/finance/invoice/school/edit/'.$id);
+    }
+
+     public function update_detail() {
+        $inv_num = $this->input->post('inv_num');
+        $id = $this->input->post('invdtl_id');
+        $schprog = $this->input->post('id');
+        $data = [
+            'invdtl_statusname' => $this->input->post('invdtl_statusname'),
+            'invdtl_duedate' => $this->input->post('invdtl_duedate'),
+            'invdtl_percentage' => $this->input->post('invdtl_percentage'),
+            'invdtl_amountusd' => $this->input->post('invdtl_amountusd'),
+            'invdtl_amountidr' => $this->input->post('invdtl_amountidr'),
+        ];
+
+        $this->invdetail->update($data, $id);
+        $this->session->set_flashdata('success', 'Installment has been changed');
+        redirect('/finance/invoice/school/edit/'.$schprog);
+    }
+
+    public function delete_detail($id, $schprog) {
+        $this->invdetail->delete($id);
+        $this->session->set_flashdata('success', 'Installment has been deleted');
+        redirect('/finance/invoice/school/edit/'.$schprog);
+    }
 
     public function viewInvoice($id) {
         $data['schprog'] = $this->invsch->showId($id);
         $inv_id = $data['schprog']['invsch_id'];
+        $data['invdtl'] = $this->invdetail->showId($inv_id);
         $data['fixprog'] = $this->schprog->showProgramExec($id); 
         $data['rec'] = $this->receipt->showByInvId($inv_id);
         $this->load->view('templates/s-io');
@@ -109,6 +176,8 @@ class School extends CI_Controller
     public function edit($id) {
         $data['schprog'] = $this->invsch->showId($id);
         $data['fixprog'] = $this->schprog->showProgramExec($id); 
+        $inv_id = $data['schprog']['invsch_id'];
+        $data['invdtl'] = $this->invdetail->showId($inv_id);
         $this->form_validation->set_rules('invsch_price', 'price', 'required');
         $this->form_validation->set_rules('invsch_date', 'date', 'required');
         $this->form_validation->set_rules('invsch_duedate', 'due date', 'required');
@@ -130,11 +199,18 @@ class School extends CI_Controller
             'invsch_disc' => $this->input->post('invsch_disc'),
             'invsch_totprice' => $this->input->post('invsch_totprice'),
             'invsch_words' => $this->input->post('invsch_words'),
+            'invsch_pm' => $this->input->post('invsch_pm'),
             'invsch_date' => $this->input->post('invsch_date'),
             'invsch_duedate' => $this->input->post('invsch_duedate'),
             'invsch_notes' => $this->input->post('invsch_notes'),
             'invsch_tnc' => $this->input->post('invsch_tnc')
         ];
+
+        if($this->input->post('invsch_pm')!='Installment') {
+            $inv_id = $this->input->post('invsch_id');
+            $this->invdetail->deleteInvId($inv_id);
+        }
+        
         // echo json_encode($data);
         $this->invsch->update($data, $id);
         $this->session->set_flashdata('success', 'Invoice has been created');
@@ -153,10 +229,9 @@ class School extends CI_Controller
         $inv = $data['schprog']['invsch_id'];
         $inv_id = explode("/",$inv);
         $new_inv = implode("-", $inv_id);
-        
-        $data['nama'] = 'School Name';
-        $data['alamat'] ='Jl A No.25 Kebon Jeruk <br>Jakarta Barat 11530';
-        $data['program'] = 'SAT Private';
+        $id_inv = $data['schprog']['invsch__inv'];
+
+        $data['invdtl'] = $this->invdetail->showId($id_inv);
         $html = $this->load->view('finance/invoice/school/export/pdf', $data, true);
         $this->pdf->createPDF($html, $new_inv, false);
     }

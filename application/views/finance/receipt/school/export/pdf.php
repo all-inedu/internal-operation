@@ -116,23 +116,37 @@
             <tr>
                 <td valign="top" align="center">1</td>
                 <td valign="top" style="padding-bottom:50px;">
-                    <b>
-                        <?php 
+                    <div style="height:70px;">
+                        <b>
+                            <?php 
                                 if($rec['prog_sub']=='') {
                                     echo $rec['prog_program'];
                                 } else {
                                     echo $rec['prog_sub'].': '.$rec['prog_program'];
                                 }
                             ?>
-                    </b>
-                    for <?=$rec['invsch_participants'];?> students
-                    <i><?=$rec['invsch_notes'];?></i>
+                        </b>
+                        for <?=$rec['invsch_participants'];?> students
+                        <br>
+                        <?=$invdtl['invdtl_statusname']." (".$invdtl['invdtl_percentage']."%) ";?>
+                        <i><?=$rec['invsch_notes'];?></i>
+                    </div>
+                    <?php if($rec['invsch_disc']!=0) { ?>
+                    <i>Discount</i>
+                    <?php } ?>
                 </td>
                 <td valign="top" align="center">
+                    <div style="height:70px;">
+                        Rp. <?=number_format($rec['invsch_price']);?>
+                    </div>
+                </td>
+                <td valign="top" align="center">
+                    <div style="height:70px;">
+                        Rp. <?=number_format($rec['invsch_totprice']+$rec['invsch_disc']);?>
+                    </div>
+                    <?php if($rec['invsch_disc']!=0) { ?>
                     Rp. <?=number_format($rec['invsch_price']);?>
-                </td>
-                <td valign="top" align="center">
-                    Rp. <?=number_format($rec['invsch_totprice']);?>
+                    <?php } ?>
                 </td>
             </tr>
             <tr>

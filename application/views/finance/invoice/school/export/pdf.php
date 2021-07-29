@@ -159,6 +159,19 @@
                 <td>
                     <b style="letter-spacing:0.7px;">Total Amount : <i><?=$schprog['invsch_words'];?></i> </b>
                     <br><br>
+
+                    <?php if($schprog['invsch_pm']=="Installment") { ?>
+                    Terms of Payment :
+                    <div style="margin-left:2px;">
+                        <?php foreach ($invdtl as $id) : ?>
+                        -
+                        <?=$id['invdtl_statusname'].' '.$id['invdtl_percentage'].'% on '.date('d F Y', strtotime($id['invdtl_duedate'])).' : Rp. '.number_format($id['invdtl_amountidr']) ;?>
+                        <br>
+                        <?php endforeach; ?>
+                    </div>
+                    <br>
+                    <?php } ?>
+
                     <?php if($schprog['invsch_tnc']) { ?>
                     Terms & Conditions :
                     <i><?=$schprog['invsch_tnc'];?></i>

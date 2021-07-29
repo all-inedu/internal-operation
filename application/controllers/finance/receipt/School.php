@@ -10,6 +10,7 @@ class School extends CI_Controller
         $this->load->library('pdf');
         $this->load->model('bizdev/SProgram_model','schprog');
         $this->load->model('finance/InvoiceSchool_model','invsch');
+        $this->load->model('finance/InvoiceDetail_model','invdetail');
         $this->load->model('finance/Receipt_model','receipt');
         $this->load->model('Menus_model','menu');
         
@@ -78,7 +79,9 @@ class School extends CI_Controller
 
     public function view($id){  
         $data['rec'] = $this->receipt->showIdB2B($id); 
+        $inv_id = $data['rec']['inv_id'];
         // echo json_encode($data['rec']);
+        $data['invdtls'] = $this->invdetail->showId($inv_id);
         $this->load->view('templates/s-io');
         $this->load->view('finance/receipt/school/view', $data);
         $this->load->view('templates/f-io');
@@ -126,6 +129,8 @@ class School extends CI_Controller
     public function pdf($id)
     {
         $data['rec'] = $this->receipt->showIdB2B($id);
+        $invdtl_id = $data['rec']['invdtl_id'];
+        $data['invdtl'] = $this->invdetail->showDetailId($invdtl_id);
         $name = explode("/", $data['rec']['receipt_id']);
         $new_name = implode("-", $name);
         $html = $this->load->view('finance/receipt/school/export/pdf', $data, true);

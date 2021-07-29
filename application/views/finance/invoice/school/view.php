@@ -53,6 +53,7 @@
         <div class="card shadow mb-3">
             <div class="card-body">
                 <h6><i class="fas fa-dollar-sign"></i>&nbsp; &nbsp; View Invoice </h6>
+                <?php if($schprog['invsch_pm']=="Full Payment") { ?>
                 <div class="float-right" style="margin-top:-30px;">
                     <?php 
                     if(!$rec) {
@@ -68,6 +69,7 @@
                     </a>
                     <?php } ?>
                 </div>
+                <?php } ?>
                 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                 <div class="row">
                     <div class="col-md-2">
@@ -126,6 +128,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-2 ">
+                        Payment Method :
+                    </div>
+                    <div class="col-md-10 mb-3">
+                        <?=$schprog['invsch_pm'];?>
+                    </div>
 
                     <div class="col-md-2 ">
                         Notes :
@@ -140,6 +148,51 @@
                     <div class="col-md-10 mb-3">
                         <?=$schprog['invsch_tnc'];?>
                     </div>
+
+                    <?php if($schprog['invsch_pm']=='Installment'){ ?>
+                    <div class="col-md-12 mt-3">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Due Date</th>
+                                    <th>Percent</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                                <?php foreach($invdtl as $id){ ?>
+                                <tr>
+                                    <td><?=$id['invdtl_statusname'];?></td>
+                                    <td><?=date('d F Y', strtotime($id['invdtl_duedate']));?></td>
+                                    <td><?=$id['invdtl_percentage'];?>%</td>
+                                    <td>
+                                        Rp. <?=number_format($id['invdtl_amountidr']);?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                            $invdtl_id = $id['invdtl_id'];
+                                            $rec_detail = $this->receipt->showByInvdtlId($invdtl_id);
+                                            if(!$rec_detail){
+                                        ?>
+                                        <button class="btn btn-sm btn-secondary" data-toggle="modal"
+                                            data-target="#addReceipt"
+                                            onclick="addReceiptInsallment(<?=$id['invdtl_id'];?>)"><i
+                                                class="fas fa-plus"></i> &nbsp; Add
+                                            Receipt</button>
+                                        <?php } else { ?>
+                                        <a href="<?=base_url('finance/receipt/student/view/'.$rec_detail['receipt_num']);?>"
+                                            class="btn btn-sm btn-success">
+                                            <i class="icofont-search"></i> &nbsp;
+                                            View Receipt
+                                        </a>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </table>
+                        </div>
+                    </div>
+                    <?php }?>
                 </div>
             </div>
         </div>
@@ -163,6 +216,7 @@
                             <div class="form-group">
                                 <input type="hidden" name="invsch_id" value="<?=$schprog['invsch_id'];?>">
                                 <input type="hidden" name="schprog_id" value="<?=$schprog['schprog_id'];?>">
+                                <input type="hidden" id="invdtl_id" name="invdtl_id">
                                 <input type="hidden" name="receipt_cat" value="2">
                                 <input type="number" name="receipt_amount" id="amount"
                                     class="form-control form-control-sm" value="<?=$schprog['invsch_totprice'];?>"
@@ -218,5 +272,23 @@ function paymentMethods() {
     } else {
         $('#cheque').prop("readonly", true)
     }
+}
+
+function addReceiptInsallment(x) {
+    $('.usd').show();
+    $.ajax({
+        type: 'post',
+        url: '<?=base_url("finance/invoice/student/showinvdtljson/");?>' + x,
+        dataType: 'json',
+        success: function(data) {
+            // console.log(data)
+            $('#invdtl_id').val(data.invdtl_id);
+            $('#percentage').val(data.invdtl_percentage);
+            $('#amount').val(data.invdtl_amountidr);
+            $('#words').val(capitalize(data.invdtl_amountidr));
+            $('#receipt_amountusd').val(data.invdtl_amountusd);
+            $('#wordsusd').val(capitalizeUSD(data.invdtl_amountusd));
+        }
+    });
 }
 </script>
