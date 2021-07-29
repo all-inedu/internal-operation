@@ -229,7 +229,7 @@ class School extends CI_Controller
         $inv = $data['schprog']['invsch_id'];
         $inv_id = explode("/",$inv);
         $new_inv = implode("-", $inv_id);
-        $id_inv = $data['schprog']['invsch__inv'];
+        $id_inv = $data['schprog']['invsch_id'];
 
         $data['invdtl'] = $this->invdetail->showId($id_inv);
         $html = $this->load->view('finance/invoice/school/export/pdf', $data, true);

@@ -37,7 +37,7 @@
     }
 
     .table-detail {
-        width:100%;
+        width: 100%;
     }
 
     .table-detail td,
@@ -178,7 +178,7 @@
                 ?>
                 <td valign="top" align="right">
                     <div style="height:45px;">
-                        <?=$price;?> 
+                        <?=$price;?>
                     </div>
                     <?=$early;?> <br>
                     <?=$disc;?> <br>
