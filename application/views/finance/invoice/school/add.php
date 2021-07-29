@@ -249,7 +249,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script src="<?=base_url('assets/js/generate-number.js');?>"></script>
 <script>
-// $('#steps').hide();
+$('#steps').hide();
 
 $('#price').keyup(function() {
     let checkBox = document.getElementById("check");
