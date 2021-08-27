@@ -12,6 +12,7 @@ class Mentor_model extends CI_model
         $this->db->select('*');
         $this->db->where('mt_istutor <=',2);
         $this->db->where('mt_status',1);
+        $this->db->order_by('mt_firstn','ASC');
         return $this->db->get('tbl_mt')->result_array();
     }
 

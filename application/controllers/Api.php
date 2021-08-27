@@ -16,6 +16,7 @@ class Api extends CI_Controller
         $this->load->model('bizdev/School_model','sch');
         $this->load->model('client/Lead_model','lead');
         $this->load->model('client/Parents_model','prt');
+        $this->load->model('hr/Mentor_model','mt');
     }
 
     public function countries() {
@@ -97,5 +98,21 @@ class Api extends CI_Controller
         }
 
         echo json_encode($pr);
+    }
+
+    public function mentor() 
+    {
+        $query =  $this->mt->showMentorActive();
+        $data = [];
+        $no = 0;
+        foreach ($query as $i) {
+            $data[$no] = [
+                'mt_id' => $i['mt_id'],
+                'mt_name' => $i['mt_firstn']." ".$i['mt_lastn'],
+            ];
+            $no++;
+        }
+
+        echo json_encode($data);
     }
 }

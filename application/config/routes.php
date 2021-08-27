@@ -63,3 +63,5 @@ $route['student/profile/(:num)'] = 'client/profile/student/$1';
 $route['api/save/school'] = 'Api/schoolSave';
 $route['api/save/lead'] = 'Api/leadSave';
 $route['api/parent/(:num)'] = 'Api/parent/$1';
+
+$route['api/mentor'] = 'Api/mentor';
