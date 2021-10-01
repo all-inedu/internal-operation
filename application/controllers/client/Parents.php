@@ -77,6 +77,7 @@ class Parents extends CI_Controller
             'pr_lastname' => $this->input->post('pr_lastname'),
             'pr_mail' => $this->input->post('pr_mail'),
             'pr_phone' => $this->input->post('pr_phone'),
+            'pr_dob' => $this->input->post('pr_dob'),
             'pr_insta' => $this->input->post('pr_insta'),
             'pr_state' => $this->input->post('st_state'),
             'pr_address' => $this->input->post('st_address').$this->input->post('st_pc') ,
@@ -163,6 +164,7 @@ class Parents extends CI_Controller
             'pr_lastname' => $this->input->post('pr_lastname'),
             'pr_mail' => $this->input->post('pr_mail'),
             'pr_phone' => $this->input->post('pr_phone'),
+            'pr_dob' => $this->input->post('pr_dob'),
             'pr_insta' => $this->input->post('pr_insta'),
             'pr_state' => $this->input->post('pr_state'),
             'pr_address' => $this->input->post('pr_address')

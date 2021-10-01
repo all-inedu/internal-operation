@@ -63,6 +63,18 @@
                 <div class="line" style="margin-top:15px; margin-bottom:0px;"></div>
                 <div class="row mt-3">
                     <div class="col-md-4 mb-1">
+                        <i class="fas fa-birthday-cake"></i>&nbsp; &nbsp; Date of Birth :
+                    </div>
+                    <div class="col-md-8">
+                        <?php 
+                            if($parent['pr_dob']!=null) {
+                        ?>
+                        <?= date('d M Y', strtotime($parent['pr_dob']));?>
+                        <?php } else { echo '-';}?>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-4 mb-1">
                         <i class="fas fa-map-marker-alt"></i>&nbsp; &nbsp; Address :
                     </div>
                     <div class="col-md-8">

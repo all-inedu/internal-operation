@@ -72,7 +72,7 @@
                                 <?=form_error('st_lastname', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>E-mail</label>
                                 <input name="st_mail" type="text" class="form-control form-control-sm"
@@ -80,7 +80,7 @@
                                 <?=form_error('st_mail', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>Phone Number <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="st_phone" type="text" class="form-control form-control-sm"
@@ -88,7 +88,14 @@
                                 <?=form_error('st_phone', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Date of Birth</label>
+                                <input name="st_dob" type="date" class="form-control form-control-sm">
+                                <?=form_error('st_dob', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>Instagram</label>
                                 <input name="st_insta" type="text" class="form-control form-control-sm"
@@ -96,7 +103,7 @@
                                 <?=form_error('st_insta', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>State / Region <i class="text-danger font-weight-bold">*</i></label>
                                 <input name="st_state" type="text" class="form-control form-control-sm"
@@ -112,7 +119,7 @@
                                 <?=form_error('st_city', '<small class="text-danger">', '</small>');?>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>Postal Code</label>
                                 <input name="st_pc" type="text" class="form-control form-control-sm"

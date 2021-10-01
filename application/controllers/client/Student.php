@@ -129,6 +129,7 @@ class Student extends CI_Controller
             'st_lastname' => $this->input->post('st_lastname'),
             'st_mail' => $this->input->post('st_mail'),
             'st_phone' => $this->input->post('st_phone'),
+            'st_dob' => $this->input->post('st_dob'),
             'st_insta' => $this->input->post('st_insta'),
             'st_state' => $this->input->post('st_state'),
             'st_city' => $this->input->post('st_city'),

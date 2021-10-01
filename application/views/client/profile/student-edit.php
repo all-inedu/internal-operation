@@ -116,6 +116,26 @@
                         </div>
 
                         <div class="col-md-4 mb-1">
+                            <i class="fas fa-birthday-cake"></i>&nbsp; &nbsp; Date of Birth :
+                        </div>
+                        <div class="col-md-8 text-muted">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <?php 
+                                        if($s['st_dob']==null) {
+                                    ?>
+                                    <input name="st_dob" type="date" class="form-control form-control-sm">
+                                    <?php } else { ?>
+                                    <input name="st_dob" type="date" class="form-control form-control-sm"
+                                        value="<?=$s['st_dob'];?>">
+                                    <?php } ?>
+                                    <?=form_error('st_dob', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 mb-1">
                             <i class="fab fa-instagram"></i>&nbsp; &nbsp; Instagram :
                         </div>
                         <div class="col-md-8 text-muted">

@@ -82,6 +82,17 @@
                         <?=date('d M Y H:i:s', strtotime($s['st_datelastedit']));?>
                     </small>
                 </div>
+                <div class="row mb-3">
+                    <div class="col-md-4 mb-1">
+                        <i class="fas fa-birthday-cake"></i>&nbsp; &nbsp; Date of Birth :
+                    </div>
+                    <div class="col-md-8 ">
+                        <?php if($s['st_dob']!=null) { 
+                            echo date('d M Y', strtotime($s['st_dob']));
+                        } ?>
+                        <hr class="mt-1 mb-1">
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-4 mb-1">
                         <i class="fas fa-map-marker-alt"></i>&nbsp; &nbsp; Address :

@@ -89,6 +89,13 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
+                                <label>Date of Birth</label>
+                                <input name="pr_dob" type="date" class="form-control form-control-sm">
+                                <?=form_error('pr_dob', '<small class="text-danger">', '</small>');?>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <label>Instagram</label>
                                 <input name="pr_insta" type="text" class="form-control form-control-sm"
                                     placeholder="Instagram">

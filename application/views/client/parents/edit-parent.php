@@ -101,6 +101,25 @@
                         </div>
 
                         <div class="col-md-4 mb-1">
+                            <i class="fas fa-mobile-alt"></i>&nbsp; &nbsp; Date of Birth :
+                        </div>
+                        <div class="col-md-8 text-muted">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <?php 
+                                        if($parent['pr_dob']!=null) {
+                                    ?>
+                                    <input name="pr_dob" type="date" value="<?=$parent['pr_dob'];?>"
+                                        class="form-control form-control-sm">
+                                    <?php } else { ?>
+                                    <input name="pr_dob" type="date" value="<?=$parent['pr_dob'];?>"
+                                        class="form-control form-control-sm">
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-1">
                             <i class="fab fa-instagram"></i>&nbsp; &nbsp; Instagram :
                         </div>
                         <div class="col-md-8 text-muted">
