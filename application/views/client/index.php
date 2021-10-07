@@ -92,12 +92,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    Birthday (<?=date('d M Y');?>)
+                    Birthday
                     <?php 
-                        $day = date('D');
-                        $week_end = strtotime('next '.$day, time());
+                        $date = date('Y-m-d');
+                        // $date = '2021-10-29';
+                        $day = date('D',strtotime($date));
+                        $week_end = strtotime('next '.$day, strtotime($date));
+                        $month_start = date('M Y', $week_end);
+
+                        $month_now = date('M Y');
+                        $month_next = date('M Y', strtotime('+1 month', strtotime($month_now)));
+
+                        if($month_start==$month_next) {
+                            echo "(".$month_next.")";
+                        } else {
+                             echo "(".$month_now.")";
+                        }
                     ?>
-                    <?= date('D, M jS Y', $week_end).'<br/>'?>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -108,6 +119,7 @@
                     <thead>
                         <tr class="text-center">
                             <th>Full Name</th>
+                            <th>Date of Birth</th>
                             <th>Address</th>
                             <th>Status</th>
                         </tr>
@@ -540,20 +552,18 @@ function birthday() {
                 $('#dobTable > tbody').append(
                     '<tr>' +
                     '<td>' + std.name + '</td>' +
+                    '<td class="text-center">' + std.dob + '</td>' +
                     '<td>' + std.address + '</td>' +
                     '<td class="text-center">' + std.status + '</td>' +
                     '</tr>'
                 )
             });
 
-            let pr = datas.parent
-
-            console.log(pr.length)
-
             $.each(datas.parent, function(index, pr) {
                 $('#dobTable > tbody').append(
                     '<tr>' +
                     '<td>' + pr.name + '</td>' +
+                    '<td class="text-center">' + pr.dob + '</td>' +
                     '<td>' + pr.address + '</td>' +
                     '<td class="text-center">' + pr.status + '</td>' +
                     '</tr>'
