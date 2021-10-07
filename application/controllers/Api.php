@@ -14,6 +14,7 @@ class Api extends CI_Controller
         $this->load->library('countries');
         $this->load->library('majors');
         $this->load->model('bizdev/School_model','sch');
+        $this->load->model('client/Students_model','std');
         $this->load->model('client/Lead_model','lead');
         $this->load->model('client/Parents_model','prt');
         $this->load->model('hr/Mentor_model','mt');
@@ -112,6 +113,85 @@ class Api extends CI_Controller
             ];
             $no++;
         }
+
+        echo json_encode($data);
+    }
+
+    public function birthDay() {
+        $query = $this->std->showAll();
+
+        $date = date('Y-m-d');
+        // $date = '2021-10-29';
+        $day = date('D',strtotime($date));
+        $week_end = strtotime('next '.$day, strtotime($date));
+        $month_start = date('M', $week_end);
+
+        $month_now = date('M');
+        $month_next = date('M', strtotime('+1 month', strtotime($month_now)));
+        
+        $data = [];
+        foreach ($query as $st) {
+            if($month_start==$month_next) {
+                if(date('M', strtotime($st['st_dob']))==$month_next) {
+                    $data['student'][$st['st_num']] = [
+                        'st_num' => $st['st_num'],
+                        'name' => $st['st_firstname']." ".$st['st_lastname'],
+                        'dob' => date('d M', strtotime($st['st_dob'])),
+                        'address' => $st['st_address'],
+                        'status' => 'Student'
+                    ];
+                } 
+            } else {
+                if(date('M', strtotime($st['st_dob']))==$month_now) {
+                    $data['student'][$st['st_num']] = [
+                        'st_num' => $st['st_num'],
+                        'name' => $st['st_firstname']." ".$st['st_lastname'],
+                        'dob' => date('d M', strtotime($st['st_dob'])),
+                        'address' => $st['st_address'],
+                        'status' => 'Student'
+                    ];
+                } 
+            }
+        }
+
+        $query2 = $this->prt->showAll();
+        foreach ($query2 as $pr) {
+            if($month_start==$month_next) {
+                if(date('M', strtotime($pr['pr_dob']))==$month_start) {
+                    $data['parent'][$pr['pr_id']] = [
+                        'pr_id' => $pr['pr_id'],
+                        'name' => $pr['pr_firstname']." ".$pr['pr_lastname'],
+                        'dob' => date('d M', strtotime($pr['pr_dob'])),
+                        'address' => $pr['pr_address'],
+                        'status' => 'Parent'
+                    ];
+                } 
+            } else {
+                if(date('M', strtotime($pr['pr_dob']))==$month_now) {
+                    $data['parent'][$pr['pr_id']] = [
+                        'pr_id' => $pr['pr_id'],
+                        'name' => $pr['pr_firstname']." ".$pr['pr_lastname'],
+                        'dob' => date('d M', strtotime($pr['pr_dob'])),
+                        'address' => $pr['pr_address'],
+                        'status' => 'Parent'
+                    ];
+                } 
+            }
+        }
+
+        if(empty($data['student'])) {
+            $student = 0;
+        } else {
+            $student = count($data['student']);
+        }
+
+         if(empty($data['parent'])) {
+            $parent = 0;
+        } else {
+            $parent = count($data['parent']);
+        }
+
+        $data['count'] = $student + $parent ;
 
         echo json_encode($data);
     }

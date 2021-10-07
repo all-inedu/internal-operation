@@ -65,3 +65,5 @@ $route['api/save/lead'] = 'Api/leadSave';
 $route['api/parent/(:num)'] = 'Api/parent/$1';
 
 $route['api/mentor'] = 'Api/mentor';
+
+$route['api/birthday'] = 'Api/birthDay';

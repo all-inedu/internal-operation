@@ -67,6 +67,10 @@
                             $flw_up = count($this->flw->showFollowUpByDate($now, $next_day, $data['empl_id'], 1));
                         ?>
                         <div class="col-md-6 text-right">
+                            <div class="btn btn-sm btn-info" onclick="birthday()">
+                                <i class="fas fa-birthday-cake"></i>&nbsp; Birthday
+                                <div class="badge badge-warning" id="countBirthday"></div>
+                            </div>
                             <div class="btn btn-sm btn-warning" data-toggle="modal" data-target="#followUp">
                                 <i class="fas fa-sticky-note"></i>&nbsp; Reminder
                                 <div class="badge badge-danger"><?=$flw_up;?></div>
@@ -78,6 +82,40 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="birthdayModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Birthday (<?=date('d M Y');?>)
+                    <?php 
+                        $day = date('D');
+                        $week_end = strtotime('next '.$day, time());
+                    ?>
+                    <?= date('D, M jS Y', $week_end).'<br/>'?>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height:40vh; overflow: scroll;">
+                <table class="table table-hover table-bordered" id="dobTable">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Full Name</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -477,6 +515,56 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 <script>
 $(document).ready(function() {
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        url: "<?=base_url('api/birthDay');?>",
+        headers: {
+            'X-CSRF-Token': '{{ csrf_token() }}',
+        },
+        success: function(datas) {
+            $('#countBirthday').html(datas.count)
+        }
+    })
+})
+
+function birthday() {
+    $('#birthdayModal').modal('show')
+    $.ajax({
+        type: 'post',
+        url: '<?=base_url("api/birthDay");?>',
+        dataType: 'json',
+        success: function(datas) {
+            $('#dobTable > tbody').html('');
+            $.each(datas.student, function(index, std) {
+                $('#dobTable > tbody').append(
+                    '<tr>' +
+                    '<td>' + std.name + '</td>' +
+                    '<td>' + std.address + '</td>' +
+                    '<td class="text-center">' + std.status + '</td>' +
+                    '</tr>'
+                )
+            });
+
+            let pr = datas.parent
+
+            console.log(pr.length)
+
+            $.each(datas.parent, function(index, pr) {
+                $('#dobTable > tbody').append(
+                    '<tr>' +
+                    '<td>' + pr.name + '</td>' +
+                    '<td>' + pr.address + '</td>' +
+                    '<td class="text-center">' + pr.status + '</td>' +
+                    '</tr>'
+                )
+            });
+        }
+    })
+}
+
+
+$(document).ready(function() {
     $('#ALL').hide();
     $('#yourClient').addClass("bg-info text-white");
 
@@ -734,11 +822,14 @@ var progsEmpl = new Chart(ctxEmpl, {
             var activePoints = progsEmpl.getElementsAtEvent(e);
             var selectedIndex = activePoints[0]._index;
             if (selectedIndex == 0) {
-                window.location.href = "<?=base_url('client/dashboard/program/all/pending/'.$empl_id);?>";
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/all/pending/'.$empl_id);?>";
             } else if (selectedIndex == 1) {
-                window.location.href = "<?=base_url('client/dashboard/program/all/failed/'.$empl_id);?>";
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/all/failed/'.$empl_id);?>";
             } else if (selectedIndex == 2) {
-                window.location.href = "<?=base_url('client/dashboard/program/all/success/'.$empl_id);?>";
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/all/success/'.$empl_id);?>";
             }
         }
     },
@@ -809,7 +900,8 @@ var careerEmpl = new Chart($('#careerChartEmpl'), {
                 window.location.href =
                     "<?=base_url('client/dashboard/program/career/pending/'.$empl_id);?>";
             } else if (selectedIndex == 1) {
-                window.location.href = "<?=base_url('client/dashboard/program/career/failed/'.$empl_id);?>";
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/career/failed/'.$empl_id);?>";
             } else if (selectedIndex == 2) {
                 window.location.href =
                     "<?=base_url('client/dashboard/program/career/success/'.$empl_id);?>";
@@ -842,11 +934,14 @@ var satEmpl = new Chart($('#satChartEmpl'), {
             var activePoints = satEmpl.getElementsAtEvent(e);
             var selectedIndex = activePoints[0]._index;
             if (selectedIndex == 0) {
-                window.location.href = "<?=base_url('client/dashboard/program/sat/pending/'.$empl_id);?>";
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/sat/pending/'.$empl_id);?>";
             } else if (selectedIndex == 1) {
-                window.location.href = "<?=base_url('client/dashboard/program/sat/failed/'.$empl_id);?>";
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/sat/failed/'.$empl_id);?>";
             } else if (selectedIndex == 2) {
-                window.location.href = "<?=base_url('client/dashboard/program/sat/success/'.$empl_id);?>";
+                window.location.href =
+                    "<?=base_url('client/dashboard/program/sat/success/'.$empl_id);?>";
             }
         }
     }
@@ -859,7 +954,9 @@ var writingEmpl = new Chart($('#writingChartEmpl'), {
         labels: ['Pending', 'Failed', 'Success'],
         datasets: [{
             label: '# of Votes',
-            data: ['<?=$pend_writing_empl;?>', '<?=$fail_writing_empl;?>', '<?=$succ_writing_empl;?>'],
+            data: ['<?=$pend_writing_empl;?>', '<?=$fail_writing_empl;?>',
+                '<?=$succ_writing_empl;?>'
+            ],
             backgroundColor: [
                 'rgba(255, 193, 7, 0.7)',
                 'rgba(255, 71, 71, 1)',
