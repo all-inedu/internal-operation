@@ -136,7 +136,7 @@ class Api extends CI_Controller
                     $data['student'][$st['st_num']] = [
                         'st_num' => $st['st_num'],
                         'name' => $st['st_firstname']." ".$st['st_lastname'],
-                        'dob' => date('D, d M', strtotime($st['st_dob'])),
+                        'dob' => date('d M', strtotime($st['st_dob'])),
                         'address' => $st['st_address'],
                         'status' => 'Student'
                     ];
@@ -146,7 +146,7 @@ class Api extends CI_Controller
                     $data['student'][$st['st_num']] = [
                         'st_num' => $st['st_num'],
                         'name' => $st['st_firstname']." ".$st['st_lastname'],
-                        'dob' => date('D, d M', strtotime($st['st_dob'])),
+                        'dob' => date('d M', strtotime($st['st_dob'])),
                         'address' => $st['st_address'],
                         'status' => 'Student'
                     ];
@@ -161,7 +161,7 @@ class Api extends CI_Controller
                     $data['parent'][$pr['pr_id']] = [
                         'pr_id' => $pr['pr_id'],
                         'name' => $pr['pr_firstname']." ".$pr['pr_lastname'],
-                        'dob' => date('D, d M', strtotime($pr['pr_dob'])),
+                        'dob' => date('d M', strtotime($pr['pr_dob'])),
                         'address' => $pr['pr_address'],
                         'status' => 'Parent'
                     ];
@@ -171,7 +171,7 @@ class Api extends CI_Controller
                     $data['parent'][$pr['pr_id']] = [
                         'pr_id' => $pr['pr_id'],
                         'name' => $pr['pr_firstname']." ".$pr['pr_lastname'],
-                        'dob' => date('D, d M', strtotime($pr['pr_dob'])),
+                        'dob' => date('d M', strtotime($pr['pr_dob'])),
                         'address' => $pr['pr_address'],
                         'status' => 'Parent'
                     ];
