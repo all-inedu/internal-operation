@@ -33,18 +33,18 @@ class Alumni extends CI_Controller
     }
 
     public function add() {
-        $data['students'] = $this->std->studentStatus(2);
+        $data['students'] = $this->std->studentStatusNew();
         $data['university'] = $this->univ->showAll();
         $data['major'] = $this->majors->show();
 
         $this->form_validation->set_rules('st_id', 'student', 'required|is_unique[tbl_alu.st_id]',
         array('is_unique' => 'Student\'s name already exists'));
         $this->form_validation->set_rules('alu_graduatedate','graduated date', 'required');
-        $this->form_validation->set_rules('univ_id','univ name', 'required');
-        $this->form_validation->set_rules('aludetail_major','major', 'required');
-        $this->form_validation->set_rules('aludetail_status','status', 'required');
+        $this->form_validation->set_rules('univ_id[]','univ name', 'required');
+        $this->form_validation->set_rules('aludetail_scholarship[]','scholarship', 'required');
+        $this->form_validation->set_rules('aludetail_major[]','major', 'required');
+        $this->form_validation->set_rules('aludetail_status[]','status', 'required');
         if($this->form_validation->run()==false) {
-
             $this->load->view('templates/s-io');
             $this->load->view('client/alumni/add-alumni', $data);
             $this->load->view('templates/f-io');
@@ -68,6 +68,7 @@ class Alumni extends CI_Controller
                 'alu_id' => $newId,
                 'univ_id' => $this->input->post('univ_id['.$i.']'),
                 'aludetail_major' => $this->input->post('aludetail_major['.$i.']'),
+                'aludetail_scholarship' => $this->input->post('aludetail_scholarship['.$i.']'),
                 'aludetail_status' => $this->input->post('aludetail_status['.$i.']'),
             ];
             $this->alu->saveDetail($datadetail);

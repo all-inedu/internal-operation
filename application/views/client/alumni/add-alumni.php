@@ -82,7 +82,7 @@
                             <hr style="margin-top:40px;">
                             <div id="univ_name">
                                 <div class="row">
-                                    <div class="col-md-5 mb-3">
+                                    <div class="col-md-3 mb-3">
                                         <label>University Name <i class="text-danger font-weight-bold">*</i></label>
                                         <select name="univ_id[]" id="univ">
                                             <option data-placeholder="true"></option>
@@ -92,13 +92,19 @@
                                             </option>
                                             <?php endforeach;?>
                                         </select>
-                                        <?=form_error('univ_id', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('univ_id[]', '<small class="text-danger">', '</small>');?>
                                     </div>
-                                    <div class="col-md-4 mb-3">
+                                    <div class="col-md-3 mb-3">
+                                        <label>Scholarship <i class="text-danger font-weight-bold">*</i></label>
+                                        <input type="text" name="aludetail_scholarship[]"
+                                            class="form-control form-control-sm">
+                                        <?=form_error('aludetail_scholarship[]', '<small class="text-danger">', '</small>');?>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
                                         <label>Major <i class="text-danger font-weight-bold">*</i></label>
-                                        <input type="text" name="aludetail_major[]" class="form-control form-control-sm"
-                                            id="major">
-                                        <?=form_error('aludetail_major', '<small class="text-danger">', '</small>');?>
+                                        <input type="text" name="aludetail_major[]"
+                                            class="form-control form-control-sm major">
+                                        <?=form_error('aludetail_major[]', '<small class="text-danger">', '</small>');?>
                                     </div>
                                     <div class="col-md-3">
                                         <label>Status <i class="text-danger font-weight-bold">*</i></label>
@@ -108,7 +114,7 @@
                                             <option value="2">Accepted</option>
                                             <option value="3">Selected Uni</option>
                                         </select>
-                                        <?=form_error('aludetail_status', '<small class="text-danger">', '</small>');?>
+                                        <?=form_error('aludetail_status[]', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +139,7 @@
 $(document).ready(function() {
     var states = '<?=implode(", ", $major);?>';
     var arr = states.split(", ")
-    $("#major").autocomplete({
+    $(".major").autocomplete({
         source: arr
     });
 });
@@ -160,7 +166,7 @@ new SlimSelect({
 });
 
 $(document).ready(function() {
-    var max_fields_limit = 5; //set limit for maximum input fields
+    var max_fields_limit = 10; //set limit for maximum input fields
     var x = 1; //initialize counter for text box
     $('.add_more_button').click(function(
         e) { //click event on add more fields button having class add_more_button
@@ -170,7 +176,7 @@ $(document).ready(function() {
             $('#univ_name').append(
                 '<div class="row">' +
                 '<div class="line" style="margin-top:15px; margin-bottom:35px; width:"50%; "></div>' +
-                '<div class="col-md-5">' +
+                '<div class="col-md-3">' +
                 '<div class="form-group">' +
                 '<label>University Name <i class="text-danger font-weight-bold">*</i></label>' +
                 '<select name="univ_id[]" id="univ' + x + '">' +
@@ -184,11 +190,18 @@ $(document).ready(function() {
                 '</div>' +
                 '</div>' +
 
-                '<div class="col-md-4">' +
+                '<div class="col-md-3">' +
+                '<div class="form-group">' +
+                '<label>Scholarship <i class="text-danger font-weight-bold">*</i></label>' +
+                '<input type="text" name="aludetail_scholarship[]" class="form-control form-control-sm" id="major' +
+                x + '">' +
+                '</div>' +
+                '</div>' +
+
+                '<div class="col-md-3">' +
                 '<div class="form-group">' +
                 '<label>Major <i class="text-danger font-weight-bold">*</i></label>' +
-                '<input type="text" name="aludetail_major[]" class="form-control form-control-sm" id="major' +
-                x + '">' +
+                '<input type="text" name="aludetail_major[]" class="form-control form-control-sm major">' +
                 '</div>' +
                 '</div>' +
 
@@ -209,11 +222,11 @@ $(document).ready(function() {
                 '</div>'
             ); //add input field\
 
-            var states1 = '<?=implode(", ", $major);?>';
-            var arr1 = states1.split(", ")
-            $("#major" + x).autocomplete({
-                source: arr1
-            });
+            // var states1 = '<?=implode(", ", $major);?>';
+            // var arr1 = states1.split(", ")
+            // $("#major" + x).autocomplete({
+            //     source: arr1
+            // });
 
             new SlimSelect({
                 select: '#univ' + x,

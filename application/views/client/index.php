@@ -121,6 +121,7 @@
                             <th>Full Name</th>
                             <th>Date of Birth</th>
                             <th>Address</th>
+                            <th>Program</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -547,6 +548,7 @@ function birthday() {
         url: '<?=base_url("api/birthDay");?>',
         dataType: 'json',
         success: function(datas) {
+            console.log(datas);
             $('#dobTable > tbody').html('');
             $.each(datas.student, function(index, std) {
                 $('#dobTable > tbody').append(
@@ -554,6 +556,7 @@ function birthday() {
                     '<td>' + std.name + '</td>' +
                     '<td class="text-center">' + std.dob + '</td>' +
                     '<td>' + std.address + '</td>' +
+                    '<td>' + std.program + '</td>' +
                     '<td class="text-center">' + std.status + '</td>' +
                     '</tr>'
                 )
@@ -565,6 +568,7 @@ function birthday() {
                     '<td>' + pr.name + '</td>' +
                     '<td class="text-center">' + pr.dob + '</td>' +
                     '<td>' + pr.address + '</td>' +
+                    '<td> - </td>' +
                     '<td class="text-center">' + pr.status + '</td>' +
                     '</tr>'
                 )

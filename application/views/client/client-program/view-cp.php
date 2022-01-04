@@ -188,7 +188,7 @@
                                         value="<?=$stprog['stprog_pendingdate'];?>" class="form-control form-control-sm"
                                         id="pendingDate"> -->
                                     <input type="date" name="stprog_statusprogdate"
-                                        value="<?=$stprog['stprog_statusprogdate'];?>"
+                                        value="<?=$stprog['stprog_statusprogdate']!=null?$stprog['stprog_statusprogdate']:date('Y-m-d')?>"
                                         class="form-control form-control-sm">
                                 </div>
                             </div>
@@ -278,9 +278,14 @@
                                     <textarea name="stprog_duration"><?=$stprog['stprog_duration'];?></textarea>
                                 </div>
                             </div>
-                            <!-- Admission Payment  -->
+                            <!-- Admission Mentoring  -->
                             <?php  } else if($stprog['prog_sub']=="Admissions Mentoring") { ?>
                             <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <small>End Date</small>
+                                    <input type="month" name="stprog_end_date" class="form-control form-control-sm"
+                                        value="<?= $stprog['stprog_end_date']!= null ? date('Y-m', strtotime($stprog['stprog_end_date'])): date('Y-m')?>">
+                                </div>
                                 <div class="col-md-6 mb-3">
                                     <small>Total Universities</small>
                                     <input type="number" name="stprog_tot_uni" class="form-control form-control-sm"
@@ -311,6 +316,20 @@
                                 <div class="col-md-12 mb-3">
                                     <small>Installment Plan</small>
                                     <textarea name="stprog_install_plan"><?=$stprog['stprog_install_plan'];?></textarea>
+                                </div>
+                            </div>
+                            <!-- Academic Tutoring  -->
+                            <?php  } else if($stprog['prog_sub']=="Academic Tutoring") { ?>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <small>Start Date</small>
+                                    <input type="date" name="stprog_start_date" class="form-control form-control-sm"
+                                        value="<?= $stprog['stprog_start_date']!=null ? date('Y-m-d', strtotime($stprog['stprog_start_date'])):date('Y-m-d') ?>">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <small>End Date</small>
+                                    <input type="date" name="stprog_end_date" class="form-control form-control-sm"
+                                        value="<?=$stprog['stprog_end_date']!=null ? date('Y-m-d', strtotime($stprog['stprog_end_date'])):date('Y-m-d') ?>">
                                 </div>
                             </div>
                             <?php } else { echo "<div class='mb-4'>-</div>"; }?>

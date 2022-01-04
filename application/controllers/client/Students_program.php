@@ -91,7 +91,7 @@ class Students_program extends CI_Controller
                 $reason = $reasons['reason_id'] + 1;
 
                 $reason_data = [
-                    'reason_id' => $reason_id,
+                    'reason_id' => $reason,
                     'reason_name' => $this->input->post('new_reason')
                 ];
 
@@ -180,6 +180,22 @@ class Students_program extends CI_Controller
             $this->stprog->updateStudentsStatus($datas, $st_num);
         }
 
+
+        // check start date && end date 
+        if($this->input->post('stprog_start_date') && $this->input->post('stprog_end_date')) {
+            $start_date =  date('Y-m-d',strtotime($this->input->post('stprog_start_date')));
+            $end_date =  date('Y-m-d',strtotime($this->input->post('stprog_end_date')));
+        } else if($this->input->post('stprog_end_date')) {
+            $end_date =  date('Y-m-d',strtotime($this->input->post('stprog_end_date')));
+            $start_date = date('Y-m-d',strtotime('-10 months',strtotime($end_date)));
+        } else {
+            $start_date = date('Y-m-d');
+            $end_date = date('Y-m-d');
+        }
+
+        // echo $start_date.''.$end_date;
+        // exit;
+
         // Data from Form Input 
         $data = [
             'lead_id' => $this->input->post('lead_id'),
@@ -208,6 +224,9 @@ class Students_program extends CI_Controller
             'stprog_kurs'  => $this->input->post('stprog_kurs'),
             'stprog_tot_idr'  => $this->input->post('stprog_tot_idr'),
             'stprog_install_plan'  => $this->input->post('stprog_install_plan'),
+            // Start Date 
+            'stprog_start_date' => date('Y-m-d', strtotime($start_date)),
+            'stprog_end_date' => date('Y-m-d', strtotime($end_date)),
 
             'empl_id' => $this->input->post('empl_id')
         ];

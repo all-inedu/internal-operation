@@ -971,4 +971,12 @@ class StProgram_model extends CI_model
         return $this->db->get('tbl_stmentor')->row_array();
     }
 
+
+    function getProgramByStudent($st_num, $program) {
+        $this->db->select('*');
+        $this->db->where('tbl_stprog.st_num', $st_num);
+        $this->db->where('tbl_prog.prog_sub', $program);
+        $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
+        return $this->db->get('tbl_stprog')->row_array();
+    }
 }

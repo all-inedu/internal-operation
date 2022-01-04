@@ -9,8 +9,7 @@ class Programdata
         $data['adm'] = ['Essay Clinic','Interview Preparation'];
         $data['ce'] = ['JuniorXplorer','PassionXplorer','Summer Science Research Program'];
         $data['apb'] = [];
-        $data['aca'] = [
-            'ACT Prep','SAT Last Minute','SAT Last Minute Subject','SAT Prep','SAT      Subject','Subject Tutoring'];
+        $data['aca'] = ['Academic Tutoring','ACT Prep','SAT Last Minute','SAT Last Minute Subject','SAT Prep','SAT Subject','Subject Tutoring'];
         $data['ei'] = [];
 
         $data['typeProg'] = ['B2B','B2B/B2C','B2C'];

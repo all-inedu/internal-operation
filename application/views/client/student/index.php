@@ -166,6 +166,36 @@
         </div>
     </div>
 
+    <!-- <table id="studentTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+        <thead>
+            <tr class="text-center">
+                <th width="2%">No</th>
+                <th width="15%" class="text-center bg-primary text-white">Students Name</th>
+                <th width="10%">Students Mail</th>
+                <th width="10%">Students Number</th>
+                <th width="10%">Parents Name</th>
+                <th width="10%">Parents Number</th>
+                <th width="5%">School Name</th>
+                <th width="5%">Student Year /<br>Grade</th>
+                <th width="10%">Instagram</th>
+                <th width="10%">Address</th>
+                <th width="10%">Location</th>
+                <th width="10%">Lead</th>
+                <th width="5%">Level of Interest</th>
+                <th width="60">Interested Program</th>
+                <th width="10%">Success Program</th>
+                <th width="5%">Year of Study Abroad</th>
+                <th width="5%">Country of Study Abroad</th>
+                <th width="5%">Univ Destination</th>
+                <th width="5%">Major</th>
+                <th width="5%">Created Date</th>
+                <th width="5%">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table> -->
+
     <table id="studentTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
             <tr class="text-center">
@@ -356,6 +386,62 @@ function filter() {
     $("#filter").toggle();
 }
 $(document).ready(function() {
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        url: "<?=base_url('api/students');?>",
+        headers: {
+            'X-CSRF-Token': '{{ csrf_token() }}',
+        },
+        success: function(datas) {
+            let i = 1
+            $.each(datas, function(index, std) {
+                $('#studentTable > tbody').append(
+                    '<tr>' +
+                    '<td>' + i + '</td>' +
+                    '<td>' + std.st_firstname + ' ' + std.st_lastname + '</td>' +
+                    '<td>' + std.st_mail + '</td>' +
+                    '<td>' + std.st_phone + '</td>' +
+                    '<td>' + std.pr_name + '</td>' +
+                    '<td>' + std.pr_phone + '</td>' +
+                    '<td>' + std.sch_name + '</td>' +
+                    '<td>' + std.st_grade + '</td>' +
+                    '<td>' + std.st_insta + '</td>' +
+                    '<td>' + std.st_address + '</td>' +
+                    '<td>' + std.st_state + '<br>' + std.st_city + '</td>' +
+                    '<td>' + std.lead_name + '</td>' +
+                    '<td>' + std.st_levelinterest + '</td>' +
+                    '<td id="interest' + std.st_num + '"></td>' +
+                    '<td id="success' + std.st_num + '"></td>' +
+                    '<td>' + std.st_abryear + '</td>' +
+                    '<td>' + std.st_abrcountry + '</td>' +
+                    '<td id="uni' + std.st_num + '"></td>' +
+                    '<td>' + std.st_abrmajor + '</td>' +
+                    '<td>' + std.created_date + '</td>' +
+                    '<td>' + std.status + '</td>' +
+                    '</tr>'
+                )
+                i++
+
+                // Interest Program 
+                $.each(std.interest_program, function(x, interest) {
+                    $('#interest' + std.st_num).append(interest)
+                })
+
+                // Success Program 
+                $.each(std.program_success, function(x, succ) {
+                    $('#success' + std.st_num).append(succ)
+                })
+
+                // Uni Destination 
+                $.each(std.univ_destination, function(x, uni) {
+                    $('#uni' + std.st_num).append(uni)
+                })
+            });
+        }
+    })
+
+
     $("#filter").hide();
     new SlimSelect({
         select: '#schName',
@@ -424,6 +510,7 @@ $(document).ready(function() {
 
     if ("<?=$data['empl_export'];?>" == 1) {
         var tables = $('#studentTable').DataTable({
+            processing: true,
             scrollY: 300,
             scrollX: true,
             scrollCollapse: true,
@@ -441,6 +528,7 @@ $(document).ready(function() {
         });
     } else {
         var tables = $('#studentTable').DataTable({
+            processing: true,
             scrollY: 300,
             scrollX: true,
             scrollCollapse: true,
