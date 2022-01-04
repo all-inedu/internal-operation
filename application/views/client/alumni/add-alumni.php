@@ -95,7 +95,7 @@
                                         <?=form_error('univ_id[]', '<small class="text-danger">', '</small>');?>
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label>Scholarship <i class="text-danger font-weight-bold">*</i></label>
+                                        <label>Scholarship</label>
                                         <input type="text" name="aludetail_scholarship[]"
                                             class="form-control form-control-sm">
                                         <?=form_error('aludetail_scholarship[]', '<small class="text-danger">', '</small>');?>
@@ -166,7 +166,7 @@ new SlimSelect({
 });
 
 $(document).ready(function() {
-    var max_fields_limit = 10; //set limit for maximum input fields
+    var max_fields_limit = "10"; //set limit for maximum input fields
     var x = 1; //initialize counter for text box
     $('.add_more_button').click(function(
         e) { //click event on add more fields button having class add_more_button

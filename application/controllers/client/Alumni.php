@@ -41,7 +41,7 @@ class Alumni extends CI_Controller
         array('is_unique' => 'Student\'s name already exists'));
         $this->form_validation->set_rules('alu_graduatedate','graduated date', 'required');
         $this->form_validation->set_rules('univ_id[]','univ name', 'required');
-        $this->form_validation->set_rules('aludetail_scholarship[]','scholarship', 'required');
+        // $this->form_validation->set_rules('aludetail_scholarship[]','scholarship', 'required');
         $this->form_validation->set_rules('aludetail_major[]','major', 'required');
         $this->form_validation->set_rules('aludetail_status[]','status', 'required');
         if($this->form_validation->run()==false) {

@@ -53,7 +53,7 @@ class Students_model extends CI_model
 
      public function studentStatusNew() {
         $this->db->distinct();
-        $this->db->select('tbl_students.*');
+        $this->db->select('tbl_students.*, tbl_stprog.stprog_tot_uni');
         $this->db->where('tbl_students.st_statuscli', 2);
         $this->db->where('tbl_stprog.stprog_runningstatus', 2);
         $this->db->where('tbl_prog.prog_sub', 'Admissions Mentoring');
