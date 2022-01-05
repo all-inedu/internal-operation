@@ -470,21 +470,21 @@ $(document).ready(function() {
     }
 
     // Students Status
-    tables.column(20).search('<?=$status;?>').draw();
+    tables.column(21).search('<?=$status;?>').draw();
     $("#prospective").click(function() {
-        tables.column(20).search('Prospective').draw();
+        tables.column(21).search('Prospective').draw();
     });
     $("#potential").click(function() {
-        tables.column(20).search('Potential').draw();
+        tables.column(21).search('Potential').draw();
     });
     $("#current").click(function() {
-        tables.column(20).search('Current').draw();
+        tables.column(21).search('Current').draw();
     });
     $("#completed").click(function() {
-        tables.column(20).search('Completed').draw();
+        tables.column(21).search('Completed').draw();
     });
     $("#all").click(function() {
-        tables.column(20).search('').draw();
+        tables.column(21).search('').draw();
     });
 
     //Filter
