@@ -16,6 +16,7 @@ class Student extends CI_Controller
         $this->load->model('bizdev/University_model','univ');
         $this->load->model('bizdev/Edufair_model','eduf');
         $this->load->model('hr/Influencer_model', 'infl');
+        $this->load->model('hr/Mentor_model', 'mt');
         $this->load->model('client/Students_model','std');
         $this->load->model('client/Parents_model','prt');
         $this->load->model('client/StProgram_model','stprog');

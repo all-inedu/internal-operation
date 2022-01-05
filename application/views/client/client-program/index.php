@@ -27,8 +27,8 @@
         Filter</p>
 </div>
 <div class="row justify-content-md-center mt-2" id="filter" style="display:none;">
-    <div class=" col-md-3 text-center">
-        <select id="sProg" class="form-control form-control-sm">
+    <div class="col-md-2 text-center">
+        <select id="sProg">
             <option data-placeholder="true"></option>
             <?php foreach($program as $pr): ?>
             <?php 
@@ -46,8 +46,14 @@
             <?php endforeach; ?>
         </select>
     </div>
-    <div class="col-md-3 text-center">
-        <select id="sStatus" class="form-control form-control-sm">
+    <div class="col-md-2">
+        <input type="text" placeholder="Mentor/Tutor Name" class="form-control form-control-sm" id="mentor">
+    </div>
+    <div class="col-md-2">
+        <input type="month" placeholder="End Program Date" class="form-control form-control-sm" id="endProgram">
+    </div>
+    <div class="col-md-2 text-center">
+        <select id="sStatus">
             <option data-placeholder="true"></option>
             <option value="Pending">Pending</option>
             <option value="Success">Success</option>
@@ -55,8 +61,8 @@
         </select>
     </div>
 
-    <div class="col-md-3 text-center">
-        <select id="sConvLead" class="form-control form-control-sm">
+    <div class="col-md-2 text-center">
+        <select id="sConvLead">
             <option data-placeholder="true"></option>
             <?php 
                 $lead = $this->lead->showAll();
@@ -69,8 +75,8 @@
         </select>
     </div>
 
-    <div class="col-md-3 text-center">
-        <select id="sAss" class="form-control form-control-sm">
+    <div class="col-md-2 text-center">
+        <select id="sAss">
             <option data-placeholder="true"></option>
             <option value="-">-</option>
             <option value="Consultation">Consultation</option>
@@ -85,7 +91,10 @@
             <tr class="text-center">
                 <th width="1%">No</th>
                 <th width="10%" class="text-center bg-primary text-white">Students Name</th>
+                <th width="10%">Grade</th>
                 <th width="10%">Program Name</th>
+                <th width="10%">Mentor/Tutor</th>
+                <th>End Program Date</th>
                 <th width="10%">Lead Source</th>
                 <th width="10%">Conversion Leads</th>
                 <th width="5%">Program Status</th>
@@ -104,12 +113,56 @@
                     onclick="window.location='<?=base_url('client/students-program/view/'.$stpr['stprog_id']);?>'">
                     <?=$stpr['st_firstname'].' '.$stpr['st_lastname'];?>
                 </td>
+                <td>
+                    <?php 
+                        $ynow = date('Y');
+                        $yinput = date('Y', strtotime($stpr['st_datecreate']));
+                        $ginput = $stpr['st_grade'];
+                        $mnow = date('m'); 
+                        if(($mnow>=7) and ($ynow>$yinput)) {
+                            $gnow = ($ynow - $yinput) + $ginput;
+                        } else 
+                        if(($mnow<7) and ($ynow>$yinput)) {
+                            $gnow = ($ynow - $yinput) + ($ginput - 1);
+                        } else 
+                        if(($mnow>=7) and ($ynow==$yinput)) {
+                            $gnow = $ginput + 1;
+                        } else {
+                            $gnow = $ginput;
+                        }
+
+                        if($gnow <= 12) {
+                            echo $gnow;
+                        } else {
+                            echo 'Not High School';
+                        }
+                        ?>
+                </td>
                 <td class="text-left">
                     <?php 
                         if($stpr['prog_sub']=='') {
                             echo $stpr['prog_program'];
                         } else {
                             echo $stpr['prog_sub'].': '.$stpr['prog_program'];
+                        }
+                    ?>
+                </td>
+                <td>
+                    <?php
+                        $mentor = $this->mt->studentsMentorByStprog($stpr['stprog_id']);
+                        foreach($mentor as $m) {
+                            echo $m['mt_firstn'].' '.$m['mt_lastn'].'<br>';
+                        }
+                    ?>
+                </td>
+                <td>
+                    <?php
+                        if($stpr['stprog_end_date']==null) {
+                            echo '-';
+                        } else if($stpr['prog_sub']=='Admissions Mentoring') {
+                            echo date('F Y', strtotime($stpr['stprog_end_date']));
+                        } else if($stpr['prog_sub']=='Academic Tutoring' ) {
+                            echo date('d F Y', strtotime($stpr['stprog_end_date']));
                         }
                     ?>
                 </td>
@@ -209,6 +262,9 @@
 <script src="<?=base_url('assets/js/disable-copas.js');?>"></script>
 <script src="<?=base_url('assets/js/jquery-ui.js');?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 function filter() {
     $("#filter").toggle();
@@ -280,19 +336,32 @@ $(document).ready(function() {
     }
 
     $('#sProg').on('change', function() {
-        table.column(2).search($(this).val()).draw();
+        table.column(3).search($(this).val()).draw();
     });
 
-    $('#sStatus').on('change', function() {
-        table.column(5).search($(this).val()).draw();
-    });
-
-    $('#sConvLead').on('change', function() {
+    $('#mentor').on('change', function() {
         table.column(4).search($(this).val()).draw();
     });
 
+    $('#endProgram').on('change', function() {
+        let date = moment($(this).val()).format('MMMM YYYY');
+        if (date != 'Invalid date') {
+            table.column(5).search(date).draw();
+        } else {
+            table.column(5).search('').draw();
+        }
+    });
+
+    $('#sStatus').on('change', function() {
+        table.column(8).search($(this).val()).draw();
+    });
+
+    $('#sConvLead').on('change', function() {
+        table.column(7).search($(this).val()).draw();
+    });
+
     $('#sAss').on('change', function() {
-        table.column(9).search($(this).val()).draw();
+        table.column(12).search($(this).val()).draw();
     });
 });
 </script>

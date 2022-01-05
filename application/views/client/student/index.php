@@ -90,7 +90,7 @@
                             <?php endforeach;?>
                         </select>
                     </div>
-                    <div class="col-md-3 mb-2">
+                    <div class="col-md-2 mb-2">
                         <select id="iProg">
                             <option data-placeholder="true"></option>
                             <?php foreach($prog as $pr): ?>
@@ -112,7 +112,7 @@
                             <?php endforeach;?>
                         </select>
                     </div>
-                    <div class="col-md-3 mb-2">
+                    <div class="col-md-2 mb-2">
                         <select id="sProg">
                             <option data-placeholder="true"></option>
                             <?php foreach($prog as $pr): ?>
@@ -133,6 +133,10 @@
                             </option>
                             <?php endforeach;?>
                         </select>
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <input type="text" class="form-control form-control-sm" placeholder="Mentor/Tutor Name"
+                            id="mentor">
                     </div>
                     <div class="col-md-2 mb-2">
                         <input type="text" class="form-control form-control-sm" placeholder="Parents Name" id="parent">
@@ -166,36 +170,6 @@
         </div>
     </div>
 
-    <!-- <table id="studentTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
-        <thead>
-            <tr class="text-center">
-                <th width="2%">No</th>
-                <th width="15%" class="text-center bg-primary text-white">Students Name</th>
-                <th width="10%">Students Mail</th>
-                <th width="10%">Students Number</th>
-                <th width="10%">Parents Name</th>
-                <th width="10%">Parents Number</th>
-                <th width="5%">School Name</th>
-                <th width="5%">Student Year /<br>Grade</th>
-                <th width="10%">Instagram</th>
-                <th width="10%">Address</th>
-                <th width="10%">Location</th>
-                <th width="10%">Lead</th>
-                <th width="5%">Level of Interest</th>
-                <th width="60">Interested Program</th>
-                <th width="10%">Success Program</th>
-                <th width="5%">Year of Study Abroad</th>
-                <th width="5%">Country of Study Abroad</th>
-                <th width="5%">Univ Destination</th>
-                <th width="5%">Major</th>
-                <th width="5%">Created Date</th>
-                <th width="5%">Status</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table> -->
-
     <table id="studentTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
             <tr class="text-center">
@@ -214,6 +188,7 @@
                 <th width="5%">Level of Interest</th>
                 <th width="60">Interested Program</th>
                 <th width="10%">Success Program</th>
+                <th>Mentor/Tutor</th>
                 <th width="5%">Year of Study Abroad</th>
                 <th width="5%">Country of Study Abroad</th>
                 <th width="5%">Univ Destination</th>
@@ -332,6 +307,16 @@
                         }
                     ?>
                 </td>
+                <td>
+                    <?php
+                        foreach ($stprog as $pr) {
+                            $mentor = $this->mt->studentsMentorByStprog($pr['stprog_id']);
+                            foreach($mentor as $m) {
+                                echo $m['mt_firstn'].' '.$m['mt_lastn'].'<br>';
+                            }
+                        }
+                    ?>
+                </td>
                 <td><?=$s['st_abryear'];?></td>
                 <td><?=$s['st_abrcountry'];?></td>
                 <td>
@@ -386,62 +371,6 @@ function filter() {
     $("#filter").toggle();
 }
 $(document).ready(function() {
-    $.ajax({
-        type: 'get',
-        dataType: 'json',
-        url: "<?=base_url('api/students');?>",
-        headers: {
-            'X-CSRF-Token': '{{ csrf_token() }}',
-        },
-        success: function(datas) {
-            let i = 1
-            $.each(datas, function(index, std) {
-                $('#studentTable > tbody').append(
-                    '<tr>' +
-                    '<td>' + i + '</td>' +
-                    '<td>' + std.st_firstname + ' ' + std.st_lastname + '</td>' +
-                    '<td>' + std.st_mail + '</td>' +
-                    '<td>' + std.st_phone + '</td>' +
-                    '<td>' + std.pr_name + '</td>' +
-                    '<td>' + std.pr_phone + '</td>' +
-                    '<td>' + std.sch_name + '</td>' +
-                    '<td>' + std.st_grade + '</td>' +
-                    '<td>' + std.st_insta + '</td>' +
-                    '<td>' + std.st_address + '</td>' +
-                    '<td>' + std.st_state + '<br>' + std.st_city + '</td>' +
-                    '<td>' + std.lead_name + '</td>' +
-                    '<td>' + std.st_levelinterest + '</td>' +
-                    '<td id="interest' + std.st_num + '"></td>' +
-                    '<td id="success' + std.st_num + '"></td>' +
-                    '<td>' + std.st_abryear + '</td>' +
-                    '<td>' + std.st_abrcountry + '</td>' +
-                    '<td id="uni' + std.st_num + '"></td>' +
-                    '<td>' + std.st_abrmajor + '</td>' +
-                    '<td>' + std.created_date + '</td>' +
-                    '<td>' + std.status + '</td>' +
-                    '</tr>'
-                )
-                i++
-
-                // Interest Program 
-                $.each(std.interest_program, function(x, interest) {
-                    $('#interest' + std.st_num).append(interest)
-                })
-
-                // Success Program 
-                $.each(std.program_success, function(x, succ) {
-                    $('#success' + std.st_num).append(succ)
-                })
-
-                // Uni Destination 
-                $.each(std.univ_destination, function(x, uni) {
-                    $('#uni' + std.st_num).append(uni)
-                })
-            });
-        }
-    })
-
-
     $("#filter").hide();
     new SlimSelect({
         select: '#schName',
@@ -581,14 +510,17 @@ $(document).ready(function() {
     $('#sProg').on('change', function() {
         tables.column(14).search($(this).val()).draw();
     });
+    $('#mentor').on('change', function() {
+        tables.column(15).search($(this).val()).draw();
+    });
     $('#parent').on('keyup', function() {
         tables.column(4).search($(this).val()).draw();
     });
     $('#year').on('change', function() {
-        tables.column(15).search($(this).val()).draw();
+        tables.column(16).search($(this).val()).draw();
     });
     $('#country').on('change', function() {
-        tables.column(16).search($(this).val()).draw();
+        tables.column(17).search($(this).val()).draw();
     });
 
 
