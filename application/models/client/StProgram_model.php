@@ -36,18 +36,7 @@ class StProgram_model extends CI_model
                     $this->db->where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
                 $this->db->group_end();
         $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
-        // $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
-        // $this->db->group_end();
+        
         return $this->db->get('tbl_stprog')->result_array();
     }
 
@@ -76,18 +65,7 @@ class StProgram_model extends CI_model
                     $this->db->where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
                 $this->db->group_end();
         $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
-        // $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
-        // $this->db->group_end();
+        
         return $this->db->get('tbl_stprog')->result_array();
     }
 
@@ -150,18 +128,7 @@ class StProgram_model extends CI_model
                     $this->db->where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
                 $this->db->group_end();
         $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
-        // $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
-        // $this->db->group_end();
+        
         $this->db->order_by('tbl_stprog.stprog_statusprogdate', 'DESC');
         return $this->db->get('tbl_stprog')->result_array();
     }
@@ -191,18 +158,7 @@ class StProgram_model extends CI_model
                     $this->db->where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
                 $this->db->group_end();
         $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
-        // $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
-        // $this->db->group_end();
+        
         $this->db->order_by('tbl_stprog.stprog_statusprogdate', 'DESC');
         return $this->db->get('tbl_stprog')->result_array();
     }
@@ -312,18 +268,7 @@ class StProgram_model extends CI_model
                 $this->db->group_end();
         $this->db->group_end();
 
-        // $this->db->group_start();
-        //     $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
-        // $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
-        // $this->db->group_end();
+        
         return $this->db->get('tbl_stprog')->result_array();
     }
 
@@ -350,18 +295,7 @@ class StProgram_model extends CI_model
                     $this->db->where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
                 $this->db->group_end();
         $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
-        // $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
-        // $this->db->group_end();
+        
         $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
         return $this->db->get('tbl_stprog')->result_array();
     }
@@ -389,18 +323,7 @@ class StProgram_model extends CI_model
                     $this->db->where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
                 $this->db->group_end();
         $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
-        // $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
-        // $this->db->group_end();
+        
         $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
         return $this->db->get('tbl_stprog')->result_array();
     }
@@ -444,18 +367,7 @@ class StProgram_model extends CI_model
                     $this->db->where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
                 $this->db->group_end();
         $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
-        // $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
-        // $this->db->group_end();
+        
         $this->db->group_by("tbl_stprog.lead_id");
         $this->db->join("tbl_students","tbl_students.st_num=tbl_stprog.st_num");
         $this->db->join("tbl_lead","tbl_lead.lead_id=tbl_students.lead_id");
@@ -480,18 +392,7 @@ class StProgram_model extends CI_model
                     $this->db->where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
                 $this->db->group_end();
         $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
-        // $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
-        // $this->db->group_end();
+        
         $this->db->group_by("tbl_stprog.lead_id");
         $this->db->join("tbl_lead","tbl_lead.lead_id=tbl_stprog.lead_id");
         return $this->db->get('tbl_stprog')->result_array();
@@ -516,18 +417,7 @@ class StProgram_model extends CI_model
                     $this->db->where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
                 $this->db->group_end();
         $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
-        // $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
-        // $this->db->group_end();
+        
         $this->db->group_by("tbl_stprog.lead_id");
         $this->db->join("tbl_lead","tbl_lead.lead_id=tbl_stprog.lead_id");
         $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
@@ -553,18 +443,7 @@ class StProgram_model extends CI_model
                     $this->db->where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
                 $this->db->group_end();
         $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("MONTH(tbl_stprog.stprog_statusprogdate) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_ass_sent) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_init_consult) =", $m);
-        //     $this->db->or_where("MONTH(tbl_stprog.stprog_firstdisdate) =", $m);
-        // $this->db->group_end();
-        // $this->db->group_start();
-        //     $this->db->where("YEAR(tbl_stprog.stprog_statusprogdate) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_ass_sent) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_init_consult) =", $y);
-        //     $this->db->or_where("YEAR(tbl_stprog.stprog_firstdisdate) =", $y);
-        // $this->db->group_end();
+        
         $this->db->group_by("tbl_stprog.lead_id");
         $this->db->join("tbl_lead","tbl_lead.lead_id=tbl_stprog.lead_id");
         $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
@@ -978,5 +857,23 @@ class StProgram_model extends CI_model
         $this->db->where('tbl_prog.prog_sub', $program);
         $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
         return $this->db->get('tbl_stprog')->row_array();
+    }
+
+    function countAdmissions() {
+        $this->db->select('*');
+        $this->db->where('tbl_prog.prog_sub', 'Admissions Mentoring');
+        $this->db->where('tbl_stprog.stprog_status', 1);
+        $this->db->join("tbl_prog","tbl_prog.prog_id=tbl_stprog.prog_id");
+        return $this->db->count_all_results('tbl_stprog', false);
+    }
+
+    function showAllByProg($p) {
+        $this->db->select('*');
+        $this->db->where('tbl_prog.prog_sub',$p);
+        $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');
+        $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
+        $this->db->join('tbl_lead', 'tbl_lead.lead_id=tbl_stprog.lead_id');
+        $this->db->order_by('tbl_stprog.stprog_statusprogdate', 'DESC');
+        return $this->db->get('tbl_stprog')->result_array();
     }
 }

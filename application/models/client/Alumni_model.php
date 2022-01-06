@@ -64,4 +64,9 @@ class Alumni_model extends CI_model
         $this->db->where('aludetail_id', $id);
         $this->db->delete('tbl_aludetail');
     }
+
+    public function countAlumni() {
+        $this->db->select('*');
+        return $this->db->count_all_results('tbl_alu');
+    }
 }

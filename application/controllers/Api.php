@@ -20,6 +20,7 @@ class Api extends CI_Controller
         $this->load->model('client/Parents_model','prt');
         $this->load->model('client/Program_model','prog');
         $this->load->model('client/StProgram_model','stprog');
+        $this->load->model('client/Alumni_model','alu');
         $this->load->model('hr/Mentor_model','mt');
     }
 
@@ -346,5 +347,15 @@ class Api extends CI_Controller
         }
         echo json_encode($st);
         exit;
+    }
+
+    public function getAdmissions() {
+        $data = $this->stprog->countAdmissions();
+        echo json_encode($data);
+    }
+
+    public function getAlumni() {
+        $data = $this->alu->countAlumni();
+        echo json_encode($data);
     }
 }

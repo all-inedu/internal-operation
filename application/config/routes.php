@@ -69,3 +69,5 @@ $route['api/mentor'] = 'Api/mentor';
 $route['api/birthday'] = 'Api/birthDay';
 
 $route['api/students'] = 'Api/getAllStudent';
+$route['api/admissions'] = 'Api/getAdmissions';
+$route['api/alumni'] = 'Api/getAlumni';

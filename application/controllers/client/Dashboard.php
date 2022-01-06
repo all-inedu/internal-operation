@@ -55,7 +55,19 @@ class Dashboard extends CI_Controller
         }
         
         $this->load->view('templates/s-io');
-        $this->load->view('client/dashboard/page-programs.php', $data);
+        $this->load->view('client/client-program/index', $data);
+        // $this->load->view('client/dashboard/page-programs.php', $data);
+        $this->load->view('templates/f-io');
+    }
+
+    public function admissions() {
+        $data['stprog'] = $this->stprog->showAllByProg('Admissions Mentoring');
+        $data['status'] = 'success';
+        $data['program'] = $this->prog->showB2C();
+        
+        $this->load->view('templates/s-io');
+        $this->load->view('client/client-program/index', $data);
+        // $this->load->view('client/dashboard/page-programs.php', $data);
         $this->load->view('templates/f-io');
     }
 }

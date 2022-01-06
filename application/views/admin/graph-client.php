@@ -33,7 +33,7 @@
         <h4>Client Management</h4>
         <hr width="50px" class="mt-1">
     </div>
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-3 mb-2">
             <a href="<?=base_url('client/student/index/prospective');?>">
                 <div class="card mb-3 shadow">
@@ -106,6 +106,47 @@
                                 <div class="row no-gutters">
                                     <div class="col-12">
                                         <h5 class="card-title text-left mb-0">Completed <br>Client</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 mb-2">
+            <a href="<?=base_url('client/dashboard/admissions');?>">
+                <div class="card mb-3 shadow">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 text-center align-middle p-1" style="margin-top:8%">
+                            <h2 class="count-title mb-0" id="adm_data">0</h2>
+                        </div>
+                        <div class="col-md-8 bg-secondary text-white shadow align-middle">
+                            <div class="card-body">
+                                <div class="row no-gutters">
+                                    <div class="col-12">
+                                        <h6 class="card-title text-left mb-0">Successful <br> Admissions Mentoring
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 mb-2">
+            <a href="<?=base_url('client/alumni');?>">
+                <div class="card mb-3 shadow">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 text-center align-middle p-1" style="margin-top:10%">
+                            <h2 class="count-title mb-0" id="alu_data">0</h2>
+                        </div>
+                        <div class="col-md-8 bg-secondary text-white shadow align-middle">
+                            <div class="card-body">
+                                <div class="row no-gutters">
+                                    <div class="col-12">
+                                        <h6 class="card-title text-left mb-0" style="padding: 9px 0;">Alumni Total</h6>
                                     </div>
                                 </div>
                             </div>
@@ -322,6 +363,33 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 <script>
+$(document).ready(function() {
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        url: "<?=base_url('api/admissions');?>",
+        headers: {
+            'X-CSRF-Token': '{{ csrf_token() }}',
+        },
+        success: function(datas) {
+            $('#adm_data').html(datas)
+        }
+    })
+
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        url: "<?=base_url('api/alumni');?>",
+        headers: {
+            'X-CSRF-Token': '{{ csrf_token() }}',
+        },
+        success: function(datas) {
+            $('#alu_data').html(datas)
+        }
+    })
+})
+
+
 let myColor1 = "<?=$colorArray1;?>";
 let color1 = myColor1.split(",");
 let myColor2 = "<?=$colorArray2;?>";

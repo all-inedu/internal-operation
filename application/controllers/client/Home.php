@@ -120,7 +120,6 @@ class Home extends CI_Controller
             
         $this->load->view('templates/s-io');
         $this->load->view('client/index', $data);
-        // $this->load->view('client/contribute', $data);
         $this->load->view('client/lead', $data);
         $this->load->view('templates/f-io');
     }

@@ -335,6 +335,8 @@ $(document).ready(function() {
         });
     }
 
+    table.column(8).search("<?=$status;?>").draw();
+
     $('#sProg').on('change', function() {
         table.column(3).search($(this).val()).draw();
     });
