@@ -18,6 +18,7 @@ class Student extends CI_Controller
         $this->load->model('hr/Influencer_model', 'infl');
         $this->load->model('hr/Mentor_model', 'mt');
         $this->load->model('client/Students_model','std');
+        $this->load->model('client/StDetail_model','stdetail');
         $this->load->model('client/Parents_model','prt');
         $this->load->model('client/StProgram_model','stprog');
         $this->load->model('client/FollowUp_model','flw');
@@ -235,6 +236,68 @@ class Student extends CI_Controller
         $this->std->delete($id);
         $this->session->set_flashdata('success', 'Students program has been created');
         redirect('/client/student/');
+    }
+
+    public function report($st_num, $stprog_id) {
+        $data['student'] = $this->std->showId($st_num);
+        $data['stprog'] = $this->stprog->showId($stprog_id);
+        $data['empl'] = $this->empl->showId($data['stprog']['empl_id']);
+        $data['mentor'] = $this->mt->studentsMentorByStprog($data['stprog']['stprog_id']);
+        $data['stdetail'] = $this->stdetail->showId($data['student']['st_id']);
+        
+        // echo json_encode($data);
+        $this->load->view('templates/s-io');
+        $this->load->view('client/student/send/index', $data);
+        $this->load->view('templates/f-io');
+    }
+
+    public function send() {
+        $st_num = $this->input->post('st_num');
+        $stprog_id = $this->input->post('stprog_id');
+        $data['notes'] = $this->input->post('notes');
+        $data['student'] = $this->std->showId($st_num);
+        $data['stprog'] = $this->stprog->showId($stprog_id);
+        $data['empl'] = $this->empl->showId($data['stprog']['empl_id']);
+        $data['mentor'] = $this->mt->studentsMentorByStprog($data['stprog']['stprog_id']);
+        $data['stdetail'] = $this->stdetail->showId($data['student']['st_id']);
+        
+        // cek mentor
+        $mentor = [];
+        if(count($data['mentor'])>0) {
+            foreach($data['mentor'] as $mt) {
+                array_push($mentor, $mt['mt_email']);
+            }
+        } else {
+            $this->session->set_flashdata('error', 'Please add mentor first');
+            redirect('/client/students-program/view/'.$stprog_id);
+        }
+
+        $empl = [];
+        array_push($empl, $data['empl']['empl_email']);
+        array_push($empl, 'rizka.irawan@all-inedu.com');
+
+        // echo json_encode($empl);
+        // $this->load->view('client/student/send/profile', $data);
+        // exit;
+
+        $this->load->library('mail_smtp');
+        $config = $this->mail_smtp->smtp();
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+        
+        $this->email->from('info@all-inedu.com', 'ALL-in Eduspace');
+        $this->email->to($mentor);
+        $this->email->cc($empl);
+
+        $this->email->subject('Admission Mentoring - '.$data['student']['st_firstname'].'\'s Profile');
+        $bodyMail = $this->load->view('client/student/send/profile', $data, true);
+        $this->email->message($bodyMail);
+        $this->email->attach(base_url('upload/student/questionnaire/'.$data['stdetail']['att_questioneer']));
+        $this->email->attach(base_url('upload/student/assessment/'.$data['stdetail']['att_other']));
+
+        $this->email->send();
+        $this->session->set_flashdata('success', 'Student\'s profile has been sent to mentor');
+        redirect('/client/students-program/view/'.$stprog_id);
     }
 
 }

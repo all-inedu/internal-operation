@@ -254,7 +254,7 @@ class Profile extends CI_Controller
                     if(! $old_other==""){
                         unlink("./upload/student/other/".$old_other);
                     }
-                    $other = $this->uploaded('att_other', 'other', $id);
+                    $other = $this->uploaded('att_other', 'assessment', $id);
                 }
 
                 $detailData = [

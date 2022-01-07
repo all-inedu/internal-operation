@@ -113,7 +113,7 @@ class Mentor_model extends CI_model
     }
 
     public function studentsMentorByStprog($id) {
-        $this->db->select('tbl_stmentor.*, tbl_mt.mt_firstn, tbl_mt.mt_lastn');
+        $this->db->select('tbl_stmentor.*, tbl_mt.mt_firstn, tbl_mt.mt_lastn, tbl_mt.mt_email');
         $this->db->where('tbl_stmentor.stprog_id',$id);
         $this->db->join('tbl_mt','tbl_mt.mt_id=tbl_stmentor.mt_id1 OR tbl_mt.mt_id=tbl_stmentor.mt_id2');
         return $this->db->get('tbl_stmentor')->result_array();

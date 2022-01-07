@@ -58,6 +58,12 @@
                         </b>
                         <input type="text" value="<?=$stprog['prog_sub'];?>" id="sub-program" hidden>
                     </div>
+                    <?php if($stprog['prog_sub']=='Admissions Mentoring'):?>
+                    <a href="<?=base_url('client/student/report/'.$stprog['st_num'].'/'.$stprog['stprog_id']);?>"
+                        class="btn btn-sm btn-outline-info mt-3 mr-2">
+                        <i class="fas fa-paper-plane"></i> Send to Mentor
+                    </a>
+                    <?php endif;?>
                     <a href="<?=base_url('client/student/view/'.$stprog['st_num']);?>"
                         class="btn btn-sm btn-outline-primary mt-3 mr-2"><i class="fas fa-pencil-alt"></i>&nbsp;
                         Profile</a>

@@ -294,7 +294,7 @@
                                         <th>Curriculum Vitae</th>
                                         <th>Transcript</th>
                                         <th>Questionnaire</th>
-                                        <th>Others</th>
+                                        <th>Assessment</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
@@ -369,7 +369,7 @@
                                         <td>
                                             <?php 
                                             if($stdetail['att_other']) { ?>
-                                            <a href="<?=base_url('upload/student/other/'.$stdetail['att_other']);?>"
+                                            <a href="<?=base_url('upload/student/assessment/'.$stdetail['att_other']);?>"
                                                 class="btn btn-sm btn-info" target="_blank">View / Download</a>
                                             <?php } else { ?>
                                             <div class="text-muted">Not Available</div>

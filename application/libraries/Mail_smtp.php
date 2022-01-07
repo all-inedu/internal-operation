@@ -10,17 +10,23 @@ class Mail_smtp
             'protocol' => 'smtp',
             'smtp_crypto' => 'tls',
             'smtp_host' => 'smtp.gmail.com',
-            // 'smtp_user' => 'hafidz.bdt@gmail.com',
-            // 'smtp_pass' => 'ohojtrsmczgliiqy',
             'smtp_user' => 'all.in.eduspace@gmail.com',
             'smtp_pass' => 'bwhlsupvcrqxhttj', 
-                            // bwhlsupvcrqxhttj
-                            // dyouvynzcxdgzewz
             'smtp_port' => 587,
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'newline' => "\r\n",
         ];
+
+        // $config = [
+        //     'protocol' => 'smtp',
+        //     'smtp_host' => 'smtp.mailtrap.io',
+        //     'smtp_port' => 2525,
+        //     'smtp_user' => 'e0112ef2287bbd',
+        //     'smtp_pass' => 'e8765b74632886',
+        //     'crlf' => "\r\n",
+        //     'newline' => "\r\n"
+        // ];
         
         return $config;
     }

@@ -544,13 +544,13 @@
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <i class="fas fa-paperclip"></i>&nbsp; &nbsp; Others :
+                            <i class="fas fa-paperclip"></i>&nbsp; &nbsp; Assessment :
                             <br>
                             <?php if($stdetail['att_other']) {?>
                             <small class="ml-4 text-success">
                                 Available -
                                 <a class="text-primary" target="_blank"
-                                    href="<?=base_url('upload/student/other/'.$stdetail['att_other']);?>">View</a>
+                                    href="<?=base_url('upload/student/assessment/'.$stdetail['att_other']);?>">View</a>
                             </small>
                             <?php } else { ?>
                             <small class="ml-4 text-danger">Not Available</small>
