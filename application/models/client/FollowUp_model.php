@@ -63,6 +63,7 @@ class FollowUp_model extends CI_model
         $this->db->where('tbl_followup.flw_date >=', $d);
         $this->db->where('tbl_followup.flw_date <=', $next_day);
         $this->db->where('tbl_followup.flw_mark', 0); 
+        $this->db->where('tbl_stprog.stprog_status', 0); 
         // $this->db->where('tbl_followup.flw_sent', 0); 
         $this->db->join("tbl_stprog", "tbl_stprog.stprog_id=tbl_followup.stprog_id");
         $this->db->join("tbl_prog", "tbl_prog.prog_id=tbl_stprog.prog_id");
