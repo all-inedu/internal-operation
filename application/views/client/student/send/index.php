@@ -8,7 +8,7 @@
                             <h5>Preview <?=$student['st_firstname'];?>'s Profile </h5>
                         </div>
                         <div class="float-right">
-                            <button class="btn btn-info" onClick="window.location.reload('Refresh')">
+                            <button class="btn btn-info" type="button" onClick="window.location.reload('Refresh')">
                                 Refresh
                             </button>
                         </div>
@@ -81,7 +81,7 @@
                                     <a href="<?=base_url('upload/student/questionnaire/'.$stdetail['att_questioneer']);?>"
                                         target="_blank" class="btn btn-outline-success btn-sm">View Questionnaire</a>
                                     <?php else: ?>
-                                    <a href="<?=base_url('client/profile/edit/'.$student['st_id']);?>" target="_blank"
+                                    <a href="<?=base_url('client/profile/edit/'.$student['st_num']);?>" target="_blank"
                                         class="btn btn-outline-primary btn-sm">Add Questionnaire</a>
                                     <?php endif; ?>
                                 </td>
@@ -94,7 +94,7 @@
                                     <a href="<?=base_url('upload/student/assessment/'.$stdetail['att_other']);?>"
                                         target="_blank" class="btn btn-outline-success btn-sm">View Assessment</a>
                                     <?php else: ?>
-                                    <a href="<?=base_url('client/profile/edit/'.$student['st_id']);?>" target="_blank"
+                                    <a href="<?=base_url('client/profile/edit/'.$student['st_num']);?>" target="_blank"
                                         class="btn btn-outline-primary btn-sm">Add Assessment</a>
                                     <?php endif; ?>
                                 </td>
