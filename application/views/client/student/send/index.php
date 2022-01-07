@@ -134,7 +134,7 @@
                         </table>
                         <hr>
                         <div class="float-right">
-                            <?php if(count($mentor)>=0): ?>
+                            <?php if(count($mentor)>0): ?>
                             <button type="submit" class="btn btn-primary">Send to Mentor</button>
                             <?php endif; ?>
                         </div>
