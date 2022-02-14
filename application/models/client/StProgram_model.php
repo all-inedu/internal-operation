@@ -876,4 +876,11 @@ class StProgram_model extends CI_model
         $this->db->order_by('tbl_stprog.stprog_statusprogdate', 'DESC');
         return $this->db->get('tbl_stprog')->result_array();
     }
+
+    function failedProgram($id) 
+    {
+        $this->db->set('stprog_status',2);
+        $this->db->where('stprog_id', $id);
+        $this->db->update('tbl_stprog');
+    }
 }

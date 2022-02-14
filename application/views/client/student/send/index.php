@@ -59,6 +59,11 @@
                                 <td><?=$stprog['prog_sub'].': '.$stprog['prog_program'];?></td>
                             </tr>
                             <tr>
+                                <td>End Date</td>
+                                <td class="text-center">:</td>
+                                <td><?=date('M Y', strtotime($stprog['stprog_end_date']));?></td>
+                            </tr>
+                            <tr>
                                 <td>Total Universities</td>
                                 <td class="text-center">:</td>
                                 <td><?=$stprog['stprog_tot_uni'];?></td>
@@ -106,11 +111,11 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <small class="d-block">Main Mentor</small>
-                                            <?=count($mentor)==1?$mentor[0]['mt_firstn'].' '.$mentor[0]['mt_lastn']:'-'?>
+                                            <?=count($mentor)>=1?$mentor[0]['mt_firstn'].' '.$mentor[0]['mt_lastn']:'-'?>
                                         </div>
                                         <div class="col-md-6">
                                             <small class="d-block">Backup Mentor</small>
-                                            <?=count($mentor)==2?$mentor[1]['mt_firstn'].' '.$mentor[1]['mt_lastn']:'-'?>
+                                            <?=count($mentor)>=2?$mentor[1]['mt_firstn'].' '.$mentor[1]['mt_lastn']:'-'?>
                                         </div>
                                         <div class="col-md-12">
                                             <?php if(count($mentor)==0): ?>

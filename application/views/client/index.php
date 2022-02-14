@@ -252,6 +252,9 @@
                     <input type="date" name="flw_date" class="form-control form-control-sm">
 
                     <hr>
+                    <div class="float-left mt-2">
+                        <button id="fail-btn" data-stprog="" type="button" class="btn btn-sm btn-danger" onclick="failed(this)">Failed</b>
+                    </div>
                     <div class="float-right mt-2">
                         <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                     </div>
@@ -687,11 +690,19 @@ function followMark(mark) {
     $("#followUp").modal("hide")
     $("#followUpNotes").modal("show")
     $("#flw_id").val(flw_id)
+    $('#fail-btn').attr('data-stprog', stprog_id)
+    $('#fail-btn').attr('data-flw', flw_id)
 }
 
 function followUnmark(mark) {
     let flw_id = mark.getAttribute('data-id')
     window.location.href = "<?=base_url('client/home/follow_unmark/');?>" + flw_id;
+}
+
+function failed(data) {
+    let stprog_id = data.getAttribute('data-stprog')
+    let flw_id = data.getAttribute('data-flw')
+    window.location.href = "<?=base_url('client/home/failed/');?>" + stprog_id + "/" + flw_id;
 }
 
 

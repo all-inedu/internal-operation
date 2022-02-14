@@ -245,7 +245,8 @@ class Students_program extends CI_Controller
         }
 
         $this->session->set_flashdata('success', 'Students program has been changed');
-        redirect('/client/students-program/view/'.$id);
+        redirect('/client/student/view/'.$st_num);
+        // redirect('/client/students-program/view/'.$id);
     }
 
     public function delete($id) { 

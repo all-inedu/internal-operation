@@ -297,7 +297,7 @@ class Student extends CI_Controller
 
         $this->email->send();
         $this->session->set_flashdata('success', 'Student\'s profile has been sent to mentor');
-        redirect('/client/students-program/view/'.$stprog_id);
+        redirect('/client/student/view//'.$st_num);
     }
 
 }

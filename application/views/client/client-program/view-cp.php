@@ -11,6 +11,12 @@
     $str  =  getStringBetween($source,  '<div jsname="ip75Cb" class="kf1m0"><div class="YMlKec fxKbKc">',  '</div></div>');
     $new_str = substr(str_replace(",","",$str),0,6);
     $idr_google = intval($new_str);
+
+    if(!empty($stprog['stprog_kurs'])){
+        $kurs = $stprog['stprog_kurs'];
+    } else {
+        $kurs = $idr_google;
+    }
 ?>
 <div class="container-fluid p-1">
     <div class="row">
@@ -302,13 +308,6 @@
                                     <input type="number" name="stprog_tot_dollar" class="form-control form-control-sm"
                                         id="dollar" value="<?=$stprog['stprog_tot_dollar'];?>">
                                 </div>
-                                <?
-                                    if(!empty($stprog['stprog_kurs'])){
-                                        $kurs = $stprog['stprog_kurs'];
-                                    } else {
-                                        $kurs = $idr_google;
-                                    }
-                                ?>
                                 <div class="col-md-6 mb-3">
                                     <small>Kurs Dollar-Rupiah</small>
                                     <input type="number" name="stprog_kurs" class="form-control form-control-sm"

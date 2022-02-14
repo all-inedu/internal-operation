@@ -156,7 +156,7 @@ class Home extends CI_Controller
         $this->flw->update($data, $id);
 
         $this->session->set_flashdata('success', 'You have updated the follow-up list');
-        redirect('/client/home/follow-up');
+        redirect('/client');
     }
 
     public function follow_unmark($id) {
@@ -165,7 +165,7 @@ class Home extends CI_Controller
         ];
         $this->flw->update($data, $id);
         $this->session->set_flashdata('success', 'You have updated the follow-up list');
-        redirect('/client/home/follow-up');
+        redirect('/client');
     }
 
     public function follow_up()
@@ -185,6 +185,19 @@ class Home extends CI_Controller
     public function showFollowUpByStprog($id) {
         $data = $this->flw->showFollowUpByStprog($id);
         echo json_encode($data);
+    }
+
+    public function failed($stprog, $flw) 
+    {
+        $this->stprog->failedProgram($stprog);
+        $data = [
+            'flw_mark' => 1,
+            'flw_notes' => 'Failed'
+        ];
+        $this->flw->update($data, $flw);
+
+        $this->session->set_flashdata('success', 'You have updated status of the students program');
+        redirect('/client');
     }
  
 }

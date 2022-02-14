@@ -59,6 +59,11 @@
             <td><?=$stprog['prog_sub'].': '.$stprog['prog_program'];?></td>
         </tr>
         <tr>
+            <td>End Date</td>
+            <td class="text-center">:</td>
+            <td><?=date('M Y', strtotime($stprog['stprog_end_date']));?></td>
+        </tr>
+        <tr>
             <td>Total Universities</td>
             <td>:</td>
             <td><?=$stprog['stprog_tot_uni'];?></td>
