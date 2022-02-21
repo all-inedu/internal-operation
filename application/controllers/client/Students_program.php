@@ -187,8 +187,8 @@ class Students_program extends CI_Controller
             $start_date =  date('Y-m-d',strtotime($this->input->post('stprog_start_date')));
             $end_date =  date('Y-m-d',strtotime($this->input->post('stprog_end_date')));
         } else if($this->input->post('stprog_end_date')) {
+            $start_date = date('Y-m-d');
             $end_date =  date('Y-m-d',strtotime($this->input->post('stprog_end_date')));
-            $start_date = date('Y-m-d',strtotime('-10 months',strtotime($end_date)));
         } else {
             $start_date = date('Y-m-d');
             $end_date = date('Y-m-d');

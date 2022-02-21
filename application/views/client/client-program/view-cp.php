@@ -293,11 +293,24 @@
                             <!-- Admission Mentoring  -->
                             <?php  } else if($stprog['prog_sub']=="Admissions Mentoring") { ?>
                             <div class="row">
+                                <?php if($stprog['prog_id']=='AAUP'): ?>
                                 <div class="col-md-12 mb-3">
                                     <small>End Date</small>
                                     <input type="month" name="stprog_end_date" class="form-control form-control-sm"
-                                        value="<?= $stprog['stprog_end_date']!= null ? date('Y-m', strtotime($stprog['stprog_end_date'])): date('Y-m')?>">
+                                        value="<?= $stprog['stprog_end_date']!= null ? date('Y-m', strtotime($stprog['stprog_end_date'])): date('Y-m', strtotime($stprog['st_abryear'].'-06-01'))?>">
                                 </div>
+                                <?php else: ?>
+                                <div class="col-md-6 mb-3">
+                                    <small>Start Date</small>
+                                    <input type="month" name="stprog_start_date" class="form-control form-control-sm"
+                                        value="<?= $stprog['stprog_start_date']!= null ? date('Y-m', strtotime($stprog['stprog_start_date'])) : date('Y-m')?>">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <small>End Date</small>
+                                    <input type="month" name="stprog_end_date" class="form-control form-control-sm"
+                                        value="<?=$stprog['stprog_end_date']!= null ? date('Y-m', strtotime($stprog['stprog_end_date'])) : date('Y-m', strtotime('+10 month', strtotime(date('Y-m'))))?>">
+                                </div>
+                                <?php endif; ?>
                                 <div class="col-md-6 mb-3">
                                     <small>Total Universities</small>
                                     <input type="number" name="stprog_tot_uni" class="form-control form-control-sm"
