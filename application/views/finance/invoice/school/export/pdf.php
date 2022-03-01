@@ -63,8 +63,8 @@
                             <tr>
                                 <td valign="top">From : </td>
                                 <td><b>PT. Jawara Edukasih Indonesia</b><br>
-                                    JL. Panjang No 36 <br>
-                                    Jakarta Barat 11530
+                                    Jl Jeruk Kembar Blok Q9, No. 15 <br>
+                                    Srengseng, Kembangan, Jakarta Barat 11630
                                     <br><br>
                                 </td>
                             </tr>
