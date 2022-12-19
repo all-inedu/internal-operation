@@ -37,7 +37,7 @@
     <div class="col-md-9">
         <div class="card shadow">
             <div class="card-body">
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     <h6><i class="icofont-notebook"></i>&nbsp; Purchase Request
                         <div class="float-right">
                             <a href="<?=base_url('finance/purchase-request/view/'.$purchase['purchase_id']);?>"
@@ -115,6 +115,38 @@
                                     <textarea name="purchase_notes" class="form-control form-control-sm"
                                         rows="4"><?=$purchase['purchase_notes'];?></textarea>
                                     <?=form_error('purchase_notes', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-2">
+                            Attachment :
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" id="select_file" style="border: 1px solid #767676; border-radius: 2px; padding: 3px 7px">Choose File</button>
+                                    <span id='val'>
+                                        <?php
+                                        if ($purchase['purchase_attachment'] != "") 
+                                            echo $purchase['purchase_attachment'];
+                                        else 
+                                            echo "No file chosen";
+                                        ?></span>
+                                    <input type="file" name="attachment" style="visibility: hidden;"/>
+                                    <input type="hidden" id="change_value" name="attachment_change" value="false">
+                                    <input type="hidden" name="attachment_name" value="<?=$purchase['purchase_attachment']?>">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-2">
+                            Created by :
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control form-control-sm" name="created_by" value="<?=$purchase['created_by']?>" />
                                 </div>
                             </div>
                         </div>
@@ -297,6 +329,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
 <script>
+$("#select_file").click( function() {
+    $("input[type=file][name=attachment]").trigger('click');
+})
+
+$("input[type=file][name=attachment]").change(function() {
+    $("#val").text(this.value.replace(/C:\\fakepath\\/i, ''))
+    $("#change_value").val("true");
+})
+
 let div = new SlimSelect({
     select: '#division',
     placeholder: 'Select division',

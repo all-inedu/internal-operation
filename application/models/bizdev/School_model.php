@@ -13,6 +13,20 @@ class School_model extends CI_model
         $this->db->where('sch_id !=', '');
         return $this->db->get('tbl_sch')->result_array();
     }
+    
+    //* tambahan
+    public function showAll2(){
+        $this->db->select("*, TRIM('#! ' FROM sch_name) as sch_name");
+        $this->db->where('sch_id !=', '');
+        $this->db->where("TRIM('#! ' FROM sch_name) !=", '');
+        $this->db->where("TRIM('#! ' FROM sch_name) !=", 'other');
+        $this->db->where("TRIM('#! ' FROM sch_name) !=", '-');
+        $this->db->group_by('sch_name');// add group_by
+        $this->db->order_by("TRIM('#! ' FROM sch_name)", "asc");
+        // return $this->db->last_query();
+        return $this->db->get('tbl_sch')->result_array();
+    }
+
 
     public function showId($id){
         $this->db->select('*');

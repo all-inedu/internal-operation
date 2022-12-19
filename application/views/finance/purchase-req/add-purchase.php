@@ -37,7 +37,7 @@
     <div class="col-md-9">
         <div class="card shadow">
             <div class="card-body">
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     <h6><i class="icofont-notebook"></i>&nbsp; Purchase Request
                         <div class="float-right">
                             <a href="<?=base_url('finance/purchase-request');?>" class="btn btn-sm btn-info"><i
@@ -100,6 +100,28 @@
                                     <textarea name="purchase_notes" class="form-control form-control-sm"
                                         rows="4"></textarea>
                                     <?=form_error('purchase_notes', '<small class="text-danger">', '</small>');?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-2">
+                            Attachment :
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="file" name="attachment" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-2">
+                            Created by :
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control form-control-sm" name="created_by" value="<?=$this->session->userdata('empl_firstname').' '.$this->session->userdata('empl_lastname')?>" />
                                 </div>
                             </div>
                         </div>

@@ -62,9 +62,9 @@
                             <tr>
                                 <td width="15%" valign="top">From : </td>
                                 <td width="85%"><b>PT. Jawara Edukasih Indonesia</b><br>
-                                    Jl Jeruk Kembar Blok Q9, No. 15 <br>
-                                    Srengseng, Kembangan, Jakarta Barat 11630
-                                    <br><br>
+                                    Jl Jeruk Kembar Blok Q9 No. 15 <br>
+                                    Srengseng, Kembangan<br>
+                                    DKI Jakarta <br>
                                 </td>
                             </tr>
                             <tr>
@@ -131,7 +131,7 @@
                     </div>
 
                     <div style="margin-top:5px;">
-
+                        
                         <?php if($inv['inv_earlybirdusd']) {?>
                         <i>Early Bird</i> <br>
                         <?php } ?>
@@ -174,7 +174,7 @@
                 </td>
             </tr>
         </table>
-
+        
         <table>
             <tr>
                 <td>
@@ -210,7 +210,7 @@
                     <table border="0" style="padding:0px; margin-left:-6px;">
                         <tr>
                             <td>
-                                Beneficiancy <br>
+                                Beneficiary <br>
                                 Bank <br>
                                 A/C No. <br>
                                 Branch <br>
@@ -233,7 +233,6 @@
             </tr>
         </table>
     </div>
-    <img src="<?=base_url('assets/img/footer-allin.png');?>" width="100%" style="bottom:60px; position:absolute;">
-</body>
-
+    <img src="<?=base_url('assets/img/footer-allin.png');?>" width="114%" style="margin:-20px -50px 0 -50px; position:absolute; bottom:0;">
+    </body>
 </html>

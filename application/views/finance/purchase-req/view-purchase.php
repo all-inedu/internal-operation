@@ -91,6 +91,29 @@
                             <?=$purchase['purchase_notes'];?>
                             <hr class="mt-1 mb-1">
                         </div>
+
+                        <div class="col-md-4 mb-2">
+                            Attachment :
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <?php
+                            if ($purchase['purchase_attachment'] != "") {?>
+                            <a style="color: blue" target="_blank" href="<?=base_url().'upload/finance/'.$purchase['purchase_attachment']?>">view here</a>
+                            <?php
+                            } else {
+                                echo "none";
+                            }
+                            ?>
+                            <hr class="mt-1 mb-1">
+                        </div>
+
+                        <div class="col-md-4 mb-2">
+                            Created by :
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <?=$purchase['created_by'];?>
+                            <hr class="mt-1 mb-1">
+                        </div>
                     </div>
                     <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
                     <div class="row">

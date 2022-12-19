@@ -167,7 +167,7 @@
                                         </div>
                                         <input id="dsRupiah" name="inv_discidr" type="number"
                                             class="form-control form-control-sm" value="<?=$inv['inv_discidr'];?>"
-                                            readonly>
+                                            >
                                         <?=form_error('inv_discidr', '<small class="text-danger">', '</small>');?>
                                     </div>
                                 </div>
@@ -960,6 +960,14 @@ PM.set("<?=$inv['inv_paymentmethod'];?>");
 
 
 <script>
+$( document ).ready(function() {
+    let pc = $('#pcDollar').val();
+    let pcRupiah = $('#pcRupiah').val();
+    
+    let currentUSD = pcRupiah/pc;
+    $('#currentUSD').val(currentUSD);
+});
+
 $('#currentUSD').keyup(function() {
     let USD = $('#currentUSD').val();
     let pc = $('#pcDollar').val();
@@ -1031,6 +1039,27 @@ $('#dsDollar').keyup(function() {
 
     $('#tpWords1').val(capitalize(tpRupiah));
 });
+
+$('#dsRupiah').keyup(function(){
+    let USD = $('#currentUSD').val();
+    let pc = $('#pcDollar').val();
+    let pcRupiah = $('#pcRupiah').val();
+    let eb = $('#ebDollar').val();
+    let ebRupiah = $('#ebRupiah').val();
+    let dsRupiah = $('#dsRupiah').val();
+    let ds = dsRupiah/USD
+    
+    let tpDollar = pc - eb - ds.toFixed(0);
+    let tpRupiah = pcRupiah - ebRupiah - dsRupiah;
+    
+    // console.log(ds.toFixed(0))
+    
+     $('#dsDollar').val(ds.toFixed(0));
+    $('#tpDollar').val(tpDollar);
+    $('#tpRupiah').val(tpRupiah);
+
+    $('#tpWords1').val(capitalize(tpRupiah));
+})
 
 function editInstalments(x) {
     $.ajax({

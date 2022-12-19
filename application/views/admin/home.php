@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrator - Bigdata Platform</title>
-    <link rel="icon" href="<?=base_url('assets/img/bigdata.ico');?>" type="image/gif" sizes="16x16">
+    <link rel="icon" href="<?= base_url('assets/img/bigdata.ico'); ?>" type="image/gif" sizes="16x16">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="<?=base_url();?>assets/css/style-sidebars.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/style-sidebars.css">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -17,16 +17,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-colvis-1.6.1/b-flash-1.6.1/b-html5-1.6.1/fc-3.3.0/fh-3.1.6/datatables.min.css" />
-    <link rel="stylesheet" href="<?=base_url('assets/css');?>/icofont/icofont.min.css">
-    <link rel="stylesheet" href="<?=base_url();?>assets/css/jquery-ui.css">
-    <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
-    <link rel="stylesheet" href="<?=base_url();?>assets/css/all-in.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css'); ?>/icofont/icofont.min.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/jquery-ui.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/styles.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/all-in.css">
 </head>
 <style>
 body {
     height: 100vh;
     min-height: 100vh;
-    background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.93) 0%), url("<?=base_url('assets/img/bg.jpg');?>");
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.93) 0%), url("<?= base_url('assets/img/bg.jpg'); ?>");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -34,7 +34,7 @@ body {
 }
 
 .card {
-    background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.93) 0%), url("<?=base_url('assets/img/bg.jpg');?>");
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.93) 0%), url("<?= base_url('assets/img/bg.jpg'); ?>");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -42,7 +42,7 @@ body {
 }
 
 .menus {
-    height: 350px !important;
+    height: 360px !important;
 }
 
 .menu-link a:hover {
@@ -72,18 +72,18 @@ body {
 
 <body>
     <?php
-if ($this->session->flashdata('success')) {
-    echo '<div class="flash-data" data-success="' . $this->session->flashdata('success') . '"></div>';
-} else if ($this->session->flashdata('error')) {
-    echo '<div class="flash-data" data-error="' . $this->session->flashdata('error') . '"></div>';
-} else if ($this->session->flashdata('warning')) {
-    echo '<div class="flash-data" data-warning="' . $this->session->flashdata('warning') . '"></div>';
-} else if ($this->session->flashdata('login')) {
-    echo '<div class="flash-data" data-login="' . $this->session->flashdata('login') . '"></div>';
-}
-?>
+    if ($this->session->flashdata('success')) {
+        echo '<div class="flash-data" data-success="' . $this->session->flashdata('success') . '"></div>';
+    } else if ($this->session->flashdata('error')) {
+        echo '<div class="flash-data" data-error="' . $this->session->flashdata('error') . '"></div>';
+    } else if ($this->session->flashdata('warning')) {
+        echo '<div class="flash-data" data-warning="' . $this->session->flashdata('warning') . '"></div>';
+    } else if ($this->session->flashdata('login')) {
+        echo '<div class="flash-data" data-login="' . $this->session->flashdata('login') . '"></div>';
+    }
+    ?>
 
-    <a href="<?=base_url('admin/settings/menus');?>" class="role shadow" title="Settings" target="_blank">
+    <a href="<?= base_url('admin/settings/menus'); ?>" class="role shadow" title="Settings" target="_blank">
         <i class="icofont-settings icofont-2x"></i>
     </a>
 
@@ -98,10 +98,10 @@ if ($this->session->flashdata('success')) {
                             </h4>
                         </div>
                         <div class="col-4 my-auto text-right">
-                            <a href="<?=base_url('auth/login/sign-out');?>" class="text-primary"><i
+                            <a href="<?= base_url('auth/login/sign-out'); ?>" class="text-primary"><i
                                     class="icofont-sign-out"></i> Logout,
                             </a>&nbsp;
-                            <?=$empl['empl_firstname'].' '.$empl['empl_lastname'];?>
+                            <?= $empl['empl_firstname'] . ' ' . $empl['empl_lastname']; ?>
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@ if ($this->session->flashdata('success')) {
                         Client Management
                     </div>
                     <div class="card-body menu-link">
-                        <a href="<?=base_url('client/alumni/');?>" target="">
+                        <a href="<?= base_url('client/alumni/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Alumni/Acceptance List
@@ -124,7 +124,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/home/follow-up/');?>" target="">
+                        <a href="<?= base_url('client/home/follow-up/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Follow-Up List
@@ -135,7 +135,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/lead/');?>" target="">
+                        <a href="<?= base_url('client/lead/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Lead Source List
@@ -146,7 +146,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/parents/');?>" target="">
+                        <a href="<?= base_url('client/parents/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Parent List
@@ -157,7 +157,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/programs/');?>" target="">
+                        <a href="<?= base_url('client/programs/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Program List
@@ -168,7 +168,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/student/');?>" target="">
+                        <a href="<?= base_url('client/student/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Student List
@@ -179,7 +179,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/students-program/');?>" target="">
+                        <a href="<?= base_url('client/students-program/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Students Program List
@@ -190,7 +190,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('client/tracking/');?>" target="">
+                        <a href="<?= base_url('client/tracking/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Sales Tracking
@@ -201,7 +201,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/university/');?>" target="">
+                        <a href="<?= base_url('bizdev/university/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     University List
@@ -222,7 +222,7 @@ if ($this->session->flashdata('success')) {
                         Business Development
                     </div>
                     <div class="card-body menu-link">
-                        <a href="<?=base_url('bizdev/edufair/');?>" target="">
+                        <a href="<?= base_url('bizdev/edufair/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Edufair List
@@ -233,7 +233,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/corporate/');?>" target="">
+                        <a href="<?= base_url('bizdev/corporate/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Corporate List
@@ -244,7 +244,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/corporate-program/');?>" target="">
+                        <a href="<?= base_url('bizdev/corporate-program/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Corporates Program List
@@ -255,7 +255,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/school/');?>" target="">
+                        <a href="<?= base_url('bizdev/school/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     School List
@@ -266,7 +266,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('bizdev/school-program/');?>" target="">
+                        <a href="<?= base_url('bizdev/school-program/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Schools Program List
@@ -287,7 +287,7 @@ if ($this->session->flashdata('success')) {
                         Finance
                     </div>
                     <div class="card-body menu-link">
-                        <a href="<?=base_url('finance/assets/');?>" target="">
+                        <a href="<?= base_url('finance/assets/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Asset List
@@ -298,7 +298,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/petty-cash/');?>" target="">
+                        <a href="<?= base_url('finance/petty-cash/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Petty Cash
@@ -309,7 +309,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/purchase-request/');?>" target="">
+                        <a href="<?= base_url('finance/purchase-request/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Purchase Request List
@@ -320,7 +320,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/pph-final/');?>" target="">
+                        <a href="<?= base_url('finance/pph-final/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     PPH Final
@@ -331,7 +331,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/receipt/referral/');?>" target="">
+                        <a href="<?= base_url('finance/receipt/referral/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Referral
@@ -342,7 +342,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/invoice/student/');?>" target="">
+                        <a href="<?= base_url('finance/invoice/student/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Students Invoice List
@@ -353,7 +353,18 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/receipt/student/');?>" target="">
+                        <a href="<?= base_url('finance/invoice/reminder/'); ?>" target="">
+                            <div class="row">
+                                <div class="col-10">
+                                    Due Date Reminder
+                                </div>
+                                <div class="col-2 my-auto">
+                                    <i class="icofont-paper-plane icofont-1x"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="mt-1 mb-1">
+                        <a href="<?= base_url('finance/receipt/student/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Students Receipt List
@@ -364,7 +375,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/invoice/school/');?>" target="">
+                        <a href="<?= base_url('finance/invoice/school/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Schools Invoice List
@@ -375,7 +386,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/receipt/school/');?>" target="">
+                        <a href="<?= base_url('finance/receipt/school/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Schools Receipt List
@@ -386,7 +397,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('finance/vendor/');?>" target="">
+                        <a href="<?= base_url('finance/vendor/'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Vendor List
@@ -406,7 +417,7 @@ if ($this->session->flashdata('success')) {
                         Human Resource
                     </div>
                     <div class="card-body menu-link">
-                        <a href="<?=base_url('hr/editor');?>" target="">
+                        <a href="<?= base_url('hr/editor'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Editor List
@@ -417,7 +428,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('hr/employee');?>" target="">
+                        <a href="<?= base_url('hr/employee'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Employee List
@@ -428,7 +439,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('hr/influencer');?>" target="">
+                        <a href="<?= base_url('hr/influencer'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Influencer List
@@ -439,7 +450,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('hr/mentor/potential');?>" target="">
+                        <a href="<?= base_url('hr/mentor/potential'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Potential Mentor & Tutor List
@@ -450,7 +461,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('hr/mentor');?>" target="">
+                        <a href="<?= base_url('hr/mentor'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Mentor & Tutor List
@@ -461,7 +472,7 @@ if ($this->session->flashdata('success')) {
                             </div>
                         </a>
                         <hr class="mt-1 mb-1">
-                        <a href="<?=base_url('hr/volunteer');?>" target="">
+                        <a href="<?= base_url('hr/volunteer'); ?>" target="">
                             <div class="row">
                                 <div class="col-10">
                                     Volunteer List
@@ -478,7 +489,7 @@ if ($this->session->flashdata('success')) {
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="<?=base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?= base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <script>

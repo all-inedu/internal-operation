@@ -164,7 +164,7 @@
             </tr>
         </table>
     </div>
-    <img src="<?=base_url('assets/img/footer-allin.png');?>" width="100%" style="bottom:60px; position:absolute;">
+    <img src="<?=base_url('assets/img/footer-allin.png');?>" width="114%" style="margin:-20px -50px 0 -50px; position:absolute; bottom:0;">
 </body>
 
 </html>

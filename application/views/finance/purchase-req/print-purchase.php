@@ -79,6 +79,18 @@ th {
             <td width="3%">:</td>
             <td width="85%"><?=$purchase['purchase_notes'];?></td>
         </tr>
+        <tr>
+            <td width="15%" valign="top">Attachment</td>
+            <td width="3%">:</td>
+            <td width="85%">
+            <?php
+                if ($purchase['purchase_attachment'] != "")
+                    echo base_url().'/upload/finance/'.$purchase['purchase_attachment'];
+                else
+                    echo "none";
+                ?>
+            </td>
+        </tr>
     </table>
     <br><br>
     <table width="100%" class="table-detail">

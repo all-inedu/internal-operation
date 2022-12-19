@@ -62,9 +62,9 @@
                             <tr>
                                 <td width="15%" valign="top">From : </td>
                                 <td width="85%"><b>PT. Jawara Edukasih Indonesia</b><br>
-                                    Jl Jeruk Kembar Blok Q9, No. 15 <br>
-                                    Srengseng, Kembangan, Jakarta Barat 11630
-                                    <br><br>
+                                    Jl Jeruk Kembar Blok Q9 No. 15 <br>
+                                    Srengseng, Kembangan<br>
+                                    DKI Jakarta <br>
                                 </td>
                             </tr>
                             <tr>
@@ -127,8 +127,8 @@
                                     echo $inv['prog_sub'].': '.$inv['prog_program'];
                                 }
                             ?>
-                        </b>
-                        <i><?=$inv['inv_notes'];?></i>
+                            </b>
+                            <i><?=$inv['inv_notes'];?></i>
                     </div>
 
                     <div style="margin-top:5px;">
@@ -231,7 +231,7 @@
                     <div style="height:35px;">
                         Rp. <?=number_format($inv['inv_priceidr']);?>
                     </div>
-                    <div style="margin-top:-10px;">
+                    <div style="margin-top:-5px;">
                         <?=$early;?><br>
                         <?=$disc;?><br>
                     </div>
@@ -348,7 +348,7 @@
                     <table border="0" style="padding:0px; margin-left:-6px;">
                         <tr>
                             <td>
-                                Beneficiancy <br>
+                                Beneficiary <br>
                                 Bank <br>
                                 A/C No. <br>
                                 Branch <br>
@@ -371,7 +371,7 @@
             </tr>
         </table>
     </div>
-    <img src="<?=base_url('assets/img/footer-allin.png');?>" width="100%" style="bottom:60px; position:absolute;">
+    <img src="<?=base_url('assets/img/footer-allin.png');?>" width="114%" style="margin:-20px -50px 0 -50px; position:absolute; bottom:0;">
 </body>
 
 </html>

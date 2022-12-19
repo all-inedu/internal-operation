@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -75,14 +75,14 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	// 'hostname' => '153.92.10.151',
+	// 'hostname' => 'localhost',
 	// 'username' => 'u5794939_crm_allinedu',
 	// 'password' => 'crm_allinedu',
 	// 'database' => 'u5794939_allin_bd',
-	'hostname' => 'localhost',
+	'hostname' => 'db',
 	'username' => 'root',
-	'password' => '',
-	'database' => 'allin_bd',
+	'password' => 'test',
+	'database' => 'bigdata_v1',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

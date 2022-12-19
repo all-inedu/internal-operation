@@ -378,7 +378,7 @@
                         <div class="col-md-6 usd">
                             <label>Amount (USD)</label>
                             <div class="form-group">
-                                <input class="form-control form-control-sm" type="number" name="invdtl_amountusd"
+                                <input class="form-control form-control-sm" type="text" name="invdtl_amountusd"
                                     value="<?=$amountUSD;?>" id="amountUSD" max="<?=$rec['inv_priceusd'];?>">
                             </div>
                         </div>

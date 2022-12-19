@@ -9,15 +9,15 @@ class School extends CI_Controller
         parent::__construct();
 
         $this->load->library('pdf');
-        $this->load->model('bizdev/SProgram_model','schprog');
-        $this->load->model('finance/Invoice_model','inv');
-        $this->load->model('finance/InvoiceSchool_model','invsch');
-        $this->load->model('finance/InvoiceDetail_model','invdetail');
-        $this->load->model('finance/Receipt_model','receipt');
-        $this->load->model('Menus_model','menu');
-        
+        $this->load->model('bizdev/SProgram_model', 'schprog');
+        $this->load->model('finance/Invoice_model', 'inv');
+        $this->load->model('finance/InvoiceSchool_model', 'invsch');
+        $this->load->model('finance/InvoiceDetail_model', 'invdetail');
+        $this->load->model('finance/Receipt_model', 'receipt');
+        $this->load->model('Menus_model', 'menu');
+
         $empl_id = $this->session->userdata('empl_id');
-        if(empty($empl_id)) {
+        if (empty($empl_id)) {
             redirect('/');
         } else {
             $data['empl_id'] = $empl_id;
@@ -27,23 +27,26 @@ class School extends CI_Controller
         }
     }
 
-    public function index(){     
-        $data['sch_prog'] = $this->schprog->showForInvoice(); 
+    public function index()
+    {
+        $data['sch_prog'] = $this->schprog->showForInvoice();
         $this->load->view('templates/s-io');
         $this->load->view('finance/invoice/school/index', $data);
         $this->load->view('templates/f-io');
     }
 
-    public function view($id){ 
-        $check = $this->invsch->showId($id);     
-        if(!$check){
+    public function view($id)
+    {
+        $check = $this->invsch->showId($id);
+        if (!$check) {
             $this->addInvoice($id);
         } else {
             $this->viewInvoice($id);
         }
     }
 
-    public function addInvoice($id) {
+    public function addInvoice($id)
+    {
         $data['schprog'] = $this->schprog->showSProgId($id);
         $data['fixprog'] = $this->schprog->showProgramExec($id);
         $this->form_validation->set_rules('invsch_price', 'price', 'required');
@@ -53,31 +56,32 @@ class School extends CI_Controller
 
             $this->load->view('templates/s-io');
             $this->load->view('finance/invoice/school/add', $data);
-            $this->load->view('templates/f-io'); 
+            $this->load->view('templates/f-io');
         } else {
             $this->save($id);
         }
     }
 
-    public function save($id) {
+    public function save($id)
+    {
         $m = date('m', strtotime($this->input->post('invsch_date')));
         $y = date('Y', strtotime($this->input->post('invsch_date')));
         $sp = $this->schprog->showSProgId($id);
         $prog_id = $sp['prog_id'];
-        $month = ["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
+        $month = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
         $romawi = $month[intval($m)];
         $year = date('y', strtotime($this->input->post('invsch_date')));
 
         $inv = $this->invsch->getId($m, $y);
-        if(empty($inv)){
+        if (empty($inv)) {
             $idmax = 1;
         } else {
-            $idnum = substr($inv['invsch_id'],0,4);
+            $idnum = substr($inv['invsch_id'], 0, 4);
             $idmax = intval($idnum) + 1;
         }
-        
+
         $newid = str_pad($idmax, 4, "0", STR_PAD_LEFT);
-        $inv_id = $newid.'/INV-JEI/'.$prog_id.'/'.$romawi.'/'.$year;
+        $inv_id = $newid . '/INV-JEI/' . $prog_id . '/' . $romawi . '/' . $year;
         $data = [
             'invsch_id' => $inv_id,
             'schprog_id' => $id,
@@ -94,16 +98,16 @@ class School extends CI_Controller
         ];
 
         $pm = $this->input->post('invsch_pm');
-        if($pm=="Installment") {
+        if ($pm == "Installment") {
             $n = count($this->input->post('invdtl_statusname[]'));
 
-            for($i=0; $i<$n; $i++) {
+            for ($i = 0; $i < $n; $i++) {
                 $install = [
                     'inv_id' => $inv_id,
-                    'invdtl_statusname' => $this->input->post('invdtl_statusname['.$i.']'),
-                    'invdtl_duedate' => $this->input->post('invdtl_duedate['.$i.']'),
-                    'invdtl_percentage' => $this->input->post('invdtl_percentage['.$i.']'),
-                    'invdtl_amountidr' => $this->input->post('invdtl_amountidr['.$i.']'),
+                    'invdtl_statusname' => $this->input->post('invdtl_statusname[' . $i . ']'),
+                    'invdtl_duedate' => $this->input->post('invdtl_duedate[' . $i . ']'),
+                    'invdtl_percentage' => $this->input->post('invdtl_percentage[' . $i . ']'),
+                    'invdtl_amountidr' => $this->input->post('invdtl_amountidr[' . $i . ']'),
                     'invdtl_status' => 0
                 ];
                 $this->inv->saveDetail($install);
@@ -114,15 +118,17 @@ class School extends CI_Controller
         // echo json_encode($data);
         $this->invsch->save($data);
         $this->session->set_flashdata('success', 'Invoice has been created');
-        redirect('/finance/invoice/school/view/'.$id);
+        redirect('/finance/invoice/school/view/' . $id);
     }
 
-    public function view_detail($id) {
+    public function view_detail($id)
+    {
         $data = $this->invdetail->showDetailId($id);
         echo json_encode($data);
     }
 
-    public function save_detail() {
+    public function save_detail()
+    {
         $inv_num = $this->input->post('inv_num');
         $id = $this->input->post('id');
         $data = [
@@ -133,13 +139,14 @@ class School extends CI_Controller
             'invdtl_amountusd' => $this->input->post('invdtl_amountusd'),
             'invdtl_amountidr' => $this->input->post('invdtl_amountidr'),
         ];
-        
+
         $this->invdetail->save($data);
         $this->session->set_flashdata('success', 'Installment has been created');
-        redirect('/finance/invoice/school/edit/'.$id);
+        redirect('/finance/invoice/school/edit/' . $id);
     }
 
-     public function update_detail() {
+    public function update_detail()
+    {
         $inv_num = $this->input->post('inv_num');
         $id = $this->input->post('invdtl_id');
         $schprog = $this->input->post('id');
@@ -153,29 +160,32 @@ class School extends CI_Controller
 
         $this->invdetail->update($data, $id);
         $this->session->set_flashdata('success', 'Installment has been changed');
-        redirect('/finance/invoice/school/edit/'.$schprog);
+        redirect('/finance/invoice/school/edit/' . $schprog);
     }
 
-    public function delete_detail($id, $schprog) {
+    public function delete_detail($id, $schprog)
+    {
         $this->invdetail->delete($id);
         $this->session->set_flashdata('success', 'Installment has been deleted');
-        redirect('/finance/invoice/school/edit/'.$schprog);
+        redirect('/finance/invoice/school/edit/' . $schprog);
     }
 
-    public function viewInvoice($id) {
+    public function viewInvoice($id)
+    {
         $data['schprog'] = $this->invsch->showId($id);
         $inv_id = $data['schprog']['invsch_id'];
         $data['invdtl'] = $this->invdetail->showId($inv_id);
-        $data['fixprog'] = $this->schprog->showProgramExec($id); 
+        $data['fixprog'] = $this->schprog->showProgramExec($id);
         $data['rec'] = $this->receipt->showByInvId($inv_id);
         $this->load->view('templates/s-io');
         $this->load->view('finance/invoice/school/view', $data);
-        $this->load->view('templates/f-io'); 
+        $this->load->view('templates/f-io');
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $data['schprog'] = $this->invsch->showId($id);
-        $data['fixprog'] = $this->schprog->showProgramExec($id); 
+        $data['fixprog'] = $this->schprog->showProgramExec($id);
         $inv_id = $data['schprog']['invsch_id'];
         $data['invdtl'] = $this->invdetail->showId($inv_id);
         $this->form_validation->set_rules('invsch_price', 'price', 'required');
@@ -185,13 +195,14 @@ class School extends CI_Controller
 
             $this->load->view('templates/s-io');
             $this->load->view('finance/invoice/school/edit', $data);
-            $this->load->view('templates/f-io'); 
+            $this->load->view('templates/f-io');
         } else {
             $this->update();
         }
     }
 
-    public function update() {
+    public function update()
+    {
         $id = $this->input->post('schprog_id');
         $data = [
             'invsch_price' => $this->input->post('invsch_price'),
@@ -206,18 +217,19 @@ class School extends CI_Controller
             'invsch_tnc' => $this->input->post('invsch_tnc')
         ];
 
-        if($this->input->post('invsch_pm')!='Installment') {
+        if ($this->input->post('invsch_pm') != 'Installment') {
             $inv_id = $this->input->post('invsch_id');
             $this->invdetail->deleteInvId($inv_id);
         }
-        
+
         // echo json_encode($data);
         $this->invsch->update($data, $id);
         $this->session->set_flashdata('success', 'Invoice has been created');
-        redirect('/finance/invoice/school/view/'.$id);
+        redirect('/finance/invoice/school/view/' . $id);
     }
 
-    public function cancel($id) {
+    public function cancel($id)
+    {
         $this->invsch->delete($id);
         $this->session->set_flashdata('success', 'Invoice has been canceled');
         redirect('/finance/invoice/school/');
@@ -227,7 +239,7 @@ class School extends CI_Controller
     {
         $data['schprog'] = $this->invsch->showId($id);
         $inv = $data['schprog']['invsch_id'];
-        $inv_id = explode("/",$inv);
+        $inv_id = explode("/", $inv);
         $new_inv = implode("-", $inv_id);
         $id_inv = $data['schprog']['invsch_id'];
 
@@ -235,5 +247,4 @@ class School extends CI_Controller
         $html = $this->load->view('finance/invoice/school/export/pdf', $data, true);
         $this->pdf->createPDF($html, $new_inv, false);
     }
-    
 }

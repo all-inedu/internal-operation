@@ -110,17 +110,45 @@
                                         </td>
                                         <td class="text-center"><?=$c['sch_name'];?></td>
                                         <td class="text-center">
+                                            // <?php 
+                                            //     $ynow = date('Y');
+                                            //     $yinput = date('Y', strtotime($c['st_datecreate']));
+                                            //     $ginput = $c['st_grade'];
+                                            //     $gnow = ($ynow - $yinput) + $ginput;
+                                            //     if($gnow <= 12) {
+                                            //         echo $gnow;
+                                            //     } else {
+                                            //         echo 'Not High School';
+                                            //     }
+                                            // ?>
                                             <?php 
                                                 $ynow = date('Y');
+                                                $mnow = date('m');
                                                 $yinput = date('Y', strtotime($c['st_datecreate']));
+                                                $minput = date('m', strtotime($c['st_datecreate']));
                                                 $ginput = $c['st_grade'];
-                                                $gnow = ($ynow - $yinput) + $ginput;
-                                                if($gnow <= 12) {
+                        
+                                                if ((($mnow >= 7) or ($minput < 7)) and ($ynow > $yinput)) {
+                                                    $gnow = ($ynow - $yinput) + $ginput;
+                                                } else 
+                                                if ((($mnow < 7) or ($minput >= 7)) and ($ynow > $yinput)) {
+                                                    $gnow = ($ynow - $yinput) + ($ginput - 1);
+                                                } else 
+                                                if (($mnow >= 7)  and ($ynow == $yinput)) {
+                                                    $gnow = $ginput + 1;
+                                                } else {
+                                                    $gnow = $ginput;
+                                                }
+                        
+                                                if ($ginput == "0") {
+                                                    echo '-';
+                                                } else
+                                                if ($gnow <= 12) {
                                                     echo $gnow;
                                                 } else {
                                                     echo 'Not High School';
                                                 }
-                                            ?>
+                                                ?>
                                         </td>
                                     </tr>
                                     <?php $i++; endforeach; ?>

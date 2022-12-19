@@ -4,9 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Programdata
 {
     function show(){ 
-        $data['mainProgram'] = ['Admissions Consulting', 'Career Exploration',  'Application Bootcamp','Academic & Test Preparation', 'Events & Info Sessions'];
+        $data['mainProgram'] = ['Admissions Mentoring', 'Career Exploration',  'Application Bootcamp','Academic & Test Preparation', 'Events & Info Sessions'];
 
-        $data['adm'] = ['Essay Clinic','Interview Preparation'];
+        $data['adm'] = ['Admissions Mentoring','Essay Clinic','Interview Preparation'];
         $data['ce'] = ['JuniorXplorer','PassionXplorer','Summer Science Research Program'];
         $data['apb'] = [];
         $data['aca'] = ['Academic Tutoring','ACT Prep','SAT Last Minute','SAT Last Minute Subject','SAT Prep','SAT Subject','Subject Tutoring'];

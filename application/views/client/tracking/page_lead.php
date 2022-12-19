@@ -26,6 +26,7 @@
                 <th width="10%" class="text-center bg-primary text-white">Full Name</th>
                 <th width="10%">Program Name</th>
                 <th width="10%">Lead Source</th>
+                <th width="10%">Conversion Lead</th>
                 <th width="5%">Program Status</th>
                 <th width="5%">Running Status</th>
                 <th width="15%">Reason</th>
@@ -50,6 +51,7 @@
                         }
                     ?>
                 </td>
+                <td><?=$stpr['st_lead_name'];?></td>
                 <td><?=$stpr['lead_name'];?></td>
                 <td>
                     <?php if($stpr['stprog_status']==0) { ?>

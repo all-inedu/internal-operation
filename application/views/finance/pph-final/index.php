@@ -125,23 +125,23 @@
                         <tr>
                             <td><?=$rec['receipt_id'];?></td>
                             <td>
-                                <?php if($cat==1) { ?>
+                                <?php if($inv!=null && $cat==1) { ?>
                                 <?=$inv['st_firstname'].' '.$inv['st_lastname'];?>
-                                <?php } else if($cat==2) { ?>
+                                <?php } else if($inv!=null && $cat==2) { ?>
                                 <?=$inv['sch_name'];?>
-                                <?php } else if($cat==3) { ?>
+                                <?php } else if($inv!=null && $cat==3) { ?>
                                 <?=$inv['pt_name'];?>
                                 <?php } ?>
                             </td>
                             <td>
-                            <?php if($cat!=3) { ?>
+                            <?php if($inv!=null && $cat!=3) { ?>
                             <?=$inv['prog_program'];?>
                             <?php } else { ?>
                             <?=$rec['receipt_notes'];?>
                             <?php } ?>
                             </td>
                             <td class="text-center">
-                                <?=$invdtl['invdtl_statusname'];?>
+                                <?=isset($invdtl) ? $invdtl['invdtl_statusname']:'';?>
                                 <?php if($rec['receipt_status']==2) { echo "<br><small>Cancel/Refund</small>"; }?>
                             </td>
                             <td class="text-center">Rp.

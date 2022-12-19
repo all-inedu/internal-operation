@@ -180,7 +180,7 @@
                                                 class="fas fa-plus"></i> &nbsp; Add
                                             Receipt</button>
                                         <?php } else { ?>
-                                        <a href="<?=base_url('finance/receipt/student/view/'.$rec_detail['receipt_num']);?>"
+                                        <a href="<?=base_url('finance/receipt/school/view/'.$rec_detail['receipt_num']);?>"
                                             class="btn btn-sm btn-success">
                                             <i class="icofont-search"></i> &nbsp;
                                             View Receipt

@@ -53,6 +53,7 @@ class Purchase_request extends CI_Controller
     }
 
     public function save(){
+
         $query = $this->purchase->getId();  
         if($query->num_rows() <> 0){      
             $data = $query->row();      
@@ -62,14 +63,36 @@ class Purchase_request extends CI_Controller
         }
         $idmax = str_pad($id, 4, "0", STR_PAD_LEFT); 
         $newid = "PCS-".$idmax;
+        
+        $config['upload_path']   = './upload/finance/';
+        $config['allowed_types'] = 'jpg|jpeg|png|xlsx|xls|doc|docx|pdf';
+        $config['max_size']      = 2048;
+        $config['file_name']     = strtolower($newid);
+
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload('attachment')) {
+
+            // $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('error', $this->upload->display_errors());
+            return json_encode($this->upload->display_errors());
+        }
+        else
+        {
+            $path = $this->upload->data('orig_name');
+        }
+        
 
         $data1 = [
             'purchase_id' => $newid,
+            'created_by' => $this->input->post('created_by'),
             'purchase_department' => $this->input->post('purchase_department'),
             'purchase_statusrequest' => $this->input->post('purchase_statusrequest'),
             'purchase_date' => $this->input->post('purchase_date'),
             'purchase_notes' => $this->input->post('purchase_notes'),
-            'purchase_lastupdate' => date('Y-m-d H:i:s')
+            'purchase_lastupdate' => date('Y-m-d H:i:s'),
+            'purchase_attachment' => $path
         ];
 
         $this->purchase->save($data1);
@@ -110,18 +133,43 @@ class Purchase_request extends CI_Controller
             $this->load->view('finance/purchase-req/edit-purchase', $data);
             $this->load->view('templates/f-io');
         } else {
-            $this->update($id);
+            echo json_encode($this->update($id));
         }
     }
 
     public function update($id){
         $data = [
+            'created_by' => $this->input->post('created_by'),
             'purchase_department' => $this->input->post('purchase_department'),
             'purchase_statusrequest' => $this->input->post('purchase_statusrequest'),
             'purchase_date' => $this->input->post('purchase_date'),
             'purchase_notes' => $this->input->post('purchase_notes'),
-            'purchase_lastupdate' => date('Y-m-d H:i:s')
+            'purchase_lastupdate' => date('Y-m-d H:i:s'),
         ];
+
+        $attachment_name = $this->input->post('attachment_name');
+        $attachment_change = $this->input->post('attachment_change');
+        if ($attachment_change == "true") {
+            unlink('./upload/finance/'.$attachment_name);
+            $config['upload_path']   = './upload/finance/';
+            $config['allowed_types'] = 'jpg|jpeg|png|xlsx|xls|doc|docx|pdf';
+            $config['max_size']      = 2048;
+            $config['file_name']     = strtolower($id);
+
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload('attachment')) {
+
+                // $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+                return json_encode($this->upload->display_errors());
+            }
+            else
+            {
+                $data['purchase_attachment'] = $this->upload->data('orig_name');
+            }
+        }
 
         $this->purchase->update($data, $id);
         $this->session->set_flashdata('success', 'Purchase request have been changed');

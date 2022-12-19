@@ -57,19 +57,19 @@
                         $inv = $this->inv->showId($sp['stprog_id']);
                 ?>
                 <td>
-                    <?=$inv['inv_id'];?>
+                    <?= $inv ? $inv['inv_id']:'' ;?>
                 </td>
                 <td>
-                    <?=$inv['inv_paymentmethod'];?>
+                    <?= $inv ? $inv['inv_paymentmethod']:'';?>
                 </td>
-                <td data-sort="<?=$inv['inv_date'];?>">
-                    <?php if($inv['inv_date']) { echo date('d F Y', strtotime($inv['inv_date'])); }?>
+                <td data-sort="<?= $inv ? $inv['inv_date']: '';?>">
+                    <?= $inv ? date('d F Y', strtotime($inv['inv_date'])): '';?>
                 </td>
-                <td data-sort="<?=$inv['inv_duedate'];?>">
-                    <?php if($inv['inv_duedate']) { echo date('d F Y', strtotime($inv['inv_duedate'])); }?>
+                <td data-sort="<?=$inv ? $inv['inv_duedate']: '';?>">
+                    <?= $inv ? date('d F Y', strtotime($inv['inv_duedate'])): ''; ?>
                 </td>
                 <td>
-                    <?php if($inv['inv_totpridr']) { echo 'Rp.'. number_format($inv['inv_totpridr']); }?>
+                    <?= $inv ? 'Rp.'. number_format($inv['inv_totpridr']): ''; ?>
                 </td>
             </tr>
             <?php $i++; endforeach; ?>

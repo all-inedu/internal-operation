@@ -135,25 +135,46 @@
                     <i>Discount</i>
                     <?php } ?>
                 </td>
-                <td valign="top" align="center">
+                <?php if($invdtl) { ?>
+                    <td valign="top" align="right">
+                        <div style="height:45px">
+                            Rp. <?=number_format($invdtl['invdtl_amountidr']);?>
+                        </div>
+                    </td>
+                    <td valign="top" align="right">
+                        <div style="height:45px">
+                            Rp. <?=number_format($invdtl['invdtl_amountidr']);?>
+                        </div>
+                    </td>
+                <?php } else { ?>
+                    <td valign="top" align="center">
                     <div style="height:70px;">
                         Rp. <?=number_format($rec['invsch_price']);?>
                     </div>
-                </td>
-                <td valign="top" align="center">
-                    <div style="height:70px;">
-                        Rp. <?=number_format($rec['invsch_totprice']+$rec['invsch_disc']);?>
-                    </div>
-                    <?php if($rec['invsch_disc']!=0) { ?>
-                    Rp. <?=number_format($rec['invsch_price']);?>
-                    <?php } ?>
-                </td>
+                    </td>
+                    <td valign="top" align="center">
+                        
+                            <div style="height:70px;">
+                                Rp. <?=number_format($rec['invsch_totprice']+$rec['invsch_disc']);?>
+                            </div>
+                            <?php if($rec['invsch_disc']!=0) { ?>
+                            Rp. <?=number_format($rec['invsch_price']);?>
+                            <?php } ?>
+                    </td>
+                <?php } ?>
             </tr>
             <tr>
-                <td colspan="3" align="right"><b>Total</b></td>
-                <td valign="top" align="center">
-                    <b>Rp. <?=number_format($rec['invsch_totprice']);?></b>
-                </td>
+                <?php if($invdtl) { ?>
+                    <td colspan="3" align="right"><b>Total</b></td>
+                    <td valign="top" align="right">
+                        <b>Rp. <?=number_format($invdtl['invdtl_amountidr']);?></b>
+                    </td>
+                <?php } else { ?>
+                    <td colspan="3" align="right"><b>Total</b></td>
+                    <td valign="top" align="center">
+                        <b>Rp. <?=number_format($rec['invsch_totprice']);?></b>
+                    </td>
+                <?php } ?>
             </tr>
         </table>
         <table>
@@ -187,7 +208,7 @@
             </tr>
         </table>
     </div>
-    <img src="<?=base_url('assets/img/footer-allin.png');?>" width="100%" style="bottom:60px; position:absolute;">
+    <img src="<?=base_url('assets/img/footer-allin.png');?>" width="114%" style="margin:-20px -50px 0 -50px; position:absolute; bottom:0;">
 </body>
 
 </html>

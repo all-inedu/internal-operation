@@ -63,9 +63,9 @@
                             <tr>
                                 <td valign="top">From : </td>
                                 <td><b>PT. Jawara Edukasih Indonesia</b><br>
-                                    Jl Jeruk Kembar Blok Q9, No. 15 <br>
-                                    Srengseng, Kembangan, Jakarta Barat 11630
-                                    <br><br>
+                                    Jl Jeruk Kembar Blok Q9 No. 15 <br>
+                                    Srengseng, Kembangan<br>
+                                    DKI Jakarta <br>
                                 </td>
                             </tr>
                             <tr>
@@ -109,8 +109,8 @@
             <tr align="center">
                 <th width="8%">No</th>
                 <th width="44%">Description</th>
-                <th width="24%">Price per <br> Students (IDR)</th>
-                <th width="24%">Total (IDR)</th>
+                <th width="24%">Price</th>
+                <th width="24%">Total</th>
             </tr>
             <tr>
                 <td valign="top" align="center">1</td>
@@ -118,7 +118,7 @@
                     <div style="height:70px;">
                         <b>
                             <?php 
-                                if($schprog['prog_sub']=='-') {
+                                if($schprog['prog_sub']=='') {
                                     echo $schprog['prog_program'];
                                 } else {
                                     echo $schprog['prog_sub'].': '.$schprog['prog_program'];
@@ -134,12 +134,14 @@
                 </td>
                 <td valign="top" align="center">
                     <div style="height:70px;">
-                        Rp. <?=number_format($schprog['invsch_price']);?>
+                        <!--Rp. <?=number_format($schprog['invsch_price']);?>-->
+                        Rp. <?=number_format($schprog['invsch_totprice']);?>
                     </div>
                 </td>
                 <td valign="top" align="center">
                     <div style="height:70px;">
-                        Rp. <?=number_format($schprog['invsch_price']*$schprog['invsch_participants']);?>
+                        <!--Rp. <?=number_format($schprog['invsch_price']*$schprog['invsch_participants']);?>-->
+                        Rp. <?=number_format($schprog['invsch_totprice']);?>
                     </div>
                     <?php if($schprog['invsch_disc']!=0) { ?>
                     ( Rp. <?=number_format($schprog['invsch_disc']);?> )
@@ -188,7 +190,7 @@
                     <table border="0" style="margin-left:-6px;">
                         <tr>
                             <td>
-                                Beneficiancy <br>
+                                Beneficiary <br>
                                 Bank <br>
                                 A/C No. <br>
                                 Branch <br>
@@ -211,7 +213,7 @@
             </tr>
         </table>
     </div>
-    <img src="<?=base_url('assets/img/footer-allin.png');?>" width="100%" style="bottom:60px; position:absolute;">
+    <img src="<?=base_url('assets/img/footer-allin.png');?>" width="114%" style="margin:-20px -50px 0 -50px; position:absolute; bottom:0;">
 </body>
 
 </html>

@@ -122,30 +122,32 @@
                     <div class="col-md-8 mb-1 ">
                         <?php 
                         $ynow = date('Y');
+                        $mnow = date('m');
                         $yinput = date('Y', strtotime($s['st_datecreate']));
+                        $minput = date('m', strtotime($s['st_datecreate']));
                         $ginput = $s['st_grade'];
-                        $mnow = date('m'); 
-                        if(($mnow>=7) and ($ynow>$yinput)) {
+
+                        if ((($mnow >= 7) or ($minput < 7)) and ($ynow > $yinput)) {
                             $gnow = ($ynow - $yinput) + $ginput;
                         } else 
-                        if(($mnow<7) and ($ynow>$yinput)) {
+                        if ((($mnow < 7) or ($minput >= 7)) and ($ynow > $yinput)) {
                             $gnow = ($ynow - $yinput) + ($ginput - 1);
                         } else 
-                        if(($mnow>=7) and ($ynow==$yinput)) {
+                        if (($mnow >= 7)  and ($ynow == $yinput)) {
                             $gnow = $ginput + 1;
                         } else {
                             $gnow = $ginput;
                         }
 
-                        if($ginput=="0") {
+                        if ($ginput == "0") {
                             echo '-';
                         } else
-                        if($gnow <= 12) {
+                        if ($gnow <= 12) {
                             echo $gnow;
                         } else {
                             echo 'Not High School';
                         }
-                    ?>
+                        ?>
                         <hr class="mt-1 mb-1">
                     </div>
                     <?php

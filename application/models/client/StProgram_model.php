@@ -569,7 +569,7 @@ class StProgram_model extends CI_model
         return $this->db->get('tbl_stprog')->result_array();
     }
 
-    public function stprog_leads($n, $lead_id, $start, $end) {
+    public function old_stprog_leads($n, $lead_id, $start, $end) {
         $this->db->select("*");
         $this->db->where("tbl_stprog.stprog_status =", $n);
         $this->db->where("tbl_stprog.lead_id =", $lead_id);
@@ -588,6 +588,32 @@ class StProgram_model extends CI_model
         $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
         $this->db->join('tbl_lead', 'tbl_lead.lead_id=tbl_stprog.lead_id');
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+    
+    public function stprog_leads($n, $lead_id, $start, $end) {
+        $this->db->select("tbl_stprog.*, tbl_prog.*, 
+            tbl_students.*,
+            tbl_stprog.lead_id as stprog_lead, l.lead_name as lead_name,
+            tbl_students.lead_id as st_lead, e.lead_name as st_lead_name");
+        $this->db->where("tbl_stprog.stprog_status =", $n);
+        $this->db->where("tbl_stprog.lead_id =", $lead_id);
+        $this->db->group_start();
+            $this->db->where("(tbl_stprog.stprog_statusprogdate) >=", $start);
+            $this->db->or_where("(tbl_stprog.stprog_ass_sent) >=", $start);
+            $this->db->or_where("(tbl_stprog.stprog_init_consult) >=", $start);
+            $this->db->or_where("(tbl_stprog.stprog_firstdisdate) >=", $start);
+        $this->db->group_end();
+        $this->db->group_start();
+            $this->db->where("(tbl_stprog.stprog_statusprogdate) <=", $end);
+            $this->db->or_where("(tbl_stprog.stprog_ass_sent) <=", $end);
+            $this->db->or_where("(tbl_stprog.stprog_init_consult) <=", $end);
+            $this->db->or_where("(tbl_stprog.stprog_firstdisdate) <=", $end);
+        $this->db->group_end();
+        $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');
+        $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
+        $this->db->join('tbl_lead l', 'l.lead_id=tbl_stprog.lead_id');
+        $this->db->join('tbl_lead e', 'e.lead_id=tbl_students.lead_id');
         return $this->db->get('tbl_stprog')->result_array();
     }
 
@@ -715,7 +741,7 @@ class StProgram_model extends CI_model
         return $this->db->get('tbl_stprog')->result_array();
     }
 
-    public function stprog_progs($n, $prog_id, $start, $end) {
+    public function old_stprog_progs($n, $prog_id, $start, $end) {
         $this->db->select("*");
         $this->db->where("tbl_stprog.stprog_status =", $n);
         $this->db->where("tbl_stprog.prog_id =", $prog_id);
@@ -734,6 +760,32 @@ class StProgram_model extends CI_model
         $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
         $this->db->join('tbl_lead', 'tbl_lead.lead_id=tbl_stprog.lead_id');
+        return $this->db->get('tbl_stprog')->result_array();
+    }
+    
+    public function stprog_progs($n, $prog_id, $start, $end) {
+        $this->db->select("tbl_stprog.*, tbl_prog.*, 
+            tbl_students.*,
+            tbl_stprog.lead_id as stprog_lead, l.lead_name as lead_name,
+            tbl_students.lead_id as st_lead, e.lead_name as st_lead_name");
+        $this->db->where("tbl_stprog.stprog_status =", $n);
+        $this->db->where("tbl_stprog.prog_id =", $prog_id);
+        $this->db->group_start();
+            $this->db->where("(tbl_stprog.stprog_statusprogdate) >=", $start);
+            $this->db->or_where("(tbl_stprog.stprog_ass_sent) >=", $start);
+            $this->db->or_where("(tbl_stprog.stprog_init_consult) >=", $start);
+            $this->db->or_where("(tbl_stprog.stprog_firstdisdate) >=", $start);
+        $this->db->group_end();
+        $this->db->group_start();
+            $this->db->where("(tbl_stprog.stprog_statusprogdate) <=", $end);
+            $this->db->or_where("(tbl_stprog.stprog_ass_sent) <=", $end);
+            $this->db->or_where("(tbl_stprog.stprog_init_consult) <=", $end);
+            $this->db->or_where("(tbl_stprog.stprog_firstdisdate) <=", $end);
+        $this->db->group_end();
+        $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num');
+        $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id');
+        $this->db->join('tbl_lead l', 'l.lead_id=tbl_stprog.lead_id');
+        $this->db->join('tbl_lead e', 'e.lead_id=tbl_students.lead_id');
         return $this->db->get('tbl_stprog')->result_array();
     }
 

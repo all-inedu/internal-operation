@@ -25,7 +25,11 @@ class Api extends CI_Controller
     }
 
     public function countries() {
-        echo json_encode($this->countries->show());
+        // echo json_encode($this->countries->show());
+        $selected_uni = ['United States', 'United Kingdom', 'Canada', 'Hong Kong', 'Japan', 'China', 'Singapore', 'Netherlands', 'Australia', 'Korea', 'Germany'];
+        // $get = $this->countries->show_where($selected_uni);
+        sort($selected_uni);
+        echo json_encode($selected_uni);
     }
 
     public function major() {
@@ -34,6 +38,10 @@ class Api extends CI_Controller
 
     public function school() {
         echo json_encode($this->sch->showAll());
+    }
+    
+    public function school2() {
+        echo json_encode($this->sch->showAll2());
     }
 
     public function lead() {

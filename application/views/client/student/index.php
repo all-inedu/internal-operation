@@ -230,22 +230,27 @@
                 <td>
                     <?php 
                         $ynow = date('Y');
+                        $mnow = date('m');
                         $yinput = date('Y', strtotime($s['st_datecreate']));
+                        $minput = date('m', strtotime($s['st_datecreate']));
                         $ginput = $s['st_grade'];
-                        $mnow = date('m'); 
-                        if(($mnow>=7) and ($ynow>$yinput)) {
+
+                        if ((($mnow >= 7) or ($minput < 7)) and ($ynow > $yinput)) {
                             $gnow = ($ynow - $yinput) + $ginput;
                         } else 
-                        if(($mnow<7) and ($ynow>$yinput)) {
+                        if ((($mnow < 7) or ($minput >= 7)) and ($ynow > $yinput)) {
                             $gnow = ($ynow - $yinput) + ($ginput - 1);
                         } else 
-                        if(($mnow>=7) and ($ynow==$yinput)) {
+                        if (($mnow >= 7)  and ($ynow == $yinput)) {
                             $gnow = $ginput + 1;
                         } else {
                             $gnow = $ginput;
                         }
 
-                        if($gnow <= 12) {
+                        if ($ginput == "0") {
+                            echo '-';
+                        } else
+                        if ($gnow <= 12) {
                             echo $gnow;
                         } else {
                             echo 'Not High School';
@@ -279,16 +284,20 @@
                 <td><?=$s['st_levelinterest'];?></td>
                 <td>
                     <?php 
-                        $pdata = explode(", ", $s['prog_id']); 
-                        foreach ($pdata as $pd) {
-                            $progdata = $this->prog->showId($pd);
-                            if($progdata['prog_sub']==""){
-                                echo "<div class='badge badge-warning p-2 m-1'>".$progdata['prog_program']."</div> <br>";
-                            } else {
-                                echo "<div class='badge badge-warning p-2 m-1'>".$progdata['prog_sub']." - ".$progdata['prog_program']."</div> <br>";
-                            }
+                        if($s['prog_id']!='' && $s['prog_id']!=null){
+                            $pdata = explode(", ", $s['prog_id']);
+                                foreach ($pdata as $pd) {
+                                    $progdata = $this->prog->showId($pd);
+                                    if($progdata) {
+                                        if($progdata['prog_sub']==""){
+                                            echo "<div class='badge badge-warning p-2 m-1'>".$progdata['prog_program']."</div> <br>";
+                                        } else {
+                                            echo "<div class='badge badge-warning p-2 m-1'>".$progdata['prog_sub']." - ".$progdata['prog_program']."</div> <br>";
+                                        }
+                                    }
+                                }
                         }
-                        ?>
+                    ?>
                 </td>
                 <td>
                     <?php
