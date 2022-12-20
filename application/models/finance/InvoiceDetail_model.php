@@ -45,11 +45,13 @@ class InvoiceDetail_model extends CI_model
         $year = date("Y", strtotime($date));
 
         $this->db->select('
+        tbl_invdtl.invdtl_id as id,
         tbl_invdtl.inv_id as inv_id,
         tbl_invdtl.invdtl_statusname as status, 
         tbl_invdtl.invdtl_amountusd as tot_usd, 
         tbl_invdtl.invdtl_amountidr as tot_idr, 
         tbl_invdtl.invdtl_duedate as due_date,
+        tbl_invdtl.reminder_status, 
         tbl_inv.inv_paymentmethod as method, 
         tbl_students.st_firstname as first_name, 
         tbl_students.st_lastname as last_name, 
@@ -68,5 +70,12 @@ class InvoiceDetail_model extends CI_model
         $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id', 'left');
         $this->db->order_by('tbl_invdtl.invdtl_duedate', 'ASC');
         return $this->db->get('tbl_invdtl')->result_array();
+    }
+
+    public function updateReminderStatus($data)
+    {
+        $this->db->set('reminder_status', $data['type']);
+        $this->db->where('invdtl_id', $data['id']);
+        $this->db->update('tbl_invdtl');
     }
 }

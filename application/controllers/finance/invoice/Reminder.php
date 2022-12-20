@@ -48,4 +48,32 @@ class Reminder extends CI_Controller
         $this->load->view('finance/invoice/due-date-reminder', $data);
         $this->load->view('templates/f-io');
     }
+
+    public function store()
+    {
+        $date_now = new DateTime(date('Y-m-d'));
+        $due_date = new DateTime($this->input->post('due_date'));
+        $diff = $date_now->diff($due_date);
+        $type = $due_date > $date_now ? '-' . $diff->d : '+' . $diff->d;
+        $data = [
+            'id' => $this->input->post('id'),
+            'method' => $this->input->post('method'),
+            'name' => $this->input->post('name'),
+            'phone' => $this->input->post('phone'),
+            'type' => 'Reminder H' . $type,
+            'program' => $this->input->post('program'),
+            'due_date' => date('d F Y', strtotime($this->input->post('due_date'))),
+            'diff' => $type
+        ];
+
+        if ($data['method'] == 'Installment') {
+            $this->invdtl->updateReminderStatus($data);
+        } else {
+            $this->inv->updateReminderStatus($data);
+        }
+
+        // echo json_encode($data);
+        $this->session->set_flashdata('reminder', $data);
+        redirect('/finance/invoice/reminder/');
+    }
 }
