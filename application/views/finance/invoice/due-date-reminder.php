@@ -64,7 +64,9 @@
                     <td class="text-center"><?= $r['reminder_status'] ? $r['reminder_status'] . ' Sent' : '-' ?></td>
                     <td>
                         <button class="btn btn-sm btn-primary"
-                            onclick="checkReminder(<?= $r['id']; ?>, '<?= $r['method']; ?>', '<?= $r['prog_sub'] ? $r['prog_sub'] . ' - ' . ' ' . $r['prog_program'] : ' ' . $r['prog_program']; ?>', '<?= $r['due_date']; ?>')">Send
+                            onclick="checkReminder(<?= $r['id']; ?>, '<?= $r['method']; ?>', '<?= $r['prog_sub'] ? $r['prog_sub'] . ' - ' . ' ' . $r['prog_program'] : ' ' . $r['prog_program']; ?>', '<?= $r['due_date']; ?>')">
+                            <i class="fas fa-paper-plane fa-fw mr-2"></i>
+                            Send
                             WA</button>
                     </td>
                 </tr>
