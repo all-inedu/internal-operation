@@ -194,6 +194,30 @@ class Invoice_model extends CI_model
         return $this->db->get('tbl_inv')->result_array();
     }
 
+    public function totalInvoice($date = null, $status = null)
+    {
+        $month = date("m", strtotime($date));
+        $year = date("Y", strtotime($date));
+
+        $this->db->select('
+        count(tbl_inv.inv_id) as tot_fullpayment_inv,
+        sum(tbl_inv.inv_totprusd) as tot_fullpayment_usd, 
+        sum(tbl_inv.inv_totpridr) as tot_fullpayment_idr
+        ');
+        $this->db->where('tbl_inv.inv_paymentmethod', 'Full Payment');
+        $this->db->where('MONTH(tbl_inv.inv_duedate)', $month ? $month : date('m'));
+        $this->db->where('YEAR(tbl_inv.inv_duedate)', $year ? $year : date('Y'));
+        if ($status) {
+            $this->db->where('tbl_receipt.receipt_id !=', NULL);
+        }
+        $this->db->join('tbl_receipt', 'tbl_receipt.inv_id=tbl_inv.inv_id', 'left');
+        $this->db->join('tbl_stprog', 'tbl_stprog.stprog_id=tbl_inv.stprog_id', 'left');
+        $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num', 'left');
+        $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id', 'left');
+        $this->db->order_by('tbl_inv.inv_duedate', 'ASC');
+        return $this->db->get('tbl_inv')->row_array();
+    }
+
     public function updateReminderStatus($data)
     {
         $this->db->set('reminder_status', $data['type']);

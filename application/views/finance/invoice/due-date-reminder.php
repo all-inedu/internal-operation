@@ -28,8 +28,88 @@
     </form>
 </div>
 
+
 <div class="container-fluid p-0 mt-3">
     <div class="content">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="card border-0 shadow">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div class="">
+                            <h5 class="m-0 p-0">
+                                Total <br> Invoice
+                            </h5>
+                        </div>
+                        <div class="text-right">
+                            <h5>
+                                <?= $tot_fullpayment_rev['tot_fullpayment_inv'] + $tot_installment_rev['tot_installment_inv']; ?>
+                            </h5>
+                            <strong>
+                                $
+                                <?= $tot_fullpayment_rev['tot_fullpayment_usd'] + $tot_installment_rev['tot_installment_usd']; ?>
+                            </strong>
+                            <br>
+                            <strong>
+                                Rp.
+                                <?= number_format($tot_fullpayment_rev['tot_fullpayment_idr'] + $tot_installment_rev['tot_installment_idr']); ?>
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div class="">
+                            <h5 class="m-0 p-0">
+                                Total Invoice <br> Paid
+                            </h5>
+                        </div>
+                        <div class="text-right">
+                            <h5>
+                                <?= $fullpayment_rev['tot_fullpayment_inv'] + $installment_rev['tot_installment_inv']; ?>
+                            </h5>
+                            <strong>
+                                $
+                                <?= $fullpayment_rev['tot_fullpayment_usd'] + $installment_rev['tot_installment_usd']; ?>
+                            </strong>
+                            <br>
+                            <strong>
+                                Rp.
+                                <?= number_format($fullpayment_rev['tot_fullpayment_idr'] + $installment_rev['tot_installment_idr']); ?>
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div class="">
+                            <h5 class="m-0 p-0">
+                                Remaining <br> Invoice
+                            </h5>
+                        </div>
+                        <div class="text-right">
+                            <h5>
+                                <?=
+                                ($tot_fullpayment_rev['tot_fullpayment_inv'] + $tot_installment_rev['tot_installment_inv']) - ($fullpayment_rev['tot_fullpayment_inv'] + $installment_rev['tot_installment_inv']); ?>
+                            </h5>
+                            <strong>
+                                $
+                                <?= ($tot_fullpayment_rev['tot_fullpayment_usd'] + $tot_installment_rev['tot_installment_usd']) - ($fullpayment_rev['tot_fullpayment_usd'] + $installment_rev['tot_installment_usd']); ?>
+                            </strong>
+                            <br>
+                            <strong>
+                                Rp.
+                                <?= number_format(($tot_fullpayment_rev['tot_fullpayment_idr'] + $tot_installment_rev['tot_installment_idr']) - ($fullpayment_rev['tot_fullpayment_idr'] + $installment_rev['tot_installment_idr'])); ?>
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
             <thead class="text-center">
                 <tr>

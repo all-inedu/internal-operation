@@ -64,12 +64,36 @@ class InvoiceDetail_model extends CI_model
         $this->db->where('YEAR(tbl_invdtl.invdtl_duedate)', $year ? $year : date('Y'));
         $this->db->where('tbl_receipt.receipt_id', NULL);
         $this->db->join('tbl_inv', 'tbl_inv.inv_id=tbl_invdtl.inv_id', 'left');
-        $this->db->join('tbl_receipt', 'tbl_receipt.inv_id=tbl_invdtl.inv_id', 'left');
+        $this->db->join('tbl_receipt', 'tbl_receipt.invdtl_id=tbl_invdtl.invdtl_id', 'left');
         $this->db->join('tbl_stprog', 'tbl_stprog.stprog_id=tbl_inv.stprog_id', 'left');
         $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num', 'left');
         $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id', 'left');
         $this->db->order_by('tbl_invdtl.invdtl_duedate', 'ASC');
         return $this->db->get('tbl_invdtl')->result_array();
+    }
+
+    public function totalInvoice($date = null, $status = null)
+    {
+        $month = date("m", strtotime($date));
+        $year = date("Y", strtotime($date));
+
+        $this->db->select('
+        count(tbl_invdtl.invdtl_id) as tot_installment_inv,
+        sum(tbl_invdtl.invdtl_amountusd) as tot_installment_usd, 
+        sum(tbl_invdtl.invdtl_amountidr) as tot_installment_idr');
+        $this->db->where('tbl_inv.inv_paymentmethod', 'Installment');
+        $this->db->where('MONTH(tbl_invdtl.invdtl_duedate)', $month ? $month : date('m'));
+        $this->db->where('YEAR(tbl_invdtl.invdtl_duedate)', $year ? $year : date('Y'));
+        if ($status) {
+            $this->db->where('tbl_receipt.receipt_id !=', NULL);
+        }
+        $this->db->join('tbl_inv', 'tbl_inv.inv_id=tbl_invdtl.inv_id', 'left');
+        $this->db->join('tbl_receipt', 'tbl_receipt.invdtl_id=tbl_invdtl.invdtl_id', 'left');
+        $this->db->join('tbl_stprog', 'tbl_stprog.stprog_id=tbl_inv.stprog_id', 'left');
+        $this->db->join('tbl_students', 'tbl_students.st_num=tbl_stprog.st_num', 'left');
+        $this->db->join('tbl_prog', 'tbl_prog.prog_id=tbl_stprog.prog_id', 'left');
+        $this->db->order_by('tbl_invdtl.invdtl_duedate', 'ASC');
+        return $this->db->get('tbl_invdtl')->row_array();
     }
 
     public function updateReminderStatus($data)

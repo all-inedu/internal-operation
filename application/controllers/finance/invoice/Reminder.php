@@ -31,17 +31,15 @@ class Reminder extends CI_Controller
             $bd = strtotime($b['due_date']);
             return ($ad - $bd);
         }
+        $date = date('Y-m');
+        $data['date'] = $this->input->get('month') ? $this->input->get('month') : $date;
+        $fullpayment = $this->inv->dueDateReminder($this->input->get('month') ? $this->input->get('month') : $date);
+        $data['fullpayment_rev'] = $this->inv->totalInvoice($this->input->get('month') ? $this->input->get('month') : $date, 'received');
+        $data['tot_fullpayment_rev'] = $this->inv->totalInvoice($this->input->get('month') ? $this->input->get('month') : $date);
+        $installment = $this->invdtl->dueDateReminder($this->input->get('month') ? $this->input->get('month') : $date);
+        $data['installment_rev'] = $this->invdtl->totalInvoice($this->input->get('month') ? $this->input->get('month') : $date, 'received');
+        $data['tot_installment_rev'] = $this->invdtl->totalInvoice($this->input->get('month') ? $this->input->get('month') : $date);
 
-        if ($this->input->get('month')) {
-            $data['date'] = $this->input->get('month');
-            $fullpayment = $this->inv->dueDateReminder($this->input->get('month'));
-            $installment = $this->invdtl->dueDateReminder($this->input->get('month'));
-        } else {
-            $date = date('Y-m');
-            $data['date'] = $date;
-            $fullpayment = $this->inv->dueDateReminder($date);
-            $installment = $this->invdtl->dueDateReminder($date);
-        }
         $data['reminder'] = array_merge($fullpayment, $installment);
         usort($data['reminder'], 'orderByDueDate');
         $this->load->view('templates/s-io');
