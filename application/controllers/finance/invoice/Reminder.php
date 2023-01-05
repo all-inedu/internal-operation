@@ -72,6 +72,29 @@ class Reminder extends CI_Controller
 
         // echo json_encode($data);
         $this->session->set_flashdata('reminder', $data);
+        $this->session->set_flashdata('success', 'Reminder has been sent');
+        redirect('/finance/invoice/reminder/');
+    }
+
+    public function notes()
+    {
+        $data = [
+            'id' => $this->input->post('id'),
+            'method' => $this->input->post('method'),
+            'reminder_notes' => $this->input->post('reminder_notes'),
+        ];
+
+        if ($data['method'] == 'Installment') {
+            $this->invdtl->updateReminderNotes($data);
+        } else {
+            $this->inv->updateReminderNotes($data);
+        }
+
+        if ($data['reminder_notes']) {
+            $this->session->set_flashdata('success', 'Notes has been created');
+        } else {
+            $this->session->set_flashdata('success', 'Notes has been deleted');
+        }
         redirect('/finance/invoice/reminder/');
     }
 }

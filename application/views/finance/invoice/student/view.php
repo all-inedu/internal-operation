@@ -10,8 +10,8 @@
         <div class="col-md-7 ">
             <nav aria-label="breadcrumb" style="margin:7px -5px -10px -5px;">
                 <ol class="breadcrumb bg-white shadow border">
-                    <li class="breadcrumb-item"><a href="<?=base_url('finance/home');?>">Home</a></li>
-                    <li class="breadcrumb-item"><a href="<?=base_url('finance/invoice/student/');?>"> Students
+                    <li class="breadcrumb-item"><a href="<?= base_url('finance/home'); ?>">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<?= base_url('finance/invoice/student/'); ?>"> Students
                             Program</a></li>
                     <li class="breadcrumb-item active" aria-current="page">View Invoice</li>
                 </ol>
@@ -22,56 +22,94 @@
 <div class="line" style="margin-top:15px; margin-bottom:15px;"></div>
 <div class="row">
     <div class="col-md-3">
-        <div class="card shadow card-sticky mb-3 ">
+        <div class="card shadow mb-3">
             <div class="card-body text-center">
-                <img src="<?=base_url('assets/img/user.png');?>" alt="client management" width="60%">
-                <h5><a target="_blank" href="<?=base_url('client/profile/edit/'.$inv['st_num']);?>">
-                        <?=$inv['st_firstname'].' '.$inv['st_lastname'];?>
+                <img src="<?= base_url('assets/img/user.png'); ?>" alt="client management" width="60%">
+                <h5><a target="_blank" href="<?= base_url('client/profile/edit/' . $inv['st_num']); ?>">
+                        <?= $inv['st_firstname'] . ' ' . $inv['st_lastname']; ?>
                     </a></h5>
-                <a target="_blank" href="<?=base_url('client/students-program/view/'.$inv['stprog_id']);?>">
+                <a target="_blank" href="<?= base_url('client/students-program/view/' . $inv['stprog_id']); ?>">
                     <h6 class="text-info">
-                        <?php 
-                        if($inv['prog_sub']=='') {
+                        <?php
+                        if ($inv['prog_sub'] == '') {
                             echo $inv['prog_program'];
                         } else {
-                            echo $inv['prog_sub'].': '.$inv['prog_program'];
+                            echo $inv['prog_sub'] . ': ' . $inv['prog_program'];
                         }
-                    ?>
+                        ?>
                     </h6>
                 </a>
                 <hr>
-                <a href="<?=base_url('finance/invoice/student/cancel/'.$inv['inv_num']);?>"
+                <a href="<?= base_url('finance/invoice/student/cancel/' . $inv['inv_num']); ?>"
                     class="btn btn-sm btn-danger cancel-button" data-message="invoice"><i
                         class="fas fa-times"></i>&nbsp; Cancel</a>
-                <a href="<?=base_url('finance/invoice/student/edit/'.$inv['inv_num']);?>"
+                <a href="<?= base_url('finance/invoice/student/edit/' . $inv['inv_num']); ?>"
                     class="btn btn-sm btn-warning ml-2 mr-2"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</a>
-                <a href="<?=base_url('finance/invoice/student/pdf/'.$inv['inv_num']);?>" class="btn btn-sm btn-primary"
-                    target="_blank"><i class="fas fa-print"></i>&nbsp; Print</a>
-                <?php  if($inv['inv_category']=="usd"){  ?>
-                <a href="<?=base_url('finance/invoice/student/pdf-usd/'.$inv['inv_num']);?>"
+                <a href="<?= base_url('finance/invoice/student/pdf/' . $inv['inv_num']); ?>"
+                    class="btn btn-sm btn-primary" target="_blank"><i class="fas fa-print"></i>&nbsp; Print</a>
+                <?php if ($inv['inv_category'] == "usd") {  ?>
+                <a href="<?= base_url('finance/invoice/student/pdf-usd/' . $inv['inv_num']); ?>"
                     class="btn btn-sm btn-primary mt-2" target="_blank"><i class="fas fa-print"></i>&nbsp;
                     Print(USD)</a>
                 <?php } ?>
             </div>
         </div>
+
+        <div class="card shadow mb-3">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        Total Price
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <?= $inv['inv_totprusd'] ? '$ ' . number_format($inv['inv_totprusd']) . '<br>' : ''; ?>
+                        <?= $inv['inv_totpridr'] ? 'Rp. ' . number_format($inv['inv_totpridr']) : ''; ?>
+                    </div>
+                </div>
+                <hr>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        Total Paid
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <?= $tot_rec['tot_usd'] ? '$ ' . number_format($tot_rec['tot_usd']) . '<br>' : ''; ?>
+                        <?= $tot_rec['tot_idr'] ? 'Rp. ' . number_format($tot_rec['tot_idr']) : '-'; ?>
+                    </div>
+                </div>
+                <hr>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <strong>
+                            Remaining Total
+                        </strong>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <strong>
+                            <?= $inv['inv_totprusd'] ? '$ ' . number_format($inv['inv_totprusd'] - $tot_rec['tot_usd']) . '<br>' : ''; ?>
+                            <?= $inv['inv_totpridr'] ? 'Rp. ' . number_format($inv['inv_totpridr'] - $tot_rec['tot_idr']) : ''; ?>
+                        </strong>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="col-md-9">
-        <?php if($inv['inv_category']=="usd") { ?>
+        <?php if ($inv['inv_category'] == "usd") { ?>
         <!-- USD  -->
         <div class="card shadow">
             <div class="card-body">
                 <h6><i class="fas fa-dollar-sign"></i>&nbsp; &nbsp; View Invoice </h6>
-                <?php if($inv['inv_paymentmethod']=="Full Payment") { ?>
+                <?php if ($inv['inv_paymentmethod'] == "Full Payment") { ?>
                 <div class="float-right" style="margin-top:-30px;">
-                    <?php 
-                    if(!$rec) {
-                    ?>
+                    <?php
+                            if (!$rec) {
+                            ?>
                     <button class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#addReceipt"
-                        onclick="addReceipt(<?=$inv['inv_num'];?>)"><i class="fas fa-plus"></i> &nbsp; Add
+                        onclick="addReceipt(<?= $inv['inv_num']; ?>)"><i class="fas fa-plus"></i> &nbsp; Add
                         Receipt</button>
                     <?php } else { ?>
-                    <a href="<?=base_url('finance/receipt/student/view/'.$rec['receipt_num']);?>"
+                    <a href="<?= base_url('finance/receipt/student/view/' . $rec['receipt_num']); ?>"
                         class="btn btn-sm btn-success">
                         <i class="icofont-search"></i> &nbsp;
                         View Receipt
@@ -85,31 +123,31 @@
                         No Invoice :
                     </div>
                     <div class="col-md-9">
-                        <?=$inv['inv_id'];?>
+                        <?= $inv['inv_id']; ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Price :
                     </div>
                     <div class="col-md-9">
-                        $<?=number_format($inv['inv_priceusd']);?> &nbsp; ( Rp.
-                        <?=number_format($inv['inv_priceidr']);?> )
+                        $<?= number_format($inv['inv_priceusd']); ?> &nbsp; ( Rp.
+                        <?= number_format($inv['inv_priceidr']); ?> )
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Early Bird :
                     </div>
                     <div class="col-md-9">
-                        $<?=number_format($inv['inv_earlybirdusd']);?> &nbsp; ( Rp.
-                        <?=number_format($inv['inv_earlybirdidr']);?> )
+                        $<?= number_format($inv['inv_earlybirdusd']); ?> &nbsp; ( Rp.
+                        <?= number_format($inv['inv_earlybirdidr']); ?> )
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Discount :
                     </div>
                     <div class="col-md-9">
-                        $<?=number_format($inv['inv_discusd']);?> &nbsp; ( Rp.
-                        <?=number_format($inv['inv_discidr']);?> )
+                        $<?= number_format($inv['inv_discusd']); ?> &nbsp; ( Rp.
+                        <?= number_format($inv['inv_discidr']); ?> )
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
@@ -117,11 +155,11 @@
                     </div>
                     <div class="col-md-9">
                         <b>
-                            $<?=number_format($inv['inv_totprusd']);?> &nbsp; ( Rp.
-                            <?=number_format($inv['inv_totpridr']);?> )
+                            $<?= number_format($inv['inv_totprusd']); ?> &nbsp; ( Rp.
+                            <?= number_format($inv['inv_totpridr']); ?> )
                         </b><br>
                         <p>
-                            <?=$inv['inv_words'];?>
+                            <?= $inv['inv_words']; ?>
                         </p>
                         <hr class="mt-1 mb-2">
                     </div>
@@ -129,7 +167,7 @@
                         Payment Method :
                     </div>
                     <div class="col-md-9">
-                        <?=$inv['inv_paymentmethod'];?>
+                        <?= $inv['inv_paymentmethod']; ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
@@ -139,11 +177,11 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <small>Invoice Date :</small><br>
-                                <?=date('d F Y', strtotime($inv['inv_date']));?>
+                                <?= date('d F Y', strtotime($inv['inv_date'])); ?>
                             </div>
                             <div class="col-md-3">
                                 <small>Due Date :</small><br>
-                                <?=date('d F Y', strtotime($inv['inv_duedate']));?>
+                                <?= date('d F Y', strtotime($inv['inv_duedate'])); ?>
                             </div>
                         </div>
                         <hr class="mt-1 mb-2">
@@ -152,17 +190,17 @@
                         Notes :
                     </div>
                     <div class="col-md-9">
-                        <?=$inv['inv_notes'];?>
+                        <?= $inv['inv_notes']; ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Terms & Condition :
                     </div>
                     <div class="col-md-9">
-                        <?=$inv['inv_tnc'];?>
+                        <?= $inv['inv_tnc']; ?>
                         <hr class="mt-1 mb-2">
                     </div>
-                    <?php if($inv['inv_paymentmethod']=='Installment'){ ?>
+                    <?php if ($inv['inv_paymentmethod'] == 'Installment') { ?>
                     <div class="col-md-12 mt-3">
                         <div class="table-responsive">
                             <table class="table table-bordered text-center">
@@ -173,28 +211,28 @@
                                     <th>Amount</th>
                                     <th>Action</th>
                                 </tr>
-                                <?php foreach($invdtl as $id){ ?>
+                                <?php foreach ($invdtl as $id) { ?>
                                 <tr>
-                                    <td><?=$id['invdtl_statusname'];?></td>
-                                    <td><?=date('d F Y', strtotime($id['invdtl_duedate']));?></td>
-                                    <td><?=$id['invdtl_percentage'];?>%</td>
+                                    <td><?= $id['invdtl_statusname']; ?></td>
+                                    <td><?= date('d F Y', strtotime($id['invdtl_duedate'])); ?></td>
+                                    <td><?= $id['invdtl_percentage']; ?>%</td>
                                     <td>
-                                        $<?=number_format($id['invdtl_amountusd']);?>
-                                        ( Rp. <?=number_format($id['invdtl_amountidr']);?> )
+                                        $<?= number_format($id['invdtl_amountusd']); ?>
+                                        ( Rp. <?= number_format($id['invdtl_amountidr']); ?> )
                                     </td>
                                     <td>
                                         <?php
-                                            $invdtl_id = $id['invdtl_id'];
-                                            $rec_detail = $this->receipt->showByInvdtlId($invdtl_id);
-                                            if(!$rec_detail){
-                                        ?>
+                                                    $invdtl_id = $id['invdtl_id'];
+                                                    $rec_detail = $this->receipt->showByInvdtlId($invdtl_id);
+                                                    if (!$rec_detail) {
+                                                    ?>
                                         <button class="btn btn-sm btn-secondary" data-toggle="modal"
                                             data-target="#addReceipt"
-                                            onclick="addReceiptInsallment(<?=$id['invdtl_id'];?>)"><i
+                                            onclick="addReceiptInsallment(<?= $id['invdtl_id']; ?>)"><i
                                                 class="fas fa-plus"></i> &nbsp; Add
                                             Receipt</button>
                                         <?php } else { ?>
-                                        <a href="<?=base_url('finance/receipt/student/view/'.$rec_detail['receipt_num']);?>"
+                                        <a href="<?= base_url('finance/receipt/student/view/' . $rec_detail['receipt_num']); ?>"
                                             class="btn btn-sm btn-success">
                                             <i class="icofont-search"></i> &nbsp;
                                             View Receipt
@@ -206,25 +244,25 @@
                             </table>
                         </div>
                     </div>
-                    <?php }?>
+                    <?php } ?>
                 </div>
             </div>
         </div>
-        <?php } else if($inv['inv_category']=="idr") { ?>
+        <?php } else if ($inv['inv_category'] == "idr") { ?>
         <!-- IDR  -->
         <div class="card shadow">
             <div class="card-body">
                 <h6><i class="fas fa-dollar-sign"></i>&nbsp; &nbsp; View Invoice </h6>
-                <?php if($inv['inv_paymentmethod']=="Full Payment") { ?>
+                <?php if ($inv['inv_paymentmethod'] == "Full Payment") { ?>
                 <div class="float-right" style="margin-top:-30px;">
-                    <?php 
-                    if(!$rec) {
-                    ?>
+                    <?php
+                            if (!$rec) {
+                            ?>
                     <button class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#addReceipt"
-                        onclick="addReceipt(<?=$inv['inv_num'];?>)"><i class="fas fa-plus"></i>&nbsp; Add
+                        onclick="addReceipt(<?= $inv['inv_num']; ?>)"><i class="fas fa-plus"></i>&nbsp; Add
                         Receipt</button>
                     <?php } else { ?>
-                    <a href="<?=base_url('finance/receipt/student/view/'.$rec['receipt_num']);?>"
+                    <a href="<?= base_url('finance/receipt/student/view/' . $rec['receipt_num']); ?>"
                         class="btn btn-sm btn-success">
                         <i class="icofont-search"></i> &nbsp;
                         View Receipt
@@ -238,28 +276,28 @@
                         No Invoice :
                     </div>
                     <div class="col-md-9">
-                        <?=$inv['inv_id'];?>
+                        <?= $inv['inv_id']; ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Price :
                     </div>
                     <div class="col-md-9">
-                        Rp. <?=number_format($inv['inv_priceidr']);?>
+                        Rp. <?= number_format($inv['inv_priceidr']); ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Early Bird :
                     </div>
                     <div class="col-md-9">
-                        Rp. <?=number_format($inv['inv_earlybirdidr']);?>
+                        Rp. <?= number_format($inv['inv_earlybirdidr']); ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Discount :
                     </div>
                     <div class="col-md-9">
-                        Rp. <?=number_format($inv['inv_discidr']);?>
+                        Rp. <?= number_format($inv['inv_discidr']); ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
@@ -267,16 +305,16 @@
                     </div>
                     <div class="col-md-9">
                         <b>
-                            Rp. <?=number_format($inv['inv_totpridr']);?>
+                            Rp. <?= number_format($inv['inv_totpridr']); ?>
                         </b><br>
-                        <?=$inv['inv_words'];?>
+                        <?= $inv['inv_words']; ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Payment Method :
                     </div>
                     <div class="col-md-9">
-                        <?=$inv['inv_paymentmethod'];?>
+                        <?= $inv['inv_paymentmethod']; ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
@@ -286,11 +324,11 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <small>Invoice Date :</small><br>
-                                <?=date('d F Y', strtotime($inv['inv_date']));?>
+                                <?= date('d F Y', strtotime($inv['inv_date'])); ?>
                             </div>
                             <div class="col-md-3">
                                 <small>Due Date :</small><br>
-                                <?=date('d F Y', strtotime($inv['inv_duedate']));?>
+                                <?= date('d F Y', strtotime($inv['inv_duedate'])); ?>
                             </div>
                         </div>
                         <hr class="mt-1 mb-2">
@@ -299,17 +337,17 @@
                         Notes :
                     </div>
                     <div class="col-md-9">
-                        <?=$inv['inv_notes'];?>
+                        <?= $inv['inv_notes']; ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Terms & Condition :
                     </div>
                     <div class="col-md-9">
-                        <?=$inv['inv_tnc'];?>
+                        <?= $inv['inv_tnc']; ?>
                         <hr class="mt-1 mb-2">
                     </div>
-                    <?php if($inv['inv_paymentmethod']=='Installment'){ ?>
+                    <?php if ($inv['inv_paymentmethod'] == 'Installment') { ?>
                     <div class="col-md-12 mt-3">
                         <div class="table-responsive">
                             <table class="table table-bordered text-center">
@@ -320,27 +358,27 @@
                                     <th>Amount</th>
                                     <th>Action</th>
                                 </tr>
-                                <?php foreach($invdtl as $id){ ?>
+                                <?php foreach ($invdtl as $id) { ?>
                                 <tr>
-                                    <td><?=$id['invdtl_statusname'];?></td>
-                                    <td><?=date('d F Y', strtotime($id['invdtl_duedate']));?></td>
-                                    <td><?=$id['invdtl_percentage'];?>%</td>
+                                    <td><?= $id['invdtl_statusname']; ?></td>
+                                    <td><?= date('d F Y', strtotime($id['invdtl_duedate'])); ?></td>
+                                    <td><?= $id['invdtl_percentage']; ?>%</td>
                                     <td>
-                                        Rp. <?=number_format($id['invdtl_amountidr']);?>
+                                        Rp. <?= number_format($id['invdtl_amountidr']); ?>
                                     </td>
                                     <td>
                                         <?php
-                                            $invdtl_id = $id['invdtl_id'];
-                                            $rec_detail = $this->receipt->showByInvdtlId($invdtl_id);
-                                            if(!$rec_detail){
-                                        ?>
+                                                    $invdtl_id = $id['invdtl_id'];
+                                                    $rec_detail = $this->receipt->showByInvdtlId($invdtl_id);
+                                                    if (!$rec_detail) {
+                                                    ?>
                                         <button class="btn btn-sm btn-secondary" data-toggle="modal"
                                             data-target="#addReceipt"
-                                            onclick="addReceiptInsallment(<?=$id['invdtl_id'];?>)"><i
+                                            onclick="addReceiptInsallment(<?= $id['invdtl_id']; ?>)"><i
                                                 class="fas fa-plus"></i> &nbsp; Add
                                             Receipt</button>
                                         <?php } else { ?>
-                                        <a href="<?=base_url('finance/receipt/student/view/'.$rec_detail['receipt_num']);?>"
+                                        <a href="<?= base_url('finance/receipt/student/view/' . $rec_detail['receipt_num']); ?>"
                                             class="btn btn-sm btn-success">
                                             <i class="icofont-search"></i> &nbsp;
                                             View Receipt
@@ -352,25 +390,25 @@
                             </table>
                         </div>
                     </div>
-                    <?php }?>
+                    <?php } ?>
                 </div>
             </div>
         </div>
-        <?php } else if($inv['inv_category']=="session") { ?>
+        <?php } else if ($inv['inv_category'] == "session") { ?>
         <!-- SESSION -->
         <div class="card shadow">
             <div class="card-body">
                 <h6><i class="fas fa-dollar-sign"></i>&nbsp; &nbsp; View Invoice </h6>
-                <?php if($inv['inv_paymentmethod']=="Full Payment") { ?>
+                <?php if ($inv['inv_paymentmethod'] == "Full Payment") { ?>
                 <div class="float-right" style="margin-top:-30px;">
-                    <?php 
-                    if(!$rec) {
-                    ?>
+                    <?php
+                            if (!$rec) {
+                            ?>
                     <button class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#addReceipt"
-                        onclick="addReceipt(<?=$inv['inv_num'];?>)"><i class="fas fa-plus"></i>&nbsp; Add
+                        onclick="addReceipt(<?= $inv['inv_num']; ?>)"><i class="fas fa-plus"></i>&nbsp; Add
                         Receipt</button>
                     <?php } else { ?>
-                    <a href="<?=base_url('finance/receipt/student/view/'.$rec['receipt_num']);?>"
+                    <a href="<?= base_url('finance/receipt/student/view/' . $rec['receipt_num']); ?>"
                         class="btn btn-sm btn-success">
                         <i class="icofont-search"></i> &nbsp;
                         View Receipt
@@ -384,35 +422,35 @@
                         No Invoice :
                     </div>
                     <div class="col-md-9">
-                        <?=$inv['inv_id'];?>
+                        <?= $inv['inv_id']; ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Price/Hours :
                     </div>
                     <div class="col-md-9">
-                        Rp. <?=number_format($inv['inv_priceidr']);?>
+                        Rp. <?= number_format($inv['inv_priceidr']); ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Session :
                     </div>
                     <div class="col-md-9">
-                        <?=$inv['inv_session'];?> x
+                        <?= $inv['inv_session']; ?> x
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Duration/Session :
                     </div>
                     <div class="col-md-9">
-                        <?=$inv['inv_duration'];?> Minutes
+                        <?= $inv['inv_duration']; ?> Minutes
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Discount :
                     </div>
                     <div class="col-md-9">
-                        Rp. <?=number_format($inv['inv_discidr']);?>
+                        Rp. <?= number_format($inv['inv_discidr']); ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
@@ -420,16 +458,16 @@
                     </div>
                     <div class="col-md-9">
                         <b>
-                            Rp. <?=number_format($inv['inv_totpridr']);?>
+                            Rp. <?= number_format($inv['inv_totpridr']); ?>
                         </b><br>
-                        <?=$inv['inv_words'];?>
+                        <?= $inv['inv_words']; ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Payment Method :
                     </div>
                     <div class="col-md-9">
-                        <?=$inv['inv_paymentmethod'];?>
+                        <?= $inv['inv_paymentmethod']; ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
@@ -439,11 +477,11 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <small>Invoice Date :</small><br>
-                                <?=date('d F Y', strtotime($inv['inv_date']));?>
+                                <?= date('d F Y', strtotime($inv['inv_date'])); ?>
                             </div>
                             <div class="col-md-3">
                                 <small>Due Date :</small><br>
-                                <?=date('d F Y', strtotime($inv['inv_duedate']));?>
+                                <?= date('d F Y', strtotime($inv['inv_duedate'])); ?>
                             </div>
                         </div>
                         <hr class="mt-1 mb-2">
@@ -452,14 +490,14 @@
                         Notes :
                     </div>
                     <div class="col-md-9">
-                        <?=$inv['inv_notes'];?>
+                        <?= $inv['inv_notes']; ?>
                         <hr class="mt-1 mb-2">
                     </div>
                     <div class="col-md-3">
                         Terms & Condition :
                     </div>
                     <div class="col-md-9">
-                        <?=$inv['inv_tnc'];?>
+                        <?= $inv['inv_tnc']; ?>
                         <hr class="mt-1 mb-2">
                     </div>
                 </div>
@@ -478,30 +516,30 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?=base_url('finance/receipt/student/save');?>" method="post" name="receipt">
+            <form action="<?= base_url('finance/receipt/student/save'); ?>" method="post" name="receipt">
                 <div class="modal-body">
                     <div class="row">
                         <?php
-                            $invidr = $inv['inv_priceidr'];
-                            $invusd = $inv['inv_priceusd'];
-                            if($invusd>0) {
-                                $rupiah = $invidr/$invusd;
-                                $show = "";
-                            } else {
-                                $rupiah = $invidr;
-                                $show = "readonly";
-                            }
+                        $invidr = $inv['inv_priceidr'];
+                        $invusd = $inv['inv_priceusd'];
+                        if ($invusd > 0) {
+                            $rupiah = $invidr / $invusd;
+                            $show = "";
+                        } else {
+                            $rupiah = $invidr;
+                            $show = "readonly";
+                        }
                         ?>
                         <div class="col-md-6 usd">
                             <label>Percentage <i class="text-danger font-weight-bold">*</i></label>
                             <div class="form-group">
-                                <input type="hidden" name="stprog_id" value="<?=$inv['stprog_id'];?>">
-                                <input type="hidden" name="inv_id" value="<?=$inv['inv_id'];?>">
-                                <input type="hidden" name="inv_num" value="<?=$inv['inv_num'];?>">
-                                <input type="hidden" name="priceIDR" id="priceIDR" value="<?=$inv['inv_priceidr'];?>">
+                                <input type="hidden" name="stprog_id" value="<?= $inv['stprog_id']; ?>">
+                                <input type="hidden" name="inv_id" value="<?= $inv['inv_id']; ?>">
+                                <input type="hidden" name="inv_num" value="<?= $inv['inv_num']; ?>">
+                                <input type="hidden" name="priceIDR" id="priceIDR" value="<?= $inv['inv_priceidr']; ?>">
                                 <input type="hidden" id="invdtl_id" name="invdtl_id">
                                 <input type="hidden" name="receipt_cat" value="1">
-                                <input type="hidden" name="rupiah" id="rupiah" value="<?=$rupiah;?>" readonly>
+                                <input type="hidden" name="rupiah" id="rupiah" value="<?= $rupiah; ?>" readonly>
                                 <input type="number" name="invdtl_percentage" id="percentage"
                                     class="form-control form-control-sm" readonly>
                             </div>
@@ -510,7 +548,7 @@
                             <label>Amount (USD) <i class="text-danger font-weight-bold">*</i></label>
                             <div class="form-group">
                                 <input type="number" step="any" id="receipt_amountusd" name="receipt_amountusd"
-                                    class="form-control form-control-sm" <?=$show;?>>
+                                    class="form-control form-control-sm" <?= $show; ?>>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -524,7 +562,7 @@
                             <label>Date <i class="text-danger font-weight-bold">*</i></label>
                             <div class="form-group">
                                 <input type="date" name="receipt_date" id="date" class="form-control form-control-sm"
-                                    value="<?=date('Y-m-d');?>">
+                                    value="<?= date('Y-m-d'); ?>">
                             </div>
                         </div>
                         <div class="col-md-12 mb-3">
@@ -562,7 +600,7 @@
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="<?=base_url('assets/js/generate-number.js');?>"></script>
+<script src="<?= base_url('assets/js/generate-number.js'); ?>"></script>
 <script>
 function paymentMethods() {
     let pm = $('#paymentMethod').val();
@@ -578,7 +616,7 @@ function addReceipt(x) {
     $('.usd').hide();
     $.ajax({
         type: 'post',
-        url: '<?=base_url("finance/invoice/student/showinvnumjson/");?>' + x,
+        url: '<?= base_url("finance/invoice/student/showinvnumjson/"); ?>' + x,
         dataType: 'json',
         success: function(data) {
             console.log(data)
@@ -595,7 +633,7 @@ function addReceiptInsallment(x) {
     $('.usd').show();
     $.ajax({
         type: 'post',
-        url: '<?=base_url("finance/invoice/student/showinvdtljson/");?>' + x,
+        url: '<?= base_url("finance/invoice/student/showinvdtljson/"); ?>' + x,
         dataType: 'json',
         success: function(data) {
             // console.log(data)

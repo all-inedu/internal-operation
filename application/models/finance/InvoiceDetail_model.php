@@ -52,6 +52,7 @@ class InvoiceDetail_model extends CI_model
         tbl_invdtl.invdtl_amountidr as tot_idr, 
         tbl_invdtl.invdtl_duedate as due_date,
         tbl_invdtl.reminder_status, 
+        tbl_invdtl.reminder_notes, 
         tbl_inv.inv_paymentmethod as method, 
         tbl_students.st_firstname as first_name, 
         tbl_students.st_lastname as last_name, 
@@ -99,6 +100,13 @@ class InvoiceDetail_model extends CI_model
     public function updateReminderStatus($data)
     {
         $this->db->set('reminder_status', $data['type']);
+        $this->db->where('invdtl_id', $data['id']);
+        $this->db->update('tbl_invdtl');
+    }
+
+    public function updateReminderNotes($data)
+    {
+        $this->db->set('reminder_notes', $data['reminder_notes']);
         $this->db->where('invdtl_id', $data['id']);
         $this->db->update('tbl_invdtl');
     }

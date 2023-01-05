@@ -28,9 +28,17 @@
     </form>
 </div>
 
+<?php
+$CI = &get_instance();
+$CI->load->model('hr/Employee_model', 'empl');
+$empl_id = $CI->session->userdata('empl_id');
+$data = $CI->empl->showId($empl_id);
+?>
+
 
 <div class="container-fluid p-0 mt-3">
     <div class="content">
+        <?php if ($data['empl_role'] == 0 || $data['empl_role'] == 3) { ?>
         <div class="row mb-3">
             <div class="col-md-4">
                 <div class="card border-0 shadow">
@@ -93,7 +101,7 @@
                         <div class="text-right">
                             <h5>
                                 <?=
-                                ($tot_fullpayment_rev['tot_fullpayment_inv'] + $tot_installment_rev['tot_installment_inv']) - ($fullpayment_rev['tot_fullpayment_inv'] + $installment_rev['tot_installment_inv']); ?>
+                                    ($tot_fullpayment_rev['tot_fullpayment_inv'] + $tot_installment_rev['tot_installment_inv']) - ($fullpayment_rev['tot_fullpayment_inv'] + $installment_rev['tot_installment_inv']); ?>
                             </h5>
                             <strong>
                                 $
@@ -109,6 +117,7 @@
                 </div>
             </div>
         </div>
+        <?php } ?>
 
         <table id="myTable" class="display table table-striped table-bordered dt-responsive nowrap" style="width:100%">
             <thead class="text-center">
@@ -122,6 +131,7 @@
                     <th width="5%">Amount IDR</th>
                     <th width="5%">Due Date</th>
                     <th>Reminder Status</th>
+                    <th>Notes</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -142,6 +152,32 @@
                     <td class="text-center"><?= $r['tot_idr'] ? 'Rp. ' . number_format($r['tot_idr']) : '-'; ?></td>
                     <td class="text-center"><?= date('d F Y', strtotime($r['due_date'])); ?></td>
                     <td class="text-center"><?= $r['reminder_status'] ? $r['reminder_status'] . ' Sent' : '-' ?></td>
+                    <td>
+                        <?php
+                            if ($r['reminder_status']) {
+                                if ($r['reminder_notes']) {
+                            ?>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="">
+                                <?= $r['reminder_notes']; ?>
+                            </div>
+                            <div class="ml-3">
+                                <i class="fas fa-trash fa-fw text-danger" style="cursor:pointer"
+                                    onclick="deleteNotes(<?= $r['id']; ?>, '<?= $r['method']; ?>')"></i>
+                            </div>
+                        </div>
+                        <?php
+                                } else {
+                                    echo '<button class="btn btn-sm btn-outline-info"
+                                     onclick="addNotes(' . $r['id'] . ', \'' . $r['method'] . '\')">
+                                     <i class="fas fa-plus fa-fw"></i>
+                                     </button>';
+                                }
+                            } else {
+                                echo '-';
+                            }
+                            ?>
+                    </td>
                     <td>
                         <button class="btn btn-sm btn-primary"
                             onclick="checkReminder(<?= $r['id']; ?>, '<?= $r['method']; ?>', '<?= $r['prog_sub'] ? $r['prog_sub'] . ' - ' . ' ' . $r['prog_program'] : ' ' . $r['prog_program']; ?>', '<?= $r['due_date']; ?>')">
@@ -193,13 +229,72 @@
         </div>
     </div>
 </div>
+
+<!-- Add Reminder Notes  -->
+<div class="modal fade" id="addReminderNotes">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="<?= base_url('finance/invoice/reminder/notes'); ?>" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Notes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="hidden" id="inv_id" name="id">
+                            <input type="hidden" id="inv_method" name="method">
+                            <textarea name="reminder_notes" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Reminder Notes  -->
+<div class="modal fade" id="deleteReminderNotes">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="<?= base_url('finance/invoice/reminder/notes'); ?>" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6>Are you sure, you want to delete this notes?</h6>
+                            <input type="hidden" id="inv_del_id" name="id">
+                            <input type="hidden" id="inv_del_method" name="method">
+                            <input type="hidden" name="reminder_notes" value="">
+                        </div>
+                    </div>
+                    <div class="text-center mt-2">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Yes, Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <?php if ($this->session->flashdata('reminder')) { ?>
 <script>
 const reminder = <?= json_encode($this->session->flashdata('reminder')); ?>;
 const date = new Date();
 const diff = reminder.due_date - date;
-console.log(date);
 const message =
     "https://api.whatsapp.com/send?phone=" + reminder.phone +
     "&text=*" + reminder.type.replace('+', '%2B') +
@@ -222,5 +317,17 @@ function checkReminder(id, method, program, due_date) {
     $('#method').val(method)
     $('#program').val(program)
     $('#due_date').val(due_date)
+}
+
+function addNotes(id, method) {
+    $('#addReminderNotes').modal('show')
+    $('#inv_id').val(id)
+    $('#inv_method').val(method)
+}
+
+function deleteNotes(id, method) {
+    $('#deleteReminderNotes').modal('show')
+    $('#inv_del_id').val(id)
+    $('#inv_del_method').val(method)
 }
 </script>
